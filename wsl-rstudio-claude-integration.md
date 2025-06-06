@@ -7,11 +7,12 @@ This guide provides comprehensive instructions for setting up and using Claude C
 2. [Prerequisites](#prerequisites)
 3. [Initial Setup](#initial-setup)
 4. [acquaint Package Configuration](#acquaint-package-configuration)
-5. [Environment Configuration](#environment-configuration)
-6. [Path Management](#path-management)
-7. [Development Workflow](#development-workflow)
-8. [Troubleshooting](#troubleshooting)
-9. [Best Practices](#best-practices)
+5. [Claude Desktop Configuration](#claude-desktop-configuration)
+6. [Environment Configuration](#environment-configuration)
+7. [Path Management](#path-management)
+8. [Development Workflow](#development-workflow)
+9. [Troubleshooting](#troubleshooting)
+10. [Best Practices](#best-practices)
 
 ## Overview
 
@@ -103,6 +104,92 @@ acquaint::mcp_session()
 
 This starts the MCP server that Claude Code can connect to.
 
+## Claude Desktop Configuration
+
+To connect Claude Desktop (running on Windows) to the MCP server in your R session, you need to configure Claude Desktop's MCP settings.
+
+### 1. Locate Claude Desktop Configuration
+
+Find or create the Claude Desktop configuration file:
+
+**Windows 11/10:**
+```
+%APPDATA%\Claude\claude_desktop_config.json
+```
+
+**Full path example:**
+```
+C:\Users\YourUsername\AppData\Roaming\Claude\claude_desktop_config.json
+```
+
+### 2. Configure MCP Server Connection
+
+Create or edit the `claude_desktop_config.json` file with the following content:
+
+```json
+{
+  "mcpServers": {
+    "r-acquaint": {
+      "command": "stdio",
+      "description": "R session MCP server via acquaint package",
+      "args": []
+    }
+  }
+}
+```
+
+**Note**: The exact configuration may depend on how the acquaint package exposes the MCP server. You may need to specify:
+- A specific port if the server runs on a network port
+- Connection parameters for the stdio interface
+- Authentication details if required
+
+### 3. Alternative: Network-based Connection
+
+If the acquaint MCP server runs on a specific port, your configuration might look like:
+
+```json
+{
+  "mcpServers": {
+    "r-acquaint": {
+      "command": "tcp",
+      "args": ["localhost", "3000"],
+      "description": "R session MCP server on localhost:3000"
+    }
+  }
+}
+```
+
+### 4. Verify Connection
+
+1. **Start R session** with acquaint MCP server:
+   ```r
+   # In RStudio
+   acquaint::mcp_session()
+   ```
+
+2. **Restart Claude Desktop** to pick up the new configuration
+
+3. **Test connection** by asking Claude Desktop to interact with your R session
+
+### 5. Connection Troubleshooting
+
+**Check MCP server status:**
+```r
+# In R console, verify the server is running
+# Look for MCP server startup messages when running acquaint::mcp_session()
+```
+
+**Verify configuration file:**
+- Ensure the JSON syntax is valid
+- Check file permissions
+- Restart Claude Desktop after configuration changes
+
+**Common issues:**
+- Firewall blocking connections
+- Port conflicts
+- Incorrect server address/port
+- Configuration file syntax errors
+
 ## Environment Configuration
 
 ### 1. Create .Renviron File
@@ -163,7 +250,13 @@ claude
 2. The `.Rprofile` will automatically start `acquaint::mcp_session()`
 3. You'll see a message about the MCP server starting
 
-### 3. Common Commands from WSL
+### 3. In Claude Desktop (Windows)
+1. **Ensure Claude Desktop is configured** with the MCP server settings (see [Claude Desktop Configuration](#claude-desktop-configuration))
+2. **Restart Claude Desktop** if you've made configuration changes
+3. **Test the connection** by asking Claude Desktop to interact with your R environment
+4. Look for MCP server indicators in Claude Desktop's interface
+
+### 4. Common Commands from WSL
 ```bash
 # Run R commands
 Rscript -e "devtools::check()"
@@ -219,6 +312,40 @@ Rscript --vanilla -e "command"  # Bad - skips .Rprofile
 "/mnt/c/Program Files/R/R-4.5.0/bin/R.exe" --version
 
 # Update wrapper scripts to match your version
+```
+
+### Issue: Claude Desktop Not Connecting to MCP Server
+```bash
+# 1. Verify MCP server is running in R
+# Look for startup messages when running:
+acquaint::mcp_session()
+
+# 2. Check Claude Desktop configuration file exists
+# Windows: %APPDATA%\Claude\claude_desktop_config.json
+
+# 3. Validate JSON syntax in configuration file
+# Use an online JSON validator or:
+python -m json.tool %APPDATA%\Claude\claude_desktop_config.json
+
+# 4. Restart Claude Desktop after configuration changes
+
+# 5. Check for firewall/antivirus blocking connections
+
+# 6. Verify connection method (stdio vs tcp)
+# Check acquaint documentation for correct connection type
+```
+
+### Issue: MCP Server Connection Refused
+```r
+# Check if MCP server port is already in use
+netstat -an | findstr :3000  # Replace 3000 with actual port
+
+# Try restarting the MCP server
+# In R console:
+# Stop any existing session, then restart
+acquaint::mcp_session()
+
+# Check for error messages in R console output
 ```
 
 ## Best Practices
