@@ -37,7 +37,8 @@ package-name/
 ├── .Rbuildignore         # Files to exclude from build
 ├── .gitignore            # Git ignore patterns
 ├── .Rprofile             # Development session config
-└── .Renviron             # Environment variables
+├── .Renviron.example     # Environment variable template
+└── .Renviron             # Environment variables (git-ignored)
 ```
 
 ### Project-Specific Files
@@ -69,6 +70,16 @@ usethis::use_github_action_check_standard()
 
 # Set up renv for reproducibility
 renv::init()
+
+# Create environment variable template
+cat > .Renviron.example << 'EOF'
+# Required for building vignettes
+RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
+# GITHUB_PAT=your_github_token_here
+EOF
+
+# Copy template and customize (add to .gitignore)
+cp .Renviron.example .Renviron
 ```
 
 ### Daily Development Cycle
@@ -489,7 +500,7 @@ testthat::skip_on_os("windows")
 
 #### 4. Missing Pandoc
 ```bash
-# Set in .Renviron
+# Set in .Renviron (git-ignored file, copy from .Renviron.example)
 RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
 
 # Or install pandoc separately

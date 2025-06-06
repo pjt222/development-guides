@@ -193,19 +193,27 @@ If the acquaint MCP server runs on a specific port, your configuration might loo
 ## Environment Configuration
 
 ### 1. Create .Renviron File
-Create `.Renviron` in your project root with Windows paths:
+Create `.Renviron.example` in your project root as a template:
 
 ```bash
 # R Environment Variables for development
 # Pandoc path for RStudio installation (required for building vignettes)
 RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
 
-# Optional: GitHub PAT for package development
+# GitHub PAT for package development (get from https://github.com/settings/tokens)
 # GITHUB_PAT=your_github_token_here
 
 # Optional: Custom library path
 # R_LIBS_USER="C:/Users/YourUsername/R/library"
 ```
+
+Then copy to create your actual environment file:
+```bash
+cp .Renviron.example .Renviron
+# Edit .Renviron to add your actual API keys and sensitive values
+```
+
+**Security Note**: `.Renviron` contains sensitive information and should be git-ignored.
 
 ### 2. Verify Environment
 ```bash
@@ -352,14 +360,15 @@ acquaint::mcp_session()
 
 ### 1. Project Organization
 - Always include `.Rprofile` with conditional acquaint loading
-- Include `.Renviron` for Windows-specific paths
+- Include `.Renviron.example` template for Windows-specific paths
 - Use renv for package management
-- Add both files to version control
+- Add template files to version control, but git-ignore actual `.Renviron`
 
 ### 2. Development Files
 **Never delete these files:**
 - `.Rprofile` - Contains session configuration
-- `.Renviron` - Contains environment variables
+- `.Renviron.example` - Environment variable template
+- `.Renviron` - Local environment variables (not in git)
 - `renv.lock` - Package dependencies
 - `renv/` - Package library
 
@@ -380,11 +389,12 @@ Create a `CLAUDE.md` file in your project root with:
 
 ### 5. Git Configuration
 ```gitignore
-# Don't ignore development files
+# Don't ignore development template files
 !.Rprofile
-!.Renviron
+!.Renviron.example
 
-# But ignore user-specific data
+# Ignore sensitive environment files and user-specific data
+.Renviron
 .RData
 .Rhistory
 ```
@@ -410,23 +420,27 @@ if (requireNamespace("acquaint", quietly = TRUE)) {
 }
 EOF
 
-# 4. Create .Renviron
-cat > .Renviron << 'EOF'
+# 4. Create .Renviron.example template
+cat > .Renviron.example << 'EOF'
 RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
+# GITHUB_PAT=your_github_token_here
 EOF
 
-# 5. Initialize renv (from R)
+# 5. Copy to create actual .Renviron (add your secrets here)
+cp .Renviron.example .Renviron
+
+# 6. Initialize renv (from R)
 Rscript -e "renv::init()"
 
-# 6. Install acquaint
+# 7. Install acquaint
 Rscript -e "remotes::install_github('posit-dev/acquaint')"
 
-# 7. Create CLAUDE.md
+# 8. Create CLAUDE.md
 echo "# Project Name" > CLAUDE.md
 echo "" >> CLAUDE.md
 echo "Project-specific instructions for Claude Code." >> CLAUDE.md
 
-# 8. Open in RStudio and start developing!
+# 9. Open in RStudio and start developing!
 ```
 
 ## Additional Resources

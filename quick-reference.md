@@ -94,7 +94,8 @@ git diff --staged          # Show staged changes
 git log --oneline -10      # Recent commits
 
 # Staging and committing
-git add .                  # Stage all changes
+git add .                  # Stage all changes - CAUTION: Review first!
+git status                 # Always review what you're staging
 git add filename           # Stage specific file
 git commit -m "message"    # Commit with message
 git commit --amend         # Amend last commit

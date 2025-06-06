@@ -46,7 +46,9 @@ localhostForwarding=true
 # APT (already installed)
 sudo apt update
 
-# Homebrew (optional)
+# Homebrew (optional) - SECURITY: Review script before running
+# curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh > install.sh
+# less install.sh  # Review the script
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Add to PATH
@@ -126,7 +128,7 @@ git config --global core.autocrlf input
 
 ### SSH Key Setup
 ```bash
-# Generate SSH key
+# Generate SSH key (use a strong passphrase when prompted)
 ssh-keygen -t ed25519 -C "your.email@example.com"
 
 # Start ssh-agent
@@ -186,6 +188,9 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 ```bash
 # Install Zsh and Oh My Zsh
 sudo apt install -y zsh
+# SECURITY: Review script before running
+# curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh > ohmyzsh.sh
+# less ohmyzsh.sh  # Review the script
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Set as default shell
@@ -231,7 +236,9 @@ EOF
 
 ### Node.js (via nvm)
 ```bash
-# Install nvm
+# Install nvm - SECURITY: Review script before running
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh > nvm.sh
+# less nvm.sh  # Review the script  
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 
 # Reload shell
@@ -253,7 +260,9 @@ libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
 libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev \
 libffi-dev liblzma-dev
 
-# Install pyenv
+# Install pyenv - SECURITY: Review script before running
+# curl https://pyenv.run > pyenv.sh
+# less pyenv.sh  # Review the script
 curl https://pyenv.run | bash
 
 # Add to ~/.bashrc
