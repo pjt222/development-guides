@@ -138,11 +138,28 @@ claude
 acquaint::mcp_session()
 ```
 
+### MCP Server Management
+```bash
+# Check available MCP servers
+cat /mnt/c/Users/phtho/AppData/Roaming/Claude/claude_desktop_config.json
+
+# Verify R MCP server status
+Rscript -e "acquaint::mcp_session()"
+
+# List R sessions available to MCP
+# (Use Claude Code tools to check)
+```
+
+### Available MCP Servers
+- **r-acquaint**: R integration (data analysis, package management, help system)
+- **hf-mcp-server**: Hugging Face integration (AI/ML models, datasets, transformers)
+
 ### Best Practices
 - Keep `.Rprofile` with conditional acquaint loading
 - Include `CLAUDE.md` in project root
 - Use descriptive commit messages
 - Maintain todo lists for complex tasks
+- Check MCP server status when troubleshooting Claude integration
 
 ## Shell Commands
 

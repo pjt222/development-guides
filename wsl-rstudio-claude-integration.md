@@ -24,6 +24,12 @@ Claude Code (WSL) <--MCP--> acquaint::mcp_session() <--> RStudio (Windows)
                      |
                      v
               R.exe (Windows)
+
+Claude Desktop (Windows) <--MCP--> Multiple Servers:
+                           |        ├── r-acquaint (R integration)
+                           |        └── hf-mcp-server (Hugging Face)
+                           v
+                    AI/ML Workflows + R Analytics
 ```
 
 ## Prerequisites
@@ -106,7 +112,32 @@ This starts the MCP server that Claude Code can connect to.
 
 ## Claude Desktop Configuration
 
-To connect Claude Desktop (running on Windows) to the MCP server in your R session, you need to configure Claude Desktop's MCP settings.
+To connect Claude Desktop (running on Windows) to MCP servers, you need to configure Claude Desktop's MCP settings. Your setup can include multiple MCP servers for different capabilities.
+
+### Available MCP Servers
+
+Your Claude Desktop can be configured with the following MCP servers:
+
+#### 1. r-acquaint
+- **Purpose**: R integration and data analysis
+- **Capabilities**: Package management, data frame analysis, help system, file operations
+- **Command**: Uses Rscript to run `acquaint::mcp_server()`
+- **Status check**: Look for acquaint::mcp_session() output in R console
+
+#### 2. hf-mcp-server (Hugging Face)
+- **Purpose**: AI/ML model access and Hugging Face integration
+- **Capabilities**: Model inference, dataset access, transformers pipeline
+- **Authentication**: Configured with Bearer token
+- **Use cases**: Natural language processing, computer vision, model experimentation
+
+### Checking Available MCP Servers
+```bash
+# View Claude Desktop configuration
+cat /mnt/c/Users/phtho/AppData/Roaming/Claude/claude_desktop_config.json
+
+# Check R MCP server status (in R console)
+Rscript -e "acquaint::mcp_session()"
+```
 
 ### 1. Locate Claude Desktop Configuration
 
@@ -124,19 +155,30 @@ C:\Users\YourUsername\AppData\Roaming\Claude\claude_desktop_config.json
 
 ### 2. Configure MCP Server Connection
 
-Create or edit the `claude_desktop_config.json` file with the following content:
+Create or edit the `claude_desktop_config.json` file. Here's an example with multiple MCP servers:
 
 ```json
 {
+  "globalShortcut": "Alt+Ctrl+Space",
   "mcpServers": {
     "r-acquaint": {
-      "command": "stdio",
-      "description": "R session MCP server via acquaint package",
-      "args": []
+      "command": "C:\\PROGRA~1\\R\\R-45~1.0\\bin\\x64\\Rscript.exe",
+      "args": ["-e", "acquaint::mcp_server()"]
+    },
+    "hf-mcp-server": {
+      "command": "npx",
+      "args": [
+        "mcp-remote",
+        "https://huggingface.co/mcp",
+        "--header",
+        "Authorization: Bearer YOUR_HF_TOKEN_HERE"
+      ]
     }
   }
 }
 ```
+
+**Important**: Replace `YOUR_HF_TOKEN_HERE` with your actual Hugging Face token if you want to use the Hugging Face MCP server.
 
 **Note**: The exact configuration may depend on how the acquaint package exposes the MCP server. You may need to specify:
 - A specific port if the server runs on a network port
