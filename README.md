@@ -7,6 +7,7 @@ A comprehensive collection of guides for development work using WSL, Windows, an
 ### 🚀 [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
 Complete setup guide for using Claude Code from WSL with RStudio on Windows:
 - MCP server configuration with acquaint package
+- Understanding the client-server relationship (Claude Code and Claude Desktop as independent MCP clients)
 - Environment variable setup (.Renviron, .Rprofile)
 - Path management between WSL and Windows
 - Troubleshooting common issues

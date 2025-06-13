@@ -32,6 +32,21 @@ Claude Desktop (Windows) <--MCP--> Multiple Servers:
                     AI/ML Workflows + R Analytics
 ```
 
+### Important: Understanding the Client-Server Relationship
+
+**MCP (Model Context Protocol) operates on a client-server architecture:**
+
+- **MCP Server**: `acquaint::mcp_session()` runs in your R/RStudio session, exposing R functionality
+- **MCP Clients**: Both Claude Code and Claude Desktop are independent clients that can connect to any MCP server
+- **Key Point**: Claude Code and Claude Desktop do NOT share configurations or depend on each other
+- **Connection**: Each client independently discovers and connects to available MCP servers
+
+Think of it like a web server:
+- Your R session (with acquaint) is like a web server
+- Claude Code and Claude Desktop are like different web browsers
+- Both browsers can connect to the same server independently
+- Neither browser needs to know about the other
+
 ## Prerequisites
 
 - Windows with WSL2 installed
@@ -133,7 +148,7 @@ Your Claude Desktop can be configured with the following MCP servers:
 ### Checking Available MCP Servers
 ```bash
 # View Claude Desktop configuration
-cat /mnt/c/Users/phtho/AppData/Roaming/Claude/claude_desktop_config.json
+cat /mnt/c/Users/$USER/AppData/Roaming/Claude/claude_desktop_config.json
 
 # Check R MCP server status (in R console)
 Rscript -e "acquaint::mcp_session()"
@@ -284,6 +299,35 @@ R_LIBS_USER="C:/Users/YourUsername/R/win-library/4.5"
 RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
 ```
 
+## Claude Code Configuration (WSL)
+
+### Configure Claude Code to Connect to MCP Server
+
+Claude Code needs its own configuration to connect to the MCP server. This is separate from Claude Desktop configuration.
+
+#### Option 1: Using Claude CLI
+```bash
+# Add MCP server to Claude Code configuration
+claude mcp add r-acquaint stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+```
+
+#### Option 2: Manual Configuration
+Edit `~/.claude.json` and add:
+```json
+{
+  "mcpServers": {
+    "r-acquaint": {
+      "type": "stdio",
+      "command": "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe",
+      "args": ["-e", "acquaint::mcp_server()"],
+      "env": {}
+    }
+  }
+}
+```
+
+**Note**: Adjust the R path to match your installation version.
+
 ## Development Workflow
 
 ### 1. Starting a Session
@@ -291,7 +335,7 @@ RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
 # Navigate to project in WSL
 cd /path/to/your-project
 
-# Start Claude Code
+# Start Claude Code (now configured with MCP)
 claude
 ```
 
@@ -397,6 +441,30 @@ acquaint::mcp_session()
 
 # Check for error messages in R console output
 ```
+
+### Issue: Claude Code Not Connecting to MCP Server
+```bash
+# 1. Verify Claude Code configuration
+cat ~/.claude.json | jq '.mcpServers'
+
+# 2. Check if MCP server is running in RStudio
+# Look for "MCP server started" message in R console
+
+# 3. Test R path from WSL
+"/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" --version
+
+# 4. Try running MCP server manually from WSL
+"/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+
+# 5. Check Claude Code logs
+# Look for MCP connection errors when starting claude
+```
+
+### Issue: Confusion Between Claude Code and Claude Desktop
+- **Remember**: These are two separate tools with separate configurations
+- Claude Code (CLI): Configuration in `~/.claude.json`
+- Claude Desktop (GUI): Configuration in `%APPDATA%\Claude\claude_desktop_config.json`
+- You can use both simultaneously with the same MCP server
 
 ## Best Practices
 

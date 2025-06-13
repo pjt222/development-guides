@@ -140,17 +140,35 @@ acquaint::mcp_session()
 
 ### MCP Server Management
 ```bash
-# Check available MCP servers
-cat /mnt/c/Users/phtho/AppData/Roaming/Claude/claude_desktop_config.json
-
-# Verify R MCP server status
+# Verify R MCP server is running
 Rscript -e "acquaint::mcp_session()"
 
 # List R sessions available to MCP
-# (Use Claude Code tools to check)
+# (Use Claude Code MCP tools to check)
 ```
 
+### Claude Code Configuration (WSL)
+```bash
+# Configure Claude Code MCP server
+claude mcp add r-acquaint stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+
+# Check Claude Code configuration
+cat ~/.claude.json | jq '.mcpServers'
+```
+
+### Claude Desktop Configuration (Separate Tool - Windows)
+```bash
+# Check Claude Desktop MCP servers (if using Claude Desktop)
+cat /mnt/c/Users/$USER/AppData/Roaming/Claude/claude_desktop_config.json
+```
+
+### Configuration Files Summary
+- **Claude Code** (CLI in WSL): `~/.claude.json`
+- **Claude Desktop** (GUI in Windows): `%APPDATA%\Claude\claude_desktop_config.json`
+- **Key Point**: These are separate tools with separate configs!
+
 ### Available MCP Servers
+Both Claude Code and Claude Desktop can connect to:
 - **r-acquaint**: R integration (data analysis, package management, help system)
 - **hf-mcp-server**: Hugging Face integration (AI/ML models, datasets, transformers)
 
