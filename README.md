@@ -2,6 +2,8 @@
 
 A comprehensive collection of guides for development work using WSL, Windows, and various development tools. These guides provide practical, tested solutions for common development environment setup and workflow challenges.
 
+> **TODO**: Update references from "acquaint" to "mcptools" in guide descriptions below to reflect the package rename.
+
 ## Available Guides
 
 ### 🚀 [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
@@ -31,6 +33,15 @@ Comprehensive guide for developing high-quality R packages:
 - CI/CD setup with GitHub Actions
 - Common patterns and troubleshooting
 
+### 🌐 [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
+Complete guide for deploying R package documentation to GitHub Pages:
+- Branch-based vs GitHub Actions deployment methods
+- Critical _pkgdown.yml configuration (development mode pitfall)
+- Step-by-step deployment workflows
+- Troubleshooting 404 errors and deployment issues
+- Migration between deployment methods
+- Best practices for reliable documentation hosting
+
 ### 📚 [Quick Reference](quick-reference.md)
 Essential commands and shortcuts for daily development:
 - WSL-Windows path conversions
@@ -45,7 +56,8 @@ Essential commands and shortcuts for daily development:
 1. **New to this setup?** Start with [General Development Setup](general-development-setup.md)
 2. **Working with R?** Follow [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
 3. **Building R packages?** Use [R Package Development Best Practices](r-package-development-best-practices.md)
-4. **Need quick commands?** Keep [Quick Reference](quick-reference.md) handy
+4. **Deploying package docs?** See [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
+5. **Need quick commands?** Keep [Quick Reference](quick-reference.md) handy
 
 ## Key Principles
 
@@ -77,6 +89,8 @@ development-guides/
 ├── wsl-rstudio-claude-integration.md     # Claude Code + R setup
 ├── general-development-setup.md          # Basic development environment
 ├── r-package-development-best-practices.md # R package development
+├── pkgdown-github-pages-deployment.md    # Documentation site deployment
+├── claude-desktop-mcp-troubleshooting.md # MCP server troubleshooting
 └── quick-reference.md                    # Command cheat sheet
 ```
 

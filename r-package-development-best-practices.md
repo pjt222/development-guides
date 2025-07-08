@@ -381,8 +381,8 @@ if (requireNamespace("devtools", quietly = TRUE)) {
   library(devtools)
 }
 
-if (requireNamespace("acquaint", quietly = TRUE)) {
-  acquaint::mcp_session()
+if (requireNamespace("mcptools", quietly = TRUE)) {
+  mcptools::mcp_session()
 }
 ```
 

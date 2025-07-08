@@ -6,7 +6,7 @@ This guide provides comprehensive instructions for setting up and using Claude C
 1. [Overview](#overview)
 2. [Prerequisites](#prerequisites)
 3. [Initial Setup](#initial-setup)
-4. [acquaint Package Configuration](#acquaint-package-configuration)
+4. [mcptools Package Configuration](#mcptools-package-configuration)
 5. [Claude Desktop Configuration](#claude-desktop-configuration)
 6. [Environment Configuration](#environment-configuration)
 7. [Path Management](#path-management)
@@ -16,17 +16,17 @@ This guide provides comprehensive instructions for setting up and using Claude C
 
 ## Overview
 
-This setup enables Claude Code running in WSL to interact with R sessions in RStudio on Windows through the Model Context Protocol (MCP) server provided by the `acquaint` package.
+This setup enables Claude Code running in WSL to interact with R sessions in RStudio on Windows through the Model Context Protocol (MCP) server provided by the `mcptools` package.
 
 ### Architecture
 ```
-Claude Code (WSL) <--MCP--> acquaint::mcp_session() <--> RStudio (Windows)
+Claude Code (WSL) <--MCP--> mcptools::mcp_session() <--> RStudio (Windows)
                      |
                      v
               R.exe (Windows)
 
 Claude Desktop (Windows) <--MCP--> Multiple Servers:
-                           |        ├── r-acquaint (R integration)
+                           |        ├── r-mcptools (R integration)
                            |        └── hf-mcp-server (Hugging Face)
                            v
                     AI/ML Workflows + R Analytics
@@ -36,13 +36,13 @@ Claude Desktop (Windows) <--MCP--> Multiple Servers:
 
 **MCP (Model Context Protocol) operates on a client-server architecture:**
 
-- **MCP Server**: `acquaint::mcp_session()` runs in your R/RStudio session, exposing R functionality
+- **MCP Server**: `mcptools::mcp_session()` runs in your R/RStudio session, exposing R functionality
 - **MCP Clients**: Both Claude Code and Claude Desktop are independent clients that can connect to any MCP server
 - **Key Point**: Claude Code and Claude Desktop do NOT share configurations or depend on each other
 - **Connection**: Each client independently discovers and connects to available MCP servers
 
 Think of it like a web server:
-- Your R session (with acquaint) is like a web server
+- Your R session (with mcptools) is like a web server
 - Claude Code and Claude Desktop are like different web browsers
 - Both browsers can connect to the same server independently
 - Neither browser needs to know about the other
@@ -91,13 +91,13 @@ echo 'export PATH="$HOME/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
-## acquaint Package Configuration
+## mcptools Package Configuration
 
-### 1. Install acquaint Package
+### 1. Install mcptools Package
 ```r
 # In RStudio on Windows
 install.packages("remotes")
-remotes::install_github("posit-dev/acquaint")
+remotes::install_github("posit-dev/mcptools")
 ```
 
 ### 2. Configure .Rprofile
@@ -109,18 +109,18 @@ if (file.exists("renv/activate.R")) {
   source("renv/activate.R")
 }
 
-# Load acquaint MCP session if package is available (for development)
-if (requireNamespace("acquaint", quietly = TRUE)) {
-  acquaint::mcp_session()
+# Load mcptools MCP session if package is available (for development)
+if (requireNamespace("mcptools", quietly = TRUE)) {
+  mcptools::mcp_session()
 }
 ```
 
-**Important**: The conditional loading prevents errors in environments where acquaint isn't available (like CI/CD).
+**Important**: The conditional loading prevents errors in environments where mcptools isn't available (like CI/CD).
 
 ### 3. Start MCP Session
 ```r
 # In RStudio, after opening your project
-acquaint::mcp_session()
+mcptools::mcp_session()
 ```
 
 This starts the MCP server that Claude Code can connect to.
@@ -133,11 +133,11 @@ To connect Claude Desktop (running on Windows) to MCP servers, you need to confi
 
 Your Claude Desktop can be configured with the following MCP servers:
 
-#### 1. r-acquaint
+#### 1. r-mcptools
 - **Purpose**: R integration and data analysis
 - **Capabilities**: Package management, data frame analysis, help system, file operations
-- **Command**: Uses Rscript to run `acquaint::mcp_server()`
-- **Status check**: Look for acquaint::mcp_session() output in R console
+- **Command**: Uses Rscript to run `mcptools::mcp_server()`
+- **Status check**: Look for mcptools::mcp_session() output in R console
 
 #### 2. hf-mcp-server (Hugging Face)
 - **Purpose**: AI/ML model access and Hugging Face integration
@@ -151,7 +151,7 @@ Your Claude Desktop can be configured with the following MCP servers:
 cat /mnt/c/Users/$USER/AppData/Roaming/Claude/claude_desktop_config.json
 
 # Check R MCP server status (in R console)
-Rscript -e "acquaint::mcp_session()"
+Rscript -e "mcptools::mcp_session()"
 ```
 
 ### 1. Locate Claude Desktop Configuration
@@ -176,9 +176,9 @@ Create or edit the `claude_desktop_config.json` file. Here's an example with mul
 {
   "globalShortcut": "Alt+Ctrl+Space",
   "mcpServers": {
-    "r-acquaint": {
+    "r-mcptools": {
       "command": "C:\\PROGRA~1\\R\\R-45~1.0\\bin\\x64\\Rscript.exe",
-      "args": ["-e", "acquaint::mcp_server()"]
+      "args": ["-e", "mcptools::mcp_server()"]
     },
     "hf-mcp-server": {
       "command": "npx",
@@ -195,19 +195,19 @@ Create or edit the `claude_desktop_config.json` file. Here's an example with mul
 
 **Important**: Replace `YOUR_HF_TOKEN_HERE` with your actual Hugging Face token if you want to use the Hugging Face MCP server.
 
-**Note**: The exact configuration may depend on how the acquaint package exposes the MCP server. You may need to specify:
+**Note**: The exact configuration may depend on how the mcptools package exposes the MCP server. You may need to specify:
 - A specific port if the server runs on a network port
 - Connection parameters for the stdio interface
 - Authentication details if required
 
 ### 3. Alternative: Network-based Connection
 
-If the acquaint MCP server runs on a specific port, your configuration might look like:
+If the mcptools MCP server runs on a specific port, your configuration might look like:
 
 ```json
 {
   "mcpServers": {
-    "r-acquaint": {
+    "r-mcptools": {
       "command": "tcp",
       "args": ["localhost", "3000"],
       "description": "R session MCP server on localhost:3000"
@@ -218,10 +218,10 @@ If the acquaint MCP server runs on a specific port, your configuration might loo
 
 ### 4. Verify Connection
 
-1. **Start R session** with acquaint MCP server:
+1. **Start R session** with mcptools MCP server:
    ```r
    # In RStudio
-   acquaint::mcp_session()
+   mcptools::mcp_session()
    ```
 
 2. **Restart Claude Desktop** to pick up the new configuration
@@ -233,7 +233,7 @@ If the acquaint MCP server runs on a specific port, your configuration might loo
 **Check MCP server status:**
 ```r
 # In R console, verify the server is running
-# Look for MCP server startup messages when running acquaint::mcp_session()
+# Look for MCP server startup messages when running mcptools::mcp_session()
 ```
 
 **Verify configuration file:**
@@ -308,7 +308,7 @@ Claude Code needs its own configuration to connect to the MCP server. This is se
 #### Option 1: Using Claude CLI
 ```bash
 # Add MCP server to Claude Code configuration
-claude mcp add r-acquaint stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+claude mcp add r-mcptools stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "mcptools::mcp_server()"
 ```
 
 #### Option 2: Manual Configuration
@@ -316,10 +316,10 @@ Edit `~/.claude.json` and add:
 ```json
 {
   "mcpServers": {
-    "r-acquaint": {
+    "r-mcptools": {
       "type": "stdio",
       "command": "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe",
-      "args": ["-e", "acquaint::mcp_server()"],
+      "args": ["-e", "mcptools::mcp_server()"],
       "env": {}
     }
   }
@@ -341,7 +341,7 @@ claude
 
 ### 2. In RStudio (Windows)
 1. Open your project in RStudio
-2. The `.Rprofile` will automatically start `acquaint::mcp_session()`
+2. The `.Rprofile` will automatically start `mcptools::mcp_session()`
 3. You'll see a message about the MCP server starting
 
 ### 3. In Claude Desktop (Windows)
@@ -384,13 +384,13 @@ RSTUDIO_PANDOC="C:/Program Files/RStudio/resources/app/bin/quarto/bin/tools"
 Rscript -e "Sys.getenv('RSTUDIO_PANDOC')"
 ```
 
-### Issue: acquaint Not Loading
+### Issue: mcptools Not Loading
 ```r
 # Check if installed
-requireNamespace("acquaint", quietly = TRUE)
+requireNamespace("mcptools", quietly = TRUE)
 
 # Reinstall if needed
-remotes::install_github("posit-dev/acquaint")
+remotes::install_github("posit-dev/mcptools")
 ```
 
 ### Issue: renv Not Activating
@@ -412,7 +412,7 @@ Rscript --vanilla -e "command"  # Bad - skips .Rprofile
 ```bash
 # 1. Verify MCP server is running in R
 # Look for startup messages when running:
-acquaint::mcp_session()
+mcptools::mcp_session()
 
 # 2. Check Claude Desktop configuration file exists
 # Windows: %APPDATA%\Claude\claude_desktop_config.json
@@ -426,7 +426,7 @@ python -m json.tool %APPDATA%\Claude\claude_desktop_config.json
 # 5. Check for firewall/antivirus blocking connections
 
 # 6. Verify connection method (stdio vs tcp)
-# Check acquaint documentation for correct connection type
+# Check mcptools documentation for correct connection type
 ```
 
 ### Issue: MCP Server Connection Refused
@@ -437,7 +437,7 @@ netstat -an | findstr :3000  # Replace 3000 with actual port
 # Try restarting the MCP server
 # In R console:
 # Stop any existing session, then restart
-acquaint::mcp_session()
+mcptools::mcp_session()
 
 # Check for error messages in R console output
 ```
@@ -454,11 +454,36 @@ cat ~/.claude.json | jq '.mcpServers'
 "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" --version
 
 # 4. Try running MCP server manually from WSL
-"/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+"/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "mcptools::mcp_server()"
 
 # 5. Check Claude Code logs
 # Look for MCP connection errors when starting claude
 ```
+
+### Issue: Hugging Face MCP Server "Cannot Attach" Error (Windows)
+**Symptom**: Claude Desktop shows "cannot attach the server" for Hugging Face MCP server  
+**Root Cause**: Windows command parsing issue with header format
+
+```bash
+# Problem: Space after colon breaks Windows parsing
+"Authorization: Bearer token"  # ❌ Fails on Windows
+
+# Solution: Remove space after colon
+"Authorization:Bearer token"   # ✅ Works on Windows
+```
+
+**Working Solution**: 
+1. Install globally: `npm install -g mcp-remote`
+2. In `claude_desktop_config.json`, use:
+```json
+"hf-mcp-server": {
+  "command": "mcp-remote",
+  "args": ["https://huggingface.co/mcp"],
+  "env": {"HF_TOKEN": "your_token_here"}
+}
+```
+
+See `@development-guides/claude-desktop-mcp-troubleshooting.md` for detailed solutions.
 
 ### Issue: Confusion Between Claude Code and Claude Desktop
 - **Remember**: These are two separate tools with separate configurations
@@ -469,7 +494,7 @@ cat ~/.claude.json | jq '.mcpServers'
 ## Best Practices
 
 ### 1. Project Organization
-- Always include `.Rprofile` with conditional acquaint loading
+- Always include `.Rprofile` with conditional mcptools loading
 - Include `.Renviron.example` template for Windows-specific paths
 - Use renv for package management
 - Add template files to version control, but git-ignore actual `.Renviron`
@@ -485,8 +510,8 @@ cat ~/.claude.json | jq '.mcpServers'
 ### 3. CI/CD Compatibility
 ```r
 # Always use conditional loading in .Rprofile
-if (requireNamespace("acquaint", quietly = TRUE)) {
-  acquaint::mcp_session()
+if (requireNamespace("mcptools", quietly = TRUE)) {
+  mcptools::mcp_session()
 }
 ```
 
@@ -525,8 +550,8 @@ if (file.exists("renv/activate.R")) {
   source("renv/activate.R")
 }
 
-if (requireNamespace("acquaint", quietly = TRUE)) {
-  acquaint::mcp_session()
+if (requireNamespace("mcptools", quietly = TRUE)) {
+  mcptools::mcp_session()
 }
 EOF
 
@@ -542,8 +567,8 @@ cp .Renviron.example .Renviron
 # 6. Initialize renv (from R)
 Rscript -e "renv::init()"
 
-# 7. Install acquaint
-Rscript -e "remotes::install_github('posit-dev/acquaint')"
+# 7. Install mcptools
+Rscript -e "remotes::install_github('posit-dev/mcptools')"
 
 # 8. Create CLAUDE.md
 echo "# Project Name" > CLAUDE.md
@@ -555,7 +580,7 @@ echo "Project-specific instructions for Claude Code." >> CLAUDE.md
 
 ## Additional Resources
 
-- [acquaint Package Documentation](https://github.com/posit-dev/acquaint)
+- [mcptools Package Documentation](https://github.com/posit-dev/mcptools)
 - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
 - [WSL Documentation](https://docs.microsoft.com/en/us/windows/wsl/)
 - [renv Documentation](https://rstudio.github.io/renv/)

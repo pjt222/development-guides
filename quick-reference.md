@@ -135,13 +135,13 @@ git push -u origin branch  # Push new branch
 claude
 
 # In R session (to enable MCP)
-acquaint::mcp_session()
+mcptools::mcp_session()
 ```
 
 ### MCP Server Management
 ```bash
 # Verify R MCP server is running
-Rscript -e "acquaint::mcp_session()"
+Rscript -e "mcptools::mcp_session()"
 
 # List R sessions available to MCP
 # (Use Claude Code MCP tools to check)
@@ -150,7 +150,7 @@ Rscript -e "acquaint::mcp_session()"
 ### Claude Code Configuration (WSL)
 ```bash
 # Configure Claude Code MCP server
-claude mcp add r-acquaint stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "acquaint::mcp_server()"
+claude mcp add r-mcptools stdio "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "mcptools::mcp_server()"
 
 # Check Claude Code configuration
 cat ~/.claude.json | jq '.mcpServers'
@@ -169,11 +169,13 @@ cat /mnt/c/Users/$USER/AppData/Roaming/Claude/claude_desktop_config.json
 
 ### Available MCP Servers
 Both Claude Code and Claude Desktop can connect to:
-- **r-acquaint**: R integration (data analysis, package management, help system)
+- **r-mcptools**: R integration (data analysis, package management, help system)
 - **hf-mcp-server**: Hugging Face integration (AI/ML models, datasets, transformers)
+  - **Setup**: `npm install -g mcp-remote`
+  - **Config**: Use environment variable `HF_TOKEN` for authentication
 
 ### Best Practices
-- Keep `.Rprofile` with conditional acquaint loading
+- Keep `.Rprofile` with conditional mcptools loading
 - Include `CLAUDE.md` in project root
 - Use descriptive commit messages
 - Maintain todo lists for complex tasks
