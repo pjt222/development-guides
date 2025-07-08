@@ -2,13 +2,12 @@
 
 A comprehensive collection of guides for development work using WSL, Windows, and various development tools. These guides provide practical, tested solutions for common development environment setup and workflow challenges.
 
-> **TODO**: Update references from "acquaint" to "mcptools" in guide descriptions below to reflect the package rename.
 
 ## Available Guides
 
 ### 🚀 [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
 Complete setup guide for using Claude Code from WSL with RStudio on Windows:
-- MCP server configuration with acquaint package
+- MCP server configuration with mcptools package
 - Understanding the client-server relationship (Claude Code and Claude Desktop as independent MCP clients)
 - Environment variable setup (.Renviron, .Rprofile)
 - Path management between WSL and Windows
@@ -33,6 +32,22 @@ Comprehensive guide for developing high-quality R packages:
 - CI/CD setup with GitHub Actions
 - Common patterns and troubleshooting
 
+### 🔧 [Claude Desktop MCP Configuration](claude-desktop-mcp-configuration.md)
+Step-by-step guide for configuring Claude Desktop with MCP servers:
+- Setting up multiple MCP servers (R integration, Hugging Face)
+- Configuration file management and JSON structure
+- Environment variable setup for secure authentication
+- Testing and verifying MCP server connections
+- Best practices for multi-server configurations
+
+### 🛠️ [Claude Desktop MCP Troubleshooting](claude-desktop-mcp-troubleshooting.md)
+Comprehensive troubleshooting guide for MCP server connection issues:
+- Windows-specific command parsing problems
+- Hugging Face MCP server connection failures
+- Authentication and token management issues
+- Platform differences between Windows and WSL
+- Step-by-step diagnostic procedures
+
 ### 🌐 [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
 Complete guide for deploying R package documentation to GitHub Pages:
 - Branch-based vs GitHub Actions deployment methods
@@ -41,6 +56,13 @@ Complete guide for deploying R package documentation to GitHub Pages:
 - Troubleshooting 404 errors and deployment issues
 - Migration between deployment methods
 - Best practices for reliable documentation hosting
+
+### 📦 [renv Setup Troubleshooting](renv-setup-troubleshooting.md)
+Troubleshooting guide for R package dependency management:
+- Common renv initialization and restore issues
+- Platform-specific dependency resolution problems
+- Integration with development workflows
+- Best practices for reproducible environments
 
 ### 📚 [Quick Reference](quick-reference.md)
 Essential commands and shortcuts for daily development:
@@ -55,9 +77,11 @@ Essential commands and shortcuts for daily development:
 
 1. **New to this setup?** Start with [General Development Setup](general-development-setup.md)
 2. **Working with R?** Follow [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
-3. **Building R packages?** Use [R Package Development Best Practices](r-package-development-best-practices.md)
-4. **Deploying package docs?** See [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
-5. **Need quick commands?** Keep [Quick Reference](quick-reference.md) handy
+3. **Setting up Claude Desktop?** Use [Claude Desktop MCP Configuration](claude-desktop-mcp-configuration.md)
+4. **Having MCP connection issues?** Check [Claude Desktop MCP Troubleshooting](claude-desktop-mcp-troubleshooting.md)
+5. **Building R packages?** Use [R Package Development Best Practices](r-package-development-best-practices.md)
+6. **Deploying package docs?** See [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
+7. **Need quick commands?** Keep [Quick Reference](quick-reference.md) handy
 
 ## Key Principles
 
@@ -88,9 +112,11 @@ development-guides/
 ├── README.md                              # This file
 ├── wsl-rstudio-claude-integration.md     # Claude Code + R setup
 ├── general-development-setup.md          # Basic development environment
+├── claude-desktop-mcp-configuration.md   # Claude Desktop MCP setup
+├── claude-desktop-mcp-troubleshooting.md # MCP server troubleshooting
 ├── r-package-development-best-practices.md # R package development
 ├── pkgdown-github-pages-deployment.md    # Documentation site deployment
-├── claude-desktop-mcp-troubleshooting.md # MCP server troubleshooting
+├── renv-setup-troubleshooting.md         # R dependency management
 └── quick-reference.md                    # Command cheat sheet
 ```
 
