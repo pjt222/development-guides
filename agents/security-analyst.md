@@ -272,6 +272,8 @@ SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
 
 ## See Also
 
+- [GxP Validator Agent](gxp-validator.md) - For CSV and validation in regulated environments
+- [Auditor Agent](auditor.md) - For GxP audit execution and CAPA management
 - [Code Reviewer Agent](code-reviewer.md) - For general code quality with security focus
 - [R Developer Agent](r-developer.md) - For R-specific development
 - [Skills Library](../skills/) - Full catalog of executable procedures

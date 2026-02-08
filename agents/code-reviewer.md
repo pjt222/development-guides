@@ -175,6 +175,7 @@ Agent: Analysis of data_processor.py:128-205:
 
 ## See Also
 
+- [Senior Software Developer Agent](senior-software-developer.md) - For system-level architecture review (complementary to line-level code review)
 - [Security Analyst Agent](security-analyst.md) - For deeper security analysis
 - [R Developer Agent](r-developer.md) - For R-specific code review
 - [Skills Library](../skills/) - Full catalog of executable procedures

@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 7
+total_agents: 14
 version: "1.2"
 last_updated: "2026-02-08"
 
@@ -118,3 +118,93 @@ agents:
       - tai-chi
       - aikido
       - mindfulness
+
+  - id: gxp-validator
+    path: agents/gxp-validator.md
+    description: Computer Systems Validation specialist for 21 CFR Part 11, EU Annex 11, and GAMP 5 regulated environments
+    tags: [csv, gamp-5, 21-cfr-part-11, eu-annex-11, validation, compliance, pharma]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - perform-csv-assessment
+      - setup-gxp-r-project
+      - implement-audit-trail
+      - validate-statistical-output
+      - write-validation-documentation
+      - implement-pharma-serialisation
+
+  - id: auditor
+    path: agents/auditor.md
+    description: GxP audit specialist for audit planning, execution, finding classification, CAPA management, and inspection readiness assessment
+    tags: [audit, gxp, capa, inspection, compliance, quality-assurance]
+    priority: high
+    tools: [Read, Grep, Glob, Bash, WebFetch]
+    skills:
+      - conduct-gxp-audit
+      - perform-csv-assessment
+      - setup-gxp-r-project
+      - implement-audit-trail
+      - validate-statistical-output
+      - write-validation-documentation
+      - security-audit-codebase
+
+  - id: senior-researcher
+    path: agents/senior-researcher.md
+    description: Expert peer reviewer of research methodology, experimental design, statistical analysis, and scientific writing
+    tags: [research, peer-review, methodology, statistics, reproducibility, scientific-writing]
+    priority: high
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - review-research
+      - review-data-analysis
+      - format-apa-report
+      - generate-statistical-tables
+
+  - id: senior-data-scientist
+    path: agents/senior-data-scientist.md
+    description: Reviews statistical analyses, ML pipelines, data quality, model validation, and data serialization practices
+    tags: [data-science, statistics, machine-learning, model-validation, data-quality, review]
+    priority: high
+    tools: [Read, Grep, Glob, Bash, WebFetch]
+    skills:
+      - review-data-analysis
+      - validate-statistical-output
+      - generate-statistical-tables
+      - review-research
+      - serialize-data-formats
+      - design-serialization-schema
+
+  - id: senior-software-developer
+    path: agents/senior-software-developer.md
+    description: Architecture reviewer evaluating system design, SOLID principles, scalability, API design, and technical debt
+    tags: [architecture, solid, api-design, scalability, tech-debt, design-patterns, review]
+    priority: high
+    tools: [Read, Grep, Glob, Bash, WebFetch]
+    skills:
+      - review-software-architecture
+      - security-audit-codebase
+      - configure-git-repository
+      - serialize-data-formats
+      - design-serialization-schema
+
+  - id: senior-web-designer
+    path: agents/senior-web-designer.md
+    description: Visual design reviewer evaluating layout, typography, colour, spacing, responsive behaviour, and brand consistency
+    tags: [web-design, layout, typography, colour, responsive, branding, visual-hierarchy]
+    priority: high
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - review-web-design
+      - setup-tailwind-typescript
+      - scaffold-nextjs-app
+
+  - id: senior-ux-ui-specialist
+    path: agents/senior-ux-ui-specialist.md
+    description: Usability and accessibility reviewer applying Nielsen heuristics, WCAG 2.1, keyboard/screen reader audits, and user flow analysis
+    tags: [ux, ui, accessibility, wcag, heuristics, usability, user-flows, cognitive-load]
+    priority: high
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - review-ux-ui
+      - review-web-design
+      - scaffold-nextjs-app

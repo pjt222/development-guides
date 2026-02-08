@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 7 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 14 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -19,12 +19,19 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [r-developer](r-developer.md) | high | R package development, data analysis, statistical computing with MCP integration |
 | [code-reviewer](code-reviewer.md) | high | Code quality, security review, and best practices enforcement |
 | [security-analyst](security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
-| [web-developer](web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment, and environment setup |
+| [web-developer](web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
+| [gxp-validator](gxp-validator.md) | high | Computer Systems Validation: 21 CFR Part 11, EU Annex 11, GAMP 5 |
+| [auditor](auditor.md) | high | GxP audit planning, execution, finding classification, CAPA management |
+| [senior-researcher](senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
+| [senior-data-scientist](senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, and model validation review |
+| [senior-software-developer](senior-software-developer.md) | high | Architecture review: SOLID, API design, scalability, technical debt |
+| [senior-web-designer](senior-web-designer.md) | high | Visual design review: layout, typography, colour, responsive, branding |
+| [senior-ux-ui-specialist](senior-ux-ui-specialist.md) | high | Usability and accessibility: heuristics, WCAG, keyboard/screen reader audit |
 | [survivalist](survivalist.md) | normal | Wilderness survival: fire craft, water purification, plant foraging |
 | [mystic](mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
-| [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness and de-escalation |
+| [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains), while code-reviewer and security-analyst each reference 6 skills aligned to their focus areas. Together, the 7 agents cover 46 of the 48 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). The 7 new agents add coverage for GxP validation, auditing, and senior-level review across research, data science, software architecture, web design, and UX/UI. Together, the 14 agents cover 56 of the 58 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
 
 ## Using Agents in Claude Code
 
@@ -54,6 +61,13 @@ Task(subagent_type="r-developer", prompt="Create a new R package for time series
 Task(subagent_type="code-reviewer", prompt="Review this pull request for security issues")
 Task(subagent_type="security-analyst", prompt="Audit this codebase for OWASP Top 10 vulnerabilities")
 Task(subagent_type="web-developer", prompt="Scaffold a Next.js app with Tailwind and deploy to Vercel")
+Task(subagent_type="gxp-validator", prompt="Perform a CSV assessment for our new LIMS system")
+Task(subagent_type="auditor", prompt="Conduct an internal audit of our validated R environment")
+Task(subagent_type="senior-researcher", prompt="Review this manuscript's methodology and statistical analysis")
+Task(subagent_type="senior-data-scientist", prompt="Review our ML pipeline for data leakage")
+Task(subagent_type="senior-software-developer", prompt="Review the architecture of this microservices system")
+Task(subagent_type="senior-web-designer", prompt="Review the typography and colour consistency of our site")
+Task(subagent_type="senior-ux-ui-specialist", prompt="Audit this app for WCAG 2.1 AA compliance")
 Task(subagent_type="survivalist", prompt="Teach me how to purify water from a stream")
 Task(subagent_type="mystic", prompt="Guide me through a 15-minute meditation session")
 Task(subagent_type="martial-artist", prompt="Teach me the opening movements of Yang 24 tai chi")

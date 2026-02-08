@@ -75,33 +75,46 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 48 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 58 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
 | [R Packages](skills/r-packages/) | 10 | Full lifecycle: create, test, document, submit to CRAN |
+| [Compliance](skills/compliance/) | 7 | GxP validation, CSV, audits, pharma serialisation |
 | [Git](skills/git/) | 6 | Version control, branching, PRs, releases |
 | [General](skills/general/) | 5 | WSL setup, CLAUDE.md, security audits, skill creation & evolution |
+| [Review](skills/review/) | 5 | Research, data analysis, architecture, web design, UX/UI review |
 | [Containerization](skills/containerization/) | 4 | Dockerfiles, Compose, MCP server containers |
 | [Reporting](skills/reporting/) | 4 | Quarto, APA formatting, statistical tables |
-| [Compliance](skills/compliance/) | 4 | GxP validation, audit trails, IQ/OQ/PQ |
 | [MCP Integration](skills/mcp-integration/) | 3 | Server setup, custom servers, troubleshooting |
 | [Web Development](skills/web-dev/) | 3 | Next.js, Tailwind, Vercel deployment |
 | [Bushcraft](skills/bushcraft/) | 3 | Fire-making, water purification, plant foraging |
 | [Esoteric](skills/esoteric/) | 3 | Meditation, healing, remote viewing |
 | [Defensive](skills/defensive/) | 3 | Tai chi, aikido, situational awareness |
+| [Data Serialization](skills/data-serialization/) | 2 | Data formats, schemas, and evolution strategies |
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
 
 ## Agents Library
 
-The **[Agents Library](agents/)** provides 3 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 14 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
 
 | Agent | Priority | Description |
 |-------|----------|-------------|
 | [r-developer](agents/r-developer.md) | high | R package development, data analysis, statistical computing |
 | [code-reviewer](agents/code-reviewer.md) | high | Code quality, security review, best practices enforcement |
 | [security-analyst](agents/security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
+| [web-developer](agents/web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
+| [gxp-validator](agents/gxp-validator.md) | high | Computer Systems Validation: 21 CFR Part 11, EU Annex 11, GAMP 5 |
+| [auditor](agents/auditor.md) | high | GxP audit planning, execution, finding classification, CAPA management |
+| [senior-researcher](agents/senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
+| [senior-data-scientist](agents/senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, model validation review |
+| [senior-software-developer](agents/senior-software-developer.md) | high | Architecture review: SOLID, API design, scalability, technical debt |
+| [senior-web-designer](agents/senior-web-designer.md) | high | Visual design review: layout, typography, colour, responsive, branding |
+| [senior-ux-ui-specialist](agents/senior-ux-ui-specialist.md) | high | Usability and accessibility: heuristics, WCAG, keyboard/screen reader audit |
+| [survivalist](agents/survivalist.md) | normal | Wilderness survival: fire craft, water purification, plant foraging |
+| [mystic](agents/mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
+| [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
 
 See [agents/README.md](agents/README.md) for usage instructions, the creation template, and best practices.
 
@@ -150,7 +163,7 @@ development-guides/
 ├── pkgdown-github-pages-deployment.md    # Documentation site deployment
 ├── renv-setup-troubleshooting.md         # R dependency management
 ├── quick-reference.md                    # Command cheat sheet
-├── agents/                               # Agent definitions for Claude Code
+├── agents/                               # Agent definitions for Claude Code (14 agents)
 │   ├── README.md                         # Agent index and usage guide
 │   ├── _registry.yml                     # Machine-readable agent registry
 │   ├── _template.md                      # Agent creation template
@@ -158,21 +171,34 @@ development-guides/
 │   ├── configuration-schema.md           # YAML frontmatter schema docs
 │   ├── r-developer.md                    # R development agent
 │   ├── code-reviewer.md                  # Code review agent
-│   └── security-analyst.md              # Security audit agent
-└── skills/                               # Agentic skills library (48 skills)
+│   ├── security-analyst.md               # Security audit agent
+│   ├── web-developer.md                  # Web development agent
+│   ├── gxp-validator.md                  # Computer Systems Validation agent
+│   ├── auditor.md                        # GxP audit agent
+│   ├── senior-researcher.md              # Research peer review agent
+│   ├── senior-data-scientist.md          # Data science review agent
+│   ├── senior-software-developer.md      # Architecture review agent
+│   ├── senior-web-designer.md            # Visual design review agent
+│   ├── senior-ux-ui-specialist.md        # UX/UI review agent
+│   ├── survivalist.md                    # Wilderness survival agent
+│   ├── mystic.md                         # Esoteric practices agent
+│   └── martial-artist.md                 # Martial arts agent
+└── skills/                               # Agentic skills library (58 skills)
     ├── README.md                         # Skills index and usage guide
     ├── _registry.yml                     # Machine-readable skill registry
     ├── r-packages/                       # 10 R package lifecycle skills
+    ├── compliance/                       # 7 GxP/regulatory/serialisation skills
     ├── git/                              # 6 version control & GitHub skills
     ├── general/                          # 5 cross-cutting skills
+    ├── review/                           # 5 senior-level review skills
     ├── containerization/                 # 4 Docker/container skills
     ├── reporting/                        # 4 Quarto/reporting skills
-    ├── compliance/                       # 4 GxP/regulatory skills
     ├── mcp-integration/                  # 3 MCP server skills
     ├── web-dev/                          # 3 web development skills
     ├── bushcraft/                        # 3 wilderness survival skills
     ├── esoteric/                         # 3 esoteric practice skills
-    └── defensive/                        # 3 martial arts & awareness skills
+    ├── defensive/                        # 3 martial arts & awareness skills
+    └── data-serialization/               # 2 data format & schema skills
 ```
 
 ## Proven Approaches

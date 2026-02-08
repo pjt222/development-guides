@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 48
+total_skills: 58
 
 domains:
   r-packages:
@@ -129,6 +129,21 @@ domains:
         complexity: advanced
         language: R
         description: Validate statistical results through double programming
+      - id: perform-csv-assessment
+        path: compliance/perform-csv-assessment/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Perform Computer Systems Validation assessment using GAMP 5 methodology
+      - id: conduct-gxp-audit
+        path: compliance/conduct-gxp-audit/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Conduct a GxP audit with finding classification and CAPA tracking
+      - id: implement-pharma-serialisation
+        path: compliance/implement-pharma-serialisation/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Implement pharmaceutical serialisation for EU FMD, DSCSA, and EPCIS
 
   mcp-integration:
     description: MCP server setup and troubleshooting skills
@@ -230,6 +245,49 @@ domains:
         complexity: intermediate
         language: multi
         description: Evolve an existing skill by refining content or creating an advanced variant
+
+  data-serialization:
+    description: Data serialization formats, schemas, and evolution strategies
+    skills:
+      - id: serialize-data-formats
+        path: data-serialization/serialize-data-formats/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Serialize and deserialize data across JSON, XML, Protobuf, MessagePack, and Parquet
+      - id: design-serialization-schema
+        path: data-serialization/design-serialization-schema/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Design versioned serialization schemas with backwards compatibility
+
+  review:
+    description: Senior-level review skills for research, data, architecture, and design
+    skills:
+      - id: review-research
+        path: review/review-research/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Peer review of research methodology, statistics, reproducibility, and bias
+      - id: review-data-analysis
+        path: review/review-data-analysis/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Review data analysis for quality, assumptions, leakage, and reproducibility
+      - id: review-software-architecture
+        path: review/review-software-architecture/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Review software architecture for coupling, SOLID, API design, and tech debt
+      - id: review-web-design
+        path: review/review-web-design/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Review web design for layout, typography, colour, spacing, and brand consistency
+      - id: review-ux-ui
+        path: review/review-ux-ui/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Review UX/UI using Nielsen heuristics, WCAG 2.1, and user flow analysis
 
   bushcraft:
     description: Wilderness survival and primitive skills
