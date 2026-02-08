@@ -75,7 +75,7 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 33 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 34 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
@@ -85,7 +85,7 @@ The **[Skills Library](skills/)** provides 33 task-level skills following the [A
 | [Compliance](skills/compliance/) | 4 | GxP validation, audit trails, IQ/OQ/PQ |
 | [MCP Integration](skills/mcp-integration/) | 3 | Server setup, custom servers, troubleshooting |
 | [Web Development](skills/web-dev/) | 3 | Next.js, Tailwind, Vercel deployment |
-| [General](skills/general/) | 5 | WSL setup, Git, CLAUDE.md, security audits |
+| [General](skills/general/) | 6 | WSL setup, Git, CLAUDE.md, security audits, skill creation |
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
 

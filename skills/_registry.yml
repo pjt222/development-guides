@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 33
+total_skills: 34
 
 domains:
   r-packages:
@@ -196,3 +196,8 @@ domains:
         complexity: intermediate
         language: multi
         description: Perform security audits checking for vulnerabilities and secrets
+      - id: skill-creation
+        path: general/skill-creation/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Author a new SKILL.md following the Agent Skills open standard
