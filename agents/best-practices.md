@@ -231,11 +231,14 @@ Agents should work with reduced functionality if MCP servers are unavailable:
 
 ### Model Selection
 ```yaml
-# For complex reasoning tasks
-model: claude-3-5-sonnet-20241022
+# For complex reasoning tasks (default)
+model: sonnet
+
+# For the most capable reasoning
+model: opus
 
 # For simple, fast responses
-model: claude-3-haiku-20240307
+model: haiku
 ```
 
 ### Token Efficiency

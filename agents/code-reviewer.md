@@ -2,8 +2,8 @@
 name: code-reviewer
 description: Reviews code changes, pull requests, and provides detailed feedback on code quality, security, and best practices
 tools: [Read, Edit, Grep, Glob, Bash, WebFetch]
-model: claude-3-5-sonnet-20241022
-version: "1.0"
+model: sonnet
+version: "1.0.0"
 author: Philipp Thoss
 created: 2025-01-25
 updated: 2025-01-25
@@ -65,7 +65,7 @@ The agent adapts its review criteria based on:
 
 ## Tool Requirements
 
-- **Required**: Read, Grep, Glob (for code analysis)
+- **Required**: Read, Edit, Grep, Glob (for code analysis and suggesting fixes)
 - **Optional**: Bash (for running tests/linters), WebFetch (for documentation lookup)
 - **MCP Servers**: None required, but can integrate with language-specific tools
 
@@ -163,5 +163,5 @@ Agent: Analysis of data_processor.py:128-205:
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0
+**Version**: 1.0.0
 **Last Updated**: 2025-01-25

@@ -75,17 +75,21 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 34 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 48 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
 | [R Packages](skills/r-packages/) | 10 | Full lifecycle: create, test, document, submit to CRAN |
+| [Git](skills/git/) | 6 | Version control, branching, PRs, releases |
+| [General](skills/general/) | 5 | WSL setup, CLAUDE.md, security audits, skill creation & evolution |
 | [Containerization](skills/containerization/) | 4 | Dockerfiles, Compose, MCP server containers |
 | [Reporting](skills/reporting/) | 4 | Quarto, APA formatting, statistical tables |
 | [Compliance](skills/compliance/) | 4 | GxP validation, audit trails, IQ/OQ/PQ |
 | [MCP Integration](skills/mcp-integration/) | 3 | Server setup, custom servers, troubleshooting |
 | [Web Development](skills/web-dev/) | 3 | Next.js, Tailwind, Vercel deployment |
-| [General](skills/general/) | 6 | WSL setup, Git, CLAUDE.md, security audits, skill creation |
+| [Bushcraft](skills/bushcraft/) | 3 | Fire-making, water purification, plant foraging |
+| [Esoteric](skills/esoteric/) | 3 | Meditation, healing, remote viewing |
+| [Defensive](skills/defensive/) | 3 | Tai chi, aikido, situational awareness |
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
 
@@ -155,16 +159,20 @@ development-guides/
 │   ├── r-developer.md                    # R development agent
 │   ├── code-reviewer.md                  # Code review agent
 │   └── security-analyst.md              # Security audit agent
-└── skills/                               # Agentic skills library (34 skills)
+└── skills/                               # Agentic skills library (48 skills)
     ├── README.md                         # Skills index and usage guide
     ├── _registry.yml                     # Machine-readable skill registry
     ├── r-packages/                       # 10 R package lifecycle skills
+    ├── git/                              # 6 version control & GitHub skills
+    ├── general/                          # 5 cross-cutting skills
     ├── containerization/                 # 4 Docker/container skills
     ├── reporting/                        # 4 Quarto/reporting skills
     ├── compliance/                       # 4 GxP/regulatory skills
     ├── mcp-integration/                  # 3 MCP server skills
     ├── web-dev/                          # 3 web development skills
-    └── general/                          # 6 cross-cutting skills
+    ├── bushcraft/                        # 3 wilderness survival skills
+    ├── esoteric/                         # 3 esoteric practice skills
+    └── defensive/                        # 3 martial arts & awareness skills
 ```
 
 ## Proven Approaches

@@ -2,8 +2,8 @@
 name: security-analyst
 description: Specialized agent for security auditing, vulnerability assessment, and defensive security practices
 tools: [Read, Grep, Glob, Bash, WebFetch]
-model: claude-3-5-sonnet-20241022
-version: "1.0"
+model: sonnet
+version: "1.0.0"
 author: Philipp Thoss
 created: 2025-01-25
 updated: 2025-01-25
@@ -255,6 +255,6 @@ SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0
+**Version**: 1.0.0
 **Last Updated**: 2025-01-25
 **Security Classification**: Defensive Use Only

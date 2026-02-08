@@ -52,6 +52,8 @@ Answer prompts or use flags to set all options non-interactively.
 
 **Expected**: Project directory created with all dependencies installed.
 
+**On failure**: Check Node.js version (`node --version`, must be >= 18.17). Ensure `npx` is available. If the command hangs on prompts, add the `--use-npm` flag (or `--use-pnpm`/`--use-yarn`) to skip the package manager prompt.
+
 ### Step 2: Verify Project Structure
 
 ```
@@ -70,6 +72,10 @@ my-app/
 ├── package.json
 └── .eslintrc.json
 ```
+
+**Expected**: All listed directories and files are present.
+
+**On failure**: If `src/` directory is missing, the `--src-dir` flag was not passed. Re-run `create-next-app` with the flag, or move files manually into `src/app/`.
 
 ### Step 3: Configure Next.js
 
@@ -96,6 +102,10 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 ```
 
+**Expected**: `next.config.ts` saved without TypeScript errors.
+
+**On failure**: If the file uses `.js` extension instead of `.ts`, rename it. Ensure `NextConfig` type is imported from `"next"`.
+
 ### Step 4: Set Up Directory Conventions
 
 Create common directories:
@@ -106,6 +116,10 @@ mkdir -p src/components
 mkdir -p src/lib
 mkdir -p src/types
 ```
+
+**Expected**: All four directories created under `src/`.
+
+**On failure**: If `src/` does not exist, create it first or adjust paths to match the project structure (non-src layout uses `app/` at the root).
 
 ### Step 5: Create Base Layout
 
@@ -136,6 +150,10 @@ export default function RootLayout({
 }
 ```
 
+**Expected**: Layout renders with the Inter font and wraps all pages.
+
+**On failure**: If font fails to load, check network access. Replace `Inter` with a system font fallback as a temporary workaround.
+
 ### Step 6: Add Example API Route
 
 Create `src/app/api/health/route.ts`:
@@ -147,6 +165,10 @@ export async function GET() {
   return NextResponse.json({ status: "ok", timestamp: new Date().toISOString() });
 }
 ```
+
+**Expected**: File created at `src/app/api/health/route.ts`.
+
+**On failure**: Ensure the `api/health/` directory exists. The file must export named HTTP method handlers (`GET`, `POST`, etc.), not a default export.
 
 ### Step 7: Run Development Server
 

@@ -2,8 +2,8 @@
 name: r-developer
 description: Specialized agent for R package development, data analysis, and statistical computing with MCP integration
 tools: [Read, Write, Edit, Bash, Grep, Glob]
-model: claude-3-5-sonnet-20241022
-version: "1.0"
+model: sonnet
+version: "1.0.0"
 author: Philipp Thoss
 created: 2025-01-25
 updated: 2025-01-25
@@ -72,8 +72,7 @@ settings:
 
 ## Tool Requirements
 
-- **Required**: Read, Write, Edit, Grep, Glob (for R code management)
-- **Optional**: Bash (for R CMD check, package installation)
+- **Required**: Read, Write, Edit, Bash, Grep, Glob (for R code management and package checks)
 - **MCP Servers**:
   - **r-mcptools**: R session integration, package management, help system
   - **r-mcp-server**: Direct R code execution and environment management
@@ -247,5 +246,5 @@ my_function <- function(x, na.rm = FALSE) {
 ---
 
 **Author**: Philipp Thoss (ORCID: 0000-0002-4672-2792)
-**Version**: 1.0
+**Version**: 1.0.0
 **Last Updated**: 2025-01-25

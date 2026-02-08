@@ -24,8 +24,8 @@ tools: array<string>
 
 model: string
   # Claude model to use for this agent
-  # Recommended: "claude-3-5-sonnet-20241022" for most agents
-  # Options: claude-3-5-sonnet-20241022, claude-3-haiku-20240307
+  # Recommended: "sonnet" for most agents
+  # Options: sonnet, opus, haiku
 
 version: string
   # Semantic version of the agent
@@ -63,7 +63,7 @@ priority: string
 
 max_context_tokens: integer
   # Maximum context window for the agent
-  # Claude 3.5 Sonnet: up to 200,000 tokens
+  # Claude Sonnet: up to 200,000 tokens
   # Default: 200000
 
 mcp_servers: array<string>
@@ -118,10 +118,11 @@ homepage: string
 - Custom tools can be specified but should be documented
 
 ### Model Validation
-- Must be a supported Claude model identifier
+- Must be a supported Claude model shorthand
 - Current recommended models:
-  - `claude-3-5-sonnet-20241022` (default)
-  - `claude-3-haiku-20240307` (faster, less capable)
+  - `sonnet` (default, balanced capability and speed)
+  - `opus` (most capable, complex reasoning)
+  - `haiku` (fastest, simple tasks)
 
 ### Version Validation
 - Must follow semantic versioning (semver)
@@ -145,7 +146,7 @@ homepage: string
 name: advanced-r-analyst
 description: Performs advanced statistical analysis and modeling in R with comprehensive reporting capabilities
 tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
-model: claude-3-5-sonnet-20241022
+model: sonnet
 version: "2.1.0"
 author: Philipp Thoss <ph.thoss@gmx.de>
 created: 2025-01-25

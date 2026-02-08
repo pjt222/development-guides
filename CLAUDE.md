@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A documentation-only repository containing 8 long-form markdown guides and a skills library of 41 agentic skills following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 8 long-form markdown guides and a skills library of 48 agentic skills following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
 
@@ -22,7 +22,7 @@ Agents and skills complement each other: agents define *who* (persona, tools, st
 
 ### Registries
 
-- `skills/_registry.yml` is the machine-readable catalog of all 41 skills across 9 domains: r-packages (10), containerization (4), reporting (4), compliance (4), mcp-integration (3), web-dev (3), git (6), general (4), bushcraft (3).
+- `skills/_registry.yml` is the machine-readable catalog of all 48 skills across 11 domains: r-packages (10), git (6), general (5), containerization (4), reporting (4), compliance (4), mcp-integration (3), web-dev (3), bushcraft (3), esoteric (3), defensive (3).
 - `agents/_registry.yml` is the machine-readable catalog of all 3 agents.
 
 When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
