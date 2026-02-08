@@ -249,6 +249,7 @@ Size reference from this library:
 
 ## Related Skills
 
+- `skill-evolution` - evolve and refine skills created with this procedure
 - `write-claude-md` - CLAUDE.md can reference skills for project-specific workflows
 - `configure-git-repository` - skills should be version-controlled
 - `commit-changes` - commit the new skill and its symlinks

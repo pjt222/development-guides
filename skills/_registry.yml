@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 47
+total_skills: 48
 
 domains:
   r-packages:
@@ -225,6 +225,11 @@ domains:
         complexity: intermediate
         language: multi
         description: Author a new SKILL.md following the Agent Skills open standard
+      - id: skill-evolution
+        path: general/skill-evolution/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Evolve an existing skill by refining content or creating an advanced variant
 
   bushcraft:
     description: Wilderness survival and primitive skills
