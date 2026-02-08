@@ -10,21 +10,26 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 ## Architecture
 
-### Two Content Types
+### Three Content Types
 
 1. **Guides** (root `*.md` files): Human-readable reference documentation covering WSL setup, R package development, MCP troubleshooting, etc.
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
-Skills complement agents (in `.claude/agents/`): agents define *who* (persona), skills define *how* (procedure).
+3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 3 agents: r-developer, code-reviewer, security-analyst.
 
-### Skills Registry
+Agents and skills complement each other: agents define *who* (persona, tools, style), skills define *how* (procedure, validation, recovery). An agent can reference skills to execute specific tasks.
 
-`skills/_registry.yml` is the machine-readable catalog of all 34 skills across 7 domains: r-packages (10), containerization (4), reporting (4), compliance (4), mcp-integration (3), web-dev (3), general (6). When adding or removing skills, this file must be updated to stay in sync.
+### Registries
+
+- `skills/_registry.yml` is the machine-readable catalog of all 34 skills across 7 domains: r-packages (10), containerization (4), reporting (4), compliance (4), mcp-integration (3), web-dev (3), general (6).
+- `agents/_registry.yml` is the machine-readable catalog of all 3 agents.
+
+When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
 
 ### Cross-References
 
-Guides and skills are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/` paths. Skills reference related skills by relative path.
+Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/` paths. Skills reference related skills by relative path. The project `.claude/agents/` symlinks to `agents/` for Claude Code discovery.
 
 ## Editing Conventions
 
@@ -41,3 +46,12 @@ Guides and skills are cross-referenced. The parent project `CLAUDE.md` at `/mnt/
 3. Update `total_skills` count in `_registry.yml`
 4. Reference related skills in the new skill's "Related Skills" section
 5. The meta-skill at `skills/general/skill-creation/SKILL.md` documents this process in detail
+
+## Adding a New Agent
+
+1. Copy `agents/_template.md` to `agents/<agent-name>.md`
+2. Fill in YAML frontmatter (required: `name`, `description`, `tools`, `model`, `version`, `author`)
+3. Write Purpose, Capabilities, Usage Scenarios, Examples, and Limitations sections
+4. Add the entry to `agents/_registry.yml`
+5. Update the table in `agents/README.md`
+6. See `agents/best-practices.md` for detailed guidance

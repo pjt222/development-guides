@@ -7,7 +7,7 @@ A collection of 34 task-level skills following the [Agent Skills open standard](
 | Concept | Purpose | Example |
 |---------|---------|---------|
 | **Guides** (parent directory) | Human-readable reference docs | "R Package Development Best Practices" |
-| **Agents** (`.claude/agents/`) | Personas with broad capabilities | "R Developer" agent |
+| **Agents** (`agents/` directory) | Personas with broad capabilities | "R Developer" agent |
 | **Skills** (this directory) | Executable procedures for specific tasks | "Submit to CRAN" step-by-step |
 
 Skills complement agents. An agent defines *who* (persona, tools, style); a skill defines *how* (procedure, validation, recovery).
@@ -106,7 +106,7 @@ with open("skills/_registry.yml") as f:
 
 ## Agent Integration
 
-Existing agents in `.claude/agents/` can reference skills:
+Existing agents in `agents/` can reference skills:
 
 ```markdown
 # In r-developer.md agent definition

@@ -1,0 +1,30 @@
+# Agents Registry
+# Machine-readable catalog of all agent definitions in this library.
+# Keep in sync with the actual agent files on disk.
+
+total_agents: 3
+version: "1.0"
+last_updated: "2026-02-08"
+
+agents:
+  - id: r-developer
+    path: agents/r-developer.md
+    description: Specialized agent for R package development, data analysis, and statistical computing with MCP integration
+    tags: [R, statistics, data-science, package-development, MCP]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    mcp_servers: [r-mcptools, r-mcp-server]
+
+  - id: code-reviewer
+    path: agents/code-reviewer.md
+    description: Reviews code changes, pull requests, and provides detailed feedback on code quality, security, and best practices
+    tags: [code-review, quality, security, best-practices]
+    priority: high
+    tools: [Read, Edit, Grep, Glob, Bash, WebFetch]
+
+  - id: security-analyst
+    path: agents/security-analyst.md
+    description: Specialized agent for security auditing, vulnerability assessment, and defensive security practices
+    tags: [security, vulnerability-assessment, defensive, audit, compliance]
+    priority: critical
+    tools: [Read, Grep, Glob, Bash, WebFetch]

@@ -89,6 +89,18 @@ The **[Skills Library](skills/)** provides 34 task-level skills following the [A
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
 
+## Agents Library
+
+The **[Agents Library](agents/)** provides 3 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+
+| Agent | Priority | Description |
+|-------|----------|-------------|
+| [r-developer](agents/r-developer.md) | high | R package development, data analysis, statistical computing |
+| [code-reviewer](agents/code-reviewer.md) | high | Code quality, security review, best practices enforcement |
+| [security-analyst](agents/security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
+
+See [agents/README.md](agents/README.md) for usage instructions, the creation template, and best practices.
+
 ## Getting Started
 
 1. **New to this setup?** Start with [General Development Setup](general-development-setup.md)
@@ -134,7 +146,16 @@ development-guides/
 ├── pkgdown-github-pages-deployment.md    # Documentation site deployment
 ├── renv-setup-troubleshooting.md         # R dependency management
 ├── quick-reference.md                    # Command cheat sheet
-└── skills/                               # Agentic skills library (33 skills)
+├── agents/                               # Agent definitions for Claude Code
+│   ├── README.md                         # Agent index and usage guide
+│   ├── _registry.yml                     # Machine-readable agent registry
+│   ├── _template.md                      # Agent creation template
+│   ├── best-practices.md                 # Agent development guide
+│   ├── configuration-schema.md           # YAML frontmatter schema docs
+│   ├── r-developer.md                    # R development agent
+│   ├── code-reviewer.md                  # Code review agent
+│   └── security-analyst.md              # Security audit agent
+└── skills/                               # Agentic skills library (34 skills)
     ├── README.md                         # Skills index and usage guide
     ├── _registry.yml                     # Machine-readable skill registry
     ├── r-packages/                       # 10 R package lifecycle skills
@@ -143,7 +164,7 @@ development-guides/
     ├── compliance/                       # 4 GxP/regulatory skills
     ├── mcp-integration/                  # 3 MCP server skills
     ├── web-dev/                          # 3 web development skills
-    └── general/                          # 5 cross-cutting skills
+    └── general/                          # 6 cross-cutting skills
 ```
 
 ## Proven Approaches
