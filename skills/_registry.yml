@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 34
+total_skills: 37
 
 domains:
   r-packages:
@@ -201,3 +201,22 @@ domains:
         complexity: intermediate
         language: multi
         description: Author a new SKILL.md following the Agent Skills open standard
+
+  bushcraft:
+    description: Wilderness survival and primitive skills
+    skills:
+      - id: make-fire
+        path: bushcraft/make-fire/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Start and maintain a fire using friction, spark, and solar methods
+      - id: purify-water
+        path: bushcraft/purify-water/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Purify water from wild sources using boiling, filtration, and chemical methods
+      - id: forage-plants
+        path: bushcraft/forage-plants/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Identify and safely gather edible and useful wild plants

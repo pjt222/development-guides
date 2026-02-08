@@ -1,6 +1,6 @@
 # Skills Library for Agentic Systems
 
-A collection of 34 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 37 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 
 ## How Skills Differ from Guides and Agents
 
@@ -25,6 +25,7 @@ Browse by domain:
 | [mcp-integration/](mcp-integration/) | 3 | MCP server setup & troubleshooting |
 | [web-dev/](web-dev/) | 3 | Next.js, Tailwind, Vercel |
 | [general/](general/) | 6 | Cross-cutting dev environment skills |
+| [bushcraft/](bushcraft/) | 3 | Wilderness survival & primitive skills |
 
 ## SKILL.md Format
 
