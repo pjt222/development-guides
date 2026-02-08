@@ -30,7 +30,7 @@ Author a SKILL.md file that agentic systems can consume to execute a specific pr
 ## Inputs
 
 - **Required**: Task the skill should accomplish
-- **Required**: Domain classification (r-packages, containerization, reporting, compliance, mcp-integration, web-dev, git, general, bushcraft, esoteric)
+- **Required**: Domain classification (r-packages, containerization, reporting, compliance, mcp-integration, web-dev, git, general, bushcraft, esoteric, defensive)
 - **Required**: Complexity level (basic, intermediate, advanced)
 - **Optional**: Source material (existing guide, runbook, or working example)
 - **Optional**: Related skills to cross-reference

@@ -221,5 +221,7 @@ A proper closing integrates the session and transitions back to activity.
 
 - `heal` — meditation develops the focused presence that makes energy healing effective
 - `remote-viewing` — requires the mental stillness cultivated in shamatha practice
+- `mindfulness` — defensive situational awareness applies meditative attention to real-world environments
+- `tai-chi` — moving meditation practice that builds on the stillness developed here
 - `forage-plants` — wilderness foraging with mindful awareness deepens both practices
 - `make-fire` — fire-gazing can serve as a meditation object in wilderness settings

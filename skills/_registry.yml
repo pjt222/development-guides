@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 44
+total_skills: 47
 
 domains:
   r-packages:
@@ -263,3 +263,22 @@ domains:
         complexity: intermediate
         language: natural
         description: Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol
+
+  defensive:
+    description: Martial arts and applied defensive awareness skills
+    skills:
+      - id: tai-chi
+        path: defensive/tai-chi/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Practice tai chi chuan covering standing, silk reeling, Yang 24 form, push hands, and qi integration
+      - id: aikido
+        path: defensive/aikido/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Practice aikido covering centering, ukemi, core techniques, blending, randori, and weapons awareness
+      - id: mindfulness
+        path: defensive/mindfulness/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Cultivate defensive situational awareness, de-escalation, combat focus, and rapid grounding techniques

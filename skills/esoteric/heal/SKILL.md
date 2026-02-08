@@ -277,6 +277,8 @@ These techniques can stand alone or weave into any other modality.
 
 - `meditate` — meditation builds the focused awareness that underpins effective healing work
 - `remote-viewing` — shares non-local awareness techniques useful for intuitive assessment
+- `mindfulness` — situational awareness and rapid grounding techniques support practitioner presence
+- `tai-chi` — qi cultivation through tai chi complements energetic healing modalities
 - `forage-plants` — source material for herbal remedies; covers safe plant identification
 - `purify-water` — safe water is needed for herbal preparations and post-session hydration
 - `make-fire` — required for heating water for herbal teas and infusions
