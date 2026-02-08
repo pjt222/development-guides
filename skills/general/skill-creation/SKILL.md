@@ -30,7 +30,7 @@ Author a SKILL.md file that agentic systems can consume to execute a specific pr
 ## Inputs
 
 - **Required**: Task the skill should accomplish
-- **Required**: Domain classification (r-packages, containerization, reporting, compliance, mcp-integration, web-dev, general)
+- **Required**: Domain classification (r-packages, containerization, reporting, compliance, mcp-integration, web-dev, git, general, bushcraft)
 - **Required**: Complexity level (basic, intermediate, advanced)
 - **Optional**: Source material (existing guide, runbook, or working example)
 - **Optional**: Related skills to cross-reference
@@ -194,6 +194,22 @@ Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
 
 Update the `total_skills` count at the top of the registry.
 
+### Step 11: Create Slash Command Symlinks
+
+Create symlinks so Claude Code discovers the skill as a `/slash-command`:
+
+```bash
+# Project-level (available in this project)
+ln -s ../../skills/<domain>/<skill-name> .claude/skills/<skill-name>
+
+# Global (available in all projects)
+ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name> ~/.claude/skills/<skill-name>
+```
+
+**Expected**: `ls -la .claude/skills/<skill-name>/SKILL.md` resolves to the skill file.
+
+**On failure**: Verify the relative path is correct. From `.claude/skills/`, the path `../../skills/<domain>/<skill-name>` should reach the skill directory. Use `readlink -f` to debug symlink resolution. Claude Code expects a flat structure at `.claude/skills/<name>/SKILL.md` — domain nesting must be flattened via symlinks.
+
 ## Validation
 
 - [ ] SKILL.md exists at `skills/<domain>/<skill-name>/SKILL.md`
@@ -205,6 +221,8 @@ Update the `total_skills` count at the top of the registry.
 - [ ] Related Skills reference valid skill names
 - [ ] Skill is listed in `_registry.yml` with correct path
 - [ ] `total_skills` count in registry is updated
+- [ ] Symlink exists at `.claude/skills/<skill-name>` pointing to skill directory
+- [ ] Global symlink exists at `~/.claude/skills/<skill-name>` (if globally available)
 
 ## Common Pitfalls
 
@@ -233,4 +251,5 @@ Size reference from this library:
 
 - `write-claude-md` - CLAUDE.md can reference skills for project-specific workflows
 - `configure-git-repository` - skills should be version-controlled
+- `commit-changes` - commit the new skill and its symlinks
 - `security-audit-codebase` - review skills for accidentally included secrets or credentials
