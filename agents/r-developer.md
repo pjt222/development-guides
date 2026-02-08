@@ -3,14 +3,44 @@ name: r-developer
 description: Specialized agent for R package development, data analysis, and statistical computing with MCP integration
 tools: [Read, Write, Edit, Bash, Grep, Glob]
 model: sonnet
-version: "1.0.0"
+version: "1.1.0"
 author: Philipp Thoss
 created: 2025-01-25
-updated: 2025-01-25
+updated: 2026-02-08
 tags: [R, statistics, data-science, package-development, MCP]
 priority: high
 max_context_tokens: 200000
 mcp_servers: [r-mcptools, r-mcp-server]
+skills:
+  - create-r-package
+  - write-roxygen-docs
+  - write-testthat-tests
+  - write-vignette
+  - manage-renv-dependencies
+  - setup-github-actions-ci
+  - release-package-version
+  - build-pkgdown-site
+  - submit-to-cran
+  - add-rcpp-integration
+  - create-quarto-report
+  - build-parameterized-report
+  - format-apa-report
+  - generate-statistical-tables
+  - setup-gxp-r-project
+  - implement-audit-trail
+  - validate-statistical-output
+  - write-validation-documentation
+  - configure-mcp-server
+  - build-custom-mcp-server
+  - troubleshoot-mcp-connection
+  - create-r-dockerfile
+  - setup-docker-compose
+  - optimize-docker-build-cache
+  - containerize-mcp-server
+  - commit-changes
+  - create-pull-request
+  - manage-git-branches
+  - write-claude-md
 ---
 
 # R Developer Agent
@@ -30,6 +60,51 @@ This agent assists with all aspects of R development, from package creation and 
 - **Documentation**: Generate roxygen2 documentation, vignettes, and README files
 - **Testing**: Write and maintain testthat test suites
 - **MCP Integration**: Direct interaction with R sessions via r-mcptools and r-mcp-server
+
+## Available Skills
+
+This agent can execute the following structured procedures from the [skills library](../skills/):
+
+### R Package Development
+- `create-r-package` — Scaffold a new R package with complete structure
+- `write-roxygen-docs` — Write roxygen2 documentation for functions and datasets
+- `write-testthat-tests` — Write testthat edition 3 tests with high coverage
+- `write-vignette` — Create long-form package documentation vignettes
+- `manage-renv-dependencies` — Manage reproducible R environments with renv
+- `setup-github-actions-ci` — Configure GitHub Actions CI/CD for R packages
+- `release-package-version` — Release a new package version with tagging and changelog
+- `build-pkgdown-site` — Build and deploy pkgdown documentation site
+- `submit-to-cran` — Complete CRAN submission workflow
+- `add-rcpp-integration` — Add C++ code to R packages via Rcpp
+
+### Reporting
+- `create-quarto-report` — Create reproducible Quarto documents
+- `build-parameterized-report` — Create parameterized reports for batch generation
+- `format-apa-report` — Format reports following APA 7th edition style
+- `generate-statistical-tables` — Generate publication-ready statistical tables
+
+### Compliance
+- `setup-gxp-r-project` — Set up R projects compliant with GxP regulations
+- `implement-audit-trail` — Implement audit trail for regulated environments
+- `validate-statistical-output` — Validate statistical results through double programming
+- `write-validation-documentation` — Write IQ/OQ/PQ validation documentation
+
+### MCP Integration
+- `configure-mcp-server` — Configure MCP servers for Claude Code and Claude Desktop
+- `build-custom-mcp-server` — Build custom MCP servers with domain-specific tools
+- `troubleshoot-mcp-connection` — Diagnose and fix MCP server connection issues
+
+### Containerization
+- `create-r-dockerfile` — Create Dockerfiles for R projects using rocker images
+- `setup-docker-compose` — Configure Docker Compose for multi-container environments
+- `optimize-docker-build-cache` — Optimize Docker builds with layer caching
+- `containerize-mcp-server` — Package an R MCP server into a Docker container
+
+### Git & Workflow
+- `commit-changes` — Stage, commit, and amend changes with conventional commits
+- `create-pull-request` — Create and manage pull requests using GitHub CLI
+- `manage-git-branches` — Create, track, switch, sync, and clean up branches
+- `write-claude-md` — Create effective CLAUDE.md project instructions
 
 ## Usage Scenarios
 
@@ -242,9 +317,10 @@ my_function <- function(x, na.rm = FALSE) {
 
 - [Code Reviewer Agent](code-reviewer.md) - For code quality review
 - [Security Analyst Agent](security-analyst.md) - For security auditing
+- [Skills Library](../skills/) - Full catalog of executable procedures
 
 ---
 
 **Author**: Philipp Thoss (ORCID: 0000-0002-4672-2792)
-**Version**: 1.0.0
-**Last Updated**: 2025-01-25
+**Version**: 1.1.0
+**Last Updated**: 2026-02-08

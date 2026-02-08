@@ -70,6 +70,11 @@ mcp_servers: array<string>
   # List of MCP servers this agent integrates with
   # Example: ["r-mcptools", "hf-mcp-server"]
 
+skills: array<string>
+  # List of skill IDs from the skills library this agent can execute
+  # Uses bare skill IDs (slash-command names), not full paths
+  # Example: ["create-r-package", "write-testthat-tests", "submit-to-cran"]
+
 settings: object
   # Agent-specific configuration options
   # Structure varies by agent type
@@ -139,6 +144,13 @@ homepage: string
 - Language tags: `python`, `javascript`, `r`, `go`, `rust`
 - Domain tags: `web-dev`, `data-science`, `devops`, `ml`
 
+### Skills Validation
+- Each skill ID must exist in `skills/_registry.yml`
+- Use bare skill IDs (e.g., `create-r-package`), not full paths
+- Skills should match the agent's domain expertise
+- Skills listed in frontmatter must correspond to the `## Available Skills` section in the agent body
+- The same skill can appear in multiple agents (e.g., `security-audit-codebase` in both code-reviewer and security-analyst)
+
 ## Example Complete Configuration
 
 ```yaml
@@ -155,6 +167,7 @@ tags: [R, statistics, analysis, modeling, reporting, data-science]
 priority: high
 max_context_tokens: 200000
 mcp_servers: [r-mcptools, r-mcp-server]
+skills: [create-r-package, write-roxygen-docs, write-testthat-tests, submit-to-cran]
 language: R
 domain: data-science
 license: MIT

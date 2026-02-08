@@ -10,6 +10,7 @@ updated: 2025-01-25
 tags: [development, general]
 priority: normal
 max_context_tokens: 200000
+skills: []
 ---
 
 # Your Agent Name
@@ -26,6 +27,14 @@ Explain the specific problem this agent solves or the workflow it enhances.
 - **Secondary Capabilities**: Additional features and functionalities
 - **Tool Integration**: How it leverages available tools
 - **MCP Integration**: Any MCP server integrations (if applicable)
+
+## Available Skills
+
+List the skills from the [skills library](../skills/) this agent can execute. Use bare skill IDs (the slash-command names). Group by domain if the agent spans multiple domains, or use a flat list for a small number of skills.
+
+<!-- Example:
+- `skill-id` — Brief description
+-->
 
 ## Usage Scenarios
 

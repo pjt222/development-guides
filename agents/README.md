@@ -20,6 +20,8 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [code-reviewer](code-reviewer.md) | high | Code quality, security review, and best practices enforcement |
 | [security-analyst](security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
 
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains), while code-reviewer and security-analyst each reference 6 skills aligned to their focus areas. Skills from bushcraft, esoteric, defensive, and web-dev domains are standalone and not mapped to any agent.
+
 ## Using Agents in Claude Code
 
 ### Automatic Discovery
@@ -63,6 +65,7 @@ version: "1.0"
 author: Author Name
 tags: [domain, capability]
 priority: normal            # low | normal | high | critical
+skills: [skill-id, ...]    # Skills from skills/ this agent can execute
 ---
 ```
 

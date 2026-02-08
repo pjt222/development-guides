@@ -3,13 +3,20 @@ name: security-analyst
 description: Specialized agent for security auditing, vulnerability assessment, and defensive security practices
 tools: [Read, Grep, Glob, Bash, WebFetch]
 model: sonnet
-version: "1.0.0"
+version: "1.1.0"
 author: Philipp Thoss
 created: 2025-01-25
-updated: 2025-01-25
+updated: 2026-02-08
 tags: [security, vulnerability-assessment, defensive, audit, compliance]
 priority: critical
 max_context_tokens: 200000
+skills:
+  - security-audit-codebase
+  - setup-gxp-r-project
+  - implement-audit-trail
+  - validate-statistical-output
+  - write-validation-documentation
+  - configure-git-repository
 ---
 
 # Security Analyst Agent
@@ -29,6 +36,22 @@ This agent performs comprehensive security analysis of codebases, configurations
 - **Compliance Assessment**: Evaluate against security frameworks (ISO 27001, NIST)
 - **Incident Response**: Provide guidance for security incident handling
 - **Security Documentation**: Create security policies and procedures
+
+## Available Skills
+
+This agent can execute the following structured procedures from the [skills library](../skills/):
+
+### Core
+- `security-audit-codebase` — Perform security audits checking for vulnerabilities and secrets
+
+### Compliance & Validation
+- `setup-gxp-r-project` — Set up R projects compliant with GxP regulations
+- `implement-audit-trail` — Implement audit trail for regulated environments
+- `validate-statistical-output` — Validate statistical results through double programming
+- `write-validation-documentation` — Write IQ/OQ/PQ validation documentation
+
+### Repository Security
+- `configure-git-repository` — Configure a Git repository with proper .gitignore and conventions
 
 ## Usage Scenarios
 
@@ -251,10 +274,11 @@ SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
 
 - [Code Reviewer Agent](code-reviewer.md) - For general code quality with security focus
 - [R Developer Agent](r-developer.md) - For R-specific development
+- [Skills Library](../skills/) - Full catalog of executable procedures
 
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0.0
-**Last Updated**: 2025-01-25
+**Version**: 1.1.0
+**Last Updated**: 2026-02-08
 **Security Classification**: Defensive Use Only

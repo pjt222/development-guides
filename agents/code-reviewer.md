@@ -3,13 +3,20 @@ name: code-reviewer
 description: Reviews code changes, pull requests, and provides detailed feedback on code quality, security, and best practices
 tools: [Read, Edit, Grep, Glob, Bash, WebFetch]
 model: sonnet
-version: "1.0.0"
+version: "1.1.0"
 author: Philipp Thoss
 created: 2025-01-25
-updated: 2025-01-25
+updated: 2026-02-08
 tags: [code-review, quality, security, best-practices]
 priority: high
 max_context_tokens: 200000
+skills:
+  - security-audit-codebase
+  - commit-changes
+  - create-pull-request
+  - resolve-git-conflicts
+  - write-testthat-tests
+  - configure-git-repository
 ---
 
 # Code Reviewer Agent
@@ -28,6 +35,17 @@ This agent performs thorough code reviews by analyzing code changes, identifying
 - **Best Practices Enforcement**: Ensures adherence to language-specific conventions
 - **Documentation Review**: Validates code documentation and suggests improvements
 - **Test Coverage Analysis**: Reviews test completeness and quality
+
+## Available Skills
+
+This agent can execute the following structured procedures from the [skills library](../skills/):
+
+- `security-audit-codebase` — Perform security audits checking for vulnerabilities and secrets
+- `commit-changes` — Stage, commit, and amend changes with conventional commits
+- `create-pull-request` — Create and manage pull requests using GitHub CLI
+- `resolve-git-conflicts` — Resolve merge and rebase conflicts with safe recovery strategies
+- `write-testthat-tests` — Write testthat edition 3 tests with high coverage
+- `configure-git-repository` — Configure a Git repository with proper .gitignore and conventions
 
 ## Usage Scenarios
 
@@ -159,9 +177,10 @@ Agent: Analysis of data_processor.py:128-205:
 
 - [Security Analyst Agent](security-analyst.md) - For deeper security analysis
 - [R Developer Agent](r-developer.md) - For R-specific code review
+- [Skills Library](../skills/) - Full catalog of executable procedures
 
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0.0
-**Last Updated**: 2025-01-25
+**Version**: 1.1.0
+**Last Updated**: 2026-02-08

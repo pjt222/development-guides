@@ -165,6 +165,36 @@ mcp_servers: [r-mcptools, r-mcp-server]
 3. Test integration: Load agent and run example
 ```
 
+### Skill Integration
+
+Agents define *who* handles a task; skills define *how* specific procedures are executed. Connect them so users and agentic systems can discover which procedures each agent follows.
+
+#### Referencing Skills
+```yaml
+# In frontmatter — use bare skill IDs (slash-command names)
+skills:
+  - create-r-package
+  - write-testthat-tests
+  - submit-to-cran
+```
+
+#### Documenting Skills in the Agent Body
+Add an `## Available Skills` section after `## Capabilities`, listing each skill with a brief description:
+
+```markdown
+## Available Skills
+
+- `create-r-package` — Scaffold a new R package with complete structure
+- `write-testthat-tests` — Write testthat edition 3 tests with high coverage
+```
+
+Group by domain when the agent spans many domains; use a flat list for a small number of skills.
+
+#### Keeping Skills in Sync
+- Frontmatter `skills` array must match the `## Available Skills` section
+- Both must reference skill IDs that exist in `skills/_registry.yml`
+- Update `agents/_registry.yml` skills arrays when changing agent frontmatter
+
 #### Graceful Degradation
 Agents should work with reduced functionality if MCP servers are unavailable:
 
@@ -194,6 +224,7 @@ Agents should work with reduced functionality if MCP servers are unavailable:
 - [ ] Tools list is minimal but complete
 - [ ] Examples are realistic and helpful
 - [ ] Limitations are clearly stated
+- [ ] Skills list matches agent's domain expertise
 - [ ] MCP dependencies documented
 - [ ] Markdown formatting is correct
 - [ ] YAML frontmatter validates
