@@ -9,7 +9,7 @@ allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"
-  domain: general
+  domain: git
   complexity: basic
   language: multi
   tags: git, version-control, gitignore, hooks, branching
@@ -225,6 +225,8 @@ git commit -m "Add README"
 
 ## Related Skills
 
+- `commit-changes` - staging and committing workflow
+- `manage-git-branches` - branch creation and conventions
 - `create-r-package` - Git setup as part of R package creation
 - `setup-wsl-dev-environment` - Git installation and SSH keys
 - `create-github-release` - creating releases from the repository

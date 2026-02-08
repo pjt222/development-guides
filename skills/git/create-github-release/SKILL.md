@@ -9,7 +9,7 @@ allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"
-  domain: general
+  domain: git
   complexity: basic
   language: multi
   tags: github, release, git-tags, changelog, versioning
@@ -173,6 +173,8 @@ gh release view v1.1.0
 
 ## Related Skills
 
+- `commit-changes` - staging and committing workflow
+- `manage-git-branches` - branch management for release prep
 - `release-package-version` - R-specific release workflow
 - `configure-git-repository` - Git setup prerequisite
 - `setup-github-actions-ci` - automate releases via CI

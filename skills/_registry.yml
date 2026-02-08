@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 37
+total_skills: 41
 
 domains:
   r-packages:
@@ -168,6 +168,40 @@ domains:
         language: TypeScript
         description: Deploy Next.js applications to Vercel
 
+  git:
+    description: Git version control and GitHub workflow skills
+    skills:
+      - id: configure-git-repository
+        path: git/configure-git-repository/SKILL.md
+        complexity: basic
+        language: multi
+        description: Configure a Git repository with proper .gitignore and conventions
+      - id: commit-changes
+        path: git/commit-changes/SKILL.md
+        complexity: basic
+        language: multi
+        description: Stage, commit, and amend changes with conventional commit messages
+      - id: manage-git-branches
+        path: git/manage-git-branches/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create, track, switch, sync, and clean up Git branches
+      - id: create-pull-request
+        path: git/create-pull-request/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create and manage pull requests using GitHub CLI
+      - id: resolve-git-conflicts
+        path: git/resolve-git-conflicts/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Resolve merge and rebase conflicts with safe recovery strategies
+      - id: create-github-release
+        path: git/create-github-release/SKILL.md
+        complexity: basic
+        language: multi
+        description: Create tagged GitHub releases with release notes and artifacts
+
   general:
     description: Cross-cutting development environment and workflow skills
     skills:
@@ -176,21 +210,11 @@ domains:
         complexity: intermediate
         language: multi
         description: Set up a complete WSL2 development environment
-      - id: configure-git-repository
-        path: general/configure-git-repository/SKILL.md
-        complexity: basic
-        language: multi
-        description: Configure Git with proper .gitignore and conventions
       - id: write-claude-md
         path: general/write-claude-md/SKILL.md
         complexity: basic
         language: multi
         description: Create effective CLAUDE.md project instructions
-      - id: create-github-release
-        path: general/create-github-release/SKILL.md
-        complexity: basic
-        language: multi
-        description: Create tagged GitHub releases with release notes
       - id: security-audit-codebase
         path: general/security-audit-codebase/SKILL.md
         complexity: intermediate
