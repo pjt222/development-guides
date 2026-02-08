@@ -73,6 +73,22 @@ Essential commands and shortcuts for daily development:
 - System monitoring and troubleshooting
 - Keyboard shortcuts for various tools
 
+## Skills Library
+
+The **[Skills Library](skills/)** provides 33 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+
+| Domain | Skills | Description |
+|--------|--------|-------------|
+| [R Packages](skills/r-packages/) | 10 | Full lifecycle: create, test, document, submit to CRAN |
+| [Containerization](skills/containerization/) | 4 | Dockerfiles, Compose, MCP server containers |
+| [Reporting](skills/reporting/) | 4 | Quarto, APA formatting, statistical tables |
+| [Compliance](skills/compliance/) | 4 | GxP validation, audit trails, IQ/OQ/PQ |
+| [MCP Integration](skills/mcp-integration/) | 3 | Server setup, custom servers, troubleshooting |
+| [Web Development](skills/web-dev/) | 3 | Next.js, Tailwind, Vercel deployment |
+| [General](skills/general/) | 5 | WSL setup, Git, CLAUDE.md, security audits |
+
+See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
+
 ## Getting Started
 
 1. **New to this setup?** Start with [General Development Setup](general-development-setup.md)
@@ -117,7 +133,17 @@ development-guides/
 ├── r-package-development-best-practices.md # R package development
 ├── pkgdown-github-pages-deployment.md    # Documentation site deployment
 ├── renv-setup-troubleshooting.md         # R dependency management
-└── quick-reference.md                    # Command cheat sheet
+├── quick-reference.md                    # Command cheat sheet
+└── skills/                               # Agentic skills library (33 skills)
+    ├── README.md                         # Skills index and usage guide
+    ├── _registry.yml                     # Machine-readable skill registry
+    ├── r-packages/                       # 10 R package lifecycle skills
+    ├── containerization/                 # 4 Docker/container skills
+    ├── reporting/                        # 4 Quarto/reporting skills
+    ├── compliance/                       # 4 GxP/regulatory skills
+    ├── mcp-integration/                  # 3 MCP server skills
+    ├── web-dev/                          # 3 web development skills
+    └── general/                          # 5 cross-cutting skills
 ```
 
 ## Proven Approaches
@@ -132,12 +158,10 @@ These guides are based on successful implementations including:
 
 ## Future Enhancements
 
-Consider adding guides for:
-- Python package development
-- Web development with Node.js/React
-- Docker containerization
-- Database integration
-- Specific domain workflows (data science, web apps, etc.)
+Consider adding:
+- Python package development guide and skills
+- Database integration guide
+- Additional skills for Rust, data science, and CI/CD workflows
 
 ## License
 

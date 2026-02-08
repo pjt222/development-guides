@@ -1,0 +1,198 @@
+version: "1.0"
+generated: "2026-02-08"
+standard: "agentskills.io/specification"
+total_skills: 33
+
+domains:
+  r-packages:
+    description: R package development lifecycle skills
+    skills:
+      - id: create-r-package
+        path: r-packages/create-r-package/SKILL.md
+        complexity: basic
+        language: R
+        description: Scaffold a new R package with complete structure
+      - id: submit-to-cran
+        path: r-packages/submit-to-cran/SKILL.md
+        complexity: advanced
+        language: R
+        description: Complete CRAN submission workflow
+      - id: write-roxygen-docs
+        path: r-packages/write-roxygen-docs/SKILL.md
+        complexity: basic
+        language: R
+        description: Write roxygen2 documentation for functions and datasets
+      - id: write-testthat-tests
+        path: r-packages/write-testthat-tests/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Write testthat edition 3 tests with high coverage
+      - id: setup-github-actions-ci
+        path: r-packages/setup-github-actions-ci/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Configure GitHub Actions CI/CD for R packages
+      - id: build-pkgdown-site
+        path: r-packages/build-pkgdown-site/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Build and deploy pkgdown documentation site
+      - id: manage-renv-dependencies
+        path: r-packages/manage-renv-dependencies/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Manage reproducible R environments with renv
+      - id: add-rcpp-integration
+        path: r-packages/add-rcpp-integration/SKILL.md
+        complexity: advanced
+        language: R
+        description: Add C++ code to R packages via Rcpp
+      - id: write-vignette
+        path: r-packages/write-vignette/SKILL.md
+        complexity: basic
+        language: R
+        description: Create long-form package documentation vignettes
+      - id: release-package-version
+        path: r-packages/release-package-version/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Release a new package version with tagging and changelog
+
+  containerization:
+    description: Docker and container workflow skills
+    skills:
+      - id: create-r-dockerfile
+        path: containerization/create-r-dockerfile/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Create Dockerfiles for R projects using rocker images
+      - id: setup-docker-compose
+        path: containerization/setup-docker-compose/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Configure Docker Compose for multi-container environments
+      - id: containerize-mcp-server
+        path: containerization/containerize-mcp-server/SKILL.md
+        complexity: advanced
+        language: Docker
+        description: Package an R MCP server into a Docker container
+      - id: optimize-docker-build-cache
+        path: containerization/optimize-docker-build-cache/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Optimize Docker builds with layer caching and multi-stage builds
+
+  reporting:
+    description: Quarto, R Markdown, and publication-ready report skills
+    skills:
+      - id: create-quarto-report
+        path: reporting/create-quarto-report/SKILL.md
+        complexity: basic
+        language: R
+        description: Create reproducible Quarto documents
+      - id: format-apa-report
+        path: reporting/format-apa-report/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Format reports following APA 7th edition style
+      - id: build-parameterized-report
+        path: reporting/build-parameterized-report/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Create parameterized reports for batch generation
+      - id: generate-statistical-tables
+        path: reporting/generate-statistical-tables/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Generate publication-ready statistical tables
+
+  compliance:
+    description: GxP regulatory and validation skills
+    skills:
+      - id: setup-gxp-r-project
+        path: compliance/setup-gxp-r-project/SKILL.md
+        complexity: advanced
+        language: R
+        description: Set up R projects compliant with GxP regulations
+      - id: write-validation-documentation
+        path: compliance/write-validation-documentation/SKILL.md
+        complexity: advanced
+        language: R
+        description: Write IQ/OQ/PQ validation documentation
+      - id: implement-audit-trail
+        path: compliance/implement-audit-trail/SKILL.md
+        complexity: advanced
+        language: R
+        description: Implement audit trail for regulated environments
+      - id: validate-statistical-output
+        path: compliance/validate-statistical-output/SKILL.md
+        complexity: advanced
+        language: R
+        description: Validate statistical results through double programming
+
+  mcp-integration:
+    description: MCP server setup and troubleshooting skills
+    skills:
+      - id: configure-mcp-server
+        path: mcp-integration/configure-mcp-server/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Configure MCP servers for Claude Code and Claude Desktop
+      - id: build-custom-mcp-server
+        path: mcp-integration/build-custom-mcp-server/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Build custom MCP servers with domain-specific tools
+      - id: troubleshoot-mcp-connection
+        path: mcp-integration/troubleshoot-mcp-connection/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Diagnose and fix MCP server connection issues
+
+  web-dev:
+    description: Web development skills for Next.js and modern frontend
+    skills:
+      - id: scaffold-nextjs-app
+        path: web-dev/scaffold-nextjs-app/SKILL.md
+        complexity: basic
+        language: TypeScript
+        description: Scaffold a Next.js app with App Router and TypeScript
+      - id: setup-tailwind-typescript
+        path: web-dev/setup-tailwind-typescript/SKILL.md
+        complexity: basic
+        language: TypeScript
+        description: Configure Tailwind CSS with TypeScript
+      - id: deploy-to-vercel
+        path: web-dev/deploy-to-vercel/SKILL.md
+        complexity: basic
+        language: TypeScript
+        description: Deploy Next.js applications to Vercel
+
+  general:
+    description: Cross-cutting development environment and workflow skills
+    skills:
+      - id: setup-wsl-dev-environment
+        path: general/setup-wsl-dev-environment/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Set up a complete WSL2 development environment
+      - id: configure-git-repository
+        path: general/configure-git-repository/SKILL.md
+        complexity: basic
+        language: multi
+        description: Configure Git with proper .gitignore and conventions
+      - id: write-claude-md
+        path: general/write-claude-md/SKILL.md
+        complexity: basic
+        language: multi
+        description: Create effective CLAUDE.md project instructions
+      - id: create-github-release
+        path: general/create-github-release/SKILL.md
+        complexity: basic
+        language: multi
+        description: Create tagged GitHub releases with release notes
+      - id: security-audit-codebase
+        path: general/security-audit-codebase/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Perform security audits checking for vulnerabilities and secrets
