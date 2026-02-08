@@ -2,8 +2,8 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 3
-version: "1.1"
+total_agents: 7
+version: "1.2"
 last_updated: "2026-02-08"
 
 agents:
@@ -72,3 +72,49 @@ agents:
       - validate-statistical-output
       - write-validation-documentation
       - configure-git-repository
+
+  - id: web-developer
+    path: agents/web-developer.md
+    description: Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup
+    tags: [web-dev, nextjs, typescript, tailwind, vercel, deployment]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - scaffold-nextjs-app
+      - setup-tailwind-typescript
+      - deploy-to-vercel
+      - setup-wsl-dev-environment
+      - create-github-release
+
+  - id: survivalist
+    path: agents/survivalist.md
+    description: Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance
+    tags: [bushcraft, survival, fire, water, foraging, outdoors]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - make-fire
+      - purify-water
+      - forage-plants
+
+  - id: mystic
+    path: agents/mystic.md
+    description: Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols
+    tags: [esoteric, meditation, healing, remote-viewing, mindfulness, energy-work]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - heal
+      - meditate
+      - remote-viewing
+
+  - id: martial-artist
+    path: agents/martial-artist.md
+    description: Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques
+    tags: [defensive, martial-arts, tai-chi, aikido, mindfulness, awareness, de-escalation]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - tai-chi
+      - aikido
+      - mindfulness

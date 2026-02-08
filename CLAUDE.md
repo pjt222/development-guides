@@ -16,14 +16,14 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
-3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 3 agents: r-developer, code-reviewer, security-analyst.
+3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 7 agents: r-developer, code-reviewer, security-analyst, web-developer, survivalist, mystic, martial-artist.
 
 Agents and skills complement each other: agents define *who* (persona, tools, style), skills define *how* (procedure, validation, recovery). An agent can reference skills to execute specific tasks.
 
 ### Registries
 
 - `skills/_registry.yml` is the machine-readable catalog of all 48 skills across 11 domains: r-packages (10), git (6), general (5), containerization (4), reporting (4), compliance (4), mcp-integration (3), web-dev (3), bushcraft (3), esoteric (3), defensive (3).
-- `agents/_registry.yml` is the machine-readable catalog of all 3 agents.
+- `agents/_registry.yml` is the machine-readable catalog of all 7 agents.
 
 When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
 

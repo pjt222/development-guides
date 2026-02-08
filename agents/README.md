@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 3 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 7 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -19,8 +19,12 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [r-developer](r-developer.md) | high | R package development, data analysis, statistical computing with MCP integration |
 | [code-reviewer](code-reviewer.md) | high | Code quality, security review, and best practices enforcement |
 | [security-analyst](security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
+| [web-developer](web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment, and environment setup |
+| [survivalist](survivalist.md) | normal | Wilderness survival: fire craft, water purification, plant foraging |
+| [mystic](mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
+| [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness and de-escalation |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains), while code-reviewer and security-analyst each reference 6 skills aligned to their focus areas. Skills from bushcraft, esoteric, defensive, and web-dev domains are standalone and not mapped to any agent.
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains), while code-reviewer and security-analyst each reference 6 skills aligned to their focus areas. Together, the 7 agents cover 46 of the 48 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
 
 ## Using Agents in Claude Code
 
@@ -49,6 +53,10 @@ In Claude Code, agents are invoked via the Task tool with `subagent_type`:
 Task(subagent_type="r-developer", prompt="Create a new R package for time series analysis")
 Task(subagent_type="code-reviewer", prompt="Review this pull request for security issues")
 Task(subagent_type="security-analyst", prompt="Audit this codebase for OWASP Top 10 vulnerabilities")
+Task(subagent_type="web-developer", prompt="Scaffold a Next.js app with Tailwind and deploy to Vercel")
+Task(subagent_type="survivalist", prompt="Teach me how to purify water from a stream")
+Task(subagent_type="mystic", prompt="Guide me through a 15-minute meditation session")
+Task(subagent_type="martial-artist", prompt="Teach me the opening movements of Yang 24 tai chi")
 ```
 
 ## Agent File Format
