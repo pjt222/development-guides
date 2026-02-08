@@ -1,7 +1,7 @@
 version: "1.0"
 generated: "2026-02-08"
 standard: "agentskills.io/specification"
-total_skills: 41
+total_skills: 44
 
 domains:
   r-packages:
@@ -244,3 +244,22 @@ domains:
         complexity: advanced
         language: natural
         description: Identify and safely gather edible and useful wild plants
+
+  esoteric:
+    description: Esoteric practices and non-local awareness skills
+    skills:
+      - id: heal
+        path: esoteric/heal/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Apply healing modalities including energy work, herbal remedies, first aid, and holistic techniques
+      - id: meditate
+        path: esoteric/meditate/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Conduct a structured meditation session covering shamatha, vipassana, and mantra techniques
+      - id: remote-viewing
+        path: esoteric/remote-viewing/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol
