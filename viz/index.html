@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Tree // development-guides</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ── Header ────────────────────────────────────────────────── -->
+  <header class="header">
+    <span class="header-title">Skill Tree</span>
+
+    <div class="header-stats">
+      <span><span class="stat-value" id="stat-nodes">0</span> nodes</span>
+      <span><span class="stat-value" id="stat-edges">0</span> edges</span>
+      <span><span class="stat-value" id="stat-domains">0</span> domains</span>
+    </div>
+
+    <div class="header-controls">
+      <select id="theme-select" title="Color Theme">
+        <option value="cyberpunk">Cyberpunk</option>
+        <option value="viridis">Viridis</option>
+        <option value="inferno">Inferno</option>
+        <option value="magma">Magma</option>
+        <option value="plasma">Plasma</option>
+        <option value="cividis">Cividis</option>
+      </select>
+      <button id="btn-icon-toggle" title="Toggle Icons">Icons</button>
+      <button id="btn-zoom-in" title="Zoom In">+</button>
+      <button id="btn-zoom-out" title="Zoom Out">&minus;</button>
+      <button id="btn-reset" title="Reset View">Reset</button>
+      <button disabled title="Coming soon">3D</button>
+    </div>
+  </header>
+
+  <!-- ── Filter Panel (Left) ───────────────────────────────────── -->
+  <aside id="filter-panel" class="filter-panel">
+    <div class="filter-header">
+      <h3>Domains</h3>
+      <div class="filter-bulk">
+        <button class="filter-all">All</button>
+        <button class="filter-none">None</button>
+      </div>
+    </div>
+    <div class="filter-list"></div>
+  </aside>
+
+  <!-- ── Graph Canvas ──────────────────────────────────────────── -->
+  <div id="graph-container"></div>
+
+  <!-- ── Detail Panel (Right) ──────────────────────────────────── -->
+  <aside id="detail-panel" class="detail-panel">
+    <div class="panel-top-bar">
+      <button class="panel-close">&times;</button>
+    </div>
+    <div class="panel-content"></div>
+  </aside>
+
+  <!-- ── Tooltip ───────────────────────────────────────────────── -->
+  <div id="tooltip" class="tooltip"></div>
+
+  <!-- ── Dependencies (CDN) ────────────────────────────────────── -->
+  <script src="https://unpkg.com/force-graph@1.47.4/dist/force-graph.min.js"></script>
+
+  <!-- ── Verify library loaded ─────────────────────────────────── -->
+  <script>
+    window.addEventListener('error', function(e) {
+      document.getElementById('graph-container').innerHTML =
+        '<div class="load-error"><h2>JS Error</h2><p>' + e.message + '</p><p>' + (e.filename||'') + ':' + (e.lineno||'') + '</p></div>';
+    });
+  </script>
+
+  <!-- ── App (ES modules) ──────────────────────────────────────── -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

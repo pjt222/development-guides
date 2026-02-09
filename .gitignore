@@ -17,3 +17,7 @@ Thumbs.db
 # Backup files
 *.bak
 *.backup
+
+# Viz build artifacts
+viz/node_modules/
+viz/logs/

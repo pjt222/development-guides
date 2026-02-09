@@ -1,0 +1,18 @@
+{
+  "name": "skill-tree-viz",
+  "version": "1.0.0",
+  "private": true,
+  "description": "RPG Cyberpunk Skill Tree Visualization for development-guides",
+  "type": "module",
+  "scripts": {
+    "build-data": "node build-data.js",
+    "build-manifest": "node build-icon-manifest.js",
+    "build-icons": "node build-icons.js",
+    "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &"
+  },
+  "devDependencies": {
+    "@gradio/client": "^1.0.0",
+    "js-yaml": "^4.1.0",
+    "sharp": "^0.33.0"
+  }
+}

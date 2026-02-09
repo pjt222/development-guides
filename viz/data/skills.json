@@ -1,0 +1,4582 @@
+{
+  "meta": {
+    "generated": "2026-02-09T14:11:05.082Z",
+    "totalNodes": 115,
+    "totalLinks": 471,
+    "totalDomains": 18
+  },
+  "domains": {
+    "r-packages": {
+      "description": "R package development lifecycle skills",
+      "count": 10
+    },
+    "containerization": {
+      "description": "Docker and container workflow skills",
+      "count": 4
+    },
+    "reporting": {
+      "description": "Quarto, R Markdown, and publication-ready report skills",
+      "count": 4
+    },
+    "compliance": {
+      "description": "GxP regulatory and validation skills",
+      "count": 17
+    },
+    "mcp-integration": {
+      "description": "MCP server setup and troubleshooting skills",
+      "count": 3
+    },
+    "web-dev": {
+      "description": "Web development skills for Next.js and modern frontend",
+      "count": 3
+    },
+    "git": {
+      "description": "Git version control and GitHub workflow skills",
+      "count": 6
+    },
+    "general": {
+      "description": "Cross-cutting development environment and workflow skills",
+      "count": 5
+    },
+    "data-serialization": {
+      "description": "Data serialization formats, schemas, and evolution strategies",
+      "count": 2
+    },
+    "review": {
+      "description": "Senior-level review skills for research, data, architecture, and design",
+      "count": 5
+    },
+    "bushcraft": {
+      "description": "Wilderness survival and primitive skills",
+      "count": 3
+    },
+    "esoteric": {
+      "description": "Esoteric practices and non-local awareness skills",
+      "count": 3
+    },
+    "design": {
+      "description": "Ornamental design and AI-assisted image generation skills",
+      "count": 3
+    },
+    "defensive": {
+      "description": "Martial arts and applied defensive awareness skills",
+      "count": 3
+    },
+    "project-management": {
+      "description": "Agile and classic project management skills",
+      "count": 6
+    },
+    "devops": {
+      "description": "CI/CD, Kubernetes, GitOps, and infrastructure automation skills",
+      "count": 13
+    },
+    "observability": {
+      "description": "Monitoring, logging, tracing, alerting, and reliability engineering skills",
+      "count": 13
+    },
+    "mlops": {
+      "description": "ML experiment tracking, model serving, feature stores, pipelines, and AIOps skills",
+      "count": 12
+    }
+  },
+  "nodes": [
+    {
+      "id": "create-r-package",
+      "title": "Create R Package",
+      "domain": "r-packages",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Scaffold a new R package with complete structure",
+      "tags": [
+        "r",
+        "package",
+        "usethis",
+        "scaffold",
+        "setup"
+      ],
+      "related": [
+        "write-roxygen-docs",
+        "write-testthat-tests",
+        "setup-github-actions-ci",
+        "manage-renv-dependencies",
+        "write-claude-md"
+      ],
+      "path": "r-packages/create-r-package/SKILL.md"
+    },
+    {
+      "id": "submit-to-cran",
+      "title": "Submit to CRAN",
+      "domain": "r-packages",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Complete CRAN submission workflow",
+      "tags": [
+        "r",
+        "cran",
+        "submission",
+        "release",
+        "publishing"
+      ],
+      "related": [
+        "release-package-version",
+        "write-roxygen-docs",
+        "setup-github-actions-ci",
+        "build-pkgdown-site"
+      ],
+      "path": "r-packages/submit-to-cran/SKILL.md"
+    },
+    {
+      "id": "write-roxygen-docs",
+      "title": "Write Roxygen Documentation",
+      "domain": "r-packages",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Write roxygen2 documentation for functions and datasets",
+      "tags": [
+        "r",
+        "roxygen2",
+        "documentation",
+        "namespace"
+      ],
+      "related": [
+        "create-r-package",
+        "write-testthat-tests",
+        "write-vignette",
+        "submit-to-cran"
+      ],
+      "path": "r-packages/write-roxygen-docs/SKILL.md"
+    },
+    {
+      "id": "write-testthat-tests",
+      "title": "Write testthat Tests",
+      "domain": "r-packages",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Write testthat edition 3 tests with high coverage",
+      "tags": [
+        "r",
+        "testthat",
+        "testing",
+        "unit-tests",
+        "coverage"
+      ],
+      "related": [
+        "create-r-package",
+        "write-roxygen-docs",
+        "setup-github-actions-ci",
+        "submit-to-cran"
+      ],
+      "path": "r-packages/write-testthat-tests/SKILL.md"
+    },
+    {
+      "id": "setup-github-actions-ci",
+      "title": "Set Up GitHub Actions CI for R Packages",
+      "domain": "r-packages",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Configure GitHub Actions CI/CD for R packages",
+      "tags": [
+        "r",
+        "github-actions",
+        "ci-cd",
+        "testing",
+        "automation"
+      ],
+      "related": [
+        "create-r-package",
+        "build-pkgdown-site",
+        "submit-to-cran",
+        "release-package-version"
+      ],
+      "path": "r-packages/setup-github-actions-ci/SKILL.md"
+    },
+    {
+      "id": "build-pkgdown-site",
+      "title": "Build pkgdown Site",
+      "domain": "r-packages",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Build and deploy pkgdown documentation site",
+      "tags": [
+        "r",
+        "pkgdown",
+        "documentation",
+        "github-pages",
+        "website"
+      ],
+      "related": [
+        "setup-github-actions-ci",
+        "write-roxygen-docs",
+        "write-vignette",
+        "release-package-version"
+      ],
+      "path": "r-packages/build-pkgdown-site/SKILL.md"
+    },
+    {
+      "id": "manage-renv-dependencies",
+      "title": "Manage renv Dependencies",
+      "domain": "r-packages",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Manage reproducible R environments with renv",
+      "tags": [
+        "r",
+        "renv",
+        "dependencies",
+        "reproducibility",
+        "lockfile"
+      ],
+      "related": [
+        "create-r-package",
+        "setup-github-actions-ci",
+        "submit-to-cran"
+      ],
+      "path": "r-packages/manage-renv-dependencies/SKILL.md"
+    },
+    {
+      "id": "add-rcpp-integration",
+      "title": "Add Rcpp Integration",
+      "domain": "r-packages",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Add C++ code to R packages via Rcpp",
+      "tags": [
+        "r",
+        "rcpp",
+        "cpp",
+        "performance",
+        "compiled-code"
+      ],
+      "related": [
+        "create-r-package",
+        "write-testthat-tests",
+        "setup-github-actions-ci",
+        "submit-to-cran"
+      ],
+      "path": "r-packages/add-rcpp-integration/SKILL.md"
+    },
+    {
+      "id": "write-vignette",
+      "title": "Write Vignette",
+      "domain": "r-packages",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Create long-form package documentation vignettes",
+      "tags": [
+        "r",
+        "vignette",
+        "rmarkdown",
+        "documentation",
+        "tutorial"
+      ],
+      "related": [
+        "write-roxygen-docs",
+        "build-pkgdown-site",
+        "submit-to-cran",
+        "create-quarto-report"
+      ],
+      "path": "r-packages/write-vignette/SKILL.md"
+    },
+    {
+      "id": "release-package-version",
+      "title": "Release Package Version",
+      "domain": "r-packages",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Release a new package version with tagging and changelog",
+      "tags": [
+        "r",
+        "versioning",
+        "release",
+        "git-tags",
+        "changelog"
+      ],
+      "related": [
+        "submit-to-cran",
+        "create-github-release",
+        "setup-github-actions-ci",
+        "build-pkgdown-site"
+      ],
+      "path": "r-packages/release-package-version/SKILL.md"
+    },
+    {
+      "id": "create-r-dockerfile",
+      "title": "Create R Dockerfile",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Create Dockerfiles for R projects using rocker images",
+      "tags": [
+        "docker",
+        "r",
+        "rocker",
+        "container",
+        "reproducibility"
+      ],
+      "related": [
+        "setup-docker-compose",
+        "containerize-mcp-server",
+        "optimize-docker-build-cache",
+        "manage-renv-dependencies"
+      ],
+      "path": "containerization/create-r-dockerfile/SKILL.md"
+    },
+    {
+      "id": "setup-docker-compose",
+      "title": "Set Up Docker Compose",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Configure Docker Compose for multi-container environments",
+      "tags": [
+        "docker-compose",
+        "orchestration",
+        "development",
+        "volumes"
+      ],
+      "related": [
+        "create-r-dockerfile",
+        "containerize-mcp-server",
+        "optimize-docker-build-cache"
+      ],
+      "path": "containerization/setup-docker-compose/SKILL.md"
+    },
+    {
+      "id": "containerize-mcp-server",
+      "title": "Containerize MCP Server",
+      "domain": "containerization",
+      "complexity": "advanced",
+      "language": "Docker",
+      "description": "Package an R MCP server into a Docker container",
+      "tags": [
+        "docker",
+        "mcp",
+        "mcptools",
+        "claude",
+        "container"
+      ],
+      "related": [
+        "create-r-dockerfile",
+        "setup-docker-compose",
+        "configure-mcp-server",
+        "troubleshoot-mcp-connection"
+      ],
+      "path": "containerization/containerize-mcp-server/SKILL.md"
+    },
+    {
+      "id": "optimize-docker-build-cache",
+      "title": "Optimize Docker Build Cache",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Optimize Docker builds with layer caching and multi-stage builds",
+      "tags": [
+        "docker",
+        "cache",
+        "optimization",
+        "multi-stage",
+        "buildkit"
+      ],
+      "related": [
+        "create-r-dockerfile",
+        "setup-docker-compose",
+        "containerize-mcp-server"
+      ],
+      "path": "containerization/optimize-docker-build-cache/SKILL.md"
+    },
+    {
+      "id": "create-quarto-report",
+      "title": "Create Quarto Report",
+      "domain": "reporting",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Create reproducible Quarto documents",
+      "tags": [
+        "quarto",
+        "report",
+        "reproducible",
+        "rmarkdown",
+        "publishing"
+      ],
+      "related": [
+        "format-apa-report",
+        "build-parameterized-report",
+        "generate-statistical-tables",
+        "write-vignette"
+      ],
+      "path": "reporting/create-quarto-report/SKILL.md"
+    },
+    {
+      "id": "format-apa-report",
+      "title": "Format APA Report",
+      "domain": "reporting",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Format reports following APA 7th edition style",
+      "tags": [
+        "apa",
+        "academic",
+        "psychology",
+        "quarto",
+        "papaja"
+      ],
+      "related": [
+        "create-quarto-report",
+        "generate-statistical-tables",
+        "build-parameterized-report"
+      ],
+      "path": "reporting/format-apa-report/SKILL.md"
+    },
+    {
+      "id": "build-parameterized-report",
+      "title": "Build Parameterized Report",
+      "domain": "reporting",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Create parameterized reports for batch generation",
+      "tags": [
+        "quarto",
+        "parameterized",
+        "batch",
+        "automation",
+        "reporting"
+      ],
+      "related": [
+        "create-quarto-report",
+        "generate-statistical-tables",
+        "format-apa-report"
+      ],
+      "path": "reporting/build-parameterized-report/SKILL.md"
+    },
+    {
+      "id": "generate-statistical-tables",
+      "title": "Generate Statistical Tables",
+      "domain": "reporting",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Generate publication-ready statistical tables",
+      "tags": [
+        "r",
+        "tables",
+        "gt",
+        "statistics",
+        "publication"
+      ],
+      "related": [
+        "format-apa-report",
+        "create-quarto-report",
+        "build-parameterized-report"
+      ],
+      "path": "reporting/generate-statistical-tables/SKILL.md"
+    },
+    {
+      "id": "setup-gxp-r-project",
+      "title": "Set Up GxP R Project",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Set up R projects compliant with GxP regulations",
+      "tags": [
+        "gxp",
+        "validation",
+        "regulatory",
+        "pharma",
+        "21-cfr-part-11"
+      ],
+      "related": [
+        "write-validation-documentation",
+        "implement-audit-trail",
+        "validate-statistical-output",
+        "manage-renv-dependencies"
+      ],
+      "path": "compliance/setup-gxp-r-project/SKILL.md"
+    },
+    {
+      "id": "write-validation-documentation",
+      "title": "Write Validation Documentation",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Write IQ/OQ/PQ validation documentation",
+      "tags": [
+        "validation",
+        "iq-oq-pq",
+        "documentation",
+        "gxp",
+        "qualification"
+      ],
+      "related": [
+        "setup-gxp-r-project",
+        "implement-audit-trail",
+        "validate-statistical-output"
+      ],
+      "path": "compliance/write-validation-documentation/SKILL.md"
+    },
+    {
+      "id": "implement-audit-trail",
+      "title": "Implement Audit Trail",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Implement audit trail for regulated environments",
+      "tags": [
+        "audit-trail",
+        "logging",
+        "provenance",
+        "21-cfr-part-11",
+        "data-integrity"
+      ],
+      "related": [
+        "setup-gxp-r-project",
+        "write-validation-documentation",
+        "validate-statistical-output",
+        "configure-git-repository"
+      ],
+      "path": "compliance/implement-audit-trail/SKILL.md"
+    },
+    {
+      "id": "validate-statistical-output",
+      "title": "Validate Statistical Output",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Validate statistical results through double programming",
+      "tags": [
+        "validation",
+        "statistics",
+        "double-programming",
+        "verification",
+        "pharma"
+      ],
+      "related": [
+        "setup-gxp-r-project",
+        "write-validation-documentation",
+        "implement-audit-trail",
+        "write-testthat-tests"
+      ],
+      "path": "compliance/validate-statistical-output/SKILL.md"
+    },
+    {
+      "id": "perform-csv-assessment",
+      "title": "Perform CSV Assessment",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Perform Computer Systems Validation assessment using GAMP 5 methodology",
+      "tags": [
+        "csv",
+        "gamp-5",
+        "validation",
+        "risk-assessment",
+        "iq-oq-pq",
+        "traceability"
+      ],
+      "related": [
+        "setup-gxp-r-project",
+        "write-validation-documentation",
+        "implement-audit-trail",
+        "validate-statistical-output",
+        "conduct-gxp-audit"
+      ],
+      "path": "compliance/perform-csv-assessment/SKILL.md"
+    },
+    {
+      "id": "conduct-gxp-audit",
+      "title": "Conduct GxP Audit",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Conduct a GxP audit with finding classification and CAPA tracking",
+      "tags": [
+        "gxp",
+        "audit",
+        "capa",
+        "inspection",
+        "compliance",
+        "quality-assurance"
+      ],
+      "related": [
+        "perform-csv-assessment",
+        "setup-gxp-r-project",
+        "implement-audit-trail",
+        "write-validation-documentation",
+        "security-audit-codebase"
+      ],
+      "path": "compliance/conduct-gxp-audit/SKILL.md"
+    },
+    {
+      "id": "implement-pharma-serialisation",
+      "title": "Implement Pharmaceutical Serialisation",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Implement pharmaceutical serialisation for EU FMD, DSCSA, and EPCIS",
+      "tags": [
+        "serialisation",
+        "eu-fmd",
+        "dscsa",
+        "epcis",
+        "track-and-trace",
+        "pharma"
+      ],
+      "related": [
+        "perform-csv-assessment",
+        "conduct-gxp-audit",
+        "implement-audit-trail",
+        "serialize-data-formats",
+        "design-serialization-schema"
+      ],
+      "path": "compliance/implement-pharma-serialisation/SKILL.md"
+    },
+    {
+      "id": "design-compliance-architecture",
+      "title": "Design Compliance Architecture",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Design compliance architecture mapping regulations to systems with criticality classification",
+      "tags": [
+        "gxp",
+        "compliance",
+        "architecture",
+        "regulatory",
+        "gamp-5",
+        "governance"
+      ],
+      "related": [
+        "perform-csv-assessment",
+        "manage-change-control",
+        "implement-electronic-signatures",
+        "prepare-inspection-readiness",
+        "conduct-gxp-audit"
+      ],
+      "path": "compliance/design-compliance-architecture/SKILL.md"
+    },
+    {
+      "id": "manage-change-control",
+      "title": "Manage Change Control",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Manage change control for validated systems with impact assessment and revalidation",
+      "tags": [
+        "gxp",
+        "change-control",
+        "revalidation",
+        "impact-assessment",
+        "compliance"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "write-validation-documentation",
+        "perform-csv-assessment",
+        "write-standard-operating-procedure",
+        "investigate-capa-root-cause"
+      ],
+      "path": "compliance/manage-change-control/SKILL.md"
+    },
+    {
+      "id": "implement-electronic-signatures",
+      "title": "Implement Electronic Signatures",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Implement 21 CFR 11 Subpart C electronic signatures with manifestation and binding",
+      "tags": [
+        "gxp",
+        "electronic-signatures",
+        "21-cfr-11",
+        "eu-annex-11",
+        "compliance",
+        "authentication"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "implement-audit-trail",
+        "write-validation-documentation",
+        "write-standard-operating-procedure",
+        "manage-change-control"
+      ],
+      "path": "compliance/implement-electronic-signatures/SKILL.md"
+    },
+    {
+      "id": "write-standard-operating-procedure",
+      "title": "Write Standard Operating Procedure",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Write GxP-compliant SOPs with approval workflows and periodic review",
+      "tags": [
+        "gxp",
+        "sop",
+        "procedure",
+        "documentation",
+        "compliance",
+        "quality-management"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "manage-change-control",
+        "design-training-program",
+        "conduct-gxp-audit",
+        "write-validation-documentation"
+      ],
+      "path": "compliance/write-standard-operating-procedure/SKILL.md"
+    },
+    {
+      "id": "monitor-data-integrity",
+      "title": "Monitor Data Integrity",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Design ALCOA+ data integrity monitoring with anomaly detection and metrics",
+      "tags": [
+        "gxp",
+        "data-integrity",
+        "alcoa",
+        "monitoring",
+        "anomaly-detection",
+        "compliance"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "implement-audit-trail",
+        "investigate-capa-root-cause",
+        "conduct-gxp-audit",
+        "prepare-inspection-readiness"
+      ],
+      "path": "compliance/monitor-data-integrity/SKILL.md"
+    },
+    {
+      "id": "design-training-program",
+      "title": "Design Training Program",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Design role-based GxP training programmes with competency assessments",
+      "tags": [
+        "gxp",
+        "training",
+        "competency",
+        "compliance",
+        "quality-management",
+        "curriculum"
+      ],
+      "related": [
+        "write-standard-operating-procedure",
+        "design-compliance-architecture",
+        "conduct-gxp-audit",
+        "manage-change-control",
+        "prepare-inspection-readiness"
+      ],
+      "path": "compliance/design-training-program/SKILL.md"
+    },
+    {
+      "id": "decommission-validated-system",
+      "title": "Decommission Validated System",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Decommission validated systems with data retention and migration validation",
+      "tags": [
+        "gxp",
+        "decommission",
+        "data-retention",
+        "migration",
+        "archival",
+        "compliance"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "manage-change-control",
+        "write-validation-documentation",
+        "write-standard-operating-procedure",
+        "prepare-inspection-readiness"
+      ],
+      "path": "compliance/decommission-validated-system/SKILL.md"
+    },
+    {
+      "id": "prepare-inspection-readiness",
+      "title": "Prepare Inspection Readiness",
+      "domain": "compliance",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Prepare for regulatory inspections with mock protocols and response templates",
+      "tags": [
+        "gxp",
+        "inspection",
+        "fda",
+        "ema",
+        "mhra",
+        "readiness",
+        "compliance",
+        "483"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "conduct-gxp-audit",
+        "monitor-data-integrity",
+        "investigate-capa-root-cause",
+        "qualify-vendor"
+      ],
+      "path": "compliance/prepare-inspection-readiness/SKILL.md"
+    },
+    {
+      "id": "investigate-capa-root-cause",
+      "title": "Investigate CAPA Root Cause",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Investigate root causes using 5-Why, fishbone, and fault tree with CAPA tracking",
+      "tags": [
+        "gxp",
+        "capa",
+        "root-cause",
+        "investigation",
+        "fishbone",
+        "five-why",
+        "compliance"
+      ],
+      "related": [
+        "conduct-gxp-audit",
+        "monitor-data-integrity",
+        "manage-change-control",
+        "prepare-inspection-readiness",
+        "design-training-program"
+      ],
+      "path": "compliance/investigate-capa-root-cause/SKILL.md"
+    },
+    {
+      "id": "qualify-vendor",
+      "title": "Qualify Vendor",
+      "domain": "compliance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Qualify GxP vendors with risk classification, assessment, and quality agreements",
+      "tags": [
+        "gxp",
+        "vendor",
+        "qualification",
+        "supplier",
+        "quality-agreement",
+        "compliance"
+      ],
+      "related": [
+        "design-compliance-architecture",
+        "conduct-gxp-audit",
+        "prepare-inspection-readiness",
+        "manage-change-control",
+        "perform-csv-assessment"
+      ],
+      "path": "compliance/qualify-vendor/SKILL.md"
+    },
+    {
+      "id": "configure-mcp-server",
+      "title": "Configure MCP Server",
+      "domain": "mcp-integration",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Configure MCP servers for Claude Code and Claude Desktop",
+      "tags": [
+        "mcp",
+        "claude-code",
+        "claude-desktop",
+        "mcptools",
+        "configuration"
+      ],
+      "related": [
+        "build-custom-mcp-server",
+        "troubleshoot-mcp-connection",
+        "setup-wsl-dev-environment"
+      ],
+      "path": "mcp-integration/configure-mcp-server/SKILL.md"
+    },
+    {
+      "id": "build-custom-mcp-server",
+      "title": "Build Custom MCP Server",
+      "domain": "mcp-integration",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Build custom MCP servers with domain-specific tools",
+      "tags": [
+        "mcp",
+        "server",
+        "custom-tools",
+        "node-js",
+        "protocol"
+      ],
+      "related": [
+        "configure-mcp-server",
+        "troubleshoot-mcp-connection",
+        "containerize-mcp-server"
+      ],
+      "path": "mcp-integration/build-custom-mcp-server/SKILL.md"
+    },
+    {
+      "id": "troubleshoot-mcp-connection",
+      "title": "Troubleshoot MCP Connection",
+      "domain": "mcp-integration",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Diagnose and fix MCP server connection issues",
+      "tags": [
+        "mcp",
+        "troubleshooting",
+        "debugging",
+        "connection",
+        "windows"
+      ],
+      "related": [
+        "configure-mcp-server",
+        "build-custom-mcp-server",
+        "setup-wsl-dev-environment"
+      ],
+      "path": "mcp-integration/troubleshoot-mcp-connection/SKILL.md"
+    },
+    {
+      "id": "scaffold-nextjs-app",
+      "title": "Scaffold Next.js App",
+      "domain": "web-dev",
+      "complexity": "basic",
+      "language": "TypeScript",
+      "description": "Scaffold a Next.js app with App Router and TypeScript",
+      "tags": [
+        "nextjs",
+        "react",
+        "typescript",
+        "app-router",
+        "scaffold"
+      ],
+      "related": [
+        "setup-tailwind-typescript",
+        "deploy-to-vercel",
+        "configure-git-repository"
+      ],
+      "path": "web-dev/scaffold-nextjs-app/SKILL.md"
+    },
+    {
+      "id": "setup-tailwind-typescript",
+      "title": "Set Up Tailwind CSS with TypeScript",
+      "domain": "web-dev",
+      "complexity": "basic",
+      "language": "TypeScript",
+      "description": "Configure Tailwind CSS with TypeScript",
+      "tags": [
+        "tailwind",
+        "typescript",
+        "css",
+        "styling",
+        "configuration"
+      ],
+      "related": [
+        "scaffold-nextjs-app",
+        "deploy-to-vercel"
+      ],
+      "path": "web-dev/setup-tailwind-typescript/SKILL.md"
+    },
+    {
+      "id": "deploy-to-vercel",
+      "title": "Deploy to Vercel",
+      "domain": "web-dev",
+      "complexity": "basic",
+      "language": "TypeScript",
+      "description": "Deploy Next.js applications to Vercel",
+      "tags": [
+        "vercel",
+        "deployment",
+        "nextjs",
+        "hosting",
+        "ci-cd"
+      ],
+      "related": [
+        "scaffold-nextjs-app",
+        "setup-tailwind-typescript",
+        "configure-git-repository"
+      ],
+      "path": "web-dev/deploy-to-vercel/SKILL.md"
+    },
+    {
+      "id": "configure-git-repository",
+      "title": "Configure Git Repository",
+      "domain": "git",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Configure a Git repository with proper .gitignore and conventions",
+      "tags": [
+        "git",
+        "version-control",
+        "gitignore",
+        "hooks",
+        "branching"
+      ],
+      "related": [
+        "commit-changes",
+        "manage-git-branches",
+        "create-r-package",
+        "setup-wsl-dev-environment",
+        "create-github-release",
+        "security-audit-codebase"
+      ],
+      "path": "git/configure-git-repository/SKILL.md"
+    },
+    {
+      "id": "commit-changes",
+      "title": "Commit Changes",
+      "domain": "git",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Stage, commit, and amend changes with conventional commit messages",
+      "tags": [
+        "git",
+        "commit",
+        "staging",
+        "conventional-commits",
+        "version-control"
+      ],
+      "related": [
+        "manage-git-branches",
+        "create-pull-request",
+        "resolve-git-conflicts",
+        "configure-git-repository"
+      ],
+      "path": "git/commit-changes/SKILL.md"
+    },
+    {
+      "id": "manage-git-branches",
+      "title": "Manage Git Branches",
+      "domain": "git",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create, track, switch, sync, and clean up Git branches",
+      "tags": [
+        "git",
+        "branches",
+        "branching-strategy",
+        "stash",
+        "remote-tracking"
+      ],
+      "related": [
+        "commit-changes",
+        "create-pull-request",
+        "resolve-git-conflicts",
+        "configure-git-repository"
+      ],
+      "path": "git/manage-git-branches/SKILL.md"
+    },
+    {
+      "id": "create-pull-request",
+      "title": "Create Pull Request",
+      "domain": "git",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create and manage pull requests using GitHub CLI",
+      "tags": [
+        "github",
+        "pull-request",
+        "code-review",
+        "gh-cli",
+        "collaboration"
+      ],
+      "related": [
+        "commit-changes",
+        "manage-git-branches",
+        "resolve-git-conflicts",
+        "create-github-release"
+      ],
+      "path": "git/create-pull-request/SKILL.md"
+    },
+    {
+      "id": "resolve-git-conflicts",
+      "title": "Resolve Git Conflicts",
+      "domain": "git",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Resolve merge and rebase conflicts with safe recovery strategies",
+      "tags": [
+        "git",
+        "merge-conflicts",
+        "rebase",
+        "conflict-resolution",
+        "version-control"
+      ],
+      "related": [
+        "commit-changes",
+        "manage-git-branches",
+        "configure-git-repository"
+      ],
+      "path": "git/resolve-git-conflicts/SKILL.md"
+    },
+    {
+      "id": "create-github-release",
+      "title": "Create GitHub Release",
+      "domain": "git",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Create tagged GitHub releases with release notes and artifacts",
+      "tags": [
+        "github",
+        "release",
+        "git-tags",
+        "changelog",
+        "versioning"
+      ],
+      "related": [
+        "commit-changes",
+        "manage-git-branches",
+        "release-package-version",
+        "configure-git-repository",
+        "setup-github-actions-ci"
+      ],
+      "path": "git/create-github-release/SKILL.md"
+    },
+    {
+      "id": "setup-wsl-dev-environment",
+      "title": "Set Up WSL Development Environment",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Set up a complete WSL2 development environment",
+      "tags": [
+        "wsl",
+        "windows",
+        "linux",
+        "development",
+        "setup"
+      ],
+      "related": [
+        "configure-git-repository",
+        "configure-mcp-server",
+        "write-claude-md"
+      ],
+      "path": "general/setup-wsl-dev-environment/SKILL.md"
+    },
+    {
+      "id": "write-claude-md",
+      "title": "Write CLAUDE.md",
+      "domain": "general",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Create effective CLAUDE.md project instructions",
+      "tags": [
+        "claude-md",
+        "ai-assistant",
+        "project-config",
+        "documentation"
+      ],
+      "related": [
+        "create-r-package",
+        "configure-mcp-server",
+        "security-audit-codebase"
+      ],
+      "path": "general/write-claude-md/SKILL.md"
+    },
+    {
+      "id": "security-audit-codebase",
+      "title": "Security Audit Codebase",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Perform security audits checking for vulnerabilities and secrets",
+      "tags": [
+        "security",
+        "audit",
+        "owasp",
+        "secrets",
+        "vulnerability"
+      ],
+      "related": [
+        "configure-git-repository",
+        "write-claude-md",
+        "setup-gxp-r-project"
+      ],
+      "path": "general/security-audit-codebase/SKILL.md"
+    },
+    {
+      "id": "skill-creation",
+      "title": "Create a New Skill",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Author a new SKILL.md following the Agent Skills open standard",
+      "tags": [
+        "meta",
+        "skill",
+        "agentskills",
+        "standard",
+        "authoring"
+      ],
+      "related": [
+        "skill-evolution",
+        "write-claude-md",
+        "configure-git-repository",
+        "commit-changes",
+        "security-audit-codebase"
+      ],
+      "path": "general/skill-creation/SKILL.md"
+    },
+    {
+      "id": "skill-evolution",
+      "title": "Evolve an Existing Skill",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Evolve an existing skill by refining content or creating an advanced variant",
+      "tags": [
+        "meta",
+        "skill",
+        "agentskills",
+        "maintenance",
+        "evolution",
+        "versioning"
+      ],
+      "related": [
+        "skill-creation",
+        "commit-changes",
+        "configure-git-repository",
+        "security-audit-codebase"
+      ],
+      "path": "general/skill-evolution/SKILL.md"
+    },
+    {
+      "id": "serialize-data-formats",
+      "title": "Serialize Data Formats",
+      "domain": "data-serialization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Serialize and deserialize data across JSON, XML, Protobuf, MessagePack, and Parquet",
+      "tags": [
+        "json",
+        "xml",
+        "yaml",
+        "protobuf",
+        "messagepack",
+        "parquet",
+        "arrow",
+        "serialization"
+      ],
+      "related": [
+        "design-serialization-schema",
+        "implement-pharma-serialisation",
+        "create-quarto-report"
+      ],
+      "path": "data-serialization/serialize-data-formats/SKILL.md"
+    },
+    {
+      "id": "design-serialization-schema",
+      "title": "Design Serialization Schema",
+      "domain": "data-serialization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Design versioned serialization schemas with backwards compatibility",
+      "tags": [
+        "json-schema",
+        "protobuf",
+        "avro",
+        "schema-evolution",
+        "versioning",
+        "compatibility"
+      ],
+      "related": [
+        "serialize-data-formats",
+        "implement-pharma-serialisation",
+        "write-validation-documentation"
+      ],
+      "path": "data-serialization/design-serialization-schema/SKILL.md"
+    },
+    {
+      "id": "review-research",
+      "title": "Review Research",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Peer review of research methodology, statistics, reproducibility, and bias",
+      "tags": [
+        "peer-review",
+        "methodology",
+        "research",
+        "reproducibility",
+        "bias",
+        "manuscript"
+      ],
+      "related": [
+        "review-data-analysis",
+        "format-apa-report",
+        "generate-statistical-tables",
+        "validate-statistical-output"
+      ],
+      "path": "review/review-research/SKILL.md"
+    },
+    {
+      "id": "review-data-analysis",
+      "title": "Review Data Analysis",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Review data analysis for quality, assumptions, leakage, and reproducibility",
+      "tags": [
+        "data-quality",
+        "model-validation",
+        "leakage",
+        "reproducibility",
+        "statistics",
+        "review"
+      ],
+      "related": [
+        "review-research",
+        "validate-statistical-output",
+        "generate-statistical-tables",
+        "review-software-architecture"
+      ],
+      "path": "review/review-data-analysis/SKILL.md"
+    },
+    {
+      "id": "review-software-architecture",
+      "title": "Review Software Architecture",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Review software architecture for coupling, SOLID, API design, and tech debt",
+      "tags": [
+        "architecture",
+        "solid",
+        "coupling",
+        "cohesion",
+        "api-design",
+        "scalability",
+        "tech-debt",
+        "adr"
+      ],
+      "related": [
+        "security-audit-codebase",
+        "configure-git-repository",
+        "design-serialization-schema",
+        "review-data-analysis"
+      ],
+      "path": "review/review-software-architecture/SKILL.md"
+    },
+    {
+      "id": "review-web-design",
+      "title": "Review Web Design",
+      "domain": "review",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Review web design for layout, typography, colour, spacing, and brand consistency",
+      "tags": [
+        "web-design",
+        "layout",
+        "typography",
+        "colour",
+        "responsive",
+        "visual-hierarchy",
+        "branding"
+      ],
+      "related": [
+        "review-ux-ui",
+        "setup-tailwind-typescript",
+        "scaffold-nextjs-app"
+      ],
+      "path": "review/review-web-design/SKILL.md"
+    },
+    {
+      "id": "review-ux-ui",
+      "title": "Review UX/UI",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Review UX/UI using Nielsen heuristics, WCAG 2.1, and user flow analysis",
+      "tags": [
+        "ux",
+        "ui",
+        "accessibility",
+        "wcag",
+        "heuristics",
+        "usability",
+        "user-flows",
+        "cognitive-load"
+      ],
+      "related": [
+        "review-web-design",
+        "scaffold-nextjs-app",
+        "setup-tailwind-typescript"
+      ],
+      "path": "review/review-ux-ui/SKILL.md"
+    },
+    {
+      "id": "make-fire",
+      "title": "Make Fire",
+      "domain": "bushcraft",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Start and maintain a fire using friction, spark, and solar methods",
+      "tags": [
+        "bushcraft",
+        "fire",
+        "survival",
+        "wilderness",
+        "primitive-skills"
+      ],
+      "related": [
+        "purify-water",
+        "forage-plants"
+      ],
+      "path": "bushcraft/make-fire/SKILL.md"
+    },
+    {
+      "id": "purify-water",
+      "title": "Purify Water",
+      "domain": "bushcraft",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Purify water from wild sources using boiling, filtration, and chemical methods",
+      "tags": [
+        "bushcraft",
+        "water",
+        "purification",
+        "survival",
+        "wilderness",
+        "filtration"
+      ],
+      "related": [
+        "make-fire",
+        "forage-plants"
+      ],
+      "path": "bushcraft/purify-water/SKILL.md"
+    },
+    {
+      "id": "forage-plants",
+      "title": "Forage Plants",
+      "domain": "bushcraft",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Identify and safely gather edible and useful wild plants",
+      "tags": [
+        "bushcraft",
+        "foraging",
+        "plants",
+        "edible",
+        "survival",
+        "wilderness",
+        "botany"
+      ],
+      "related": [
+        "make-fire",
+        "purify-water"
+      ],
+      "path": "bushcraft/forage-plants/SKILL.md"
+    },
+    {
+      "id": "heal",
+      "title": "Heal",
+      "domain": "esoteric",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Apply healing modalities including energy work, herbal remedies, first aid, and holistic techniques",
+      "tags": [
+        "esoteric",
+        "healing",
+        "energy-work",
+        "reiki",
+        "herbalism",
+        "holistic"
+      ],
+      "related": [
+        "meditate",
+        "remote-viewing",
+        "mindfulness",
+        "tai-chi",
+        "forage-plants",
+        "purify-water",
+        "make-fire"
+      ],
+      "path": "esoteric/heal/SKILL.md"
+    },
+    {
+      "id": "meditate",
+      "title": "Meditate",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Conduct a structured meditation session covering shamatha, vipassana, and mantra techniques",
+      "tags": [
+        "esoteric",
+        "meditation",
+        "mindfulness",
+        "shamatha",
+        "vipassana",
+        "breathwork"
+      ],
+      "related": [
+        "heal",
+        "remote-viewing",
+        "mindfulness",
+        "tai-chi",
+        "forage-plants",
+        "make-fire"
+      ],
+      "path": "esoteric/meditate/SKILL.md"
+    },
+    {
+      "id": "remote-viewing",
+      "title": "Remote View",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol",
+      "tags": [
+        "esoteric",
+        "remote-viewing",
+        "crv",
+        "stargate",
+        "parapsychology",
+        "perception"
+      ],
+      "related": [
+        "meditate",
+        "heal",
+        "forage-plants"
+      ],
+      "path": "esoteric/remote-viewing/SKILL.md"
+    },
+    {
+      "id": "ornament-style-mono",
+      "title": "Ornament Style — Monochrome",
+      "domain": "design",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Design monochrome ornamental patterns in historical styles using Z-Image",
+      "tags": [
+        "design",
+        "ornament",
+        "monochrome",
+        "art-history",
+        "speltz",
+        "generative-ai",
+        "z-image"
+      ],
+      "related": [
+        "ornament-style-color",
+        "meditate",
+        "review-web-design"
+      ],
+      "path": "design/ornament-style-mono/SKILL.md"
+    },
+    {
+      "id": "ornament-style-color",
+      "title": "Ornament Style — Color",
+      "domain": "design",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Design polychromatic ornamental patterns with period-authentic palettes using Z-Image",
+      "tags": [
+        "design",
+        "ornament",
+        "polychromatic",
+        "color",
+        "art-history",
+        "speltz",
+        "generative-ai",
+        "z-image"
+      ],
+      "related": [
+        "ornament-style-mono",
+        "review-web-design",
+        "meditate"
+      ],
+      "path": "design/ornament-style-color/SKILL.md"
+    },
+    {
+      "id": "ornament-style-modern",
+      "title": "Ornament Style — Modern",
+      "domain": "design",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Design ornamental patterns in modern/speculative genres with colorblind-accessible color scales using Z-Image",
+      "tags": [
+        "design",
+        "ornament",
+        "modern",
+        "colorblind",
+        "accessibility",
+        "cyberpunk",
+        "sci-fi",
+        "generative-ai",
+        "z-image"
+      ],
+      "related": [
+        "ornament-style-mono",
+        "ornament-style-color",
+        "review-web-design",
+        "review-ux-ui",
+        "meditate"
+      ],
+      "path": "design/ornament-style-modern/SKILL.md"
+    },
+    {
+      "id": "tai-chi",
+      "title": "Practice Tai Chi",
+      "domain": "defensive",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Practice tai chi chuan covering standing, silk reeling, Yang 24 form, push hands, and qi integration",
+      "tags": [
+        "defensive",
+        "tai-chi",
+        "martial-arts",
+        "internal",
+        "yang-style",
+        "push-hands"
+      ],
+      "related": [
+        "aikido",
+        "mindfulness",
+        "meditate",
+        "heal"
+      ],
+      "path": "defensive/tai-chi/SKILL.md"
+    },
+    {
+      "id": "aikido",
+      "title": "Practice Aikido",
+      "domain": "defensive",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Practice aikido covering centering, ukemi, core techniques, blending, randori, and weapons awareness",
+      "tags": [
+        "defensive",
+        "aikido",
+        "martial-arts",
+        "blending",
+        "ukemi",
+        "redirection"
+      ],
+      "related": [
+        "tai-chi",
+        "mindfulness",
+        "meditate",
+        "heal"
+      ],
+      "path": "defensive/aikido/SKILL.md"
+    },
+    {
+      "id": "mindfulness",
+      "title": "Cultivate Defensive Mindfulness",
+      "domain": "defensive",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Cultivate defensive situational awareness, de-escalation, combat focus, and rapid grounding techniques",
+      "tags": [
+        "defensive",
+        "mindfulness",
+        "situational-awareness",
+        "de-escalation",
+        "ooda",
+        "combat-focus"
+      ],
+      "related": [
+        "aikido",
+        "tai-chi",
+        "meditate",
+        "heal",
+        "remote-viewing"
+      ],
+      "path": "defensive/mindfulness/SKILL.md"
+    },
+    {
+      "id": "draft-project-charter",
+      "title": "Draft a Project Charter",
+      "domain": "project-management",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Draft a project charter with scope, stakeholders, RACI, success criteria, and risk register",
+      "tags": [
+        "project-management",
+        "charter",
+        "scope",
+        "stakeholders",
+        "raci",
+        "risk-register"
+      ],
+      "related": [
+        "create-work-breakdown-structure",
+        "manage-backlog",
+        "plan-sprint",
+        "generate-status-report",
+        "conduct-retrospective"
+      ],
+      "path": "project-management/draft-project-charter/SKILL.md"
+    },
+    {
+      "id": "create-work-breakdown-structure",
+      "title": "Create a Work Breakdown Structure",
+      "domain": "project-management",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create a WBS and WBS dictionary with effort estimates and dependencies",
+      "tags": [
+        "project-management",
+        "wbs",
+        "work-breakdown-structure",
+        "classic",
+        "waterfall",
+        "planning"
+      ],
+      "related": [
+        "draft-project-charter",
+        "manage-backlog",
+        "generate-status-report",
+        "plan-sprint",
+        "conduct-retrospective"
+      ],
+      "path": "project-management/create-work-breakdown-structure/SKILL.md"
+    },
+    {
+      "id": "plan-sprint",
+      "title": "Plan a Sprint",
+      "domain": "project-management",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Plan a sprint with capacity calculation, backlog selection, and task decomposition",
+      "tags": [
+        "project-management",
+        "sprint",
+        "agile",
+        "scrum",
+        "capacity",
+        "sprint-planning"
+      ],
+      "related": [
+        "manage-backlog",
+        "draft-project-charter",
+        "generate-status-report",
+        "conduct-retrospective",
+        "create-work-breakdown-structure"
+      ],
+      "path": "project-management/plan-sprint/SKILL.md"
+    },
+    {
+      "id": "manage-backlog",
+      "title": "Manage a Product Backlog",
+      "domain": "project-management",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create, prioritize, groom, and maintain a product or project backlog",
+      "tags": [
+        "project-management",
+        "backlog",
+        "user-stories",
+        "prioritization",
+        "grooming",
+        "moscow"
+      ],
+      "related": [
+        "draft-project-charter",
+        "create-work-breakdown-structure",
+        "plan-sprint",
+        "generate-status-report",
+        "conduct-retrospective"
+      ],
+      "path": "project-management/manage-backlog/SKILL.md"
+    },
+    {
+      "id": "generate-status-report",
+      "title": "Generate a Project Status Report",
+      "domain": "project-management",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Generate status reports with RAG indicators, metrics, and trend analysis",
+      "tags": [
+        "project-management",
+        "status-report",
+        "metrics",
+        "rag",
+        "progress",
+        "blockers"
+      ],
+      "related": [
+        "draft-project-charter",
+        "manage-backlog",
+        "plan-sprint",
+        "create-work-breakdown-structure",
+        "conduct-retrospective"
+      ],
+      "path": "project-management/generate-status-report/SKILL.md"
+    },
+    {
+      "id": "conduct-retrospective",
+      "title": "Conduct a Retrospective",
+      "domain": "project-management",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Conduct retrospectives with evidence-based observations and improvement actions",
+      "tags": [
+        "project-management",
+        "retrospective",
+        "continuous-improvement",
+        "agile",
+        "lessons-learned"
+      ],
+      "related": [
+        "generate-status-report",
+        "manage-backlog",
+        "plan-sprint",
+        "draft-project-charter",
+        "create-work-breakdown-structure"
+      ],
+      "path": "project-management/conduct-retrospective/SKILL.md"
+    },
+    {
+      "id": "build-ci-cd-pipeline",
+      "title": "Build CI/CD Pipeline",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "GitHub Actions multi-stage pipelines with matrix builds, caching, and secrets",
+      "tags": [
+        "ci-cd",
+        "github-actions",
+        "pipeline",
+        "automation",
+        "testing"
+      ],
+      "related": [
+        "setup-github-actions-ci",
+        "commit-changes",
+        "configure-git-repository",
+        "setup-container-registry",
+        "implement-gitops-workflow"
+      ],
+      "path": "devops/build-ci-cd-pipeline/SKILL.md"
+    },
+    {
+      "id": "provision-infrastructure-terraform",
+      "title": "Provision Infrastructure with Terraform",
+      "domain": "devops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Terraform HCL modules with state management and plan/apply workflow",
+      "tags": [
+        "terraform",
+        "iac",
+        "infrastructure",
+        "hcl",
+        "state-management"
+      ],
+      "related": [
+        "configure-git-repository",
+        "build-ci-cd-pipeline",
+        "implement-gitops-workflow",
+        "manage-kubernetes-secrets",
+        "deploy-to-kubernetes"
+      ],
+      "path": "devops/provision-infrastructure-terraform/SKILL.md"
+    },
+    {
+      "id": "deploy-to-kubernetes",
+      "title": "Deploy to Kubernetes",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "kubectl manifests, Deployments, Services, ConfigMaps, and Helm releases",
+      "tags": [
+        "kubernetes",
+        "k8s",
+        "kubectl",
+        "deployment",
+        "service"
+      ],
+      "related": [
+        "setup-docker-compose",
+        "containerize-mcp-server",
+        "write-helm-chart",
+        "manage-kubernetes-secrets",
+        "configure-ingress-networking",
+        "implement-gitops-workflow",
+        "setup-container-registry"
+      ],
+      "path": "devops/deploy-to-kubernetes/SKILL.md"
+    },
+    {
+      "id": "manage-kubernetes-secrets",
+      "title": "Manage Kubernetes Secrets",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "SealedSecrets, external-secrets-operator, and rotation strategies",
+      "tags": [
+        "kubernetes",
+        "secrets",
+        "sealedsecrets",
+        "external-secrets",
+        "security"
+      ],
+      "related": [
+        "deploy-to-kubernetes",
+        "enforce-policy-as-code",
+        "security-audit-codebase",
+        "configure-ingress-networking",
+        "implement-gitops-workflow"
+      ],
+      "path": "devops/manage-kubernetes-secrets/SKILL.md"
+    },
+    {
+      "id": "setup-container-registry",
+      "title": "Setup Container Registry",
+      "domain": "devops",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "ghcr.io, Docker Hub, and Harbor with image tagging and vulnerability scanning",
+      "tags": [
+        "container-registry",
+        "docker-hub",
+        "ghcr",
+        "harbor",
+        "vulnerability-scanning"
+      ],
+      "related": [
+        "create-r-dockerfile",
+        "optimize-docker-build-cache",
+        "build-ci-cd-pipeline",
+        "deploy-to-kubernetes",
+        "implement-gitops-workflow"
+      ],
+      "path": "devops/setup-container-registry/SKILL.md"
+    },
+    {
+      "id": "implement-gitops-workflow",
+      "title": "Implement GitOps Workflow",
+      "domain": "devops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Argo CD / Flux app-of-apps, sync policies, and drift detection",
+      "tags": [
+        "gitops",
+        "argocd",
+        "flux",
+        "sync",
+        "drift-detection"
+      ],
+      "related": [
+        "configure-git-repository",
+        "manage-git-branches",
+        "deploy-to-kubernetes",
+        "manage-kubernetes-secrets",
+        "build-ci-cd-pipeline",
+        "setup-container-registry"
+      ],
+      "path": "devops/implement-gitops-workflow/SKILL.md"
+    },
+    {
+      "id": "configure-ingress-networking",
+      "title": "Configure Ingress Networking",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "NGINX Ingress Controller, cert-manager, TLS termination, and path routing",
+      "tags": [
+        "ingress",
+        "nginx",
+        "cert-manager",
+        "tls",
+        "networking"
+      ],
+      "related": [
+        "deploy-to-kubernetes",
+        "manage-kubernetes-secrets",
+        "implement-gitops-workflow",
+        "setup-service-mesh",
+        "build-ci-cd-pipeline"
+      ],
+      "path": "devops/configure-ingress-networking/SKILL.md"
+    },
+    {
+      "id": "setup-service-mesh",
+      "title": "Setup Service Mesh",
+      "domain": "devops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Istio / Linkerd with mTLS, traffic management, and observability integration",
+      "tags": [
+        "service-mesh",
+        "istio",
+        "linkerd",
+        "mtls",
+        "traffic-management",
+        "observability",
+        "kubernetes"
+      ],
+      "related": [
+        "configure-ingress-networking",
+        "deploy-to-kubernetes",
+        "setup-prometheus-monitoring",
+        "manage-kubernetes-secrets",
+        "enforce-policy-as-code"
+      ],
+      "path": "devops/setup-service-mesh/SKILL.md"
+    },
+    {
+      "id": "configure-api-gateway",
+      "title": "Configure API Gateway",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Kong / Traefik with rate limiting, auth plugins, and request transformation",
+      "tags": [
+        "api-gateway",
+        "kong",
+        "traefik",
+        "rate-limiting",
+        "authentication",
+        "routing",
+        "middleware"
+      ],
+      "related": [
+        "configure-ingress-networking",
+        "setup-service-mesh",
+        "manage-kubernetes-secrets",
+        "setup-prometheus-monitoring",
+        "enforce-policy-as-code"
+      ],
+      "path": "devops/configure-api-gateway/SKILL.md"
+    },
+    {
+      "id": "enforce-policy-as-code",
+      "title": "Enforce Policy as Code",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "OPA Gatekeeper / Kyverno admission control and audit mode",
+      "tags": [
+        "opa",
+        "gatekeeper",
+        "kyverno",
+        "policy",
+        "admission-control",
+        "compliance",
+        "kubernetes"
+      ],
+      "related": [
+        "manage-kubernetes-secrets",
+        "security-audit-codebase",
+        "deploy-to-kubernetes",
+        "setup-service-mesh",
+        "configure-api-gateway",
+        "implement-gitops-workflow"
+      ],
+      "path": "devops/enforce-policy-as-code/SKILL.md"
+    },
+    {
+      "id": "optimize-cloud-costs",
+      "title": "Optimize Cloud Costs",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Kubecost, right-sizing, HPA/VPA autoscaling, and spot/preemptible nodes",
+      "tags": [
+        "cost-optimization",
+        "kubecost",
+        "hpa",
+        "vpa",
+        "spot-instances",
+        "resource-management",
+        "kubernetes"
+      ],
+      "related": [
+        "deploy-to-kubernetes",
+        "setup-prometheus-monitoring",
+        "plan-capacity",
+        "setup-local-kubernetes",
+        "write-helm-chart",
+        "implement-gitops-workflow"
+      ],
+      "path": "devops/optimize-cloud-costs/SKILL.md"
+    },
+    {
+      "id": "setup-local-kubernetes",
+      "title": "Setup Local Kubernetes",
+      "domain": "devops",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "kind / k3d / minikube with skaffold / tilt for inner-loop development",
+      "tags": [
+        "kind",
+        "k3d",
+        "minikube",
+        "local-development",
+        "skaffold",
+        "tilt",
+        "docker",
+        "kubernetes"
+      ],
+      "related": [
+        "deploy-to-kubernetes",
+        "write-helm-chart",
+        "setup-prometheus-monitoring",
+        "configure-ingress-networking",
+        "implement-gitops-workflow",
+        "optimize-cloud-costs"
+      ],
+      "path": "devops/setup-local-kubernetes/SKILL.md"
+    },
+    {
+      "id": "write-helm-chart",
+      "title": "Write Helm Chart",
+      "domain": "devops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Helm chart creation with Go templates, values.yaml, chart tests, and dependencies",
+      "tags": [
+        "helm",
+        "chart",
+        "go-templates",
+        "kubernetes",
+        "packaging",
+        "deployment",
+        "templating"
+      ],
+      "related": [
+        "deploy-to-kubernetes",
+        "setup-local-kubernetes",
+        "implement-gitops-workflow",
+        "configure-ingress-networking",
+        "setup-prometheus-monitoring",
+        "enforce-policy-as-code"
+      ],
+      "path": "devops/write-helm-chart/SKILL.md"
+    },
+    {
+      "id": "setup-prometheus-monitoring",
+      "title": "Setup Prometheus Monitoring",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Prometheus install, scrape configs, recording rules, and federation",
+      "tags": [
+        "prometheus",
+        "monitoring",
+        "metrics",
+        "scrape",
+        "recording-rules"
+      ],
+      "related": [
+        "configure-alerting-rules",
+        "build-grafana-dashboards",
+        "define-slo-sli-sla",
+        "instrument-distributed-tracing"
+      ],
+      "path": "observability/setup-prometheus-monitoring/SKILL.md"
+    },
+    {
+      "id": "build-grafana-dashboards",
+      "title": "Build Grafana Dashboards",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Dashboard JSON/YAML provisioning with panels, variables, and annotations",
+      "tags": [
+        "grafana",
+        "dashboards",
+        "visualization",
+        "panels",
+        "provisioning"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "configure-log-aggregation",
+        "define-slo-sli-sla",
+        "instrument-distributed-tracing"
+      ],
+      "path": "observability/build-grafana-dashboards/SKILL.md"
+    },
+    {
+      "id": "configure-log-aggregation",
+      "title": "Configure Log Aggregation",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Loki + Promtail log collection, parsing, labels, and retention",
+      "tags": [
+        "loki",
+        "promtail",
+        "logging",
+        "elk",
+        "log-aggregation"
+      ],
+      "related": [
+        "correlate-observability-signals",
+        "build-grafana-dashboards",
+        "setup-prometheus-monitoring",
+        "instrument-distributed-tracing"
+      ],
+      "path": "observability/configure-log-aggregation/SKILL.md"
+    },
+    {
+      "id": "instrument-distributed-tracing",
+      "title": "Instrument Distributed Tracing",
+      "domain": "observability",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "OpenTelemetry SDK auto/manual instrumentation with Jaeger / Tempo",
+      "tags": [
+        "opentelemetry",
+        "tracing",
+        "jaeger",
+        "tempo",
+        "instrumentation"
+      ],
+      "related": [
+        "correlate-observability-signals",
+        "setup-prometheus-monitoring",
+        "configure-log-aggregation",
+        "build-grafana-dashboards"
+      ],
+      "path": "observability/instrument-distributed-tracing/SKILL.md"
+    },
+    {
+      "id": "define-slo-sli-sla",
+      "title": "Define SLO/SLI/SLA",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "SLO targets, error budgets, burn rate alerts with Sloth / Pyrra",
+      "tags": [
+        "slo",
+        "sli",
+        "sla",
+        "error-budget",
+        "burn-rate"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "configure-alerting-rules",
+        "build-grafana-dashboards",
+        "write-incident-runbook"
+      ],
+      "path": "observability/define-slo-sli-sla/SKILL.md"
+    },
+    {
+      "id": "configure-alerting-rules",
+      "title": "Configure Alerting Rules",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Alertmanager routing trees, receivers, and inhibition rules",
+      "tags": [
+        "alertmanager",
+        "alerting",
+        "routing",
+        "pagerduty",
+        "slack"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "define-slo-sli-sla",
+        "write-incident-runbook",
+        "build-grafana-dashboards"
+      ],
+      "path": "observability/configure-alerting-rules/SKILL.md"
+    },
+    {
+      "id": "write-incident-runbook",
+      "title": "Write Incident Runbook",
+      "domain": "observability",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Runbook templates with diagnostic steps, escalation, and communication",
+      "tags": [
+        "runbook",
+        "incident-response",
+        "diagnostics",
+        "escalation",
+        "documentation"
+      ],
+      "related": [
+        "configure-alerting-rules",
+        "build-grafana-dashboards",
+        "setup-prometheus-monitoring",
+        "define-slo-sli-sla"
+      ],
+      "path": "observability/write-incident-runbook/SKILL.md"
+    },
+    {
+      "id": "conduct-post-mortem",
+      "title": "Conduct Post-Mortem",
+      "domain": "observability",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Blameless post-mortems with timeline, contributing factors, and action items",
+      "tags": [
+        "post-mortem",
+        "incident-review",
+        "blameless",
+        "timeline",
+        "action-items"
+      ],
+      "related": [
+        "write-incident-runbook",
+        "configure-alerting-rules"
+      ],
+      "path": "observability/conduct-post-mortem/SKILL.md"
+    },
+    {
+      "id": "plan-capacity",
+      "title": "Plan Capacity",
+      "domain": "observability",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "predict_linear resource forecasting, growth modeling, and headroom planning",
+      "tags": [
+        "capacity-planning",
+        "forecasting",
+        "predict-linear",
+        "growth",
+        "headroom"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "build-grafana-dashboards",
+        "optimize-cloud-costs"
+      ],
+      "path": "observability/plan-capacity/SKILL.md"
+    },
+    {
+      "id": "design-on-call-rotation",
+      "title": "Design On-Call Rotation",
+      "domain": "observability",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Rotation schedules, escalation policies, fatigue management, and handoff",
+      "tags": [
+        "on-call",
+        "rotation",
+        "escalation",
+        "fatigue-management",
+        "handoff"
+      ],
+      "related": [
+        "configure-alerting-rules",
+        "write-incident-runbook"
+      ],
+      "path": "observability/design-on-call-rotation/SKILL.md"
+    },
+    {
+      "id": "run-chaos-experiment",
+      "title": "Run Chaos Experiment",
+      "domain": "observability",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Litmus / Chaos Mesh hypothesis-driven fault injection with blast radius control",
+      "tags": [
+        "chaos-engineering",
+        "litmus",
+        "chaos-mesh",
+        "resilience",
+        "fault-injection"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "configure-alerting-rules",
+        "define-slo-sli-sla"
+      ],
+      "path": "observability/run-chaos-experiment/SKILL.md"
+    },
+    {
+      "id": "setup-uptime-checks",
+      "title": "Set Up Uptime Checks",
+      "domain": "observability",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Blackbox Exporter, SSL/cert monitoring, and status pages",
+      "tags": [
+        "uptime",
+        "blackbox-exporter",
+        "ssl-monitoring",
+        "status-page",
+        "health-checks"
+      ],
+      "related": [
+        "configure-alerting-rules",
+        "setup-prometheus-monitoring"
+      ],
+      "path": "observability/setup-uptime-checks/SKILL.md"
+    },
+    {
+      "id": "correlate-observability-signals",
+      "title": "Correlate Observability Signals",
+      "domain": "observability",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Exemplars, log-to-trace linking, unified dashboards, and RED/USE methods",
+      "tags": [
+        "correlation",
+        "exemplars",
+        "red-method",
+        "use-method",
+        "unified-observability"
+      ],
+      "related": [
+        "setup-prometheus-monitoring",
+        "configure-log-aggregation",
+        "instrument-distributed-tracing",
+        "build-grafana-dashboards"
+      ],
+      "path": "observability/correlate-observability-signals/SKILL.md"
+    },
+    {
+      "id": "track-ml-experiments",
+      "title": "Track ML Experiments",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "MLflow tracking server, autologging, run comparison, and artifact storage",
+      "tags": [
+        "mlflow",
+        "experiment-tracking",
+        "autologging",
+        "artifacts",
+        "metrics"
+      ],
+      "related": [
+        "register-ml-model",
+        "version-ml-data",
+        "setup-automl-pipeline",
+        "deploy-ml-model-serving",
+        "orchestrate-ml-pipeline"
+      ],
+      "path": "mlops/track-ml-experiments/SKILL.md"
+    },
+    {
+      "id": "register-ml-model",
+      "title": "Register ML Model",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "MLflow Model Registry with stage transitions and approval workflows",
+      "tags": [
+        "model-registry",
+        "mlflow",
+        "staging",
+        "production",
+        "versioning"
+      ],
+      "related": [
+        "track-ml-experiments",
+        "deploy-ml-model-serving",
+        "run-ab-test-models",
+        "orchestrate-ml-pipeline",
+        "version-ml-data"
+      ],
+      "path": "mlops/register-ml-model/SKILL.md"
+    },
+    {
+      "id": "deploy-ml-model-serving",
+      "title": "Deploy ML Model Serving",
+      "domain": "mlops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "MLflow / BentoML / Seldon Core REST/gRPC endpoints with scaling",
+      "tags": [
+        "model-serving",
+        "bentoml",
+        "seldon",
+        "rest-api",
+        "grpc"
+      ],
+      "related": [
+        "register-ml-model",
+        "run-ab-test-models",
+        "deploy-to-kubernetes",
+        "orchestrate-ml-pipeline"
+      ],
+      "path": "mlops/deploy-ml-model-serving/SKILL.md"
+    },
+    {
+      "id": "build-feature-store",
+      "title": "Build Feature Store",
+      "domain": "mlops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Feast offline/online stores, feature definitions, and point-in-time joins",
+      "tags": [
+        "feature-store",
+        "feast",
+        "offline-store",
+        "online-store",
+        "feature-engineering"
+      ],
+      "related": [
+        "track-ml-experiments",
+        "orchestrate-ml-pipeline",
+        "version-ml-data",
+        "deploy-ml-model-serving",
+        "serialize-data-formats",
+        "design-serialization-schema"
+      ],
+      "path": "mlops/build-feature-store/SKILL.md"
+    },
+    {
+      "id": "version-ml-data",
+      "title": "Version ML Data",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "DVC data versioning with remote storage backends and reproducible pipelines",
+      "tags": [
+        "dvc",
+        "data-versioning",
+        "reproducibility",
+        "remote-storage",
+        "pipelines"
+      ],
+      "related": [
+        "track-ml-experiments",
+        "orchestrate-ml-pipeline",
+        "build-feature-store",
+        "serialize-data-formats",
+        "design-serialization-schema"
+      ],
+      "path": "mlops/version-ml-data/SKILL.md"
+    },
+    {
+      "id": "orchestrate-ml-pipeline",
+      "title": "Orchestrate ML Pipeline",
+      "domain": "mlops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Prefect / Airflow DAG construction with retry logic and scheduling",
+      "tags": [
+        "prefect",
+        "airflow",
+        "pipeline",
+        "dag",
+        "orchestration"
+      ],
+      "related": [
+        "track-ml-experiments",
+        "version-ml-data",
+        "build-feature-store",
+        "deploy-ml-model-serving",
+        "deploy-to-kubernetes"
+      ],
+      "path": "mlops/orchestrate-ml-pipeline/SKILL.md"
+    },
+    {
+      "id": "monitor-model-drift",
+      "title": "Monitor Model Drift",
+      "domain": "mlops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Evidently AI drift detection with PSI, KS test, and concept drift alerting",
+      "tags": [
+        "model-drift",
+        "evidently",
+        "psi",
+        "ks-test",
+        "concept-drift",
+        "data-drift",
+        "monitoring"
+      ],
+      "related": [
+        "detect-anomalies-aiops",
+        "deploy-ml-model-serving",
+        "setup-prometheus-monitoring",
+        "review-data-analysis"
+      ],
+      "path": "mlops/monitor-model-drift/SKILL.md"
+    },
+    {
+      "id": "run-ab-test-models",
+      "title": "Run A/B Test for Models",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Traffic splitting, statistical significance, and canary/shadow deployment",
+      "tags": [
+        "ab-testing",
+        "canary",
+        "shadow-deployment",
+        "traffic-splitting",
+        "statistical-significance",
+        "experimentation"
+      ],
+      "related": [
+        "deploy-ml-model-serving",
+        "monitor-model-drift"
+      ],
+      "path": "mlops/run-ab-test-models/SKILL.md"
+    },
+    {
+      "id": "setup-automl-pipeline",
+      "title": "Setup AutoML Pipeline",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Optuna / Ray Tune hyperparameter optimization with Hyperband/ASHA",
+      "tags": [
+        "automl",
+        "optuna",
+        "ray-tune",
+        "hyperparameter",
+        "optimization",
+        "hyperband",
+        "asha"
+      ],
+      "related": [
+        "track-ml-experiments",
+        "orchestrate-ml-pipeline"
+      ],
+      "path": "mlops/setup-automl-pipeline/SKILL.md"
+    },
+    {
+      "id": "detect-anomalies-aiops",
+      "title": "Detect Anomalies for AIOps",
+      "domain": "mlops",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Time series anomaly detection with Isolation Forest, Prophet, and alert correlation",
+      "tags": [
+        "aiops",
+        "anomaly-detection",
+        "isolation-forest",
+        "prophet",
+        "alert-correlation",
+        "time-series"
+      ],
+      "related": [
+        "monitor-model-drift",
+        "monitor-data-integrity",
+        "setup-prometheus-monitoring",
+        "forecast-operational-metrics"
+      ],
+      "path": "mlops/detect-anomalies-aiops/SKILL.md"
+    },
+    {
+      "id": "forecast-operational-metrics",
+      "title": "Forecast Operational Metrics",
+      "domain": "mlops",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Prophet / statsmodels capacity forecasting with Grafana visualization",
+      "tags": [
+        "forecasting",
+        "prophet",
+        "statsmodels",
+        "capacity",
+        "time-series",
+        "grafana"
+      ],
+      "related": [
+        "detect-anomalies-aiops",
+        "plan-capacity",
+        "build-grafana-dashboards"
+      ],
+      "path": "mlops/forecast-operational-metrics/SKILL.md"
+    },
+    {
+      "id": "label-training-data",
+      "title": "Label Training Data",
+      "domain": "mlops",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Label Studio annotation workflows and inter-annotator agreement metrics",
+      "tags": [
+        "labeling",
+        "label-studio",
+        "annotation",
+        "inter-annotator-agreement",
+        "data-quality",
+        "active-learning"
+      ],
+      "related": [
+        "version-ml-data",
+        "track-ml-experiments"
+      ],
+      "path": "mlops/label-training-data/SKILL.md"
+    }
+  ],
+  "links": [
+    {
+      "source": "create-r-package",
+      "target": "write-roxygen-docs"
+    },
+    {
+      "source": "create-r-package",
+      "target": "write-testthat-tests"
+    },
+    {
+      "source": "create-r-package",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "create-r-package",
+      "target": "manage-renv-dependencies"
+    },
+    {
+      "source": "create-r-package",
+      "target": "write-claude-md"
+    },
+    {
+      "source": "submit-to-cran",
+      "target": "release-package-version"
+    },
+    {
+      "source": "submit-to-cran",
+      "target": "write-roxygen-docs"
+    },
+    {
+      "source": "submit-to-cran",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "submit-to-cran",
+      "target": "build-pkgdown-site"
+    },
+    {
+      "source": "write-roxygen-docs",
+      "target": "create-r-package"
+    },
+    {
+      "source": "write-roxygen-docs",
+      "target": "write-testthat-tests"
+    },
+    {
+      "source": "write-roxygen-docs",
+      "target": "write-vignette"
+    },
+    {
+      "source": "write-roxygen-docs",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "write-testthat-tests",
+      "target": "create-r-package"
+    },
+    {
+      "source": "write-testthat-tests",
+      "target": "write-roxygen-docs"
+    },
+    {
+      "source": "write-testthat-tests",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "write-testthat-tests",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "setup-github-actions-ci",
+      "target": "create-r-package"
+    },
+    {
+      "source": "setup-github-actions-ci",
+      "target": "build-pkgdown-site"
+    },
+    {
+      "source": "setup-github-actions-ci",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "setup-github-actions-ci",
+      "target": "release-package-version"
+    },
+    {
+      "source": "build-pkgdown-site",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "build-pkgdown-site",
+      "target": "write-roxygen-docs"
+    },
+    {
+      "source": "build-pkgdown-site",
+      "target": "write-vignette"
+    },
+    {
+      "source": "build-pkgdown-site",
+      "target": "release-package-version"
+    },
+    {
+      "source": "manage-renv-dependencies",
+      "target": "create-r-package"
+    },
+    {
+      "source": "manage-renv-dependencies",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "manage-renv-dependencies",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "add-rcpp-integration",
+      "target": "create-r-package"
+    },
+    {
+      "source": "add-rcpp-integration",
+      "target": "write-testthat-tests"
+    },
+    {
+      "source": "add-rcpp-integration",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "add-rcpp-integration",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "write-vignette",
+      "target": "write-roxygen-docs"
+    },
+    {
+      "source": "write-vignette",
+      "target": "build-pkgdown-site"
+    },
+    {
+      "source": "write-vignette",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "write-vignette",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "release-package-version",
+      "target": "submit-to-cran"
+    },
+    {
+      "source": "release-package-version",
+      "target": "create-github-release"
+    },
+    {
+      "source": "release-package-version",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "release-package-version",
+      "target": "build-pkgdown-site"
+    },
+    {
+      "source": "create-r-dockerfile",
+      "target": "setup-docker-compose"
+    },
+    {
+      "source": "create-r-dockerfile",
+      "target": "containerize-mcp-server"
+    },
+    {
+      "source": "create-r-dockerfile",
+      "target": "optimize-docker-build-cache"
+    },
+    {
+      "source": "create-r-dockerfile",
+      "target": "manage-renv-dependencies"
+    },
+    {
+      "source": "setup-docker-compose",
+      "target": "create-r-dockerfile"
+    },
+    {
+      "source": "setup-docker-compose",
+      "target": "containerize-mcp-server"
+    },
+    {
+      "source": "setup-docker-compose",
+      "target": "optimize-docker-build-cache"
+    },
+    {
+      "source": "containerize-mcp-server",
+      "target": "create-r-dockerfile"
+    },
+    {
+      "source": "containerize-mcp-server",
+      "target": "setup-docker-compose"
+    },
+    {
+      "source": "containerize-mcp-server",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "containerize-mcp-server",
+      "target": "troubleshoot-mcp-connection"
+    },
+    {
+      "source": "optimize-docker-build-cache",
+      "target": "create-r-dockerfile"
+    },
+    {
+      "source": "optimize-docker-build-cache",
+      "target": "setup-docker-compose"
+    },
+    {
+      "source": "optimize-docker-build-cache",
+      "target": "containerize-mcp-server"
+    },
+    {
+      "source": "create-quarto-report",
+      "target": "format-apa-report"
+    },
+    {
+      "source": "create-quarto-report",
+      "target": "build-parameterized-report"
+    },
+    {
+      "source": "create-quarto-report",
+      "target": "generate-statistical-tables"
+    },
+    {
+      "source": "create-quarto-report",
+      "target": "write-vignette"
+    },
+    {
+      "source": "format-apa-report",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "format-apa-report",
+      "target": "generate-statistical-tables"
+    },
+    {
+      "source": "format-apa-report",
+      "target": "build-parameterized-report"
+    },
+    {
+      "source": "build-parameterized-report",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "build-parameterized-report",
+      "target": "generate-statistical-tables"
+    },
+    {
+      "source": "build-parameterized-report",
+      "target": "format-apa-report"
+    },
+    {
+      "source": "generate-statistical-tables",
+      "target": "format-apa-report"
+    },
+    {
+      "source": "generate-statistical-tables",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "generate-statistical-tables",
+      "target": "build-parameterized-report"
+    },
+    {
+      "source": "setup-gxp-r-project",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "setup-gxp-r-project",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "setup-gxp-r-project",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "setup-gxp-r-project",
+      "target": "manage-renv-dependencies"
+    },
+    {
+      "source": "write-validation-documentation",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "write-validation-documentation",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "write-validation-documentation",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "implement-audit-trail",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "implement-audit-trail",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "implement-audit-trail",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "implement-audit-trail",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "validate-statistical-output",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "validate-statistical-output",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "validate-statistical-output",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "validate-statistical-output",
+      "target": "write-testthat-tests"
+    },
+    {
+      "source": "perform-csv-assessment",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "perform-csv-assessment",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "perform-csv-assessment",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "perform-csv-assessment",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "perform-csv-assessment",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "conduct-gxp-audit",
+      "target": "perform-csv-assessment"
+    },
+    {
+      "source": "conduct-gxp-audit",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "conduct-gxp-audit",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "conduct-gxp-audit",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "conduct-gxp-audit",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "implement-pharma-serialisation",
+      "target": "perform-csv-assessment"
+    },
+    {
+      "source": "implement-pharma-serialisation",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "implement-pharma-serialisation",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "implement-pharma-serialisation",
+      "target": "serialize-data-formats"
+    },
+    {
+      "source": "implement-pharma-serialisation",
+      "target": "design-serialization-schema"
+    },
+    {
+      "source": "design-compliance-architecture",
+      "target": "perform-csv-assessment"
+    },
+    {
+      "source": "design-compliance-architecture",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "design-compliance-architecture",
+      "target": "implement-electronic-signatures"
+    },
+    {
+      "source": "design-compliance-architecture",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "design-compliance-architecture",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "manage-change-control",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "manage-change-control",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "manage-change-control",
+      "target": "perform-csv-assessment"
+    },
+    {
+      "source": "manage-change-control",
+      "target": "write-standard-operating-procedure"
+    },
+    {
+      "source": "manage-change-control",
+      "target": "investigate-capa-root-cause"
+    },
+    {
+      "source": "implement-electronic-signatures",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "implement-electronic-signatures",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "implement-electronic-signatures",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "implement-electronic-signatures",
+      "target": "write-standard-operating-procedure"
+    },
+    {
+      "source": "implement-electronic-signatures",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "write-standard-operating-procedure",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "write-standard-operating-procedure",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "write-standard-operating-procedure",
+      "target": "design-training-program"
+    },
+    {
+      "source": "write-standard-operating-procedure",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "write-standard-operating-procedure",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "monitor-data-integrity",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "monitor-data-integrity",
+      "target": "implement-audit-trail"
+    },
+    {
+      "source": "monitor-data-integrity",
+      "target": "investigate-capa-root-cause"
+    },
+    {
+      "source": "monitor-data-integrity",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "monitor-data-integrity",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "design-training-program",
+      "target": "write-standard-operating-procedure"
+    },
+    {
+      "source": "design-training-program",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "design-training-program",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "design-training-program",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "design-training-program",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "decommission-validated-system",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "decommission-validated-system",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "decommission-validated-system",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "decommission-validated-system",
+      "target": "write-standard-operating-procedure"
+    },
+    {
+      "source": "decommission-validated-system",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "prepare-inspection-readiness",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "prepare-inspection-readiness",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "prepare-inspection-readiness",
+      "target": "monitor-data-integrity"
+    },
+    {
+      "source": "prepare-inspection-readiness",
+      "target": "investigate-capa-root-cause"
+    },
+    {
+      "source": "prepare-inspection-readiness",
+      "target": "qualify-vendor"
+    },
+    {
+      "source": "investigate-capa-root-cause",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "investigate-capa-root-cause",
+      "target": "monitor-data-integrity"
+    },
+    {
+      "source": "investigate-capa-root-cause",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "investigate-capa-root-cause",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "investigate-capa-root-cause",
+      "target": "design-training-program"
+    },
+    {
+      "source": "qualify-vendor",
+      "target": "design-compliance-architecture"
+    },
+    {
+      "source": "qualify-vendor",
+      "target": "conduct-gxp-audit"
+    },
+    {
+      "source": "qualify-vendor",
+      "target": "prepare-inspection-readiness"
+    },
+    {
+      "source": "qualify-vendor",
+      "target": "manage-change-control"
+    },
+    {
+      "source": "qualify-vendor",
+      "target": "perform-csv-assessment"
+    },
+    {
+      "source": "configure-mcp-server",
+      "target": "build-custom-mcp-server"
+    },
+    {
+      "source": "configure-mcp-server",
+      "target": "troubleshoot-mcp-connection"
+    },
+    {
+      "source": "configure-mcp-server",
+      "target": "setup-wsl-dev-environment"
+    },
+    {
+      "source": "build-custom-mcp-server",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "build-custom-mcp-server",
+      "target": "troubleshoot-mcp-connection"
+    },
+    {
+      "source": "build-custom-mcp-server",
+      "target": "containerize-mcp-server"
+    },
+    {
+      "source": "troubleshoot-mcp-connection",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "troubleshoot-mcp-connection",
+      "target": "build-custom-mcp-server"
+    },
+    {
+      "source": "troubleshoot-mcp-connection",
+      "target": "setup-wsl-dev-environment"
+    },
+    {
+      "source": "scaffold-nextjs-app",
+      "target": "setup-tailwind-typescript"
+    },
+    {
+      "source": "scaffold-nextjs-app",
+      "target": "deploy-to-vercel"
+    },
+    {
+      "source": "scaffold-nextjs-app",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "setup-tailwind-typescript",
+      "target": "scaffold-nextjs-app"
+    },
+    {
+      "source": "setup-tailwind-typescript",
+      "target": "deploy-to-vercel"
+    },
+    {
+      "source": "deploy-to-vercel",
+      "target": "scaffold-nextjs-app"
+    },
+    {
+      "source": "deploy-to-vercel",
+      "target": "setup-tailwind-typescript"
+    },
+    {
+      "source": "deploy-to-vercel",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "commit-changes"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "create-r-package"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "setup-wsl-dev-environment"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "create-github-release"
+    },
+    {
+      "source": "configure-git-repository",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "commit-changes",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "commit-changes",
+      "target": "create-pull-request"
+    },
+    {
+      "source": "commit-changes",
+      "target": "resolve-git-conflicts"
+    },
+    {
+      "source": "commit-changes",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "manage-git-branches",
+      "target": "commit-changes"
+    },
+    {
+      "source": "manage-git-branches",
+      "target": "create-pull-request"
+    },
+    {
+      "source": "manage-git-branches",
+      "target": "resolve-git-conflicts"
+    },
+    {
+      "source": "manage-git-branches",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "create-pull-request",
+      "target": "commit-changes"
+    },
+    {
+      "source": "create-pull-request",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "create-pull-request",
+      "target": "resolve-git-conflicts"
+    },
+    {
+      "source": "create-pull-request",
+      "target": "create-github-release"
+    },
+    {
+      "source": "resolve-git-conflicts",
+      "target": "commit-changes"
+    },
+    {
+      "source": "resolve-git-conflicts",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "resolve-git-conflicts",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "create-github-release",
+      "target": "commit-changes"
+    },
+    {
+      "source": "create-github-release",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "create-github-release",
+      "target": "release-package-version"
+    },
+    {
+      "source": "create-github-release",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "create-github-release",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "setup-wsl-dev-environment",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "setup-wsl-dev-environment",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "setup-wsl-dev-environment",
+      "target": "write-claude-md"
+    },
+    {
+      "source": "write-claude-md",
+      "target": "create-r-package"
+    },
+    {
+      "source": "write-claude-md",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "write-claude-md",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "security-audit-codebase",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "security-audit-codebase",
+      "target": "write-claude-md"
+    },
+    {
+      "source": "security-audit-codebase",
+      "target": "setup-gxp-r-project"
+    },
+    {
+      "source": "skill-creation",
+      "target": "skill-evolution"
+    },
+    {
+      "source": "skill-creation",
+      "target": "write-claude-md"
+    },
+    {
+      "source": "skill-creation",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "skill-creation",
+      "target": "commit-changes"
+    },
+    {
+      "source": "skill-creation",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "skill-evolution",
+      "target": "skill-creation"
+    },
+    {
+      "source": "skill-evolution",
+      "target": "commit-changes"
+    },
+    {
+      "source": "skill-evolution",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "skill-evolution",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "serialize-data-formats",
+      "target": "design-serialization-schema"
+    },
+    {
+      "source": "serialize-data-formats",
+      "target": "implement-pharma-serialisation"
+    },
+    {
+      "source": "serialize-data-formats",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "design-serialization-schema",
+      "target": "serialize-data-formats"
+    },
+    {
+      "source": "design-serialization-schema",
+      "target": "implement-pharma-serialisation"
+    },
+    {
+      "source": "design-serialization-schema",
+      "target": "write-validation-documentation"
+    },
+    {
+      "source": "review-research",
+      "target": "review-data-analysis"
+    },
+    {
+      "source": "review-research",
+      "target": "format-apa-report"
+    },
+    {
+      "source": "review-research",
+      "target": "generate-statistical-tables"
+    },
+    {
+      "source": "review-research",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "review-data-analysis",
+      "target": "review-research"
+    },
+    {
+      "source": "review-data-analysis",
+      "target": "validate-statistical-output"
+    },
+    {
+      "source": "review-data-analysis",
+      "target": "generate-statistical-tables"
+    },
+    {
+      "source": "review-data-analysis",
+      "target": "review-software-architecture"
+    },
+    {
+      "source": "review-software-architecture",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "review-software-architecture",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "review-software-architecture",
+      "target": "design-serialization-schema"
+    },
+    {
+      "source": "review-software-architecture",
+      "target": "review-data-analysis"
+    },
+    {
+      "source": "review-web-design",
+      "target": "review-ux-ui"
+    },
+    {
+      "source": "review-web-design",
+      "target": "setup-tailwind-typescript"
+    },
+    {
+      "source": "review-web-design",
+      "target": "scaffold-nextjs-app"
+    },
+    {
+      "source": "review-ux-ui",
+      "target": "review-web-design"
+    },
+    {
+      "source": "review-ux-ui",
+      "target": "scaffold-nextjs-app"
+    },
+    {
+      "source": "review-ux-ui",
+      "target": "setup-tailwind-typescript"
+    },
+    {
+      "source": "make-fire",
+      "target": "purify-water"
+    },
+    {
+      "source": "make-fire",
+      "target": "forage-plants"
+    },
+    {
+      "source": "purify-water",
+      "target": "make-fire"
+    },
+    {
+      "source": "purify-water",
+      "target": "forage-plants"
+    },
+    {
+      "source": "forage-plants",
+      "target": "make-fire"
+    },
+    {
+      "source": "forage-plants",
+      "target": "purify-water"
+    },
+    {
+      "source": "heal",
+      "target": "meditate"
+    },
+    {
+      "source": "heal",
+      "target": "remote-viewing"
+    },
+    {
+      "source": "heal",
+      "target": "mindfulness"
+    },
+    {
+      "source": "heal",
+      "target": "tai-chi"
+    },
+    {
+      "source": "heal",
+      "target": "forage-plants"
+    },
+    {
+      "source": "heal",
+      "target": "purify-water"
+    },
+    {
+      "source": "heal",
+      "target": "make-fire"
+    },
+    {
+      "source": "meditate",
+      "target": "heal"
+    },
+    {
+      "source": "meditate",
+      "target": "remote-viewing"
+    },
+    {
+      "source": "meditate",
+      "target": "mindfulness"
+    },
+    {
+      "source": "meditate",
+      "target": "tai-chi"
+    },
+    {
+      "source": "meditate",
+      "target": "forage-plants"
+    },
+    {
+      "source": "meditate",
+      "target": "make-fire"
+    },
+    {
+      "source": "remote-viewing",
+      "target": "meditate"
+    },
+    {
+      "source": "remote-viewing",
+      "target": "heal"
+    },
+    {
+      "source": "remote-viewing",
+      "target": "forage-plants"
+    },
+    {
+      "source": "ornament-style-mono",
+      "target": "ornament-style-color"
+    },
+    {
+      "source": "ornament-style-mono",
+      "target": "meditate"
+    },
+    {
+      "source": "ornament-style-mono",
+      "target": "review-web-design"
+    },
+    {
+      "source": "ornament-style-color",
+      "target": "ornament-style-mono"
+    },
+    {
+      "source": "ornament-style-color",
+      "target": "review-web-design"
+    },
+    {
+      "source": "ornament-style-color",
+      "target": "meditate"
+    },
+    {
+      "source": "ornament-style-modern",
+      "target": "ornament-style-mono"
+    },
+    {
+      "source": "ornament-style-modern",
+      "target": "ornament-style-color"
+    },
+    {
+      "source": "ornament-style-modern",
+      "target": "review-web-design"
+    },
+    {
+      "source": "ornament-style-modern",
+      "target": "review-ux-ui"
+    },
+    {
+      "source": "ornament-style-modern",
+      "target": "meditate"
+    },
+    {
+      "source": "tai-chi",
+      "target": "aikido"
+    },
+    {
+      "source": "tai-chi",
+      "target": "mindfulness"
+    },
+    {
+      "source": "tai-chi",
+      "target": "meditate"
+    },
+    {
+      "source": "tai-chi",
+      "target": "heal"
+    },
+    {
+      "source": "aikido",
+      "target": "tai-chi"
+    },
+    {
+      "source": "aikido",
+      "target": "mindfulness"
+    },
+    {
+      "source": "aikido",
+      "target": "meditate"
+    },
+    {
+      "source": "aikido",
+      "target": "heal"
+    },
+    {
+      "source": "mindfulness",
+      "target": "aikido"
+    },
+    {
+      "source": "mindfulness",
+      "target": "tai-chi"
+    },
+    {
+      "source": "mindfulness",
+      "target": "meditate"
+    },
+    {
+      "source": "mindfulness",
+      "target": "heal"
+    },
+    {
+      "source": "mindfulness",
+      "target": "remote-viewing"
+    },
+    {
+      "source": "draft-project-charter",
+      "target": "create-work-breakdown-structure"
+    },
+    {
+      "source": "draft-project-charter",
+      "target": "manage-backlog"
+    },
+    {
+      "source": "draft-project-charter",
+      "target": "plan-sprint"
+    },
+    {
+      "source": "draft-project-charter",
+      "target": "generate-status-report"
+    },
+    {
+      "source": "draft-project-charter",
+      "target": "conduct-retrospective"
+    },
+    {
+      "source": "create-work-breakdown-structure",
+      "target": "draft-project-charter"
+    },
+    {
+      "source": "create-work-breakdown-structure",
+      "target": "manage-backlog"
+    },
+    {
+      "source": "create-work-breakdown-structure",
+      "target": "generate-status-report"
+    },
+    {
+      "source": "create-work-breakdown-structure",
+      "target": "plan-sprint"
+    },
+    {
+      "source": "create-work-breakdown-structure",
+      "target": "conduct-retrospective"
+    },
+    {
+      "source": "plan-sprint",
+      "target": "manage-backlog"
+    },
+    {
+      "source": "plan-sprint",
+      "target": "draft-project-charter"
+    },
+    {
+      "source": "plan-sprint",
+      "target": "generate-status-report"
+    },
+    {
+      "source": "plan-sprint",
+      "target": "conduct-retrospective"
+    },
+    {
+      "source": "plan-sprint",
+      "target": "create-work-breakdown-structure"
+    },
+    {
+      "source": "manage-backlog",
+      "target": "draft-project-charter"
+    },
+    {
+      "source": "manage-backlog",
+      "target": "create-work-breakdown-structure"
+    },
+    {
+      "source": "manage-backlog",
+      "target": "plan-sprint"
+    },
+    {
+      "source": "manage-backlog",
+      "target": "generate-status-report"
+    },
+    {
+      "source": "manage-backlog",
+      "target": "conduct-retrospective"
+    },
+    {
+      "source": "generate-status-report",
+      "target": "draft-project-charter"
+    },
+    {
+      "source": "generate-status-report",
+      "target": "manage-backlog"
+    },
+    {
+      "source": "generate-status-report",
+      "target": "plan-sprint"
+    },
+    {
+      "source": "generate-status-report",
+      "target": "create-work-breakdown-structure"
+    },
+    {
+      "source": "generate-status-report",
+      "target": "conduct-retrospective"
+    },
+    {
+      "source": "conduct-retrospective",
+      "target": "generate-status-report"
+    },
+    {
+      "source": "conduct-retrospective",
+      "target": "manage-backlog"
+    },
+    {
+      "source": "conduct-retrospective",
+      "target": "plan-sprint"
+    },
+    {
+      "source": "conduct-retrospective",
+      "target": "draft-project-charter"
+    },
+    {
+      "source": "conduct-retrospective",
+      "target": "create-work-breakdown-structure"
+    },
+    {
+      "source": "build-ci-cd-pipeline",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "build-ci-cd-pipeline",
+      "target": "commit-changes"
+    },
+    {
+      "source": "build-ci-cd-pipeline",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "build-ci-cd-pipeline",
+      "target": "setup-container-registry"
+    },
+    {
+      "source": "build-ci-cd-pipeline",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "provision-infrastructure-terraform",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "provision-infrastructure-terraform",
+      "target": "build-ci-cd-pipeline"
+    },
+    {
+      "source": "provision-infrastructure-terraform",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "provision-infrastructure-terraform",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "provision-infrastructure-terraform",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "setup-docker-compose"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "containerize-mcp-server"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "write-helm-chart"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "deploy-to-kubernetes",
+      "target": "setup-container-registry"
+    },
+    {
+      "source": "manage-kubernetes-secrets",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "manage-kubernetes-secrets",
+      "target": "enforce-policy-as-code"
+    },
+    {
+      "source": "manage-kubernetes-secrets",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "manage-kubernetes-secrets",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "manage-kubernetes-secrets",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "setup-container-registry",
+      "target": "create-r-dockerfile"
+    },
+    {
+      "source": "setup-container-registry",
+      "target": "optimize-docker-build-cache"
+    },
+    {
+      "source": "setup-container-registry",
+      "target": "build-ci-cd-pipeline"
+    },
+    {
+      "source": "setup-container-registry",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "setup-container-registry",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "configure-git-repository"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "manage-git-branches"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "build-ci-cd-pipeline"
+    },
+    {
+      "source": "implement-gitops-workflow",
+      "target": "setup-container-registry"
+    },
+    {
+      "source": "configure-ingress-networking",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "configure-ingress-networking",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "configure-ingress-networking",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "configure-ingress-networking",
+      "target": "setup-service-mesh"
+    },
+    {
+      "source": "configure-ingress-networking",
+      "target": "build-ci-cd-pipeline"
+    },
+    {
+      "source": "setup-service-mesh",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "setup-service-mesh",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "setup-service-mesh",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "setup-service-mesh",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "setup-service-mesh",
+      "target": "enforce-policy-as-code"
+    },
+    {
+      "source": "configure-api-gateway",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "configure-api-gateway",
+      "target": "setup-service-mesh"
+    },
+    {
+      "source": "configure-api-gateway",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "configure-api-gateway",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "configure-api-gateway",
+      "target": "enforce-policy-as-code"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "manage-kubernetes-secrets"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "security-audit-codebase"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "setup-service-mesh"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "configure-api-gateway"
+    },
+    {
+      "source": "enforce-policy-as-code",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "plan-capacity"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "setup-local-kubernetes"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "write-helm-chart"
+    },
+    {
+      "source": "optimize-cloud-costs",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "write-helm-chart"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "setup-local-kubernetes",
+      "target": "optimize-cloud-costs"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "setup-local-kubernetes"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "implement-gitops-workflow"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "configure-ingress-networking"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "write-helm-chart",
+      "target": "enforce-policy-as-code"
+    },
+    {
+      "source": "setup-prometheus-monitoring",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "setup-prometheus-monitoring",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "setup-prometheus-monitoring",
+      "target": "define-slo-sli-sla"
+    },
+    {
+      "source": "setup-prometheus-monitoring",
+      "target": "instrument-distributed-tracing"
+    },
+    {
+      "source": "build-grafana-dashboards",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "build-grafana-dashboards",
+      "target": "configure-log-aggregation"
+    },
+    {
+      "source": "build-grafana-dashboards",
+      "target": "define-slo-sli-sla"
+    },
+    {
+      "source": "build-grafana-dashboards",
+      "target": "instrument-distributed-tracing"
+    },
+    {
+      "source": "configure-log-aggregation",
+      "target": "correlate-observability-signals"
+    },
+    {
+      "source": "configure-log-aggregation",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "configure-log-aggregation",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "configure-log-aggregation",
+      "target": "instrument-distributed-tracing"
+    },
+    {
+      "source": "instrument-distributed-tracing",
+      "target": "correlate-observability-signals"
+    },
+    {
+      "source": "instrument-distributed-tracing",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "instrument-distributed-tracing",
+      "target": "configure-log-aggregation"
+    },
+    {
+      "source": "instrument-distributed-tracing",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "define-slo-sli-sla",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "define-slo-sli-sla",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "define-slo-sli-sla",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "define-slo-sli-sla",
+      "target": "write-incident-runbook"
+    },
+    {
+      "source": "configure-alerting-rules",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "configure-alerting-rules",
+      "target": "define-slo-sli-sla"
+    },
+    {
+      "source": "configure-alerting-rules",
+      "target": "write-incident-runbook"
+    },
+    {
+      "source": "configure-alerting-rules",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "write-incident-runbook",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "write-incident-runbook",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "write-incident-runbook",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "write-incident-runbook",
+      "target": "define-slo-sli-sla"
+    },
+    {
+      "source": "conduct-post-mortem",
+      "target": "write-incident-runbook"
+    },
+    {
+      "source": "conduct-post-mortem",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "plan-capacity",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "plan-capacity",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "plan-capacity",
+      "target": "optimize-cloud-costs"
+    },
+    {
+      "source": "design-on-call-rotation",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "design-on-call-rotation",
+      "target": "write-incident-runbook"
+    },
+    {
+      "source": "run-chaos-experiment",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "run-chaos-experiment",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "run-chaos-experiment",
+      "target": "define-slo-sli-sla"
+    },
+    {
+      "source": "setup-uptime-checks",
+      "target": "configure-alerting-rules"
+    },
+    {
+      "source": "setup-uptime-checks",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "correlate-observability-signals",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "correlate-observability-signals",
+      "target": "configure-log-aggregation"
+    },
+    {
+      "source": "correlate-observability-signals",
+      "target": "instrument-distributed-tracing"
+    },
+    {
+      "source": "correlate-observability-signals",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "track-ml-experiments",
+      "target": "register-ml-model"
+    },
+    {
+      "source": "track-ml-experiments",
+      "target": "version-ml-data"
+    },
+    {
+      "source": "track-ml-experiments",
+      "target": "setup-automl-pipeline"
+    },
+    {
+      "source": "track-ml-experiments",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "track-ml-experiments",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "register-ml-model",
+      "target": "track-ml-experiments"
+    },
+    {
+      "source": "register-ml-model",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "register-ml-model",
+      "target": "run-ab-test-models"
+    },
+    {
+      "source": "register-ml-model",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "register-ml-model",
+      "target": "version-ml-data"
+    },
+    {
+      "source": "deploy-ml-model-serving",
+      "target": "register-ml-model"
+    },
+    {
+      "source": "deploy-ml-model-serving",
+      "target": "run-ab-test-models"
+    },
+    {
+      "source": "deploy-ml-model-serving",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "deploy-ml-model-serving",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "track-ml-experiments"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "version-ml-data"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "serialize-data-formats"
+    },
+    {
+      "source": "build-feature-store",
+      "target": "design-serialization-schema"
+    },
+    {
+      "source": "version-ml-data",
+      "target": "track-ml-experiments"
+    },
+    {
+      "source": "version-ml-data",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "version-ml-data",
+      "target": "build-feature-store"
+    },
+    {
+      "source": "version-ml-data",
+      "target": "serialize-data-formats"
+    },
+    {
+      "source": "version-ml-data",
+      "target": "design-serialization-schema"
+    },
+    {
+      "source": "orchestrate-ml-pipeline",
+      "target": "track-ml-experiments"
+    },
+    {
+      "source": "orchestrate-ml-pipeline",
+      "target": "version-ml-data"
+    },
+    {
+      "source": "orchestrate-ml-pipeline",
+      "target": "build-feature-store"
+    },
+    {
+      "source": "orchestrate-ml-pipeline",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "orchestrate-ml-pipeline",
+      "target": "deploy-to-kubernetes"
+    },
+    {
+      "source": "monitor-model-drift",
+      "target": "detect-anomalies-aiops"
+    },
+    {
+      "source": "monitor-model-drift",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "monitor-model-drift",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "monitor-model-drift",
+      "target": "review-data-analysis"
+    },
+    {
+      "source": "run-ab-test-models",
+      "target": "deploy-ml-model-serving"
+    },
+    {
+      "source": "run-ab-test-models",
+      "target": "monitor-model-drift"
+    },
+    {
+      "source": "setup-automl-pipeline",
+      "target": "track-ml-experiments"
+    },
+    {
+      "source": "setup-automl-pipeline",
+      "target": "orchestrate-ml-pipeline"
+    },
+    {
+      "source": "detect-anomalies-aiops",
+      "target": "monitor-model-drift"
+    },
+    {
+      "source": "detect-anomalies-aiops",
+      "target": "monitor-data-integrity"
+    },
+    {
+      "source": "detect-anomalies-aiops",
+      "target": "setup-prometheus-monitoring"
+    },
+    {
+      "source": "detect-anomalies-aiops",
+      "target": "forecast-operational-metrics"
+    },
+    {
+      "source": "forecast-operational-metrics",
+      "target": "detect-anomalies-aiops"
+    },
+    {
+      "source": "forecast-operational-metrics",
+      "target": "plan-capacity"
+    },
+    {
+      "source": "forecast-operational-metrics",
+      "target": "build-grafana-dashboards"
+    },
+    {
+      "source": "label-training-data",
+      "target": "version-ml-data"
+    },
+    {
+      "source": "label-training-data",
+      "target": "track-ml-experiments"
+    }
+  ]
+}
