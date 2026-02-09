@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 14
-version: "1.2"
-last_updated: "2026-02-08"
+total_agents: 15
+version: "1.3"
+last_updated: "2026-02-09"
 
 agents:
   - id: r-developer
@@ -118,6 +118,18 @@ agents:
       - tai-chi
       - aikido
       - mindfulness
+
+  - id: designer
+    path: agents/designer.md
+    description: Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy
+    tags: [design, ornament, art-history, generative-ai, z-image, speltz, visual-design]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    mcp_servers: [hf-mcp-server]
+    skills:
+      - ornament-style-mono
+      - ornament-style-color
+      - ornament-style-modern
 
   - id: gxp-validator
     path: agents/gxp-validator.md

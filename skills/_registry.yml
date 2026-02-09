@@ -1,7 +1,7 @@
-version: "1.0"
-generated: "2026-02-08"
+version: "1.1"
+generated: "2026-02-09"
 standard: "agentskills.io/specification"
-total_skills: 58
+total_skills: 61
 
 domains:
   r-packages:
@@ -326,6 +326,25 @@ domains:
         complexity: intermediate
         language: natural
         description: Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol
+
+  design:
+    description: Ornamental design and AI-assisted image generation skills
+    skills:
+      - id: ornament-style-mono
+        path: design/ornament-style-mono/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Design monochrome ornamental patterns in historical styles using Z-Image
+      - id: ornament-style-color
+        path: design/ornament-style-color/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Design polychromatic ornamental patterns with period-authentic palettes using Z-Image
+      - id: ornament-style-modern
+        path: design/ornament-style-modern/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Design ornamental patterns in modern/speculative genres with colorblind-accessible color scales using Z-Image
 
   defensive:
     description: Martial arts and applied defensive awareness skills
