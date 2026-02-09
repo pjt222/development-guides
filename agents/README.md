@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 15 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 16 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -31,8 +31,9 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [mystic](mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
 | [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
 | [designer](designer.md) | normal | Ornamental design: historical style analysis, Z-Image generation, Speltz taxonomy |
+| [project-manager](project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). Together, the 15 agents cover 59 of the 61 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). Together, the 16 agents cover 65 of the 67 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
 
 ## Using Agents in Claude Code
 
@@ -73,6 +74,7 @@ Task(subagent_type="survivalist", prompt="Teach me how to purify water from a st
 Task(subagent_type="mystic", prompt="Guide me through a 15-minute meditation session")
 Task(subagent_type="martial-artist", prompt="Teach me the opening movements of Yang 24 tai chi")
 Task(subagent_type="designer", prompt="Create an Islamic geometric star pattern in turquoise and gold")
+Task(subagent_type="project-manager", prompt="Set up agile PM for our new API service project")
 ```
 
 ## Agent File Format

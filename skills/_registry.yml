@@ -1,7 +1,7 @@
 version: "1.1"
 generated: "2026-02-09"
 standard: "agentskills.io/specification"
-total_skills: 61
+total_skills: 67
 
 domains:
   r-packages:
@@ -364,3 +364,37 @@ domains:
         complexity: advanced
         language: natural
         description: Cultivate defensive situational awareness, de-escalation, combat focus, and rapid grounding techniques
+
+  project-management:
+    description: Agile and classic project management skills
+    skills:
+      - id: draft-project-charter
+        path: project-management/draft-project-charter/SKILL.md
+        complexity: basic
+        language: multi
+        description: Draft a project charter with scope, stakeholders, RACI, success criteria, and risk register
+      - id: create-work-breakdown-structure
+        path: project-management/create-work-breakdown-structure/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create a WBS and WBS dictionary with effort estimates and dependencies
+      - id: plan-sprint
+        path: project-management/plan-sprint/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Plan a sprint with capacity calculation, backlog selection, and task decomposition
+      - id: manage-backlog
+        path: project-management/manage-backlog/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create, prioritize, groom, and maintain a product or project backlog
+      - id: generate-status-report
+        path: project-management/generate-status-report/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Generate status reports with RAG indicators, metrics, and trend analysis
+      - id: conduct-retrospective
+        path: project-management/conduct-retrospective/SKILL.md
+        complexity: basic
+        language: multi
+        description: Conduct retrospectives with evidence-based observations and improvement actions
