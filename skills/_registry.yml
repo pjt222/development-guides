@@ -1,7 +1,7 @@
 version: "1.1"
 generated: "2026-02-09"
 standard: "agentskills.io/specification"
-total_skills: 67
+total_skills: 77
 
 domains:
   r-packages:
@@ -144,6 +144,56 @@ domains:
         complexity: advanced
         language: multi
         description: Implement pharmaceutical serialisation for EU FMD, DSCSA, and EPCIS
+      - id: design-compliance-architecture
+        path: compliance/design-compliance-architecture/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Design compliance architecture mapping regulations to systems with criticality classification
+      - id: manage-change-control
+        path: compliance/manage-change-control/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Manage change control for validated systems with impact assessment and revalidation
+      - id: implement-electronic-signatures
+        path: compliance/implement-electronic-signatures/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Implement 21 CFR 11 Subpart C electronic signatures with manifestation and binding
+      - id: write-standard-operating-procedure
+        path: compliance/write-standard-operating-procedure/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Write GxP-compliant SOPs with approval workflows and periodic review
+      - id: monitor-data-integrity
+        path: compliance/monitor-data-integrity/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Design ALCOA+ data integrity monitoring with anomaly detection and metrics
+      - id: design-training-program
+        path: compliance/design-training-program/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Design role-based GxP training programmes with competency assessments
+      - id: decommission-validated-system
+        path: compliance/decommission-validated-system/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Decommission validated systems with data retention and migration validation
+      - id: prepare-inspection-readiness
+        path: compliance/prepare-inspection-readiness/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Prepare for regulatory inspections with mock protocols and response templates
+      - id: investigate-capa-root-cause
+        path: compliance/investigate-capa-root-cause/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Investigate root causes using 5-Why, fishbone, and fault tree with CAPA tracking
+      - id: qualify-vendor
+        path: compliance/qualify-vendor/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Qualify GxP vendors with risk classification, assessment, and quality agreements
 
   mcp-integration:
     description: MCP server setup and troubleshooting skills

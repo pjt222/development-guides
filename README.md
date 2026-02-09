@@ -59,12 +59,12 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 67 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 77 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
 | [R Packages](skills/r-packages/) | 10 | Full lifecycle: create, test, document, submit to CRAN |
-| [Compliance](skills/compliance/) | 7 | GxP validation, CSV, audits, pharma serialisation |
+| [Compliance](skills/compliance/) | 17 | GxP validation, CSV, audits, change control, data integrity, SOPs, training, inspections |
 | [Git](skills/git/) | 6 | Version control, branching, PRs, releases |
 | [Project Management](skills/project-management/) | 6 | Charters, WBS, sprints, backlogs, status reports, retrospectives |
 | [General](skills/general/) | 5 | WSL setup, CLAUDE.md, security audits, skill creation & evolution |
@@ -91,8 +91,8 @@ The **[Agents Library](agents/)** provides 16 specialized agent definitions for 
 | [code-reviewer](agents/code-reviewer.md) | high | Code quality, security review, best practices enforcement |
 | [security-analyst](agents/security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
 | [web-developer](agents/web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
-| [gxp-validator](agents/gxp-validator.md) | high | Computer Systems Validation: 21 CFR Part 11, EU Annex 11, GAMP 5 |
-| [auditor](agents/auditor.md) | high | GxP audit planning, execution, finding classification, CAPA management |
+| [gxp-validator](agents/gxp-validator.md) | high | CSV and compliance lifecycle: architecture, validation, change control, data integrity |
+| [auditor](agents/auditor.md) | high | GxP audit, CAPA investigation, inspection readiness, vendor qualification |
 | [project-manager](agents/project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
 | [senior-researcher](agents/senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
 | [senior-data-scientist](agents/senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, model validation review |
@@ -156,11 +156,11 @@ development-guides/
 │   ├── best-practices.md                  # Agent development guide
 │   ├── configuration-schema.md            # YAML frontmatter schema docs
 │   └── *.md                               # 16 agent persona files
-└── skills/                                # Agentic skills library (67 skills, 15 domains)
+└── skills/                                # Agentic skills library (77 skills, 15 domains)
     ├── README.md                          # Skills index and usage guide
     ├── _registry.yml                      # Machine-readable skill registry
     ├── r-packages/                        # 10 R package lifecycle skills
-    ├── compliance/                        # 7 GxP/regulatory/serialisation skills
+    ├── compliance/                        # 17 GxP/regulatory/compliance lifecycle skills
     ├── git/                               # 6 version control & GitHub skills
     ├── general/                           # 5 cross-cutting skills
     ├── review/                            # 5 senior-level review skills

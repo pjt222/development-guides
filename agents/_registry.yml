@@ -133,8 +133,8 @@ agents:
 
   - id: gxp-validator
     path: agents/gxp-validator.md
-    description: Computer Systems Validation specialist for 21 CFR Part 11, EU Annex 11, and GAMP 5 regulated environments
-    tags: [csv, gamp-5, 21-cfr-part-11, eu-annex-11, validation, compliance, pharma]
+    description: Computer Systems Validation and compliance lifecycle specialist covering 21 CFR Part 11, EU Annex 11, GAMP 5, compliance architecture, change control, electronic signatures, SOPs, data integrity monitoring, training programmes, and system decommissioning
+    tags: [csv, gamp-5, 21-cfr-part-11, eu-annex-11, validation, compliance, pharma, change-control, data-integrity, sop]
     priority: high
     tools: [Read, Write, Edit, Bash, Grep, Glob]
     skills:
@@ -144,11 +144,18 @@ agents:
       - validate-statistical-output
       - write-validation-documentation
       - implement-pharma-serialisation
+      - design-compliance-architecture
+      - manage-change-control
+      - implement-electronic-signatures
+      - write-standard-operating-procedure
+      - monitor-data-integrity
+      - design-training-program
+      - decommission-validated-system
 
   - id: auditor
     path: agents/auditor.md
-    description: GxP audit specialist for audit planning, execution, finding classification, CAPA management, and inspection readiness assessment
-    tags: [audit, gxp, capa, inspection, compliance, quality-assurance]
+    description: GxP audit and investigation specialist for audit planning, execution, finding classification, CAPA root cause analysis, inspection readiness, data integrity monitoring, and vendor qualification
+    tags: [audit, gxp, capa, inspection, compliance, quality-assurance, vendor, data-integrity, root-cause]
     priority: high
     tools: [Read, Grep, Glob, Bash, WebFetch]
     skills:
@@ -159,6 +166,10 @@ agents:
       - validate-statistical-output
       - write-validation-documentation
       - security-audit-codebase
+      - prepare-inspection-readiness
+      - investigate-capa-root-cause
+      - monitor-data-integrity
+      - qualify-vendor
 
   - id: senior-researcher
     path: agents/senior-researcher.md

@@ -20,8 +20,8 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [code-reviewer](code-reviewer.md) | high | Code quality, security review, and best practices enforcement |
 | [security-analyst](security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
 | [web-developer](web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
-| [gxp-validator](gxp-validator.md) | high | Computer Systems Validation: 21 CFR Part 11, EU Annex 11, GAMP 5 |
-| [auditor](auditor.md) | high | GxP audit planning, execution, finding classification, CAPA management |
+| [gxp-validator](gxp-validator.md) | high | CSV and compliance lifecycle: architecture, validation, change control, data integrity |
+| [auditor](auditor.md) | high | GxP audit, CAPA investigation, inspection readiness, vendor qualification |
 | [senior-researcher](senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
 | [senior-data-scientist](senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, and model validation review |
 | [senior-software-developer](senior-software-developer.md) | high | Architecture review: SOLID, API design, scalability, technical debt |
@@ -33,7 +33,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [designer](designer.md) | normal | Ornamental design: historical style analysis, Z-Image generation, Speltz taxonomy |
 | [project-manager](project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). Together, the 16 agents cover 65 of the 67 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). Together, the 16 agents cover 75 of the 77 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
 
 ## Using Agents in Claude Code
 
