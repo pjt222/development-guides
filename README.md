@@ -5,16 +5,16 @@ A comprehensive collection of guides for development work using WSL, Windows, an
 
 ## Available Guides
 
-### 🚀 [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
+### [WSL-RStudio-Claude Code Integration](guides/wsl-rstudio-claude-integration.md)
 Complete setup guide for using Claude Code from WSL with RStudio on Windows:
 - MCP server configuration with mcptools package
-- Understanding the client-server relationship (Claude Code and Claude Desktop as independent MCP clients)
+- Claude Desktop and Claude Code configuration (independent MCP clients)
+- Hugging Face MCP server setup and troubleshooting
 - Environment variable setup (.Renviron, .Rprofile)
 - Path management between WSL and Windows
-- Troubleshooting common issues
 - Best practices for development workflow
 
-### ⚙️ [General Development Setup](general-development-setup.md)
+### [General Development Setup](guides/general-development-setup.md)
 Essential setup for development across multiple environments:
 - WSL2 configuration and optimization
 - Shell environment (bash/zsh) setup
@@ -23,7 +23,7 @@ Essential setup for development across multiple environments:
 - Directory structure organization
 - Language-specific setups (Node.js, Python, R)
 
-### 📦 [R Package Development Best Practices](r-package-development-best-practices.md)
+### [R Package Development Best Practices](guides/r-package-development-best-practices.md)
 Comprehensive guide for developing high-quality R packages:
 - Package structure and organization
 - Documentation standards (roxygen2, vignettes)
@@ -32,23 +32,7 @@ Comprehensive guide for developing high-quality R packages:
 - CI/CD setup with GitHub Actions
 - Common patterns and troubleshooting
 
-### 🔧 [Claude Desktop MCP Configuration](claude-desktop-mcp-configuration.md)
-Step-by-step guide for configuring Claude Desktop with MCP servers:
-- Setting up multiple MCP servers (R integration, Hugging Face)
-- Configuration file management and JSON structure
-- Environment variable setup for secure authentication
-- Testing and verifying MCP server connections
-- Best practices for multi-server configurations
-
-### 🛠️ [Claude Desktop MCP Troubleshooting](claude-desktop-mcp-troubleshooting.md)
-Comprehensive troubleshooting guide for MCP server connection issues:
-- Windows-specific command parsing problems
-- Hugging Face MCP server connection failures
-- Authentication and token management issues
-- Platform differences between Windows and WSL
-- Step-by-step diagnostic procedures
-
-### 🌐 [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
+### [pkgdown GitHub Pages Deployment](guides/pkgdown-github-pages-deployment.md)
 Complete guide for deploying R package documentation to GitHub Pages:
 - Branch-based vs GitHub Actions deployment methods
 - Critical _pkgdown.yml configuration (development mode pitfall)
@@ -57,14 +41,14 @@ Complete guide for deploying R package documentation to GitHub Pages:
 - Migration between deployment methods
 - Best practices for reliable documentation hosting
 
-### 📦 [renv Setup Troubleshooting](renv-setup-troubleshooting.md)
+### [renv Setup Troubleshooting](guides/renv-setup-troubleshooting.md)
 Troubleshooting guide for R package dependency management:
 - Common renv initialization and restore issues
 - Platform-specific dependency resolution problems
 - Integration with development workflows
 - Best practices for reproducible environments
 
-### 📚 [Quick Reference](quick-reference.md)
+### [Quick Reference](guides/quick-reference.md)
 Essential commands and shortcuts for daily development:
 - WSL-Windows path conversions
 - R package development commands
@@ -75,7 +59,7 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 58 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 61 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
@@ -91,13 +75,14 @@ The **[Skills Library](skills/)** provides 58 task-level skills following the [A
 | [Bushcraft](skills/bushcraft/) | 3 | Fire-making, water purification, plant foraging |
 | [Esoteric](skills/esoteric/) | 3 | Meditation, healing, remote viewing |
 | [Defensive](skills/defensive/) | 3 | Tai chi, aikido, situational awareness |
+| [Design](skills/design/) | 3 | Ornamental patterns: monochrome, polychromatic, modern styles |
 | [Data Serialization](skills/data-serialization/) | 2 | Data formats, schemas, and evolution strategies |
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
 
 ## Agents Library
 
-The **[Agents Library](agents/)** provides 14 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 15 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
 
 | Agent | Priority | Description |
 |-------|----------|-------------|
@@ -115,18 +100,17 @@ The **[Agents Library](agents/)** provides 14 specialized agent definitions for 
 | [survivalist](agents/survivalist.md) | normal | Wilderness survival: fire craft, water purification, plant foraging |
 | [mystic](agents/mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
+| [designer](agents/designer.md) | normal | Ornamental design: historical style analysis, Z-Image generation, Speltz taxonomy |
 
 See [agents/README.md](agents/README.md) for usage instructions, the creation template, and best practices.
 
 ## Getting Started
 
-1. **New to this setup?** Start with [General Development Setup](general-development-setup.md)
-2. **Working with R?** Follow [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
-3. **Setting up Claude Desktop?** Use [Claude Desktop MCP Configuration](claude-desktop-mcp-configuration.md)
-4. **Having MCP connection issues?** Check [Claude Desktop MCP Troubleshooting](claude-desktop-mcp-troubleshooting.md)
-5. **Building R packages?** Use [R Package Development Best Practices](r-package-development-best-practices.md)
-6. **Deploying package docs?** See [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
-7. **Need quick commands?** Keep [Quick Reference](quick-reference.md) handy
+1. **New to this setup?** Start with [General Development Setup](guides/general-development-setup.md)
+2. **Working with R + Claude?** Follow [WSL-RStudio-Claude Code Integration](guides/wsl-rstudio-claude-integration.md) (covers Claude Desktop and MCP troubleshooting)
+3. **Building R packages?** Use [R Package Development Best Practices](guides/r-package-development-best-practices.md)
+4. **Deploying package docs?** See [pkgdown GitHub Pages Deployment](guides/pkgdown-github-pages-deployment.md)
+5. **Need quick commands?** Keep [Quick Reference](guides/quick-reference.md) handy
 
 ## Key Principles
 
@@ -155,50 +139,38 @@ Please maintain the existing structure and style when contributing.
 ```
 development-guides/
 ├── README.md                              # This file
-├── wsl-rstudio-claude-integration.md     # Claude Code + R setup
-├── general-development-setup.md          # Basic development environment
-├── claude-desktop-mcp-configuration.md   # Claude Desktop MCP setup
-├── claude-desktop-mcp-troubleshooting.md # MCP server troubleshooting
-├── r-package-development-best-practices.md # R package development
-├── pkgdown-github-pages-deployment.md    # Documentation site deployment
-├── renv-setup-troubleshooting.md         # R dependency management
-├── quick-reference.md                    # Command cheat sheet
-├── agents/                               # Agent definitions for Claude Code (14 agents)
-│   ├── README.md                         # Agent index and usage guide
-│   ├── _registry.yml                     # Machine-readable agent registry
-│   ├── _template.md                      # Agent creation template
-│   ├── best-practices.md                 # Agent development guide
-│   ├── configuration-schema.md           # YAML frontmatter schema docs
-│   ├── r-developer.md                    # R development agent
-│   ├── code-reviewer.md                  # Code review agent
-│   ├── security-analyst.md               # Security audit agent
-│   ├── web-developer.md                  # Web development agent
-│   ├── gxp-validator.md                  # Computer Systems Validation agent
-│   ├── auditor.md                        # GxP audit agent
-│   ├── senior-researcher.md              # Research peer review agent
-│   ├── senior-data-scientist.md          # Data science review agent
-│   ├── senior-software-developer.md      # Architecture review agent
-│   ├── senior-web-designer.md            # Visual design review agent
-│   ├── senior-ux-ui-specialist.md        # UX/UI review agent
-│   ├── survivalist.md                    # Wilderness survival agent
-│   ├── mystic.md                         # Esoteric practices agent
-│   └── martial-artist.md                 # Martial arts agent
-└── skills/                               # Agentic skills library (58 skills)
-    ├── README.md                         # Skills index and usage guide
-    ├── _registry.yml                     # Machine-readable skill registry
-    ├── r-packages/                       # 10 R package lifecycle skills
-    ├── compliance/                       # 7 GxP/regulatory/serialisation skills
-    ├── git/                              # 6 version control & GitHub skills
-    ├── general/                          # 5 cross-cutting skills
-    ├── review/                           # 5 senior-level review skills
-    ├── containerization/                 # 4 Docker/container skills
-    ├── reporting/                        # 4 Quarto/reporting skills
-    ├── mcp-integration/                  # 3 MCP server skills
-    ├── web-dev/                          # 3 web development skills
-    ├── bushcraft/                        # 3 wilderness survival skills
-    ├── esoteric/                         # 3 esoteric practice skills
-    ├── defensive/                        # 3 martial arts & awareness skills
-    └── data-serialization/               # 2 data format & schema skills
+├── CLAUDE.md                              # AI assistant instructions
+├── guides/                                # Human-readable reference guides (6)
+│   ├── wsl-rstudio-claude-integration.md  # Claude Code + R + MCP setup
+│   ├── general-development-setup.md       # Basic development environment
+│   ├── r-package-development-best-practices.md # R package development
+│   ├── pkgdown-github-pages-deployment.md # Documentation site deployment
+│   ├── renv-setup-troubleshooting.md      # R dependency management
+│   └── quick-reference.md                 # Command cheat sheet
+├── agents/                                # Agent definitions for Claude Code (15 agents)
+│   ├── README.md                          # Agent index and usage guide
+│   ├── _registry.yml                      # Machine-readable agent registry
+│   ├── _template.md                       # Agent creation template
+│   ├── best-practices.md                  # Agent development guide
+│   ├── configuration-schema.md            # YAML frontmatter schema docs
+│   └── *.md                               # 15 agent persona files
+└── skills/                                # Agentic skills library (61 skills, 14 domains)
+    ├── README.md                          # Skills index and usage guide
+    ├── _registry.yml                      # Machine-readable skill registry
+    ├── r-packages/                        # 10 R package lifecycle skills
+    ├── compliance/                        # 7 GxP/regulatory/serialisation skills
+    ├── git/                               # 6 version control & GitHub skills
+    ├── general/                           # 5 cross-cutting skills
+    ├── review/                            # 5 senior-level review skills
+    ├── containerization/                  # 4 Docker/container skills
+    ├── reporting/                         # 4 Quarto/reporting skills
+    ├── mcp-integration/                   # 3 MCP server skills
+    ├── web-dev/                           # 3 web development skills
+    ├── bushcraft/                         # 3 wilderness survival skills
+    ├── esoteric/                          # 3 esoteric practice skills
+    ├── defensive/                         # 3 martial arts & awareness skills
+    ├── design/                            # 3 ornamental design skills
+    └── data-serialization/                # 2 data format & schema skills
 ```
 
 ## Proven Approaches

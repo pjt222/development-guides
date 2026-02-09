@@ -181,24 +181,21 @@ Create or edit the `claude_desktop_config.json` file. Here's an example with mul
       "args": ["-e", "mcptools::mcp_server()"]
     },
     "hf-mcp-server": {
-      "command": "npx",
+      "command": "mcp-remote",
       "args": [
-        "mcp-remote",
-        "https://huggingface.co/mcp",
-        "--header",
-        "Authorization: Bearer YOUR_HF_TOKEN_HERE"
-      ]
+        "https://huggingface.co/mcp"
+      ],
+      "env": {
+        "HF_TOKEN": "YOUR_HF_TOKEN_HERE"
+      }
     }
   }
 }
 ```
 
-**Important**: Replace `YOUR_HF_TOKEN_HERE` with your actual Hugging Face token if you want to use the Hugging Face MCP server.
+**Important**: Replace `YOUR_HF_TOKEN_HERE` with your actual Hugging Face token. The `mcp-remote` package must be installed globally first: `npm install -g mcp-remote`.
 
-**Note**: The exact configuration may depend on how the mcptools package exposes the MCP server. You may need to specify:
-- A specific port if the server runs on a network port
-- Connection parameters for the stdio interface
-- Authentication details if required
+**Note**: Authentication uses environment variables (not command-line headers) to avoid Windows argument parsing issues. See [HF MCP Troubleshooting](#issue-hugging-face-mcp-server-cannot-attach-error-windows) for details.
 
 ### 3. Alternative: Network-based Connection
 
@@ -461,20 +458,24 @@ cat ~/.claude.json | jq '.mcpServers'
 ```
 
 ### Issue: Hugging Face MCP Server "Cannot Attach" Error (Windows)
-**Symptom**: Claude Desktop shows "cannot attach the server" for Hugging Face MCP server  
-**Root Cause**: Windows command parsing issue with header format
+**Symptom**: Claude Desktop shows "cannot attach the server" for Hugging Face MCP server
+**Root Cause**: Command line argument parsing differences between Windows and WSL environments
 
-```bash
-# Problem: Space after colon breaks Windows parsing
-"Authorization: Bearer token"  # ❌ Fails on Windows
+**Evidence**:
+- **WSL (Working)**: `Using custom headers: {"Authorization":" Bearer hf_token"}`
+- **Windows (Failing)**: `Warning: ignoring invalid header argument: "Authorization:`
 
-# Solution: Remove space after colon
-"Authorization:Bearer token"   # ✅ Works on Windows
+**Root Causes Identified**:
+1. **npx Package Download Issues**: Claude Desktop had trouble with `npx mcp-remote` package resolution
+2. **Command Line Argument Parsing**: Windows command parsing issues with authentication headers
+3. **Execution Context Differences**: Different behavior between command line and Claude Desktop process execution
+
+#### Solution 1: Global Install + Environment Variables (Recommended)
+
+```cmd
+npm install -g mcp-remote
 ```
 
-**Working Solution**: 
-1. Install globally: `npm install -g mcp-remote`
-2. In `claude_desktop_config.json`, use:
 ```json
 "hf-mcp-server": {
   "command": "mcp-remote",
@@ -483,13 +484,74 @@ cat ~/.claude.json | jq '.mcpServers'
 }
 ```
 
-See `@development-guides/claude-desktop-mcp-troubleshooting.md` for detailed solutions.
+**Why this works**: Avoids npx download issues, uses environment variables instead of problematic command-line headers, and globally installed package ensures reliable availability.
+
+#### Solution 2: Alternative Header Format (Legacy)
+
+```json
+"hf-mcp-server": {
+  "command": "C:\\Program Files\\nodejs\\npx.cmd",
+  "args": ["mcp-remote", "https://huggingface.co/mcp", "--header", "Authorization:Bearer YOUR_HF_TOKEN_HERE"]
+}
+```
+
+**Note**: Still has reliability issues with npx package downloads in Claude Desktop. Use Solution 1 instead.
+
+#### Solution 3: Alternative Transport (SSE)
+
+```json
+"hf-mcp-server": {
+  "command": "npx",
+  "args": ["mcp-remote", "https://huggingface.co/mcp", "--transport", "sse", "--header", "Authorization=Bearer YOUR_HF_TOKEN_HERE"]
+}
+```
+
+#### Diagnostic Commands
+
+```cmd
+REM Test basic connectivity
+mcp-remote https://huggingface.co/mcp
+
+REM Verify global package
+npm list -g mcp-remote
+
+REM Test HF API connectivity
+curl -I "https://huggingface.co/mcp"
+```
+
+#### Key Differences: Claude Desktop vs Claude Code
+
+| Aspect | Claude Desktop (Windows) | Claude Code (WSL) |
+|--------|-------------------------|-------------------|
+| Environment | Windows Command Prompt | Linux/Bash |
+| Configuration File | `%APPDATA%\Claude\claude_desktop_config.json` | `~/.claude.json` |
+| Argument Parsing | Windows-style quoting | Unix-style quoting |
+| Node.js Path | `C:\Program Files\nodejs\` | Via NVM in WSL |
 
 ### Issue: Confusion Between Claude Code and Claude Desktop
 - **Remember**: These are two separate tools with separate configurations
 - Claude Code (CLI): Configuration in `~/.claude.json`
 - Claude Desktop (GUI): Configuration in `%APPDATA%\Claude\claude_desktop_config.json`
 - You can use both simultaneously with the same MCP server
+
+## Configuration Variants
+
+### Minimal Configuration (R Only)
+For users who only need R integration:
+```json
+{
+  "globalShortcut": "Alt+Ctrl+Space",
+  "mcpServers": {
+    "r-mcptools": {
+      "command": "C:\\PROGRA~1\\R\\R-45~1.0\\bin\\x64\\Rscript.exe",
+      "args": ["-e", "mcptools::mcp_server()"]
+    }
+  }
+}
+```
+
+### Full Configuration (R + Hugging Face)
+See [Configure MCP Server Connection](#2-configure-mcp-server-connection) for the complete multi-server setup.
 
 ## Best Practices
 
@@ -522,7 +584,18 @@ Create a `CLAUDE.md` file in your project root with:
 - Development workflow
 - Known issues
 
-### 5. Git Configuration
+### 5. Security
+- Store sensitive tokens in environment variables, not configuration files
+- Regularly rotate authentication tokens
+- Test MCP server commands manually before adding to configuration
+
+### 6. Maintenance
+- Keep global npm packages updated: `npm update -g mcp-remote`
+- Monitor for new versions of mcptools package
+- Test configuration after system updates
+- Use full paths for executables on Windows
+
+### 7. Git Configuration
 ```gitignore
 # Don't ignore development template files
 !.Rprofile

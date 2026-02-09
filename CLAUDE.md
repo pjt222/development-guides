@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A documentation-only repository containing 8 long-form markdown guides, a skills library of 61 agentic skills, and 15 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 6 long-form markdown guides, a skills library of 61 agentic skills, and 15 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
 
@@ -12,7 +12,7 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 ### Three Content Types
 
-1. **Guides** (root `*.md` files): Human-readable reference documentation covering WSL setup, R package development, MCP troubleshooting, etc.
+1. **Guides** (`guides/` directory): Human-readable reference documentation covering WSL setup, R package development, MCP troubleshooting, etc.
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
@@ -29,7 +29,7 @@ When adding or removing skills or agents, the corresponding registry must be upd
 
 ### Cross-References
 
-Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/` paths. Skills reference related skills by relative path. The project `.claude/agents/` symlinks to `agents/` for Claude Code discovery.
+Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/guides/` paths. Skills reference related skills by relative path. The project `.claude/agents/` symlinks to `agents/` for Claude Code discovery.
 
 ## Editing Conventions
 
