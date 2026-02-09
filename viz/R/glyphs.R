@@ -1,0 +1,159 @@
+# glyphs.R - Skill-to-glyph mapping
+# Maps each of 115 skillIds to a specific glyph drawing function.
+#
+# Each entry: skillId = "glyph_function_name"
+# The glyph function must accept (cx, cy, s, col, bright) and return
+# a list of ggplot2 layers.
+
+SKILL_GLYPHS <- list(
+  # ── bushcraft (3) ──────────────────────────────────────────────────────
+  "make-fire"                      = "glyph_flame",
+  "purify-water"                   = "glyph_droplet",
+  "forage-plants"                  = "glyph_leaf",
+
+  # ── compliance (17) ────────────────────────────────────────────────────
+  "setup-gxp-r-project"            = "glyph_shield_check",
+  "write-validation-documentation" = "glyph_document",
+  "implement-audit-trail"          = "glyph_footprints",
+  "validate-statistical-output"    = "glyph_shield_check",
+  "perform-csv-assessment"         = "glyph_microscope",
+  "conduct-gxp-audit"              = "glyph_clipboard",
+  "implement-pharma-serialisation" = "glyph_barcode",
+  "design-compliance-architecture" = "glyph_blueprint",
+  "manage-change-control"          = "glyph_refresh_arrows",
+  "implement-electronic-signatures"= "glyph_fingerprint",
+  "write-standard-operating-procedure" = "glyph_numbered_list",
+  "monitor-data-integrity"         = "glyph_database_shield",
+  "design-training-program"        = "glyph_graduation_cap",
+  "decommission-validated-system"  = "glyph_power_off",
+  "prepare-inspection-readiness"   = "glyph_checklist",
+  "investigate-capa-root-cause"    = "glyph_fishbone",
+  "qualify-vendor"                 = "glyph_badge_star",
+
+  # ── containerization (4) ───────────────────────────────────────────────
+  "create-r-dockerfile"            = "glyph_docker_box",
+  "setup-docker-compose"           = "glyph_compose_stack",
+  "containerize-mcp-server"        = "glyph_box_plug",
+  "optimize-docker-build-cache"    = "glyph_layers_arrow",
+
+  # ── data-serialization (2) ────────────────────────────────────────────
+  "serialize-data-formats"         = "glyph_brackets_stream",
+  "design-serialization-schema"    = "glyph_schema_tree",
+
+  # ── defensive (3) ─────────────────────────────────────────────────────
+  "tai-chi"                        = "glyph_yin_yang",
+  "aikido"                         = "glyph_spiral_arrow",
+  "mindfulness"                    = "glyph_lotus",
+
+  # ── design (3) ─────────────────────────────────────────────────────────
+  "ornament-style-mono"            = "glyph_palette",
+  "ornament-style-color"           = "glyph_palette",
+  "ornament-style-modern"          = "glyph_compass_drafting",
+
+  # ── devops (13) ────────────────────────────────────────────────────────
+  "build-ci-cd-pipeline"           = "glyph_pipeline",
+  "provision-infrastructure-terraform" = "glyph_terraform_blocks",
+  "deploy-to-kubernetes"           = "glyph_ship_wheel",
+  "manage-kubernetes-secrets"      = "glyph_key_lock",
+  "setup-container-registry"       = "glyph_registry_box",
+  "implement-gitops-workflow"      = "glyph_git_sync",
+  "configure-ingress-networking"   = "glyph_gateway",
+  "setup-service-mesh"             = "glyph_mesh_grid",
+  "configure-api-gateway"          = "glyph_gateway",
+  "enforce-policy-as-code"         = "glyph_policy_shield",
+  "optimize-cloud-costs"           = "glyph_cost_down",
+  "setup-local-kubernetes"         = "glyph_cluster_local",
+  "write-helm-chart"               = "glyph_anchor",
+
+  # ── esoteric (3) ──────────────────────────────────────────────────────
+  "heal"                           = "glyph_healing_hands",
+  "meditate"                       = "glyph_lotus_seated",
+  "remote-viewing"                 = "glyph_third_eye",
+
+  # ── general (5) ────────────────────────────────────────────────────────
+  "setup-wsl-dev-environment"      = "glyph_terminal",
+  "write-claude-md"                = "glyph_robot_doc",
+  "security-audit-codebase"        = "glyph_shield_scan",
+  "skill-creation"                 = "glyph_spark_create",
+  "skill-evolution"                = "glyph_evolution_arrow",
+
+  # ── git (6) ────────────────────────────────────────────────────────────
+  "configure-git-repository"       = "glyph_git_config",
+  "commit-changes"                 = "glyph_commit_diamond",
+  "manage-git-branches"            = "glyph_branch_fork",
+  "create-pull-request"            = "glyph_merge_arrows",
+  "resolve-git-conflicts"          = "glyph_conflict_cross",
+  "create-github-release"          = "glyph_tag_release",
+
+  # ── mcp-integration (3) ───────────────────────────────────────────────
+  "configure-mcp-server"           = "glyph_server_plug",
+  "build-custom-mcp-server"        = "glyph_wrench_server",
+  "troubleshoot-mcp-connection"    = "glyph_debug_cable",
+
+  # ── mlops (12) ─────────────────────────────────────────────────────────
+  "track-ml-experiments"           = "glyph_experiment_flask",
+  "register-ml-model"              = "glyph_model_registry",
+  "deploy-ml-model-serving"        = "glyph_serve_endpoint",
+  "build-feature-store"            = "glyph_table_store",
+  "version-ml-data"                = "glyph_version_branch",
+  "orchestrate-ml-pipeline"        = "glyph_dag_pipeline",
+  "monitor-model-drift"            = "glyph_drift_curve",
+  "run-ab-test-models"             = "glyph_split_ab",
+  "setup-automl-pipeline"          = "glyph_auto_tune",
+  "detect-anomalies-aiops"         = "glyph_anomaly_spike",
+  "forecast-operational-metrics"   = "glyph_forecast_line",
+  "label-training-data"            = "glyph_label_tag",
+
+  # ── observability (13) ─────────────────────────────────────────────────
+  "setup-prometheus-monitoring"    = "glyph_prometheus_fire",
+  "build-grafana-dashboards"       = "glyph_dashboard_grid",
+  "configure-log-aggregation"      = "glyph_log_funnel",
+  "instrument-distributed-tracing" = "glyph_trace_spans",
+  "define-slo-sli-sla"             = "glyph_gauge_slo",
+  "configure-alerting-rules"       = "glyph_bell_alert",
+  "write-incident-runbook"         = "glyph_runbook",
+  "conduct-post-mortem"            = "glyph_timeline",
+  "plan-capacity"                  = "glyph_capacity_chart",
+  "design-on-call-rotation"        = "glyph_rotation_clock",
+  "run-chaos-experiment"           = "glyph_chaos_monkey",
+  "setup-uptime-checks"            = "glyph_heartbeat",
+  "correlate-observability-signals"= "glyph_signals_unified",
+
+  # ── project-management (6) ────────────────────────────────────────────
+  "draft-project-charter"          = "glyph_charter_scroll",
+  "create-work-breakdown-structure"= "glyph_wbs_tree",
+  "plan-sprint"                    = "glyph_sprint_board",
+  "manage-backlog"                 = "glyph_backlog_stack",
+  "generate-status-report"         = "glyph_status_gauge",
+  "conduct-retrospective"          = "glyph_retro_mirror",
+
+  # ── r-packages (10) ───────────────────────────────────────────────────
+  "create-r-package"               = "glyph_hexagon_r",
+  "submit-to-cran"                 = "glyph_upload_check",
+  "write-roxygen-docs"             = "glyph_doc_pen",
+  "write-testthat-tests"           = "glyph_test_tube",
+  "setup-github-actions-ci"        = "glyph_github_actions",
+  "build-pkgdown-site"             = "glyph_book_web",
+  "manage-renv-dependencies"       = "glyph_lock_tree",
+  "add-rcpp-integration"           = "glyph_bridge_cpp",
+  "write-vignette"                 = "glyph_scroll_tutorial",
+  "release-package-version"        = "glyph_rocket_tag",
+
+  # ── reporting (4) ──────────────────────────────────────────────────────
+  "create-quarto-report"           = "glyph_quarto_diamond",
+  "format-apa-report"              = "glyph_academic_paper",
+  "build-parameterized-report"     = "glyph_template_params",
+  "generate-statistical-tables"    = "glyph_table_stats",
+
+  # ── review (5) ─────────────────────────────────────────────────────────
+  "review-research"                = "glyph_magnifier_paper",
+  "review-data-analysis"           = "glyph_magnifier_chart",
+  "review-software-architecture"   = "glyph_magnifier_arch",
+  "review-web-design"              = "glyph_magnifier_layout",
+  "review-ux-ui"                   = "glyph_magnifier_user",
+
+  # ── web-dev (3) ────────────────────────────────────────────────────────
+  "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
+  "setup-tailwind-typescript"      = "glyph_tailwind_ts",
+  "deploy-to-vercel"               = "glyph_rocket_deploy"
+)

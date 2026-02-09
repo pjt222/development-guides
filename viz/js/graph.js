@@ -16,7 +16,7 @@ let onNodeHover = null;
 let iconMode = false;
 const iconImages = new Map();   // skillId -> Image
 const iconLoadFailed = new Set();
-const ICON_ZOOM_THRESHOLD = 1.5;
+const ICON_ZOOM_THRESHOLD = 1.0;
 
 const SAME_DOMAIN_DISTANCE = 40;
 const CROSS_DOMAIN_DISTANCE = 100;
@@ -128,14 +128,14 @@ function drawNode(node, ctx, globalScale) {
   if (useIcon) {
     // ── Icon mode: draw image with domain-colored glow ──
     const img = iconImages.get(node.id);
-    const iconSize = r * 2.5;
+    const iconSize = r * 3.5;
 
-    // Subtle glow behind icon
-    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize * 1.2);
-    grad.addColorStop(0, hexToRgba(color, 0.3 * alpha));
+    // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
+    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize * 1.0);
+    grad.addColorStop(0, hexToRgba(color, 0.12 * alpha));
     grad.addColorStop(1, hexToRgba(color, 0));
     ctx.beginPath();
-    ctx.arc(x, y, iconSize * 1.2, 0, 2 * Math.PI);
+    ctx.arc(x, y, iconSize * 1.0, 0, 2 * Math.PI);
     ctx.fillStyle = grad;
     ctx.fill();
 

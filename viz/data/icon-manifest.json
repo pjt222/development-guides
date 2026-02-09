@@ -102,8 +102,7 @@
       "prompt": "Neon campfire flame, leaf, compass rose, leaf identification, plant specimen, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 10003,
       "path": "icons/bushcraft/forage-plants.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "setup-gxp-r-project",
@@ -111,8 +110,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, R hexagon with shield, regulated folder, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20001,
       "path": "icons/compliance/setup-gxp-r-project.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "write-validation-documentation",
@@ -120,8 +118,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, validation stamp, protocol document, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20002,
       "path": "icons/compliance/write-validation-documentation.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "implement-audit-trail",
@@ -129,8 +126,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, footprint trail, timestamp log, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20003,
       "path": "icons/compliance/implement-audit-trail.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "validate-statistical-output",
@@ -138,8 +134,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, statistics validation, reference comparison, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20004,
       "path": "icons/compliance/validate-statistical-output.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "perform-csv-assessment",
@@ -147,8 +142,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, risk matrix, assessment checklist, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20005,
       "path": "icons/compliance/perform-csv-assessment.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "conduct-gxp-audit",
@@ -156,8 +150,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, audit clipboard, magnifying glass, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20006,
       "path": "icons/compliance/conduct-gxp-audit.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "implement-pharma-serialisation",
@@ -165,8 +158,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, pharma barcode, track-and-trace, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20007,
       "path": "icons/compliance/implement-pharma-serialisation.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "design-compliance-architecture",
@@ -174,8 +166,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, architecture blueprint, regulation map, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20008,
       "path": "icons/compliance/design-compliance-architecture.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "manage-change-control",
@@ -183,8 +174,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, change request form, approval flow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20009,
       "path": "icons/compliance/manage-change-control.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "implement-electronic-signatures",
@@ -192,8 +182,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, digital signature, fingerprint scan, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20010,
       "path": "icons/compliance/implement-electronic-signatures.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "write-standard-operating-procedure",
@@ -201,8 +190,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, SOP document, numbered steps, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20011,
       "path": "icons/compliance/write-standard-operating-procedure.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "monitor-data-integrity",
@@ -210,8 +198,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, data shield, integrity checkmark, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20012,
       "path": "icons/compliance/monitor-data-integrity.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "design-training-program",
@@ -219,8 +206,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, curriculum tree, graduation cap, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20013,
       "path": "icons/compliance/design-training-program.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "decommission-validated-system",
@@ -228,8 +214,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, system power-down, archive box, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20014,
       "path": "icons/compliance/decommission-validated-system.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "prepare-inspection-readiness",
@@ -237,8 +222,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, inspection checklist, readiness meter, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20015,
       "path": "icons/compliance/prepare-inspection-readiness.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "investigate-capa-root-cause",
@@ -246,8 +230,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, fishbone diagram, root cause arrow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20016,
       "path": "icons/compliance/investigate-capa-root-cause.webp",
-      "status": "error",
-      "lastError": "You have exceeded your GPU quota (60s requested vs. 0s left). Try again in 0:00:00"
+      "status": "done"
     },
     {
       "skillId": "qualify-vendor",
@@ -255,7 +238,7 @@
       "prompt": "Neon shield seal, regulatory checkmark, vendor badge, qualification star, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20017,
       "path": "icons/compliance/qualify-vendor.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-r-dockerfile",
@@ -263,7 +246,7 @@
       "prompt": "Neon container box, whale silhouette, Docker whale, R hexagon inside, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 30001,
       "path": "icons/containerization/create-r-dockerfile.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-docker-compose",
@@ -271,7 +254,7 @@
       "prompt": "Neon container box, whale silhouette, interconnected containers, orchestration, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 30002,
       "path": "icons/containerization/setup-docker-compose.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "containerize-mcp-server",
@@ -279,7 +262,7 @@
       "prompt": "Neon container box, whale silhouette, server in a box, glowing connection, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 30003,
       "path": "icons/containerization/containerize-mcp-server.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "optimize-docker-build-cache",
@@ -287,7 +270,7 @@
       "prompt": "Neon container box, whale silhouette, layered cache, speed arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 30004,
       "path": "icons/containerization/optimize-docker-build-cache.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "serialize-data-formats",
@@ -295,7 +278,7 @@
       "prompt": "Neon binary stream, schema tree brackets, format conversion, data stream, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40001,
       "path": "icons/data-serialization/serialize-data-formats.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "design-serialization-schema",
@@ -303,7 +286,7 @@
       "prompt": "Neon binary stream, schema tree brackets, schema blueprint, data types, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40002,
       "path": "icons/data-serialization/design-serialization-schema.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "tai-chi",
@@ -311,7 +294,7 @@
       "prompt": "Neon flowing water circle, yin-yang shield, tai chi flow, yin-yang balance, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 50001,
       "path": "icons/defensive/tai-chi.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "aikido",
@@ -319,7 +302,7 @@
       "prompt": "Neon flowing water circle, yin-yang shield, aikido spiral, redirect arrow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 50002,
       "path": "icons/defensive/aikido.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "mindfulness",
@@ -327,7 +310,7 @@
       "prompt": "Neon flowing water circle, yin-yang shield, awareness ripple, centered mind, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 50003,
       "path": "icons/defensive/mindfulness.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "ornament-style-mono",
@@ -335,7 +318,7 @@
       "prompt": "Glowing compass, golden spiral ornament, monochrome pattern, ornament motif, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 60001,
       "path": "icons/design/ornament-style-mono.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "ornament-style-color",
@@ -343,7 +326,7 @@
       "prompt": "Glowing compass, golden spiral ornament, polychrome ornament, color palette, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 60002,
       "path": "icons/design/ornament-style-color.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "ornament-style-modern",
@@ -351,7 +334,7 @@
       "prompt": "Glowing compass, golden spiral ornament, modern pattern, futuristic ornament, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 60003,
       "path": "icons/design/ornament-style-modern.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-ci-cd-pipeline",
@@ -359,7 +342,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, pipeline stages, continuous flow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70001,
       "path": "icons/devops/build-ci-cd-pipeline.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "provision-infrastructure-terraform",
@@ -367,7 +350,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, Terraform blocks, infrastructure map, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70002,
       "path": "icons/devops/provision-infrastructure-terraform.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "deploy-to-kubernetes",
@@ -375,7 +358,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, Kubernetes wheel, pod deployment, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70003,
       "path": "icons/devops/deploy-to-kubernetes.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "manage-kubernetes-secrets",
@@ -383,7 +366,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, sealed secrets, encrypted key, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70004,
       "path": "icons/devops/manage-kubernetes-secrets.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-container-registry",
@@ -391,7 +374,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, container registry, image tags, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70005,
       "path": "icons/devops/setup-container-registry.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "implement-gitops-workflow",
@@ -399,7 +382,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, GitOps sync, Argo CD arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70006,
       "path": "icons/devops/implement-gitops-workflow.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-ingress-networking",
@@ -407,7 +390,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, ingress gateway, traffic routing, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70007,
       "path": "icons/devops/configure-ingress-networking.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-service-mesh",
@@ -415,7 +398,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, service mesh grid, sidecar proxy, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70008,
       "path": "icons/devops/setup-service-mesh.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-api-gateway",
@@ -423,7 +406,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, API gateway, traffic funnel, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70009,
       "path": "icons/devops/configure-api-gateway.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "enforce-policy-as-code",
@@ -431,7 +414,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, policy shield, code constraint, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70010,
       "path": "icons/devops/enforce-policy-as-code.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "optimize-cloud-costs",
@@ -439,7 +422,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, cost graph, optimization arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70011,
       "path": "icons/devops/optimize-cloud-costs.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-local-kubernetes",
@@ -447,7 +430,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, local cluster, development pods, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70012,
       "path": "icons/devops/setup-local-kubernetes.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-helm-chart",
@@ -455,7 +438,7 @@
       "prompt": "Neon pipeline, gear mechanism, infinity loop, Helm anchor, chart template, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 70013,
       "path": "icons/devops/write-helm-chart.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "heal",
@@ -463,7 +446,7 @@
       "prompt": "Glowing third eye, mandala spiral, healing hands, energy aura, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 80001,
       "path": "icons/esoteric/heal.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "meditate",
@@ -471,7 +454,7 @@
       "prompt": "Glowing third eye, mandala spiral, lotus position, calm waves, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 80002,
       "path": "icons/esoteric/meditate.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "remote-viewing",
@@ -479,7 +462,7 @@
       "prompt": "Glowing third eye, mandala spiral, third eye open, coordinate grid, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 80003,
       "path": "icons/esoteric/remote-viewing.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-wsl-dev-environment",
@@ -487,7 +470,7 @@
       "prompt": "Glowing terminal prompt, wrench tool, WSL penguin, terminal window, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90001,
       "path": "icons/general/setup-wsl-dev-environment.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-claude-md",
@@ -495,7 +478,7 @@
       "prompt": "Glowing terminal prompt, wrench tool, Claude AI icon, instruction document, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90002,
       "path": "icons/general/write-claude-md.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "security-audit-codebase",
@@ -503,7 +486,7 @@
       "prompt": "Glowing terminal prompt, wrench tool, security scan, vulnerability shield, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90003,
       "path": "icons/general/security-audit-codebase.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "skill-creation",
@@ -511,7 +494,7 @@
       "prompt": "Glowing terminal prompt, wrench tool, skill blueprint, creation spark, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90004,
       "path": "icons/general/skill-creation.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "skill-evolution",
@@ -519,7 +502,7 @@
       "prompt": "Glowing terminal prompt, wrench tool, evolution spiral, skill upgrade arrow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90005,
       "path": "icons/general/skill-evolution.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-git-repository",
@@ -527,7 +510,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, git config gear, repository folder, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100001,
       "path": "icons/git/configure-git-repository.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "commit-changes",
@@ -535,7 +518,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, commit diamond, staged files, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100002,
       "path": "icons/git/commit-changes.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "manage-git-branches",
@@ -543,7 +526,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, branch tree, switch arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100003,
       "path": "icons/git/manage-git-branches.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-pull-request",
@@ -551,7 +534,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, pull request merge, branch arrow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100004,
       "path": "icons/git/create-pull-request.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "resolve-git-conflicts",
@@ -559,7 +542,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, conflict merge, resolution handshake, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100005,
       "path": "icons/git/resolve-git-conflicts.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-github-release",
@@ -567,7 +550,7 @@
       "prompt": "Glowing branch tree, commit graph nodes, release tag, download package, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100006,
       "path": "icons/git/create-github-release.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-mcp-server",
@@ -575,7 +558,7 @@
       "prompt": "Glowing server nodes, connection plug, MCP config panel, server settings, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 110001,
       "path": "icons/mcp-integration/configure-mcp-server.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-custom-mcp-server",
@@ -583,7 +566,7 @@
       "prompt": "Glowing server nodes, connection plug, custom server build, tool palette, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 110002,
       "path": "icons/mcp-integration/build-custom-mcp-server.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "troubleshoot-mcp-connection",
@@ -591,7 +574,7 @@
       "prompt": "Glowing server nodes, connection plug, debug probe, broken connection repair, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 110003,
       "path": "icons/mcp-integration/troubleshoot-mcp-connection.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "track-ml-experiments",
@@ -599,7 +582,7 @@
       "prompt": "Neural network nodes, brain circuit, MLflow logo, experiment log, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120001,
       "path": "icons/mlops/track-ml-experiments.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "register-ml-model",
@@ -607,7 +590,7 @@
       "prompt": "Neural network nodes, brain circuit, model registry, stage transition, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120002,
       "path": "icons/mlops/register-ml-model.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "deploy-ml-model-serving",
@@ -615,7 +598,7 @@
       "prompt": "Neural network nodes, brain circuit, model endpoint, serving container, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120003,
       "path": "icons/mlops/deploy-ml-model-serving.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-feature-store",
@@ -623,7 +606,7 @@
       "prompt": "Neural network nodes, brain circuit, feature table, feast icon, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120004,
       "path": "icons/mlops/build-feature-store.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "version-ml-data",
@@ -631,7 +614,7 @@
       "prompt": "Neural network nodes, brain circuit, DVC version, data snapshot, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120005,
       "path": "icons/mlops/version-ml-data.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "orchestrate-ml-pipeline",
@@ -639,7 +622,7 @@
       "prompt": "Neural network nodes, brain circuit, pipeline DAG, task flow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120006,
       "path": "icons/mlops/orchestrate-ml-pipeline.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "monitor-model-drift",
@@ -647,7 +630,7 @@
       "prompt": "Neural network nodes, brain circuit, drift curve, distribution shift, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120007,
       "path": "icons/mlops/monitor-model-drift.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "run-ab-test-models",
@@ -655,7 +638,7 @@
       "prompt": "Neural network nodes, brain circuit, A/B split, model comparison, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120008,
       "path": "icons/mlops/run-ab-test-models.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-automl-pipeline",
@@ -663,7 +646,7 @@
       "prompt": "Neural network nodes, brain circuit, AutoML optimizer, hyperparameter grid, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120009,
       "path": "icons/mlops/setup-automl-pipeline.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "detect-anomalies-aiops",
@@ -671,7 +654,7 @@
       "prompt": "Neural network nodes, brain circuit, anomaly spike, AI detection, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120010,
       "path": "icons/mlops/detect-anomalies-aiops.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "forecast-operational-metrics",
@@ -679,7 +662,7 @@
       "prompt": "Neural network nodes, brain circuit, forecast curve, prediction line, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120011,
       "path": "icons/mlops/forecast-operational-metrics.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "label-training-data",
@@ -687,7 +670,7 @@
       "prompt": "Neural network nodes, brain circuit, labeling tool, annotation marker, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 120012,
       "path": "icons/mlops/label-training-data.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-prometheus-monitoring",
@@ -695,7 +678,7 @@
       "prompt": "Neon radar eye, signal wave pulse, Prometheus fire, metrics scrape, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130001,
       "path": "icons/observability/setup-prometheus-monitoring.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-grafana-dashboards",
@@ -703,7 +686,7 @@
       "prompt": "Neon radar eye, signal wave pulse, Grafana panel, dashboard grid, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130002,
       "path": "icons/observability/build-grafana-dashboards.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-log-aggregation",
@@ -711,7 +694,7 @@
       "prompt": "Neon radar eye, signal wave pulse, log funnel, Loki stack, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130003,
       "path": "icons/observability/configure-log-aggregation.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "instrument-distributed-tracing",
@@ -719,7 +702,7 @@
       "prompt": "Neon radar eye, signal wave pulse, trace spans, distributed path, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130004,
       "path": "icons/observability/instrument-distributed-tracing.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "define-slo-sli-sla",
@@ -727,7 +710,7 @@
       "prompt": "Neon radar eye, signal wave pulse, SLO gauge, error budget bar, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130005,
       "path": "icons/observability/define-slo-sli-sla.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "configure-alerting-rules",
@@ -735,7 +718,7 @@
       "prompt": "Neon radar eye, signal wave pulse, alert bell, routing tree, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130006,
       "path": "icons/observability/configure-alerting-rules.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-incident-runbook",
@@ -743,7 +726,7 @@
       "prompt": "Neon radar eye, signal wave pulse, runbook steps, incident playbook, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130007,
       "path": "icons/observability/write-incident-runbook.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "conduct-post-mortem",
@@ -751,7 +734,7 @@
       "prompt": "Neon radar eye, signal wave pulse, timeline reconstruction, incident analysis, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130008,
       "path": "icons/observability/conduct-post-mortem.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "plan-capacity",
@@ -759,7 +742,7 @@
       "prompt": "Neon radar eye, signal wave pulse, capacity forecast, growth curve, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130009,
       "path": "icons/observability/plan-capacity.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "design-on-call-rotation",
@@ -767,7 +750,7 @@
       "prompt": "Neon radar eye, signal wave pulse, rotation schedule, pager icon, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130010,
       "path": "icons/observability/design-on-call-rotation.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "run-chaos-experiment",
@@ -775,7 +758,7 @@
       "prompt": "Neon radar eye, signal wave pulse, chaos monkey, resilience test, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130011,
       "path": "icons/observability/run-chaos-experiment.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-uptime-checks",
@@ -783,7 +766,7 @@
       "prompt": "Neon radar eye, signal wave pulse, uptime heartbeat, probe signal, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130012,
       "path": "icons/observability/setup-uptime-checks.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "correlate-observability-signals",
@@ -791,7 +774,7 @@
       "prompt": "Neon radar eye, signal wave pulse, unified signals, metric-log-trace, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 130013,
       "path": "icons/observability/correlate-observability-signals.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "draft-project-charter",
@@ -799,7 +782,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, charter scroll, project scope, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140001,
       "path": "icons/project-management/draft-project-charter.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-work-breakdown-structure",
@@ -807,7 +790,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, WBS tree, hierarchical boxes, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140002,
       "path": "icons/project-management/create-work-breakdown-structure.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "plan-sprint",
@@ -815,7 +798,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, sprint board, velocity chart, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140003,
       "path": "icons/project-management/plan-sprint.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "manage-backlog",
@@ -823,7 +806,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, backlog list, priority stack, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140004,
       "path": "icons/project-management/manage-backlog.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "generate-status-report",
@@ -831,7 +814,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, progress dashboard, status gauge, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140005,
       "path": "icons/project-management/generate-status-report.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "conduct-retrospective",
@@ -839,7 +822,7 @@
       "prompt": "Glowing Gantt chart, milestone markers, retro board, team reflection mirror, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 140006,
       "path": "icons/project-management/conduct-retrospective.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-r-package",
@@ -847,7 +830,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, scaffolding, package box, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150001,
       "path": "icons/r-packages/create-r-package.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "submit-to-cran",
@@ -855,7 +838,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, upload arrow, checkmark stamp, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150002,
       "path": "icons/r-packages/submit-to-cran.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-roxygen-docs",
@@ -863,7 +846,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, documentation scroll, pen nib, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150003,
       "path": "icons/r-packages/write-roxygen-docs.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-testthat-tests",
@@ -871,7 +854,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, test tubes, assertion checkmark, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150004,
       "path": "icons/r-packages/write-testthat-tests.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-github-actions-ci",
@@ -879,7 +862,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, GitHub octocat, workflow arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150005,
       "path": "icons/r-packages/setup-github-actions-ci.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-pkgdown-site",
@@ -887,7 +870,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, website wireframe, book pages, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150006,
       "path": "icons/r-packages/build-pkgdown-site.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "manage-renv-dependencies",
@@ -895,7 +878,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, dependency tree, lock icon, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150007,
       "path": "icons/r-packages/manage-renv-dependencies.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "add-rcpp-integration",
@@ -903,7 +886,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, C++ gears, bridge connector, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150008,
       "path": "icons/r-packages/add-rcpp-integration.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "write-vignette",
@@ -911,7 +894,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, long document, tutorial scroll, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150009,
       "path": "icons/r-packages/write-vignette.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "release-package-version",
@@ -919,7 +902,7 @@
       "prompt": "Glowing hexagonal R logo, circuit board traces, version tag, rocket launch, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 150010,
       "path": "icons/r-packages/release-package-version.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "create-quarto-report",
@@ -927,7 +910,7 @@
       "prompt": "Glowing chart, document with data, Quarto diamond, rendered document, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 160001,
       "path": "icons/reporting/create-quarto-report.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "format-apa-report",
@@ -935,7 +918,7 @@
       "prompt": "Glowing chart, document with data, academic paper, formatted citation, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 160002,
       "path": "icons/reporting/format-apa-report.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "build-parameterized-report",
@@ -943,7 +926,7 @@
       "prompt": "Glowing chart, document with data, template with parameters, gears, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 160003,
       "path": "icons/reporting/build-parameterized-report.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "generate-statistical-tables",
@@ -951,7 +934,7 @@
       "prompt": "Glowing chart, document with data, Generate, Statistical, Tables, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 160004,
       "path": "icons/reporting/generate-statistical-tables.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "review-research",
@@ -959,7 +942,7 @@
       "prompt": "Glowing magnifying glass, code lens, research paper, peer review lens, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170001,
       "path": "icons/review/review-research.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "review-data-analysis",
@@ -967,7 +950,7 @@
       "prompt": "Glowing magnifying glass, code lens, data chart, analysis magnifier, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170002,
       "path": "icons/review/review-data-analysis.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "review-software-architecture",
@@ -975,7 +958,7 @@
       "prompt": "Glowing magnifying glass, code lens, architecture diagram, review eye, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170003,
       "path": "icons/review/review-software-architecture.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "review-web-design",
@@ -983,7 +966,7 @@
       "prompt": "Glowing magnifying glass, code lens, web layout, design review palette, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170004,
       "path": "icons/review/review-web-design.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "review-ux-ui",
@@ -991,7 +974,7 @@
       "prompt": "Glowing magnifying glass, code lens, user interface, usability heuristic, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170005,
       "path": "icons/review/review-ux-ui.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "scaffold-nextjs-app",
@@ -999,7 +982,7 @@
       "prompt": "Neon browser window, HTML angle brackets, Next.js logo, app scaffold, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 180001,
       "path": "icons/web-dev/scaffold-nextjs-app.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "setup-tailwind-typescript",
@@ -1007,7 +990,7 @@
       "prompt": "Neon browser window, HTML angle brackets, Tailwind wind, TypeScript logo, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 180002,
       "path": "icons/web-dev/setup-tailwind-typescript.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "skillId": "deploy-to-vercel",
@@ -1015,7 +998,7 @@
       "prompt": "Neon browser window, HTML angle brackets, Vercel triangle, deployment rocket, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 180003,
       "path": "icons/web-dev/deploy-to-vercel.webp",
-      "status": "pending"
+      "status": "done"
     }
   ]
 }

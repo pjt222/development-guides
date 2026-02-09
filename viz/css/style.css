@@ -443,10 +443,11 @@ body::after {
 }
 
 .panel-icon {
-  max-width: 120px;
-  max-height: 120px;
+  max-width: 160px;
+  max-height: 160px;
   border-radius: 8px;
   image-rendering: auto;
+  filter: drop-shadow(0 0 8px var(--text-accent));
 }
 
 /* ── Tooltip ─────────────────────────────────────────────────── */
