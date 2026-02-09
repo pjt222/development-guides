@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A documentation-only repository containing 6 long-form markdown guides, a skills library of 77 agentic skills, and 16 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 6 long-form markdown guides, a skills library of 115 agentic skills, and 18 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
 
@@ -16,14 +16,14 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
-3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 16 agents across development, compliance, review, project management, and specialty domains.
+3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 18 agents across development, compliance, review, project management, DevOps, MLOps, and specialty domains.
 
 Agents and skills complement each other: agents define *who* (persona, tools, style), skills define *how* (procedure, validation, recovery). An agent can reference skills to execute specific tasks.
 
 ### Registries
 
-- `skills/_registry.yml` is the machine-readable catalog of all 77 skills across 15 domains: r-packages (10), compliance (17), git (6), project-management (6), general (5), review (5), containerization (4), reporting (4), mcp-integration (3), web-dev (3), bushcraft (3), esoteric (3), defensive (3), design (3), data-serialization (2).
-- `agents/_registry.yml` is the machine-readable catalog of all 16 agents.
+- `skills/_registry.yml` is the machine-readable catalog of all 115 skills across 18 domains: r-packages (10), compliance (17), devops (13), observability (13), mlops (12), git (6), project-management (6), general (5), review (5), containerization (4), reporting (4), mcp-integration (3), web-dev (3), bushcraft (3), esoteric (3), defensive (3), design (3), data-serialization (2).
+- `agents/_registry.yml` is the machine-readable catalog of all 18 agents.
 
 When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
 

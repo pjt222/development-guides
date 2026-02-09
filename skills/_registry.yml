@@ -1,7 +1,7 @@
-version: "1.1"
+version: "1.2"
 generated: "2026-02-09"
 standard: "agentskills.io/specification"
-total_skills: 77
+total_skills: 115
 
 domains:
   r-packages:
@@ -448,3 +448,205 @@ domains:
         complexity: basic
         language: multi
         description: Conduct retrospectives with evidence-based observations and improvement actions
+
+  devops:
+    description: CI/CD, Kubernetes, GitOps, and infrastructure automation skills
+    skills:
+      - id: build-ci-cd-pipeline
+        path: devops/build-ci-cd-pipeline/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: GitHub Actions multi-stage pipelines with matrix builds, caching, and secrets
+      - id: provision-infrastructure-terraform
+        path: devops/provision-infrastructure-terraform/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Terraform HCL modules with state management and plan/apply workflow
+      - id: deploy-to-kubernetes
+        path: devops/deploy-to-kubernetes/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: kubectl manifests, Deployments, Services, ConfigMaps, and Helm releases
+      - id: manage-kubernetes-secrets
+        path: devops/manage-kubernetes-secrets/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: SealedSecrets, external-secrets-operator, and rotation strategies
+      - id: setup-container-registry
+        path: devops/setup-container-registry/SKILL.md
+        complexity: basic
+        language: multi
+        description: ghcr.io, Docker Hub, and Harbor with image tagging and vulnerability scanning
+      - id: implement-gitops-workflow
+        path: devops/implement-gitops-workflow/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Argo CD / Flux app-of-apps, sync policies, and drift detection
+      - id: configure-ingress-networking
+        path: devops/configure-ingress-networking/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: NGINX Ingress Controller, cert-manager, TLS termination, and path routing
+      - id: setup-service-mesh
+        path: devops/setup-service-mesh/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Istio / Linkerd with mTLS, traffic management, and observability integration
+      - id: configure-api-gateway
+        path: devops/configure-api-gateway/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Kong / Traefik with rate limiting, auth plugins, and request transformation
+      - id: enforce-policy-as-code
+        path: devops/enforce-policy-as-code/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: OPA Gatekeeper / Kyverno admission control and audit mode
+      - id: optimize-cloud-costs
+        path: devops/optimize-cloud-costs/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Kubecost, right-sizing, HPA/VPA autoscaling, and spot/preemptible nodes
+      - id: setup-local-kubernetes
+        path: devops/setup-local-kubernetes/SKILL.md
+        complexity: basic
+        language: multi
+        description: kind / k3d / minikube with skaffold / tilt for inner-loop development
+      - id: write-helm-chart
+        path: devops/write-helm-chart/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Helm chart creation with Go templates, values.yaml, chart tests, and dependencies
+
+  observability:
+    description: Monitoring, logging, tracing, alerting, and reliability engineering skills
+    skills:
+      - id: setup-prometheus-monitoring
+        path: observability/setup-prometheus-monitoring/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Prometheus install, scrape configs, recording rules, and federation
+      - id: build-grafana-dashboards
+        path: observability/build-grafana-dashboards/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Dashboard JSON/YAML provisioning with panels, variables, and annotations
+      - id: configure-log-aggregation
+        path: observability/configure-log-aggregation/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Loki + Promtail log collection, parsing, labels, and retention
+      - id: instrument-distributed-tracing
+        path: observability/instrument-distributed-tracing/SKILL.md
+        complexity: advanced
+        language: multi
+        description: OpenTelemetry SDK auto/manual instrumentation with Jaeger / Tempo
+      - id: define-slo-sli-sla
+        path: observability/define-slo-sli-sla/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: SLO targets, error budgets, burn rate alerts with Sloth / Pyrra
+      - id: configure-alerting-rules
+        path: observability/configure-alerting-rules/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Alertmanager routing trees, receivers, and inhibition rules
+      - id: write-incident-runbook
+        path: observability/write-incident-runbook/SKILL.md
+        complexity: basic
+        language: multi
+        description: Runbook templates with diagnostic steps, escalation, and communication
+      - id: conduct-post-mortem
+        path: observability/conduct-post-mortem/SKILL.md
+        complexity: basic
+        language: multi
+        description: Blameless post-mortems with timeline, contributing factors, and action items
+      - id: plan-capacity
+        path: observability/plan-capacity/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: predict_linear resource forecasting, growth modeling, and headroom planning
+      - id: design-on-call-rotation
+        path: observability/design-on-call-rotation/SKILL.md
+        complexity: basic
+        language: multi
+        description: Rotation schedules, escalation policies, fatigue management, and handoff
+      - id: run-chaos-experiment
+        path: observability/run-chaos-experiment/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Litmus / Chaos Mesh hypothesis-driven fault injection with blast radius control
+      - id: setup-uptime-checks
+        path: observability/setup-uptime-checks/SKILL.md
+        complexity: basic
+        language: multi
+        description: Blackbox Exporter, SSL/cert monitoring, and status pages
+      - id: correlate-observability-signals
+        path: observability/correlate-observability-signals/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Exemplars, log-to-trace linking, unified dashboards, and RED/USE methods
+
+  mlops:
+    description: ML experiment tracking, model serving, feature stores, pipelines, and AIOps skills
+    skills:
+      - id: track-ml-experiments
+        path: mlops/track-ml-experiments/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: MLflow tracking server, autologging, run comparison, and artifact storage
+      - id: register-ml-model
+        path: mlops/register-ml-model/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: MLflow Model Registry with stage transitions and approval workflows
+      - id: deploy-ml-model-serving
+        path: mlops/deploy-ml-model-serving/SKILL.md
+        complexity: advanced
+        language: multi
+        description: MLflow / BentoML / Seldon Core REST/gRPC endpoints with scaling
+      - id: build-feature-store
+        path: mlops/build-feature-store/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Feast offline/online stores, feature definitions, and point-in-time joins
+      - id: version-ml-data
+        path: mlops/version-ml-data/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: DVC data versioning with remote storage backends and reproducible pipelines
+      - id: orchestrate-ml-pipeline
+        path: mlops/orchestrate-ml-pipeline/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Prefect / Airflow DAG construction with retry logic and scheduling
+      - id: monitor-model-drift
+        path: mlops/monitor-model-drift/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Evidently AI drift detection with PSI, KS test, and concept drift alerting
+      - id: run-ab-test-models
+        path: mlops/run-ab-test-models/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Traffic splitting, statistical significance, and canary/shadow deployment
+      - id: setup-automl-pipeline
+        path: mlops/setup-automl-pipeline/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Optuna / Ray Tune hyperparameter optimization with Hyperband/ASHA
+      - id: detect-anomalies-aiops
+        path: mlops/detect-anomalies-aiops/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Time series anomaly detection with Isolation Forest, Prophet, and alert correlation
+      - id: forecast-operational-metrics
+        path: mlops/forecast-operational-metrics/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Prophet / statsmodels capacity forecasting with Grafana visualization
+      - id: label-training-data
+        path: mlops/label-training-data/SKILL.md
+        complexity: basic
+        language: multi
+        description: Label Studio annotation workflows and inter-annotator agreement metrics

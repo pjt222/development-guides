@@ -59,12 +59,15 @@ Essential commands and shortcuts for daily development:
 
 ## Skills Library
 
-The **[Skills Library](skills/)** provides 77 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
+The **[Skills Library](skills/)** provides 115 task-level skills following the [Agent Skills open standard](https://agentskills.io). These are structured procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI) can consume to execute specific tasks.
 
 | Domain | Skills | Description |
 |--------|--------|-------------|
 | [R Packages](skills/r-packages/) | 10 | Full lifecycle: create, test, document, submit to CRAN |
 | [Compliance](skills/compliance/) | 17 | GxP validation, CSV, audits, change control, data integrity, SOPs, training, inspections |
+| [DevOps](skills/devops/) | 13 | CI/CD, Kubernetes, GitOps, service mesh, infrastructure automation |
+| [Observability](skills/observability/) | 13 | Prometheus, Grafana, logging, tracing, alerting, SLOs, chaos engineering |
+| [MLOps](skills/mlops/) | 12 | Experiment tracking, model serving, feature stores, pipelines, AIOps |
 | [Git](skills/git/) | 6 | Version control, branching, PRs, releases |
 | [Project Management](skills/project-management/) | 6 | Charters, WBS, sprints, backlogs, status reports, retrospectives |
 | [General](skills/general/) | 5 | WSL setup, CLAUDE.md, security audits, skill creation & evolution |
@@ -83,7 +86,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 
 ## Agents Library
 
-The **[Agents Library](agents/)** provides 16 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 18 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
 
 | Agent | Priority | Description |
 |-------|----------|-------------|
@@ -93,6 +96,8 @@ The **[Agents Library](agents/)** provides 16 specialized agent definitions for 
 | [web-developer](agents/web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
 | [gxp-validator](agents/gxp-validator.md) | high | CSV and compliance lifecycle: architecture, validation, change control, data integrity |
 | [auditor](agents/auditor.md) | high | GxP audit, CAPA investigation, inspection readiness, vendor qualification |
+| [devops-engineer](agents/devops-engineer.md) | high | CI/CD, Kubernetes, GitOps, service mesh, observability, chaos engineering |
+| [mlops-engineer](agents/mlops-engineer.md) | high | Experiment tracking, model registry, feature stores, ML pipelines, AIOps |
 | [project-manager](agents/project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
 | [senior-researcher](agents/senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
 | [senior-data-scientist](agents/senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, model validation review |
@@ -149,19 +154,23 @@ development-guides/
 │   ├── pkgdown-github-pages-deployment.md # Documentation site deployment
 │   ├── renv-setup-troubleshooting.md      # R dependency management
 │   └── quick-reference.md                 # Command cheat sheet
-├── agents/                                # Agent definitions for Claude Code (16 agents)
+├── agents/                                # Agent definitions for Claude Code (18 agents)
 │   ├── README.md                          # Agent index and usage guide
 │   ├── _registry.yml                      # Machine-readable agent registry
 │   ├── _template.md                       # Agent creation template
 │   ├── best-practices.md                  # Agent development guide
 │   ├── configuration-schema.md            # YAML frontmatter schema docs
-│   └── *.md                               # 16 agent persona files
-└── skills/                                # Agentic skills library (77 skills, 15 domains)
+│   └── *.md                               # 18 agent persona files
+└── skills/                                # Agentic skills library (115 skills, 18 domains)
     ├── README.md                          # Skills index and usage guide
     ├── _registry.yml                      # Machine-readable skill registry
     ├── r-packages/                        # 10 R package lifecycle skills
     ├── compliance/                        # 17 GxP/regulatory/compliance lifecycle skills
+    ├── devops/                            # 13 CI/CD, Kubernetes, GitOps skills
+    ├── observability/                     # 13 monitoring, logging, tracing, alerting skills
+    ├── mlops/                             # 12 ML experiment, serving, pipeline, AIOps skills
     ├── git/                               # 6 version control & GitHub skills
+    ├── project-management/                # 6 agile & classic PM skills
     ├── general/                           # 5 cross-cutting skills
     ├── review/                            # 5 senior-level review skills
     ├── containerization/                  # 4 Docker/container skills
@@ -172,8 +181,7 @@ development-guides/
     ├── esoteric/                          # 3 esoteric practice skills
     ├── defensive/                         # 3 martial arts & awareness skills
     ├── design/                            # 3 ornamental design skills
-    ├── data-serialization/                # 2 data format & schema skills
-    └── project-management/                # 6 agile & classic PM skills
+    └── data-serialization/                # 2 data format & schema skills
 ```
 
 ## Proven Approaches

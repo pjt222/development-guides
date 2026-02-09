@@ -1,6 +1,6 @@
 # Skills Library for Agentic Systems
 
-A collection of 77 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 115 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 
 ## How Skills Differ from Guides and Agents
 
@@ -19,19 +19,23 @@ Browse by domain:
 | Domain | Skills | Description |
 |--------|--------|-------------|
 | [r-packages/](r-packages/) | 10 | R package development lifecycle |
+| [compliance/](compliance/) | 17 | GxP validation, CSV, audits, change control, data integrity, SOPs, training, inspections |
+| [devops/](devops/) | 13 | CI/CD, Kubernetes, GitOps, service mesh, infrastructure automation |
+| [observability/](observability/) | 13 | Prometheus, Grafana, logging, tracing, alerting, SLOs, chaos engineering |
+| [mlops/](mlops/) | 12 | Experiment tracking, model serving, feature stores, pipelines, AIOps |
+| [git/](git/) | 6 | Git version control & GitHub workflows |
+| [project-management/](project-management/) | 6 | Agile & classic project management |
+| [general/](general/) | 5 | Cross-cutting dev environment skills |
+| [review/](review/) | 5 | Research, data, architecture & design review |
 | [containerization/](containerization/) | 4 | Docker & container workflows |
 | [reporting/](reporting/) | 4 | Quarto, Rmd, publication-ready reports |
-| [compliance/](compliance/) | 17 | GxP validation, CSV, audits, change control, data integrity, SOPs, training, inspections |
 | [mcp-integration/](mcp-integration/) | 3 | MCP server setup & troubleshooting |
 | [web-dev/](web-dev/) | 3 | Next.js, Tailwind, Vercel |
-| [git/](git/) | 6 | Git version control & GitHub workflows |
-| [general/](general/) | 5 | Cross-cutting dev environment skills |
-| [data-serialization/](data-serialization/) | 2 | Data formats, schemas & evolution |
-| [review/](review/) | 5 | Research, data, architecture & design review |
 | [bushcraft/](bushcraft/) | 3 | Wilderness survival & primitive skills |
 | [esoteric/](esoteric/) | 3 | Meditation, healing & non-local awareness |
 | [defensive/](defensive/) | 3 | Martial arts & situational awareness |
-| [project-management/](project-management/) | 6 | Agile & classic project management |
+| [design/](design/) | 3 | Ornamental design & AI image generation |
+| [data-serialization/](data-serialization/) | 2 | Data formats, schemas & evolution |
 
 ## SKILL.md Format
 

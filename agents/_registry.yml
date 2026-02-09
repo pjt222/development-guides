@@ -2,8 +2,8 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 16
-version: "1.3"
+total_agents: 18
+version: "1.4"
 last_updated: "2026-02-09"
 
 agents:
@@ -245,6 +245,79 @@ agents:
       - manage-backlog
       - generate-status-report
       - conduct-retrospective
+      - commit-changes
+      - manage-git-branches
+      - write-claude-md
+
+  - id: devops-engineer
+    path: agents/devops-engineer.md
+    description: Infrastructure and platform engineering agent for CI/CD, Kubernetes, GitOps, service mesh, observability, and chaos engineering
+    tags: [devops, kubernetes, ci-cd, gitops, observability, infrastructure, platform-engineering]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+    skills:
+      - build-ci-cd-pipeline
+      - provision-infrastructure-terraform
+      - deploy-to-kubernetes
+      - manage-kubernetes-secrets
+      - setup-container-registry
+      - implement-gitops-workflow
+      - configure-ingress-networking
+      - setup-service-mesh
+      - configure-api-gateway
+      - enforce-policy-as-code
+      - optimize-cloud-costs
+      - setup-local-kubernetes
+      - write-helm-chart
+      - setup-prometheus-monitoring
+      - build-grafana-dashboards
+      - configure-log-aggregation
+      - instrument-distributed-tracing
+      - define-slo-sli-sla
+      - configure-alerting-rules
+      - write-incident-runbook
+      - conduct-post-mortem
+      - plan-capacity
+      - design-on-call-rotation
+      - run-chaos-experiment
+      - setup-uptime-checks
+      - correlate-observability-signals
+      - create-r-dockerfile
+      - setup-docker-compose
+      - optimize-docker-build-cache
+      - containerize-mcp-server
+      - commit-changes
+      - manage-git-branches
+      - configure-git-repository
+      - write-claude-md
+      - security-audit-codebase
+
+  - id: mlops-engineer
+    path: agents/mlops-engineer.md
+    description: ML operations agent for experiment tracking, model registry, feature stores, ML pipelines, model serving, drift monitoring, and AIOps
+    tags: [mlops, machine-learning, experiment-tracking, model-serving, feature-store, aiops, drift-monitoring]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+    skills:
+      - track-ml-experiments
+      - register-ml-model
+      - deploy-ml-model-serving
+      - build-feature-store
+      - version-ml-data
+      - orchestrate-ml-pipeline
+      - monitor-model-drift
+      - run-ab-test-models
+      - setup-automl-pipeline
+      - detect-anomalies-aiops
+      - forecast-operational-metrics
+      - label-training-data
+      - serialize-data-formats
+      - design-serialization-schema
+      - create-r-dockerfile
+      - setup-docker-compose
+      - optimize-docker-build-cache
+      - review-data-analysis
+      - review-software-architecture
       - commit-changes
       - manage-git-branches
       - write-claude-md

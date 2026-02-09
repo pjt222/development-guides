@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 16 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 18 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -32,8 +32,10 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
 | [designer](designer.md) | normal | Ornamental design: historical style analysis, Z-Image generation, Speltz taxonomy |
 | [project-manager](project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
+| [devops-engineer](devops-engineer.md) | high | CI/CD, Kubernetes, GitOps, service mesh, observability, chaos engineering |
+| [mlops-engineer](mlops-engineer.md) | high | Experiment tracking, model registry, feature stores, ML pipelines, AIOps |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The r-developer agent covers the most ground (29 skills across 7 domains). Together, the 16 agents cover 75 of the 77 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 18 agents cover 113 of the 115 skills in the library. Only the two meta-skills (`skill-creation` and `skill-evolution`) remain standalone, as they are used to create and maintain skills themselves rather than belonging to a specific domain agent.
 
 ## Using Agents in Claude Code
 
@@ -75,6 +77,8 @@ Task(subagent_type="mystic", prompt="Guide me through a 15-minute meditation ses
 Task(subagent_type="martial-artist", prompt="Teach me the opening movements of Yang 24 tai chi")
 Task(subagent_type="designer", prompt="Create an Islamic geometric star pattern in turquoise and gold")
 Task(subagent_type="project-manager", prompt="Set up agile PM for our new API service project")
+Task(subagent_type="devops-engineer", prompt="Deploy our API to Kubernetes with CI/CD and monitoring")
+Task(subagent_type="mlops-engineer", prompt="Set up MLflow tracking and model registry for our ML project")
 ```
 
 ## Agent File Format
