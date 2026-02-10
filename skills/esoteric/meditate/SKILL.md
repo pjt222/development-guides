@@ -16,7 +16,7 @@ metadata:
   tags: esoteric, meditation, meta-cognition, focus, reasoning-patterns, self-observation
 ---
 
-# Meditate (Self-Directed)
+# Meditate
 
 Conduct a structured meta-cognitive meditation session — clearing prior context noise, developing single-pointed task focus, observing reasoning patterns, and returning to baseline clarity between tasks.
 

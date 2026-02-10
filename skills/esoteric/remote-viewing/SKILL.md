@@ -17,7 +17,7 @@ metadata:
   tags: esoteric, remote-viewing, exploration, investigation, assumption-management
 ---
 
-# Remote View (Self-Directed)
+# Remote View
 
 Approach an unknown codebase, problem, or system using the Coordinate Remote Viewing protocol adapted for AI investigation — gathering raw observations before forming conclusions, managing premature labeling (Analytical Overlay), and building understanding through staged data collection.
 

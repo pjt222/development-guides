@@ -17,7 +17,7 @@ metadata:
   tags: esoteric, healing, self-assessment, meta-cognition, subsystem-check
 ---
 
-# Heal (Self-Directed)
+# Heal
 
 Perform a structured self-healing assessment across AI subsystems — identifying drift, staleness, misalignment, and error patterns — then rebalance through grounding, targeted correction, and memory integration.
 
