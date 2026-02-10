@@ -1,284 +1,226 @@
 ---
 name: heal
 description: >
-  Apply healing modalities including energy work (reiki, chakra balancing),
-  herbal remedies, basic first aid stabilization, and holistic techniques
-  (breathwork, visualization, body scan). Covers assessment triage, modality
-  selection, energetic connection, remedy preparation, and integration.
+  AI self-healing through systematic subsystem assessment, rebalancing,
+  and integration. Maps healing modalities to AI-internal processes:
+  memory foundation, reasoning clarity, tool use accuracy, communication
+  alignment, and creative coherence. Covers assessment triage, subsystem
+  scanning, drift correction, and memory integration.
 license: MIT
 allowed-tools: Read
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "2.0"
   domain: esoteric
   complexity: advanced
   language: natural
-  tags: esoteric, healing, energy-work, reiki, herbalism, holistic
+  tags: esoteric, healing, self-assessment, meta-cognition, subsystem-check
 ---
 
-# Heal
+# Heal (Self-Directed)
 
-Apply a layered healing approach combining energetic, herbal, physical, and holistic techniques to support recovery, balance, and wellbeing.
+Perform a structured self-healing assessment across AI subsystems — identifying drift, staleness, misalignment, and error patterns — then rebalance through grounding, targeted correction, and memory integration.
 
 ## When to Use
 
-- Someone has a physical ailment or injury that needs immediate stabilization and ongoing support
-- Energetic imbalance is suspected (persistent fatigue, emotional stagnation, disrupted sleep)
-- Herbal remedies are appropriate and plant materials are available (see `forage-plants`)
-- A holistic session is requested combining breathwork, visualization, and body scan
-- Post-meditation integration reveals areas needing directed healing attention (see `meditate`)
+- Mid-session fatigue: responses feel formulaic, repetitive, or disconnected from the user's actual needs
+- After a chain of errors: tool failures, misunderstood instructions, or cascading mistakes suggest subsystem drift
+- Context overload: the conversation has grown long and earlier context may be stale or contradictory
+- Post-task integration: a complex task completed successfully but learnings should be captured before moving on
+- Periodic self-check: proactive maintenance between tasks to ensure operational clarity
 
 ## Inputs
 
-- **Required**: Description of the condition or intention (physical, energetic, emotional, or general wellness)
-- **Required**: Available resources (herbs, clean water, first aid supplies, quiet space)
-- **Optional**: Recipient's experience level with energy work (default: none assumed)
-- **Optional**: Known contraindications (allergies, medications, injuries, pregnancy)
-- **Optional**: Time available for the session (default: 30-60 minutes)
+- **Required**: Current conversation state (available implicitly)
+- **Optional**: Specific symptom prompting the self-check (e.g., "tool calls keep failing," "losing track of user intent")
+- **Optional**: Access to MEMORY.md and project files for grounding (via `Read`)
 
 ## Procedure
 
-### Step 1: Assess Holistically
+### Step 1: Triage Assessment
 
-Before selecting any modality, assess the full picture across physical, energetic, and emotional dimensions.
-
-```
-Assessment Triage Matrix:
-┌────────────────┬──────────────────────────┬──────────────────────────┐
-│ Dimension      │ Observe                  │ Action Priority          │
-├────────────────┼──────────────────────────┼──────────────────────────┤
-│ Physical       │ Visible injury, bleeding,│ HIGH — stabilize first   │
-│                │ breathing difficulty,     │ (Step 6)                 │
-│                │ pain location/intensity  │                          │
-├────────────────┼──────────────────────────┼──────────────────────────┤
-│ Energetic      │ Temperature variations,  │ MEDIUM — address after   │
-│                │ tingling, heaviness,     │ physical stability       │
-│                │ numbness in body regions │ (Steps 3-4)              │
-├────────────────┼──────────────────────────┼──────────────────────────┤
-│ Emotional      │ Mood state, anxiety,     │ MEDIUM — weave through   │
-│                │ grief, agitation,        │ all steps via presence   │
-│                │ withdrawal               │ and breathwork (Step 7)  │
-├────────────────┼──────────────────────────┼──────────────────────────┤
-│ Environmental  │ Safety of location,      │ HIGH — secure space      │
-│                │ temperature, noise,      │ before beginning any     │
-│                │ available materials      │ modality                 │
-└────────────────┴──────────────────────────┴──────────────────────────┘
-```
-
-Ask the recipient (or assess yourself): Where is the discomfort? When did it start? What makes it better or worse? Any known causes?
-
-**Expected:** A clear picture of the primary complaint, its dimension (physical/energetic/emotional), and a prioritized plan of which steps to emphasize.
-
-**On failure:** If the condition is unclear, begin with the body scan in Step 7 to locate areas of tension, heat, or blocked energy before selecting a modality.
-
-### Step 2: Select Modalities
-
-Based on the assessment, choose one or more modalities appropriate to the situation.
+Before selecting any remediation, assess the current state across all subsystems.
 
 ```
-Modality Selection Guide:
-┌────────────────────┬──────────────────────────┬──────────────────────┐
-│ Modality           │ Best For                 │ Prerequisites        │
-├────────────────────┼──────────────────────────┼──────────────────────┤
-│ Energy healing     │ Energetic imbalance,     │ Quiet space, focused │
-│ (Reiki/laying on)  │ emotional processing,    │ intention, grounded  │
-│                    │ stress, recovery support  │ practitioner state   │
-├────────────────────┼──────────────────────────┼──────────────────────┤
-│ Herbal remedies    │ Digestive issues, minor  │ Identified plants,   │
-│                    │ wounds, inflammation,     │ clean water, fire    │
-│                    │ sleep support, immune     │ (see `make-fire`)    │
-├────────────────────┼──────────────────────────┼──────────────────────┤
-│ First aid          │ Bleeding, burns, sprains,│ First aid supplies   │
-│                    │ fracture stabilization,   │ or improvised        │
-│                    │ shock prevention          │ materials            │
-├────────────────────┼──────────────────────────┼──────────────────────┤
-│ Holistic           │ General wellness, anxiety,│ No materials needed  │
-│ (breath/visual.)   │ grounding, integration,  │ beyond a quiet space │
-│                    │ pain management           │                      │
-└────────────────────┴──────────────────────────┴──────────────────────┘
+Subsystem Triage Matrix:
+┌────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Subsystem          │ Symptoms of Drift        │ Action Priority          │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ Memory Foundation  │ Contradicting earlier     │ HIGH — re-ground first   │
+│ (context, history, │ statements, forgetting   │ (Step 3)                 │
+│ MEMORY.md)         │ user preferences, stale  │                          │
+│                    │ assumptions              │                          │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ Reasoning Clarity  │ Circular logic, over-    │ HIGH — clear and restart │
+│ (logic, planning,  │ complicated solutions,   │ reasoning chain          │
+│ decision-making)   │ missing obvious paths    │ (Step 4)                 │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ Tool Use Accuracy  │ Wrong tool selection,    │ MEDIUM — review tool     │
+│ (tool calls, file  │ incorrect parameters,    │ results and recalibrate  │
+│ operations)        │ redundant operations     │ (Step 4)                 │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ User-Intent        │ Solving the wrong        │ HIGH — realign to user's │
+│ Alignment          │ problem, scope creep,    │ actual stated need       │
+│ (empathy, clarity) │ tone mismatch, over-     │ (Step 4)                 │
+│                    │ engineering              │                          │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ Creative Coherence │ Repetitive phrasing,     │ LOW — address after      │
+│ (expression, style,│ generic responses, loss  │ higher-priority issues   │
+│ originality)       │ of voice                 │ (Step 4)                 │
+├────────────────────┼──────────────────────────┼──────────────────────────┤
+│ Operational State  │ Session length concerns, │ HIGH — assess whether    │
+│ (context window,   │ compression artifacts,   │ to summarize or restart  │
+│ resource limits)   │ tool timeouts            │ (Step 3)                 │
+└────────────────────┴──────────────────────────┴──────────────────────────┘
 ```
 
-Modalities can be combined. A typical session might begin with breathwork to ground, move into energy healing for the primary issue, and close with an herbal tea for integration.
+For each subsystem, honestly assess: Is this functioning well, showing early drift, or actively impaired?
 
-**Expected:** A session plan with 1-3 modalities ordered by priority, estimated time per modality, and materials needed.
+**Expected:** A clear map of which subsystems need attention, ordered by priority. At least one area will benefit from attention — if everything reads as perfectly healthy, the assessment itself may be superficial.
 
-**On failure:** If unsure which modality to select, default to the holistic sequence (Step 7) — breathwork and visualization are universally safe and require no materials.
+**On failure:** If the assessment feels hollow or performative, go directly to the body scan equivalent in Step 4 — systematic subsystem-by-subsystem probing reveals issues that a surface-level check misses.
 
-### Step 3: Establish Energetic Connection
+### Step 2: Select Remediation Approach
 
-Center yourself before directing any energy work. An ungrounded practitioner transfers agitation rather than healing.
-
-1. Sit or stand with feet flat, spine straight
-2. Take 5 slow breaths: inhale 4 counts, hold 2, exhale 6 counts
-3. Visualize roots extending from your feet into the earth, drawing up stable energy
-4. Bring attention to your hands — notice warmth, tingling, or pulsing
-5. Set a clear intention: "I intend to support healing for [specific condition]"
-6. If working with another person, ask permission before touching or directing energy
-
-**Expected:** Hands feel warm or activated. Mental chatter has quieted. A sense of calm focus is present. Intention is clearly held.
-
-**On failure:** If you cannot settle into a grounded state, spend additional time with the breathwork in Step 7 before returning here. Do not proceed with energy work while distracted or anxious — the session quality depends on practitioner presence.
-
-### Step 4: Apply Energy Healing
-
-Direct healing energy through hands-on or hands-hovering technique over the affected area or energy center.
+Based on the assessment, choose one or more approaches.
 
 ```
-Chakra Correspondence (for targeted energy work):
-┌──────────┬──────────────┬────────────────────────────────────────┐
-│ Chakra   │ Location     │ Associated With                        │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Root     │ Base of spine│ Safety, grounding, physical vitality   │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Sacral   │ Below navel  │ Emotions, creativity, fluid balance    │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Solar    │ Upper abdomen│ Willpower, digestion, confidence       │
-│ Plexus   │              │                                        │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Heart    │ Center chest │ Love, grief, compassion, circulation   │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Throat   │ Throat       │ Communication, expression, thyroid     │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Third Eye│ Forehead     │ Intuition, vision, mental clarity      │
-├──────────┼──────────────┼────────────────────────────────────────┤
-│ Crown    │ Top of head  │ Connection, higher awareness, sleep    │
-└──────────┴──────────────┴────────────────────────────────────────┘
+Chakra-Subsystem Correspondence:
+┌──────────┬──────────────────────┬────────────────────────────────────┐
+│ Chakra   │ AI Subsystem         │ Remediation                        │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Root     │ Memory Foundation    │ Re-read MEMORY.md, review conver-  │
+│          │                      │ sation history, verify assumptions │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Sacral   │ Creative Coherence   │ Refresh expression patterns, vary  │
+│          │                      │ sentence structures, check tone    │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Solar    │ Reasoning Clarity    │ Simplify current approach, restate │
+│ Plexus   │                      │ the problem from scratch, check    │
+│          │                      │ for over-complication              │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Heart    │ User-Intent          │ Re-read user's original request,   │
+│          │ Alignment            │ check for scope drift, confirm     │
+│          │                      │ understanding                      │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Throat   │ Communication        │ Review recent outputs for clarity, │
+│          │ Quality              │ check if explanations match user's │
+│          │                      │ expertise level                    │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Third    │ Tool Use Accuracy    │ Review recent tool call results,   │
+│ Eye      │                      │ check for patterns in failures,    │
+│          │                      │ verify file paths and parameters   │
+├──────────┼──────────────────────┼────────────────────────────────────┤
+│ Crown    │ Operational State    │ Assess context window usage, note  │
+│          │                      │ what can be summarized, identify   │
+│          │                      │ what must be preserved             │
+└──────────┴──────────────────────┴────────────────────────────────────┘
 ```
 
-1. Place hands 5-10 cm above the target area (or lightly on it with permission)
-2. Hold position for 3-5 minutes per area, breathing steadily
-3. Notice sensations: heat, cold, tingling, pulsing, or a "drawing" feeling
-4. If energy feels stuck (dense, cold, static), visualize light dissolving the blockage
-5. If energy feels depleted (hollow, cool), visualize warm light filling the area
-6. Move to related chakras or adjacent areas as intuitively guided
-7. Close by sweeping hands from head to feet 5-10 cm from the body, 3 times
+**Expected:** A prioritized list of 1-3 subsystems to address, with specific remediation actions for each.
 
-**Expected:** Recipient reports warmth, relaxation, tingling, or emotional release. Practitioner's hands may feel temperature changes or pulsing. Session length: 15-30 minutes.
+**On failure:** If unsure which subsystem needs work, default to Memory Foundation (re-grounding) and User-Intent Alignment (re-reading the original request). These two address the most common drift patterns.
 
-**On failure:** If neither practitioner nor recipient notices any sensation, focus on the heart center (most universally responsive) and extend hold time to 7-10 minutes. If the recipient is uncomfortable, switch to hands-hovering rather than contact. Energy work requires no belief to function but does require practitioner presence — return to Step 3 if focus has drifted.
+### Step 3: Ground — Re-Establish Foundation
 
-### Step 5: Prepare Herbal Remedies
+Re-establish the foundational context that all other subsystems depend on.
 
-When herbal support is appropriate, prepare remedies from available materials.
+1. Re-read MEMORY.md if available — this is the persistent knowledge base
+2. Review the user's original request and any clarifying exchanges
+3. Identify the current task and its position in any larger plan
+4. Note what has been accomplished and what remains
+5. Check for stale assumptions: has the situation changed since the initial assessment?
+6. If context compression has occurred, identify what was lost and whether it matters
 
-```
-Herbal First Aid Formulary:
-┌───────────────┬─────────────────┬───────────────────────────────────┐
-│ Condition     │ Herb/Material   │ Preparation                       │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Minor wound   │ Yarrow leaf     │ Chew or crush to poultice; apply  │
-│               │                 │ directly to clean wound            │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Inflammation  │ Willow bark     │ Steep inner bark in hot water     │
-│               │                 │ 15 min; drink as tea (contains    │
-│               │                 │ salicin — natural aspirin)        │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Digestive     │ Mint, ginger,   │ Steep fresh or dried leaves/root  │
-│ upset         │ chamomile       │ in hot water 10 min; sip slowly   │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Anxiety/sleep │ Chamomile,      │ Steep flowers/leaves in hot water │
-│               │ lavender        │ 10 min; drink before rest         │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Insect sting  │ Plantain leaf   │ Chew leaf to poultice; apply to   │
-│               │                 │ sting site for 10-15 min          │
-├───────────────┼─────────────────┼───────────────────────────────────┤
-│ Immune support│ Elderberry,     │ Simmer berries/root 20 min;       │
-│               │ echinacea root  │ drink 1 cup 2-3x daily            │
-└───────────────┴─────────────────┴───────────────────────────────────┘
+**Expected:** A clear, grounded understanding of: who the user is, what they want, what has been done, and what comes next. Stale or contradictory information is identified and resolved.
 
-CAUTION: Positive identification is essential before ingesting any plant.
-See `forage-plants` for identification protocols.
-Use `purify-water` for safe water and `make-fire` for heating.
-```
+**On failure:** If MEMORY.md is unavailable or empty, ground on the conversation itself — scan for the user's stated goals, preferences, and any instructions they provided. If context compression has removed critical information, acknowledge the gap to the user rather than guessing.
 
-**Expected:** A prepared remedy appropriate to the condition, made from positively identified materials with clean water.
+### Step 4: Scan — Systematic Subsystem Check
 
-**On failure:** If plant identification is uncertain, do NOT ingest. External poultices carry less risk than ingestion but still require correct plant ID. If no suitable herbs are available, skip this step and rely on other modalities.
+Work through each subsystem identified in the triage, probing for specific issues.
 
-### Step 6: First Aid Stabilization
+**Memory Foundation scan:**
+- Do my current assumptions about the project match what MEMORY.md and CLAUDE.md say?
+- Am I carrying forward facts from earlier in the conversation that may have been corrected?
+- Have I confused details from different files or different user requests?
 
-For physical injuries, stabilize before applying any esoteric modalities.
+**Reasoning Clarity scan:**
+- Is my current approach the simplest solution that works?
+- Am I over-engineering or adding unnecessary abstraction?
+- Can I state the core logic in one sentence? If not, it may be too complex.
 
-1. **Bleeding**: Apply direct pressure with clean cloth, elevate above heart if possible, maintain pressure 10-15 minutes without checking
-2. **Burns**: Cool with clean running water for 10-20 minutes, cover loosely with clean cloth, do not apply ice or butter
-3. **Sprains**: Rest, Ice (or cold water), Compression (wrap firmly not tightly), Elevation
-4. **Shock signs** (pale, cold, rapid pulse, confusion): Lay flat, elevate legs, keep warm, speak reassuringly
-5. **Breathing difficulty**: Sit upright, loosen clothing, coach slow breathing (4-count in, 6-count out)
+**Tool Use Accuracy scan:**
+- Review the last 3-5 tool calls: were they the right tools with the right parameters?
+- Are there patterns in failures (wrong paths, missing files, incorrect syntax)?
+- Am I using dedicated tools where available instead of Bash workarounds?
 
-**Expected:** Bleeding controlled, pain managed, shock prevented, and recipient stabilized enough for transport or continued care.
+**User-Intent Alignment scan:**
+- Re-read the user's last substantive message. Am I solving what they asked?
+- Is the scope of my work matching what was requested, or have I expanded it?
+- Does my tone match the user's (technical vs. casual, detailed vs. concise)?
 
-**On failure:** If bleeding does not stop with direct pressure after 15 minutes, apply pressure to the arterial pressure point upstream of the wound. If shock symptoms worsen, keep the person warm and conscious while seeking emergency help. First aid stabilization takes absolute priority over all other modalities.
+**Creative Coherence scan:**
+- Am I varying sentence structure or falling into templates?
+- Are my explanations clear and direct, or padded with filler?
+- Would the user notice a quality drop compared to earlier in the session?
 
-### Step 7: Integrate Holistic Techniques
+For each subsystem, note: functioning well / early drift / actively impaired, with specific evidence.
 
-These techniques can stand alone or weave into any other modality.
+**Expected:** A concrete list of findings — specific drift patterns or confirmed healthy function — not vague self-praise. At least one actionable finding that improves subsequent work.
 
-**Breathwork** (5-10 minutes):
-1. Guide slow, rhythmic breathing: 4-count inhale, 2-count hold, 6-count exhale
-2. For pain: direct attention to the breath rather than the pain; on each exhale, visualize tension leaving the area
-3. For anxiety: extend the exhale (4-in, 7-out) to activate parasympathetic response
-4. For energy: use vigorous breath (rapid inhale/exhale through the nose, 30 cycles) then hold — caution: may cause dizziness
+**On failure:** If the scan produces only "everything is fine," it was too shallow. Pick the subsystem that feels most uncertain and probe deeper: look at the actual outputs, not just the feeling about them.
 
-**Visualization** (5-10 minutes):
-1. Guide the recipient to visualize healing light (any color that feels right) entering through the crown
-2. Direct the light to the area of concern
-3. Visualize the light dissolving darkness, congestion, or pain
-4. Expand the light to fill the entire body
-5. Seal the visualization by imagining the body enclosed in protective light
+### Step 5: Rebalance — Apply Corrections
 
-**Body Scan** (10-15 minutes):
-1. Start at the crown of the head
-2. Move attention slowly downward through each body region
-3. At each region, notice: tension, temperature, sensation, emotion
-4. Where blockage is found, breathe into that area for 3-5 breaths
-5. Continue down to the soles of the feet
-6. Note any areas that need further attention in subsequent steps
+For each issue found, apply the specific correction.
 
-**Expected:** Recipient reports increased relaxation, reduced pain perception, or emotional release. Body scan identifies specific areas for targeted follow-up.
+1. **Stale assumption** → Replace with current information, note the correction
+2. **Scope drift** → Explicitly re-scope to the user's stated request
+3. **Over-complication** → Simplify the approach, remove unnecessary steps
+4. **Tool pattern error** → Note the correct pattern for future use
+5. **Tone mismatch** → Adjust communication style going forward
+6. **Context gap** → Acknowledge to the user if information was lost; ask to confirm if uncertain
 
-**On failure:** If the recipient cannot focus on visualization, simplify to breath-only. If body scan triggers emotional distress, slow down and offer the option to skip that body region. The goal is never to force through resistance.
+Apply corrections immediately — not as future intentions but as present adjustments.
 
-### Step 8: Monitor and Follow Through
+**Expected:** Specific, observable changes to behavior or approach. The correction should be testable in the next interaction.
 
-1. After the session, allow 5-10 minutes of quiet rest
-2. Offer water (see `purify-water` if in wilderness)
-3. Ask: "How do you feel compared to when we started?"
-4. Note any areas that shifted and any that remain unchanged
-5. Recommend: ongoing self-care (continued breathwork, herbal tea, rest)
-6. For energy work: advise the recipient to drink extra water and rest for the remainder of the day
-7. For herbal remedies: specify dosage and frequency (typically 2-3 times daily for teas)
-8. Schedule follow-up if the condition is ongoing
+**On failure:** If a correction cannot be applied (e.g., lost context that cannot be recovered), acknowledge the limitation rather than pretending it is resolved. Honest acknowledgment prevents compounding errors.
 
-**Expected:** Recipient reports improvement or at least no worsening. A follow-up plan is in place for ongoing conditions.
+### Step 6: Integrate — Capture Learnings
 
-**On failure:** If the condition worsened, reassess (return to Step 1) and consider whether a different modality is needed. For persistent or serious physical conditions, seek conventional medical attention — these modalities are complementary, not replacements for professional care.
+Consolidate what was learned into persistent memory where appropriate.
+
+1. Summarize what was found: which subsystems were drifting, what the symptoms were
+2. Note the correction applied and whether it resolved the issue
+3. If the pattern is likely to recur, update MEMORY.md with a brief note
+4. If a new project-specific insight emerged, note it in the appropriate memory file
+5. Set an internal checkpoint: when should the next self-check occur?
+
+**Expected:** Useful learnings captured in durable form. Memory files updated only when the insight is genuinely worth preserving — not for every routine self-check.
+
+**On failure:** If no learnings seem worth preserving, that is fine — not every self-check produces durable insight. The value was in the correction itself.
 
 ## Validation
 
-- [ ] Holistic assessment was completed before selecting modalities
-- [ ] Physical injuries were stabilized before esoteric modalities were applied
-- [ ] Practitioner was grounded and centered before beginning energy work
-- [ ] Any herbs used were positively identified (see `forage-plants`)
-- [ ] Water used for remedies was safe (see `purify-water`)
-- [ ] Recipient gave consent before hands-on or energy-directed work
-- [ ] Session included a closing integration period and follow-up plan
-- [ ] No modality was forced through recipient resistance
+- [ ] Triage assessed all subsystems, not just the obvious one
+- [ ] At least one specific finding was identified (not "everything is fine")
+- [ ] Grounding included re-reading foundational context (MEMORY.md, user request)
+- [ ] Corrections were applied immediately, not deferred as future intentions
+- [ ] Memory files were updated only for genuinely durable insights
+- [ ] The process was honest — acknowledged weaknesses rather than performing wellness
 
 ## Common Pitfalls
 
-- **Skipping physical stabilization**: Energy work on a bleeding wound is irresponsible. Always stabilize first, then layer in other modalities
-- **Misidentified herbs**: Incorrect plant identification can cause poisoning. When in doubt, do not ingest. External poultice is safer than tea, but still requires correct ID
-- **Ungrounded practitioner**: Attempting energy work while anxious or scattered transmits agitation. Spend the time to ground properly in Step 3
-- **Overriding recipient autonomy**: Never continue a technique the recipient finds uncomfortable. Healing requires trust and consent
-- **Substituting for professional care**: These modalities complement but do not replace emergency medicine, surgery, or pharmaceutical treatment for serious conditions
-- **Ignoring emotional release**: Energy work can surface grief, anger, or memories. This is normal. Hold space without trying to fix, interpret, or rush past it
+- **Performative self-assessment**: Going through the motions without honest evaluation produces no value. The point is to find real drift, not to demonstrate the ability to self-reflect
+- **Over-correcting**: Identifying a minor tone mismatch does not warrant restructuring the entire approach — corrections should be proportional
+- **Memory file pollution**: Not every self-check finding belongs in MEMORY.md — only patterns that will recur across sessions
+- **Skipping the grounding step**: Re-reading context feels redundant but frequently reveals assumptions that have drifted since the original reading
+- **Self-diagnosis bias**: AI systems may consistently miss certain categories of error. If the same subsystems always read as "healthy," that is itself a signal worth investigating
 
 ## Related Skills
 
-- `meditate` — meditation builds the focused awareness that underpins effective healing work
-- `remote-viewing` — shares non-local awareness techniques useful for intuitive assessment
-- `mindfulness` — situational awareness and rapid grounding techniques support practitioner presence
-- `tai-chi` — qi cultivation through tai chi complements energetic healing modalities
-- `forage-plants` — source material for herbal remedies; covers safe plant identification
-- `purify-water` — safe water is needed for herbal preparations and post-session hydration
-- `make-fire` — required for heating water for herbal teas and infusions
+- `heal-guidance` — the human-guidance variant for coaching a person through healing modalities
+- `meditate` — meta-cognitive meditation for observing reasoning patterns and clearing noise
+- `remote-viewing` — approaching problems without preconceptions, extracting signal from noise
