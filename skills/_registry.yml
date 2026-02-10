@@ -1,7 +1,7 @@
 version: "1.2"
 generated: "2026-02-10"
 standard: "agentskills.io/specification"
-total_skills: 125
+total_skills: 135
 
 domains:
   r-packages:
@@ -704,3 +704,61 @@ domains:
         complexity: intermediate
         language: R
         description: Configure putior MCP server with 16 tools
+
+  swarm:
+    description: Collective intelligence, emergent coordination, and distributed decision-making strategies
+    skills:
+      - id: coordinate-swarm
+        path: swarm/coordinate-swarm/SKILL.md
+        complexity: basic
+        language: natural
+        description: Stigmergy, local rules, and quorum sensing for distributed coordination
+      - id: forage-resources
+        path: swarm/forage-resources/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Ant colony optimization for resource search and explore-exploit balance
+      - id: build-consensus
+        path: swarm/build-consensus/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Bee democracy consensus protocol with scout advocacy and quorum commitment
+      - id: defend-colony
+        path: swarm/defend-colony/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Layered collective defense with alarm signaling and immune memory
+      - id: scale-colony
+        path: swarm/scale-colony/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Colony budding, role differentiation, and growth-triggered transitions
+
+  morphic:
+    description: Adaptive transformation, structural metamorphosis, and reconfiguration strategies
+    skills:
+      - id: assess-form
+        path: morphic/assess-form/SKILL.md
+        complexity: basic
+        language: natural
+        description: Evaluate structural form, rigidity, and transformation readiness
+      - id: adapt-architecture
+        path: morphic/adapt-architecture/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Strangler fig migration, chrysalis transformation, and progressive cutover
+      - id: dissolve-form
+        path: morphic/dissolve-form/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Controlled dismantling preserving imaginal discs for reconstruction
+      - id: repair-damage
+        path: morphic/repair-damage/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Regenerative recovery through triage, scaffolding, and progressive rebuild
+      - id: shift-camouflage
+        path: morphic/shift-camouflage/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Polymorphic interfaces, context-adaptive behavior, and surface reduction

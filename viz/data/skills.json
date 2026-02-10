@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated": "2026-02-10T14:34:44.072Z",
-    "totalSkills": 125,
-    "totalAgents": 19,
-    "totalNodes": 144,
-    "totalLinks": 685,
-    "totalAgentLinks": 175,
-    "totalDomains": 19
+    "generated": "2026-02-10T15:34:37.408Z",
+    "totalSkills": 135,
+    "totalAgents": 21,
+    "totalNodes": 156,
+    "totalLinks": 761,
+    "totalAgentLinks": 185,
+    "totalDomains": 21
   },
   "domains": {
     "r-packages": {
@@ -84,6 +84,14 @@
     "workflow-visualization": {
       "description": "Workflow annotation and Mermaid diagram generation with putior",
       "count": 6
+    },
+    "swarm": {
+      "description": "Collective intelligence, emergent coordination, and distributed decision-making strategies",
+      "count": 5
+    },
+    "morphic": {
+      "description": "Adaptive transformation, structural metamorphosis, and reconfiguration strategies",
+      "count": 5
     }
   },
   "nodes": [
@@ -3056,6 +3064,254 @@
       "path": "workflow-visualization/configure-putior-mcp/SKILL.md"
     },
     {
+      "id": "coordinate-swarm",
+      "type": "skill",
+      "title": "Coordinate Swarm",
+      "domain": "swarm",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Stigmergy, local rules, and quorum sensing for distributed coordination",
+      "tags": [
+        "swarm",
+        "coordination",
+        "stigmergy",
+        "emergent-behavior"
+      ],
+      "related": [
+        "forage-resources",
+        "build-consensus",
+        "defend-colony",
+        "scale-colony",
+        "adapt-architecture",
+        "deploy-to-kubernetes",
+        "plan-capacity"
+      ],
+      "path": "swarm/coordinate-swarm/SKILL.md"
+    },
+    {
+      "id": "forage-resources",
+      "type": "skill",
+      "title": "Forage Resources",
+      "domain": "swarm",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Ant colony optimization for resource search and explore-exploit balance",
+      "tags": [
+        "swarm",
+        "foraging",
+        "ant-colony-optimization",
+        "exploration-exploitation"
+      ],
+      "related": [
+        "coordinate-swarm",
+        "build-consensus",
+        "scale-colony",
+        "assess-form",
+        "configure-alerting-rules",
+        "plan-capacity"
+      ],
+      "path": "swarm/forage-resources/SKILL.md"
+    },
+    {
+      "id": "build-consensus",
+      "type": "skill",
+      "title": "Build Consensus",
+      "domain": "swarm",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Bee democracy consensus protocol with scout advocacy and quorum commitment",
+      "tags": [
+        "swarm",
+        "consensus",
+        "quorum-sensing",
+        "distributed-agreement"
+      ],
+      "related": [
+        "coordinate-swarm",
+        "defend-colony",
+        "scale-colony",
+        "dissolve-form",
+        "plan-sprint",
+        "conduct-retrospective"
+      ],
+      "path": "swarm/build-consensus/SKILL.md"
+    },
+    {
+      "id": "defend-colony",
+      "type": "skill",
+      "title": "Defend Colony",
+      "domain": "swarm",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Layered collective defense with alarm signaling and immune memory",
+      "tags": [
+        "swarm",
+        "defense",
+        "immune-response",
+        "threat-detection"
+      ],
+      "related": [
+        "coordinate-swarm",
+        "build-consensus",
+        "scale-colony",
+        "repair-damage",
+        "configure-alerting-rules",
+        "conduct-post-mortem"
+      ],
+      "path": "swarm/defend-colony/SKILL.md"
+    },
+    {
+      "id": "scale-colony",
+      "type": "skill",
+      "title": "Scale Colony",
+      "domain": "swarm",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Colony budding, role differentiation, and growth-triggered transitions",
+      "tags": [
+        "swarm",
+        "scaling",
+        "colony-budding",
+        "role-differentiation"
+      ],
+      "related": [
+        "coordinate-swarm",
+        "forage-resources",
+        "build-consensus",
+        "defend-colony",
+        "adapt-architecture",
+        "plan-capacity",
+        "conduct-retrospective"
+      ],
+      "path": "swarm/scale-colony/SKILL.md"
+    },
+    {
+      "id": "assess-form",
+      "type": "skill",
+      "title": "Assess Form",
+      "domain": "morphic",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Evaluate structural form, rigidity, and transformation readiness",
+      "tags": [
+        "morphic",
+        "assessment",
+        "architecture",
+        "transformation-readiness"
+      ],
+      "related": [
+        "adapt-architecture",
+        "dissolve-form",
+        "repair-damage",
+        "shift-camouflage",
+        "forage-resources",
+        "review-software-architecture"
+      ],
+      "path": "morphic/assess-form/SKILL.md"
+    },
+    {
+      "id": "adapt-architecture",
+      "type": "skill",
+      "title": "Adapt Architecture",
+      "domain": "morphic",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Strangler fig migration, chrysalis transformation, and progressive cutover",
+      "tags": [
+        "morphic",
+        "adaptation",
+        "architecture",
+        "migration",
+        "strangler-fig"
+      ],
+      "related": [
+        "assess-form",
+        "dissolve-form",
+        "repair-damage",
+        "shift-camouflage",
+        "coordinate-swarm",
+        "scale-colony",
+        "implement-gitops-workflow",
+        "review-software-architecture"
+      ],
+      "path": "morphic/adapt-architecture/SKILL.md"
+    },
+    {
+      "id": "dissolve-form",
+      "type": "skill",
+      "title": "Dissolve Form",
+      "domain": "morphic",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Controlled dismantling preserving imaginal discs for reconstruction",
+      "tags": [
+        "morphic",
+        "dissolution",
+        "decomposition",
+        "technical-debt"
+      ],
+      "related": [
+        "assess-form",
+        "adapt-architecture",
+        "repair-damage",
+        "build-consensus",
+        "decommission-validated-system",
+        "conduct-post-mortem"
+      ],
+      "path": "morphic/dissolve-form/SKILL.md"
+    },
+    {
+      "id": "repair-damage",
+      "type": "skill",
+      "title": "Repair Damage",
+      "domain": "morphic",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Regenerative recovery through triage, scaffolding, and progressive rebuild",
+      "tags": [
+        "morphic",
+        "repair",
+        "regeneration",
+        "resilience",
+        "wound-healing"
+      ],
+      "related": [
+        "assess-form",
+        "adapt-architecture",
+        "dissolve-form",
+        "defend-colony",
+        "shift-camouflage",
+        "conduct-post-mortem",
+        "write-incident-runbook"
+      ],
+      "path": "morphic/repair-damage/SKILL.md"
+    },
+    {
+      "id": "shift-camouflage",
+      "type": "skill",
+      "title": "Shift Camouflage",
+      "domain": "morphic",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Polymorphic interfaces, context-adaptive behavior, and surface reduction",
+      "tags": [
+        "morphic",
+        "camouflage",
+        "polymorphism",
+        "feature-flags"
+      ],
+      "related": [
+        "assess-form",
+        "adapt-architecture",
+        "repair-damage",
+        "defend-colony",
+        "coordinate-swarm",
+        "configure-api-gateway",
+        "deploy-to-kubernetes"
+      ],
+      "path": "morphic/shift-camouflage/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -3744,6 +4000,67 @@
         "configure-putior-mcp"
       ],
       "path": "agents/putior-integrator.md"
+    },
+    {
+      "id": "agent:swarm-strategist",
+      "type": "agent",
+      "title": "Swarm Strategist",
+      "priority": "normal",
+      "description": "Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies",
+      "tags": [
+        "swarm",
+        "coordination",
+        "consensus",
+        "foraging",
+        "defense",
+        "scaling",
+        "distributed-systems"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "coordinate-swarm",
+        "forage-resources",
+        "build-consensus",
+        "defend-colony",
+        "scale-colony"
+      ],
+      "path": "agents/swarm-strategist.md"
+    },
+    {
+      "id": "agent:shapeshifter",
+      "type": "agent",
+      "title": "Shapeshifter",
+      "priority": "normal",
+      "description": "Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control",
+      "tags": [
+        "morphic",
+        "architecture",
+        "transformation",
+        "metamorphosis",
+        "adaptation",
+        "resilience"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "assess-form",
+        "adapt-architecture",
+        "dissolve-form",
+        "repair-damage",
+        "shift-camouflage"
+      ],
+      "path": "agents/shapeshifter.md"
     }
   ],
   "links": [
@@ -6298,6 +6615,336 @@
       "type": "skill"
     },
     {
+      "source": "coordinate-swarm",
+      "target": "forage-resources",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "defend-colony",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "scale-colony",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "deploy-to-kubernetes",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-swarm",
+      "target": "plan-capacity",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "scale-colony",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "configure-alerting-rules",
+      "type": "skill"
+    },
+    {
+      "source": "forage-resources",
+      "target": "plan-capacity",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "defend-colony",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "scale-colony",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "plan-sprint",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "conduct-retrospective",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "scale-colony",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "repair-damage",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "configure-alerting-rules",
+      "type": "skill"
+    },
+    {
+      "source": "defend-colony",
+      "target": "conduct-post-mortem",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "forage-resources",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "defend-colony",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "plan-capacity",
+      "type": "skill"
+    },
+    {
+      "source": "scale-colony",
+      "target": "conduct-retrospective",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "repair-damage",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "shift-camouflage",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "forage-resources",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "repair-damage",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "shift-camouflage",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "scale-colony",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "implement-gitops-workflow",
+      "type": "skill"
+    },
+    {
+      "source": "adapt-architecture",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "repair-damage",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "decommission-validated-system",
+      "type": "skill"
+    },
+    {
+      "source": "dissolve-form",
+      "target": "conduct-post-mortem",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "defend-colony",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "shift-camouflage",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "conduct-post-mortem",
+      "type": "skill"
+    },
+    {
+      "source": "repair-damage",
+      "target": "write-incident-runbook",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "repair-damage",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "defend-colony",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "configure-api-gateway",
+      "type": "skill"
+    },
+    {
+      "source": "shift-camouflage",
+      "target": "deploy-to-kubernetes",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -7170,6 +7817,56 @@
     {
       "source": "agent:putior-integrator",
       "target": "configure-putior-mcp",
+      "type": "agent"
+    },
+    {
+      "source": "agent:swarm-strategist",
+      "target": "coordinate-swarm",
+      "type": "agent"
+    },
+    {
+      "source": "agent:swarm-strategist",
+      "target": "forage-resources",
+      "type": "agent"
+    },
+    {
+      "source": "agent:swarm-strategist",
+      "target": "build-consensus",
+      "type": "agent"
+    },
+    {
+      "source": "agent:swarm-strategist",
+      "target": "defend-colony",
+      "type": "agent"
+    },
+    {
+      "source": "agent:swarm-strategist",
+      "target": "scale-colony",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shapeshifter",
+      "target": "assess-form",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shapeshifter",
+      "target": "adapt-architecture",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shapeshifter",
+      "target": "dissolve-form",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shapeshifter",
+      "target": "repair-damage",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shapeshifter",
+      "target": "shift-camouflage",
       "type": "agent"
     }
   ]
