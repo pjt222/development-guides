@@ -99,6 +99,8 @@ async function main() {
     setTheme(themeSelect.value);
     localStorage.setItem('skill-tree-theme', themeSelect.value);
     refreshSwatches();
+    const g = getGraph();
+    if (g) g.refresh();
   });
 
   // ── Icon toggle ──
