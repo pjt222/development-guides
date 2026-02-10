@@ -96,11 +96,15 @@ async function main() {
 
   // ── Theme dropdown ──
   themeSelect.addEventListener('change', () => {
-    setTheme(themeSelect.value);
-    localStorage.setItem('skillnet-theme', themeSelect.value);
-    refreshSwatches();
-    const g = getGraph();
-    if (g) g.refresh();
+    try {
+      setTheme(themeSelect.value);
+      localStorage.setItem('skillnet-theme', themeSelect.value);
+      refreshSwatches();
+      const g = getGraph();
+      if (g) g.refresh();
+    } catch (err) {
+      console.error('Theme switch failed:', err);
+    }
   });
 
   // ── Icon toggle ──
@@ -115,6 +119,8 @@ async function main() {
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
+    const g = getGraph();
+    if (g) g.refresh();
   });
 
   // ── Auto zoom-to-fit after layout settles ──
