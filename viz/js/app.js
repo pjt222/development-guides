@@ -2,9 +2,9 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode } from './graph.js';
+import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setAgentsVisible, getAgentsVisible } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
-import { initFilters, refreshSwatches } from './filters.js';
+import { initFilters, getVisibleDomains, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
 const DATA_URL = 'data/skills.json';
@@ -37,9 +37,10 @@ async function main() {
   allData = data;
 
   // ── Update header stats ──
-  document.getElementById('stat-nodes').textContent = data.meta.totalNodes;
+  document.getElementById('stat-nodes').textContent = data.meta.totalSkills;
   document.getElementById('stat-edges').textContent = data.meta.totalLinks;
   document.getElementById('stat-domains').textContent = data.meta.totalDomains;
+  document.getElementById('stat-agents').textContent = data.meta.totalAgents;
 
   // ── Restore saved theme ──
   const savedTheme = localStorage.getItem('skillnet-theme');
@@ -52,9 +53,10 @@ async function main() {
   // ── Init detail panel ──
   initPanel(document.getElementById('detail-panel'), {
     onRelated(id) {
-      const node = allData.nodes.find(n => n.id === id);
+      // Skill links from agent panel use plain skill IDs
+      const node = allData.nodes.find(n => n.id === id || n.id === `agent:${id}`);
       if (node) {
-        focusNode(id);
+        focusNode(node.id);
         openPanel(node);
       }
     },
@@ -66,6 +68,12 @@ async function main() {
       setDomainVisibility(visibleDomains);
       updateFilteredStats(visibleDomains);
     },
+    onAgentToggle(visible) {
+      setAgentsVisible(visible);
+      setDomainVisibility(getVisibleDomains());
+      updateFilteredStats(getVisibleDomains());
+    },
+    agentCount: data.meta.totalAgents,
   });
 
   // ── Init graph ──
@@ -138,7 +146,10 @@ function showTooltip(node) {
     if (tooltip) tooltip.style.display = 'none';
     return;
   }
-  tooltip.textContent = `${node.title || node.id} [${node.domain}]`;
+  const label = node.type === 'agent'
+    ? `${node.title || node.id} [agent / ${node.priority}]`
+    : `${node.title || node.id} [${node.domain}]`;
+  tooltip.textContent = label;
   tooltip.style.display = 'block';
 }
 
@@ -153,13 +164,17 @@ document.addEventListener('mousemove', e => {
 function updateFilteredStats(visibleDomains) {
   if (!allData) return;
   const visSet = new Set(visibleDomains);
-  const visNodes = allData.nodes.filter(n => visSet.has(n.domain));
-  const visNodeIds = new Set(visNodes.map(n => n.id));
+  const showAgents = getAgentsVisible();
+
+  const visSkills = allData.nodes.filter(n => n.type === 'skill' && visSet.has(n.domain));
+  const visAgents = showAgents ? allData.nodes.filter(n => n.type === 'agent') : [];
+  const visNodeIds = new Set([...visSkills, ...visAgents].map(n => n.id));
   const visLinks = allData.links.filter(l => visNodeIds.has(l.source) && visNodeIds.has(l.target));
 
-  document.getElementById('stat-nodes').textContent = visNodes.length;
+  document.getElementById('stat-nodes').textContent = visSkills.length;
   document.getElementById('stat-edges').textContent = visLinks.length;
   document.getElementById('stat-domains').textContent = visibleDomains.length;
+  document.getElementById('stat-agents').textContent = visAgents.length;
 }
 
 main().catch(err => {

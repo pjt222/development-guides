@@ -2,9 +2,16 @@
  * panel.js - Right-side detail panel (open/close/populate)
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor } from './colors.js';
 
 const GITHUB_BASE = 'https://github.com/pjt222/development-guides/blob/main/skills/';
+const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
+
+const PRIORITY_BADGE_COLORS = {
+  critical: '#ff4444',
+  high:     '#ffaa00',
+  normal:   '#888899',
+};
 
 let panelEl = null;
 let onRelatedClick = null;
@@ -22,6 +29,15 @@ export function initPanel(el, { onRelated } = {}) {
 export function openPanel(node) {
   if (!panelEl || !node) return;
 
+  if (node.type === 'agent') {
+    openAgentPanel(node);
+    return;
+  }
+
+  openSkillPanel(node);
+}
+
+function openSkillPanel(node) {
   const color = DOMAIN_COLORS[node.domain] || '#ffffff';
   const badgeColor = COMPLEXITY_BADGE_COLORS[node.complexity] || '#999';
 
@@ -61,10 +77,68 @@ export function openPanel(node) {
     </div>
   `;
 
+  setPanelContent(html);
+}
+
+function openAgentPanel(node) {
+  const color = getAgentColor();
+  const priorityColor = PRIORITY_BADGE_COLORS[node.priority] || '#888899';
+
+  let html = `
+    <div class="panel-agent-hex" style="color: ${color}; text-shadow: 0 0 16px ${color}">&#x2B22;</div>
+    <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
+    <div class="panel-badges">
+      <span class="badge" style="border-color: ${color}; color: ${color}">agent</span>
+      <span class="badge" style="border-color: ${priorityColor}; color: ${priorityColor}">${escHtml(node.priority)}</span>
+    </div>
+    <p class="panel-desc">${escHtml(node.description)}</p>
+  `;
+
+  if (node.tools && node.tools.length) {
+    html += `<h3 class="panel-section-title">Tools</h3>`;
+    html += `<div class="panel-tags">${node.tools.map(t =>
+      `<span class="tag">${escHtml(t)}</span>`
+    ).join('')}</div>`;
+  }
+
+  if (node.mcp_servers && node.mcp_servers.length) {
+    html += `<h3 class="panel-section-title">MCP Servers</h3>`;
+    html += `<div class="panel-tags">${node.mcp_servers.map(t =>
+      `<span class="tag">${escHtml(t)}</span>`
+    ).join('')}</div>`;
+  }
+
+  if (node.tags && node.tags.length) {
+    html += `<h3 class="panel-section-title">Tags</h3>`;
+    html += `<div class="panel-tags">${node.tags.map(t =>
+      `<span class="tag">${escHtml(t)}</span>`
+    ).join('')}</div>`;
+  }
+
+  if (node.skills && node.skills.length) {
+    html += `<h3 class="panel-section-title">Skills (${node.skills.length})</h3><ul class="panel-related">`;
+    for (const sid of node.skills) {
+      html += `<li><a href="#" class="related-link" data-id="${escAttr(sid)}">${escHtml(sid)}</a></li>`;
+    }
+    html += `</ul>`;
+  }
+
+  html += `
+    <div class="panel-actions">
+      <a href="${GITHUB_AGENTS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
+        View Agent Definition
+      </a>
+    </div>
+  `;
+
+  setPanelContent(html);
+}
+
+function setPanelContent(html) {
   const content = panelEl.querySelector('.panel-content');
   if (content) content.innerHTML = html;
 
-  // Bind related skill links
+  // Bind related/skill links
   panelEl.querySelectorAll('.related-link').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();

@@ -2,15 +2,17 @@
  * filters.js - Left-side domain filter checkboxes
  */
 
-import { DOMAIN_COLORS } from './colors.js';
+import { DOMAIN_COLORS, getAgentColor } from './colors.js';
 
 let filterEl = null;
 let domainStates = {};   // domain -> boolean
 let onChange = null;
+let onAgentToggle = null;
 
-export function initFilters(el, domains, { onFilterChange } = {}) {
+export function initFilters(el, domains, { onFilterChange, onAgentToggle: agentCb, agentCount } = {}) {
   filterEl = el;
   onChange = onFilterChange;
+  onAgentToggle = agentCb || null;
 
   // Initialize all domains as visible
   for (const domain of Object.keys(domains)) {
@@ -19,6 +21,7 @@ export function initFilters(el, domains, { onFilterChange } = {}) {
 
   render(domains);
   bindBulkButtons();
+  if (agentCount > 0) renderAgentToggle(agentCount);
 }
 
 function render(domains) {
@@ -84,13 +87,40 @@ export function getVisibleDomains() {
     .map(([k]) => k);
 }
 
+function renderAgentToggle(count) {
+  if (!filterEl) return;
+  const section = document.createElement('div');
+  section.className = 'agent-toggle-section';
+  const label = document.createElement('label');
+  label.className = 'filter-item';
+  label.innerHTML = `
+    <input type="checkbox" data-agent-toggle checked>
+    <span class="filter-swatch agent-swatch" style="background: ${getAgentColor()}"></span>
+    <span class="filter-name">Agents</span>
+    <span class="filter-count">${count}</span>
+  `;
+  section.appendChild(label);
+  filterEl.appendChild(section);
+
+  label.querySelector('input').addEventListener('change', e => {
+    if (onAgentToggle) onAgentToggle(e.target.checked);
+  });
+}
+
 export function refreshSwatches() {
   if (!filterEl) return;
   filterEl.querySelectorAll('.filter-item').forEach(item => {
     const cb = item.querySelector('input[data-domain]');
-    if (!cb) return;
-    const domain = cb.dataset.domain;
-    const swatch = item.querySelector('.filter-swatch');
-    if (swatch) swatch.style.background = DOMAIN_COLORS[domain] || '#888';
+    if (cb) {
+      const domain = cb.dataset.domain;
+      const swatch = item.querySelector('.filter-swatch');
+      if (swatch) swatch.style.background = DOMAIN_COLORS[domain] || '#888';
+      return;
+    }
+    const agentCb = item.querySelector('input[data-agent-toggle]');
+    if (agentCb) {
+      const swatch = item.querySelector('.agent-swatch');
+      if (swatch) swatch.style.background = getAgentColor();
+    }
   });
 }

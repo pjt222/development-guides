@@ -202,6 +202,26 @@ export const DOMAIN_COLORS = new Proxy({}, {
   },
 });
 
+// ── Agent colors (one warm gold per theme) ──────────────────────────
+const AGENT_COLORS = {
+  cyberpunk: '#ffd700',
+  viridis:   '#fde725',
+  inferno:   '#fcffa4',
+  magma:     '#fcfdbf',
+  plasma:    '#f0f921',
+  cividis:   '#fdfd96',
+};
+
+export function getAgentColor() {
+  return AGENT_COLORS[currentTheme] || '#ffd700';
+}
+
+export const AGENT_PRIORITY_CONFIG = {
+  critical: { radius: 8, glowRadius: 24, glowOpacity: 0.7 },
+  high:     { radius: 6, glowRadius: 18, glowOpacity: 0.5 },
+  normal:   { radius: 5, glowRadius: 14, glowOpacity: 0.4 },
+};
+
 // ── Complexity configs (unchanged) ──────────────────────────────────
 export const COMPLEXITY_CONFIG = {
   basic:        { radius: 5, glowRadius: 14, glowOpacity: 0.4,  label: 'Basic' },

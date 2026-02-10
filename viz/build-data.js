@@ -2,7 +2,7 @@
 /**
  * build-data.js
  *
- * Parses skills/_registry.yml and each SKILL.md to produce
+ * Parses skills/_registry.yml and agents/_registry.yml to produce
  * viz/data/skills.json with nodes, links, domains, and meta.
  */
 
@@ -13,7 +13,9 @@ import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SKILLS_DIR = resolve(__dirname, '..', 'skills');
+const AGENTS_DIR = resolve(__dirname, '..', 'agents');
 const REGISTRY_PATH = resolve(SKILLS_DIR, '_registry.yml');
+const AGENTS_REGISTRY_PATH = resolve(AGENTS_DIR, '_registry.yml');
 const OUTPUT_PATH = resolve(__dirname, 'data', 'skills.json');
 
 // ── Parse registry ──────────────────────────────────────────────
@@ -102,6 +104,7 @@ for (const [id, meta] of skillMap) {
 
   nodes.push({
     id,
+    type: 'skill',
     title,
     domain: meta.domain,
     complexity: meta.complexity,
@@ -113,7 +116,7 @@ for (const [id, meta] of skillMap) {
   });
 
   for (const targetId of relatedIds) {
-    links.push({ source: id, target: targetId });
+    links.push({ source: id, target: targetId, type: 'skill' });
   }
 }
 
@@ -126,21 +129,66 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
   };
 }
 
+// ── Parse agents registry ───────────────────────────────────────
+const agentNodes = [];
+const agentLinks = [];
+
+if (existsSync(AGENTS_REGISTRY_PATH)) {
+  const agentsRegistry = yaml.load(readFileSync(AGENTS_REGISTRY_PATH, 'utf8'));
+
+  for (const agent of agentsRegistry.agents || []) {
+    agentNodes.push({
+      id: `agent:${agent.id}`,
+      type: 'agent',
+      title: agent.id.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
+      priority: agent.priority || 'normal',
+      description: agent.description,
+      tags: agent.tags || [],
+      tools: agent.tools || [],
+      mcp_servers: agent.mcp_servers || [],
+      skills: agent.skills || [],
+      path: agent.path,
+    });
+
+    for (const skillId of agent.skills || []) {
+      if (validIds.has(skillId)) {
+        agentLinks.push({
+          source: `agent:${agent.id}`,
+          target: skillId,
+          type: 'agent',
+        });
+      }
+    }
+  }
+} else {
+  console.warn('WARN: agents/_registry.yml not found, skipping agents');
+}
+
+// ── Merge nodes and links ───────────────────────────────────────
+const allNodes = [...nodes, ...agentNodes];
+const allLinks = [...links, ...agentLinks];
+
 // ── Output ──────────────────────────────────────────────────────
 const output = {
   meta: {
     generated: new Date().toISOString(),
-    totalNodes: nodes.length,
-    totalLinks: links.length,
+    totalSkills: nodes.length,
+    totalAgents: agentNodes.length,
+    totalNodes: allNodes.length,
+    totalLinks: allLinks.length,
+    totalAgentLinks: agentLinks.length,
     totalDomains: Object.keys(domains).length,
   },
   domains,
-  nodes,
-  links,
+  nodes: allNodes,
+  links: allLinks,
 };
 
 writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
 console.log(`Generated ${OUTPUT_PATH}`);
-console.log(`  Nodes: ${nodes.length}`);
-console.log(`  Links: ${links.length}`);
+console.log(`  Skills: ${nodes.length}`);
+console.log(`  Agents: ${agentNodes.length}`);
+console.log(`  Agent links: ${agentLinks.length}`);
+console.log(`  Total nodes: ${allNodes.length}`);
+console.log(`  Total links: ${allLinks.length}`);
 console.log(`  Domains: ${Object.keys(domains).length}`);

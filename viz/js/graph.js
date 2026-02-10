@@ -2,7 +2,7 @@
  * graph.js - Force-graph setup, node/link rendering, interactions
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, AGENT_PRIORITY_CONFIG } from './colors.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -18,8 +18,15 @@ const iconImages = new Map();   // skillId -> Image
 const iconLoadFailed = new Set();
 const ICON_ZOOM_THRESHOLD = 1.0;
 
+// ── Agent state ─────────────────────────────────────────────────────
+let agentsVisible = true;
+
+export function setAgentsVisible(v) { agentsVisible = !!v; }
+export function getAgentsVisible() { return agentsVisible; }
+
 const SAME_DOMAIN_DISTANCE = 40;
 const CROSS_DOMAIN_DISTANCE = 100;
+const AGENT_LINK_DISTANCE = 120;
 const LABEL_ZOOM_THRESHOLD = 2.5;
 
 export function initGraph(container, data, { onClick, onHover } = {}) {
@@ -44,16 +51,22 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .linkSource('source')
     .linkTarget('target')
     .linkColor(link => {
+      const isAgentLink = link.type === 'agent';
       const activeId = selectedNodeId || hoveredNodeId;
-      if (!activeId) return 'rgba(255,255,255,0.06)';
+      if (!activeId) {
+        return isAgentLink
+          ? hexToRgba(getAgentColor(), 0.04)
+          : 'rgba(255,255,255,0.06)';
+      }
       const src = typeof link.source === 'object' ? link.source.id : link.source;
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
       if (src === activeId || tgt === activeId) {
+        if (isAgentLink) return hexToRgba(getAgentColor(), 0.3);
         const connectedNode = graphData.nodes.find(n => n.id === (src === activeId ? tgt : src));
         const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
         return hexToRgba(color, 0.35);
       }
-      return 'rgba(255,255,255,0.02)';
+      return isAgentLink ? hexToRgba(getAgentColor(), 0.01) : 'rgba(255,255,255,0.02)';
     })
     .linkWidth(link => {
       const activeId = selectedNodeId || hoveredNodeId;
@@ -73,6 +86,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
   // Configure forces via the library's d3Force accessor
   graph.d3Force('link')
     .distance(link => {
+      if (link.type === 'agent') return AGENT_LINK_DISTANCE;
       const src = typeof link.source === 'object' ? link.source : graphData.nodes.find(n => n.id === link.source);
       const tgt = typeof link.target === 'object' ? link.target : graphData.nodes.find(n => n.id === link.target);
       return (src && tgt && src.domain === tgt.domain) ? SAME_DOMAIN_DISTANCE : CROSS_DOMAIN_DISTANCE;
@@ -93,6 +107,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
 // ── Icon management ─────────────────────────────────────────────────
 export function preloadIcons(nodes) {
   for (const node of nodes) {
+    if (node.type === 'agent') continue;
     const path = `icons/${node.domain}/${node.id}.webp`;
     const img = new Image();
     img.onload = () => iconImages.set(node.id, img);
@@ -109,11 +124,82 @@ export function getIconMode() {
   return iconMode;
 }
 
+// ── Hexagon helper ──────────────────────────────────────────────────
+function drawHexPath(ctx, x, y, r) {
+  ctx.beginPath();
+  for (let i = 0; i < 6; i++) {
+    const angle = (Math.PI / 3) * i - Math.PI / 6; // flat-top
+    const vx = x + r * Math.cos(angle);
+    const vy = y + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(vx, vy);
+    else ctx.lineTo(vx, vy);
+  }
+  ctx.closePath();
+}
+
+// ── Agent node rendering ────────────────────────────────────────────
+function drawAgentNode(node, ctx, globalScale) {
+  const x = node.x;
+  const y = node.y;
+  const color = getAgentColor();
+  const cfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
+  const r = cfg.radius;
+
+  const isHighlightedNode = isNodeHighlighted(node);
+  const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
+  const alpha = dimmed ? 0.12 : 1;
+
+  // Radial glow
+  const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
+  grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
+  grad.addColorStop(1, hexToRgba(color, 0));
+  ctx.beginPath();
+  ctx.arc(x, y, cfg.glowRadius, 0, 2 * Math.PI);
+  ctx.fillStyle = grad;
+  ctx.fill();
+
+  // Solid hexagon core
+  drawHexPath(ctx, x, y, r);
+  ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
+  ctx.fill();
+
+  // White center dot
+  ctx.beginPath();
+  ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
+  ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+  ctx.fill();
+
+  // Critical priority gets outer hexagon ring
+  if (node.priority === 'critical') {
+    drawHexPath(ctx, x, y, r + 2.5);
+    ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  }
+
+  // Label
+  const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
+  const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
+  if (showLabel) {
+    const fontSize = Math.max(10 / globalScale, 2);
+    ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+    ctx.fillText(node.title || node.id, x, y + r + 2);
+  }
+}
+
 // ── Node rendering ──────────────────────────────────────────────────
 function drawNode(node, ctx, globalScale) {
   const x = node.x;
   const y = node.y;
   if (!isFinite(x) || !isFinite(y)) return;
+
+  if (node.type === 'agent') {
+    drawAgentNode(node, ctx, globalScale);
+    return;
+  }
 
   const color = DOMAIN_COLORS[node.domain] || '#ffffff';
   const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
@@ -210,9 +296,15 @@ function drawNode(node, ctx, globalScale) {
 
 function drawHitArea(node, color, ctx) {
   if (!isFinite(node.x) || !isFinite(node.y)) return;
-  const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
-  const featured = FEATURED_NODES[node.id];
-  const r = featured ? featured.radius : cfg.radius;
+  let r;
+  if (node.type === 'agent') {
+    const acfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
+    r = acfg.radius;
+  } else {
+    const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
+    const featured = FEATURED_NODES[node.id];
+    r = featured ? featured.radius : cfg.radius;
+  }
   ctx.beginPath();
   ctx.arc(node.x, node.y, Math.max(r + 4, 8), 0, 2 * Math.PI);
   ctx.fillStyle = color;
@@ -285,8 +377,13 @@ export function zoomOut() {
 
 export function setDomainVisibility(visibleDomains) {
   const visSet = new Set(visibleDomains);
+
+  // Skill nodes filtered by domain; agent nodes filtered by agentsVisible
   const filteredNodes = fullData.nodes
-    .filter(n => visSet.has(n.domain))
+    .filter(n => {
+      if (n.type === 'agent') return agentsVisible;
+      return visSet.has(n.domain);
+    })
     .map(n => ({ ...n }));
 
   const nodeIds = new Set(filteredNodes.map(n => n.id));
@@ -299,6 +396,7 @@ export function setDomainVisibility(visibleDomains) {
     .map(l => ({
       source: typeof l.source === 'object' ? l.source.id : l.source,
       target: typeof l.target === 'object' ? l.target.id : l.target,
+      type: l.type,
     }));
 
   graphData = { nodes: filteredNodes, links: filteredLinks };

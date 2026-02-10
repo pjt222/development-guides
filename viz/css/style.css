@@ -450,6 +450,20 @@ body::after {
   filter: drop-shadow(0 0 8px var(--text-accent));
 }
 
+/* ── Agent Panel ─────────────────────────────────────────────── */
+.panel-agent-hex {
+  text-align: center;
+  font-size: 64px;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.agent-toggle-section {
+  border-top: 1px solid var(--bg-panel-border);
+  padding-top: 8px;
+  margin-top: 8px;
+}
+
 /* ── Tooltip ─────────────────────────────────────────────────── */
 .tooltip {
   display: none;
