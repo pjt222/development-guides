@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 18
-version: "1.4"
-last_updated: "2026-02-09"
+total_agents: 19
+version: "1.5"
+last_updated: "2026-02-10"
 
 agents:
   - id: r-developer
@@ -321,3 +321,17 @@ agents:
       - commit-changes
       - manage-git-branches
       - write-claude-md
+
+  - id: putior-integrator
+    path: agents/putior-integrator.md
+    description: Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation
+    tags: [putior, workflow, mermaid, diagram, annotation, visualization, polyglot]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - install-putior
+      - analyze-codebase-workflow
+      - annotate-source-files
+      - generate-workflow-diagram
+      - setup-putior-ci
+      - configure-putior-mcp
