@@ -4,7 +4,7 @@
 
 import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getAgentsVisible, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
-import { initFilters, getVisibleDomains, getVisibleAgentIds as getFilterVisibleAgentIds, refreshSwatches } from './filters.js';
+import { initFilters, getVisibleDomains, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
 const DATA_URL = 'data/skills.json';
