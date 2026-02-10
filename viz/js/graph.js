@@ -19,10 +19,27 @@ const iconLoadFailed = new Set();
 const ICON_ZOOM_THRESHOLD = 1.0;
 
 // ── Agent state ─────────────────────────────────────────────────────
-let agentsVisible = true;
+let visibleAgentIds = null; // null = all visible, Set = specific IDs
 
-export function setAgentsVisible(v) { agentsVisible = !!v; }
-export function getAgentsVisible() { return agentsVisible; }
+export function setAgentsVisible(v) {
+  // Backward compat: boolean toggles all agents
+  if (typeof v === 'boolean') {
+    visibleAgentIds = v ? null : new Set();
+  }
+}
+
+export function setVisibleAgents(ids) {
+  visibleAgentIds = new Set(ids);
+}
+
+export function getAgentsVisible() {
+  // Returns true if any agents are visible
+  return visibleAgentIds === null || visibleAgentIds.size > 0;
+}
+
+export function getVisibleAgentIds() {
+  return visibleAgentIds;
+}
 
 const SAME_DOMAIN_DISTANCE = 40;
 const CROSS_DOMAIN_DISTANCE = 100;
@@ -378,10 +395,13 @@ export function zoomOut() {
 export function setDomainVisibility(visibleDomains) {
   const visSet = new Set(visibleDomains);
 
-  // Skill nodes filtered by domain; agent nodes filtered by agentsVisible
+  // Skill nodes filtered by domain; agent nodes filtered by visibleAgentIds
   const filteredNodes = fullData.nodes
     .filter(n => {
-      if (n.type === 'agent') return agentsVisible;
+      if (n.type === 'agent') {
+        if (visibleAgentIds === null) return true;
+        return visibleAgentIds.has(n.id);
+      }
       return visSet.has(n.domain);
     })
     .map(n => ({ ...n }));

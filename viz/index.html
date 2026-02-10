@@ -43,16 +43,46 @@
     </div>
   </header>
 
+  <!-- ── Panel Toggle (Left edge) ──────────────────────────────── -->
+  <button id="panel-toggle" class="panel-toggle" title="Toggle filter panel">
+    <span class="panel-toggle-icon">&#x25C0;</span>
+  </button>
+
   <!-- ── Filter Panel (Left) ───────────────────────────────────── -->
   <aside id="filter-panel" class="filter-panel">
-    <div class="filter-header">
-      <h3>Domains</h3>
-      <div class="filter-bulk">
-        <button class="filter-all">All</button>
-        <button class="filter-none">None</button>
+
+    <!-- ── Skills Section ──────────────────────────────────────── -->
+    <div class="filter-section" data-section="skills">
+      <button class="filter-section-header" aria-expanded="true">
+        <span class="filter-section-chevron">&#x25BE;</span>
+        <h3>Skills</h3>
+        <span class="filter-section-count" id="skills-section-count">0</span>
+        <div class="filter-bulk">
+          <button class="filter-all" data-target="skills">All</button>
+          <button class="filter-none" data-target="skills">None</button>
+        </div>
+      </button>
+      <div class="filter-section-body open">
+        <div class="filter-list" id="skills-filter-list"></div>
       </div>
     </div>
-    <div class="filter-list"></div>
+
+    <!-- ── Agents Section ──────────────────────────────────────── -->
+    <div class="filter-section" data-section="agents">
+      <button class="filter-section-header" aria-expanded="true">
+        <span class="filter-section-chevron">&#x25BE;</span>
+        <h3>Agents</h3>
+        <span class="filter-section-count" id="agents-section-count">0</span>
+        <div class="filter-bulk">
+          <button class="filter-all" data-target="agents">All</button>
+          <button class="filter-none" data-target="agents">None</button>
+        </div>
+      </button>
+      <div class="filter-section-body open">
+        <div class="filter-list" id="agents-filter-list"></div>
+      </div>
+    </div>
+
   </aside>
 
   <!-- ── Graph Canvas ──────────────────────────────────────────── -->
