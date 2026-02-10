@@ -2,7 +2,7 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, preloadIcons, setIconMode, getIconMode } from './graph.js';
+import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
 import { initFilters, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -101,7 +101,7 @@ async function main() {
       localStorage.setItem('skillnet-theme', themeSelect.value);
       refreshSwatches();
       const g = getGraph();
-      if (g) g.refresh();
+      refreshGraph();
     } catch (err) {
       console.error('Theme switch failed:', err);
     }
@@ -120,7 +120,7 @@ async function main() {
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
     const g = getGraph();
-    if (g) g.refresh();
+    refreshGraph();
   });
 
   // ── Auto zoom-to-fit after layout settles ──

@@ -2,7 +2,7 @@
  * graph.js - Force-graph setup, node/link rendering, interactions
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_CONFIG, hexToRgba } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba } from './colors.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -117,7 +117,8 @@ function drawNode(node, ctx, globalScale) {
 
   const color = DOMAIN_COLORS[node.domain] || '#ffffff';
   const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
-  const r = cfg.radius;
+  const featured = FEATURED_NODES[node.id];
+  const r = featured ? featured.radius : cfg.radius;
 
   const isHighlighted = isNodeHighlighted(node);
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlighted;
@@ -129,13 +130,14 @@ function drawNode(node, ctx, globalScale) {
     // ── Icon mode: draw image with domain-colored glow ──
     const img = iconImages.get(node.id);
     const iconSize = r * 3.5;
+    const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
-    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize * 1.0);
+    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize * glowMult);
     grad.addColorStop(0, hexToRgba(color, 0.12 * alpha));
     grad.addColorStop(1, hexToRgba(color, 0));
     ctx.beginPath();
-    ctx.arc(x, y, iconSize * 1.0, 0, 2 * Math.PI);
+    ctx.arc(x, y, iconSize * glowMult, 0, 2 * Math.PI);
     ctx.fillStyle = grad;
     ctx.fill();
 
@@ -143,13 +145,27 @@ function drawNode(node, ctx, globalScale) {
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
     ctx.globalAlpha = 1;
+
+    // Featured ring (icon mode)
+    if (featured) {
+      const ringRadius = iconSize + 2;
+      const strokeWidth = featured.tier === 'primary' ? 1.5 : 1;
+      const ringAlpha = featured.tier === 'primary' ? 0.6 : 0.4;
+      ctx.beginPath();
+      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = `rgba(255,255,255,${ringAlpha * alpha})`;
+      ctx.lineWidth = strokeWidth;
+      ctx.stroke();
+    }
   } else {
     // ── Glow mode (original rendering) ──
-    const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
+    const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
+    const glowRadius = cfg.glowRadius * glowMult;
+    const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, glowRadius);
     grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
     grad.addColorStop(1, hexToRgba(color, 0));
     ctx.beginPath();
-    ctx.arc(x, y, cfg.glowRadius, 0, 2 * Math.PI);
+    ctx.arc(x, y, glowRadius, 0, 2 * Math.PI);
     ctx.fillStyle = grad;
     ctx.fill();
 
@@ -164,6 +180,18 @@ function drawNode(node, ctx, globalScale) {
     ctx.arc(x, y, r * 0.35, 0, 2 * Math.PI);
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
     ctx.fill();
+
+    // Featured ring (glow mode)
+    if (featured) {
+      const ringRadius = r + 2;
+      const strokeWidth = featured.tier === 'primary' ? 1.5 : 1;
+      const ringAlpha = featured.tier === 'primary' ? 0.6 : 0.4;
+      ctx.beginPath();
+      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = `rgba(255,255,255,${ringAlpha * alpha})`;
+      ctx.lineWidth = strokeWidth;
+      ctx.stroke();
+    }
   }
 
   // Labels
@@ -183,8 +211,10 @@ function drawNode(node, ctx, globalScale) {
 function drawHitArea(node, color, ctx) {
   if (!isFinite(node.x) || !isFinite(node.y)) return;
   const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
+  const featured = FEATURED_NODES[node.id];
+  const r = featured ? featured.radius : cfg.radius;
   ctx.beginPath();
-  ctx.arc(node.x, node.y, Math.max(cfg.radius + 4, 8), 0, 2 * Math.PI);
+  ctx.arc(node.x, node.y, Math.max(r + 4, 8), 0, 2 * Math.PI);
   ctx.fillStyle = color;
   ctx.fill();
 }
@@ -277,6 +307,10 @@ export function setDomainVisibility(visibleDomains) {
     graph.graphData(graphData);
     setTimeout(() => graph.zoomToFit(400, 40), 500);
   }
+}
+
+export function refreshGraph() {
+  if (graph) graph.nodeCanvasObject(drawNode);
 }
 
 export function getGraph() { return graph; }

@@ -215,6 +215,13 @@ export const COMPLEXITY_BADGE_COLORS = {
   advanced:     '#dd44ff',
 };
 
+// ── Featured hub nodes (viz-layer config, not skill metadata) ────────
+export const FEATURED_NODES = {
+  'skill-creation':      { radius: 9, tier: 'primary' },
+  'skill-evolution':     { radius: 7, tier: 'secondary' },
+  'create-skill-glyph':  { radius: 7, tier: 'secondary' },
+};
+
 export function hexToRgba(hex, alpha) {
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
