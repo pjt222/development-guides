@@ -4,7 +4,7 @@
 
 total_agents: 19
 version: "1.5"
-last_updated: "2026-02-09"
+last_updated: "2026-02-10"
 
 agents:
   - id: r-developer

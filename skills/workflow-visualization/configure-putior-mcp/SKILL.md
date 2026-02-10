@@ -54,7 +54,7 @@ library(ellmer)
 
 **Expected**: Both packages install and load without errors.
 
-**On failure**: `mcptools` requires `remotes` package. Install it first: `install.packages("remotes")`. If GitHub rate-limits, set `GITHUB_PAT`: `Sys.setenv(GITHUB_PAT = "ghp_...")`.
+**On failure**: `mcptools` requires `remotes` package. Install it first: `install.packages("remotes")`. If GitHub rate-limits, configure a `GITHUB_PAT` in `~/.Renviron` (add the line `GITHUB_PAT=your_token_here` and restart R). Do **not** paste tokens into shell commands or commit them to version control.
 
 ### Step 2: Configure Claude Code (WSL/Linux/macOS)
 
@@ -202,7 +202,7 @@ curl -X POST http://localhost:8080/runs \
 
 ## Validation
 
-- [ ] `putior::putior_mcp_tools()` returns exactly 16 tools
+- [ ] `putior::putior_mcp_tools()` exposes the core tools (`put`, `put_diagram`, `put_auto`, `put_generate`, `put_merge`) and returns ~16 tools for the current version
 - [ ] Claude Code: `claude mcp list` shows `putior` configured
 - [ ] Claude Code: `putior_help` tool returns help text when invoked
 - [ ] Claude Desktop: putior appears in the MCP server list after restart

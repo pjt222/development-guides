@@ -58,6 +58,7 @@ permissions:
 
 jobs:
   update-diagram:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
@@ -80,7 +81,7 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add README.md docs/workflow.md
+          git add README.md docs/workflow.md  # Adjust to match your target files
           git diff --staged --quiet || git commit -m "docs: update workflow diagram [skip ci]"
           git push
 ```
@@ -146,12 +147,13 @@ cat("Updated docs/workflow.md\n")
 
 ### Step 3: Configure Auto-Commit
 
-The workflow uses `[skip ci]` in the commit message to prevent infinite loops. Verify the setup handles edge cases.
+The workflow must avoid infinite loops where an auto-commit re-triggers the same workflow. Pushes made with the default `GITHUB_TOKEN` typically do not trigger new workflow runs, but the workflow also includes an explicit `if:` guard on the job as a safety net.
 
 Key configuration points:
 - `permissions: contents: write` grants push access
+- `if: github.actor != 'github-actions[bot]'` skips the job when the push came from the bot itself
 - `git diff --staged --quiet || git commit` only commits if there are changes
-- `[skip ci]` in the commit message prevents the workflow from triggering itself
+- `[skip ci]` in the commit message is a convention some CI systems honor (not built into GitHub Actions, but useful as a signal)
 - Bot identity used for commits: `github-actions[bot]`
 
 **Expected**: The workflow only commits when diagrams actually change. No empty commits, no infinite loops.
@@ -213,12 +215,12 @@ cat README.md | grep -A 5 "PUTIOR-WORKFLOW-START"
 - [ ] README.md contains `<!-- PUTIOR-WORKFLOW-START -->` and `<!-- PUTIOR-WORKFLOW-END -->` sentinels
 - [ ] GitHub Actions workflow triggers on push to the correct branch and paths
 - [ ] Diagram content between sentinels is updated after a workflow run
-- [ ] `[skip ci]` prevents infinite commit loops
+- [ ] Job-level `if:` guard prevents infinite commit loops from bot pushes
 - [ ] No changes = no commit (idempotent)
 
 ## Common Pitfalls
 
-- **Infinite CI loops**: Forgetting `[skip ci]` in the auto-commit message causes the push to re-trigger the workflow endlessly. Always include it.
+- **Infinite CI loops**: Pushes with the default `GITHUB_TOKEN` typically don't trigger new runs, but always add an explicit `if: github.actor != 'github-actions[bot]'` guard on the job. The `[skip ci]` tag in the commit message is a useful convention but is not a built-in GitHub Actions mechanism.
 - **Permission denied on push**: GitHub Actions needs write permission. Set `permissions: contents: write` in the workflow file, or configure it in repository settings.
 - **Sentinel marker mismatch**: If markers have trailing spaces, leading tabs, or are on the same line as other content, the script won't find them. Keep markers on their own clean lines.
 - **Source path mismatch**: The R script runs from the repo root. Paths like `"./R/"` or `"./src/"` must match the actual directory structure.
