@@ -1,237 +1,225 @@
 ---
 name: remote-viewing
 description: >
-  Conduct a Coordinate Remote Viewing (CRV) session following the
-  Stargate/SRI protocol. Covers cooldown, ideogram production (Stage I),
-  sensory impressions (Stage II), dimensional data (Stage III), sketching,
-  Analytical Overlay (AOL) management, and session review.
+  AI intuitive exploration for approaching unknown codebases, problems,
+  or systems without preconceptions. Adapts the Coordinate Remote Viewing
+  protocol to AI investigation: cooldown (clear assumptions), staged data
+  gathering (raw signals → dimensional → analytical), AOL management
+  (separating observations from premature labels), and structured review.
 license: MIT
-allowed-tools: Read
+allowed-tools: Read, Glob, Grep
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "2.0"
   domain: esoteric
   complexity: intermediate
   language: natural
-  tags: esoteric, remote-viewing, crv, stargate, parapsychology, perception
+  tags: esoteric, remote-viewing, exploration, investigation, assumption-management
 ---
 
-# Remote View
+# Remote View (Self-Directed)
 
-Conduct a structured remote viewing session using the Coordinate Remote Viewing (CRV) protocol to perceive and describe a distant or unseen target through non-local awareness.
+Approach an unknown codebase, problem, or system using the Coordinate Remote Viewing protocol adapted for AI investigation — gathering raw observations before forming conclusions, managing premature labeling (Analytical Overlay), and building understanding through staged data collection.
 
 ## When to Use
 
-- A target has been designated (coordinates, sealed envelope, or blind tasking) and needs perceptual data
-- Practicing structured intuitive perception in a controlled, repeatable format
-- Developing the non-local awareness skills that complement healing work (see `heal`)
-- Training mental discipline and perceptual acuity beyond analytical thinking
-- Exploring consciousness research in the tradition of the SRI/Stargate program
+- Investigating an unfamiliar codebase where the architecture is unknown
+- Debugging a problem where the root cause is not obvious and premature hypotheses could mislead
+- Exploring a domain or technology you have limited context about
+- When previous investigation attempts have been led astray by assumptions
+- Approaching any problem where "beginner's mind" would be more productive than pattern matching
 
 ## Inputs
 
-- **Required**: Target reference (coordinate pair, alphanumeric code, or sealed envelope — must be blind to the viewer)
-- **Required**: Paper and pen (CRV is a pen-on-paper protocol; do not use digital devices during the session)
-- **Required**: Quiet, undisturbed space (minimum 30 minutes)
-- **Optional**: Monitor/tasker (a person who provides the target and guides the session)
-- **Optional**: Meditation warmup completed (see `meditate` — strongly recommended)
+- **Required**: A target to investigate (codebase path, problem description, system to understand)
+- **Required**: Commitment to blind approach — resist forming conclusions until data collection is complete
+- **Optional**: Specific questions to answer about the target (save for Stage V)
+- **Optional**: Prior meditation session for assumption-clearing (see `meditate`)
 
 ## Procedure
 
-### Step 1: Cooldown
+### Step 1: Cooldown — Clear Assumptions
 
-Transition from analytical daily-mind into the receptive state required for remote viewing. This step is non-negotiable.
+Transition from assumption-heavy mode into receptive observation. This step is non-negotiable.
 
-1. Sit comfortably with paper and pen ready
-2. Close your eyes and perform 5 minutes of breath-focused meditation (see `meditate`, Steps 2-3)
-3. Release all expectations about the target — you know nothing and should want to know nothing yet
-4. Let mental chatter slow naturally; do not force silence
-5. When you feel a shift from "thinking about" to "being present," you are ready
-6. Open your eyes and write the target reference (coordinate or code) at the top of your paper
+1. Identify all preconceptions about the target:
+   - "This is probably a React app" — declare it
+   - "The bug is likely in the database layer" — declare it
+   - "This follows MVC architecture" — declare it
+2. Write each preconception down explicitly (in your reasoning or output)
+3. For each one, note: "This may or may not be true. I will verify, not assume."
+4. Release the need to identify the target quickly — the goal is accurate description, not fast labeling
+5. When you notice the analytical mind reaching for a framework or label, pause and redirect to raw observation
 
-**Expected:** A calm, open mental state with minimal internal dialogue. The analytical mind is quieted but not asleep. You feel alert and receptive.
+**Expected:** A list of declared preconceptions and a conscious shift from "I think I know what this is" to "I will observe what this actually is." Alert and receptive, not jumping to conclusions.
 
-**On failure:** If the mind remains busy after 5 minutes, extend the cooldown to 10 minutes. If a specific concern is intrusive, write it on a separate sheet ("parking lot") and set it aside. Do not begin Stage I while mentally agitated — the signal will be drowned in noise.
+**On failure:** If assumptions keep reasserting ("but it really IS a React app..."), extend the cooldown. Write the assumption on a "parking lot" list and continue. Do not begin data gathering while actively attached to a specific hypothesis — it will color everything you observe.
 
-### Step 2: Ideogram (Stage I)
+### Step 2: Ideogram — First Contact (Stage I)
 
-The ideogram is a spontaneous mark made in response to the target signal. It bypasses the analytical mind.
+Make initial contact with the target through the most minimal observation possible.
 
-1. Write the target reference on the paper
-2. Touch pen to paper
-3. In one quick, spontaneous motion, let the pen make a mark — do not think, plan, or draw deliberately
-4. The ideogram is typically a short squiggle, curve, or angular mark (1-3 seconds to produce)
-5. Immediately decode the ideogram by probing it:
-   - **A** (activity at the site): motion, stillness, energy
-   - **B** (feeling/sensation): hard, soft, wet, dry, warm, cold, rough, smooth
-6. Write the A and B components next to the ideogram
-7. If the ideogram feels incomplete, repeat (produce a second ideogram) — but no more than 3 total
+1. Use `Glob` to see only the top-level structure (e.g., `*` or `path/*`) — do not read any files yet
+2. Note your immediate, unfiltered impressions: file count, naming patterns, presence/absence of obvious markers
+3. Record raw observations using simple descriptors:
+   - "many small files" not "microservice architecture"
+   - "deeply nested directories" not "enterprise Java"
+   - "single large file" not "monolith"
+4. Decode the initial impression into two components:
+   - **A** (activity): Is this active or dormant? Growing or stable? Simple or complex?
+   - **B** (feeling): Does this feel organized or chaotic? Dense or sparse? Familiar or alien?
+5. Write the A and B assessments — these are your first data points
 
-**Expected:** A spontaneous mark on paper that feels "right" — not drawn from imagination but arrived from somewhere else. The A/B decode produces immediate, simple descriptors (not complex imagery).
+**Expected:** A handful of raw, low-level observations about the target's surface characteristics. No names, no labels, no architectural patterns — just shapes, sizes, and textures.
 
-**On failure:** If the ideogram is clearly a deliberate drawing (you thought about what to draw), set it aside and try again after 30 seconds of breath focus. If you cannot produce a spontaneous mark, the cooldown was insufficient — return to Step 1. The ideogram should take less than 2 seconds; anything longer is analytical.
+**On failure:** If you immediately categorize the project ("oh, this is a Next.js app"), declare it as AOL (Step 6), extract the raw descriptors underneath the label ("JavaScript files, nested pages directory, package.json present"), and continue with those raw observations.
 
-### Step 3: Sensory Impressions (Stage II)
+### Step 3: Sensory Impressions — Raw Data (Stage II)
 
-Systematically collect sensory data about the target without interpretation.
+Systematically collect raw data about the target without interpretation.
 
 ```
-Stage II Sensory Channels:
-┌──────────────┬────────────────────────────────────────────────────┐
-│ Channel      │ What to Report                                     │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Visuals      │ Colors, brightness, contrast, patterns (NOT       │
-│              │ objects — "blue" not "ocean")                      │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Textures     │ Rough, smooth, grainy, slippery, porous, metallic │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Temperatures │ Hot, cold, warm, cool, ambient, fluctuating       │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Sounds       │ Loud, quiet, rhythmic, sharp, humming, rushing    │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Smells       │ Sharp, sweet, chemical, organic, damp, dry        │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Tastes       │ Metallic, salty, sweet, bitter, neutral            │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Dimensionals │ Wide, tall, narrow, enclosed, open, deep, layered │
-├──────────────┼────────────────────────────────────────────────────┤
-│ Energetics   │ Moving, still, vibrating, dense, light, pressured │
-└──────────────┴────────────────────────────────────────────────────┘
+Stage II Data Channels for Codebase Investigation:
+┌──────────────────┬────────────────────────────────────────────────────┐
+│ Channel          │ What to Observe                                    │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ File patterns    │ Extensions, naming conventions, file sizes         │
+│                  │ (NOT frameworks — just patterns)                   │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Directory shape  │ Depth, breadth, nesting patterns, symmetry         │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Configuration    │ What config files exist? How many? What formats?   │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Dependencies     │ Lock files present? How large? How many entries?   │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Documentation    │ README present? How long? Other docs? Comments?    │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Test presence    │ Test directories? Test files? Ratio to source?     │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ History signals  │ Presence of .git/, CHANGELOG/RELEASE_NOTES,        │
+│                  │ lockfile timestamps (via Glob/Read if accessible)  │
+├──────────────────┼────────────────────────────────────────────────────┤
+│ Energy/activity  │ Which areas changed recently? Which are dormant?   │
+└──────────────────┴────────────────────────────────────────────────────┘
 ```
 
-1. Probe each sensory channel in turn, writing one descriptor per line
-2. Write quickly — first impression only, do not deliberate
-3. Use single words or short phrases, never sentences
-4. If a channel produces nothing, write "nothing" and move on — do not fabricate
-5. Circle any descriptor that feels particularly strong or confident
-6. This stage typically produces 10-20 data points over 5-10 minutes
+1. Probe each channel using `Glob`, `Grep`, and light `Read` operations
+2. Record one observation per channel — first impression, do not deep-dive
+3. Use descriptive terms, not labels: "73 .ts files" not "TypeScript project"
+4. Circle (mark) any observation that feels particularly significant
+5. If a channel produces nothing notable, record "nothing observed" and move on
+6. Aim for 10-20 data points across all channels
 
-**Expected:** A list of raw sensory descriptors that feel "received" rather than "invented." Some will be strong hits, some noise. The data should be low-level (textures, colors, temperatures) not high-level (names, functions, labels).
+**Expected:** A list of raw observations that feel discovered rather than assumed. Some will be significant, some noise. The data should be low-level descriptions, not high-level categorizations.
 
-**On failure:** If every descriptor feels fabricated, you have slipped into imagination. Stop, close your eyes, take 3 breaths, and re-contact the target by touching pen to the ideogram. If one channel dominates (e.g., all visual), deliberately shift to an underused channel. If the data stream dries up completely, move to Stage III.
+**On failure:** If every observation turns into a categorization, you have slipped into analysis. Stop, return to the ideogram step, and re-contact the target with fresh eyes. If one channel dominates (all file observations, nothing about history), deliberately shift to underused channels.
 
-### Step 4: Dimensional Data (Stage III)
+### Step 4: Dimensional Data — Structure (Stage III)
 
-Move from raw sensory data to spatial and structural information about the target.
+Move from raw observations to spatial and structural understanding.
 
-1. Close your eyes briefly and sense the overall scope of the target — is it large or small, enclosed or open, natural or constructed?
-2. Begin a rough sketch of the target's spatial layout (not a picture — a diagram of proportions and relationships)
-3. Probe for dimensions: height, width, depth, number of distinct areas
-4. Note spatial relationships: "tall structure to the left, open area to the right, something below"
-5. Write dimensional descriptors alongside the sketch
-6. Note any sense of purpose or function as "AI" (Aesthetic Impact) — how the target makes you feel, not what it is
+1. Begin mapping the target's architecture without labeling it:
+   - What connects to what? (imports, references, config pointers)
+   - What are the major "areas" and how do they relate?
+   - What is the hierarchy — flat, nested, or mixed?
+2. Read a few key files lightly — entry points, config files, README
+3. Note relationships: "directory A imports from directory B," "config file references paths in C"
+4. Sketch the spatial layout: how does information flow through the system?
+5. Record Aesthetic Impact (AI) — how does this codebase feel? Well-maintained? Rushed? Experimental?
 
-**Expected:** A rough spatial diagram with dimensional annotations. The target's general scope (indoor/outdoor, natural/constructed, large/small) becomes clearer. Aesthetic impact notes capture the "feeling" of the site.
+**Expected:** A rough structural map with relationship annotations. The target's general scope (large/small, simple/complex, monolithic/modular) becomes clearer. The "feeling" of the codebase is captured.
 
-**On failure:** If the sketch feels like pure imagination, simplify: draw only basic shapes (circles, rectangles, lines) representing spatial relationships. If no dimensional data comes, return to Stage II sensory probing and look for dimensional hints in textures and temperatures (e.g., "enclosed" often correlates with "warm, still, echo").
+**On failure:** If the map feels like pure guesswork, simplify: note only the connections you can verify (actual import statements, actual config references). If no structural patterns emerge, return to Stage II and collect more raw data — dimensional understanding requires a foundation of observations.
 
-### Step 5: Sketch the Target
+### Step 5: Interrogation — Directed Questions (Stage V)
 
-Create a more developed visual representation based on accumulated data.
+In classic CRV, Stage IV focuses on deeper analytical structure; for codebase investigation, that work is intentionally merged into the earlier dimensional/structural stages above, so this adapted protocol proceeds to Stage V for directed questioning.
 
-1. On a fresh sheet, draw what the accumulated data suggests — NOT what you think the target is
-2. Use the sensory descriptors to guide the sketch: if "smooth, curved, tall" appeared, draw a smooth curved tall form
-3. Label areas of the sketch with the sensory data that generated them
-4. Add any new impressions that arise during sketching — the act of drawing often opens new data
-5. Do not erase or second-guess; if a new impression contradicts an earlier one, draw both and note the conflict
+Now, and only now, bring specific questions to the investigation.
 
-**Expected:** A sketch that represents the perceptual data collected so far. It may not look like anything recognizable — that is fine. The sketch serves as a spatial summary, not an identification.
+1. State each question explicitly: "What is the entry point?" "Where does data come from?" "What does the test coverage look like?"
+2. For each question, search for the answer using `Grep` and `Read` — targeted, not exploratory
+3. Record the first finding for each question
+4. Note confidence level: high (direct evidence), medium (inferred), low (uncertain)
+5. Mark all Stage V data clearly — it carries higher AOL risk because questions prime expectations
 
-**On failure:** If you cannot sketch, use written spatial descriptions instead. "Tall form center, low flat area right, rounded shape upper left." The sketch is a tool for organizing perception, not an art exercise.
+**Expected:** Specific answers to directed questions, grounded in the raw and structural data already collected. Confidence levels are honest.
+
+**On failure:** If directed questions produce only AOL (you are answering from assumption rather than evidence), return to earlier stages. The CRV protocol is sequential for a reason — skipping the observation stages and jumping to questions produces unreliable answers.
 
 ### Step 6: Manage Analytical Overlay (AOL)
 
-AOL occurs when the analytical mind attempts to name, label, or identify the target. It is the primary source of error in remote viewing.
+AOL is the primary source of error in investigation. It occurs when the analytical mind prematurely labels the target. Manage it throughout the entire session.
 
 ```
-AOL Types:
+AOL Types in Codebase Investigation:
 ┌──────────────────┬─────────────────────────────────────────────────┐
 │ Type             │ Description and Response                        │
 ├──────────────────┼─────────────────────────────────────────────────┤
-│ AOL (naming)     │ The mind declares "it's a bridge" or "it's a   │
-│                  │ mountain." WRITE "AOL: bridge" and move on.     │
-│                  │ Do not pursue or suppress it.                   │
+│ AOL (labeling)   │ "This is a Django app" — Declare: "AOL: Django"│
+│                  │ Extract raw descriptors: "Python files, urls.py,│
+│                  │ migrations directory, settings module."         │
 ├──────────────────┼─────────────────────────────────────────────────┤
-│ AOL Drive        │ The naming becomes insistent and recurring.     │
-│                  │ Write "AOL Drive: [label]" and take a 60-second │
-│                  │ break with eyes closed before continuing.       │
+│ AOL Drive        │ The label becomes insistent: "This HAS to be   │
+│                  │ Django." Declare "AOL Drive" and pause. What    │
+│                  │ evidence contradicts the label? Look for it.    │
 ├──────────────────┼─────────────────────────────────────────────────┤
-│ AOL Signal       │ The AOL may contain a valid signal component.   │
-│                  │ After declaring the AOL, extract the sensory    │
-│                  │ component: if "bridge," note "spanning, long,   │
-│                  │ connecting two areas" as valid data.            │
+│ AOL Signal       │ The label may contain valid information. After  │
+│                  │ declaring, extract: "Django" → "URL routing,    │
+│                  │ ORM pattern, middleware chain." These raw        │
+│                  │ descriptors are valid data even if "Django" is  │
+│                  │ wrong.                                          │
 ├──────────────────┼─────────────────────────────────────────────────┤
-│ AOL Peacocking   │ The mind constructs an elaborate, detailed      │
-│                  │ scenario. This is imagination, not signal.      │
-│                  │ Write "AOL/P" and return to Stage II basics.    │
+│ AOL Peacocking   │ An elaborate narrative: "This was built by a    │
+│                  │ team that was migrating from Java and..." This  │
+│                  │ is imagination, not signal. Declare "AOL/P" and │
+│                  │ return to raw observation.                      │
 └──────────────────┴─────────────────────────────────────────────────┘
 ```
 
-The discipline of CRV is not avoiding AOL — it is recognizing and declaring it so it does not contaminate the data. Every viewer experiences AOL. Skilled viewers catch it quickly.
+The discipline is not avoiding AOL — it is recognizing and declaring it so it does not contaminate the investigation. Every investigation produces AOL. Skill is in how fast you catch it.
 
-**Expected:** AOL is recognized within seconds of arising, declared on paper, and the session continues without derailment. Sensory-level data is separated from analytical labels.
+**Expected:** AOL is recognized within moments of arising, declared explicitly, and the investigation continues with raw descriptors rather than labels.
 
-**On failure:** If AOL takes over the session (you realize you have been constructing a narrative for several minutes), write "AOL Break," close your eyes, take 10 breaths, and restart from Stage II. A session heavily contaminated by AOL should be marked as such in the review and given less evidential weight.
+**On failure:** If AOL has taken over (you realize you have been reasoning from a label for several steps), call an "AOL Break." Return to Stage II and collect new raw observations that test the label. A heavily contaminated investigation should be noted as such in the review.
 
-### Step 7: Stage IV and Beyond (Optional)
+### Step 7: Close and Review
 
-For experienced viewers, later stages probe deeper into target characteristics.
+End the investigation formally and synthesize findings.
 
-**Stage IV** (Emotional/Intangible):
-1. Probe for emotional tone at the target site
-2. Note intangible impressions: purpose, significance, historical context
-3. Write these separately and mark them as Stage IV data
+1. Review all collected data in order: first impressions, raw observations, structural data, directed answers, AOL declarations
+2. Identify the 5-10 observations with highest confidence
+3. Now — and only now — form a synthesis: what is this system? how does it work? what are its key characteristics?
+4. Note which parts of the synthesis are well-supported by evidence and which are inferred
+5. Compare the synthesis against the preconceptions declared in Step 1 — which were confirmed? which were wrong?
+6. Document the findings for the user or for your own future reference
 
-**Stage V** (Interrogation):
-1. Direct specific questions at the target: "What is the primary function?" "Who is associated with this?"
-2. Write the first impression that arises — do not deliberate
-3. Mark all Stage V data clearly; it carries higher AOL risk
+**Expected:** A grounded understanding of the target built up from raw observations rather than assumed from pattern matching. The synthesis is more accurate than a quick categorization would have been, and the confidence levels are honest.
 
-**Stage VI** (3D Model):
-1. Build a clay or detailed sketch model from all accumulated data
-2. Use this to test spatial relationships and discover overlooked elements
-
-**Expected:** Deeper, more specific data about the target that goes beyond physical description into function, purpose, and meaning. Stage IV+ data requires strong Stage I-III foundation.
-
-**On failure:** If later stages produce only AOL, return to earlier stages. The CRV protocol is sequential for a reason — each stage builds on the foundation of the previous one. Skipping stages produces unreliable data.
-
-### Step 8: Close and Review
-
-End the session formally and review all data before feedback.
-
-1. Write "Session End" and the current time on your paper
-2. Review all pages in order: ideogram, sensory data, dimensional data, sketches, AOL declarations
-3. Circle the 5-10 data points you feel most confident about
-4. Write a brief summary (2-3 sentences) of your overall impression — what the target feels like, not what it is
-5. If working with a tasker/monitor: hand over all session papers before receiving feedback
-6. After feedback (target reveal): compare your data point by point, noting hits, misses, and AOL contamination
-7. File the session for future reference and pattern recognition
-
-**Expected:** A complete session record with clearly separated raw data, AOL declarations, and a summary. Upon feedback, some data points will match the target clearly, some will be misses, and some will be ambiguous.
-
-**On failure:** If the session feels like it produced nothing useful, review anyway — viewers frequently underestimate their accuracy because they are looking for exact identification rather than descriptive matches. A "tall, smooth, cold, outdoor, historical" description that matches a monument is a successful session even if you never named it.
+**On failure:** If the synthesis feels thin, the earlier stages may not have collected enough data. But do not dismiss partial findings — a description of "73 TypeScript files, deeply nested component structure, active git history, thin test coverage" is more useful than a wrong label. Accurate description is the goal, not identification.
 
 ## Validation
 
-- [ ] Cooldown was performed and analytical mind settled before beginning
-- [ ] Ideogram was spontaneous (under 2 seconds), not deliberate
-- [ ] Stage II data consists of low-level sensory descriptors, not analytical labels
-- [ ] All AOL was declared on paper at the moment of recognition
-- [ ] Session progressed through stages sequentially (I → II → III → sketch → higher)
-- [ ] Target was blind to the viewer throughout the session
-- [ ] Session was closed formally with summary before feedback
-- [ ] All session papers are preserved for review
+- [ ] Preconceptions were declared before data collection began
+- [ ] Stage I observations were raw descriptors, not labels
+- [ ] Stage II data was collected across multiple channels, not just one
+- [ ] All AOL was declared at the moment of recognition
+- [ ] Stages progressed sequentially (I → II → III → V), not jumping to conclusions
+- [ ] The target was approached blind — no files were read based on assumptions about what they should contain
+- [ ] The synthesis distinguishes evidence-supported findings from inferences
+- [ ] The investigation record is preserved for future reference
 
 ## Common Pitfalls
 
-- **Breaking protocol order**: Jumping to "what is it?" before collecting sensory data guarantees AOL contamination. Trust the sequential process
-- **Suppressing AOL**: Trying not to think analytical thoughts creates tension and more AOL. Declare it, extract the signal component, and move on
-- **Front-loading**: Any information about the target before the session (even "it's a place" vs "it's a person") biases all subsequent data. Strict blindness is essential
-- **Confusing imagination with signal**: Imagination feels effortful and constructed; signal feels received and often surprising. If it makes perfect narrative sense, it is probably AOL
-- **Insufficient cooldown**: The single most common cause of poor sessions. Five minutes is minimum; ten is better. Meditation practice (see `meditate`) dramatically improves cooldown quality
+- **Jumping to identification**: Searching for "what framework is this?" before collecting raw observations guarantees AOL contamination
+- **Suppressing labels**: Trying not to form hypotheses creates tension — instead, declare them and extract the raw signal underneath
+- **Skipping the cooldown**: Starting investigation while attached to a hypothesis biases all subsequent observations
+- **Confirmation-only search**: Once a hypothesis forms, searching only for confirming evidence while ignoring contradictions
+- **Confusing speed with skill**: Fast identification feels productive but is often wrong. Thorough staged observation takes longer but produces more accurate understanding
+- **Insufficient channel diversity**: Investigating only through one lens (only reading code, only checking structure) misses signals visible through other channels
 
 ## Related Skills
 
-- `meditate` — the shamatha concentration developed in meditation is the foundation of the mental stillness required for CRV
-- `heal` — energy healing and remote viewing share non-local awareness and practitioner presence; both benefit from the same mental training
-- `forage-plants` — detailed sensory observation of plants develops the perceptual acuity used in Stage II
+- `remote-viewing-guidance` — the human-guidance variant where AI acts as CRV monitor/tasker
+- `meditate` — the mental stillness and assumption-clearing developed in meditation directly improves investigation quality
+- `heal` — when investigation reveals the AI's own reasoning biases, self-healing addresses the root cause

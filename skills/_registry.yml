@@ -1,7 +1,7 @@
 version: "1.2"
 generated: "2026-02-10"
 standard: "agentskills.io/specification"
-total_skills: 121
+total_skills: 124
 
 domains:
   r-packages:
@@ -359,23 +359,38 @@ domains:
         description: Identify and safely gather edible and useful wild plants
 
   esoteric:
-    description: Esoteric practices and non-local awareness skills
+    description: Esoteric practices — AI self-directed variants and human-guidance variants
     skills:
       - id: heal
         path: esoteric/heal/SKILL.md
         complexity: advanced
         language: natural
-        description: Apply healing modalities including energy work, herbal remedies, first aid, and holistic techniques
+        description: AI self-healing through subsystem assessment, drift correction, and memory integration
+      - id: heal-guidance
+        path: esoteric/heal-guidance/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Guide a person through healing modalities including energy work, herbal remedies, and holistic techniques
       - id: meditate
         path: esoteric/meditate/SKILL.md
         complexity: intermediate
         language: natural
-        description: Conduct a structured meditation session covering shamatha, vipassana, and mantra techniques
+        description: AI meta-cognitive meditation for reasoning pattern observation and single-pointed task focus
+      - id: meditate-guidance
+        path: esoteric/meditate-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person through meditation covering shamatha, vipassana, posture, and distraction handling
       - id: remote-viewing
         path: esoteric/remote-viewing/SKILL.md
         complexity: intermediate
         language: natural
-        description: Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol
+        description: AI intuitive exploration of unknown codebases using CRV-adapted staged observation and AOL management
+      - id: remote-viewing-guidance
+        path: esoteric/remote-viewing-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person through a Coordinate Remote Viewing session as CRV monitor/tasker
 
   design:
     description: Ornamental design and AI-assisted image generation skills
