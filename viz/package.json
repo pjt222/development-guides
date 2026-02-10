@@ -1,8 +1,8 @@
 {
-  "name": "skill-tree-viz",
+  "name": "skillnet-viz",
   "version": "1.0.0",
   "private": true,
-  "description": "RPG Cyberpunk Skill Tree Visualization for development-guides",
+  "description": "Cyberpunk Skillnet Visualization for development-guides",
   "type": "module",
   "scripts": {
     "build-data": "node build-data.js",

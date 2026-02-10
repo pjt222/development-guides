@@ -42,7 +42,7 @@ async function main() {
   document.getElementById('stat-domains').textContent = data.meta.totalDomains;
 
   // ── Restore saved theme ──
-  const savedTheme = localStorage.getItem('skill-tree-theme');
+  const savedTheme = localStorage.getItem('skillnet-theme');
   if (savedTheme && getThemeNames().includes(savedTheme)) {
     setTheme(savedTheme);
   }
@@ -97,7 +97,7 @@ async function main() {
   // ── Theme dropdown ──
   themeSelect.addEventListener('change', () => {
     setTheme(themeSelect.value);
-    localStorage.setItem('skill-tree-theme', themeSelect.value);
+    localStorage.setItem('skillnet-theme', themeSelect.value);
     refreshSwatches();
     const g = getGraph();
     if (g) g.refresh();
@@ -105,7 +105,7 @@ async function main() {
 
   // ── Icon toggle ──
   const iconBtn = document.getElementById('btn-icon-toggle');
-  const savedIconMode = localStorage.getItem('skill-tree-icons') === 'true';
+  const savedIconMode = localStorage.getItem('skillnet-icons') === 'true';
   if (savedIconMode) {
     setIconMode(true);
     iconBtn.classList.add('active');
@@ -114,7 +114,7 @@ async function main() {
     const next = !getIconMode();
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
-    localStorage.setItem('skill-tree-icons', next);
+    localStorage.setItem('skillnet-icons', next);
   });
 
   // ── Auto zoom-to-fit after layout settles ──

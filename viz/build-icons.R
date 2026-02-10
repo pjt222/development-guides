@@ -1,5 +1,5 @@
 #!/usr/bin/env Rscript
-# build-icons.R - R-based programmatic icon generation for cyberpunk skill tree
+# build-icons.R - R-based programmatic icon generation for cyberpunk skillnet
 #
 # Generates 115 unique WebP icons using ggplot2 + ggfx neon glow effects.
 # Each skill gets a unique pictogram glyph; domain color provides cohesion.
