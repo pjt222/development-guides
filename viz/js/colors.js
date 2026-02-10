@@ -10,7 +10,7 @@ const DOMAIN_ORDER = [
   'bushcraft', 'compliance', 'containerization', 'data-serialization',
   'defensive', 'design', 'devops', 'esoteric', 'general', 'git',
   'mcp-integration', 'mlops', 'observability', 'project-management',
-  'r-packages', 'reporting', 'review', 'web-dev',
+  'r-packages', 'reporting', 'review', 'web-dev', 'workflow-visualization',
 ];
 
 // ── 6 named palettes: 18 hex colors each ───────────────────────────
@@ -34,6 +34,7 @@ const PALETTES = {
     'reporting':          '#ffdd00',
     'review':             '#ff66aa',
     'web-dev':            '#ff6633',
+    'workflow-visualization': '#66dd88',
   },
 
   // Viridis: purple → teal → yellow-green (perceptually uniform)
@@ -56,6 +57,7 @@ const PALETTES = {
     'reporting':          '#62c467',
     'review':             '#86d14a',
     'web-dev':            '#addc30',
+    'workflow-visualization': '#5ec962',
   },
 
   // Inferno: black → purple → red → orange → yellow
@@ -78,6 +80,7 @@ const PALETTES = {
     'reporting':          '#f6f478',
     'review':             '#f3fa96',
     'web-dev':            '#fcffa4',
+    'workflow-visualization': '#f0f921',
   },
 
   // Magma: black → purple → pink → peach → cream
@@ -100,6 +103,7 @@ const PALETTES = {
     'reporting':          '#fcf6e1',
     'review':             '#fdf9f0',
     'web-dev':            '#fcfdbf',
+    'workflow-visualization': '#fbfcb6',
   },
 
   // Plasma: purple → pink → orange → yellow
@@ -122,6 +126,7 @@ const PALETTES = {
     'reporting':          '#f5ea3e',
     'review':             '#f2f744',
     'web-dev':            '#f0f921',
+    'workflow-visualization': '#e8e24b',
   },
 
   // Cividis: blue → gray → olive → yellow (colorblind-friendly)
@@ -144,6 +149,7 @@ const PALETTES = {
     'reporting':          '#e5ecce',
     'review':             '#f2f6dd',
     'web-dev':            '#fdfd96',
+    'workflow-visualization': '#b5d86e',
   },
 };
 

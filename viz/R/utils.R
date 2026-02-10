@@ -20,7 +20,8 @@ DOMAIN_COLORS <- list(
   "r-packages"         = "#00f0ff",
   "reporting"          = "#ffdd00",
   "review"             = "#ff66aa",
-  "web-dev"            = "#ff6633"
+  "web-dev"            = "#ff6633",
+  "workflow-visualization" = "#66dd88"
 )
 
 # ── Hex color utilities ──────────────────────────────────────────────────

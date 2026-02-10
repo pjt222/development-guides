@@ -1249,3 +1249,248 @@ glyph_third_eye_guide <- function(cx, cy, s, col, bright) {
     ggplot2::geom_path(data = clip_line2, .aes(x, y), color = col, linewidth = .lw(s, 0.8))
   )
 }
+
+# ── Workflow-visualization glyphs ────────────────────────────────────────
+
+glyph_putior_install <- function(cx, cy, s, col, bright) {
+  # package box
+  box <- data.frame(xmin = cx - 16 * s, xmax = cx + 16 * s, ymin = cy - 10 * s, ymax = cy + 14 * s)
+  # "P" letter inside box
+  p_stem <- data.frame(x = c(cx - 6 * s, cx - 6 * s), y = c(cy - 4 * s, cy + 10 * s))
+  p_arc_t <- seq(-pi / 2, pi / 2, length.out = 15)
+  p_arc <- data.frame(x = cx - 6 * s + 7 * s * cos(p_arc_t),
+                       y = cy + 5 * s + 5 * s * sin(p_arc_t))
+  # install arrow pointing down into box
+  arr <- data.frame(x = cx, xend = cx, y = cy + 26 * s, yend = cy + 16 * s)
+  arr_l <- data.frame(x = c(cx - 6 * s, cx), y = c(cy + 20 * s, cy + 14 * s))
+  arr_r <- data.frame(x = c(cx + 6 * s, cx), y = c(cy + 20 * s, cy + 14 * s))
+  list(
+    ggplot2::geom_rect(data = box, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s)),
+    ggplot2::geom_path(data = p_stem, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = p_arc, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_segment(data = arr, .aes(x = x, xend = xend, y = y, yend = yend),
+      color = bright, linewidth = .lw(s, 2.5),
+      arrow = ggplot2::arrow(length = ggplot2::unit(0.12, "inches"))),
+    ggplot2::geom_path(data = arr_l, .aes(x, y), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = arr_r, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+glyph_workflow_scan <- function(cx, cy, s, col, bright) {
+  # magnifier lens
+  lens <- data.frame(x0 = cx - 4 * s, y0 = cy + 4 * s, r = 14 * s)
+  # magnifier handle
+  handle <- data.frame(x = c(cx + 6 * s, cx + 22 * s), y = c(cy - 6 * s, cy - 22 * s))
+  # flowchart inside lens: three nodes with arrows
+  n1 <- data.frame(xmin = cx - 14 * s, xmax = cx - 6 * s, ymin = cy + 8 * s, ymax = cy + 14 * s)
+  n2 <- data.frame(xmin = cx - 4 * s, xmax = cx + 4 * s, ymin = cy, ymax = cy + 6 * s)
+  n3 <- data.frame(xmin = cx - 14 * s, xmax = cx - 6 * s, ymin = cy - 8 * s, ymax = cy - 2 * s)
+  e1 <- data.frame(x = c(cx - 6 * s, cx - 4 * s), y = c(cy + 10 * s, cy + 4 * s))
+  e2 <- data.frame(x = c(cx - 4 * s, cx - 6 * s), y = c(cy, cy - 4 * s))
+  list(
+    ggforce::geom_circle(data = lens, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.08), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = handle, .aes(x, y), color = bright, linewidth = .lw(s, 3)),
+    ggplot2::geom_rect(data = n1, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.25), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = n2, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.25), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = n3, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.25), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = e1, .aes(x, y), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = e2, .aes(x, y), color = col, linewidth = .lw(s, 1.2))
+  )
+}
+
+glyph_annotation_tag <- function(cx, cy, s, col, bright) {
+  # code lines (left side)
+  layers <- list()
+  for (i in 1:4) {
+    w <- c(20, 14, 18, 12)[i] * s
+    ly <- cy + (3 - i) * 8 * s + 4 * s
+    line <- data.frame(x = c(cx - 20 * s, cx - 20 * s + w), y = c(ly, ly))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  }
+  # annotation tag (right side) — label shape with "PUT" implied
+  tag <- data.frame(
+    x = c(cx + 2 * s, cx + 22 * s, cx + 26 * s, cx + 22 * s, cx + 2 * s),
+    y = c(cy + 8 * s, cy + 8 * s, cy, cy - 8 * s, cy - 8 * s)
+  )
+  # hash/comment prefix inside tag
+  hash1 <- data.frame(x = c(cx + 6 * s, cx + 10 * s), y = c(cy + 4 * s, cy + 4 * s))
+  hash2 <- data.frame(x = c(cx + 6 * s, cx + 10 * s), y = c(cy - 2 * s, cy - 2 * s))
+  # connecting arrow from tag to code
+  conn <- data.frame(x = c(cx + 2 * s, cx - 6 * s), y = c(cy, cy))
+  layers <- c(layers, list(
+    ggplot2::geom_polygon(data = tag, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = hash1, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = hash2, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_segment(data = data.frame(x = cx + 2 * s, xend = cx - 6 * s, y = cy, yend = cy),
+      .aes(x = x, xend = xend, y = y, yend = yend), color = col, linewidth = .lw(s, 1.5),
+      arrow = ggplot2::arrow(length = ggplot2::unit(0.08, "inches")))
+  ))
+  layers
+}
+
+glyph_mermaid_diagram <- function(cx, cy, s, col, bright) {
+  # flowchart: 4 nodes in a diamond arrangement with directional arrows
+  # top node
+  n_top <- data.frame(xmin = cx - 8 * s, xmax = cx + 8 * s, ymin = cy + 14 * s, ymax = cy + 22 * s)
+  # left node
+  n_left <- data.frame(xmin = cx - 24 * s, xmax = cx - 8 * s, ymin = cy - 2 * s, ymax = cy + 6 * s)
+  # right node
+  n_right <- data.frame(xmin = cx + 8 * s, xmax = cx + 24 * s, ymin = cy - 2 * s, ymax = cy + 6 * s)
+  # bottom node
+  n_bot <- data.frame(xmin = cx - 8 * s, xmax = cx + 8 * s, ymin = cy - 22 * s, ymax = cy - 14 * s)
+  # edges
+  e_tl <- data.frame(x = c(cx - 4 * s, cx - 12 * s), y = c(cy + 14 * s, cy + 6 * s))
+  e_tr <- data.frame(x = c(cx + 4 * s, cx + 12 * s), y = c(cy + 14 * s, cy + 6 * s))
+  e_lb <- data.frame(x = c(cx - 12 * s, cx - 4 * s), y = c(cy - 2 * s, cy - 14 * s))
+  e_rb <- data.frame(x = c(cx + 12 * s, cx + 4 * s), y = c(cy - 2 * s, cy - 14 * s))
+  list(
+    ggplot2::geom_rect(data = n_top, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = n_left, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = n_right, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = n_bot, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = e_tl, .aes(x, y), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = e_tr, .aes(x, y), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = e_lb, .aes(x, y), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = e_rb, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+glyph_ci_diagram <- function(cx, cy, s, col, bright) {
+  # GitHub Actions gear (outer ring with teeth)
+  t <- seq(0, 2 * pi, length.out = 50)
+  gear_outer <- data.frame(x = cx - 8 * s + 12 * s * cos(t), y = cy + 4 * s + 12 * s * sin(t))
+  gear_inner <- data.frame(x0 = cx - 8 * s, y0 = cy + 4 * s, r = 6 * s)
+  # teeth (4 stubs)
+  layers <- list(
+    ggplot2::geom_polygon(data = gear_outer, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.8)),
+    ggforce::geom_circle(data = gear_inner, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5))
+  )
+  for (a in c(0, pi / 2, pi, 3 * pi / 2)) {
+    tooth <- data.frame(
+      x = c(cx - 8 * s + 11 * s * cos(a - 0.2), cx - 8 * s + 16 * s * cos(a),
+            cx - 8 * s + 11 * s * cos(a + 0.2)),
+      y = c(cy + 4 * s + 11 * s * sin(a - 0.2), cy + 4 * s + 16 * s * sin(a),
+            cy + 4 * s + 11 * s * sin(a + 0.2))
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = tooth, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 0.8))
+  }
+  # diagram output (right side) — small flowchart
+  out_box <- data.frame(xmin = cx + 8 * s, xmax = cx + 22 * s, ymin = cy - 4 * s, ymax = cy + 4 * s)
+  refresh <- data.frame(x = c(cx + 4 * s, cx + 8 * s), y = c(cy, cy))
+  # re-generate arrow
+  layers <- c(layers, list(
+    ggplot2::geom_rect(data = out_box, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_segment(data = data.frame(x = cx + 4 * s, xend = cx + 8 * s, y = cy, yend = cy),
+      .aes(x = x, xend = xend, y = y, yend = yend), color = bright, linewidth = .lw(s, 2),
+      arrow = ggplot2::arrow(length = ggplot2::unit(0.08, "inches"))),
+    # small diagram lines inside output box
+    ggplot2::geom_path(data = data.frame(x = c(cx + 11 * s, cx + 19 * s), y = c(cy + 1 * s, cy + 1 * s)),
+      .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = data.frame(x = c(cx + 11 * s, cx + 16 * s), y = c(cy - 2 * s, cy - 2 * s)),
+      .aes(x, y), color = col, linewidth = .lw(s, 1))
+  ))
+  layers
+}
+
+glyph_putior_mcp <- function(cx, cy, s, col, bright) {
+  # MCP server plug (left side)
+  plug_body <- data.frame(xmin = cx - 22 * s, xmax = cx - 6 * s, ymin = cy - 8 * s, ymax = cy + 8 * s)
+  # prongs
+  p1 <- data.frame(x = c(cx - 6 * s, cx, cx, cx - 6 * s),
+                    y = c(cy + 4 * s, cy + 4 * s, cy + 2 * s, cy + 2 * s))
+  p2 <- data.frame(x = c(cx - 6 * s, cx, cx, cx - 6 * s),
+                    y = c(cy - 2 * s, cy - 2 * s, cy - 4 * s, cy - 4 * s))
+  # connection wire to diagram
+  wire <- data.frame(x = c(cx, cx + 6 * s), y = c(cy, cy))
+  # diagram node (right side)
+  diag <- data.frame(xmin = cx + 6 * s, xmax = cx + 22 * s, ymin = cy - 10 * s, ymax = cy + 10 * s)
+  # flowchart lines inside diagram
+  fl1 <- data.frame(x = c(cx + 10 * s, cx + 18 * s), y = c(cy + 5 * s, cy + 5 * s))
+  fl2 <- data.frame(x = c(cx + 10 * s, cx + 18 * s), y = c(cy, cy))
+  fl3 <- data.frame(x = c(cx + 10 * s, cx + 15 * s), y = c(cy - 5 * s, cy - 5 * s))
+  # connection glow dot
+  glow <- data.frame(x0 = cx + 3 * s, y0 = cy, r = 2.5 * s)
+  list(
+    ggplot2::geom_rect(data = plug_body, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = p1, .aes(x, y), fill = bright, color = bright, linewidth = .lw(s, 0.8)),
+    ggplot2::geom_polygon(data = p2, .aes(x, y), fill = bright, color = bright, linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = wire, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggforce::geom_circle(data = glow, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.4), color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = diag, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = fl1, .aes(x, y), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = fl2, .aes(x, y), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = fl3, .aes(x, y), color = col, linewidth = .lw(s, 1.2))
+  )
+}
+
+# ── Design additions ─────────────────────────────────────────────────────
+
+glyph_paintbrush_code <- function(cx, cy, s, col, bright) {
+  # paintbrush handle (diagonal, lower-left to upper-right)
+  handle <- data.frame(
+    x = c(cx - 18 * s, cx - 14 * s, cx + 2 * s, cx - 2 * s),
+    y = c(cy - 14 * s, cy - 18 * s, cy + 2 * s, cy + 6 * s)
+  )
+  # brush tip (bristle area)
+  tip <- data.frame(
+    x = c(cx + 2 * s, cx - 2 * s, cx + 8 * s, cx + 12 * s),
+    y = c(cy + 2 * s, cy + 6 * s, cy + 14 * s, cy + 10 * s)
+  )
+  # code lines (right side, emerging from brush)
+  c1 <- data.frame(x = c(cx + 6 * s, cx + 22 * s), y = c(cy + 4 * s, cy + 4 * s))
+  c2 <- data.frame(x = c(cx + 6 * s, cx + 18 * s), y = c(cy - 2 * s, cy - 2 * s))
+  c3 <- data.frame(x = c(cx + 6 * s, cx + 14 * s), y = c(cy - 8 * s, cy - 8 * s))
+  list(
+    ggplot2::geom_polygon(data = handle, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = tip, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = c1, .aes(x, y), color = col, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = c2, .aes(x, y), color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = c3, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+glyph_palette_color <- function(cx, cy, s, col, bright) {
+  # palette shape (same as glyph_palette)
+  t <- seq(0, 2 * pi, length.out = 50)
+  pal <- data.frame(x = cx + 24 * s * cos(t), y = cy + 20 * s * sin(t) * 0.8)
+  # thumb hole
+  hole <- data.frame(x0 = cx + 8 * s, y0 = cy - 4 * s, r = 5 * s)
+  # color swatch dots — varied sizes to distinguish from mono version
+  dots <- data.frame(
+    x = cx + c(-14, -6, 2, 10, -10, -2) * s,
+    y = cy + c(8, 12, 12, 8, 2, 4) * s,
+    sz = c(5, 4, 6, 4, 3, 5) * s
+  )
+  # rainbow arc across top of palette (key differentiator from glyph_palette)
+  arc_t <- seq(pi * 0.15, pi * 0.85, length.out = 25)
+  arc <- data.frame(x = cx + 20 * s * cos(arc_t), y = cy + 16 * s * sin(arc_t) * 0.6)
+  list(
+    ggplot2::geom_polygon(data = pal, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s)),
+    ggforce::geom_circle(data = hole, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_point(data = dots[1:3, ], .aes(x, y), color = bright, size = dots$sz[1:3]),
+    ggplot2::geom_point(data = dots[4:6, ], .aes(x, y), color = col, size = dots$sz[4:6]),
+    ggplot2::geom_path(data = arc, .aes(x, y), color = bright, linewidth = .lw(s, 2.5))
+  )
+}

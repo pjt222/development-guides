@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 118 skillIds to a specific glyph drawing function.
+# Maps each of 125 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -45,10 +45,11 @@ SKILL_GLYPHS <- list(
   "aikido"                         = "glyph_spiral_arrow",
   "mindfulness"                    = "glyph_lotus",
 
-  # ── design (3) ─────────────────────────────────────────────────────────
+  # ── design (4) ─────────────────────────────────────────────────────────
   "ornament-style-mono"            = "glyph_palette",
-  "ornament-style-color"           = "glyph_palette",
+  "ornament-style-color"           = "glyph_palette_color",
   "ornament-style-modern"          = "glyph_compass_drafting",
+  "create-skill-glyph"             = "glyph_paintbrush_code",
 
   # ── devops (13) ────────────────────────────────────────────────────────
   "build-ci-cd-pipeline"           = "glyph_pipeline",
@@ -158,5 +159,13 @@ SKILL_GLYPHS <- list(
   # ── web-dev (3) ────────────────────────────────────────────────────────
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
   "setup-tailwind-typescript"      = "glyph_tailwind_ts",
-  "deploy-to-vercel"               = "glyph_rocket_deploy"
+  "deploy-to-vercel"               = "glyph_rocket_deploy",
+
+  # ── workflow-visualization (6) ────────────────────────────────────────
+  "install-putior"                 = "glyph_putior_install",
+  "analyze-codebase-workflow"      = "glyph_workflow_scan",
+  "annotate-source-files"          = "glyph_annotation_tag",
+  "generate-workflow-diagram"      = "glyph_mermaid_diagram",
+  "setup-putior-ci"                = "glyph_ci_diagram",
+  "configure-putior-mcp"           = "glyph_putior_mcp"
 )

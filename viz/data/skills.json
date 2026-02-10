@@ -1,9 +1,9 @@
 {
   "meta": {
-    "generated": "2026-02-09T14:11:05.082Z",
-    "totalNodes": 115,
-    "totalLinks": 471,
-    "totalDomains": 18
+    "generated": "2026-02-10T13:21:28.539Z",
+    "totalNodes": 125,
+    "totalLinks": 510,
+    "totalDomains": 19
   },
   "domains": {
     "r-packages": {
@@ -51,12 +51,12 @@
       "count": 3
     },
     "esoteric": {
-      "description": "Esoteric practices and non-local awareness skills",
-      "count": 3
+      "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
+      "count": 6
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
-      "count": 3
+      "count": 4
     },
     "defensive": {
       "description": "Martial arts and applied defensive awareness skills",
@@ -77,6 +77,10 @@
     "mlops": {
       "description": "ML experiment tracking, model serving, feature stores, pipelines, and AIOps skills",
       "count": 12
+    },
+    "workflow-visualization": {
+      "description": "Workflow annotation and Mermaid diagram generation with putior",
+      "count": 6
     }
   },
   "nodes": [
@@ -1470,25 +1474,48 @@
       "domain": "esoteric",
       "complexity": "advanced",
       "language": "natural",
-      "description": "Apply healing modalities including energy work, herbal remedies, first aid, and holistic techniques",
+      "description": "AI self-healing through subsystem assessment, drift correction, and memory integration",
+      "tags": [
+        "esoteric",
+        "healing",
+        "self-assessment",
+        "meta-cognition",
+        "subsystem-check"
+      ],
+      "related": [
+        "heal-guidance",
+        "meditate",
+        "remote-viewing"
+      ],
+      "path": "esoteric/heal/SKILL.md"
+    },
+    {
+      "id": "heal-guidance",
+      "title": "Heal (Guidance)",
+      "domain": "esoteric",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Guide a person through healing modalities including energy work, herbal remedies, and holistic techniques",
       "tags": [
         "esoteric",
         "healing",
         "energy-work",
         "reiki",
         "herbalism",
-        "holistic"
+        "holistic",
+        "guidance"
       ],
       "related": [
-        "meditate",
-        "remote-viewing",
+        "heal",
+        "meditate-guidance",
+        "remote-viewing-guidance",
         "mindfulness",
         "tai-chi",
         "forage-plants",
         "purify-water",
         "make-fire"
       ],
-      "path": "esoteric/heal/SKILL.md"
+      "path": "esoteric/heal-guidance/SKILL.md"
     },
     {
       "id": "meditate",
@@ -1496,24 +1523,48 @@
       "domain": "esoteric",
       "complexity": "intermediate",
       "language": "natural",
-      "description": "Conduct a structured meditation session covering shamatha, vipassana, and mantra techniques",
+      "description": "AI meta-cognitive meditation for reasoning pattern observation and single-pointed task focus",
+      "tags": [
+        "esoteric",
+        "meditation",
+        "meta-cognition",
+        "focus",
+        "reasoning-patterns",
+        "self-observation"
+      ],
+      "related": [
+        "meditate-guidance",
+        "heal",
+        "remote-viewing"
+      ],
+      "path": "esoteric/meditate/SKILL.md"
+    },
+    {
+      "id": "meditate-guidance",
+      "title": "Meditate (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person through meditation covering shamatha, vipassana, posture, and distraction handling",
       "tags": [
         "esoteric",
         "meditation",
         "mindfulness",
         "shamatha",
         "vipassana",
-        "breathwork"
+        "breathwork",
+        "guidance"
       ],
       "related": [
-        "heal",
-        "remote-viewing",
+        "meditate",
+        "heal-guidance",
+        "remote-viewing-guidance",
         "mindfulness",
         "tai-chi",
         "forage-plants",
         "make-fire"
       ],
-      "path": "esoteric/meditate/SKILL.md"
+      "path": "esoteric/meditate-guidance/SKILL.md"
     },
     {
       "id": "remote-viewing",
@@ -1521,21 +1572,44 @@
       "domain": "esoteric",
       "complexity": "intermediate",
       "language": "natural",
-      "description": "Conduct a Coordinate Remote Viewing session following the Stargate/SRI protocol",
+      "description": "AI intuitive exploration of unknown codebases using CRV-adapted staged observation and AOL management",
+      "tags": [
+        "esoteric",
+        "remote-viewing",
+        "exploration",
+        "investigation",
+        "assumption-management"
+      ],
+      "related": [
+        "remote-viewing-guidance",
+        "meditate",
+        "heal"
+      ],
+      "path": "esoteric/remote-viewing/SKILL.md"
+    },
+    {
+      "id": "remote-viewing-guidance",
+      "title": "Remote View (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person through a Coordinate Remote Viewing session as CRV monitor/tasker",
       "tags": [
         "esoteric",
         "remote-viewing",
         "crv",
         "stargate",
         "parapsychology",
-        "perception"
+        "perception",
+        "guidance"
       ],
       "related": [
-        "meditate",
-        "heal",
+        "remote-viewing",
+        "meditate-guidance",
+        "heal-guidance",
         "forage-plants"
       ],
-      "path": "esoteric/remote-viewing/SKILL.md"
+      "path": "esoteric/remote-viewing-guidance/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -1610,6 +1684,25 @@
         "meditate"
       ],
       "path": "design/ornament-style-modern/SKILL.md"
+    },
+    {
+      "id": "create-skill-glyph",
+      "title": "Create Skill Glyph",
+      "domain": "design",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Create R-based pictogram glyphs for skill icons using ggplot2 and the primitives library",
+      "tags": [
+        "design",
+        "glyph",
+        "pictogram",
+        "icon",
+        "ggplot2",
+        "visualization",
+        "neon"
+      ],
+      "related": [],
+      "path": "design/create-skill-glyph/SKILL.md"
     },
     {
       "id": "tai-chi",
@@ -2691,6 +2784,148 @@
         "track-ml-experiments"
       ],
       "path": "mlops/label-training-data/SKILL.md"
+    },
+    {
+      "id": "install-putior",
+      "title": "Install putior",
+      "domain": "workflow-visualization",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Install and configure putior with optional dependencies",
+      "tags": [
+        "putior",
+        "install",
+        "workflow",
+        "mermaid",
+        "visualization",
+        "R"
+      ],
+      "related": [
+        "analyze-codebase-workflow",
+        "configure-putior-mcp",
+        "manage-renv-dependencies",
+        "configure-mcp-server"
+      ],
+      "path": "workflow-visualization/install-putior/SKILL.md"
+    },
+    {
+      "id": "analyze-codebase-workflow",
+      "title": "Analyze Codebase Workflow",
+      "domain": "workflow-visualization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Auto-detect workflows and produce annotation plan",
+      "tags": [
+        "putior",
+        "workflow",
+        "analysis",
+        "auto-detect",
+        "polyglot",
+        "data-pipeline"
+      ],
+      "related": [
+        "install-putior",
+        "annotate-source-files",
+        "generate-workflow-diagram",
+        "configure-putior-mcp"
+      ],
+      "path": "workflow-visualization/analyze-codebase-workflow/SKILL.md"
+    },
+    {
+      "id": "annotate-source-files",
+      "title": "Annotate Source Files",
+      "domain": "workflow-visualization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Add PUT annotations using correct comment prefix",
+      "tags": [
+        "putior",
+        "annotation",
+        "workflow",
+        "comment-syntax",
+        "polyglot",
+        "documentation"
+      ],
+      "related": [
+        "analyze-codebase-workflow",
+        "generate-workflow-diagram",
+        "install-putior",
+        "configure-putior-mcp"
+      ],
+      "path": "workflow-visualization/annotate-source-files/SKILL.md"
+    },
+    {
+      "id": "generate-workflow-diagram",
+      "title": "Generate Workflow Diagram",
+      "domain": "workflow-visualization",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Generate themed Mermaid diagrams from workflow data",
+      "tags": [
+        "putior",
+        "mermaid",
+        "diagram",
+        "theme",
+        "visualization",
+        "flowchart"
+      ],
+      "related": [
+        "annotate-source-files",
+        "analyze-codebase-workflow",
+        "setup-putior-ci",
+        "create-quarto-report",
+        "build-pkgdown-site"
+      ],
+      "path": "workflow-visualization/generate-workflow-diagram/SKILL.md"
+    },
+    {
+      "id": "setup-putior-ci",
+      "title": "Set Up putior CI/CD",
+      "domain": "workflow-visualization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "GitHub Actions for auto-diagram regeneration",
+      "tags": [
+        "putior",
+        "ci-cd",
+        "github-actions",
+        "automation",
+        "mermaid",
+        "diagram"
+      ],
+      "related": [
+        "generate-workflow-diagram",
+        "setup-github-actions-ci",
+        "build-ci-cd-pipeline",
+        "annotate-source-files",
+        "commit-changes"
+      ],
+      "path": "workflow-visualization/setup-putior-ci/SKILL.md"
+    },
+    {
+      "id": "configure-putior-mcp",
+      "title": "Configure putior MCP Server",
+      "domain": "workflow-visualization",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Configure putior MCP server with 16 tools",
+      "tags": [
+        "putior",
+        "mcp",
+        "acp",
+        "ai-assistant",
+        "claude",
+        "tools",
+        "integration"
+      ],
+      "related": [
+        "install-putior",
+        "configure-mcp-server",
+        "troubleshoot-mcp-connection",
+        "build-custom-mcp-server",
+        "analyze-codebase-workflow"
+      ],
+      "path": "workflow-visualization/configure-putior-mcp/SKILL.md"
     }
   ],
   "links": [
@@ -3648,6 +3883,10 @@
     },
     {
       "source": "heal",
+      "target": "heal-guidance"
+    },
+    {
+      "source": "heal",
       "target": "meditate"
     },
     {
@@ -3655,24 +3894,40 @@
       "target": "remote-viewing"
     },
     {
-      "source": "heal",
+      "source": "heal-guidance",
+      "target": "heal"
+    },
+    {
+      "source": "heal-guidance",
+      "target": "meditate-guidance"
+    },
+    {
+      "source": "heal-guidance",
+      "target": "remote-viewing-guidance"
+    },
+    {
+      "source": "heal-guidance",
       "target": "mindfulness"
     },
     {
-      "source": "heal",
+      "source": "heal-guidance",
       "target": "tai-chi"
     },
     {
-      "source": "heal",
+      "source": "heal-guidance",
       "target": "forage-plants"
     },
     {
-      "source": "heal",
+      "source": "heal-guidance",
       "target": "purify-water"
     },
     {
-      "source": "heal",
+      "source": "heal-guidance",
       "target": "make-fire"
+    },
+    {
+      "source": "meditate",
+      "target": "meditate-guidance"
     },
     {
       "source": "meditate",
@@ -3683,20 +3938,36 @@
       "target": "remote-viewing"
     },
     {
-      "source": "meditate",
+      "source": "meditate-guidance",
+      "target": "meditate"
+    },
+    {
+      "source": "meditate-guidance",
+      "target": "heal-guidance"
+    },
+    {
+      "source": "meditate-guidance",
+      "target": "remote-viewing-guidance"
+    },
+    {
+      "source": "meditate-guidance",
       "target": "mindfulness"
     },
     {
-      "source": "meditate",
+      "source": "meditate-guidance",
       "target": "tai-chi"
     },
     {
-      "source": "meditate",
+      "source": "meditate-guidance",
       "target": "forage-plants"
     },
     {
-      "source": "meditate",
+      "source": "meditate-guidance",
       "target": "make-fire"
+    },
+    {
+      "source": "remote-viewing",
+      "target": "remote-viewing-guidance"
     },
     {
       "source": "remote-viewing",
@@ -3707,7 +3978,19 @@
       "target": "heal"
     },
     {
-      "source": "remote-viewing",
+      "source": "remote-viewing-guidance",
+      "target": "remote-viewing"
+    },
+    {
+      "source": "remote-viewing-guidance",
+      "target": "meditate-guidance"
+    },
+    {
+      "source": "remote-viewing-guidance",
+      "target": "heal-guidance"
+    },
+    {
+      "source": "remote-viewing-guidance",
       "target": "forage-plants"
     },
     {
@@ -4577,6 +4860,114 @@
     {
       "source": "label-training-data",
       "target": "track-ml-experiments"
+    },
+    {
+      "source": "install-putior",
+      "target": "analyze-codebase-workflow"
+    },
+    {
+      "source": "install-putior",
+      "target": "configure-putior-mcp"
+    },
+    {
+      "source": "install-putior",
+      "target": "manage-renv-dependencies"
+    },
+    {
+      "source": "install-putior",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "analyze-codebase-workflow",
+      "target": "install-putior"
+    },
+    {
+      "source": "analyze-codebase-workflow",
+      "target": "annotate-source-files"
+    },
+    {
+      "source": "analyze-codebase-workflow",
+      "target": "generate-workflow-diagram"
+    },
+    {
+      "source": "analyze-codebase-workflow",
+      "target": "configure-putior-mcp"
+    },
+    {
+      "source": "annotate-source-files",
+      "target": "analyze-codebase-workflow"
+    },
+    {
+      "source": "annotate-source-files",
+      "target": "generate-workflow-diagram"
+    },
+    {
+      "source": "annotate-source-files",
+      "target": "install-putior"
+    },
+    {
+      "source": "annotate-source-files",
+      "target": "configure-putior-mcp"
+    },
+    {
+      "source": "generate-workflow-diagram",
+      "target": "annotate-source-files"
+    },
+    {
+      "source": "generate-workflow-diagram",
+      "target": "analyze-codebase-workflow"
+    },
+    {
+      "source": "generate-workflow-diagram",
+      "target": "setup-putior-ci"
+    },
+    {
+      "source": "generate-workflow-diagram",
+      "target": "create-quarto-report"
+    },
+    {
+      "source": "generate-workflow-diagram",
+      "target": "build-pkgdown-site"
+    },
+    {
+      "source": "setup-putior-ci",
+      "target": "generate-workflow-diagram"
+    },
+    {
+      "source": "setup-putior-ci",
+      "target": "setup-github-actions-ci"
+    },
+    {
+      "source": "setup-putior-ci",
+      "target": "build-ci-cd-pipeline"
+    },
+    {
+      "source": "setup-putior-ci",
+      "target": "annotate-source-files"
+    },
+    {
+      "source": "setup-putior-ci",
+      "target": "commit-changes"
+    },
+    {
+      "source": "configure-putior-mcp",
+      "target": "install-putior"
+    },
+    {
+      "source": "configure-putior-mcp",
+      "target": "configure-mcp-server"
+    },
+    {
+      "source": "configure-putior-mcp",
+      "target": "troubleshoot-mcp-connection"
+    },
+    {
+      "source": "configure-putior-mcp",
+      "target": "build-custom-mcp-server"
+    },
+    {
+      "source": "configure-putior-mcp",
+      "target": "analyze-codebase-workflow"
     }
   ]
 }

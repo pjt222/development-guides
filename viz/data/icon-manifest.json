@@ -77,6 +77,10 @@
     "data-serialization": {
       "basePrompt": "Neon binary stream, schema tree brackets",
       "glow": "blue"
+    },
+    "workflow-visualization": {
+      "basePrompt": "Glowing flowchart diagram, putior workflow nodes",
+      "glow": "spring-green"
     }
   },
   "icons": [
@@ -334,6 +338,14 @@
       "prompt": "Glowing compass, golden spiral ornament, modern pattern, futuristic ornament, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 60003,
       "path": "icons/design/ornament-style-modern.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "create-skill-glyph",
+      "domain": "design",
+      "prompt": "Glowing compass, golden spiral ornament, paintbrush with code lines, icon creation, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 60004,
+      "path": "icons/design/create-skill-glyph.webp",
       "status": "done"
     },
     {
@@ -1022,6 +1034,54 @@
       "prompt": "Neon browser window, HTML angle brackets, Vercel triangle, deployment rocket, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 180003,
       "path": "icons/web-dev/deploy-to-vercel.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "install-putior",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, package install, download arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190001,
+      "path": "icons/workflow-visualization/install-putior.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "analyze-codebase-workflow",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, magnifier scan, auto-detect workflow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190002,
+      "path": "icons/workflow-visualization/analyze-codebase-workflow.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "annotate-source-files",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, code annotation, PUT tag label, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190003,
+      "path": "icons/workflow-visualization/annotate-source-files.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "generate-workflow-diagram",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, Mermaid diagram, flowchart render, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190004,
+      "path": "icons/workflow-visualization/generate-workflow-diagram.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "setup-putior-ci",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, GitHub Actions gear, CI diagram regeneration, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190005,
+      "path": "icons/workflow-visualization/setup-putior-ci.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "configure-putior-mcp",
+      "domain": "workflow-visualization",
+      "prompt": "Glowing flowchart diagram, putior workflow nodes, MCP server plug, diagram connection, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 190006,
+      "path": "icons/workflow-visualization/configure-putior-mcp.webp",
       "status": "done"
     }
   ]
