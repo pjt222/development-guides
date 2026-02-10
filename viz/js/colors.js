@@ -204,9 +204,9 @@ export const DOMAIN_COLORS = new Proxy({}, {
 
 // ── Complexity configs (unchanged) ──────────────────────────────────
 export const COMPLEXITY_CONFIG = {
-  basic:        { radius: 3, glowRadius: 12, glowOpacity: 0.4,  label: 'Basic' },
+  basic:        { radius: 5, glowRadius: 14, glowOpacity: 0.4,  label: 'Basic' },
   intermediate: { radius: 5, glowRadius: 18, glowOpacity: 0.5,  label: 'Intermediate' },
-  advanced:     { radius: 8, glowRadius: 28, glowOpacity: 0.65, label: 'Advanced' },
+  advanced:     { radius: 5, glowRadius: 22, glowOpacity: 0.6,  label: 'Advanced' },
 };
 
 export const COMPLEXITY_BADGE_COLORS = {
