@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 115 skillIds to a specific glyph drawing function.
+# Maps each of 118 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -65,10 +65,13 @@ SKILL_GLYPHS <- list(
   "setup-local-kubernetes"         = "glyph_cluster_local",
   "write-helm-chart"               = "glyph_anchor",
 
-  # ── esoteric (3) ──────────────────────────────────────────────────────
+  # ── esoteric (6) ──────────────────────────────────────────────────────
   "heal"                           = "glyph_healing_hands",
+  "heal-guidance"                  = "glyph_healing_hands_guide",
   "meditate"                       = "glyph_lotus_seated",
+  "meditate-guidance"              = "glyph_lotus_seated_guide",
   "remote-viewing"                 = "glyph_third_eye",
+  "remote-viewing-guidance"        = "glyph_third_eye_guide",
 
   # ── general (5) ────────────────────────────────────────────────────────
   "setup-wsl-dev-environment"      = "glyph_terminal",

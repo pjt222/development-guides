@@ -1139,3 +1139,113 @@ glyph_compass_drafting <- function(cx, cy, s, col, bright) {
     ggplot2::geom_path(data = arc, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
   )
 }
+
+# ── Esoteric guidance variants ─────────────────────────────────────────────
+
+glyph_healing_hands_guide <- function(cx, cy, s, col, bright) {
+  # healing hands shifted left, with a small figure (recipient) on right
+  ox <- cx - 6 * s
+  t <- seq(0, pi, length.out = 20)
+  hand_l <- data.frame(x = ox - 3 * s + 12 * s * cos(t + pi * 0.6),
+                        y = cy + 12 * s * sin(t + pi * 0.6) * 0.6)
+  hand_r <- data.frame(x = ox + 3 * s + 12 * s * cos(pi - t + pi * 0.4),
+                        y = cy + 12 * s * sin(pi - t + pi * 0.4) * 0.6)
+  glow <- data.frame(x0 = ox, y0 = cy, r = 6 * s)
+  # recipient figure (right side)
+  fx <- cx + 16 * s
+  fig_head <- data.frame(x0 = fx, y0 = cy + 12 * s, r = 4 * s)
+  fig_body <- data.frame(x = c(fx, fx - 6 * s, fx + 6 * s),
+                          y = c(cy + 7 * s, cy - 10 * s, cy - 10 * s))
+  # energy arc connecting hands to figure
+  arc_t <- seq(0, pi, length.out = 15)
+  arc <- data.frame(x = ox + (fx - ox) / 2 + 12 * s * cos(arc_t),
+                     y = cy + 4 * s + 8 * s * sin(arc_t))
+  layers <- list(
+    ggplot2::geom_path(data = hand_l, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = hand_r, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = glow, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = fig_head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = fig_body, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = arc, .aes(x, y), color = col, linewidth = .lw(s, 1.2))
+  )
+  layers
+}
+
+glyph_lotus_seated_guide <- function(cx, cy, s, col, bright) {
+  # seated figure (meditator) on right, guide figure on left
+  # guide figure (standing, smaller)
+  gx <- cx - 14 * s
+  g_head <- data.frame(x0 = gx, y0 = cy + 16 * s, r = 3.5 * s)
+  g_body <- data.frame(x = c(gx - 4 * s, gx, gx + 4 * s),
+                        y = c(cy - 8 * s, cy + 12 * s, cy - 8 * s))
+  # meditator (seated, right side)
+  mx <- cx + 10 * s
+  m_head <- data.frame(x0 = mx, y0 = cy + 16 * s, r = 4 * s)
+  m_body <- data.frame(x = c(mx - 10 * s, mx, mx + 10 * s),
+                        y = c(cy - 8 * s, cy + 10 * s, cy - 8 * s))
+  t <- seq(0, 2 * pi, length.out = 30)
+  m_legs <- data.frame(x = mx + 13 * s * cos(t), y = cy - 12 * s + 3.5 * s * sin(t))
+  # sound/voice waves from guide to meditator
+  w1 <- data.frame(x0 = (gx + mx) / 2 - 2 * s, y0 = cy + 6 * s, r = 3 * s)
+  w2 <- data.frame(x0 = (gx + mx) / 2 + 2 * s, y0 = cy + 4 * s, r = 4 * s)
+  list(
+    ggforce::geom_circle(data = g_head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = g_body, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = m_body, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_polygon(data = m_legs, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.3)),
+    ggforce::geom_circle(data = m_head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = w1, .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = w2, .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(bright, 0.25), linewidth = .lw(s, 0.8))
+  )
+}
+
+glyph_third_eye_guide <- function(cx, cy, s, col, bright) {
+  # third eye (smaller, upper area) with monitor/tasker figure below
+  # eye shape (shifted up)
+  ey <- cy + 8 * s
+  t <- seq(0, pi, length.out = 30)
+  eye_top <- data.frame(x = cx + 18 * s * cos(t), y = ey + 9 * s * sin(t))
+  eye_bot <- data.frame(x = cx + 18 * s * cos(t), y = ey - 9 * s * sin(t))
+  pupil <- data.frame(x0 = cx, y0 = ey, r = 5 * s)
+  inner <- data.frame(x0 = cx, y0 = ey, r = 2.5 * s)
+  # monitor figure below (person with clipboard)
+  fy <- cy - 14 * s
+  fig_head <- data.frame(x0 = cx, y0 = fy + 8 * s, r = 3.5 * s)
+  fig_body <- data.frame(x = c(cx - 5 * s, cx, cx + 5 * s),
+                          y = c(fy - 6 * s, fy + 4 * s, fy - 6 * s))
+  # clipboard (small rectangle beside figure)
+  clip <- data.frame(
+    x = c(cx + 8 * s, cx + 16 * s, cx + 16 * s, cx + 8 * s),
+    y = c(fy + 4 * s, fy + 4 * s, fy - 6 * s, fy - 6 * s)
+  )
+  clip_line1 <- data.frame(x = c(cx + 10 * s, cx + 14 * s),
+                             y = c(fy + 1 * s, fy + 1 * s))
+  clip_line2 <- data.frame(x = c(cx + 10 * s, cx + 14 * s),
+                             y = c(fy - 2 * s, fy - 2 * s))
+  list(
+    ggplot2::geom_path(data = eye_top, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = eye_bot, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = pupil, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.8)),
+    ggforce::geom_circle(data = inner, .aes(x0 = x0, y0 = y0, r = r),
+      fill = bright, color = bright, linewidth = 1),
+    ggforce::geom_circle(data = fig_head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = fig_body, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = clip, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = clip_line1, .aes(x, y), color = col, linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = clip_line2, .aes(x, y), color = col, linewidth = .lw(s, 0.8))
+  )
+}

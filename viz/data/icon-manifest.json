@@ -465,6 +465,30 @@
       "status": "done"
     },
     {
+      "skillId": "heal-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, healing hands reaching toward person, energy arc, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80004,
+      "path": "icons/esoteric/heal-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "meditate-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, guide figure beside seated meditator, sound waves, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80005,
+      "path": "icons/esoteric/meditate-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "remote-viewing-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, third eye with monitor figure and clipboard, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80006,
+      "path": "icons/esoteric/remote-viewing-guidance.webp",
+      "status": "done"
+    },
+    {
       "skillId": "setup-wsl-dev-environment",
       "domain": "general",
       "prompt": "Glowing terminal prompt, wrench tool, WSL penguin, terminal window, dark background, vector art, clean edges, single centered icon, no text",
