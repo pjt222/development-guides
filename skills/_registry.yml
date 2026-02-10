@@ -1,7 +1,7 @@
 version: "1.2"
 generated: "2026-02-10"
 standard: "agentskills.io/specification"
-total_skills: 124
+total_skills: 125
 
 domains:
   r-packages:
@@ -410,6 +410,11 @@ domains:
         complexity: intermediate
         language: natural
         description: Design ornamental patterns in modern/speculative genres with colorblind-accessible color scales using Z-Image
+      - id: create-skill-glyph
+        path: design/create-skill-glyph/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Create R-based pictogram glyphs for skill icons using ggplot2 and the primitives library
 
   defensive:
     description: Martial arts and applied defensive awareness skills
