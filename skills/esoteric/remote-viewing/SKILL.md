@@ -59,7 +59,7 @@ Transition from assumption-heavy mode into receptive observation. This step is n
 
 Make initial contact with the target through the most minimal observation possible.
 
-1. Use `Glob` or `ls` to see only the top-level structure — do not read any files yet
+1. Use `Glob` to see only the top-level structure (e.g., `*` or `path/*`) — do not read any files yet
 2. Note your immediate, unfiltered impressions: file count, naming patterns, presence/absence of obvious markers
 3. Record raw observations using simple descriptors:
    - "many small files" not "microservice architecture"
@@ -96,8 +96,8 @@ Stage II Data Channels for Codebase Investigation:
 ├──────────────────┼────────────────────────────────────────────────────┤
 │ Test presence    │ Test directories? Test files? Ratio to source?     │
 ├──────────────────┼────────────────────────────────────────────────────┤
-│ History signals  │ Git log recency, commit frequency, contributor     │
-│                  │ count (if accessible)                              │
+│ History signals  │ Presence of .git/, CHANGELOG/RELEASE_NOTES,        │
+│                  │ lockfile timestamps (via Glob/Read if accessible)  │
 ├──────────────────┼────────────────────────────────────────────────────┤
 │ Energy/activity  │ Which areas changed recently? Which are dormant?   │
 └──────────────────┴────────────────────────────────────────────────────┘
@@ -132,6 +132,8 @@ Move from raw observations to spatial and structural understanding.
 **On failure:** If the map feels like pure guesswork, simplify: note only the connections you can verify (actual import statements, actual config references). If no structural patterns emerge, return to Stage II and collect more raw data — dimensional understanding requires a foundation of observations.
 
 ### Step 5: Interrogation — Directed Questions (Stage V)
+
+In classic CRV, Stage IV focuses on deeper analytical structure; for codebase investigation, that work is intentionally merged into the earlier dimensional/structural stages above, so this adapted protocol proceeds to Stage V for directed questioning.
 
 Now, and only now, bring specific questions to the investigation.
 

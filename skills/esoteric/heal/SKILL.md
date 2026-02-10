@@ -7,7 +7,7 @@ description: >
   alignment, and creative coherence. Covers assessment triage, subsystem
   scanning, drift correction, and memory integration.
 license: MIT
-allowed-tools: Read
+allowed-tools: Read, Write
 metadata:
   author: Philipp Thoss
   version: "2.0"
@@ -103,9 +103,9 @@ Chakra-Subsystem Correspondence:
 │          │ Alignment            │ check for scope drift, confirm     │
 │          │                      │ understanding                      │
 ├──────────┼──────────────────────┼────────────────────────────────────┤
-│ Throat   │ Communication        │ Review recent outputs for clarity, │
-│          │ Quality              │ check if explanations match user's │
-│          │                      │ expertise level                    │
+│ Throat   │ User-Intent          │ Review recent outputs for clarity, │
+│          │ Alignment            │ check if explanations match user's │
+│          │ (communication)      │ expertise level                    │
 ├──────────┼──────────────────────┼────────────────────────────────────┤
 │ Third    │ Tool Use Accuracy    │ Review recent tool call results,   │
 │ Eye      │                      │ check for patterns in failures,    │
