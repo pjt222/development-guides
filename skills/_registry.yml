@@ -1,7 +1,7 @@
 version: "1.2"
 generated: "2026-02-09"
 standard: "agentskills.io/specification"
-total_skills: 115
+total_skills: 121
 
 domains:
   r-packages:
@@ -650,3 +650,37 @@ domains:
         complexity: basic
         language: multi
         description: Label Studio annotation workflows and inter-annotator agreement metrics
+
+  workflow-visualization:
+    description: Workflow annotation and Mermaid diagram generation with putior
+    skills:
+      - id: install-putior
+        path: workflow-visualization/install-putior/SKILL.md
+        complexity: basic
+        language: R
+        description: Install and configure putior with optional dependencies
+      - id: analyze-codebase-workflow
+        path: workflow-visualization/analyze-codebase-workflow/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Auto-detect workflows and produce annotation plan
+      - id: annotate-source-files
+        path: workflow-visualization/annotate-source-files/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Add PUT annotations using correct comment prefix
+      - id: generate-workflow-diagram
+        path: workflow-visualization/generate-workflow-diagram/SKILL.md
+        complexity: basic
+        language: R
+        description: Generate themed Mermaid diagrams from workflow data
+      - id: setup-putior-ci
+        path: workflow-visualization/setup-putior-ci/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: GitHub Actions for auto-diagram regeneration
+      - id: configure-putior-mcp
+        path: workflow-visualization/configure-putior-mcp/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Configure putior MCP server with 16 tools
