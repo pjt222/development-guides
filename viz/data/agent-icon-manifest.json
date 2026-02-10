@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "type": "agent-icons",
+    "pipeline": "R/ggplot2 + ggfx neon glow",
+    "resolution": "1024x1024",
+    "format": "webp",
+    "total_agents": 19
+  },
+  "agentStyles": {
+    "r-developer": {
+      "description": "R package development and statistical computing",
+      "glow": "cyan",
+      "concept": "Hexagonal R badge with terminal cursor"
+    },
+    "code-reviewer": {
+      "description": "Code quality and PR review",
+      "glow": "rose",
+      "concept": "Magnifying glass over diff lines"
+    },
+    "security-analyst": {
+      "description": "Security auditing and vulnerability assessment",
+      "glow": "bright-red",
+      "concept": "Shield with radar eye scanner"
+    },
+    "web-developer": {
+      "description": "Full-stack Next.js and TypeScript development",
+      "glow": "coral",
+      "concept": "Browser window with angle brackets"
+    },
+    "survivalist": {
+      "description": "Wilderness survival and bushcraft",
+      "glow": "olive",
+      "concept": "Compass rose with flame center"
+    },
+    "mystic": {
+      "description": "Esoteric practices and meditation facilitation",
+      "glow": "magenta",
+      "concept": "Third eye with concentric mandala rings"
+    },
+    "martial-artist": {
+      "description": "Defensive martial arts and awareness",
+      "glow": "crimson",
+      "concept": "Flowing circle with balanced figure"
+    },
+    "designer": {
+      "description": "Ornamental design and AI image generation",
+      "glow": "pink",
+      "concept": "Golden spiral inside compass circle"
+    },
+    "gxp-validator": {
+      "description": "Computer systems validation and compliance",
+      "glow": "hot-pink",
+      "concept": "Shield with document and checkmark"
+    },
+    "auditor": {
+      "description": "GxP audit and CAPA investigation",
+      "glow": "burnt-orange",
+      "concept": "Clipboard with magnifying glass"
+    },
+    "senior-researcher": {
+      "description": "Research methodology and peer review",
+      "glow": "amber",
+      "concept": "Open book with magnifier"
+    },
+    "senior-data-scientist": {
+      "description": "Statistical analysis and ML review",
+      "glow": "violet",
+      "concept": "Scatter chart with brain node"
+    },
+    "senior-software-developer": {
+      "description": "Architecture and system design review",
+      "glow": "sky-blue",
+      "concept": "Layered architecture tower blocks"
+    },
+    "senior-web-designer": {
+      "description": "Visual design and layout review",
+      "glow": "yellow",
+      "concept": "Layout grid with color palette swatches"
+    },
+    "senior-ux-ui-specialist": {
+      "description": "Usability and accessibility review",
+      "glow": "mint",
+      "concept": "User silhouette with flow arrows"
+    },
+    "project-manager": {
+      "description": "Agile and classic project management",
+      "glow": "orange",
+      "concept": "Gantt bars with milestone diamond"
+    },
+    "devops-engineer": {
+      "description": "Infrastructure, CI/CD, and platform engineering",
+      "glow": "neon-green",
+      "concept": "Infinity loop with gear"
+    },
+    "mlops-engineer": {
+      "description": "ML operations and experiment lifecycle",
+      "glow": "lavender-violet",
+      "concept": "Neural network with pipeline arrow"
+    },
+    "putior-integrator": {
+      "description": "Workflow visualization and Mermaid diagrams",
+      "glow": "spring-green",
+      "concept": "Flowchart with connected nodes"
+    }
+  },
+  "icons": [
+    {
+      "agentId": "r-developer",
+      "path": "icons/agents/r-developer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "code-reviewer",
+      "path": "icons/agents/code-reviewer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "security-analyst",
+      "path": "icons/agents/security-analyst.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "web-developer",
+      "path": "icons/agents/web-developer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "survivalist",
+      "path": "icons/agents/survivalist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "mystic",
+      "path": "icons/agents/mystic.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "martial-artist",
+      "path": "icons/agents/martial-artist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "designer",
+      "path": "icons/agents/designer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "gxp-validator",
+      "path": "icons/agents/gxp-validator.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "auditor",
+      "path": "icons/agents/auditor.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "senior-researcher",
+      "path": "icons/agents/senior-researcher.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "senior-data-scientist",
+      "path": "icons/agents/senior-data-scientist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "senior-software-developer",
+      "path": "icons/agents/senior-software-developer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "senior-web-designer",
+      "path": "icons/agents/senior-web-designer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "senior-ux-ui-specialist",
+      "path": "icons/agents/senior-ux-ui-specialist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "project-manager",
+      "path": "icons/agents/project-manager.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "devops-engineer",
+      "path": "icons/agents/devops-engineer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "mlops-engineer",
+      "path": "icons/agents/mlops-engineer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "putior-integrator",
+      "path": "icons/agents/putior-integrator.webp",
+      "status": "pending"
+    }
+  ]
+}
