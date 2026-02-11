@@ -392,17 +392,16 @@ export function zoomOut() {
   if (graph) graph.zoom(graph.zoom() / 1.5, 300);
 }
 
-export function setDomainVisibility(visibleDomains) {
-  const visSet = new Set(visibleDomains);
+export function setSkillVisibility(visibleSkillIds) {
+  const visSet = visibleSkillIds instanceof Set ? visibleSkillIds : new Set(visibleSkillIds);
 
-  // Skill nodes filtered by domain; agent nodes filtered by visibleAgentIds
   const filteredNodes = fullData.nodes
     .filter(n => {
       if (n.type === 'agent') {
         if (visibleAgentIds === null) return true;
         return visibleAgentIds.has(n.id);
       }
-      return visSet.has(n.domain);
+      return visSet.has(n.id);
     })
     .map(n => ({ ...n }));
 
@@ -425,6 +424,15 @@ export function setDomainVisibility(visibleDomains) {
     graph.graphData(graphData);
     setTimeout(() => graph.zoomToFit(400, 40), 500);
   }
+}
+
+/** @deprecated Use setSkillVisibility instead */
+export function setDomainVisibility(visibleDomains) {
+  const visSet = new Set(visibleDomains);
+  const skillIds = fullData.nodes
+    .filter(n => n.type === 'skill' && visSet.has(n.domain))
+    .map(n => n.id);
+  setSkillVisibility(skillIds);
 }
 
 export function refreshGraph() {

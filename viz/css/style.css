@@ -332,7 +332,7 @@ body::after {
 }
 
 .filter-section-body.open {
-  max-height: 800px;
+  max-height: 2000px;
 }
 
 .filter-list {
@@ -389,6 +389,136 @@ body::after {
 .filter-count {
   color: var(--text-muted);
   font-size: 10px;
+}
+
+/* ── Filter Search Box ───────────────────────────────────────── */
+.filter-search {
+  width: calc(100% - 16px);
+  margin: 4px 8px 6px;
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  outline: none;
+  transition: border-color var(--transition-speed);
+}
+
+.filter-search::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+.filter-search:focus {
+  border-color: var(--text-accent);
+}
+
+/* ── Domain Groups (expandable) ─────────────────────────────── */
+.filter-domain-group {
+  margin-bottom: 1px;
+}
+
+.filter-domain-group.hidden {
+  display: none;
+}
+
+.filter-domain-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: background var(--transition-speed);
+  user-select: none;
+}
+
+.filter-domain-header:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.filter-domain-chevron {
+  font-size: 9px;
+  color: var(--text-muted);
+  transition: transform var(--transition-speed);
+  flex-shrink: 0;
+  width: 12px;
+  text-align: center;
+}
+
+.filter-domain-group:not(.expanded) .filter-domain-chevron {
+  transform: rotate(-90deg);
+}
+
+.filter-domain-header input[type=checkbox] {
+  accent-color: var(--text-accent);
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-domain-name {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.filter-domain-count {
+  color: var(--text-muted);
+  font-size: 10px;
+  flex-shrink: 0;
+}
+
+/* Skill items within expanded domain group */
+.filter-domain-skills {
+  display: none;
+  padding-left: 22px;
+}
+
+.filter-domain-group.expanded .filter-domain-skills {
+  display: block;
+}
+
+.filter-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background var(--transition-speed);
+}
+
+.filter-skill-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.filter-skill-item.hidden {
+  display: none;
+}
+
+.filter-skill-item input[type=checkbox] {
+  accent-color: var(--text-accent);
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter-skill-name {
+  flex: 1;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0.85;
 }
 
 /* ── Detail Panel (Right) ────────────────────────────────────── */

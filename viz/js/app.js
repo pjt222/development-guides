@@ -2,9 +2,9 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
+import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
-import { initFilters, getVisibleDomains, refreshSwatches } from './filters.js';
+import { initFilters, getVisibleSkillIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
 const DATA_URL = 'data/skills.json';
@@ -37,7 +37,7 @@ async function main() {
   allData = data;
 
   // ── Update header stats ──
-  document.getElementById('stat-nodes').textContent = data.meta.totalSkills;
+  document.getElementById('stat-skills').textContent = data.meta.totalSkills;
   document.getElementById('stat-edges').textContent = data.meta.totalLinks;
   document.getElementById('stat-domains').textContent = data.meta.totalDomains;
   document.getElementById('stat-agents').textContent = data.meta.totalAgents;
@@ -63,16 +63,17 @@ async function main() {
   });
 
   // ── Init filter panel ──
+  const skillNodes = data.nodes.filter(n => n.type === 'skill');
   const agentNodes = data.nodes.filter(n => n.type === 'agent');
-  initFilters(document.getElementById('filter-panel'), data.domains, agentNodes, {
-    onFilterChange(visibleDomains) {
-      setDomainVisibility(visibleDomains);
-      updateFilteredStats(visibleDomains);
+  initFilters(document.getElementById('filter-panel'), skillNodes, agentNodes, {
+    onFilterChange(visibleSkillIds) {
+      setSkillVisibility(visibleSkillIds);
+      updateFilteredStats(visibleSkillIds);
     },
     onAgentFilterChange(visibleIds) {
       setVisibleAgents(visibleIds);
-      setDomainVisibility(getVisibleDomains());
-      updateFilteredStats(getVisibleDomains());
+      setSkillVisibility(getVisibleSkillIds());
+      updateFilteredStats(getVisibleSkillIds());
     },
   });
 
@@ -161,12 +162,12 @@ document.addEventListener('mousemove', e => {
   }
 });
 
-function updateFilteredStats(visibleDomains) {
+function updateFilteredStats(visibleSkillIds) {
   if (!allData) return;
-  const visSet = new Set(visibleDomains);
+  const skillSet = new Set(visibleSkillIds);
   const agentIds = getVisibleAgentIds();
 
-  const visSkills = allData.nodes.filter(n => n.type === 'skill' && visSet.has(n.domain));
+  const visSkills = allData.nodes.filter(n => n.type === 'skill' && skillSet.has(n.id));
   const visAgents = allData.nodes.filter(n => {
     if (n.type !== 'agent') return false;
     if (agentIds === null) return true;
@@ -175,9 +176,12 @@ function updateFilteredStats(visibleDomains) {
   const visNodeIds = new Set([...visSkills, ...visAgents].map(n => n.id));
   const visLinks = allData.links.filter(l => visNodeIds.has(l.source) && visNodeIds.has(l.target));
 
-  document.getElementById('stat-nodes').textContent = visSkills.length;
+  // Count unique domains among visible skills
+  const visDomains = new Set(visSkills.map(n => n.domain));
+
+  document.getElementById('stat-skills').textContent = visSkills.length;
   document.getElementById('stat-edges').textContent = visLinks.length;
-  document.getElementById('stat-domains').textContent = visibleDomains.length;
+  document.getElementById('stat-domains').textContent = visDomains.size;
   document.getElementById('stat-agents').textContent = visAgents.length;
 }
 

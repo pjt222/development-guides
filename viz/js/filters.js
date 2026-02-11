@@ -1,23 +1,47 @@
 /**
- * filters.js - Left-side filter panel with collapsible Skills & Agents sections
+ * filters.js - Left-side filter panel with per-skill and per-agent filtering
+ *
+ * Skills are grouped by domain with expandable sections.
+ * Domain checkboxes act as parent toggles (all/none/indeterminate).
+ * A search box filters visible skills and auto-expands matching domains.
  */
 
 import { DOMAIN_COLORS, getAgentColor } from './colors.js';
 
 let filterEl = null;
-let domainStates = {};   // domain -> boolean
-let agentStates = {};    // agentId -> boolean
+let skillStates = {};       // skillId -> boolean
+let agentStates = {};       // agentId -> boolean
+let skillsByDomain = {};    // domain -> [nodeObj, ...]
+let domainExpanded = {};    // domain -> boolean
 let onChange = null;
 let onAgentChange = null;
 
-export function initFilters(el, domains, agents, { onFilterChange, onAgentFilterChange } = {}) {
+/**
+ * @param {HTMLElement} el - Filter panel element
+ * @param {Array} skillNodes - Array of skill node objects (from data.nodes where type==='skill')
+ * @param {Array} agents - Array of agent node objects
+ * @param {Object} callbacks - { onFilterChange, onAgentFilterChange }
+ */
+export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFilterChange } = {}) {
   filterEl = el;
   onChange = onFilterChange;
   onAgentChange = onAgentFilterChange;
 
-  // Initialize all domains as visible
-  for (const domain of Object.keys(domains)) {
-    domainStates[domain] = true;
+  // Build domain -> skills lookup
+  skillsByDomain = {};
+  for (const node of skillNodes) {
+    if (!skillsByDomain[node.domain]) skillsByDomain[node.domain] = [];
+    skillsByDomain[node.domain].push(node);
+  }
+
+  // Sort skills within each domain alphabetically
+  for (const domain of Object.keys(skillsByDomain)) {
+    skillsByDomain[domain].sort((a, b) => (a.title || a.id).localeCompare(b.title || b.id));
+  }
+
+  // Initialize all skills as visible
+  for (const node of skillNodes) {
+    skillStates[node.id] = true;
   }
 
   // Initialize all agents as visible
@@ -25,53 +49,191 @@ export function initFilters(el, domains, agents, { onFilterChange, onAgentFilter
     agentStates[agent.id] = true;
   }
 
-  renderSkills(domains);
+  // Initialize all domains as collapsed
+  for (const domain of Object.keys(skillsByDomain)) {
+    domainExpanded[domain] = false;
+  }
+
+  renderSearchBox();
+  renderSkills();
   renderAgents(agents);
   bindSectionHeaders();
   bindPanelToggle();
 
   // Update section counts
-  updateSkillsCount(domains);
+  updateSkillsCount();
   updateAgentsCount(agents);
 }
 
-// ── Skills section ───────────────────────────────────────────────────
+// ── Search box ─────────────────────────────────────────────────────
 
-function renderSkills(domains) {
+function renderSearchBox() {
+  const list = filterEl.querySelector('#skills-filter-list');
+  if (!list) return;
+
+  // Insert search box before the filter list
+  const existing = filterEl.querySelector('.filter-search');
+  if (existing) existing.remove();
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'filter-search';
+  input.placeholder = 'Search skills\u2026';
+  input.setAttribute('aria-label', 'Search skills');
+
+  list.parentNode.insertBefore(input, list);
+
+  input.addEventListener('input', () => {
+    applySearch(input.value.trim().toLowerCase());
+  });
+}
+
+function applySearch(query) {
+  const list = filterEl.querySelector('#skills-filter-list');
+  if (!list) return;
+
+  const groups = list.querySelectorAll('.filter-domain-group');
+
+  for (const group of groups) {
+    const domain = group.dataset.domain;
+    const skillItems = group.querySelectorAll('.filter-skill-item');
+    let visibleCount = 0;
+
+    for (const item of skillItems) {
+      const name = item.querySelector('.filter-skill-name')?.textContent.toLowerCase() || '';
+      const matches = !query || name.includes(query);
+      item.classList.toggle('hidden', !matches);
+      if (matches) visibleCount++;
+    }
+
+    // Domain matches if its name matches or any child skill matches
+    const domainName = domain.toLowerCase();
+    const domainMatches = !query || domainName.includes(query) || visibleCount > 0;
+
+    group.classList.toggle('hidden', !domainMatches);
+
+    // If searching and there are matches, show all skills in the domain and auto-expand
+    if (query && domainMatches) {
+      if (domainName.includes(query)) {
+        // Domain name matches: show all skills
+        for (const item of skillItems) item.classList.remove('hidden');
+      }
+      group.classList.add('expanded');
+    } else if (!query) {
+      // Restore collapsed state when clearing search
+      group.classList.toggle('expanded', domainExpanded[domain] || false);
+    }
+  }
+}
+
+// ── Skills section ───────────────────────────────────────────────
+
+function renderSkills() {
   const list = filterEl.querySelector('#skills-filter-list');
   if (!list) return;
 
   list.innerHTML = '';
-  const sorted = Object.entries(domains).sort((a, b) => b[1].count - a[1].count);
 
-  for (const [domain, info] of sorted) {
+  // Sort domains by skill count descending
+  const sorted = Object.entries(skillsByDomain).sort((a, b) => b[1].length - a[1].length);
+
+  for (const [domain, skills] of sorted) {
     const color = DOMAIN_COLORS[domain] || '#888';
-    const item = document.createElement('label');
-    item.className = 'filter-item';
-    item.innerHTML = `
-      <input type="checkbox" data-domain="${domain}" ${domainStates[domain] ? 'checked' : ''}>
+    const group = document.createElement('div');
+    group.className = 'filter-domain-group';
+    group.dataset.domain = domain;
+
+    // Domain header
+    const header = document.createElement('div');
+    header.className = 'filter-domain-header';
+    header.innerHTML = `
+      <span class="filter-domain-chevron" aria-hidden="true">&#x25BE;</span>
+      <input type="checkbox" data-domain="${domain}" checked>
       <span class="filter-swatch" style="background: ${color}"></span>
-      <span class="filter-name">${domain}</span>
-      <span class="filter-count">${info.count}</span>
+      <span class="filter-domain-name">${domain}</span>
+      <span class="filter-domain-count">${skills.length}</span>
     `;
-    list.appendChild(item);
 
-    item.querySelector('input').addEventListener('change', e => {
-      domainStates[domain] = e.target.checked;
-      fireDomainChange();
+    const domainCb = header.querySelector('input');
+
+    // Chevron / header click toggles expand
+    header.addEventListener('click', e => {
+      if (e.target === domainCb) return; // Don't toggle expand on checkbox click
+      e.preventDefault();
+      domainExpanded[domain] = !domainExpanded[domain];
+      group.classList.toggle('expanded', domainExpanded[domain]);
     });
+
+    // Domain checkbox toggles all child skills
+    domainCb.addEventListener('change', () => {
+      const checked = domainCb.checked;
+      for (const skill of skills) {
+        skillStates[skill.id] = checked;
+      }
+      // Update child checkboxes
+      group.querySelectorAll('.filter-skill-item input').forEach(cb => {
+        cb.checked = checked;
+      });
+      domainCb.indeterminate = false;
+      fireSkillChange();
+    });
+
+    group.appendChild(header);
+
+    // Skill items container
+    const skillsContainer = document.createElement('div');
+    skillsContainer.className = 'filter-domain-skills';
+
+    for (const skill of skills) {
+      const item = document.createElement('label');
+      item.className = 'filter-skill-item';
+      item.innerHTML = `
+        <input type="checkbox" data-skill="${skill.id}" checked>
+        <span class="filter-skill-name">${skill.title || skill.id}</span>
+      `;
+
+      const skillCb = item.querySelector('input');
+      skillCb.addEventListener('change', () => {
+        skillStates[skill.id] = skillCb.checked;
+        updateDomainCheckbox(domain);
+        fireSkillChange();
+      });
+
+      skillsContainer.appendChild(item);
+    }
+
+    group.appendChild(skillsContainer);
+    list.appendChild(group);
   }
 }
 
-function updateSkillsCount(domains) {
+function updateDomainCheckbox(domain) {
+  const skills = skillsByDomain[domain];
+  if (!skills) return;
+
+  const allChecked = skills.every(s => skillStates[s.id]);
+  const noneChecked = skills.every(s => !skillStates[s.id]);
+
+  const group = filterEl.querySelector(`.filter-domain-group[data-domain="${domain}"]`);
+  if (!group) return;
+
+  const domainCb = group.querySelector('.filter-domain-header input[data-domain]');
+  if (!domainCb) return;
+
+  domainCb.checked = allChecked;
+  domainCb.indeterminate = !allChecked && !noneChecked;
+}
+
+function updateSkillsCount() {
   const el = filterEl.querySelector('#skills-section-count');
-  if (el) {
-    const total = Object.values(domains).reduce((s, d) => s + d.count, 0);
-    el.textContent = total;
-  }
+  if (!el) return;
+
+  const total = Object.keys(skillStates).length;
+  const visible = Object.values(skillStates).filter(Boolean).length;
+  el.textContent = visible < total ? `${visible}/${total}` : String(total);
 }
 
-// ── Agents section ───────────────────────────────────────────────────
+// ── Agents section ───────────────────────────────────────────────
 
 function renderAgents(agents) {
   const list = filterEl.querySelector('#agents-filter-list');
@@ -109,10 +271,14 @@ function renderAgents(agents) {
 
 function updateAgentsCount(agents) {
   const el = filterEl.querySelector('#agents-section-count');
-  if (el) el.textContent = agents.length;
+  if (!el) return;
+
+  const total = agents.length;
+  const visible = Object.values(agentStates).filter(Boolean).length;
+  el.textContent = visible < total ? `${visible}/${total}` : String(total);
 }
 
-// ── Section collapse / expand ────────────────────────────────────────
+// ── Section collapse / expand ────────────────────────────────────
 
 function toggleSection(header) {
   const expanded = header.getAttribute('aria-expanded') === 'true';
@@ -149,14 +315,25 @@ function bindSectionHeaders() {
         const isAll = btn.classList.contains('filter-all');
 
         if (target === 'skills') {
-          for (const d of Object.keys(domainStates)) domainStates[d] = isAll;
-          filterEl.querySelectorAll('#skills-filter-list input[type=checkbox]')
+          for (const id of Object.keys(skillStates)) skillStates[id] = isAll;
+          // Update all skill checkboxes
+          filterEl.querySelectorAll('#skills-filter-list .filter-skill-item input[type=checkbox]')
             .forEach(cb => cb.checked = isAll);
-          fireDomainChange();
+          // Update all domain checkboxes
+          filterEl.querySelectorAll('#skills-filter-list .filter-domain-header input[type=checkbox]')
+            .forEach(cb => {
+              cb.checked = isAll;
+              cb.indeterminate = false;
+            });
+          updateSkillsCount();
+          fireSkillChange();
         } else if (target === 'agents') {
           for (const a of Object.keys(agentStates)) agentStates[a] = isAll;
           filterEl.querySelectorAll('#agents-filter-list input[type=checkbox]')
             .forEach(cb => cb.checked = isAll);
+          updateAgentsCount(
+            Object.keys(agentStates).map(id => ({ id }))
+          );
           fireAgentChange();
         }
       });
@@ -164,7 +341,7 @@ function bindSectionHeaders() {
   });
 }
 
-// ── Panel toggle (collapse entire panel) ─────────────────────────────
+// ── Panel toggle (collapse entire panel) ─────────────────────────
 
 function bindPanelToggle() {
   const toggle = document.getElementById('panel-toggle');
@@ -182,26 +359,44 @@ function bindPanelToggle() {
   });
 }
 
-// ── Fire callbacks ───────────────────────────────────────────────────
+// ── Fire callbacks ───────────────────────────────────────────────
 
-function fireDomainChange() {
+function fireSkillChange() {
+  updateSkillsCount();
   if (onChange) {
-    onChange(getVisibleDomains());
+    onChange(getVisibleSkillIds());
   }
 }
 
 function fireAgentChange() {
+  const totalAgents = Object.keys(agentStates).length;
+  const visibleAgents = Object.values(agentStates).filter(Boolean).length;
+  const el = filterEl.querySelector('#agents-section-count');
+  if (el) el.textContent = visibleAgents < totalAgents ? `${visibleAgents}/${totalAgents}` : String(totalAgents);
+
   if (onAgentChange) {
     onAgentChange(getVisibleAgentIds());
   }
 }
 
-// ── Public getters ───────────────────────────────────────────────────
+// ── Public getters ───────────────────────────────────────────────
 
-export function getVisibleDomains() {
-  return Object.entries(domainStates)
+export function getVisibleSkillIds() {
+  return Object.entries(skillStates)
     .filter(([, v]) => v)
     .map(([k]) => k);
+}
+
+/** @deprecated Use getVisibleSkillIds instead */
+export function getVisibleDomains() {
+  const visibleIds = new Set(getVisibleSkillIds());
+  const domains = new Set();
+  for (const [domain, skills] of Object.entries(skillsByDomain)) {
+    if (skills.some(s => visibleIds.has(s.id))) {
+      domains.add(domain);
+    }
+  }
+  return [...domains];
 }
 
 export function getVisibleAgentIds() {
@@ -210,16 +405,16 @@ export function getVisibleAgentIds() {
     .map(([k]) => k);
 }
 
-// ── Swatch refresh (theme change) ────────────────────────────────────
+// ── Swatch refresh (theme change) ────────────────────────────────
 
 export function refreshSwatches() {
   if (!filterEl) return;
 
   // Refresh domain swatches
-  filterEl.querySelectorAll('#skills-filter-list .filter-item').forEach(item => {
-    const cb = item.querySelector('input[data-domain]');
+  filterEl.querySelectorAll('#skills-filter-list .filter-domain-header').forEach(header => {
+    const cb = header.querySelector('input[data-domain]');
     if (cb) {
-      const swatch = item.querySelector('.filter-swatch');
+      const swatch = header.querySelector('.filter-swatch');
       if (swatch) swatch.style.background = DOMAIN_COLORS[cb.dataset.domain] || '#888';
     }
   });
