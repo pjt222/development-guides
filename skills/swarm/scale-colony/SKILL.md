@@ -71,7 +71,7 @@ Colony Growth Phases:
    - **Coordination failures**: duplicated work, dropped tasks, conflicting actions increasing
    - **Knowledge dilution**: new agents take longer to become productive
    - **Identity loss**: agents can't describe the colony's purpose consistently
-3. Determine if the colony is about to cross a phase boundary or already has
+3. Determine if the colony is about to cross a phase boundary or has already crossed it
 
 **Expected:** Clear identification of the current growth phase and the specific stress signals indicating the colony is approaching or has crossed a phase boundary.
 
@@ -89,7 +89,7 @@ Introduce progressive specialization where agents take on different roles based 
    - **Coordinators**: inter-group communication, conflict resolution, quorum management
 2. Implement role transitions:
    - Transitions are triggered by experience thresholds, not appointment
-   - An agent that has completed N tasks successfully transitions to the next role
+   - An agent that has completed a threshold number of tasks successfully transitions to the next role (calibrate the threshold based on task complexity and colony growth rate — e.g., 5-10 tasks for simple roles, 20-30 for specialist roles)
    - Reverse transitions are possible (specialist returns to worker role in a new domain)
    - The colony's role distribution adapts to current needs:
      - Growing colony → more newcomer slots, active mentoring

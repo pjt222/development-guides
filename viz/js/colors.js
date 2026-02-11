@@ -13,7 +13,7 @@ const DOMAIN_ORDER = [
   'r-packages', 'reporting', 'review', 'swarm', 'web-dev', 'workflow-visualization',
 ];
 
-// ── 6 named palettes: 18 hex colors each ───────────────────────────
+// ── 6 named palettes: one hex color per domain (21 domains) ────────
 const PALETTES = {
   cyberpunk: {
     'bushcraft':          '#88cc44',
