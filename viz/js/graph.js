@@ -2,7 +2,7 @@
  * graph.js - Force-graph setup, node/link rendering, interactions
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, AGENT_PRIORITY_CONFIG } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, AGENT_PRIORITY_CONFIG, getCurrentThemeName } from './colors.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -14,8 +14,8 @@ let onNodeHover = null;
 
 // ── Icon state ──────────────────────────────────────────────────────
 let iconMode = false;
-const iconImages = new Map();   // skillId -> Image
-const iconLoadFailed = new Set();
+const cachedPaletteIcons = new Map(); // palette -> Map(nodeId -> Image)
+let activeIconMap = new Map();        // current palette's nodeId -> Image
 const ICON_ZOOM_THRESHOLD = 1.0;
 
 // ── Agent state ─────────────────────────────────────────────────────
@@ -70,20 +70,33 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .linkColor(link => {
       const isAgentLink = link.type === 'agent';
       const activeId = selectedNodeId || hoveredNodeId;
+      // Find agent node for this link to get per-agent color
+      const getAgentLinkColor = (alpha) => {
+        const src = typeof link.source === 'object' ? link.source : graphData.nodes.find(n => n.id === link.source);
+        const agentNode = src && src.type === 'agent' ? src : null;
+        if (!agentNode) {
+          const tgt = typeof link.target === 'object' ? link.target : graphData.nodes.find(n => n.id === link.target);
+          const aNode = tgt && tgt.type === 'agent' ? tgt : null;
+          if (aNode) return hexToRgba(getAgentColor(aNode.id.replace('agent:', '')), alpha);
+        } else {
+          return hexToRgba(getAgentColor(agentNode.id.replace('agent:', '')), alpha);
+        }
+        return hexToRgba(getAgentColor(), alpha);
+      };
       if (!activeId) {
         return isAgentLink
-          ? hexToRgba(getAgentColor(), 0.04)
+          ? getAgentLinkColor(0.04)
           : 'rgba(255,255,255,0.06)';
       }
       const src = typeof link.source === 'object' ? link.source.id : link.source;
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
       if (src === activeId || tgt === activeId) {
-        if (isAgentLink) return hexToRgba(getAgentColor(), 0.3);
+        if (isAgentLink) return getAgentLinkColor(0.3);
         const connectedNode = graphData.nodes.find(n => n.id === (src === activeId ? tgt : src));
         const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
         return hexToRgba(color, 0.35);
       }
-      return isAgentLink ? hexToRgba(getAgentColor(), 0.01) : 'rgba(255,255,255,0.02)';
+      return isAgentLink ? getAgentLinkColor(0.01) : 'rgba(255,255,255,0.02)';
     })
     .linkWidth(link => {
       const activeId = selectedNodeId || hoveredNodeId;
@@ -122,15 +135,32 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
 }
 
 // ── Icon management ─────────────────────────────────────────────────
-export function preloadIcons(nodes) {
+export function preloadIcons(nodes, palette) {
+  const pal = palette || getCurrentThemeName();
+  if (cachedPaletteIcons.has(pal)) {
+    activeIconMap = cachedPaletteIcons.get(pal);
+    return;
+  }
+  const palMap = new Map();
+  cachedPaletteIcons.set(pal, palMap);
+
   for (const node of nodes) {
     const path = node.type === 'agent'
-      ? `icons/agents/${node.id.replace('agent:', '')}.webp`
-      : `icons/${node.domain}/${node.id}.webp`;
+      ? `icons/${pal}/agents/${node.id.replace('agent:', '')}.webp`
+      : `icons/${pal}/${node.domain}/${node.id}.webp`;
     const img = new Image();
-    img.onload = () => iconImages.set(node.id, img);
-    img.onerror = () => iconLoadFailed.add(node.id);
+    img.onload = () => palMap.set(node.id, img);
+    img.onerror = () => {}; // silently skip missing icons
     img.src = path;
+  }
+  activeIconMap = palMap;
+}
+
+export function switchIconPalette(palette, nodes) {
+  if (cachedPaletteIcons.has(palette)) {
+    activeIconMap = cachedPaletteIcons.get(palette);
+  } else {
+    preloadIcons(nodes, palette);
   }
 }
 
@@ -159,7 +189,8 @@ function drawHexPath(ctx, x, y, r) {
 function drawAgentNode(node, ctx, globalScale) {
   const x = node.x;
   const y = node.y;
-  const color = getAgentColor();
+  const agentId = node.id.replace('agent:', '');
+  const color = getAgentColor(agentId);
   const cfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
   const r = cfg.radius;
 
@@ -167,11 +198,11 @@ function drawAgentNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
   const alpha = dimmed ? 0.12 : 1;
 
-  const useIcon = iconMode && iconImages.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
   if (useIcon) {
     // ── Icon mode: draw agent icon with glow ──
-    const img = iconImages.get(node.id);
+    const img = activeIconMap.get(node.id);
     const iconSize = r * 3.5;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
@@ -262,11 +293,11 @@ function drawNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlighted;
   const alpha = dimmed ? 0.12 : 1;
 
-  const useIcon = iconMode && iconImages.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
   if (useIcon) {
     // ── Icon mode: draw image with domain-colored glow ──
-    const img = iconImages.get(node.id);
+    const img = activeIconMap.get(node.id);
     const iconSize = r * 3.5;
     const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
 

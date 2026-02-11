@@ -240,7 +240,6 @@ function renderAgents(agents) {
   if (!list) return;
 
   list.innerHTML = '';
-  const color = getAgentColor();
 
   // Sort agents: critical first, then high, then normal; alphabetical within priority
   const priorityOrder = { critical: 0, high: 1, normal: 2 };
@@ -252,11 +251,13 @@ function renderAgents(agents) {
   });
 
   for (const agent of sorted) {
+    const agentId = agent.id.replace('agent:', '');
+    const color = getAgentColor(agentId);
     const item = document.createElement('label');
     item.className = 'filter-item';
     item.innerHTML = `
       <input type="checkbox" data-agent="${agent.id}" ${agentStates[agent.id] ? 'checked' : ''}>
-      <span class="filter-swatch agent-hex" style="background: ${color}"></span>
+      <span class="filter-swatch agent-hex" data-agent-id="${agentId}" style="background: ${color}"></span>
       <span class="filter-name">${agent.title || agent.id}</span>
       <span class="filter-count">${agent.priority || ''}</span>
     `;
@@ -419,9 +420,9 @@ export function refreshSwatches() {
     }
   });
 
-  // Refresh agent swatches
-  const agentColor = getAgentColor();
-  filterEl.querySelectorAll('#agents-filter-list .filter-swatch').forEach(swatch => {
-    swatch.style.background = agentColor;
+  // Refresh agent swatches (per-agent colors)
+  filterEl.querySelectorAll('#agents-filter-list .filter-swatch[data-agent-id]').forEach(swatch => {
+    const agentId = swatch.dataset.agentId;
+    swatch.style.background = getAgentColor(agentId);
   });
 }

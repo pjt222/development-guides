@@ -11,6 +11,9 @@ AGENT_GLYPHS <- list(
   "code-reviewer"             = "glyph_agent_code_review",
   "web-developer"             = "glyph_agent_web_dev",
 
+  # ── Jigsawr ────────────────────────────────────────────────────────────
+  "jigsawr-developer"         = "glyph_agent_jigsawr",
+
   # ── Security & Compliance ───────────────────────────────────────────────
   "security-analyst"          = "glyph_agent_security",
   "gxp-validator"             = "glyph_agent_gxp",

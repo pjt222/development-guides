@@ -1,15 +1,18 @@
 #!/usr/bin/env Rscript
-# build-agent-icons.R - Generate cyberpunk neon WebP icons for 21 agents
+# build-agent-icons.R - Generate WebP icons for agents across palettes
 #
 # Parallel to build-icons.R (skills) but renders agent persona glyphs.
-# Each agent gets a unique color + glyph; output goes to icons/agents/.
+# Each agent gets a unique color per palette + glyph.
+# Output: icons/<palette>/agents/<agentId>.webp
 #
 # Usage:
-#   Rscript build-agent-icons.R                    # Full render (all 21 agents)
-#   Rscript build-agent-icons.R --only mystic      # Single agent
-#   Rscript build-agent-icons.R --skip-existing    # Skip already-done icons
-#   Rscript build-agent-icons.R --dry-run          # List what would be generated
-#   Rscript build-agent-icons.R --glow-sigma 10    # Adjust glow intensity
+#   Rscript build-agent-icons.R                          # All palettes, all agents
+#   Rscript build-agent-icons.R --palette cyberpunk      # Single palette
+#   Rscript build-agent-icons.R --only mystic            # Single agent (all palettes)
+#   Rscript build-agent-icons.R --skip-existing          # Skip existing WebP files
+#   Rscript build-agent-icons.R --dry-run                # List what would be generated
+#   Rscript build-agent-icons.R --palette-list           # List palette names
+#   Rscript build-agent-icons.R --glow-sigma 10          # Adjust glow intensity
 
 # ── Determine script directory ───────────────────────────────────────────
 get_script_dir <- function() {
@@ -27,16 +30,10 @@ get_script_dir <- function() {
 script_dir <- get_script_dir()
 
 # ── Source supporting files ──────────────────────────────────────────────
-# Shared utilities (hex helpers, CLI parsing, manifest I/O, dep check)
 source(file.path(script_dir, "R", "utils.R"))
-
-# Skill primitives provides .lw and .aes helpers used by agent primitives
 source(file.path(script_dir, "R", "primitives.R"))
-
-# Shared render engine (provides render_glyph used by agent_render.R)
 source(file.path(script_dir, "R", "render.R"))
-
-# Agent-specific pipeline
+source(file.path(script_dir, "R", "palettes.R"))
 source(file.path(script_dir, "R", "agent_colors.R"))
 source(file.path(script_dir, "R", "agent_primitives.R"))
 source(file.path(script_dir, "R", "agent_glyphs.R"))
@@ -45,7 +42,7 @@ source(file.path(script_dir, "R", "agent_render.R"))
 # ── Check dependencies ──────────────────────────────────────────────────
 check_dependencies()
 
-# ── Parse CLI args (reuses parse_cli_args from utils.R) ─────────────────
+# ── Parse CLI args ───────────────────────────────────────────────────────
 opts <- parse_cli_args()
 
 if (opts$help) {
@@ -53,6 +50,23 @@ if (opts$help) {
               filter_label = "<agent-id>",
               filter_desc = "Only generate icon for this agent")
   quit(status = 0)
+}
+
+if (opts$palette_list) {
+  cat("Available palettes:\n")
+  cat(paste(" ", PALETTE_NAMES, collapse = "\n"), "\n")
+  quit(status = 0)
+}
+
+# ── Resolve palette list ────────────────────────────────────────────────
+if (opts$palette == "all") {
+  palettes_to_render <- PALETTE_NAMES
+} else {
+  if (!opts$palette %in% PALETTE_NAMES) {
+    stop("Unknown palette: ", opts$palette,
+         ". Use --palette-list to see options.", call. = FALSE)
+  }
+  palettes_to_render <- opts$palette
 }
 
 # ── Load manifest ────────────────────────────────────────────────────────
@@ -67,30 +81,23 @@ log_msg(sprintf("Loaded agent manifest: %d icons", length(icons)))
 
 # ── Filter queue ─────────────────────────────────────────────────────────
 queue <- icons
-
 if (!is.null(opts$only)) {
   queue <- Filter(function(ic) ic$agentId == opts$only, queue)
   log_msg(sprintf("Filtered to agent: %s (%d icons)", opts$only, length(queue)))
 }
 
-if (opts$skip_existing) {
-  queue <- Filter(function(ic) {
-    if (identical(ic$status, "done")) {
-      out_path <- file.path(script_dir, ic$path)
-      return(!file.exists(out_path))
-    }
-    TRUE
-  }, queue)
-  log_msg(sprintf("After skip-existing filter: %d icons", length(queue)))
-}
-
 # ── Dry run ──────────────────────────────────────────────────────────────
 if (opts$dry_run) {
   log_msg("DRY RUN - would generate:")
-  for (ic in queue) {
-    log_msg(sprintf("  %s -> %s", ic$agentId, ic$path))
+  for (pal in palettes_to_render) {
+    for (ic in queue) {
+      out <- sprintf("icons/%s/agents/%s.webp", pal, ic$agentId)
+      log_msg(sprintf("  [%s] %s -> %s", pal, ic$agentId, out))
+    }
   }
-  log_msg(sprintf("Total: %d agent icons", length(queue)))
+  log_msg(sprintf("Total: %d agents x %d palettes = %d files",
+                  length(queue), length(palettes_to_render),
+                  length(queue) * length(palettes_to_render)))
   quit(status = 0)
 }
 
@@ -100,58 +107,85 @@ if (length(queue) == 0) {
   quit(status = 0)
 }
 
-log_msg(sprintf("Generating %d agent icons (glow_sigma=%d)", length(queue),
-                opts$glow_sigma))
-
 suppressWarnings({
   library(ggplot2, quietly = TRUE, warn.conflicts = FALSE)
 })
 
+total_rendered <- 0
+total_errors <- 0
 start_time <- proc.time()
-done_count <- 0
-error_count <- 0
 
-for (idx in seq_along(queue)) {
-  ic <- queue[[idx]]
-  out_path <- file.path(script_dir, ic$path)
+for (pal in palettes_to_render) {
+  pal_colors <- get_palette_colors(pal)
+  pal_start <- proc.time()
+  done_count <- 0
+  error_count <- 0
 
-  tryCatch({
-    render_agent_icon(
-      agent_id   = ic$agentId,
-      out_path   = out_path,
-      glow_sigma = opts$glow_sigma
-    )
+  log_msg(sprintf("=== Palette: %s (%d agents) ===", pal, length(queue)))
 
-    kb <- file_size_kb(out_path)
-    log_msg(sprintf("OK: %s (%.1fKB)", ic$agentId, kb))
+  for (idx in seq_along(queue)) {
+    ic <- queue[[idx]]
+    out_path <- file.path(script_dir, "icons", pal, "agents",
+                          paste0(ic$agentId, ".webp"))
 
-    # Update manifest entry status
+    # Skip existing if requested
+    if (opts$skip_existing && file.exists(out_path)) {
+      next
+    }
+
+    agent_color <- pal_colors$agents[[ic$agentId]]
+    if (is.null(agent_color)) {
+      log_msg(sprintf("ERROR: %s: No color in palette %s", ic$agentId, pal))
+      error_count <- error_count + 1
+      next
+    }
+
+    tryCatch({
+      render_agent_icon(
+        agent_id   = ic$agentId,
+        out_path   = out_path,
+        glow_sigma = opts$glow_sigma,
+        color      = agent_color
+      )
+
+      kb <- file_size_kb(out_path)
+      log_msg(sprintf("OK: [%s] %s (%.1fKB)", pal, ic$agentId, kb))
+      done_count <- done_count + 1
+
+    }, error = function(e) {
+      log_msg(sprintf("ERROR: [%s] %s: %s", pal, ic$agentId, conditionMessage(e)))
+      error_count <<- error_count + 1
+    })
+  }
+
+  pal_elapsed <- (proc.time() - pal_start)["elapsed"]
+  log_msg(sprintf("  [%s] Complete: %d succeeded, %d failed in %.1fs",
+                  pal, done_count, error_count, pal_elapsed))
+
+  total_rendered <- total_rendered + done_count
+  total_errors <- total_errors + error_count
+}
+
+# Update manifest status and paths for cyberpunk palette
+if ("cyberpunk" %in% palettes_to_render) {
+  for (ic in queue) {
+    out_path <- file.path(script_dir, "icons", "cyberpunk", "agents",
+                          paste0(ic$agentId, ".webp"))
     for (j in seq_along(manifest$icons)) {
       if (manifest$icons[[j]]$agentId == ic$agentId) {
-        manifest$icons[[j]]$status <- "done"
-        manifest$icons[[j]]$lastError <- NULL
+        if (file.exists(out_path)) {
+          manifest$icons[[j]]$status <- "done"
+          manifest$icons[[j]]$lastError <- NULL
+        }
+        manifest$icons[[j]]$path <- sprintf("icons/cyberpunk/agents/%s.webp",
+                                             ic$agentId)
         break
       }
     }
-    done_count <- done_count + 1
-
-  }, error = function(e) {
-    log_msg(sprintf("ERROR: %s: %s", ic$agentId, conditionMessage(e)))
-
-    for (j in seq_along(manifest$icons)) {
-      if (manifest$icons[[j]]$agentId == ic$agentId) {
-        manifest$icons[[j]]$status <- "error"
-        manifest$icons[[j]]$lastError <- conditionMessage(e)
-        break
-      }
-    }
-    error_count <<- error_count + 1
-  })
-
-  # Save manifest after each icon (progress persistence)
+  }
   write_manifest(manifest, manifest_path)
 }
 
 elapsed <- (proc.time() - start_time)["elapsed"]
-log_msg(sprintf("Complete: %d succeeded, %d failed in %.1fs",
-                done_count, error_count, elapsed))
+log_msg(sprintf("All done: %d rendered, %d errors across %d palettes in %.1fs",
+                total_rendered, total_errors, length(palettes_to_render), elapsed))

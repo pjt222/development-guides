@@ -89,6 +89,13 @@ SKILL_GLYPHS <- list(
   "resolve-git-conflicts"          = "glyph_conflict_cross",
   "create-github-release"          = "glyph_tag_release",
 
+  # ── jigsawr (5) ──────────────────────────────────────────────────────
+  "generate-puzzle"            = "glyph_jigsaw_code",
+  "add-puzzle-type"            = "glyph_jigsaw_plus",
+  "render-puzzle-docs"         = "glyph_jigsaw_book",
+  "run-puzzle-tests"           = "glyph_jigsaw_check",
+  "validate-piles-notation"    = "glyph_jigsaw_stack",
+
   # ── mcp-integration (3) ───────────────────────────────────────────────
   "configure-mcp-server"           = "glyph_server_plug",
   "build-custom-mcp-server"        = "glyph_wrench_server",

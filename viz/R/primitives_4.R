@@ -365,3 +365,141 @@ glyph_camo_grid <- function(cx, cy, s, col, bright) {
   }
   layers
 }
+
+# ── Jigsawr domain glyphs ────────────────────────────────────────────────
+
+# ── glyph_jigsaw_code: puzzle piece with code brackets ──────────────────
+glyph_jigsaw_code <- function(cx, cy, s, col, bright) {
+  # Basic jigsaw piece outline (simplified)
+  r <- 22 * s
+  piece <- data.frame(
+    x = cx + r * c(-1, -0.3, -0.3, -0.15, 0, 0.15, 0.3, 0.3, 1, 1, 0.3, 0.3, 0.15, 0, -0.15, -0.3, -0.3, -1, -1),
+    y = cy + r * c(1, 1, 0.8, 0.85, 0.7, 0.85, 0.8, 1, 1, -1, -1, -0.8, -0.85, -0.7, -0.85, -0.8, -1, -1, 1)
+  )
+  # Code brackets < >
+  lbracket <- data.frame(
+    x = cx + s * c(-2, -8, -2),
+    y = cy + s * c(10, 0, -10)
+  )
+  rbracket <- data.frame(
+    x = cx + s * c(2, 8, 2),
+    y = cy + s * c(10, 0, -10)
+  )
+  list(
+    ggplot2::geom_polygon(data = piece, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = lbracket, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3)),
+    ggplot2::geom_path(data = rbracket, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3))
+  )
+}
+
+# ── glyph_jigsaw_plus: puzzle piece with + symbol ──────────────────────
+glyph_jigsaw_plus <- function(cx, cy, s, col, bright) {
+  r <- 20 * s
+  # Simplified puzzle piece
+  piece <- data.frame(
+    x = cx + r * c(-1, -0.3, -0.3, -0.15, 0, 0.15, 0.3, 0.3, 1, 1, -1, -1),
+    y = cy + r * c(1, 1, 0.8, 0.85, 0.7, 0.85, 0.8, 1, 1, -1, -1, 1)
+  )
+  # Plus symbol
+  plus_h <- data.frame(x = c(cx - 10 * s, cx + 10 * s), y = c(cy - 4 * s, cy - 4 * s))
+  plus_v <- data.frame(x = c(cx, cx), y = c(cy - 14 * s, cy + 6 * s))
+  list(
+    ggplot2::geom_polygon(data = piece, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = plus_h, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3.5)),
+    ggplot2::geom_path(data = plus_v, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3.5))
+  )
+}
+
+# ── glyph_jigsaw_book: open book with puzzle piece ─────────────────────
+glyph_jigsaw_book <- function(cx, cy, s, col, bright) {
+  # Open book (two angled rectangles)
+  left_page <- data.frame(
+    x = cx + s * c(-22, -4, -4, -22),
+    y = cy + s * c(-16, -12, 18, 14)
+  )
+  right_page <- data.frame(
+    x = cx + s * c(4, 22, 22, 4),
+    y = cy + s * c(-12, -16, 14, 18)
+  )
+  # Spine line
+  spine <- data.frame(x = c(cx, cx), y = c(cy - 12 * s, cy + 18 * s))
+  # Small puzzle piece on right page
+  pp_cx <- cx + 13 * s
+  pp_cy <- cy + 2 * s
+  pp_s <- s * 0.5
+  piece <- data.frame(
+    x = pp_cx + 14 * pp_s * c(-1, 0, 0.15, 0, 0.15, 0.3, 0.3, 1, 1, -1, -1),
+    y = pp_cy + 14 * pp_s * c(1, 1, 0.85, 0.7, 0.85, 0.8, 1, 1, -1, -1, 1)
+  )
+  list(
+    ggplot2::geom_polygon(data = left_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = right_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = spine, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_polygon(data = piece, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_jigsaw_check: checkmark over puzzle grid ────────────────────
+glyph_jigsaw_check <- function(cx, cy, s, col, bright) {
+  # 2x2 grid of small squares (puzzle tiles)
+  layers <- list()
+  cell <- 12 * s
+  for (row in 0:1) {
+    for (col_i in 0:1) {
+      df <- data.frame(
+        xmin = cx + (col_i - 1) * cell, xmax = cx + (col_i - 1) * cell + cell * 0.9,
+        ymin = cy + (row - 1) * cell - 4 * s, ymax = cy + (row - 1) * cell + cell * 0.9 - 4 * s
+      )
+      layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = df,
+        .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+        fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.2))
+    }
+  }
+  # Checkmark (big, overlaid)
+  check <- data.frame(
+    x = cx + s * c(-10, -3, 14),
+    y = cy + s * c(4, -4, 16)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = check, .aes(x, y),
+    color = bright, linewidth = .lw(s, 4))
+  layers
+}
+
+# ── glyph_jigsaw_stack: layered pieces with validation mark ──────────
+glyph_jigsaw_stack <- function(cx, cy, s, col, bright) {
+  # Three stacked rectangles (layers) offset slightly
+  layers <- list()
+  for (i in 3:1) {
+    offset <- (i - 2) * 5 * s
+    df <- data.frame(
+      xmin = cx - 18 * s + offset, xmax = cx + 18 * s + offset,
+      ymin = cy - 12 * s + offset, ymax = cy + 4 * s + offset
+    )
+    alpha <- 0.08 + (4 - i) * 0.06
+    layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = df,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, alpha), color = col, linewidth = .lw(s, 1.5))
+  }
+  # Small checkmark badge in bottom-right
+  badge <- data.frame(x0 = cx + 14 * s, y0 = cy - 14 * s, r = 8 * s)
+  check <- data.frame(
+    x = cx + s * c(10, 14, 20),
+    y = cy + s * c(-14, -18, -10)
+  )
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = badge,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 1.5))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = check, .aes(x, y),
+    color = bright, linewidth = .lw(s, 3))
+  layers
+}

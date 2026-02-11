@@ -78,18 +78,21 @@ render_glyph <- function(color, glyph_fn_name, entity_id, out_path,
 
 #' Render a single skill icon to WebP
 #'
-#' @param domain Domain name (determines color palette)
+#' @param domain Domain name (determines color palette unless color is provided)
 #' @param skill_id Skill identifier (determines glyph shape)
 #' @param seed Integer seed (unused in new pipeline, kept for API compat)
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 8)
 #' @param size_px Output dimension in pixels (default 1024)
+#' @param color Optional explicit hex color (overrides domain lookup)
 #' @return Invisible TRUE on success
 render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
-                        glow_sigma = 8, size_px = 1024) {
-  color <- DOMAIN_COLORS[[domain]]
+                        glow_sigma = 8, size_px = 1024, color = NULL) {
   if (is.null(color)) {
-    stop("Unknown domain: ", domain, call. = FALSE)
+    color <- DOMAIN_COLORS[[domain]]
+    if (is.null(color)) {
+      stop("Unknown domain: ", domain, call. = FALSE)
+    }
   }
 
   if (is.null(skill_id)) {

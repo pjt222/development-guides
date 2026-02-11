@@ -1,17 +1,21 @@
 {
   "meta": {
-    "generated": "2026-02-10T15:34:37.408Z",
-    "totalSkills": 135,
-    "totalAgents": 21,
-    "totalNodes": 156,
-    "totalLinks": 761,
-    "totalAgentLinks": 185,
-    "totalDomains": 21
+    "generated": "2026-02-11T13:17:35.628Z",
+    "totalSkills": 140,
+    "totalAgents": 22,
+    "totalNodes": 162,
+    "totalLinks": 792,
+    "totalAgentLinks": 197,
+    "totalDomains": 22
   },
   "domains": {
     "r-packages": {
       "description": "R package development lifecycle skills",
       "count": 10
+    },
+    "jigsawr": {
+      "description": "jigsawR puzzle package development skills",
+      "count": 5
     },
     "containerization": {
       "description": "Docker and container workflow skills",
@@ -323,6 +327,121 @@
         "build-pkgdown-site"
       ],
       "path": "r-packages/release-package-version/SKILL.md"
+    },
+    {
+      "id": "generate-puzzle",
+      "type": "skill",
+      "title": "Generate Puzzle",
+      "domain": "jigsawr",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Generate puzzles via generate_puzzle() or geom_puzzle_*() with config validation",
+      "tags": [
+        "jigsawr",
+        "puzzle",
+        "svg",
+        "generation",
+        "ggplot2"
+      ],
+      "related": [
+        "add-puzzle-type",
+        "validate-piles-notation",
+        "run-puzzle-tests",
+        "write-testthat-tests"
+      ],
+      "path": "jigsawr/generate-puzzle/SKILL.md"
+    },
+    {
+      "id": "add-puzzle-type",
+      "type": "skill",
+      "title": "Add Puzzle Type",
+      "domain": "jigsawr",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Scaffold a new puzzle type across all 10+ pipeline integration points",
+      "tags": [
+        "jigsawr",
+        "puzzle-type",
+        "pipeline",
+        "integration",
+        "scaffold"
+      ],
+      "related": [
+        "generate-puzzle",
+        "run-puzzle-tests",
+        "validate-piles-notation",
+        "write-testthat-tests",
+        "write-roxygen-docs"
+      ],
+      "path": "jigsawr/add-puzzle-type/SKILL.md"
+    },
+    {
+      "id": "render-puzzle-docs",
+      "type": "skill",
+      "title": "Render Puzzle Docs",
+      "domain": "jigsawr",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Render the jigsawR Quarto documentation site for GitHub Pages",
+      "tags": [
+        "jigsawr",
+        "quarto",
+        "documentation",
+        "github-pages",
+        "rendering"
+      ],
+      "related": [
+        "generate-puzzle",
+        "run-puzzle-tests",
+        "create-quarto-report"
+      ],
+      "path": "jigsawr/render-puzzle-docs/SKILL.md"
+    },
+    {
+      "id": "run-puzzle-tests",
+      "type": "skill",
+      "title": "Run Puzzle Tests",
+      "domain": "jigsawr",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Run the jigsawR test suite via WSL R with pass/fail/skip interpretation",
+      "tags": [
+        "jigsawr",
+        "testing",
+        "testthat",
+        "renv",
+        "wsl"
+      ],
+      "related": [
+        "generate-puzzle",
+        "add-puzzle-type",
+        "write-testthat-tests",
+        "validate-piles-notation"
+      ],
+      "path": "jigsawr/run-puzzle-tests/SKILL.md"
+    },
+    {
+      "id": "validate-piles-notation",
+      "type": "skill",
+      "title": "Validate PILES Notation",
+      "domain": "jigsawr",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Parse and validate PILES notation for piece fusion groups",
+      "tags": [
+        "jigsawr",
+        "piles",
+        "notation",
+        "fusion",
+        "parsing",
+        "dsl"
+      ],
+      "related": [
+        "generate-puzzle",
+        "add-puzzle-type",
+        "run-puzzle-tests"
+      ],
+      "path": "jigsawr/validate-piles-notation/SKILL.md"
     },
     {
       "id": "create-r-dockerfile",
@@ -4033,6 +4152,49 @@
       "path": "agents/swarm-strategist.md"
     },
     {
+      "id": "agent:jigsawr-developer",
+      "type": "agent",
+      "title": "Jigsawr Developer",
+      "priority": "high",
+      "description": "Specialized agent for jigsawR package development covering puzzle generation, pipeline integration, PILES notation, ggpuzzle layers, Quarto docs, and Shiny app",
+      "tags": [
+        "R",
+        "jigsawR",
+        "puzzle",
+        "svg",
+        "ggplot2",
+        "shiny",
+        "quarto",
+        "PILES"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [
+        "r-mcptools"
+      ],
+      "skills": [
+        "generate-puzzle",
+        "add-puzzle-type",
+        "render-puzzle-docs",
+        "run-puzzle-tests",
+        "validate-piles-notation",
+        "write-roxygen-docs",
+        "write-testthat-tests",
+        "manage-renv-dependencies",
+        "setup-github-actions-ci",
+        "commit-changes",
+        "create-pull-request",
+        "manage-git-branches"
+      ],
+      "path": "agents/jigsawr-developer.md"
+    },
+    {
       "id": "agent:shapeshifter",
       "type": "agent",
       "title": "Shapeshifter",
@@ -4262,6 +4424,101 @@
     {
       "source": "release-package-version",
       "target": "build-pkgdown-site",
+      "type": "skill"
+    },
+    {
+      "source": "generate-puzzle",
+      "target": "add-puzzle-type",
+      "type": "skill"
+    },
+    {
+      "source": "generate-puzzle",
+      "target": "validate-piles-notation",
+      "type": "skill"
+    },
+    {
+      "source": "generate-puzzle",
+      "target": "run-puzzle-tests",
+      "type": "skill"
+    },
+    {
+      "source": "generate-puzzle",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "add-puzzle-type",
+      "target": "generate-puzzle",
+      "type": "skill"
+    },
+    {
+      "source": "add-puzzle-type",
+      "target": "run-puzzle-tests",
+      "type": "skill"
+    },
+    {
+      "source": "add-puzzle-type",
+      "target": "validate-piles-notation",
+      "type": "skill"
+    },
+    {
+      "source": "add-puzzle-type",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "add-puzzle-type",
+      "target": "write-roxygen-docs",
+      "type": "skill"
+    },
+    {
+      "source": "render-puzzle-docs",
+      "target": "generate-puzzle",
+      "type": "skill"
+    },
+    {
+      "source": "render-puzzle-docs",
+      "target": "run-puzzle-tests",
+      "type": "skill"
+    },
+    {
+      "source": "render-puzzle-docs",
+      "target": "create-quarto-report",
+      "type": "skill"
+    },
+    {
+      "source": "run-puzzle-tests",
+      "target": "generate-puzzle",
+      "type": "skill"
+    },
+    {
+      "source": "run-puzzle-tests",
+      "target": "add-puzzle-type",
+      "type": "skill"
+    },
+    {
+      "source": "run-puzzle-tests",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "run-puzzle-tests",
+      "target": "validate-piles-notation",
+      "type": "skill"
+    },
+    {
+      "source": "validate-piles-notation",
+      "target": "generate-puzzle",
+      "type": "skill"
+    },
+    {
+      "source": "validate-piles-notation",
+      "target": "add-puzzle-type",
+      "type": "skill"
+    },
+    {
+      "source": "validate-piles-notation",
+      "target": "run-puzzle-tests",
       "type": "skill"
     },
     {
@@ -7842,6 +8099,66 @@
     {
       "source": "agent:swarm-strategist",
       "target": "scale-colony",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "generate-puzzle",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "add-puzzle-type",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "render-puzzle-docs",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "run-puzzle-tests",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "validate-piles-notation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "write-roxygen-docs",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "write-testthat-tests",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "manage-renv-dependencies",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "setup-github-actions-ci",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "commit-changes",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "create-pull-request",
+      "type": "agent"
+    },
+    {
+      "source": "agent:jigsawr-developer",
+      "target": "manage-git-branches",
       "type": "agent"
     },
     {

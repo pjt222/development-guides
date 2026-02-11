@@ -1,5 +1,5 @@
 # agent_colors.R - Per-agent cyberpunk neon color palette
-# Each of 19 agents gets a unique color for glyph rendering.
+# Each of 22 agents gets a unique color for glyph rendering.
 # Follows the same hex format as DOMAIN_COLORS in utils.R.
 
 AGENT_COLORS <- list(
@@ -7,7 +7,7 @@ AGENT_COLORS <- list(
   "r-developer"             = "#00f0ff",   # cyan
   "code-reviewer"           = "#ff66aa",   # rose
   "web-developer"           = "#ff6633",   # coral
-
+  "jigsawr-developer"       = "#22ddaa",   # teal-green
 
   # ── Security & Compliance ───────────────────────────────────────────────
   "security-analyst"        = "#ff3333",   # bright red

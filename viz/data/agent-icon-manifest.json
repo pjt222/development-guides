@@ -4,7 +4,19 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 21
+    "total_agents": 22,
+    "palettes": [
+      "cyberpunk",
+      "viridis",
+      "magma",
+      "inferno",
+      "plasma",
+      "cividis",
+      "mako",
+      "rocket",
+      "turbo"
+    ],
+    "path_format": "icons/<palette>/agents/<agentId>.webp"
   },
   "agentStyles": {
     "r-developer": {
@@ -107,6 +119,11 @@
       "glow": "lime",
       "concept": "Hexagonal cell cluster with radiating connections"
     },
+    "jigsawr-developer": {
+      "description": "Jigsaw puzzle R package development",
+      "glow": "teal-green",
+      "concept": "Interlocking puzzle pieces forming hexagonal badge"
+    },
     "shapeshifter": {
       "description": "Metamorphic transformation and adaptive systems",
       "glow": "lavender",
@@ -116,107 +133,112 @@
   "icons": [
     {
       "agentId": "r-developer",
-      "path": "icons/agents/r-developer.webp",
+      "path": "icons/cyberpunk/agents/r-developer.webp",
       "status": "done"
     },
     {
       "agentId": "code-reviewer",
-      "path": "icons/agents/code-reviewer.webp",
+      "path": "icons/cyberpunk/agents/code-reviewer.webp",
       "status": "done"
     },
     {
       "agentId": "security-analyst",
-      "path": "icons/agents/security-analyst.webp",
+      "path": "icons/cyberpunk/agents/security-analyst.webp",
       "status": "done"
     },
     {
       "agentId": "web-developer",
-      "path": "icons/agents/web-developer.webp",
+      "path": "icons/cyberpunk/agents/web-developer.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "jigsawr-developer",
+      "path": "icons/cyberpunk/agents/jigsawr-developer.webp",
       "status": "done"
     },
     {
       "agentId": "survivalist",
-      "path": "icons/agents/survivalist.webp",
+      "path": "icons/cyberpunk/agents/survivalist.webp",
       "status": "done"
     },
     {
       "agentId": "mystic",
-      "path": "icons/agents/mystic.webp",
+      "path": "icons/cyberpunk/agents/mystic.webp",
       "status": "done"
     },
     {
       "agentId": "martial-artist",
-      "path": "icons/agents/martial-artist.webp",
+      "path": "icons/cyberpunk/agents/martial-artist.webp",
       "status": "done"
     },
     {
       "agentId": "designer",
-      "path": "icons/agents/designer.webp",
+      "path": "icons/cyberpunk/agents/designer.webp",
       "status": "done"
     },
     {
       "agentId": "gxp-validator",
-      "path": "icons/agents/gxp-validator.webp",
+      "path": "icons/cyberpunk/agents/gxp-validator.webp",
       "status": "done"
     },
     {
       "agentId": "auditor",
-      "path": "icons/agents/auditor.webp",
+      "path": "icons/cyberpunk/agents/auditor.webp",
       "status": "done"
     },
     {
       "agentId": "senior-researcher",
-      "path": "icons/agents/senior-researcher.webp",
+      "path": "icons/cyberpunk/agents/senior-researcher.webp",
       "status": "done"
     },
     {
       "agentId": "senior-data-scientist",
-      "path": "icons/agents/senior-data-scientist.webp",
+      "path": "icons/cyberpunk/agents/senior-data-scientist.webp",
       "status": "done"
     },
     {
       "agentId": "senior-software-developer",
-      "path": "icons/agents/senior-software-developer.webp",
+      "path": "icons/cyberpunk/agents/senior-software-developer.webp",
       "status": "done"
     },
     {
       "agentId": "senior-web-designer",
-      "path": "icons/agents/senior-web-designer.webp",
+      "path": "icons/cyberpunk/agents/senior-web-designer.webp",
       "status": "done"
     },
     {
       "agentId": "senior-ux-ui-specialist",
-      "path": "icons/agents/senior-ux-ui-specialist.webp",
+      "path": "icons/cyberpunk/agents/senior-ux-ui-specialist.webp",
       "status": "done"
     },
     {
       "agentId": "project-manager",
-      "path": "icons/agents/project-manager.webp",
+      "path": "icons/cyberpunk/agents/project-manager.webp",
       "status": "done"
     },
     {
       "agentId": "devops-engineer",
-      "path": "icons/agents/devops-engineer.webp",
+      "path": "icons/cyberpunk/agents/devops-engineer.webp",
       "status": "done"
     },
     {
       "agentId": "mlops-engineer",
-      "path": "icons/agents/mlops-engineer.webp",
+      "path": "icons/cyberpunk/agents/mlops-engineer.webp",
       "status": "done"
     },
     {
       "agentId": "putior-integrator",
-      "path": "icons/agents/putior-integrator.webp",
+      "path": "icons/cyberpunk/agents/putior-integrator.webp",
       "status": "done"
     },
     {
       "agentId": "swarm-strategist",
-      "path": "icons/agents/swarm-strategist.webp",
+      "path": "icons/cyberpunk/agents/swarm-strategist.webp",
       "status": "done"
     },
     {
       "agentId": "shapeshifter",
-      "path": "icons/agents/shapeshifter.webp",
+      "path": "icons/cyberpunk/agents/shapeshifter.webp",
       "status": "done"
     }
   ]

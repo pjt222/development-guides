@@ -8,12 +8,15 @@
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 8)
 #' @param size_px Output dimension in pixels (default 1024)
+#' @param color Optional explicit hex color (overrides AGENT_COLORS lookup)
 #' @return Invisible TRUE on success
 render_agent_icon <- function(agent_id, out_path, glow_sigma = 8,
-                               size_px = 1024) {
-  color <- AGENT_COLORS[[agent_id]]
+                               size_px = 1024, color = NULL) {
   if (is.null(color)) {
-    stop("Unknown agent: ", agent_id, call. = FALSE)
+    color <- AGENT_COLORS[[agent_id]]
+    if (is.null(color)) {
+      stop("Unknown agent: ", agent_id, call. = FALSE)
+    }
   }
 
   glyph_fn_name <- AGENT_GLYPHS[[agent_id]]

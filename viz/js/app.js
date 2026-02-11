@@ -2,7 +2,7 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
+import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
 import { initFilters, getVisibleSkillIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -93,7 +93,7 @@ async function main() {
   });
 
   // ── Preload icons ──
-  preloadIcons(data.nodes);
+  preloadIcons(data.nodes, getCurrentThemeName());
 
   // ── Bind controls ──
   document.getElementById('btn-zoom-in').addEventListener('click', zoomIn);
@@ -108,8 +108,8 @@ async function main() {
     try {
       setTheme(themeSelect.value);
       localStorage.setItem('skillnet-theme', themeSelect.value);
+      switchIconPalette(themeSelect.value, data.nodes);
       refreshSwatches();
-      const g = getGraph();
       refreshGraph();
     } catch (err) {
       console.error('Theme switch failed:', err);

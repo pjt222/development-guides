@@ -1,0 +1,164 @@
+# palettes.R - Multi-palette color generation using viridisLite
+# Generates domain and agent colors for 9 palettes: cyberpunk + 8 viridis variants.
+# Single source of truth for palette colors shared by R rendering and JS themes.
+
+# ── Palette names ─────────────────────────────────────────────────────────
+PALETTE_NAMES <- c(
+  "cyberpunk", "viridis", "magma", "inferno",
+  "plasma", "cividis", "mako", "rocket", "turbo"
+)
+
+# ── Domain order (alphabetical, 22 domains including jigsawr) ─────────────
+PALETTE_DOMAIN_ORDER <- c(
+  "bushcraft", "compliance", "containerization", "data-serialization",
+  "defensive", "design", "devops", "esoteric", "general", "git",
+  "jigsawr", "mcp-integration", "mlops", "morphic", "observability",
+  "project-management", "r-packages", "reporting", "review", "swarm",
+  "web-dev", "workflow-visualization"
+)
+
+# ── Agent order (alphabetical, 22 agents including jigsawr-developer) ─────
+PALETTE_AGENT_ORDER <- c(
+  "auditor", "code-reviewer", "designer", "devops-engineer",
+  "gxp-validator", "jigsawr-developer", "martial-artist", "mlops-engineer",
+  "mystic", "project-manager", "putior-integrator", "r-developer",
+  "security-analyst", "senior-data-scientist", "senior-researcher",
+  "senior-software-developer", "senior-ux-ui-specialist",
+  "senior-web-designer", "shapeshifter", "survivalist",
+  "swarm-strategist", "web-developer"
+)
+
+# ── viridisLite option mapping ────────────────────────────────────────────
+VIRIDIS_OPTIONS <- list(
+  viridis = "D",
+  magma   = "A",
+  inferno = "B",
+  plasma  = "C",
+  cividis = "E",
+  mako    = "F",
+  rocket  = "G",
+  turbo   = "H"
+)
+
+#' Get palette colors for a given palette name
+#'
+#' @param name Palette name (one of PALETTE_NAMES)
+#' @return List with $domains (named list domain->hex) and $agents (named list agent->hex)
+get_palette_colors <- function(name) {
+  if (!name %in% PALETTE_NAMES) {
+    stop("Unknown palette: ", name, ". Must be one of: ",
+         paste(PALETTE_NAMES, collapse = ", "), call. = FALSE)
+  }
+
+  if (name == "cyberpunk") {
+    return(get_cyberpunk_colors())
+  }
+
+  get_viridis_colors(name)
+}
+
+#' Get cyberpunk palette (hand-tuned neon colors)
+get_cyberpunk_colors <- function() {
+  domains <- list(
+    "bushcraft"              = "#88cc44",
+    "compliance"             = "#ff3366",
+    "containerization"       = "#44ddff",
+    "data-serialization"     = "#44aaff",
+    "defensive"              = "#ff4444",
+    "design"                 = "#ff88dd",
+    "devops"                 = "#00ff88",
+    "esoteric"               = "#dd44ff",
+    "general"                = "#ccccff",
+    "git"                    = "#66ffcc",
+    "jigsawr"                = "#22ddaa",
+    "mcp-integration"        = "#00ccaa",
+    "mlops"                  = "#aa66ff",
+    "morphic"                = "#bb88ff",
+    "observability"          = "#ffaa00",
+    "project-management"     = "#ff8844",
+    "r-packages"             = "#00f0ff",
+    "reporting"              = "#ffdd00",
+    "review"                 = "#ff66aa",
+    "swarm"                  = "#aadd44",
+    "web-dev"                = "#ff6633",
+    "workflow-visualization" = "#66dd88"
+  )
+
+  agents <- list(
+    "auditor"                   = "#ff7744",
+    "code-reviewer"             = "#ff66aa",
+    "designer"                  = "#ff88dd",
+    "devops-engineer"           = "#00ff88",
+    "gxp-validator"             = "#ff3399",
+    "jigsawr-developer"         = "#22ddaa",
+    "martial-artist"            = "#ff4466",
+    "mlops-engineer"            = "#bb77ff",
+    "mystic"                    = "#dd44ff",
+    "project-manager"           = "#ff8844",
+    "putior-integrator"         = "#66dd88",
+    "r-developer"               = "#00f0ff",
+    "security-analyst"          = "#ff3333",
+    "senior-data-scientist"     = "#aa66ff",
+    "senior-researcher"         = "#ffaa00",
+    "senior-software-developer" = "#44ddff",
+    "senior-ux-ui-specialist"   = "#66ffcc",
+    "senior-web-designer"       = "#ffdd00",
+    "shapeshifter"              = "#bb88ff",
+    "survivalist"               = "#88cc44",
+    "swarm-strategist"          = "#aadd44",
+    "web-developer"             = "#ff6633"
+  )
+
+  list(domains = domains, agents = agents)
+}
+
+#' Get viridis-family palette colors
+#' @param name Palette name (viridis, magma, inferno, plasma, cividis, mako, rocket, turbo)
+get_viridis_colors <- function(name) {
+  opt <- VIRIDIS_OPTIONS[[name]]
+  if (is.null(opt)) stop("Not a viridis palette: ", name, call. = FALSE)
+
+  n_domains <- length(PALETTE_DOMAIN_ORDER)
+  n_agents <- length(PALETTE_AGENT_ORDER)
+
+  # Generate domain colors evenly spaced across the colormap
+
+  domain_hexes <- viridisLite::viridis(n_domains, option = opt)
+
+  # Generate agent colors with an offset to distinguish from domain colors
+  # Use 80% of the range starting at 10% to avoid extremes
+  agent_hexes <- viridisLite::viridis(n_agents, option = opt,
+                                       begin = 0.1, end = 0.9)
+
+  domains <- setNames(as.list(substr(domain_hexes, 1, 7)), PALETTE_DOMAIN_ORDER)
+  agents <- setNames(as.list(substr(agent_hexes, 1, 7)), PALETTE_AGENT_ORDER)
+
+  list(domains = domains, agents = agents)
+}
+
+#' Export all palette colors to JSON
+#' @param out_path Output JSON file path
+export_palette_json <- function(out_path) {
+  palettes <- list()
+  for (name in PALETTE_NAMES) {
+    palettes[[name]] <- get_palette_colors(name)
+  }
+
+  result <- list(
+    meta = list(
+      generated = format(Sys.time(), "%Y-%m-%dT%H:%M:%S"),
+      palette_count = length(PALETTE_NAMES),
+      domain_count = length(PALETTE_DOMAIN_ORDER),
+      agent_count = length(PALETTE_AGENT_ORDER),
+      palettes = PALETTE_NAMES,
+      domains = PALETTE_DOMAIN_ORDER,
+      agents = PALETTE_AGENT_ORDER
+    ),
+    palettes = palettes
+  )
+
+  dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
+  jsonlite::write_json(result, out_path, pretty = TRUE, auto_unbox = TRUE)
+  log_msg(sprintf("Exported %d palettes to %s", length(PALETTE_NAMES), out_path))
+  invisible(out_path)
+}

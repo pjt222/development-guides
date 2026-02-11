@@ -13,6 +13,7 @@ DOMAIN_COLORS <- list(
   "esoteric"           = "#dd44ff",
   "general"            = "#ccccff",
   "git"                = "#66ffcc",
+  "jigsawr"            = "#22ddaa",
   "mcp-integration"    = "#00ccaa",
   "mlops"              = "#aa66ff",
   "observability"      = "#ffaa00",
@@ -56,11 +57,13 @@ dim_hex <- function(hex, factor = 0.4) {
 # ── CLI argument parsing ─────────────────────────────────────────────────
 parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
   opts <- list(
-    only         = NULL,
+    only          = NULL,
+    palette       = "all",
+    palette_list  = FALSE,
     skip_existing = FALSE,
-    dry_run      = FALSE,
-    glow_sigma   = 8,
-    help         = FALSE
+    dry_run       = FALSE,
+    glow_sigma    = 8,
+    help          = FALSE
   )
 
   i <- 1
@@ -69,6 +72,11 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     if (arg == "--only" && i < length(args)) {
       i <- i + 1
       opts$only <- args[i]
+    } else if (arg == "--palette" && i < length(args)) {
+      i <- i + 1
+      opts$palette <- args[i]
+    } else if (arg == "--palette-list") {
+      opts$palette_list <- TRUE
     } else if (arg == "--skip-existing") {
       opts$skip_existing <- TRUE
     } else if (arg == "--dry-run") {
@@ -90,6 +98,9 @@ print_usage <- function(script_name = "build-icons.R",
   cat(sprintf("Usage: Rscript %s [OPTIONS]\n\n", script_name))
   cat("Options:\n")
   cat(sprintf("  --only %-12s %s\n", filter_label, filter_desc))
+  cat("  --palette <name>    Palette to render (default: all). One of: cyberpunk,\n")
+  cat("                      viridis, magma, inferno, plasma, cividis, mako, rocket, turbo\n")
+  cat("  --palette-list      List available palette names and exit\n")
   cat("  --skip-existing     Skip icons marked 'done' with existing WebP files\n")
   cat("  --dry-run           List what would be generated without rendering\n")
   cat("  --glow-sigma <n>    Glow blur radius (default: 8)\n")

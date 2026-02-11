@@ -2,7 +2,7 @@
  * panel.js - Right-side detail panel (open/close/populate)
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getCurrentThemeName } from './colors.js';
 
 const GITHUB_BASE = 'https://github.com/pjt222/development-guides/blob/main/skills/';
 const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
@@ -41,7 +41,7 @@ function openSkillPanel(node) {
   const color = DOMAIN_COLORS[node.domain] || '#ffffff';
   const badgeColor = COMPLEXITY_BADGE_COLORS[node.complexity] || '#999';
 
-  const iconSrc = `icons/${encodeURI(node.domain)}/${encodeURI(node.id)}.webp`;
+  const iconSrc = `icons/${getCurrentThemeName()}/${encodeURI(node.domain)}/${encodeURI(node.id)}.webp`;
   let html = `
     <div class="panel-icon-wrapper">
       <img class="panel-icon" src="${iconSrc}" alt="" onerror="this.parentElement.style.display='none'">
@@ -81,11 +81,11 @@ function openSkillPanel(node) {
 }
 
 function openAgentPanel(node) {
-  const color = getAgentColor();
+  const agentId = node.id.replace('agent:', '');
+  const color = getAgentColor(agentId);
   const priorityColor = PRIORITY_BADGE_COLORS[node.priority] || '#888899';
 
-  const agentId = node.id.replace('agent:', '');
-  const iconSrc = `icons/agents/${encodeURI(agentId)}.webp`;
+  const iconSrc = `icons/${getCurrentThemeName()}/agents/${encodeURI(agentId)}.webp`;
 
   let html = `
     <div class="panel-icon-wrapper">

@@ -787,3 +787,43 @@ glyph_agent_shifter <- function(cx, cy, s, col, bright) {
     ggplot2::geom_path(data = arc2, .aes(x, y), color = col, linewidth = .lw(s, 1))
   )
 }
+
+# ── glyph_agent_jigsawr: interlocking puzzle pieces in hexagonal badge ──
+glyph_agent_jigsawr <- function(cx, cy, s, col, bright) {
+  # hexagonal outer frame
+  t <- seq(0, 2 * pi, length.out = 7)
+  r <- 28 * s
+  hex <- data.frame(x = cx + r * cos(t + pi / 6), y = cy + r * sin(t + pi / 6))
+  # Two interlocking puzzle pieces
+  # Left piece
+  lp <- data.frame(
+    x = cx + s * c(-16, -4, -4, -2, 0, -2, -4, -4, -16, -16),
+    y = cy + s * c(12, 12, 5, 4, 0, -4, -5, -12, -12, 12)
+  )
+  # Right piece (interlocks with left)
+  rp <- data.frame(
+    x = cx + s * c(-4, 16, 16, -4, -4, -2, 0, -2, -4, -4, -2, 0, -2, -4),
+    y = cy + s * c(12, 12, -12, -12, -5, -4, 0, 4, 5, 12, 12, 12, 12, 12)
+  )
+  # Simplified: two rectangles with a tab
+  rp_simple <- data.frame(
+    x = cx + s * c(0, 16, 16, 0, 0, 2, 4, 2, 0),
+    y = cy + s * c(12, 12, -12, -12, -5, -4, 0, 4, 5)
+  )
+  # Code cursor at center
+  cursor <- data.frame(
+    xmin = cx + 6 * s, xmax = cx + 10 * s,
+    ymin = cy - 2 * s, ymax = cy + 2 * s
+  )
+  list(
+    ggplot2::geom_polygon(data = hex, .aes(x, y),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = lp, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = rp_simple, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = cursor,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = bright, color = NA)
+  )
+}
