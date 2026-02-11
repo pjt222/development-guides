@@ -2,7 +2,7 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getAgentsVisible, getVisibleAgentIds } from './graph.js';
+import { initGraph, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
 import { initFilters, getVisibleDomains, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';

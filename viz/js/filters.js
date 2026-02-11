@@ -114,17 +114,29 @@ function updateAgentsCount(agents) {
 
 // ── Section collapse / expand ────────────────────────────────────────
 
+function toggleSection(header) {
+  const expanded = header.getAttribute('aria-expanded') === 'true';
+  header.setAttribute('aria-expanded', !expanded);
+  const bodyId = header.getAttribute('aria-controls');
+  const body = bodyId ? document.getElementById(bodyId) : header.nextElementSibling;
+  if (body) body.classList.toggle('open', !expanded);
+}
+
 function bindSectionHeaders() {
   filterEl.querySelectorAll('.filter-section-header').forEach(header => {
     // Collapse/expand on header click (but not on bulk buttons)
     header.addEventListener('click', e => {
-      // Ignore clicks on bulk buttons inside the header
       if (e.target.closest('.filter-bulk')) return;
+      toggleSection(header);
+    });
 
-      const expanded = header.getAttribute('aria-expanded') === 'true';
-      header.setAttribute('aria-expanded', !expanded);
-      const body = header.nextElementSibling;
-      if (body) body.classList.toggle('open', !expanded);
+    // Keyboard support for div[role="button"]
+    header.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        if (e.target.closest('.filter-bulk')) return;
+        e.preventDefault();
+        toggleSection(header);
+      }
     });
 
     // Bulk All/None buttons
@@ -161,6 +173,12 @@ function bindPanelToggle() {
   toggle.addEventListener('click', () => {
     const collapsed = filterEl.classList.toggle('collapsed');
     toggle.classList.toggle('collapsed', collapsed);
+    toggle.setAttribute('aria-expanded', !collapsed);
+
+    // Move focus to toggle when collapsing if focus was inside the panel
+    if (collapsed && filterEl.contains(document.activeElement)) {
+      toggle.focus();
+    }
   });
 }
 

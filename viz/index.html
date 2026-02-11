@@ -44,8 +44,8 @@
   </header>
 
   <!-- ── Panel Toggle (Left edge) ──────────────────────────────── -->
-  <button id="panel-toggle" class="panel-toggle" title="Toggle filter panel">
-    <span class="panel-toggle-icon">&#x25C0;</span>
+  <button id="panel-toggle" class="panel-toggle" aria-label="Toggle filter panel" aria-expanded="true" aria-controls="filter-panel">
+    <span class="panel-toggle-icon" aria-hidden="true">&#x25C0;</span>
   </button>
 
   <!-- ── Filter Panel (Left) ───────────────────────────────────── -->
@@ -53,32 +53,32 @@
 
     <!-- ── Skills Section ──────────────────────────────────────── -->
     <div class="filter-section" data-section="skills">
-      <button class="filter-section-header" aria-expanded="true">
-        <span class="filter-section-chevron">&#x25BE;</span>
+      <div class="filter-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="skills-section-body">
+        <span class="filter-section-chevron" aria-hidden="true">&#x25BE;</span>
         <h3>Skills</h3>
-        <span class="filter-section-count" id="skills-section-count">0</span>
-        <div class="filter-bulk">
-          <button class="filter-all" data-target="skills">All</button>
-          <button class="filter-none" data-target="skills">None</button>
+        <span class="filter-section-count" id="skills-section-count" aria-live="polite">0</span>
+        <div class="filter-bulk" role="group" aria-label="Bulk actions for Skills">
+          <button class="filter-all" data-target="skills" aria-label="Select all skills">All</button>
+          <button class="filter-none" data-target="skills" aria-label="Deselect all skills">None</button>
         </div>
-      </button>
-      <div class="filter-section-body open">
+      </div>
+      <div id="skills-section-body" class="filter-section-body open">
         <div class="filter-list" id="skills-filter-list"></div>
       </div>
     </div>
 
     <!-- ── Agents Section ──────────────────────────────────────── -->
     <div class="filter-section" data-section="agents">
-      <button class="filter-section-header" aria-expanded="true">
-        <span class="filter-section-chevron">&#x25BE;</span>
+      <div class="filter-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="agents-section-body">
+        <span class="filter-section-chevron" aria-hidden="true">&#x25BE;</span>
         <h3>Agents</h3>
-        <span class="filter-section-count" id="agents-section-count">0</span>
-        <div class="filter-bulk">
-          <button class="filter-all" data-target="agents">All</button>
-          <button class="filter-none" data-target="agents">None</button>
+        <span class="filter-section-count" id="agents-section-count" aria-live="polite">0</span>
+        <div class="filter-bulk" role="group" aria-label="Bulk actions for Agents">
+          <button class="filter-all" data-target="agents" aria-label="Select all agents">All</button>
+          <button class="filter-none" data-target="agents" aria-label="Deselect all agents">None</button>
         </div>
-      </button>
-      <div class="filter-section-body open">
+      </div>
+      <div id="agents-section-body" class="filter-section-body open">
         <div class="filter-list" id="agents-filter-list"></div>
       </div>
     </div>

@@ -213,7 +213,6 @@ body::after {
   transition: transform var(--transition-speed);
 }
 
-.filter-panel.collapsed + .panel-toggle,
 .panel-toggle.collapsed {
   left: 0;
 }
@@ -597,7 +596,7 @@ body::after {
     left: 0;
   }
 
-  .filter-panel:not(.collapsed) ~ .panel-toggle {
+  .panel-toggle:not(.collapsed) {
     left: 260px;
   }
 
