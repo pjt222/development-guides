@@ -184,6 +184,43 @@ body::after {
   color: #666;
 }
 
+/* ── Panel Toggle Button ─────────────────────────────────────── */
+.panel-toggle {
+  position: fixed;
+  top: calc(var(--header-height) + 8px);
+  left: var(--filter-width);
+  z-index: 60;
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--bg-panel-border);
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  color: var(--text-muted);
+  font-size: 12px;
+  padding: 6px 4px 6px 2px;
+  cursor: pointer;
+  transition: left var(--transition-speed), color var(--transition-speed), background var(--transition-speed);
+  line-height: 1;
+}
+
+.panel-toggle:hover {
+  color: var(--text-accent);
+  background: rgba(0, 240, 255, 0.06);
+}
+
+.panel-toggle-icon {
+  display: inline-block;
+  transition: transform var(--transition-speed);
+}
+
+.panel-toggle.collapsed {
+  left: 0;
+}
+
+.panel-toggle.collapsed .panel-toggle-icon {
+  transform: rotate(180deg);
+}
+
 /* ── Filter Panel (Left) ─────────────────────────────────────── */
 .filter-panel {
   position: fixed;
@@ -197,29 +234,77 @@ body::after {
   z-index: 50;
   display: flex;
   flex-direction: column;
-  padding: 12px;
+  padding: 8px 0;
   overflow-y: auto;
   transition: transform var(--transition-speed);
 }
 
-.filter-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+.filter-panel.collapsed {
+  transform: translateX(-100%);
 }
 
-.filter-header h3 {
+/* ── Collapsible Sections ────────────────────────────────────── */
+.filter-section {
+  border-bottom: 1px solid var(--bg-panel-border);
+}
+
+.filter-section:last-child {
+  border-bottom: none;
+}
+
+.filter-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  color: var(--text-primary);
+  transition: background var(--transition-speed);
+}
+
+.filter-section-header:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.filter-section-chevron {
+  font-size: 12px;
+  color: var(--text-muted);
+  transition: transform var(--transition-speed);
+  flex-shrink: 0;
+  width: 14px;
+  text-align: center;
+}
+
+.filter-section-header[aria-expanded="false"] .filter-section-chevron {
+  transform: rotate(-90deg);
+}
+
+.filter-section-header h3 {
   font-family: var(--font-display);
   font-size: 11px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text-muted);
+  margin: 0;
+  flex: 1;
+  text-align: left;
+}
+
+.filter-section-count {
+  font-size: 10px;
+  color: var(--text-accent);
+  font-weight: bold;
+  margin-right: 4px;
 }
 
 .filter-bulk {
   display: flex;
-  gap: 6px;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .filter-bulk button {
@@ -227,10 +312,11 @@ body::after {
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-muted);
   font-family: var(--font-mono);
-  font-size: 10px;
-  padding: 2px 6px;
+  font-size: 9px;
+  padding: 1px 5px;
   cursor: pointer;
   border-radius: 2px;
+  transition: color var(--transition-speed), border-color var(--transition-speed);
 }
 
 .filter-bulk button:hover {
@@ -238,17 +324,29 @@ body::after {
   border-color: var(--text-accent);
 }
 
+/* Collapsible body */
+.filter-section-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.filter-section-body.open {
+  max-height: 800px;
+}
+
 .filter-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
+  padding: 0 8px 8px;
 }
 
 .filter-item {
   display: flex;
   align-items: center;
   gap: 6px;
-  padding: 3px 4px;
+  padding: 3px 6px;
   border-radius: 3px;
   cursor: pointer;
   font-size: 11px;
@@ -264,6 +362,7 @@ body::after {
   width: 13px;
   height: 13px;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .filter-swatch {
@@ -271,6 +370,12 @@ body::after {
   height: 10px;
   border-radius: 2px;
   flex-shrink: 0;
+}
+
+.filter-swatch.agent-hex {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  width: 12px;
+  height: 12px;
 }
 
 .filter-name {
@@ -458,11 +563,7 @@ body::after {
   margin-bottom: 8px;
 }
 
-.agent-toggle-section {
-  border-top: 1px solid var(--bg-panel-border);
-  padding-top: 8px;
-  margin-top: 8px;
-}
+/* (agent-toggle-section removed: agents now in collapsible section) */
 
 /* ── Tooltip ─────────────────────────────────────────────────── */
 .tooltip {
@@ -489,6 +590,14 @@ body::after {
 
   .filter-panel.mobile-open {
     transform: translateX(0);
+  }
+
+  .panel-toggle {
+    left: 0;
+  }
+
+  .panel-toggle:not(.collapsed) {
+    left: 260px;
   }
 
   .detail-panel {

@@ -2,7 +2,7 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, selectNode, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, clearSelection, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setAgentsVisible, getAgentsVisible } from './graph.js';
+import { initGraph, focusNode, resetView, zoomIn, zoomOut, setDomainVisibility, getGraph, refreshGraph, preloadIcons, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel } from './panel.js';
 import { initFilters, getVisibleDomains, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -63,17 +63,17 @@ async function main() {
   });
 
   // ── Init filter panel ──
-  initFilters(document.getElementById('filter-panel'), data.domains, {
+  const agentNodes = data.nodes.filter(n => n.type === 'agent');
+  initFilters(document.getElementById('filter-panel'), data.domains, agentNodes, {
     onFilterChange(visibleDomains) {
       setDomainVisibility(visibleDomains);
       updateFilteredStats(visibleDomains);
     },
-    onAgentToggle(visible) {
-      setAgentsVisible(visible);
+    onAgentFilterChange(visibleIds) {
+      setVisibleAgents(visibleIds);
       setDomainVisibility(getVisibleDomains());
       updateFilteredStats(getVisibleDomains());
     },
-    agentCount: data.meta.totalAgents,
   });
 
   // ── Init graph ──
@@ -164,10 +164,14 @@ document.addEventListener('mousemove', e => {
 function updateFilteredStats(visibleDomains) {
   if (!allData) return;
   const visSet = new Set(visibleDomains);
-  const showAgents = getAgentsVisible();
+  const agentIds = getVisibleAgentIds();
 
   const visSkills = allData.nodes.filter(n => n.type === 'skill' && visSet.has(n.domain));
-  const visAgents = showAgents ? allData.nodes.filter(n => n.type === 'agent') : [];
+  const visAgents = allData.nodes.filter(n => {
+    if (n.type !== 'agent') return false;
+    if (agentIds === null) return true;
+    return agentIds.has(n.id);
+  });
   const visNodeIds = new Set([...visSkills, ...visAgents].map(n => n.id));
   const visLinks = allData.links.filter(l => visNodeIds.has(l.source) && visNodeIds.has(l.target));
 
