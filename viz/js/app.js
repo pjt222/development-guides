@@ -3,7 +3,7 @@
  */
 
 import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
-import { initPanel, openPanel, closePanel } from './panel.js';
+import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
 import { initFilters, getVisibleSkillIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
@@ -110,6 +110,7 @@ async function main() {
       localStorage.setItem('skillnet-theme', themeSelect.value);
       switchIconPalette(themeSelect.value, data.nodes);
       refreshSwatches();
+      refreshPanelTheme();
       refreshGraph();
     } catch (err) {
       console.error('Theme switch failed:', err);

@@ -15,6 +15,7 @@ const PRIORITY_BADGE_COLORS = {
 
 let panelEl = null;
 let onRelatedClick = null;
+let currentNode = null;
 
 export function initPanel(el, { onRelated } = {}) {
   panelEl = el;
@@ -28,6 +29,7 @@ export function initPanel(el, { onRelated } = {}) {
 
 export function openPanel(node) {
   if (!panelEl || !node) return;
+  currentNode = node;
 
   if (node.type === 'agent') {
     openAgentPanel(node);
@@ -35,6 +37,15 @@ export function openPanel(node) {
   }
 
   openSkillPanel(node);
+}
+
+/**
+ * Re-render the panel for the current node (e.g. after theme change).
+ */
+export function refreshPanelTheme() {
+  if (!panelEl || !currentNode) return;
+  if (!panelEl.classList.contains('open')) return;
+  openPanel(currentNode);
 }
 
 function openSkillPanel(node) {
