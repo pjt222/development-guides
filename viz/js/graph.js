@@ -184,11 +184,23 @@ export function getIconMode() {
   return iconMode;
 }
 
-// ── Hexagon helper ──────────────────────────────────────────────────
+// ── Shape helpers ───────────────────────────────────────────────────
 function drawHexPath(ctx, x, y, r) {
   ctx.beginPath();
   for (let i = 0; i < 6; i++) {
     const angle = (Math.PI / 3) * i - Math.PI / 6; // flat-top
+    const vx = x + r * Math.cos(angle);
+    const vy = y + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(vx, vy);
+    else ctx.lineTo(vx, vy);
+  }
+  ctx.closePath();
+}
+
+function drawOctPath(ctx, x, y, r) {
+  ctx.beginPath();
+  for (let i = 0; i < 8; i++) {
+    const angle = (Math.PI / 4) * i - Math.PI / 8; // flat-top octagon
     const vx = x + r * Math.cos(angle);
     const vy = y + r * Math.sin(angle);
     if (i === 0) ctx.moveTo(vx, vy);
@@ -231,17 +243,21 @@ function drawAgentNode(node, ctx, globalScale) {
     ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
     ctx.globalAlpha = 1;
 
-    // Critical priority gets outer ring
+    // Octagon frame around agent icon
+    drawOctPath(ctx, x, y, iconSize + 1);
+    ctx.strokeStyle = hexToRgba(color, 0.5 * alpha);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // Critical priority gets brighter outer octagon ring
     if (node.priority === 'critical') {
-      const ringRadius = iconSize + 2;
-      ctx.beginPath();
-      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
+      drawOctPath(ctx, x, y, iconSize + 4);
       ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
     }
   } else {
-    // ── Glow mode: hexagon rendering ──
+    // ── Glow mode: octagon rendering ──
     // Radial glow
     const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
     grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
@@ -251,8 +267,8 @@ function drawAgentNode(node, ctx, globalScale) {
     ctx.fillStyle = grad;
     ctx.fill();
 
-    // Solid hexagon core
-    drawHexPath(ctx, x, y, r);
+    // Solid octagon core
+    drawOctPath(ctx, x, y, r);
     ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
     ctx.fill();
 
@@ -262,9 +278,9 @@ function drawAgentNode(node, ctx, globalScale) {
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
     ctx.fill();
 
-    // Critical priority gets outer hexagon ring
+    // Critical priority gets outer octagon ring
     if (node.priority === 'critical') {
-      drawHexPath(ctx, x, y, r + 2.5);
+      drawOctPath(ctx, x, y, r + 2.5);
       ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
       ctx.lineWidth = 1.5;
       ctx.stroke();
