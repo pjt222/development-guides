@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 21
-version: "1.5"
-last_updated: "2026-02-10"
+total_agents: 22
+version: "1.6"
+last_updated: "2026-02-11"
 
 agents:
   - id: r-developer
@@ -348,6 +348,27 @@ agents:
       - build-consensus
       - defend-colony
       - scale-colony
+
+  - id: jigsawr-developer
+    path: agents/jigsawr-developer.md
+    description: Specialized agent for jigsawR package development covering puzzle generation, pipeline integration, PILES notation, ggpuzzle layers, Quarto docs, and Shiny app
+    tags: [R, jigsawR, puzzle, svg, ggplot2, shiny, quarto, PILES]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    mcp_servers: [r-mcptools]
+    skills:
+      - generate-puzzle
+      - add-puzzle-type
+      - render-puzzle-docs
+      - run-puzzle-tests
+      - validate-piles-notation
+      - write-roxygen-docs
+      - write-testthat-tests
+      - manage-renv-dependencies
+      - setup-github-actions-ci
+      - commit-changes
+      - create-pull-request
+      - manage-git-branches
 
   - id: shapeshifter
     path: agents/shapeshifter.md
