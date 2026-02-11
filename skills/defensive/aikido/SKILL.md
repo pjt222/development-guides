@@ -237,3 +237,4 @@ Aikido's value extends beyond the dojo into daily interaction and conflict resol
 - `mindfulness` — defensive situational awareness provides the perceptual foundation for martial readiness and conflict avoidance
 - `meditate` — seated meditation develops the centered, equanimous mind state that aikido requires under pressure
 - `heal` — understanding body mechanics from aikido practice informs first aid and bodywork approaches
+- `redirect` — AI self-application variant; maps aikido blending and redirection to handling conflicting demands and tool failures

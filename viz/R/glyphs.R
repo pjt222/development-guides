@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 150 skillIds to a specific glyph drawing function.
+# Maps each of 157 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -45,10 +45,13 @@ SKILL_GLYPHS <- list(
   "serialize-data-formats"         = "glyph_brackets_stream",
   "design-serialization-schema"    = "glyph_schema_tree",
 
-  # ── defensive (3) ─────────────────────────────────────────────────────
+  # ── defensive (6) ─────────────────────────────────────────────────────
   "tai-chi"                        = "glyph_yin_yang",
   "aikido"                         = "glyph_spiral_arrow",
   "mindfulness"                    = "glyph_lotus",
+  "center"                         = "glyph_center_balance",
+  "redirect"                       = "glyph_redirect_spiral",
+  "awareness"                      = "glyph_awareness_eye",
 
   # ── design (5) ─────────────────────────────────────────────────────────
   "ornament-style-mono"            = "glyph_palette",
@@ -179,19 +182,23 @@ SKILL_GLYPHS <- list(
   "setup-tailwind-typescript"      = "glyph_tailwind_ts",
   "deploy-to-vercel"               = "glyph_rocket_deploy",
 
-  # ── swarm (5) ──────────────────────────────────────────────────────────
+  # ── swarm (8) ──────────────────────────────────────────────────────────
   "coordinate-swarm"               = "glyph_swarm_nodes",
   "forage-resources"               = "glyph_ant_trail",
   "build-consensus"                = "glyph_vote_circles",
   "defend-colony"                  = "glyph_shield_wall",
   "scale-colony"                   = "glyph_budding",
+  "forage-solutions"               = "glyph_forage_circuit",
+  "build-coherence"                = "glyph_coherence_converge",
+  "coordinate-reasoning"           = "glyph_coordinate_web",
 
-  # ── morphic (5) ────────────────────────────────────────────────────────
+  # ── morphic (6) ────────────────────────────────────────────────────────
   "assess-form"                    = "glyph_scan_outline",
   "adapt-architecture"             = "glyph_morph_arrow",
   "dissolve-form"                  = "glyph_dissolve",
   "repair-damage"                  = "glyph_regenerate",
   "shift-camouflage"               = "glyph_camo_grid",
+  "assess-context"                 = "glyph_assess_context_lens",
 
   # ── tcg (3) ────────────────────────────────────────────────────────────
   "grade-tcg-card"                 = "glyph_card_grade",

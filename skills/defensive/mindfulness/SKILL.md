@@ -315,3 +315,4 @@ Like any skill, defensive mindfulness improves through deliberate review and hon
 - `meditate` — builds the baseline mental stillness from which awareness operates; seated practice complements the active, outward focus of defensive mindfulness
 - `heal` — first aid knowledge and stress management are direct applications of defensive mindfulness
 - `remote-viewing` — shares perceptual acuity training; non-local awareness exercises complement environmental scanning skills
+- `awareness` — AI self-application variant; maps Cooper color codes and OODA loop to internal threat detection for hallucination risk and context degradation

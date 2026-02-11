@@ -237,3 +237,4 @@ Build tai chi into daily life as a sustainable practice.
 - `mindfulness` — defensive situational awareness supports martial readiness and moving meditation quality
 - `meditate` — seated meditation develops the mental stillness that deepens internal awareness in tai chi
 - `heal` — tai chi's qi cultivation supports energetic healing modalities
+- `center` — AI self-application variant; maps tai chi centering principles to cognitive load distribution and chain-of-thought coordination

@@ -186,3 +186,4 @@ Validate that local rules produce the desired collective behavior, then tune par
 - `adapt-architecture` — morphic skill for transforming system architecture, complementary when swarm coordination triggers structural change
 - `deploy-to-kubernetes` — practical distributed system deployment where swarm coordination patterns apply
 - `plan-capacity` — capacity planning informed by swarm scaling dynamics
+- `coordinate-reasoning` — AI self-application variant; maps stigmergic signals to context management with information decay rates and local protocols

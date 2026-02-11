@@ -232,3 +232,4 @@ Transformation Readiness Matrix:
 - `shift-camouflage` — surface-level adaptation that may resolve pressure without full transformation
 - `forage-resources` — resource exploration informs form assessment when the question is "what should we become?"
 - `review-software-architecture` — complementary skill for detailed technical architecture evaluation
+- `assess-context` — AI self-application variant; maps structural assessment to reasoning context malleability, rigidity mapping, and transformation readiness

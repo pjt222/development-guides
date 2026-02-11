@@ -1,7 +1,7 @@
 version: "1.3"
 generated: "2026-02-11"
 standard: "agentskills.io/specification"
-total_skills: 150
+total_skills: 157
 
 domains:
   r-packages:
@@ -473,6 +473,21 @@ domains:
         complexity: advanced
         language: natural
         description: Cultivate defensive situational awareness, de-escalation, combat focus, and rapid grounding techniques
+      - id: center
+        path: defensive/center/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI dynamic reasoning balance, cognitive load distribution, and chain-of-thought coordination
+      - id: redirect
+        path: defensive/redirect/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI pressure redirection for conflicting demands, tool failures, and scope pressure
+      - id: awareness
+        path: defensive/awareness/SKILL.md
+        complexity: advanced
+        language: natural
+        description: AI situational awareness with Cooper color codes for reasoning states and OODA loop
 
   project-management:
     description: Agile and classic project management skills
@@ -772,6 +787,21 @@ domains:
         complexity: advanced
         language: natural
         description: Colony budding, role differentiation, and growth-triggered transitions
+      - id: forage-solutions
+        path: swarm/forage-solutions/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI solution exploration using ant colony optimization and scout hypotheses
+      - id: build-coherence
+        path: swarm/build-coherence/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI multi-path reasoning coherence using bee democracy and quorum sensing
+      - id: coordinate-reasoning
+        path: swarm/coordinate-reasoning/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI internal coordination using stigmergy and information decay management
 
   morphic:
     description: Adaptive transformation, structural metamorphosis, and reconfiguration strategies
@@ -801,6 +831,11 @@ domains:
         complexity: advanced
         language: natural
         description: Polymorphic interfaces, context-adaptive behavior, and surface reduction
+      - id: assess-context
+        path: morphic/assess-context/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI context malleability assessment, reasoning rigidity mapping, and transformation readiness
 
   alchemy:
     description: Code and data transmutation through systematic decomposition, purification, and synthesis

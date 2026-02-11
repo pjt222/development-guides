@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 150,
+    "total_skills": 157,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -374,6 +374,30 @@
       "prompt": "Neon flowing water circle, yin-yang shield, awareness ripple, centered mind, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 50003,
       "path": "icons/cyberpunk/defensive/mindfulness.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "center",
+      "domain": "defensive",
+      "prompt": "Neon flowing water circle, yin-yang shield, vertical axis, asymmetric weight balance, grounded base, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 50004,
+      "path": "icons/cyberpunk/defensive/center.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "redirect",
+      "domain": "defensive",
+      "prompt": "Neon flowing water circle, yin-yang shield, incoming force arrow, redirect spiral, pivot point, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 50005,
+      "path": "icons/cyberpunk/defensive/redirect.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "awareness",
+      "domain": "defensive",
+      "prompt": "Neon flowing water circle, yin-yang shield, open eye, concentric radar rings, alert scan, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 50006,
+      "path": "icons/cyberpunk/defensive/awareness.webp",
       "status": "done"
     },
     {
@@ -1257,6 +1281,30 @@
       "status": "done"
     },
     {
+      "skillId": "forage-solutions",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, branching circuit traces, scout paths, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200006,
+      "path": "icons/cyberpunk/swarm/forage-solutions.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "build-coherence",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, multiple paths converging through hexagonal filter, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200007,
+      "path": "icons/cyberpunk/swarm/build-coherence.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "coordinate-reasoning",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, connected web, brightness decay gradient, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200008,
+      "path": "icons/cyberpunk/swarm/coordinate-reasoning.webp",
+      "status": "done"
+    },
+    {
       "skillId": "grade-tcg-card",
       "domain": "tcg",
       "prompt": "Neon playing cards, grading badge, collector display, card with magnifier, quality assessment, dark background, vector art, clean edges, single centered icon, no text",
@@ -1318,6 +1366,14 @@
       "prompt": "Glowing metamorphosis shape, structural transformation, camo grid, shifting opacity squares, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 210005,
       "path": "icons/cyberpunk/morphic/shift-camouflage.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "assess-context",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, scanning lens, layered context structure, crosshair assessment, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210006,
+      "path": "icons/cyberpunk/morphic/assess-context.webp",
       "status": "done"
     }
   ]

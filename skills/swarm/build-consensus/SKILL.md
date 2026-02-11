@@ -187,3 +187,4 @@ Evaluate whether the consensus process produced a good decision, not just a deci
 - `dissolve-form` — morphic skill for controlled dismantling, where consensus before dissolution is critical
 - `plan-sprint` — sprint planning involves team consensus on commitment scope
 - `conduct-retrospective` — retrospectives are a form of consensus-building about process improvement
+- `build-coherence` — AI self-application variant; maps bee democracy to single-agent multi-path reasoning with confidence thresholds and deadlock resolution

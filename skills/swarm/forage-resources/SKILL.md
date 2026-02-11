@@ -189,3 +189,4 @@ Select and switch between foraging strategies based on environmental feedback.
 - `assess-form` — morphic skill for evaluating the current state of a system, complementary to landscape assessment
 - `configure-alerting-rules` — alerting patterns applicable to diminishing returns detection
 - `plan-capacity` — capacity planning shares the explore-exploit framing with foraging theory
+- `forage-solutions` — AI self-application variant; maps ant colony foraging to single-agent solution exploration with scout hypotheses and trail reinforcement

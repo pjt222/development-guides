@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-11T17:39:53.533Z",
-    "totalSkills": 150,
+    "generated": "2026-02-11T18:29:32.915Z",
+    "totalSkills": 157,
     "totalAgents": 26,
-    "totalNodes": 176,
-    "totalLinks": 850,
+    "totalNodes": 183,
+    "totalLinks": 891,
     "totalAgentLinks": 216,
     "totalDomains": 25
   },
@@ -67,7 +67,7 @@
     },
     "defensive": {
       "description": "Martial arts and applied defensive awareness skills",
-      "count": 3
+      "count": 6
     },
     "project-management": {
       "description": "Agile and classic project management skills",
@@ -91,11 +91,11 @@
     },
     "swarm": {
       "description": "Collective intelligence, emergent coordination, and distributed decision-making strategies",
-      "count": 5
+      "count": 8
     },
     "morphic": {
       "description": "Adaptive transformation, structural metamorphosis, and reconfiguration strategies",
-      "count": 5
+      "count": 6
     },
     "alchemy": {
       "description": "Code and data transmutation through systematic decomposition, purification, and synthesis",
@@ -1991,7 +1991,8 @@
         "aikido",
         "mindfulness",
         "meditate",
-        "heal"
+        "heal",
+        "center"
       ],
       "path": "defensive/tai-chi/SKILL.md"
     },
@@ -2015,7 +2016,8 @@
         "tai-chi",
         "mindfulness",
         "meditate",
-        "heal"
+        "heal",
+        "redirect"
       ],
       "path": "defensive/aikido/SKILL.md"
     },
@@ -2040,9 +2042,86 @@
         "tai-chi",
         "meditate",
         "heal",
-        "remote-viewing"
+        "remote-viewing",
+        "awareness"
       ],
       "path": "defensive/mindfulness/SKILL.md"
+    },
+    {
+      "id": "center",
+      "type": "skill",
+      "title": "Center",
+      "domain": "defensive",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI dynamic reasoning balance, cognitive load distribution, and chain-of-thought coordination",
+      "tags": [
+        "defensive",
+        "centering",
+        "reasoning-balance",
+        "cognitive-load",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "tai-chi",
+        "meditate",
+        "heal",
+        "redirect",
+        "awareness"
+      ],
+      "path": "defensive/center/SKILL.md"
+    },
+    {
+      "id": "redirect",
+      "type": "skill",
+      "title": "Redirect",
+      "domain": "defensive",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI pressure redirection for conflicting demands, tool failures, and scope pressure",
+      "tags": [
+        "defensive",
+        "redirection",
+        "conflict-resolution",
+        "pressure-handling",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "aikido",
+        "center",
+        "awareness",
+        "heal",
+        "meditate"
+      ],
+      "path": "defensive/redirect/SKILL.md"
+    },
+    {
+      "id": "awareness",
+      "type": "skill",
+      "title": "Awareness",
+      "domain": "defensive",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "AI situational awareness with Cooper color codes for reasoning states and OODA loop",
+      "tags": [
+        "defensive",
+        "awareness",
+        "threat-detection",
+        "hallucination-risk",
+        "ooda",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "mindfulness",
+        "center",
+        "redirect",
+        "heal",
+        "meditate"
+      ],
+      "path": "defensive/awareness/SKILL.md"
     },
     {
       "id": "draft-project-charter",
@@ -3268,7 +3347,8 @@
         "scale-colony",
         "adapt-architecture",
         "deploy-to-kubernetes",
-        "plan-capacity"
+        "plan-capacity",
+        "coordinate-reasoning"
       ],
       "path": "swarm/coordinate-swarm/SKILL.md"
     },
@@ -3292,7 +3372,8 @@
         "scale-colony",
         "assess-form",
         "configure-alerting-rules",
-        "plan-capacity"
+        "plan-capacity",
+        "forage-solutions"
       ],
       "path": "swarm/forage-resources/SKILL.md"
     },
@@ -3316,7 +3397,8 @@
         "scale-colony",
         "dissolve-form",
         "plan-sprint",
-        "conduct-retrospective"
+        "conduct-retrospective",
+        "build-coherence"
       ],
       "path": "swarm/build-consensus/SKILL.md"
     },
@@ -3370,6 +3452,80 @@
       "path": "swarm/scale-colony/SKILL.md"
     },
     {
+      "id": "forage-solutions",
+      "type": "skill",
+      "title": "Forage Solutions",
+      "domain": "swarm",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI solution exploration using ant colony optimization and scout hypotheses",
+      "tags": [
+        "swarm",
+        "foraging",
+        "solution-search",
+        "exploration-exploitation",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "forage-resources",
+        "build-coherence",
+        "coordinate-reasoning",
+        "awareness"
+      ],
+      "path": "swarm/forage-solutions/SKILL.md"
+    },
+    {
+      "id": "build-coherence",
+      "type": "skill",
+      "title": "Build Coherence",
+      "domain": "swarm",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI multi-path reasoning coherence using bee democracy and quorum sensing",
+      "tags": [
+        "swarm",
+        "coherence",
+        "approach-selection",
+        "confidence-thresholds",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "build-consensus",
+        "forage-solutions",
+        "coordinate-reasoning",
+        "center",
+        "meditate"
+      ],
+      "path": "swarm/build-coherence/SKILL.md"
+    },
+    {
+      "id": "coordinate-reasoning",
+      "type": "skill",
+      "title": "Coordinate Reasoning",
+      "domain": "swarm",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI internal coordination using stigmergy and information decay management",
+      "tags": [
+        "swarm",
+        "coordination",
+        "stigmergy",
+        "context-management",
+        "information-decay",
+        "ai-self-application"
+      ],
+      "related": [
+        "coordinate-swarm",
+        "forage-solutions",
+        "build-coherence",
+        "heal",
+        "awareness"
+      ],
+      "path": "swarm/coordinate-reasoning/SKILL.md"
+    },
+    {
       "id": "assess-form",
       "type": "skill",
       "title": "Assess Form",
@@ -3389,7 +3545,8 @@
         "repair-damage",
         "shift-camouflage",
         "forage-resources",
-        "review-software-architecture"
+        "review-software-architecture",
+        "assess-context"
       ],
       "path": "morphic/assess-form/SKILL.md"
     },
@@ -3494,6 +3651,31 @@
         "deploy-to-kubernetes"
       ],
       "path": "morphic/shift-camouflage/SKILL.md"
+    },
+    {
+      "id": "assess-context",
+      "type": "skill",
+      "title": "Assess Context",
+      "domain": "morphic",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI context malleability assessment, reasoning rigidity mapping, and transformation readiness",
+      "tags": [
+        "morphic",
+        "assessment",
+        "context-evaluation",
+        "malleability",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "assess-form",
+        "adapt-architecture",
+        "heal",
+        "center",
+        "coordinate-reasoning"
+      ],
+      "path": "morphic/assess-context/SKILL.md"
     },
     {
       "id": "athanor",
@@ -6179,6 +6361,11 @@
       "type": "skill"
     },
     {
+      "source": "tai-chi",
+      "target": "center",
+      "type": "skill"
+    },
+    {
       "source": "aikido",
       "target": "tai-chi",
       "type": "skill"
@@ -6196,6 +6383,11 @@
     {
       "source": "aikido",
       "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "aikido",
+      "target": "redirect",
       "type": "skill"
     },
     {
@@ -6221,6 +6413,86 @@
     {
       "source": "mindfulness",
       "target": "remote-viewing",
+      "type": "skill"
+    },
+    {
+      "source": "mindfulness",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "center",
+      "target": "tai-chi",
+      "type": "skill"
+    },
+    {
+      "source": "center",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "center",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "center",
+      "target": "redirect",
+      "type": "skill"
+    },
+    {
+      "source": "center",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "redirect",
+      "target": "aikido",
+      "type": "skill"
+    },
+    {
+      "source": "redirect",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "redirect",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "redirect",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "redirect",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "awareness",
+      "target": "mindfulness",
+      "type": "skill"
+    },
+    {
+      "source": "awareness",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "awareness",
+      "target": "redirect",
+      "type": "skill"
+    },
+    {
+      "source": "awareness",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "awareness",
+      "target": "meditate",
       "type": "skill"
     },
     {
@@ -7359,6 +7631,11 @@
       "type": "skill"
     },
     {
+      "source": "coordinate-swarm",
+      "target": "coordinate-reasoning",
+      "type": "skill"
+    },
+    {
       "source": "forage-resources",
       "target": "coordinate-swarm",
       "type": "skill"
@@ -7389,6 +7666,11 @@
       "type": "skill"
     },
     {
+      "source": "forage-resources",
+      "target": "forage-solutions",
+      "type": "skill"
+    },
+    {
       "source": "build-consensus",
       "target": "coordinate-swarm",
       "type": "skill"
@@ -7416,6 +7698,11 @@
     {
       "source": "build-consensus",
       "target": "conduct-retrospective",
+      "type": "skill"
+    },
+    {
+      "source": "build-consensus",
+      "target": "build-coherence",
       "type": "skill"
     },
     {
@@ -7484,6 +7771,76 @@
       "type": "skill"
     },
     {
+      "source": "forage-solutions",
+      "target": "forage-resources",
+      "type": "skill"
+    },
+    {
+      "source": "forage-solutions",
+      "target": "build-coherence",
+      "type": "skill"
+    },
+    {
+      "source": "forage-solutions",
+      "target": "coordinate-reasoning",
+      "type": "skill"
+    },
+    {
+      "source": "forage-solutions",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "build-coherence",
+      "target": "build-consensus",
+      "type": "skill"
+    },
+    {
+      "source": "build-coherence",
+      "target": "forage-solutions",
+      "type": "skill"
+    },
+    {
+      "source": "build-coherence",
+      "target": "coordinate-reasoning",
+      "type": "skill"
+    },
+    {
+      "source": "build-coherence",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "build-coherence",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-reasoning",
+      "target": "coordinate-swarm",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-reasoning",
+      "target": "forage-solutions",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-reasoning",
+      "target": "build-coherence",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-reasoning",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "coordinate-reasoning",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
       "source": "assess-form",
       "target": "adapt-architecture",
       "type": "skill"
@@ -7511,6 +7868,11 @@
     {
       "source": "assess-form",
       "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "assess-form",
+      "target": "assess-context",
       "type": "skill"
     },
     {
@@ -7651,6 +8013,31 @@
     {
       "source": "shift-camouflage",
       "target": "deploy-to-kubernetes",
+      "type": "skill"
+    },
+    {
+      "source": "assess-context",
+      "target": "assess-form",
+      "type": "skill"
+    },
+    {
+      "source": "assess-context",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "assess-context",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "assess-context",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "assess-context",
+      "target": "coordinate-reasoning",
       "type": "skill"
     },
     {
