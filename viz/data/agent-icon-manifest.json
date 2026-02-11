@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 22,
+    "total_agents": 26,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -19,6 +19,11 @@
     "path_format": "icons/<palette>/agents/<agentId>.webp"
   },
   "agentStyles": {
+    "alchemist": {
+      "description": "Code/data transmutation via alchemical process",
+      "glow": "amber-gold",
+      "concept": "Triangular flask with transformation flame"
+    },
     "r-developer": {
       "description": "R package development and statistical computing",
       "glow": "cyan",
@@ -69,6 +74,11 @@
       "glow": "burnt-orange",
       "concept": "Clipboard with magnifying glass"
     },
+    "ip-analyst": {
+      "description": "Patent landscape and prior art analysis",
+      "glow": "ice-blue",
+      "concept": "Shield with patent document inside"
+    },
     "senior-researcher": {
       "description": "Research methodology and peer review",
       "glow": "amber",
@@ -93,6 +103,11 @@
       "description": "Usability and accessibility review",
       "glow": "mint",
       "concept": "User silhouette with flow arrows"
+    },
+    "polymath": {
+      "description": "Cross-disciplinary synthesis and orchestration",
+      "glow": "golden-yellow",
+      "concept": "Brain network spanning multiple knowledge domains"
     },
     "project-manager": {
       "description": "Agile and classic project management",
@@ -119,6 +134,11 @@
       "glow": "lime",
       "concept": "Hexagonal cell cluster with radiating connections"
     },
+    "tcg-specialist": {
+      "description": "Trading card game grading and collection",
+      "glow": "card-red",
+      "concept": "Fanned playing cards with grading badge"
+    },
     "jigsawr-developer": {
       "description": "Jigsaw puzzle R package development",
       "glow": "teal-green",
@@ -131,6 +151,11 @@
     }
   },
   "icons": [
+    {
+      "agentId": "alchemist",
+      "path": "icons/cyberpunk/agents/alchemist.webp",
+      "status": "done"
+    },
     {
       "agentId": "r-developer",
       "path": "icons/cyberpunk/agents/r-developer.webp",
@@ -239,6 +264,21 @@
     {
       "agentId": "shapeshifter",
       "path": "icons/cyberpunk/agents/shapeshifter.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "polymath",
+      "path": "icons/cyberpunk/agents/polymath.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "tcg-specialist",
+      "path": "icons/cyberpunk/agents/tcg-specialist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "ip-analyst",
+      "path": "icons/cyberpunk/agents/ip-analyst.webp",
       "status": "done"
     }
   ]

@@ -1,5 +1,5 @@
 # agent_glyphs.R - Agent-to-glyph mapping
-# Maps each of 21 agent IDs to a specific glyph drawing function.
+# Maps each of 26 agent IDs to a specific glyph drawing function.
 #
 # Each entry: agentId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -30,6 +30,12 @@ AGENT_GLYPHS <- list(
   "project-manager"           = "glyph_agent_pm",
   "devops-engineer"           = "glyph_agent_devops",
   "mlops-engineer"            = "glyph_agent_mlops",
+
+  # ── Alchemy, TCG & IP ──────────────────────────────────────────────────
+  "alchemist"                 = "glyph_agent_alchemist",
+  "polymath"                  = "glyph_agent_polymath",
+  "tcg-specialist"            = "glyph_agent_tcg",
+  "ip-analyst"                = "glyph_agent_ip",
 
   # ── Specialty ───────────────────────────────────────────────────────────
   "survivalist"               = "glyph_agent_survivalist",

@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated": "2026-02-11T13:53:15.075Z",
-    "totalSkills": 140,
-    "totalAgents": 22,
-    "totalNodes": 162,
-    "totalLinks": 795,
-    "totalAgentLinks": 197,
-    "totalDomains": 22
+    "generated": "2026-02-11T17:39:53.533Z",
+    "totalSkills": 150,
+    "totalAgents": 26,
+    "totalNodes": 176,
+    "totalLinks": 850,
+    "totalAgentLinks": 216,
+    "totalDomains": 25
   },
   "domains": {
     "r-packages": {
@@ -51,7 +51,7 @@
     },
     "review": {
       "description": "Senior-level review skills for research, data, architecture, and design",
-      "count": 5
+      "count": 6
     },
     "bushcraft": {
       "description": "Wilderness survival and primitive skills",
@@ -63,7 +63,7 @@
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
-      "count": 4
+      "count": 5
     },
     "defensive": {
       "description": "Martial arts and applied defensive awareness skills",
@@ -96,6 +96,18 @@
     "morphic": {
       "description": "Adaptive transformation, structural metamorphosis, and reconfiguration strategies",
       "count": 5
+    },
+    "alchemy": {
+      "description": "Code and data transmutation through systematic decomposition, purification, and synthesis",
+      "count": 3
+    },
+    "tcg": {
+      "description": "Trading card game grading, deck building, and collection management",
+      "count": 3
+    },
+    "intellectual-property": {
+      "description": "Patent landscape analysis, prior art search, and IP strategy",
+      "count": 2
     }
   },
   "nodes": [
@@ -1595,6 +1607,31 @@
       "path": "review/review-ux-ui/SKILL.md"
     },
     {
+      "id": "review-pull-request",
+      "type": "skill",
+      "title": "Review Pull Request",
+      "domain": "review",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Review pull requests end-to-end using gh CLI with severity-leveled feedback",
+      "tags": [
+        "review",
+        "pull-request",
+        "github",
+        "code-review",
+        "gh-cli",
+        "feedback",
+        "pr"
+      ],
+      "related": [
+        "review-software-architecture",
+        "security-audit-codebase",
+        "create-pull-request",
+        "commit-changes"
+      ],
+      "path": "review/review-pull-request/SKILL.md"
+    },
+    {
       "id": "make-fire",
       "type": "skill",
       "title": "Make Fire",
@@ -1909,6 +1946,30 @@
         "skill-creation"
       ],
       "path": "design/create-skill-glyph/SKILL.md"
+    },
+    {
+      "id": "glyph-enhance",
+      "type": "skill",
+      "title": "Glyph Enhance",
+      "domain": "design",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Improve existing R-based pictogram glyphs through audit, diagnosis, and targeted modification",
+      "tags": [
+        "design",
+        "glyph",
+        "enhancement",
+        "icon",
+        "ggplot2",
+        "visualization",
+        "refinement"
+      ],
+      "related": [
+        "create-skill-glyph",
+        "ornament-style-mono",
+        "chrysopoeia"
+      ],
+      "path": "design/glyph-enhance/SKILL.md"
     },
     {
       "id": "tai-chi",
@@ -3435,6 +3496,210 @@
       "path": "morphic/shift-camouflage/SKILL.md"
     },
     {
+      "id": "athanor",
+      "type": "skill",
+      "title": "Athanor",
+      "domain": "alchemy",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Four-stage alchemical transmutation with meditate/heal checkpoints",
+      "tags": [
+        "alchemy",
+        "transmutation",
+        "refactoring",
+        "transformation",
+        "four-stages",
+        "nigredo",
+        "albedo",
+        "citrinitas",
+        "rubedo"
+      ],
+      "related": [
+        "transmute",
+        "chrysopoeia",
+        "meditate",
+        "heal",
+        "dissolve-form",
+        "adapt-architecture",
+        "review-software-architecture"
+      ],
+      "path": "alchemy/athanor/SKILL.md"
+    },
+    {
+      "id": "transmute",
+      "type": "skill",
+      "title": "Transmute",
+      "domain": "alchemy",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Targeted conversion of functions or modules between languages, paradigms, or APIs",
+      "tags": [
+        "alchemy",
+        "transmutation",
+        "conversion",
+        "refactoring",
+        "transformation",
+        "targeted"
+      ],
+      "related": [
+        "athanor",
+        "chrysopoeia",
+        "review-software-architecture",
+        "serialize-data-formats"
+      ],
+      "path": "alchemy/transmute/SKILL.md"
+    },
+    {
+      "id": "chrysopoeia",
+      "type": "skill",
+      "title": "Chrysopoeia",
+      "domain": "alchemy",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Value extraction through systematic classification and optimization of existing code",
+      "tags": [
+        "alchemy",
+        "optimization",
+        "value-extraction",
+        "performance",
+        "refinement",
+        "gold"
+      ],
+      "related": [
+        "athanor",
+        "transmute",
+        "review-software-architecture",
+        "review-data-analysis"
+      ],
+      "path": "alchemy/chrysopoeia/SKILL.md"
+    },
+    {
+      "id": "grade-tcg-card",
+      "type": "skill",
+      "title": "Grade TCG Card",
+      "domain": "tcg",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Grade trading cards using PSA/BGS/CGC standards with observation-first bias prevention",
+      "tags": [
+        "tcg",
+        "grading",
+        "psa",
+        "bgs",
+        "cgc",
+        "pokemon",
+        "mtg",
+        "fab",
+        "kayou",
+        "cards",
+        "collecting"
+      ],
+      "related": [
+        "build-tcg-deck",
+        "manage-tcg-collection",
+        "meditate"
+      ],
+      "path": "tcg/grade-tcg-card/SKILL.md"
+    },
+    {
+      "id": "build-tcg-deck",
+      "type": "skill",
+      "title": "Build TCG Deck",
+      "domain": "tcg",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Build competitive or casual TCG decks with archetype and meta-game analysis",
+      "tags": [
+        "tcg",
+        "deck-building",
+        "pokemon",
+        "mtg",
+        "fab",
+        "strategy",
+        "meta",
+        "archetype"
+      ],
+      "related": [
+        "grade-tcg-card",
+        "manage-tcg-collection"
+      ],
+      "path": "tcg/build-tcg-deck/SKILL.md"
+    },
+    {
+      "id": "manage-tcg-collection",
+      "type": "skill",
+      "title": "Manage TCG Collection",
+      "domain": "tcg",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Organize, inventory, value, and maintain trading card collections",
+      "tags": [
+        "tcg",
+        "collection",
+        "inventory",
+        "storage",
+        "valuation",
+        "pokemon",
+        "mtg",
+        "fab",
+        "kayou"
+      ],
+      "related": [
+        "grade-tcg-card",
+        "build-tcg-deck"
+      ],
+      "path": "tcg/manage-tcg-collection/SKILL.md"
+    },
+    {
+      "id": "assess-ip-landscape",
+      "type": "skill",
+      "title": "Assess IP Landscape",
+      "domain": "intellectual-property",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Map patent clusters, key players, white spaces, and FTO risks for a technology domain",
+      "tags": [
+        "intellectual-property",
+        "patents",
+        "landscape",
+        "fto",
+        "trademark",
+        "ip-strategy",
+        "prior-art"
+      ],
+      "related": [
+        "search-prior-art",
+        "security-audit-codebase",
+        "review-research",
+        "conduct-gxp-audit"
+      ],
+      "path": "intellectual-property/assess-ip-landscape/SKILL.md"
+    },
+    {
+      "id": "search-prior-art",
+      "type": "skill",
+      "title": "Search Prior Art",
+      "domain": "intellectual-property",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Search patent and non-patent literature for novelty, invalidity, and FTO analysis",
+      "tags": [
+        "intellectual-property",
+        "prior-art",
+        "patents",
+        "novelty",
+        "obviousness",
+        "invalidity",
+        "fto"
+      ],
+      "related": [
+        "assess-ip-landscape",
+        "review-research",
+        "security-audit-codebase"
+      ],
+      "path": "intellectual-property/search-prior-art/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -3519,7 +3784,8 @@
         "create-pull-request",
         "resolve-git-conflicts",
         "write-testthat-tests",
-        "configure-git-repository"
+        "configure-git-repository",
+        "review-pull-request"
       ],
       "path": "agents/code-reviewer.md"
     },
@@ -4227,6 +4493,138 @@
         "shift-camouflage"
       ],
       "path": "agents/shapeshifter.md"
+    },
+    {
+      "id": "agent:alchemist",
+      "type": "agent",
+      "title": "Alchemist",
+      "priority": "normal",
+      "description": "Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints",
+      "tags": [
+        "alchemy",
+        "transmutation",
+        "refactoring",
+        "transformation",
+        "code-quality",
+        "optimization"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "athanor",
+        "transmute",
+        "chrysopoeia",
+        "meditate",
+        "heal"
+      ],
+      "path": "agents/alchemist.md"
+    },
+    {
+      "id": "agent:polymath",
+      "type": "agent",
+      "title": "Polymath",
+      "priority": "high",
+      "description": "Cross-disciplinary synthesis; spawns domain-specific subagents, synthesizes findings across domains, and produces integrated insights",
+      "tags": [
+        "synthesis",
+        "cross-domain",
+        "orchestration",
+        "research",
+        "integration",
+        "polymath"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "meditate",
+        "review-research",
+        "review-data-analysis",
+        "review-software-architecture",
+        "review-web-design",
+        "review-ux-ui",
+        "assess-ip-landscape",
+        "search-prior-art"
+      ],
+      "path": "agents/polymath.md"
+    },
+    {
+      "id": "agent:tcg-specialist",
+      "type": "agent",
+      "title": "Tcg Specialist",
+      "priority": "normal",
+      "description": "Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou",
+      "tags": [
+        "tcg",
+        "pokemon",
+        "mtg",
+        "fab",
+        "kayou",
+        "grading",
+        "deck-building",
+        "collection",
+        "cards"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "grade-tcg-card",
+        "build-tcg-deck",
+        "manage-tcg-collection"
+      ],
+      "path": "agents/tcg-specialist.md"
+    },
+    {
+      "id": "agent:ip-analyst",
+      "type": "agent",
+      "title": "Ip Analyst",
+      "priority": "high",
+      "description": "Patent landscape mapping, prior art search, trademark screening, FTO analysis",
+      "tags": [
+        "intellectual-property",
+        "patents",
+        "prior-art",
+        "fto",
+        "trademark",
+        "ip-strategy",
+        "landscape"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "assess-ip-landscape",
+        "search-prior-art"
+      ],
+      "path": "agents/ip-analyst.md"
     }
   ],
   "links": [
@@ -5486,6 +5884,26 @@
       "type": "skill"
     },
     {
+      "source": "review-pull-request",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "review-pull-request",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "review-pull-request",
+      "target": "create-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "review-pull-request",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
       "source": "make-fire",
       "target": "purify-water",
       "type": "skill"
@@ -5723,6 +6141,21 @@
     {
       "source": "create-skill-glyph",
       "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "glyph-enhance",
+      "target": "create-skill-glyph",
+      "type": "skill"
+    },
+    {
+      "source": "glyph-enhance",
+      "target": "ornament-style-mono",
+      "type": "skill"
+    },
+    {
+      "source": "glyph-enhance",
+      "target": "chrysopoeia",
       "type": "skill"
     },
     {
@@ -7221,6 +7654,151 @@
       "type": "skill"
     },
     {
+      "source": "athanor",
+      "target": "transmute",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "chrysopoeia",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "athanor",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "transmute",
+      "target": "athanor",
+      "type": "skill"
+    },
+    {
+      "source": "transmute",
+      "target": "chrysopoeia",
+      "type": "skill"
+    },
+    {
+      "source": "transmute",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "transmute",
+      "target": "serialize-data-formats",
+      "type": "skill"
+    },
+    {
+      "source": "chrysopoeia",
+      "target": "athanor",
+      "type": "skill"
+    },
+    {
+      "source": "chrysopoeia",
+      "target": "transmute",
+      "type": "skill"
+    },
+    {
+      "source": "chrysopoeia",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "chrysopoeia",
+      "target": "review-data-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "grade-tcg-card",
+      "target": "build-tcg-deck",
+      "type": "skill"
+    },
+    {
+      "source": "grade-tcg-card",
+      "target": "manage-tcg-collection",
+      "type": "skill"
+    },
+    {
+      "source": "grade-tcg-card",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "build-tcg-deck",
+      "target": "grade-tcg-card",
+      "type": "skill"
+    },
+    {
+      "source": "build-tcg-deck",
+      "target": "manage-tcg-collection",
+      "type": "skill"
+    },
+    {
+      "source": "manage-tcg-collection",
+      "target": "grade-tcg-card",
+      "type": "skill"
+    },
+    {
+      "source": "manage-tcg-collection",
+      "target": "build-tcg-deck",
+      "type": "skill"
+    },
+    {
+      "source": "assess-ip-landscape",
+      "target": "search-prior-art",
+      "type": "skill"
+    },
+    {
+      "source": "assess-ip-landscape",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "assess-ip-landscape",
+      "target": "review-research",
+      "type": "skill"
+    },
+    {
+      "source": "assess-ip-landscape",
+      "target": "conduct-gxp-audit",
+      "type": "skill"
+    },
+    {
+      "source": "search-prior-art",
+      "target": "assess-ip-landscape",
+      "type": "skill"
+    },
+    {
+      "source": "search-prior-art",
+      "target": "review-research",
+      "type": "skill"
+    },
+    {
+      "source": "search-prior-art",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -7393,6 +7971,11 @@
     {
       "source": "agent:code-reviewer",
       "target": "configure-git-repository",
+      "type": "agent"
+    },
+    {
+      "source": "agent:code-reviewer",
+      "target": "review-pull-request",
       "type": "agent"
     },
     {
@@ -8203,6 +8786,96 @@
     {
       "source": "agent:shapeshifter",
       "target": "shift-camouflage",
+      "type": "agent"
+    },
+    {
+      "source": "agent:alchemist",
+      "target": "athanor",
+      "type": "agent"
+    },
+    {
+      "source": "agent:alchemist",
+      "target": "transmute",
+      "type": "agent"
+    },
+    {
+      "source": "agent:alchemist",
+      "target": "chrysopoeia",
+      "type": "agent"
+    },
+    {
+      "source": "agent:alchemist",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:alchemist",
+      "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "review-research",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "review-data-analysis",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "review-software-architecture",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "review-web-design",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "review-ux-ui",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "assess-ip-landscape",
+      "type": "agent"
+    },
+    {
+      "source": "agent:polymath",
+      "target": "search-prior-art",
+      "type": "agent"
+    },
+    {
+      "source": "agent:tcg-specialist",
+      "target": "grade-tcg-card",
+      "type": "agent"
+    },
+    {
+      "source": "agent:tcg-specialist",
+      "target": "build-tcg-deck",
+      "type": "agent"
+    },
+    {
+      "source": "agent:tcg-specialist",
+      "target": "manage-tcg-collection",
+      "type": "agent"
+    },
+    {
+      "source": "agent:ip-analyst",
+      "target": "assess-ip-landscape",
+      "type": "agent"
+    },
+    {
+      "source": "agent:ip-analyst",
+      "target": "search-prior-art",
       "type": "agent"
     }
   ]

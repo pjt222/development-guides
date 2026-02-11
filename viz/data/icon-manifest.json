@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 140,
+    "total_skills": 150,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -18,6 +18,10 @@
     "path_format": "icons/<palette>/<domain>/<skillId>.webp"
   },
   "domainStyles": {
+    "alchemy": {
+      "basePrompt": "Glowing alchemical vessel, transformation flame, transmutation circle",
+      "glow": "amber-gold"
+    },
     "r-packages": {
       "basePrompt": "Glowing hexagonal R logo, circuit board traces",
       "glow": "cyan"
@@ -86,6 +90,10 @@
       "basePrompt": "Glowing compass, golden spiral ornament",
       "glow": "rose-gold"
     },
+    "intellectual-property": {
+      "basePrompt": "Neon patent document, legal shield, prior art magnifier",
+      "glow": "ice-blue"
+    },
     "data-serialization": {
       "basePrompt": "Neon binary stream, schema tree brackets",
       "glow": "blue"
@@ -93,6 +101,10 @@
     "swarm": {
       "basePrompt": "Neon insect colony, pheromone trails, collective nodes",
       "glow": "lime"
+    },
+    "tcg": {
+      "basePrompt": "Neon playing cards, grading badge, collector display",
+      "glow": "card-red"
     },
     "morphic": {
       "basePrompt": "Glowing metamorphosis shape, structural transformation",
@@ -108,6 +120,30 @@
     }
   },
   "icons": [
+    {
+      "skillId": "athanor",
+      "domain": "alchemy",
+      "prompt": "Glowing alchemical vessel, transformation flame, transmutation circle, furnace, nigredo fire, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 220001,
+      "path": "icons/cyberpunk/alchemy/athanor.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "transmute",
+      "domain": "alchemy",
+      "prompt": "Glowing alchemical vessel, transformation flame, transmutation circle, interlocked circles, conversion arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 220002,
+      "path": "icons/cyberpunk/alchemy/transmute.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "chrysopoeia",
+      "domain": "alchemy",
+      "prompt": "Glowing alchemical vessel, transformation flame, transmutation circle, gold ingot, radiating starburst, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 220003,
+      "path": "icons/cyberpunk/alchemy/chrysopoeia.webp",
+      "status": "done"
+    },
     {
       "skillId": "make-fire",
       "domain": "bushcraft",
@@ -373,6 +409,14 @@
       "status": "done"
     },
     {
+      "skillId": "glyph-enhance",
+      "domain": "design",
+      "prompt": "Glowing compass, golden spiral ornament, paintbrush with sparkle overlay, enhancement dots, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 60005,
+      "path": "icons/cyberpunk/design/glyph-enhance.webp",
+      "status": "done"
+    },
+    {
       "skillId": "build-ci-cd-pipeline",
       "domain": "devops",
       "prompt": "Neon pipeline, gear mechanism, infinity loop, pipeline stages, continuous flow, dark background, vector art, clean edges, single centered icon, no text",
@@ -610,6 +654,22 @@
       "prompt": "Glowing branch tree, commit graph nodes, release tag, download package, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 100006,
       "path": "icons/cyberpunk/git/create-github-release.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "assess-ip-landscape",
+      "domain": "intellectual-property",
+      "prompt": "Neon patent document, legal shield, prior art magnifier, landscape map, network nodes, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 240001,
+      "path": "icons/cyberpunk/intellectual-property/assess-ip-landscape.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "search-prior-art",
+      "domain": "intellectual-property",
+      "prompt": "Neon patent document, legal shield, prior art magnifier, magnifier over document stack, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 240002,
+      "path": "icons/cyberpunk/intellectual-property/search-prior-art.webp",
       "status": "done"
     },
     {
@@ -1077,6 +1137,14 @@
       "status": "done"
     },
     {
+      "skillId": "review-pull-request",
+      "domain": "review",
+      "prompt": "Glowing magnifying glass, code lens, merge arrow, PR review checkmark, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170006,
+      "path": "icons/cyberpunk/review/review-pull-request.webp",
+      "status": "done"
+    },
+    {
       "skillId": "scaffold-nextjs-app",
       "domain": "web-dev",
       "prompt": "Neon browser window, HTML angle brackets, Next.js logo, app scaffold, dark background, vector art, clean edges, single centered icon, no text",
@@ -1186,6 +1254,30 @@
       "prompt": "Neon insect colony, pheromone trails, collective nodes, budding colony growth, spawning circles, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 200005,
       "path": "icons/cyberpunk/swarm/scale-colony.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "grade-tcg-card",
+      "domain": "tcg",
+      "prompt": "Neon playing cards, grading badge, collector display, card with magnifier, quality assessment, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 230001,
+      "path": "icons/cyberpunk/tcg/grade-tcg-card.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "build-tcg-deck",
+      "domain": "tcg",
+      "prompt": "Neon playing cards, grading badge, collector display, fanned card stack, deck building, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 230002,
+      "path": "icons/cyberpunk/tcg/build-tcg-deck.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "manage-tcg-collection",
+      "domain": "tcg",
+      "prompt": "Neon playing cards, grading badge, collector display, card grid, star rating, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 230003,
+      "path": "icons/cyberpunk/tcg/manage-tcg-collection.webp",
       "status": "done"
     },
     {

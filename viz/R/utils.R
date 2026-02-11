@@ -3,6 +3,7 @@
 
 # ── Cyberpunk domain color palette ────────────────────────────────────────
 DOMAIN_COLORS <- list(
+  "alchemy"            = "#ffaa33",
   "bushcraft"          = "#88cc44",
   "compliance"         = "#ff3366",
   "containerization"   = "#44ddff",
@@ -13,6 +14,7 @@ DOMAIN_COLORS <- list(
   "esoteric"           = "#dd44ff",
   "general"            = "#ccccff",
   "git"                = "#66ffcc",
+  "intellectual-property" = "#33ccff",
   "jigsawr"            = "#22ddaa",
   "mcp-integration"    = "#00ccaa",
   "mlops"              = "#aa66ff",
@@ -23,6 +25,7 @@ DOMAIN_COLORS <- list(
   "review"             = "#ff66aa",
   "morphic"            = "#bb88ff",
   "swarm"              = "#aadd44",
+  "tcg"                = "#ff5577",
   "web-dev"            = "#ff6633",
   "workflow-visualization" = "#66dd88"
 )

@@ -8,24 +8,26 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 22 domains including jigsawr) ─────────────
+# ── Domain order (alphabetical, 25 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
-  "bushcraft", "compliance", "containerization", "data-serialization",
-  "defensive", "design", "devops", "esoteric", "general", "git",
-  "jigsawr", "mcp-integration", "mlops", "morphic", "observability",
-  "project-management", "r-packages", "reporting", "review", "swarm",
-  "web-dev", "workflow-visualization"
+  "alchemy", "bushcraft", "compliance", "containerization",
+  "data-serialization", "defensive", "design", "devops", "esoteric",
+  "general", "git", "intellectual-property", "jigsawr", "mcp-integration",
+  "mlops", "morphic", "observability", "project-management", "r-packages",
+  "reporting", "review", "swarm", "tcg", "web-dev",
+  "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 22 agents including jigsawr-developer) ─────
+# ── Agent order (alphabetical, 26 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
-  "auditor", "code-reviewer", "designer", "devops-engineer",
-  "gxp-validator", "jigsawr-developer", "martial-artist", "mlops-engineer",
-  "mystic", "project-manager", "putior-integrator", "r-developer",
-  "security-analyst", "senior-data-scientist", "senior-researcher",
+  "alchemist", "auditor", "code-reviewer", "designer", "devops-engineer",
+  "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
+  "mlops-engineer", "mystic", "polymath", "project-manager",
+  "putior-integrator", "r-developer", "security-analyst",
+  "senior-data-scientist", "senior-researcher",
   "senior-software-developer", "senior-ux-ui-specialist",
   "senior-web-designer", "shapeshifter", "survivalist",
-  "swarm-strategist", "web-developer"
+  "swarm-strategist", "tcg-specialist", "web-developer"
 )
 
 # ── viridisLite option mapping ────────────────────────────────────────────
@@ -60,6 +62,7 @@ get_palette_colors <- function(name) {
 #' Get cyberpunk palette (hand-tuned neon colors)
 get_cyberpunk_colors <- function() {
   domains <- list(
+    "alchemy"                = "#ffaa33",
     "bushcraft"              = "#88cc44",
     "compliance"             = "#ff3366",
     "containerization"       = "#44ddff",
@@ -70,6 +73,7 @@ get_cyberpunk_colors <- function() {
     "esoteric"               = "#dd44ff",
     "general"                = "#ccccff",
     "git"                    = "#66ffcc",
+    "intellectual-property"  = "#33ccff",
     "jigsawr"                = "#22ddaa",
     "mcp-integration"        = "#00ccaa",
     "mlops"                  = "#aa66ff",
@@ -80,20 +84,24 @@ get_cyberpunk_colors <- function() {
     "reporting"              = "#ffdd00",
     "review"                 = "#ff66aa",
     "swarm"                  = "#aadd44",
+    "tcg"                    = "#ff5577",
     "web-dev"                = "#ff6633",
     "workflow-visualization" = "#66dd88"
   )
 
   agents <- list(
+    "alchemist"                 = "#ffaa33",
     "auditor"                   = "#ff7744",
     "code-reviewer"             = "#ff66aa",
     "designer"                  = "#ff88dd",
     "devops-engineer"           = "#00ff88",
     "gxp-validator"             = "#ff3399",
+    "ip-analyst"                = "#33ccff",
     "jigsawr-developer"         = "#22ddaa",
     "martial-artist"            = "#ff4466",
     "mlops-engineer"            = "#bb77ff",
     "mystic"                    = "#dd44ff",
+    "polymath"                  = "#eedd44",
     "project-manager"           = "#ff8844",
     "putior-integrator"         = "#66dd88",
     "r-developer"               = "#00f0ff",
@@ -106,6 +114,7 @@ get_cyberpunk_colors <- function() {
     "shapeshifter"              = "#bb88ff",
     "survivalist"               = "#88cc44",
     "swarm-strategist"          = "#aadd44",
+    "tcg-specialist"            = "#ff5577",
     "web-developer"             = "#ff6633"
   )
 

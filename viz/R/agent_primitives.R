@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 21 agent persona icons
+# agent_primitives.R - Glyph library for 26 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -825,5 +825,203 @@ glyph_agent_jigsawr <- function(cx, cy, s, col, bright) {
     ggplot2::geom_rect(data = cursor,
       .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
       fill = bright, color = NA)
+  )
+}
+
+# ── glyph_agent_alchemist: triangular flask with inner flame + spiral ──────
+glyph_agent_alchemist <- function(cx, cy, s, col, bright) {
+  # Erlenmeyer flask shape (wide bottom, narrow neck)
+  flask <- data.frame(
+    x = c(cx - 6 * s, cx + 6 * s, cx + 20 * s, cx + 20 * s,
+          cx - 20 * s, cx - 20 * s),
+    y = c(cy + 24 * s, cy + 24 * s, cy - 8 * s, cy - 20 * s,
+          cy - 20 * s, cy - 8 * s)
+  )
+  # Neck ring
+  neck <- data.frame(
+    xmin = cx - 8 * s, xmax = cx + 8 * s,
+    ymin = cy + 22 * s, ymax = cy + 26 * s
+  )
+  # Inner flame
+  t <- seq(0, 1, length.out = 25)
+  hw <- 7 * s; h <- 18 * s
+  lx <- cx - hw * sin(t * pi) * (1 - t^0.6)
+  ly <- cy - 16 * s + h * t
+  flame <- data.frame(
+    x = c(lx, rev(cx + hw * sin(rev(t) * pi) * (1 - rev(t)^0.6))),
+    y = c(ly, rev(ly))
+  )
+  # Transformation spiral (around flask)
+  sp_t <- seq(0, 2.5 * pi, length.out = 40)
+  sp_r <- 3 * s * exp(0.12 * sp_t)
+  sp_r <- pmin(sp_r, 16 * s)
+  spiral <- data.frame(
+    x = cx + sp_r * cos(sp_t),
+    y = cy - 2 * s + sp_r * sin(sp_t) * 0.5
+  )
+  list(
+    ggplot2::geom_polygon(data = flask, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = neck,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = flame, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = spiral, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_polymath: star network spanning multiple quadrants ─────────
+glyph_agent_polymath <- function(cx, cy, s, col, bright) {
+  layers <- list()
+  # Central hub (brain/star)
+  hub <- data.frame(x0 = cx, y0 = cy, r = 8 * s)
+  # Knowledge domain nodes in 5 positions (pentagon arrangement)
+  n_nodes <- 5
+  node_r <- 24 * s
+  nodes <- list()
+  for (i in seq_len(n_nodes)) {
+    angle <- -pi / 2 + (i - 1) * 2 * pi / n_nodes
+    nodes[[i]] <- c(cx + node_r * cos(angle), cy + node_r * sin(angle))
+  }
+  # Connections from hub to each node
+  for (pos in nodes) {
+    line <- data.frame(x = c(cx, pos[1]), y = c(cy, pos[2]))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  }
+  # Cross-connections between adjacent nodes
+  for (i in seq_len(n_nodes)) {
+    j <- if (i == n_nodes) 1L else i + 1L
+    line <- data.frame(x = c(nodes[[i]][1], nodes[[j]][1]),
+                       y = c(nodes[[i]][2], nodes[[j]][2]))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1))
+  }
+  # Domain nodes
+  for (i in seq_along(nodes)) {
+    pos <- nodes[[i]]
+    node <- data.frame(x0 = pos[1], y0 = pos[2], r = 5 * s)
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = node,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.8))
+  }
+  # Central hub (on top)
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = hub,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 2.5))
+  # Star in center of hub
+  star_pts <- data.frame(x = numeric(0), y = numeric(0))
+  for (i in 0:4) {
+    outer_a <- -pi / 2 + i * 2 * pi / 5
+    inner_a <- outer_a + pi / 5
+    star_pts <- rbind(star_pts,
+      data.frame(x = cx + 5 * s * cos(outer_a), y = cy + 5 * s * sin(outer_a)),
+      data.frame(x = cx + 2.5 * s * cos(inner_a), y = cy + 2.5 * s * sin(inner_a))
+    )
+  }
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = star_pts, .aes(x, y),
+    fill = bright, color = bright, linewidth = .lw(s, 1))
+  layers
+}
+
+# ── glyph_agent_tcg: playing card with star rating overlay ─────────────────
+glyph_agent_tcg <- function(cx, cy, s, col, bright) {
+  # Main card
+  card <- data.frame(
+    xmin = cx - 16 * s, xmax = cx + 16 * s,
+    ymin = cy - 24 * s, ymax = cy + 24 * s
+  )
+  # Inner border
+  inner <- data.frame(
+    xmin = cx - 13 * s, xmax = cx + 13 * s,
+    ymin = cy - 20 * s, ymax = cy + 20 * s
+  )
+  # Card art area (top half of inner)
+  art <- data.frame(
+    xmin = cx - 13 * s, xmax = cx + 13 * s,
+    ymin = cy + 2 * s, ymax = cy + 20 * s
+  )
+  # Star in card art
+  star_pts <- data.frame(x = numeric(0), y = numeric(0))
+  star_cy <- cy + 11 * s
+  for (i in 0:4) {
+    outer_a <- -pi / 2 + i * 2 * pi / 5
+    inner_a <- outer_a + pi / 5
+    star_pts <- rbind(star_pts,
+      data.frame(x = cx + 10 * s * cos(outer_a),
+                 y = star_cy + 10 * s * sin(outer_a)),
+      data.frame(x = cx + 5 * s * cos(inner_a),
+                 y = star_cy + 5 * s * sin(inner_a))
+    )
+  }
+  # Text lines in bottom half
+  l1 <- data.frame(x = c(cx - 10 * s, cx + 10 * s), y = c(cy - 6 * s, cy - 6 * s))
+  l2 <- data.frame(x = c(cx - 10 * s, cx + 6 * s), y = c(cy - 12 * s, cy - 12 * s))
+  # Small fanned card behind (to show deck context)
+  behind <- data.frame(
+    x = c(cx - 12 * s, cx + 20 * s, cx + 20 * s, cx - 12 * s),
+    y = c(cy - 22 * s, cy - 22 * s, cy + 26 * s, cy + 26 * s)
+  )
+  list(
+    ggplot2::geom_polygon(data = behind, .aes(x, y),
+      fill = hex_with_alpha(col, 0.06), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = card,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = inner,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = NA, color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = art,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.1), color = NA),
+    ggplot2::geom_polygon(data = star_pts, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = l1, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = l2, .aes(x, y), color = col, linewidth = .lw(s, 1))
+  )
+}
+
+# ── glyph_agent_ip: shield with patent document inside ─────────────────────
+glyph_agent_ip <- function(cx, cy, s, col, bright) {
+  w <- 36 * s; h <- 44 * s
+  # Shield shape
+  shield <- data.frame(
+    x = c(cx - w / 2, cx - w / 2, cx - w * 0.25, cx, cx + w * 0.25,
+          cx + w / 2, cx + w / 2),
+    y = c(cy + h * 0.36, cy - h * 0.05, cy - h * 0.42, cy - h * 0.48,
+          cy - h * 0.42, cy - h * 0.05, cy + h * 0.36)
+  )
+  # Document inside shield
+  doc <- data.frame(
+    xmin = cx - 10 * s, xmax = cx + 10 * s,
+    ymin = cy - 10 * s, ymax = cy + 14 * s
+  )
+  # Document lines
+  l1 <- data.frame(x = c(cx - 7 * s, cx + 7 * s), y = c(cy + 10 * s, cy + 10 * s))
+  l2 <- data.frame(x = c(cx - 7 * s, cx + 7 * s), y = c(cy + 6 * s, cy + 6 * s))
+  l3 <- data.frame(x = c(cx - 7 * s, cx + 4 * s), y = c(cy + 2 * s, cy + 2 * s))
+  # Badge at top of doc
+  badge <- data.frame(
+    xmin = cx - 4 * s, xmax = cx + 4 * s,
+    ymin = cy - 6 * s, ymax = cy - 1 * s
+  )
+  # Copyright symbol hint below doc
+  copy_circle <- data.frame(x0 = cx, y0 = cy - 16 * s, r = 4 * s)
+  list(
+    ggplot2::geom_polygon(data = shield, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = doc,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = l1, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = l2, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = l3, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = badge,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = copy_circle, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.5))
   )
 }

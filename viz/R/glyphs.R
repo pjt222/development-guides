@@ -1,11 +1,16 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 135 skillIds to a specific glyph drawing function.
+# Maps each of 150 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
 # a list of ggplot2 layers.
 
 SKILL_GLYPHS <- list(
+  # ── alchemy (3) ────────────────────────────────────────────────────────
+  "athanor"                        = "glyph_athanor",
+  "transmute"                      = "glyph_transmute",
+  "chrysopoeia"                    = "glyph_chrysopoeia",
+
   # ── bushcraft (3) ──────────────────────────────────────────────────────
   "make-fire"                      = "glyph_flame",
   "purify-water"                   = "glyph_droplet",
@@ -45,11 +50,12 @@ SKILL_GLYPHS <- list(
   "aikido"                         = "glyph_spiral_arrow",
   "mindfulness"                    = "glyph_lotus",
 
-  # ── design (4) ─────────────────────────────────────────────────────────
+  # ── design (5) ─────────────────────────────────────────────────────────
   "ornament-style-mono"            = "glyph_palette",
   "ornament-style-color"           = "glyph_palette_color",
   "ornament-style-modern"          = "glyph_compass_drafting",
   "create-skill-glyph"             = "glyph_paintbrush_code",
+  "glyph-enhance"                  = "glyph_paintbrush_enhance",
 
   # ── devops (13) ────────────────────────────────────────────────────────
   "build-ci-cd-pipeline"           = "glyph_pipeline",
@@ -88,6 +94,10 @@ SKILL_GLYPHS <- list(
   "create-pull-request"            = "glyph_merge_arrows",
   "resolve-git-conflicts"          = "glyph_conflict_cross",
   "create-github-release"          = "glyph_tag_release",
+
+  # ── intellectual-property (2) ──────────────────────────────────────────
+  "assess-ip-landscape"            = "glyph_patent_landscape",
+  "search-prior-art"               = "glyph_prior_art_search",
 
   # ── jigsawr (5) ──────────────────────────────────────────────────────
   "generate-puzzle"            = "glyph_jigsaw_code",
@@ -156,12 +166,13 @@ SKILL_GLYPHS <- list(
   "build-parameterized-report"     = "glyph_template_params",
   "generate-statistical-tables"    = "glyph_table_stats",
 
-  # ── review (5) ─────────────────────────────────────────────────────────
+  # ── review (6) ─────────────────────────────────────────────────────────
   "review-research"                = "glyph_magnifier_paper",
   "review-data-analysis"           = "glyph_magnifier_chart",
   "review-software-architecture"   = "glyph_magnifier_arch",
   "review-web-design"              = "glyph_magnifier_layout",
   "review-ux-ui"                   = "glyph_magnifier_user",
+  "review-pull-request"            = "glyph_pr_review",
 
   # ── web-dev (3) ────────────────────────────────────────────────────────
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
@@ -181,6 +192,11 @@ SKILL_GLYPHS <- list(
   "dissolve-form"                  = "glyph_dissolve",
   "repair-damage"                  = "glyph_regenerate",
   "shift-camouflage"               = "glyph_camo_grid",
+
+  # ── tcg (3) ────────────────────────────────────────────────────────────
+  "grade-tcg-card"                 = "glyph_card_grade",
+  "build-tcg-deck"                 = "glyph_deck_build",
+  "manage-tcg-collection"          = "glyph_collection_grid",
 
   # ── workflow-visualization (6) ────────────────────────────────────────
   "install-putior"                 = "glyph_putior_install",
