@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for agent persona icons
+# agent_primitives.R - Glyph library for 21 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -708,5 +708,82 @@ glyph_agent_putior <- function(cx, cy, s, col, bright) {
     ggplot2::geom_rect(data = end_box,
       .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
       fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_swarm: hexagonal cell cluster with radiating connections ──
+glyph_agent_swarm <- function(cx, cy, s, col, bright) {
+  layers <- list()
+  # central hex
+  hex_r <- 10 * s
+  t <- seq(0, 2 * pi, length.out = 7)
+  center_hex <- data.frame(x = cx + hex_r * cos(t + pi / 6),
+                           y = cy + hex_r * sin(t + pi / 6))
+  layers[[1]] <- ggplot2::geom_polygon(data = center_hex, .aes(x, y),
+    fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 2))
+  # six surrounding hex cells
+  for (i in 1:6) {
+    angle <- (i - 1) * pi / 3
+    hx <- cx + 18 * s * cos(angle)
+    hy <- cy + 18 * s * sin(angle)
+    hex <- data.frame(x = hx + hex_r * 0.7 * cos(t + pi / 6),
+                      y = hy + hex_r * 0.7 * sin(t + pi / 6))
+    layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = hex, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = col, linewidth = .lw(s, 1.2))
+    # connection line from center to satellite
+    line <- data.frame(x = c(cx, hx), y = c(cy, hy))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.5))
+  }
+  # radiating signal lines outward
+  for (i in c(1, 3, 5)) {
+    angle <- (i - 1) * pi / 3
+    line <- data.frame(
+      x = c(cx + 24 * s * cos(angle), cx + 32 * s * cos(angle)),
+      y = c(cy + 24 * s * sin(angle), cy + 32 * s * sin(angle))
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2))
+  }
+  layers
+}
+
+# ── glyph_agent_shifter: overlapping geometric shapes transitioning ───────
+glyph_agent_shifter <- function(cx, cy, s, col, bright) {
+  # triangle (left side, fading)
+  tri <- data.frame(
+    x = c(cx - 24 * s, cx - 8 * s, cx - 16 * s),
+    y = c(cy - 12 * s, cy - 12 * s, cy + 12 * s)
+  )
+  # square (center, mid-transition)
+  sq <- data.frame(
+    xmin = cx - 8 * s, xmax = cx + 8 * s,
+    ymin = cy - 8 * s, ymax = cy + 8 * s
+  )
+  # circle (right side, full)
+  circ <- data.frame(x0 = cx + 18 * s, y0 = cy, r = 10 * s)
+  # transition particles between shapes
+  particles <- data.frame(
+    x = cx + c(-14, -4, 6, 14, -8, 2, 10) * s,
+    y = cy + c(16, -16, 18, -14, -20, 20, -18) * s
+  )
+  # morphing arcs connecting shapes
+  t <- seq(0, pi, length.out = 15)
+  arc1 <- data.frame(x = cx - 16 * s + 8 * s * cos(t),
+                     y = cy - 16 * s + 4 * s * sin(t))
+  arc2 <- data.frame(x = cx + 2 * s + 8 * s * cos(t),
+                     y = cy + 16 * s + 4 * s * sin(t))
+  list(
+    ggplot2::geom_polygon(data = tri, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = sq,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = circ, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_point(data = particles, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), size = 2 * s),
+    ggplot2::geom_path(data = arc1, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = arc2, .aes(x, y), color = col, linewidth = .lw(s, 1))
   )
 }

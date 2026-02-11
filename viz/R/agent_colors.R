@@ -31,5 +31,7 @@ AGENT_COLORS <- list(
   "mystic"                  = "#dd44ff",   # magenta
   "martial-artist"          = "#ff4466",   # crimson
   "designer"                = "#ff88dd",   # pink
-  "putior-integrator"       = "#66dd88"    # spring green
+  "putior-integrator"       = "#66dd88",   # spring green
+  "swarm-strategist"        = "#aadd44",   # lime
+  "shapeshifter"            = "#bb88ff"    # lavender
 )

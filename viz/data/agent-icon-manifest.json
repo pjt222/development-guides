@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 19
+    "total_agents": 21
   },
   "agentStyles": {
     "r-developer": {
@@ -101,103 +101,123 @@
       "description": "Workflow visualization and Mermaid diagrams",
       "glow": "spring-green",
       "concept": "Flowchart with connected nodes"
+    },
+    "swarm-strategist": {
+      "description": "Collective intelligence and distributed coordination",
+      "glow": "lime",
+      "concept": "Hexagonal cell cluster with radiating connections"
+    },
+    "shapeshifter": {
+      "description": "Metamorphic transformation and adaptive systems",
+      "glow": "lavender",
+      "concept": "Overlapping geometric shapes transitioning"
     }
   },
   "icons": [
     {
       "agentId": "r-developer",
       "path": "icons/agents/r-developer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "code-reviewer",
       "path": "icons/agents/code-reviewer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "security-analyst",
       "path": "icons/agents/security-analyst.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "web-developer",
       "path": "icons/agents/web-developer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "survivalist",
       "path": "icons/agents/survivalist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "mystic",
       "path": "icons/agents/mystic.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "martial-artist",
       "path": "icons/agents/martial-artist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "designer",
       "path": "icons/agents/designer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "gxp-validator",
       "path": "icons/agents/gxp-validator.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "auditor",
       "path": "icons/agents/auditor.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "senior-researcher",
       "path": "icons/agents/senior-researcher.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "senior-data-scientist",
       "path": "icons/agents/senior-data-scientist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "senior-software-developer",
       "path": "icons/agents/senior-software-developer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "senior-web-designer",
       "path": "icons/agents/senior-web-designer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "senior-ux-ui-specialist",
       "path": "icons/agents/senior-ux-ui-specialist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "project-manager",
       "path": "icons/agents/project-manager.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "devops-engineer",
       "path": "icons/agents/devops-engineer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "mlops-engineer",
       "path": "icons/agents/mlops-engineer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "putior-integrator",
       "path": "icons/agents/putior-integrator.webp",
-      "status": "pending"
+      "status": "done"
+    },
+    {
+      "agentId": "swarm-strategist",
+      "path": "icons/agents/swarm-strategist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "shapeshifter",
+      "path": "icons/agents/shapeshifter.webp",
+      "status": "done"
     }
   ]
 }

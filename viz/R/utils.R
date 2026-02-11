@@ -20,6 +20,8 @@ DOMAIN_COLORS <- list(
   "r-packages"         = "#00f0ff",
   "reporting"          = "#ffdd00",
   "review"             = "#ff66aa",
+  "morphic"            = "#bb88ff",
+  "swarm"              = "#aadd44",
   "web-dev"            = "#ff6633",
   "workflow-visualization" = "#66dd88"
 )

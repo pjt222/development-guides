@@ -78,6 +78,14 @@
       "basePrompt": "Neon binary stream, schema tree brackets",
       "glow": "blue"
     },
+    "swarm": {
+      "basePrompt": "Neon insect colony, pheromone trails, collective nodes",
+      "glow": "lime"
+    },
+    "morphic": {
+      "basePrompt": "Glowing metamorphosis shape, structural transformation",
+      "glow": "lavender"
+    },
     "workflow-visualization": {
       "basePrompt": "Glowing flowchart diagram, putior workflow nodes",
       "glow": "spring-green"
@@ -1082,6 +1090,86 @@
       "prompt": "Glowing flowchart diagram, putior workflow nodes, MCP server plug, diagram connection, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 190006,
       "path": "icons/workflow-visualization/configure-putior-mcp.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "coordinate-swarm",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, swarm coordination, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200001,
+      "path": "icons/swarm/coordinate-swarm.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "forage-resources",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, ant foraging path, resource dots, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200002,
+      "path": "icons/swarm/forage-resources.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "build-consensus",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, overlapping vote circles, convergence point, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200003,
+      "path": "icons/swarm/build-consensus.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "defend-colony",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, hexagonal shield wall, alert defense, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200004,
+      "path": "icons/swarm/defend-colony.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "scale-colony",
+      "domain": "swarm",
+      "prompt": "Neon insect colony, pheromone trails, collective nodes, budding colony growth, spawning circles, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 200005,
+      "path": "icons/swarm/scale-colony.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "assess-form",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, body scan outline, diagnostic lines, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210001,
+      "path": "icons/morphic/assess-form.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "adapt-architecture",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, square morphing to circle, transition arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210002,
+      "path": "icons/morphic/adapt-architecture.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "dissolve-form",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, solid fragmenting to particles, dissolution, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210003,
+      "path": "icons/morphic/dissolve-form.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "repair-damage",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, broken ring regenerating, regrowth, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210004,
+      "path": "icons/morphic/repair-damage.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "shift-camouflage",
+      "domain": "morphic",
+      "prompt": "Glowing metamorphosis shape, structural transformation, camo grid, shifting opacity squares, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 210005,
+      "path": "icons/morphic/shift-camouflage.webp",
       "status": "done"
     }
   ]

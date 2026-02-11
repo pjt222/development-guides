@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 125 skillIds to a specific glyph drawing function.
+# Maps each of 135 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -160,6 +160,20 @@ SKILL_GLYPHS <- list(
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
   "setup-tailwind-typescript"      = "glyph_tailwind_ts",
   "deploy-to-vercel"               = "glyph_rocket_deploy",
+
+  # ── swarm (5) ──────────────────────────────────────────────────────────
+  "coordinate-swarm"               = "glyph_swarm_nodes",
+  "forage-resources"               = "glyph_ant_trail",
+  "build-consensus"                = "glyph_vote_circles",
+  "defend-colony"                  = "glyph_shield_wall",
+  "scale-colony"                   = "glyph_budding",
+
+  # ── morphic (5) ────────────────────────────────────────────────────────
+  "assess-form"                    = "glyph_scan_outline",
+  "adapt-architecture"             = "glyph_morph_arrow",
+  "dissolve-form"                  = "glyph_dissolve",
+  "repair-damage"                  = "glyph_regenerate",
+  "shift-camouflage"               = "glyph_camo_grid",
 
   # ── workflow-visualization (6) ────────────────────────────────────────
   "install-putior"                 = "glyph_putior_install",

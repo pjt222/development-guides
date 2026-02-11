@@ -1,11 +1,11 @@
 #!/usr/bin/env Rscript
-# build-agent-icons.R - Generate cyberpunk neon WebP icons for 19 agents
+# build-agent-icons.R - Generate cyberpunk neon WebP icons for 21 agents
 #
 # Parallel to build-icons.R (skills) but renders agent persona glyphs.
 # Each agent gets a unique color + glyph; output goes to icons/agents/.
 #
 # Usage:
-#   Rscript build-agent-icons.R                    # Full render (all 19 agents)
+#   Rscript build-agent-icons.R                    # Full render (all 21 agents)
 #   Rscript build-agent-icons.R --only mystic      # Single agent
 #   Rscript build-agent-icons.R --skip-existing    # Skip already-done icons
 #   Rscript build-agent-icons.R --dry-run          # List what would be generated
