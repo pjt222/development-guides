@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 19
+total_agents: 21
 version: "1.5"
 last_updated: "2026-02-10"
 
@@ -335,3 +335,29 @@ agents:
       - generate-workflow-diagram
       - setup-putior-ci
       - configure-putior-mcp
+
+  - id: swarm-strategist
+    path: agents/swarm-strategist.md
+    description: Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies
+    tags: [swarm, coordination, consensus, foraging, defense, scaling, distributed-systems]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - coordinate-swarm
+      - forage-resources
+      - build-consensus
+      - defend-colony
+      - scale-colony
+
+  - id: shapeshifter
+    path: agents/shapeshifter.md
+    description: Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control
+    tags: [morphic, architecture, transformation, metamorphosis, adaptation, resilience]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - assess-form
+      - adapt-architecture
+      - dissolve-form
+      - repair-damage
+      - shift-camouflage
