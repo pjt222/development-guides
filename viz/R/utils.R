@@ -82,11 +82,13 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
   opts
 }
 
-print_usage <- function() {
-  cat("Usage: Rscript build-icons.R [OPTIONS]\n\n")
+print_usage <- function(script_name = "build-icons.R",
+                        filter_label = "<domain>",
+                        filter_desc = "Only generate icons for this domain") {
+  cat(sprintf("Usage: Rscript %s [OPTIONS]\n\n", script_name))
   cat("Options:\n")
-  cat("  --only <domain>     Only generate icons for this domain\n")
-  cat("  --skip-existing     Skip icons that already have WebP files\n")
+  cat(sprintf("  --only %-12s %s\n", filter_label, filter_desc))
+  cat("  --skip-existing     Skip icons marked 'done' with existing WebP files\n")
   cat("  --dry-run           List what would be generated without rendering\n")
   cat("  --glow-sigma <n>    Glow blur radius (default: 8)\n")
   cat("  --help, -h          Show this help message\n")
@@ -121,6 +123,13 @@ check_dependencies <- function() {
 log_msg <- function(...) {
   msg <- paste0("[", format(Sys.time(), "%Y-%m-%d %H:%M:%S"), "] ", ...)
   message(msg)
+}
+
+# ── File utilities ─────────────────────────────────────────────────────
+file_size_kb <- function(path) {
+  info <- file.info(path)
+  if (is.na(info$size)) return(0)
+  info$size / 1024
 }
 
 log_ok <- function(domain, skill_id, seed, file_size_kb) {

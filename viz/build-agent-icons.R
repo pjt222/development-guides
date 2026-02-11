@@ -33,6 +33,9 @@ source(file.path(script_dir, "R", "utils.R"))
 # Skill primitives provides .lw and .aes helpers used by agent primitives
 source(file.path(script_dir, "R", "primitives.R"))
 
+# Shared render engine (provides render_glyph used by agent_render.R)
+source(file.path(script_dir, "R", "render.R"))
+
 # Agent-specific pipeline
 source(file.path(script_dir, "R", "agent_colors.R"))
 source(file.path(script_dir, "R", "agent_primitives.R"))
@@ -46,13 +49,9 @@ check_dependencies()
 opts <- parse_cli_args()
 
 if (opts$help) {
-  cat("Usage: Rscript build-agent-icons.R [OPTIONS]\n\n")
-  cat("Options:\n")
-  cat("  --only <agent-id>   Only generate icon for this agent\n")
-  cat("  --skip-existing     Skip icons that already have WebP files\n")
-  cat("  --dry-run           List what would be generated without rendering\n")
-  cat("  --glow-sigma <n>    Glow blur radius (default: 8)\n")
-  cat("  --help, -h          Show this help message\n")
+  print_usage(script_name = "build-agent-icons.R",
+              filter_label = "<agent-id>",
+              filter_desc = "Only generate icon for this agent")
   quit(status = 0)
 }
 
