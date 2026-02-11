@@ -17,6 +17,7 @@ skills:
   - resolve-git-conflicts
   - write-testthat-tests
   - configure-git-repository
+  - review-pull-request
 ---
 
 # Code Reviewer Agent
@@ -46,6 +47,7 @@ This agent can execute the following structured procedures from the [skills libr
 - `resolve-git-conflicts` — Resolve merge and rebase conflicts with safe recovery strategies
 - `write-testthat-tests` — Write testthat edition 3 tests with high coverage
 - `configure-git-repository` — Configure a Git repository with proper .gitignore and conventions
+- `review-pull-request` — Review pull requests end-to-end using gh CLI with severity-leveled feedback
 
 ## Usage Scenarios
 

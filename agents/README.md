@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 21 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 26 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -37,8 +37,12 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [putior-integrator](putior-integrator.md) | normal | Workflow visualization: putior integration, annotation, Mermaid diagrams |
 | [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence: distributed coordination, foraging, consensus, defense, scaling |
 | [shapeshifter](shapeshifter.md) | normal | Metamorphic transformation: form assessment, architectural adaptation, regenerative repair |
+| [alchemist](alchemist.md) | normal | Code/data transmutation: four-stage alchemical process with meditate/heal checkpoints |
+| [polymath](polymath.md) | high | Cross-disciplinary synthesis: spawns domain agents, synthesizes findings |
+| [tcg-specialist](tcg-specialist.md) | normal | Trading card games: grading (PSA/BGS/CGC), deck building, collection management |
+| [ip-analyst](ip-analyst.md) | high | Intellectual property: patent landscape, prior art search, FTO analysis |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 21 agents cover 129 of the 135 skills in the library. The six uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the visualization utility (`create-skill-glyph`), and the three human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`).
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 26 agents cover 144 of the 150 skills in the library. The six uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the visualization utilities (`create-skill-glyph`, `glyph-enhance`), and the two human-guidance skills (`heal-guidance`, `meditate-guidance`).
 
 ## Using Agents in Claude Code
 
@@ -84,6 +88,10 @@ Task(subagent_type="devops-engineer", prompt="Deploy our API to Kubernetes with 
 Task(subagent_type="mlops-engineer", prompt="Set up MLflow tracking and model registry for our ML project")
 Task(subagent_type="swarm-strategist", prompt="Design stigmergic coordination for our microservices fleet")
 Task(subagent_type="shapeshifter", prompt="Assess our monolith for strangler fig migration readiness")
+Task(subagent_type="alchemist", prompt="Transform this legacy PHP module into clean TypeScript")
+Task(subagent_type="polymath", prompt="Assess feasibility of an AI medical imaging tool across engineering, compliance, IP, and UX")
+Task(subagent_type="tcg-specialist", prompt="Grade this 1st Edition Charizard and advise on PSA submission")
+Task(subagent_type="ip-analyst", prompt="Map the patent landscape for federated learning before we start R&D")
 ```
 
 ## Agent File Format

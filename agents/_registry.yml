@@ -2,8 +2,8 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 22
-version: "1.6"
+total_agents: 26
+version: "1.7"
 last_updated: "2026-02-11"
 
 agents:
@@ -58,6 +58,7 @@ agents:
       - resolve-git-conflicts
       - write-testthat-tests
       - configure-git-repository
+      - review-pull-request
 
   - id: security-analyst
     path: agents/security-analyst.md
@@ -382,3 +383,53 @@ agents:
       - dissolve-form
       - repair-damage
       - shift-camouflage
+
+  - id: alchemist
+    path: agents/alchemist.md
+    description: Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints
+    tags: [alchemy, transmutation, refactoring, transformation, code-quality, optimization]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - athanor
+      - transmute
+      - chrysopoeia
+      - meditate
+      - heal
+
+  - id: polymath
+    path: agents/polymath.md
+    description: Cross-disciplinary synthesis; spawns domain-specific subagents, synthesizes findings across domains, and produces integrated insights
+    tags: [synthesis, cross-domain, orchestration, research, integration, polymath]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - meditate
+      - review-research
+      - review-data-analysis
+      - review-software-architecture
+      - review-web-design
+      - review-ux-ui
+      - assess-ip-landscape
+      - search-prior-art
+
+  - id: tcg-specialist
+    path: agents/tcg-specialist.md
+    description: Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou
+    tags: [tcg, pokemon, mtg, fab, kayou, grading, deck-building, collection, cards]
+    priority: normal
+    tools: [Read, Write, Edit, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - grade-tcg-card
+      - build-tcg-deck
+      - manage-tcg-collection
+
+  - id: ip-analyst
+    path: agents/ip-analyst.md
+    description: Patent landscape mapping, prior art search, trademark screening, FTO analysis
+    tags: [intellectual-property, patents, prior-art, fto, trademark, ip-strategy, landscape]
+    priority: high
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - assess-ip-landscape
+      - search-prior-art

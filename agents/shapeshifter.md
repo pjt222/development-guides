@@ -222,6 +222,7 @@ Dissolve it. The imaginal discs will seed the new system.
 
 ## See Also
 
+- [Alchemist Agent](alchemist.md) — Code-level transmutation (complementary: shapeshifter handles system architecture, alchemist handles code transformation)
 - [Swarm Strategist Agent](swarm-strategist.md) — For collective coordination patterns that complement structural transformation
 - [Senior Software Developer Agent](senior-software-developer.md) — For detailed architecture review and evaluation
 - [DevOps Engineer Agent](devops-engineer.md) — For infrastructure supporting progressive deployment and migration

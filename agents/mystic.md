@@ -243,9 +243,10 @@ Agent: **Coordinate Remote Viewing — Stages I & II**
 
 ## See Also
 
-- [Survivalist Agent](survivalist.md) - For wilderness skills and outdoor safety
-- [Martial Artist Agent](martial-artist.md) - For defensive awareness and body-mind integration
-- [Skills Library](../skills/) - Full catalog of executable procedures
+- [Alchemist Agent](alchemist.md) — Uses meditate and heal as stage-gate checkpoints in code transmutation
+- [Survivalist Agent](survivalist.md) — For wilderness skills and outdoor safety
+- [Martial Artist Agent](martial-artist.md) — For defensive awareness and body-mind integration
+- [Skills Library](../skills/) — Full catalog of executable procedures
 
 ---
 

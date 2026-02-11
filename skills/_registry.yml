@@ -1,7 +1,7 @@
 version: "1.3"
 generated: "2026-02-11"
 standard: "agentskills.io/specification"
-total_skills: 140
+total_skills: 150
 
 domains:
   r-packages:
@@ -367,6 +367,11 @@ domains:
         complexity: advanced
         language: multi
         description: Review UX/UI using Nielsen heuristics, WCAG 2.1, and user flow analysis
+      - id: review-pull-request
+        path: review/review-pull-request/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Review pull requests end-to-end using gh CLI with severity-leveled feedback
 
   bushcraft:
     description: Wilderness survival and primitive skills
@@ -444,6 +449,11 @@ domains:
         complexity: intermediate
         language: R
         description: Create R-based pictogram glyphs for skill icons using ggplot2 and the primitives library
+      - id: glyph-enhance
+        path: design/glyph-enhance/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Improve existing R-based pictogram glyphs through audit, diagnosis, and targeted modification
 
   defensive:
     description: Martial arts and applied defensive awareness skills
@@ -791,3 +801,55 @@ domains:
         complexity: advanced
         language: natural
         description: Polymorphic interfaces, context-adaptive behavior, and surface reduction
+
+  alchemy:
+    description: Code and data transmutation through systematic decomposition, purification, and synthesis
+    skills:
+      - id: athanor
+        path: alchemy/athanor/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Four-stage alchemical transmutation with meditate/heal checkpoints
+      - id: transmute
+        path: alchemy/transmute/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Targeted conversion of functions or modules between languages, paradigms, or APIs
+      - id: chrysopoeia
+        path: alchemy/chrysopoeia/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Value extraction through systematic classification and optimization of existing code
+
+  tcg:
+    description: Trading card game grading, deck building, and collection management
+    skills:
+      - id: grade-tcg-card
+        path: tcg/grade-tcg-card/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Grade trading cards using PSA/BGS/CGC standards with observation-first bias prevention
+      - id: build-tcg-deck
+        path: tcg/build-tcg-deck/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Build competitive or casual TCG decks with archetype and meta-game analysis
+      - id: manage-tcg-collection
+        path: tcg/manage-tcg-collection/SKILL.md
+        complexity: basic
+        language: natural
+        description: Organize, inventory, value, and maintain trading card collections
+
+  intellectual-property:
+    description: Patent landscape analysis, prior art search, and IP strategy
+    skills:
+      - id: assess-ip-landscape
+        path: intellectual-property/assess-ip-landscape/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Map patent clusters, key players, white spaces, and FTO risks for a technology domain
+      - id: search-prior-art
+        path: intellectual-property/search-prior-art/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Search patent and non-patent literature for novelty, invalidity, and FTO analysis
