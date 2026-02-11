@@ -94,8 +94,9 @@ for (const [id, meta] of skillMap) {
     for (let i = lastRelatedIdx + 1; i < lines.length; i++) {
       const line = lines[i];
       if (/^##\s/.test(line)) break;  // next section
-      // Match `skill-name` at start of bullet
-      const m = line.match(/^-\s+`([a-z0-9-]+)`/);
+      // Match `skill-name` or [skill-name](path) at start of bullet
+      const m = line.match(/^-\s+`([a-z0-9-]+)`/)
+             || line.match(/^-\s+\[([a-z0-9-]+)\]\(/);
       if (m && validIds.has(m[1]) && m[1] !== id) {
         relatedIds.push(m[1]);
       }

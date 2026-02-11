@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-11T13:17:35.628Z",
+    "generated": "2026-02-11T13:53:15.075Z",
     "totalSkills": 140,
     "totalAgents": 22,
     "totalNodes": 162,
-    "totalLinks": 792,
+    "totalLinks": 795,
     "totalAgentLinks": 197,
     "totalDomains": 22
   },
@@ -1903,7 +1903,11 @@
         "visualization",
         "neon"
       ],
-      "related": [],
+      "related": [
+        "ornament-style-mono",
+        "ornament-style-color",
+        "skill-creation"
+      ],
       "path": "design/create-skill-glyph/SKILL.md"
     },
     {
@@ -5704,6 +5708,21 @@
     {
       "source": "ornament-style-modern",
       "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "create-skill-glyph",
+      "target": "ornament-style-mono",
+      "type": "skill"
+    },
+    {
+      "source": "create-skill-glyph",
+      "target": "ornament-style-color",
+      "type": "skill"
+    },
+    {
+      "source": "create-skill-glyph",
+      "target": "skill-creation",
       "type": "skill"
     },
     {
