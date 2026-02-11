@@ -1,34 +1,27 @@
-# render.R - Icon rendering pipeline
-# Canvas setup -> glyph lookup -> glow -> PNG -> WebP
+# render.R - Shared icon rendering pipeline
+# Canvas setup -> glyph layers -> glow -> PNG -> WebP
 
-#' Render a single icon to WebP
+#' Core rendering engine shared by skill and agent pipelines
 #'
-#' @param domain Domain name (determines color palette)
-#' @param skill_id Skill identifier (determines glyph shape)
-#' @param seed Integer seed (unused in new pipeline, kept for API compat)
+#' @param color Hex color for the glyph and glow
+#' @param glyph_fn_name Name of the glyph drawing function
+#' @param entity_id Identifier for error messages
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 8)
 #' @param size_px Output dimension in pixels (default 1024)
 #' @return Invisible TRUE on success
-render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
-                        glow_sigma = 8, size_px = 1024) {
-  color <- DOMAIN_COLORS[[domain]]
-  if (is.null(color)) {
-    stop("Unknown domain: ", domain, call. = FALSE)
-  }
-
+render_glyph <- function(color, glyph_fn_name, entity_id, out_path,
+                         glow_sigma = 8, size_px = 1024) {
   bright_color <- brighten_hex(color, 1.4)
 
-  # Look up glyph function by skill_id
-  if (is.null(skill_id)) {
-    stop("skill_id is required", call. = FALSE)
-  }
-
-  glyph_fn_name <- SKILL_GLYPHS[[skill_id]]
-  if (is.null(glyph_fn_name)) {
-    stop("No glyph mapped for skill: ", skill_id, call. = FALSE)
-  }
-  glyph_fn <- match.fun(glyph_fn_name)
+  # Resolve glyph function
+  glyph_fn <- tryCatch(
+    match.fun(glyph_fn_name),
+    error = function(e) {
+      stop("Cannot resolve glyph function '", glyph_fn_name,
+           "' for: ", entity_id, call. = FALSE)
+    }
+  )
 
   # Draw the glyph centered on a 100x100 canvas
   glyph_layers <- glyph_fn(cx = 50, cy = 50, s = 1.0,
@@ -72,15 +65,43 @@ render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
   dir.create(dirname(out_path), recursive = TRUE, showWarnings = FALSE)
 
   # Convert PNG to WebP via magick
-  img <- magick::image_read(tmp_png)
-  magick::image_write(img, path = out_path, format = "webp", quality = 90)
+  tryCatch({
+    img <- magick::image_read(tmp_png)
+    magick::image_write(img, path = out_path, format = "webp", quality = 90)
+  }, error = function(e) {
+    stop("Image conversion failed for ", entity_id, ": ",
+         conditionMessage(e), call. = FALSE)
+  })
 
   invisible(TRUE)
 }
 
-#' Get file size in KB
-file_size_kb <- function(path) {
-  info <- file.info(path)
-  if (is.na(info$size)) return(0)
-  info$size / 1024
+#' Render a single skill icon to WebP
+#'
+#' @param domain Domain name (determines color palette)
+#' @param skill_id Skill identifier (determines glyph shape)
+#' @param seed Integer seed (unused in new pipeline, kept for API compat)
+#' @param out_path Output file path (WebP)
+#' @param glow_sigma Glow blur radius (default 8)
+#' @param size_px Output dimension in pixels (default 1024)
+#' @return Invisible TRUE on success
+render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
+                        glow_sigma = 8, size_px = 1024) {
+  color <- DOMAIN_COLORS[[domain]]
+  if (is.null(color)) {
+    stop("Unknown domain: ", domain, call. = FALSE)
+  }
+
+  if (is.null(skill_id)) {
+    stop("skill_id is required", call. = FALSE)
+  }
+
+  glyph_fn_name <- SKILL_GLYPHS[[skill_id]]
+  if (is.null(glyph_fn_name)) {
+    stop("No glyph mapped for skill: ", skill_id, call. = FALSE)
+  }
+
+  render_glyph(color = color, glyph_fn_name = glyph_fn_name,
+               entity_id = skill_id, out_path = out_path,
+               glow_sigma = glow_sigma, size_px = size_px)
 }
