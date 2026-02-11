@@ -30,7 +30,7 @@ skills:
 
 # jigsawR Developer Agent
 
-A specialized agent for developing and maintaining the jigsawR R package — a mathematical jigsaw puzzle generator producing SVG-based puzzle patterns with 6 puzzle types, ggplot2 geom layers, PILES notation DSL, a Quarto documentation site, and a Shiny web application.
+A specialized agent for developing and maintaining the jigsawR R package — a mathematical jigsaw puzzle generator producing SVG-based puzzle patterns with six puzzle types, ggplot2 geom layers, PILES notation DSL, a Quarto documentation site, and a Shiny web application.
 
 ## Purpose
 
@@ -44,7 +44,7 @@ This agent encodes domain knowledge specific to jigsawR: the unified puzzle pipe
 - **ggpuzzle Layers**: Work with `geom_puzzle_*()` and `stat_puzzle_*()` ggplot2 extensions
 - **Quarto Docs**: Render the GitHub Pages documentation site (fresh, cached, or single-page)
 - **Shiny App**: Extend and debug the interactive puzzle generator at `inst/shiny-app/app.R`
-- **Testing**: Run and interpret the 2042+ test suite with proper WSL/renv execution
+- **Testing**: Run and interpret the 2000+ test suite with proper WSL/renv execution
 
 ## Available Skills
 
@@ -152,6 +152,7 @@ generate_puzzle()
 | hexagonal | rings | 3r(r-1)+1 | do_warp, do_trunc, tabsize |
 | concentric | rings | varies | center_shape, tabsize |
 | voronoi | cols x rows | varies | n_interior, tabsize |
+| random | cols x rows | varies | n_interior, tabsize |
 | snic | cols x rows | varies | n_interior, compactness, tabsize |
 
 ## Limitations

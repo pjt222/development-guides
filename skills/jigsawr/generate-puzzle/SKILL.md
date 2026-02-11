@@ -29,7 +29,7 @@ Generate jigsaw puzzles using the jigsawR package's unified API.
 
 ## Inputs
 
-- **Required**: Puzzle type (`"rectangular"`, `"hexagonal"`, `"concentric"`, `"voronoi"`, `"snic"`)
+- **Required**: Puzzle type (`"rectangular"`, `"hexagonal"`, `"concentric"`, `"voronoi"`, `"random"`, `"snic"`)
 - **Required**: Grid dimensions (type-dependent: `c(cols, rows)` or `c(rings)`)
 - **Optional**: Size in mm (default varies by type)
 - **Optional**: Seed for reproducibility (default: 42)
@@ -60,6 +60,7 @@ Map the user's request to valid `generate_puzzle()` arguments:
 | hexagonal | `c(rings)` | `c(diameter)` mm | `do_warp`, `do_trunc`, `tabsize` |
 | concentric | `c(rings)` | `c(diameter)` mm | `center_shape`, `tabsize` |
 | voronoi | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `tabsize` |
+| random | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `tabsize` |
 | snic | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `compactness`, `tabsize` |
 
 ### Step 3: Create R Script
