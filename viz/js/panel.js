@@ -84,8 +84,14 @@ function openAgentPanel(node) {
   const color = getAgentColor();
   const priorityColor = PRIORITY_BADGE_COLORS[node.priority] || '#888899';
 
+  const agentId = node.id.replace('agent:', '');
+  const iconSrc = `icons/agents/${encodeURI(agentId)}.webp`;
+
   let html = `
-    <div class="panel-agent-hex" style="color: ${color}; text-shadow: 0 0 16px ${color}">&#x2B22;</div>
+    <div class="panel-icon-wrapper">
+      <img class="panel-icon" src="${iconSrc}" alt=""
+        onerror="this.parentElement.innerHTML='<div class=\\'panel-agent-hex\\' style=\\'color:${color};text-shadow:0 0 16px ${color}\\'>&#x2B22;</div>'">
+    </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
       <span class="badge" style="border-color: ${color}; color: ${color}">agent</span>

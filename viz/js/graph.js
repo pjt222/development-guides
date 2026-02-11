@@ -124,8 +124,9 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
 // ── Icon management ─────────────────────────────────────────────────
 export function preloadIcons(nodes) {
   for (const node of nodes) {
-    if (node.type === 'agent') continue;
-    const path = `icons/${node.domain}/${node.id}.webp`;
+    const path = node.type === 'agent'
+      ? `icons/agents/${node.id.replace('agent:', '')}.webp`
+      : `icons/${node.domain}/${node.id}.webp`;
     const img = new Image();
     img.onload = () => iconImages.set(node.id, img);
     img.onerror = () => iconLoadFailed.add(node.id);
@@ -166,32 +167,65 @@ function drawAgentNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
   const alpha = dimmed ? 0.12 : 1;
 
-  // Radial glow
-  const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
-  grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
-  grad.addColorStop(1, hexToRgba(color, 0));
-  ctx.beginPath();
-  ctx.arc(x, y, cfg.glowRadius, 0, 2 * Math.PI);
-  ctx.fillStyle = grad;
-  ctx.fill();
+  const useIcon = iconMode && iconImages.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
-  // Solid hexagon core
-  drawHexPath(ctx, x, y, r);
-  ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
-  ctx.fill();
+  if (useIcon) {
+    // ── Icon mode: draw agent icon with glow ──
+    const img = iconImages.get(node.id);
+    const iconSize = r * 3.5;
 
-  // White center dot
-  ctx.beginPath();
-  ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
-  ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-  ctx.fill();
+    // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
+    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize);
+    grad.addColorStop(0, hexToRgba(color, 0.12 * alpha));
+    grad.addColorStop(1, hexToRgba(color, 0));
+    ctx.beginPath();
+    ctx.arc(x, y, iconSize, 0, 2 * Math.PI);
+    ctx.fillStyle = grad;
+    ctx.fill();
 
-  // Critical priority gets outer hexagon ring
-  if (node.priority === 'critical') {
-    drawHexPath(ctx, x, y, r + 2.5);
-    ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+    // Draw icon image
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
+    ctx.globalAlpha = 1;
+
+    // Critical priority gets outer ring
+    if (node.priority === 'critical') {
+      const ringRadius = iconSize + 2;
+      ctx.beginPath();
+      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
+      ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  } else {
+    // ── Glow mode: hexagon rendering ──
+    // Radial glow
+    const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
+    grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
+    grad.addColorStop(1, hexToRgba(color, 0));
+    ctx.beginPath();
+    ctx.arc(x, y, cfg.glowRadius, 0, 2 * Math.PI);
+    ctx.fillStyle = grad;
+    ctx.fill();
+
+    // Solid hexagon core
+    drawHexPath(ctx, x, y, r);
+    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
+    ctx.fill();
+
+    // White center dot
+    ctx.beginPath();
+    ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+    ctx.fill();
+
+    // Critical priority gets outer hexagon ring
+    if (node.priority === 'critical') {
+      drawHexPath(ctx, x, y, r + 2.5);
+      ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
   }
 
   // Label
@@ -203,7 +237,8 @@ function drawAgentNode(node, ctx, globalScale) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    ctx.fillText(node.title || node.id, x, y + r + 2);
+    const labelY = useIcon ? y + r * 1.4 : y + r + 2;
+    ctx.fillText(node.title || node.id, x, labelY);
   }
 }
 
