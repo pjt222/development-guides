@@ -135,6 +135,15 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
 }
 
 // ── Icon management ─────────────────────────────────────────────────
+let _iconRefreshTimer = null;
+function _scheduleIconRefresh() {
+  if (_iconRefreshTimer) clearTimeout(_iconRefreshTimer);
+  _iconRefreshTimer = setTimeout(() => {
+    _iconRefreshTimer = null;
+    if (graph) graph.nodeCanvasObject(drawNode);
+  }, 100);
+}
+
 export function preloadIcons(nodes, palette) {
   const pal = palette || getCurrentThemeName();
   if (cachedPaletteIcons.has(pal)) {
@@ -149,7 +158,10 @@ export function preloadIcons(nodes, palette) {
       ? `icons/${pal}/agents/${node.id.replace('agent:', '')}.webp`
       : `icons/${pal}/${node.domain}/${node.id}.webp`;
     const img = new Image();
-    img.onload = () => palMap.set(node.id, img);
+    img.onload = () => {
+      palMap.set(node.id, img);
+      _scheduleIconRefresh();
+    };
     img.onerror = () => {}; // silently skip missing icons
     img.src = path;
   }
