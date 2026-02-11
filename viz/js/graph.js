@@ -18,6 +18,58 @@ const cachedPaletteIcons = new Map(); // palette -> Map(nodeId -> Image)
 let activeIconMap = new Map();        // current palette's nodeId -> Image
 const ICON_ZOOM_THRESHOLD = 1.0;
 
+// ── Performance caches ──────────────────────────────────────────────
+let highlightedNodeIds = null;  // Set of active + neighbor IDs (null = all highlighted)
+let nodeById = new Map();       // id -> node for O(1) lookup
+let cachedFontScale = 0;
+let cachedFontBold = '';
+let cachedFontNormal = '';
+
+// ── Gradient texture cache ────────────────────────────────────────
+const GLOW_TEX_SIZE = 64;
+const glowCache = new Map(); // "profile|#hex" -> OffscreenCanvas
+
+function getGlowTexture(profile, hex) {
+  const key = profile + '|' + hex;
+  let tex = glowCache.get(key);
+  if (tex) return tex;
+  if (typeof OffscreenCanvas === 'undefined') return null;
+  const s = GLOW_TEX_SIZE, c = s / 2, outerR = c;
+  const innerR = profile === 'icon' ? outerR * 0.3 : outerR * 0.17;
+  tex = new OffscreenCanvas(s, s);
+  const tctx = tex.getContext('2d');
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  const grad = tctx.createRadialGradient(c, c, innerR, c, c, outerR);
+  grad.addColorStop(0, `rgba(${r},${g},${b},1)`);
+  grad.addColorStop(1, `rgba(${r},${g},${b},0)`);
+  tctx.fillStyle = grad;
+  tctx.fillRect(0, 0, s, s);
+  glowCache.set(key, tex);
+  return tex;
+}
+
+function drawGlow(ctx, x, y, radius, profile, hex, opacity) {
+  const tex = getGlowTexture(profile, hex);
+  if (tex) {
+    const prev = ctx.globalAlpha;
+    ctx.globalAlpha = opacity;
+    ctx.drawImage(tex, x - radius, y - radius, radius * 2, radius * 2);
+    ctx.globalAlpha = prev;
+  } else {
+    // Fallback: live gradient (old browsers without OffscreenCanvas)
+    const innerR = profile === 'icon' ? radius * 0.3 : radius * 0.17;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    const grad = ctx.createRadialGradient(x, y, innerR, x, y, radius);
+    grad.addColorStop(0, hexToRgba(hex, opacity));
+    grad.addColorStop(1, hexToRgba(hex, 0));
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+}
+
 // ── Agent state ─────────────────────────────────────────────────────
 let visibleAgentIds = null; // null = all visible, Set = specific IDs
 
@@ -41,6 +93,42 @@ export function getVisibleAgentIds() {
   return visibleAgentIds;
 }
 
+// ── Performance helpers ─────────────────────────────────────────────
+function rebuildHighlightSet() {
+  const activeId = selectedNodeId || hoveredNodeId;
+  if (!activeId) { highlightedNodeIds = null; return; }
+  const set = new Set([activeId]);
+  for (const l of graphData.links) {
+    const src = typeof l.source === 'object' ? l.source.id : l.source;
+    const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+    if (src === activeId) set.add(tgt);
+    else if (tgt === activeId) set.add(src);
+  }
+  highlightedNodeIds = set;
+}
+
+function rebuildNodeIndex() {
+  nodeById = new Map();
+  for (const n of graphData.nodes) nodeById.set(n.id, n);
+}
+
+function precomputeLinkColors() {
+  for (const link of graphData.links) {
+    if (link.type !== 'agent') { link._agentHex = null; continue; }
+    const src = typeof link.source === 'object' ? link.source : nodeById.get(typeof link.source === 'string' ? link.source : link.source?.id);
+    if (src && src.type === 'agent') {
+      link._agentHex = getAgentColor(src.id.replace('agent:', ''));
+      continue;
+    }
+    const tgt = typeof link.target === 'object' ? link.target : nodeById.get(typeof link.target === 'string' ? link.target : link.target?.id);
+    if (tgt && tgt.type === 'agent') {
+      link._agentHex = getAgentColor(tgt.id.replace('agent:', ''));
+    } else {
+      link._agentHex = getAgentColor();
+    }
+  }
+}
+
 const SAME_DOMAIN_DISTANCE = 40;
 const CROSS_DOMAIN_DISTANCE = 100;
 const AGENT_LINK_DISTANCE = 120;
@@ -58,6 +146,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
 
   onNodeClick = onClick;
   onNodeHover = onHover;
+  rebuildNodeIndex();
+  precomputeLinkColors();
 
   graph = ForceGraph()(container)
     .width(container.clientWidth || window.innerWidth)
@@ -70,17 +160,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .linkColor(link => {
       const isAgentLink = link.type === 'agent';
       const activeId = selectedNodeId || hoveredNodeId;
-      // Find agent node for this link to get per-agent color
       const getAgentLinkColor = (alpha) => {
-        const src = typeof link.source === 'object' ? link.source : graphData.nodes.find(n => n.id === link.source);
-        const agentNode = src && src.type === 'agent' ? src : null;
-        if (!agentNode) {
-          const tgt = typeof link.target === 'object' ? link.target : graphData.nodes.find(n => n.id === link.target);
-          const aNode = tgt && tgt.type === 'agent' ? tgt : null;
-          if (aNode) return hexToRgba(getAgentColor(aNode.id.replace('agent:', '')), alpha);
-        } else {
-          return hexToRgba(getAgentColor(agentNode.id.replace('agent:', '')), alpha);
-        }
+        if (link._agentHex) return hexToRgba(link._agentHex, alpha);
         return hexToRgba(getAgentColor(), alpha);
       };
       if (!activeId) {
@@ -92,7 +173,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
       if (src === activeId || tgt === activeId) {
         if (isAgentLink) return getAgentLinkColor(0.3);
-        const connectedNode = graphData.nodes.find(n => n.id === (src === activeId ? tgt : src));
+        const connectedNode = nodeById.get(src === activeId ? tgt : src);
         const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
         return hexToRgba(color, 0.35);
       }
@@ -117,8 +198,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
   graph.d3Force('link')
     .distance(link => {
       if (link.type === 'agent') return AGENT_LINK_DISTANCE;
-      const src = typeof link.source === 'object' ? link.source : graphData.nodes.find(n => n.id === link.source);
-      const tgt = typeof link.target === 'object' ? link.target : graphData.nodes.find(n => n.id === link.target);
+      const src = typeof link.source === 'object' ? link.source : nodeById.get(link.source);
+      const tgt = typeof link.target === 'object' ? link.target : nodeById.get(link.target);
       return (src && tgt && src.domain === tgt.domain) ? SAME_DOMAIN_DISTANCE : CROSS_DOMAIN_DISTANCE;
     });
 
@@ -230,13 +311,7 @@ function drawAgentNode(node, ctx, globalScale) {
     const iconSize = r * 3.5;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
-    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize);
-    grad.addColorStop(0, hexToRgba(color, 0.12 * alpha));
-    grad.addColorStop(1, hexToRgba(color, 0));
-    ctx.beginPath();
-    ctx.arc(x, y, iconSize, 0, 2 * Math.PI);
-    ctx.fillStyle = grad;
-    ctx.fill();
+    drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
 
     // Draw icon image
     ctx.globalAlpha = alpha;
@@ -259,13 +334,7 @@ function drawAgentNode(node, ctx, globalScale) {
   } else {
     // ── Glow mode: octagon rendering ──
     // Radial glow
-    const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, cfg.glowRadius);
-    grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
-    grad.addColorStop(1, hexToRgba(color, 0));
-    ctx.beginPath();
-    ctx.arc(x, y, cfg.glowRadius, 0, 2 * Math.PI);
-    ctx.fillStyle = grad;
-    ctx.fill();
+    drawGlow(ctx, x, y, cfg.glowRadius, 'glow', color, cfg.glowOpacity * alpha);
 
     // Solid octagon core
     drawOctPath(ctx, x, y, r);
@@ -291,8 +360,7 @@ function drawAgentNode(node, ctx, globalScale) {
   const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
   const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
   if (showLabel) {
-    const fontSize = Math.max(10 / globalScale, 2);
-    ctx.font = `bold ${fontSize}px 'Share Tech Mono', monospace`;
+    ctx.font = cachedFontBold;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
@@ -303,6 +371,14 @@ function drawAgentNode(node, ctx, globalScale) {
 
 // ── Node rendering ──────────────────────────────────────────────────
 function drawNode(node, ctx, globalScale) {
+  // Font cache — recompute only when scale changes
+  if (globalScale !== cachedFontScale) {
+    cachedFontScale = globalScale;
+    const fs = Math.max(10 / globalScale, 2);
+    cachedFontBold = `bold ${fs}px 'Share Tech Mono', monospace`;
+    cachedFontNormal = `${fs}px 'Share Tech Mono', monospace`;
+  }
+
   const x = node.x;
   const y = node.y;
   if (!isFinite(x) || !isFinite(y)) return;
@@ -330,13 +406,7 @@ function drawNode(node, ctx, globalScale) {
     const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
-    const grad = ctx.createRadialGradient(x, y, iconSize * 0.3, x, y, iconSize * glowMult);
-    grad.addColorStop(0, hexToRgba(color, 0.12 * alpha));
-    grad.addColorStop(1, hexToRgba(color, 0));
-    ctx.beginPath();
-    ctx.arc(x, y, iconSize * glowMult, 0, 2 * Math.PI);
-    ctx.fillStyle = grad;
-    ctx.fill();
+    drawGlow(ctx, x, y, iconSize * glowMult, 'icon', color, 0.12 * alpha);
 
     // Draw icon image
     ctx.globalAlpha = alpha;
@@ -358,13 +428,7 @@ function drawNode(node, ctx, globalScale) {
     // ── Glow mode (original rendering) ──
     const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
     const glowRadius = cfg.glowRadius * glowMult;
-    const grad = ctx.createRadialGradient(x, y, r * 0.5, x, y, glowRadius);
-    grad.addColorStop(0, hexToRgba(color, cfg.glowOpacity * alpha));
-    grad.addColorStop(1, hexToRgba(color, 0));
-    ctx.beginPath();
-    ctx.arc(x, y, glowRadius, 0, 2 * Math.PI);
-    ctx.fillStyle = grad;
-    ctx.fill();
+    drawGlow(ctx, x, y, glowRadius, 'glow', color, cfg.glowOpacity * alpha);
 
     // Solid core
     ctx.beginPath();
@@ -395,8 +459,7 @@ function drawNode(node, ctx, globalScale) {
   const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
   const showLabel = (hasActiveSelection && isHighlighted && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
   if (showLabel) {
-    const fontSize = Math.max(10 / globalScale, 2);
-    ctx.font = `${fontSize}px 'Share Tech Mono', monospace`;
+    ctx.font = cachedFontNormal;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
@@ -423,36 +486,33 @@ function drawHitArea(node, color, ctx) {
 }
 
 function isNodeHighlighted(node) {
-  const activeId = selectedNodeId || hoveredNodeId;
-  if (!activeId) return true;
-  if (node.id === activeId) return true;
-  return graphData.links.some(l => {
-    const src = typeof l.source === 'object' ? l.source.id : l.source;
-    const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-    return (src === activeId && tgt === node.id) || (tgt === activeId && src === node.id);
-  });
+  return highlightedNodeIds === null || highlightedNodeIds.has(node.id);
 }
 
 function handleNodeClick(node) {
   if (node) {
     selectedNodeId = node.id;
+    rebuildHighlightSet();
     if (onNodeClick) onNodeClick(node);
   }
 }
 
 function handleNodeHover(node) {
   hoveredNodeId = node ? node.id : null;
+  rebuildHighlightSet();
   if (onNodeHover) onNodeHover(node);
 }
 
 function handleBackgroundClick() {
   selectedNodeId = null;
+  rebuildHighlightSet();
   if (onNodeClick) onNodeClick(null);
 }
 
 export function selectNode(id) {
   selectedNodeId = id;
-  const node = graphData.nodes.find(n => n.id === id);
+  rebuildHighlightSet();
+  const node = nodeById.get(id);
   if (node && graph) {
     graph.centerAt(node.x, node.y, 500);
     graph.zoom(4, 500);
@@ -462,12 +522,14 @@ export function selectNode(id) {
 export function clearSelection() {
   selectedNodeId = null;
   hoveredNodeId = null;
+  rebuildHighlightSet();
 }
 
 export function focusNode(id) {
-  const node = graphData.nodes.find(n => n.id === id);
+  const node = nodeById.get(id);
   if (node && graph) {
     selectedNodeId = id;
+    rebuildHighlightSet();
     graph.centerAt(node.x, node.y, 800);
     graph.zoom(4, 800);
   }
@@ -513,6 +575,8 @@ export function setSkillVisibility(visibleSkillIds) {
     }));
 
   graphData = { nodes: filteredNodes, links: filteredLinks };
+  rebuildNodeIndex();
+  precomputeLinkColors();
 
   if (graph) {
     graph.graphData(graphData);
@@ -530,6 +594,8 @@ export function setDomainVisibility(visibleDomains) {
 }
 
 export function refreshGraph() {
+  precomputeLinkColors();
+  glowCache.clear(); // invalidate gradient textures on theme switch
   if (graph) graph.nodeCanvasObject(drawNode);
 }
 

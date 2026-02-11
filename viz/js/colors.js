@@ -575,9 +575,15 @@ export const FEATURED_NODES = {
   'create-skill-glyph':  { radius: 7, tier: 'secondary' },
 };
 
+const _rgbaCache = new Map();
 export function hexToRgba(hex, alpha) {
+  const key = hex + '|' + alpha;
+  let val = _rgbaCache.get(key);
+  if (val !== undefined) return val;
   const r = parseInt(hex.slice(1, 3), 16);
   const g = parseInt(hex.slice(3, 5), 16);
   const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
+  val = `rgba(${r},${g},${b},${alpha})`;
+  _rgbaCache.set(key, val);
+  return val;
 }
