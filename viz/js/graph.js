@@ -287,7 +287,7 @@ function drawAgentNode(node, ctx, globalScale) {
     }
   }
 
-  // Label
+  // Label — placed below the octagon frame
   const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
   const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
   if (showLabel) {
@@ -296,7 +296,7 @@ function drawAgentNode(node, ctx, globalScale) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    const labelY = useIcon ? y + r * 1.4 : y + r + 2;
+    const labelY = useIcon ? y + r * 3.5 + 4 : y + r + 4;
     ctx.fillText(node.title || node.id, x, labelY);
   }
 }
