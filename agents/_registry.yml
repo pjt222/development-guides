@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 26
-version: "1.7"
-last_updated: "2026-02-11"
+total_agents: 27
+version: "1.8"
+last_updated: "2026-02-12"
 
 agents:
   - id: r-developer
@@ -433,3 +433,19 @@ agents:
     skills:
       - assess-ip-landscape
       - search-prior-art
+
+  - id: gardener
+    path: agents/gardener.md
+    description: Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints
+    tags: [gardening, bonsai, botanics, biodynamics, lunar-calendar, soil, zen, demeter, hand-tools]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - cultivate-bonsai
+      - prepare-soil
+      - plan-garden-calendar
+      - read-garden
+      - maintain-hand-tools
+      - meditate
+      - heal
+      - forage-plants

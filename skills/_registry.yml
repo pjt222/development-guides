@@ -1,7 +1,7 @@
-version: "1.3"
-generated: "2026-02-11"
+version: "1.4"
+generated: "2026-02-12"
 standard: "agentskills.io/specification"
-total_skills: 157
+total_skills: 162
 
 domains:
   r-packages:
@@ -888,3 +888,32 @@ domains:
         complexity: intermediate
         language: natural
         description: Search patent and non-patent literature for novelty, invalidity, and FTO analysis
+
+  gardening:
+    description: Plant cultivation, soil preparation, garden observation, and hand tool care
+    skills:
+      - id: cultivate-bonsai
+        path: gardening/cultivate-bonsai/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Bonsai cultivation from species selection through seasonal care with contemplative sitting
+      - id: prepare-soil
+        path: gardening/prepare-soil/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Soil assessment, amendment, composting, and biodynamic preparations
+      - id: plan-garden-calendar
+        path: gardening/plan-garden-calendar/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Solar, lunar, and biodynamic calendar integration for garden scheduling
+      - id: read-garden
+        path: gardening/read-garden/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Observation-first garden assessment using CRV-adapted sensory protocol
+      - id: maintain-hand-tools
+        path: gardening/maintain-hand-tools/SKILL.md
+        complexity: basic
+        language: natural
+        description: Sharpening, handle care, rust prevention, and winter maintenance for essential garden hand tools

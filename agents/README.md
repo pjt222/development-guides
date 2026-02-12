@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 26 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 27 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -41,8 +41,9 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [polymath](polymath.md) | high | Cross-disciplinary synthesis: spawns domain agents, synthesizes findings |
 | [tcg-specialist](tcg-specialist.md) | normal | Trading card games: grading (PSA/BGS/CGC), deck building, collection management |
 | [ip-analyst](ip-analyst.md) | high | Intellectual property: patent landscape, prior art search, FTO analysis |
+| [gardener](gardener.md) | normal | Plant cultivation: bonsai, soil, biodynamic calendar, garden observation, hand tools |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 26 agents cover 143 of the 150 skills in the library. The seven uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), and the three human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`).
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 27 agents cover 148 of the 155 non-meta skills in the library. The seven uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), and the three human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`).
 
 ## Using Agents in Claude Code
 
@@ -92,6 +93,7 @@ Task(subagent_type="alchemist", prompt="Transform this legacy PHP module into cl
 Task(subagent_type="polymath", prompt="Assess feasibility of an AI medical imaging tool across engineering, compliance, IP, and UX")
 Task(subagent_type="tcg-specialist", prompt="Grade this 1st Edition Charizard and advise on PSA submission")
 Task(subagent_type="ip-analyst", prompt="Map the patent landscape for federated learning before we start R&D")
+Task(subagent_type="gardener", prompt="Help me plan spring planting using the lunar calendar")
 ```
 
 ## Agent File Format
