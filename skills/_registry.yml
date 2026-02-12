@@ -1,7 +1,7 @@
 version: "1.4"
 generated: "2026-02-12"
 standard: "agentskills.io/specification"
-total_skills: 163
+total_skills: 171
 
 domains:
   r-packages:
@@ -430,6 +430,46 @@ domains:
         complexity: intermediate
         language: natural
         description: Guide a person through a Coordinate Remote Viewing session as CRV monitor/tasker
+      - id: learn
+        path: esoteric/learn/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI systematic knowledge acquisition from unfamiliar territory
+      - id: learn-guidance
+        path: esoteric/learn-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person through structured learning of a new topic or skill
+      - id: teach
+        path: esoteric/teach/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI knowledge transfer calibrated to learner level and needs
+      - id: teach-guidance
+        path: esoteric/teach-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person in becoming a better teacher and explainer
+      - id: listen
+        path: esoteric/listen/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Deep receptive attention to extract intent beyond literal words
+      - id: listen-guidance
+        path: esoteric/listen-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person in developing active listening skills
+      - id: observe
+        path: esoteric/observe/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Sustained neutral pattern recognition across systems
+      - id: observe-guidance
+        path: esoteric/observe-guidance/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guide a person in systematic observation and pattern recognition
 
   design:
     description: Ornamental design and AI-assisted image generation skills

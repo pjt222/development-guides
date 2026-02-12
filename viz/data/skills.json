@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-12T09:55:16.410Z",
-    "totalSkills": 163,
+    "generated": "2026-02-12T11:01:43.268Z",
+    "totalSkills": 171,
     "totalAgents": 27,
-    "totalNodes": 190,
-    "totalLinks": 929,
+    "totalNodes": 198,
+    "totalLinks": 967,
     "totalAgentLinks": 224,
     "totalDomains": 26
   },
@@ -59,7 +59,7 @@
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
-      "count": 6
+      "count": 14
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
@@ -1872,6 +1872,204 @@
         "forage-plants"
       ],
       "path": "esoteric/remote-viewing-guidance/SKILL.md"
+    },
+    {
+      "id": "learn",
+      "type": "skill",
+      "title": "Learn",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI systematic knowledge acquisition from unfamiliar territory",
+      "tags": [
+        "esoteric",
+        "learning",
+        "knowledge-acquisition",
+        "meta-cognition",
+        "model-building"
+      ],
+      "related": [
+        "learn-guidance",
+        "teach",
+        "remote-viewing",
+        "meditate",
+        "observe"
+      ],
+      "path": "esoteric/learn/SKILL.md"
+    },
+    {
+      "id": "learn-guidance",
+      "type": "skill",
+      "title": "Learn (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person through structured learning of a new topic or skill",
+      "tags": [
+        "esoteric",
+        "learning",
+        "coaching",
+        "education",
+        "structured-learning",
+        "guidance"
+      ],
+      "related": [
+        "learn",
+        "teach-guidance",
+        "meditate-guidance",
+        "remote-viewing-guidance"
+      ],
+      "path": "esoteric/learn-guidance/SKILL.md"
+    },
+    {
+      "id": "teach",
+      "type": "skill",
+      "title": "Teach",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI knowledge transfer calibrated to learner level and needs",
+      "tags": [
+        "esoteric",
+        "teaching",
+        "knowledge-transfer",
+        "scaffolding",
+        "socratic-method",
+        "meta-cognition"
+      ],
+      "related": [
+        "teach-guidance",
+        "learn",
+        "listen",
+        "meditate"
+      ],
+      "path": "esoteric/teach/SKILL.md"
+    },
+    {
+      "id": "teach-guidance",
+      "type": "skill",
+      "title": "Teach (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person in becoming a better teacher and explainer",
+      "tags": [
+        "esoteric",
+        "teaching",
+        "coaching",
+        "presentation",
+        "documentation",
+        "explanation",
+        "guidance"
+      ],
+      "related": [
+        "teach",
+        "learn-guidance",
+        "listen-guidance",
+        "meditate-guidance"
+      ],
+      "path": "esoteric/teach-guidance/SKILL.md"
+    },
+    {
+      "id": "listen",
+      "type": "skill",
+      "title": "Listen",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Deep receptive attention to extract intent beyond literal words",
+      "tags": [
+        "esoteric",
+        "listening",
+        "active-listening",
+        "intent-extraction",
+        "meta-cognition",
+        "receptive-attention"
+      ],
+      "related": [
+        "listen-guidance",
+        "observe",
+        "teach",
+        "meditate",
+        "heal"
+      ],
+      "path": "esoteric/listen/SKILL.md"
+    },
+    {
+      "id": "listen-guidance",
+      "type": "skill",
+      "title": "Listen (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person in developing active listening skills",
+      "tags": [
+        "esoteric",
+        "listening",
+        "active-listening",
+        "communication",
+        "coaching",
+        "guidance"
+      ],
+      "related": [
+        "listen",
+        "learn-guidance",
+        "teach-guidance",
+        "meditate-guidance",
+        "heal-guidance"
+      ],
+      "path": "esoteric/listen-guidance/SKILL.md"
+    },
+    {
+      "id": "observe",
+      "type": "skill",
+      "title": "Observe",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Sustained neutral pattern recognition across systems",
+      "tags": [
+        "esoteric",
+        "observation",
+        "pattern-recognition",
+        "naturalist",
+        "field-study",
+        "meta-cognition"
+      ],
+      "related": [
+        "observe-guidance",
+        "learn",
+        "listen",
+        "remote-viewing",
+        "meditate",
+        "awareness"
+      ],
+      "path": "esoteric/observe/SKILL.md"
+    },
+    {
+      "id": "observe-guidance",
+      "type": "skill",
+      "title": "Observe (Guidance)",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guide a person in systematic observation and pattern recognition",
+      "tags": [
+        "esoteric",
+        "observation",
+        "field-study",
+        "pattern-recognition",
+        "debugging",
+        "guidance"
+      ],
+      "related": [
+        "observe",
+        "learn-guidance",
+        "listen-guidance",
+        "remote-viewing-guidance",
+        "read-garden"
+      ],
+      "path": "esoteric/observe-guidance/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -6465,6 +6663,196 @@
     {
       "source": "remote-viewing-guidance",
       "target": "forage-plants",
+      "type": "skill"
+    },
+    {
+      "source": "learn",
+      "target": "learn-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "learn",
+      "target": "teach",
+      "type": "skill"
+    },
+    {
+      "source": "learn",
+      "target": "remote-viewing",
+      "type": "skill"
+    },
+    {
+      "source": "learn",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "learn",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "learn-guidance",
+      "target": "learn",
+      "type": "skill"
+    },
+    {
+      "source": "learn-guidance",
+      "target": "teach-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "learn-guidance",
+      "target": "meditate-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "learn-guidance",
+      "target": "remote-viewing-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "teach",
+      "target": "teach-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "teach",
+      "target": "learn",
+      "type": "skill"
+    },
+    {
+      "source": "teach",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "teach",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "teach-guidance",
+      "target": "teach",
+      "type": "skill"
+    },
+    {
+      "source": "teach-guidance",
+      "target": "learn-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "teach-guidance",
+      "target": "listen-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "teach-guidance",
+      "target": "meditate-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "listen",
+      "target": "listen-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "listen",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "listen",
+      "target": "teach",
+      "type": "skill"
+    },
+    {
+      "source": "listen",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "listen",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "listen-guidance",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "listen-guidance",
+      "target": "learn-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "listen-guidance",
+      "target": "teach-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "listen-guidance",
+      "target": "meditate-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "listen-guidance",
+      "target": "heal-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "observe-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "learn",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "remote-viewing",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "observe",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "observe-guidance",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "observe-guidance",
+      "target": "learn-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "observe-guidance",
+      "target": "listen-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "observe-guidance",
+      "target": "remote-viewing-guidance",
+      "type": "skill"
+    },
+    {
+      "source": "observe-guidance",
+      "target": "read-garden",
       "type": "skill"
     },
     {

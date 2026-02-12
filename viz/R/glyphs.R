@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 163 skillIds to a specific glyph drawing function.
+# Maps each of 171 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -75,13 +75,21 @@ SKILL_GLYPHS <- list(
   "setup-local-kubernetes"         = "glyph_cluster_local",
   "write-helm-chart"               = "glyph_anchor",
 
-  # ── esoteric (6) ──────────────────────────────────────────────────────
+  # ── esoteric (14) ─────────────────────────────────────────────────────
   "heal"                           = "glyph_healing_hands",
   "heal-guidance"                  = "glyph_healing_hands_guide",
   "meditate"                       = "glyph_lotus_seated",
   "meditate-guidance"              = "glyph_lotus_seated_guide",
   "remote-viewing"                 = "glyph_third_eye",
   "remote-viewing-guidance"        = "glyph_third_eye_guide",
+  "learn"                          = "glyph_open_book",
+  "learn-guidance"                 = "glyph_open_book_guide",
+  "teach"                          = "glyph_dialogue_bubbles",
+  "teach-guidance"                 = "glyph_dialogue_bubbles_guide",
+  "listen"                         = "glyph_listening_ear",
+  "listen-guidance"                = "glyph_listening_ear_guide",
+  "observe"                        = "glyph_telescope_stars",
+  "observe-guidance"               = "glyph_telescope_stars_guide",
 
   # ── gardening (5) ─────────────────────────────────────────────────────
   "cultivate-bonsai"                   = "glyph_bonsai_tree",

@@ -1,4 +1,4 @@
-# primitives_7.R - Glyph library part 7: Gardening domain (5) + general (1)
+# primitives_7.R - Glyph library part 7: Gardening (5) + general (1) + esoteric meta-cognitive (8)
 # Sourced by build-icons.R
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -348,4 +348,440 @@ glyph_garden_eye <- function(cx, cy, s, col, bright) {
   layers[[length(layers) + 1]] <- ggplot2::geom_path(data = midrib, .aes(x, y),
     color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 0.8))
   layers
+}
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Esoteric domain meta-cognitive glyphs (8)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── glyph_open_book: open book with emerging knowledge path ────────────────
+glyph_open_book <- function(cx, cy, s, col, bright) {
+  # Spine (vertical center line)
+  spine <- data.frame(
+    x = c(cx, cx),
+    y = c(cy - 20 * s, cy + 4 * s)
+  )
+  # Left page (polygon fanning outward)
+  left_page <- data.frame(
+    x = c(cx, cx - 22 * s, cx - 20 * s, cx),
+    y = c(cy + 4 * s, cy + 2 * s, cy - 20 * s, cy - 20 * s)
+  )
+  # Right page
+  right_page <- data.frame(
+    x = c(cx, cx + 22 * s, cx + 20 * s, cx),
+    y = c(cy + 4 * s, cy + 2 * s, cy - 20 * s, cy - 20 * s)
+  )
+  # Text lines on left page
+  ll1 <- data.frame(x = c(cx - 18 * s, cx - 4 * s), y = rep(cy - 4 * s, 2))
+  ll2 <- data.frame(x = c(cx - 16 * s, cx - 4 * s), y = rep(cy - 9 * s, 2))
+  ll3 <- data.frame(x = c(cx - 14 * s, cx - 4 * s), y = rep(cy - 14 * s, 2))
+  # Text lines on right page
+  rl1 <- data.frame(x = c(cx + 4 * s, cx + 18 * s), y = rep(cy - 4 * s, 2))
+  rl2 <- data.frame(x = c(cx + 4 * s, cx + 16 * s), y = rep(cy - 9 * s, 2))
+  rl3 <- data.frame(x = c(cx + 4 * s, cx + 14 * s), y = rep(cy - 14 * s, 2))
+  # Curved knowledge path emerging upward from book
+  t_path <- seq(0, 1, length.out = 30)
+  kpath <- data.frame(
+    x = cx + 8 * s * sin(t_path * pi * 1.5),
+    y = cy + 4 * s + t_path * 22 * s
+  )
+  # Knowledge dots along path
+  kdots <- data.frame(
+    x = cx + 8 * s * sin(c(0.3, 0.6, 0.9) * pi * 1.5),
+    y = cy + 4 * s + c(0.3, 0.6, 0.9) * 22 * s
+  )
+  list(
+    ggplot2::geom_polygon(data = left_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_polygon(data = right_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = spine, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = ll1, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = ll2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = ll3, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = rl1, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = rl2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = rl3, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = kpath, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_point(data = kdots, .aes(x, y),
+      color = bright, size = 3.5 * s)
+  )
+}
+
+# ── glyph_open_book_guide: open book with small seated guide figure ────────
+glyph_open_book_guide <- function(cx, cy, s, col, bright) {
+  # Reuse book base (simplified)
+  spine <- data.frame(x = c(cx, cx), y = c(cy - 16 * s, cy + 4 * s))
+  left_page <- data.frame(
+    x = c(cx, cx - 20 * s, cx - 18 * s, cx),
+    y = c(cy + 4 * s, cy + 2 * s, cy - 16 * s, cy - 16 * s)
+  )
+  right_page <- data.frame(
+    x = c(cx, cx + 20 * s, cx + 18 * s, cx),
+    y = c(cy + 4 * s, cy + 2 * s, cy - 16 * s, cy - 16 * s)
+  )
+  # Text lines (fewer, book is smaller)
+  ll1 <- data.frame(x = c(cx - 16 * s, cx - 4 * s), y = rep(cy - 4 * s, 2))
+  ll2 <- data.frame(x = c(cx - 14 * s, cx - 4 * s), y = rep(cy - 9 * s, 2))
+  rl1 <- data.frame(x = c(cx + 4 * s, cx + 16 * s), y = rep(cy - 4 * s, 2))
+  rl2 <- data.frame(x = c(cx + 4 * s, cx + 14 * s), y = rep(cy - 9 * s, 2))
+  # Guide figure above book (seated, simplified stick figure)
+  head <- data.frame(x0 = cx, y0 = cy + 18 * s, r = 5 * s)
+  body <- data.frame(x = c(cx, cx), y = c(cy + 13 * s, cy + 6 * s))
+  arm_l <- data.frame(x = c(cx, cx - 8 * s), y = c(cy + 10 * s, cy + 6 * s))
+  arm_r <- data.frame(x = c(cx, cx + 8 * s), y = c(cy + 10 * s, cy + 6 * s))
+  list(
+    ggplot2::geom_polygon(data = left_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = right_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = spine, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = ll1, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = ll2, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = rl1, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = rl2, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1)),
+    # Guide figure
+    ggforce::geom_circle(data = head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = body, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = arm_l, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = arm_r, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_dialogue_bubbles: two speech bubbles in exchange ─────────────────
+glyph_dialogue_bubbles <- function(cx, cy, s, col, bright) {
+  # Larger bubble (upper-left, teacher)
+  t_big <- seq(0, 2 * pi, length.out = 50)
+  big_bub <- data.frame(
+    x = cx - 6 * s + 16 * s * cos(t_big),
+    y = cy + 8 * s + 12 * s * sin(t_big)
+  )
+  # Tail for big bubble (pointing down-right)
+  big_tail <- data.frame(
+    x = c(cx + 4 * s, cx + 10 * s, cx + 6 * s),
+    y = c(cy - 2 * s, cy - 6 * s, cy + 2 * s)
+  )
+  # Smaller bubble (lower-right, learner)
+  small_bub <- data.frame(
+    x = cx + 8 * s + 10 * s * cos(t_big),
+    y = cy - 12 * s + 8 * s * sin(t_big)
+  )
+  # Tail for small bubble (pointing up-left)
+  small_tail <- data.frame(
+    x = c(cx + 2 * s, cx - 2 * s, cx + 4 * s),
+    y = c(cy - 6 * s, cy - 2 * s, cy - 8 * s)
+  )
+  # Inner marks in big bubble (3 horizontal dashes)
+  bm1 <- data.frame(x = c(cx - 14 * s, cx - 2 * s), y = rep(cy + 12 * s, 2))
+  bm2 <- data.frame(x = c(cx - 12 * s, cx), y = rep(cy + 8 * s, 2))
+  bm3 <- data.frame(x = c(cx - 10 * s, cx - 4 * s), y = rep(cy + 4 * s, 2))
+  # Inner marks in small bubble (2 shorter dashes)
+  sm1 <- data.frame(x = c(cx + 4 * s, cx + 12 * s), y = rep(cy - 10 * s, 2))
+  sm2 <- data.frame(x = c(cx + 6 * s, cx + 14 * s), y = rep(cy - 14 * s, 2))
+  # Curved connection between bubbles
+  t_conn <- seq(0, 1, length.out = 20)
+  conn <- data.frame(
+    x = cx + 6 * s + 4 * s * sin(t_conn * pi),
+    y = cy - 4 * s + t_conn * 6 * s
+  )
+  list(
+    ggplot2::geom_polygon(data = big_bub, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = big_tail, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_polygon(data = small_bub, .aes(x, y),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_polygon(data = small_tail, .aes(x, y),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = bm1, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = bm2, .aes(x, y),
+      color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = bm3, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = sm1, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = sm2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = conn, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1),
+      linetype = "dashed")
+  )
+}
+
+# ── glyph_dialogue_bubbles_guide: bubbles with directed coaching arrow ─────
+glyph_dialogue_bubbles_guide <- function(cx, cy, s, col, bright) {
+  # Larger bubble (upper-left)
+  t_big <- seq(0, 2 * pi, length.out = 50)
+  big_bub <- data.frame(
+    x = cx - 6 * s + 14 * s * cos(t_big),
+    y = cy + 8 * s + 10 * s * sin(t_big)
+  )
+  # Smaller bubble (lower-right)
+  small_bub <- data.frame(
+    x = cx + 8 * s + 10 * s * cos(t_big),
+    y = cy - 10 * s + 8 * s * sin(t_big)
+  )
+  # Content marks
+  bm1 <- data.frame(x = c(cx - 14 * s, cx - 2 * s), y = rep(cy + 10 * s, 2))
+  bm2 <- data.frame(x = c(cx - 12 * s, cx), y = rep(cy + 6 * s, 2))
+  sm1 <- data.frame(x = c(cx + 4 * s, cx + 12 * s), y = rep(cy - 10 * s, 2))
+  # Directed arrow from big to small (coaching direction)
+  arrow_shaft <- data.frame(
+    x = c(cx + 4 * s, cx + 6 * s),
+    y = c(cy, cy - 4 * s)
+  )
+  arrow_head <- data.frame(
+    x = c(cx + 3 * s, cx + 6 * s, cx + 9 * s),
+    y = c(cy - 2 * s, cy - 6 * s, cy - 2 * s)
+  )
+  # Guide hand (small open palm near arrow)
+  hand_base <- data.frame(
+    x = c(cx + 10 * s, cx + 14 * s, cx + 16 * s, cx + 12 * s),
+    y = c(cy + 2 * s, cy + 4 * s, cy, cy - 2 * s)
+  )
+  list(
+    ggplot2::geom_polygon(data = big_bub, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = small_bub, .aes(x, y),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = bm1, .aes(x, y),
+      color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = bm2, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = sm1, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = arrow_shaft, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_polygon(data = hand_base, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_listening_ear: ear shape with incoming sound waves ───────────────
+glyph_listening_ear <- function(cx, cy, s, col, bright) {
+  # Outer ear (C-shape, open to the left)
+  t_ear <- seq(-pi * 0.7, pi * 0.7, length.out = 40)
+  ear_outer <- data.frame(
+    x = cx + 6 * s + 18 * s * cos(t_ear),
+    y = cy + 16 * s * sin(t_ear)
+  )
+  # Inner helix (smaller C inside)
+  t_helix <- seq(-pi * 0.5, pi * 0.5, length.out = 30)
+  ear_inner <- data.frame(
+    x = cx + 8 * s + 10 * s * cos(t_helix),
+    y = cy + 8 * s * sin(t_helix)
+  )
+  # Ear canal (small circle)
+  canal <- data.frame(x0 = cx + 10 * s, y0 = cy, r = 3 * s)
+  # Sound waves (3 concentric arcs from left)
+  layers <- list(
+    ggplot2::geom_path(data = ear_outer, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = ear_inner, .aes(x, y),
+      color = col, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = canal, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5))
+  )
+  # Sound wave arcs (emanating from left toward ear)
+  wave_radii <- c(12, 18, 24)
+  wave_alphas <- c(0.6, 0.4, 0.25)
+  for (i in seq_along(wave_radii)) {
+    t_wave <- seq(pi * 0.6, pi * 1.4, length.out = 25)
+    wave <- data.frame(
+      x = cx - 10 * s + wave_radii[i] * s * cos(t_wave),
+      y = cy + wave_radii[i] * s * sin(t_wave)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = wave, .aes(x, y),
+      color = hex_with_alpha(col, wave_alphas[i]), linewidth = .lw(s, 1.5))
+  }
+  layers
+}
+
+# ── glyph_listening_ear_guide: ear with guiding hand gesture ───────────────
+glyph_listening_ear_guide <- function(cx, cy, s, col, bright) {
+  # Ear (simplified, shifted right)
+  t_ear <- seq(-pi * 0.7, pi * 0.7, length.out = 40)
+  ear_outer <- data.frame(
+    x = cx + 8 * s + 16 * s * cos(t_ear),
+    y = cy + 14 * s * sin(t_ear)
+  )
+  ear_inner <- data.frame(
+    x = cx + 10 * s + 8 * s * cos(seq(-pi * 0.4, pi * 0.4, length.out = 25)),
+    y = cy + 6 * s * sin(seq(-pi * 0.4, pi * 0.4, length.out = 25))
+  )
+  canal <- data.frame(x0 = cx + 12 * s, y0 = cy, r = 2.5 * s)
+  # Sound waves (2 arcs)
+  layers <- list(
+    ggplot2::geom_path(data = ear_outer, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.2)),
+    ggplot2::geom_path(data = ear_inner, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.8)),
+    ggforce::geom_circle(data = canal, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.2))
+  )
+  for (r_val in c(14, 20)) {
+    t_w <- seq(pi * 0.6, pi * 1.4, length.out = 20)
+    wave <- data.frame(
+      x = cx - 8 * s + r_val * s * cos(t_w),
+      y = cy + r_val * s * sin(t_w)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = wave, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.3))
+  }
+  # Guide hand (cupped, near ear, lower-left)
+  hand_palm <- data.frame(
+    x = c(cx - 14 * s, cx - 8 * s, cx - 6 * s, cx - 10 * s, cx - 16 * s),
+    y = c(cy - 8 * s, cy - 12 * s, cy - 6 * s, cy - 2 * s, cy - 4 * s)
+  )
+  # Fingers (3 short lines fanning from palm)
+  f1 <- data.frame(x = c(cx - 6 * s, cx - 2 * s), y = c(cy - 6 * s, cy - 2 * s))
+  f2 <- data.frame(x = c(cx - 8 * s, cx - 4 * s), y = c(cy - 12 * s, cy - 8 * s))
+  f3 <- data.frame(x = c(cx - 14 * s, cx - 12 * s), y = c(cy - 8 * s, cy - 4 * s))
+  layers <- c(layers, list(
+    ggplot2::geom_polygon(data = hand_palm, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = f1, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = f2, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = f3, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.2))
+  ))
+  layers
+}
+
+# ── glyph_telescope_stars: telescope pointed at star field ─────────────────
+glyph_telescope_stars <- function(cx, cy, s, col, bright) {
+  # Telescope tube (angled trapezoid, pointing upper-right)
+  tube <- data.frame(
+    x = c(cx - 16 * s, cx + 10 * s, cx + 14 * s, cx - 12 * s),
+    y = c(cy - 8 * s, cy + 12 * s, cy + 8 * s, cy - 12 * s)
+  )
+  # Eyepiece (small rect at bottom-left end)
+  eyepiece <- data.frame(
+    xmin = cx - 20 * s, xmax = cx - 14 * s,
+    ymin = cy - 14 * s, ymax = cy - 6 * s
+  )
+  # Tripod legs (3 lines from center-bottom of tube)
+  pivot_x <- cx - 4 * s; pivot_y <- cy - 10 * s
+  leg1 <- data.frame(x = c(pivot_x, cx - 18 * s), y = c(pivot_y, cy - 26 * s))
+  leg2 <- data.frame(x = c(pivot_x, cx + 2 * s), y = c(pivot_y, cy - 26 * s))
+  leg3 <- data.frame(x = c(pivot_x, cx - 8 * s), y = c(pivot_y, cy - 28 * s))
+  # Cone field of view (expanding from telescope end, upper-right)
+  fov_l <- data.frame(
+    x = c(cx + 12 * s, cx + 24 * s),
+    y = c(cy + 10 * s, cy + 24 * s)
+  )
+  fov_r <- data.frame(
+    x = c(cx + 12 * s, cx + 24 * s),
+    y = c(cy + 10 * s, cy + 12 * s)
+  )
+  # Stars scattered in field of view (7 dots)
+  stars <- data.frame(
+    x = cx + c(16, 20, 24, 18, 22, 14, 20) * s,
+    y = cy + c(14, 18, 22, 22, 26, 20, 24) * s
+  )
+  star_sizes <- c(2.5, 3.5, 2, 3, 2.5, 1.5, 2) * s
+  layers <- list(
+    ggplot2::geom_polygon(data = tube, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = eyepiece,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = leg1, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = leg2, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = leg3, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = fov_l, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1),
+      linetype = "dashed"),
+    ggplot2::geom_path(data = fov_r, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1),
+      linetype = "dashed")
+  )
+  for (i in seq_len(nrow(stars))) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_point(
+      data = stars[i, , drop = FALSE], .aes(x, y),
+      color = bright, size = star_sizes[i])
+  }
+  layers
+}
+
+# ── glyph_telescope_stars_guide: telescope with companion figure ───────────
+glyph_telescope_stars_guide <- function(cx, cy, s, col, bright) {
+  # Telescope tube (simplified, shifted left)
+  tube <- data.frame(
+    x = c(cx - 18 * s, cx + 6 * s, cx + 10 * s, cx - 14 * s),
+    y = c(cy - 4 * s, cy + 12 * s, cy + 8 * s, cy - 8 * s)
+  )
+  # Tripod
+  pivot_x <- cx - 6 * s; pivot_y <- cy - 6 * s
+  leg1 <- data.frame(x = c(pivot_x, cx - 20 * s), y = c(pivot_y, cy - 22 * s))
+  leg2 <- data.frame(x = c(pivot_x, cx), y = c(pivot_y, cy - 22 * s))
+  # Stars (5)
+  stars <- data.frame(
+    x = cx + c(12, 16, 20, 14, 18) * s,
+    y = cy + c(16, 20, 24, 24, 18) * s
+  )
+  # Companion figure standing beside telescope (right side)
+  fig_head <- data.frame(x0 = cx + 16 * s, y0 = cy, r = 4 * s)
+  fig_body <- data.frame(
+    x = c(cx + 16 * s, cx + 16 * s),
+    y = c(cy - 4 * s, cy - 16 * s)
+  )
+  fig_arm <- data.frame(
+    x = c(cx + 16 * s, cx + 8 * s),
+    y = c(cy - 6 * s, cy - 2 * s)
+  )
+  fig_leg_l <- data.frame(
+    x = c(cx + 16 * s, cx + 12 * s),
+    y = c(cy - 16 * s, cy - 24 * s)
+  )
+  fig_leg_r <- data.frame(
+    x = c(cx + 16 * s, cx + 20 * s),
+    y = c(cy - 16 * s, cy - 24 * s)
+  )
+  list(
+    ggplot2::geom_polygon(data = tube, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = leg1, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = leg2, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_point(data = stars, .aes(x, y),
+      color = bright, size = 2.5 * s),
+    # Companion figure
+    ggforce::geom_circle(data = fig_head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = fig_body, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = fig_arm, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = fig_leg_l, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = fig_leg_r, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5))
+  )
 }

@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 163,
+    "total_skills": 171,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -594,6 +594,70 @@
       "prompt": "Glowing third eye, mandala spiral, third eye with monitor figure and clipboard, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 80006,
       "path": "icons/cyberpunk/esoteric/remote-viewing-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "learn",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, open book with emerging knowledge path, curved arrow upward, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80007,
+      "path": "icons/cyberpunk/esoteric/learn.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "learn-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, open book with seated guide figure beside it, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80008,
+      "path": "icons/cyberpunk/esoteric/learn-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "teach",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, two speech bubbles in dialogue exchange, connected arcs, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80009,
+      "path": "icons/cyberpunk/esoteric/teach.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "teach-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, speech bubbles with directed coaching arrow, guiding hand, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80010,
+      "path": "icons/cyberpunk/esoteric/teach-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "listen",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, ear shape with incoming concentric sound waves, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80011,
+      "path": "icons/cyberpunk/esoteric/listen.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "listen-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, ear with cupped guiding hand gesture nearby, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80012,
+      "path": "icons/cyberpunk/esoteric/listen-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "observe",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, telescope pointed at scattered stars, tripod base, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80013,
+      "path": "icons/cyberpunk/esoteric/observe.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "observe-guidance",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, telescope with companion figure standing beside it, stars, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 80014,
+      "path": "icons/cyberpunk/esoteric/observe-guidance.webp",
       "status": "done"
     },
     {

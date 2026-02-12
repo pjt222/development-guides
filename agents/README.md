@@ -43,7 +43,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [ip-analyst](ip-analyst.md) | high | Intellectual property: patent landscape, prior art search, FTO analysis |
 | [gardener](gardener.md) | normal | Plant cultivation: bonsai, soil, biodynamic calendar, garden observation, hand tools |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 27 agents cover 155 of the 163 skills in the library. The eight uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the three human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`), and the memory utility (`manage-memory`).
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 27 agents cover 155 of the 171 skills in the library. The sixteen uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the eleven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
 
 ## Using Agents in Claude Code
 
