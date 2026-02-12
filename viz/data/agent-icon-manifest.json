@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 27,
+    "total_agents": 28,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -153,6 +153,11 @@
       "description": "Metamorphic transformation and adaptive systems",
       "glow": "lavender",
       "concept": "Overlapping geometric shapes transitioning"
+    },
+    "quarto-developer": {
+      "description": "Quarto CLI specialist for multilingual documentation and publishing",
+      "glow": "teal",
+      "concept": "Document page with Q lettermark and multilingual code blocks"
     }
   },
   "icons": [
@@ -289,6 +294,11 @@
     {
       "agentId": "ip-analyst",
       "path": "icons/cyberpunk/agents/ip-analyst.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "quarto-developer",
+      "path": "icons/cyberpunk/agents/quarto-developer.webp",
       "status": "done"
     }
   ]

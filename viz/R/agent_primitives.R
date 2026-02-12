@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 27 agent persona icons
+# agent_primitives.R - Glyph library for 28 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -1087,5 +1087,75 @@ glyph_agent_ip <- function(cx, cy, s, col, bright) {
       fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
     ggforce::geom_circle(data = copy_circle, .aes(x0 = x0, y0 = y0, r = r),
       fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_quarto: document page with Q lettermark + code blocks ────
+glyph_agent_quarto <- function(cx, cy, s, col, bright) {
+  # Page outline (tall rectangle)
+  page <- data.frame(
+    xmin = cx - 18 * s, xmax = cx + 18 * s,
+    ymin = cy - 26 * s, ymax = cy + 26 * s
+  )
+  # Folded corner (top-right)
+  fold <- data.frame(
+    x = c(cx + 10 * s, cx + 18 * s, cx + 18 * s),
+    y = c(cy + 26 * s, cy + 26 * s, cy + 18 * s)
+  )
+  fold_tri <- data.frame(
+    x = c(cx + 10 * s, cx + 18 * s, cx + 10 * s),
+    y = c(cy + 26 * s, cy + 18 * s, cy + 18 * s)
+  )
+  # Bold Q lettermark (circle + diagonal tail)
+  q_circle <- data.frame(x0 = cx, y0 = cy + 4 * s, r = 12 * s)
+  q_inner <- data.frame(x0 = cx, y0 = cy + 4 * s, r = 7 * s)
+  q_tail <- data.frame(
+    x = c(cx + 4 * s, cx + 14 * s),
+    y = c(cy - 2 * s, cy - 12 * s)
+  )
+  # Code block rectangles (small, below Q)
+  block1 <- data.frame(
+    xmin = cx - 14 * s, xmax = cx - 2 * s,
+    ymin = cy - 20 * s, ymax = cy - 14 * s
+  )
+  block2 <- data.frame(
+    xmin = cx + 2 * s, xmax = cx + 14 * s,
+    ymin = cy - 20 * s, ymax = cy - 14 * s
+  )
+  # Tiny lines inside code blocks
+  bl1 <- data.frame(x = c(cx - 12 * s, cx - 5 * s), y = c(cy - 17 * s, cy - 17 * s))
+  bl2 <- data.frame(x = c(cx + 4 * s, cx + 12 * s), y = c(cy - 17 * s, cy - 17 * s))
+  # CLI chevron at bottom
+  chev <- data.frame(
+    x = c(cx - 6 * s, cx - 2 * s, cx - 6 * s),
+    y = c(cy - 22 * s, cy - 24 * s, cy - 26 * s + 2 * s)
+  )
+  list(
+    # Page background
+    ggplot2::geom_rect(data = page,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.08), color = bright, linewidth = .lw(s, 1.8)),
+    # Folded corner
+    ggplot2::geom_polygon(data = fold_tri, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.2)),
+    # Q lettermark
+    ggforce::geom_circle(data = q_circle, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2.5)),
+    ggforce::geom_circle(data = q_inner, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.08), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = q_tail, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3.5)),
+    # Code blocks
+    ggplot2::geom_rect(data = block1,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.18), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_rect(data = block2,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.18), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = bl1, .aes(x, y), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = bl2, .aes(x, y), color = bright, linewidth = .lw(s, 1.2)),
+    # CLI chevron
+    ggplot2::geom_path(data = chev, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5))
   )
 }

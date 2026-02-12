@@ -18,12 +18,12 @@ PALETTE_DOMAIN_ORDER <- c(
   "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 27 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 28 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
   "alchemist", "auditor", "code-reviewer", "designer", "devops-engineer",
   "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
   "mlops-engineer", "mystic", "polymath", "project-manager",
-  "putior-integrator", "r-developer", "security-analyst",
+  "putior-integrator", "quarto-developer", "r-developer", "security-analyst",
   "senior-data-scientist", "senior-researcher",
   "senior-software-developer", "senior-ux-ui-specialist",
   "senior-web-designer", "shapeshifter", "survivalist",
@@ -106,6 +106,7 @@ get_cyberpunk_colors <- function() {
     "polymath"                  = "#eedd44",
     "project-manager"           = "#ff8844",
     "putior-integrator"         = "#66dd88",
+    "quarto-developer"          = "#33ddcc",
     "r-developer"               = "#00f0ff",
     "security-analyst"          = "#ff3333",
     "senior-data-scientist"     = "#aa66ff",

@@ -16,14 +16,14 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
-3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 27 agents across development, compliance, review, project management, DevOps, MLOps, workflow visualization, swarm/morphic, alchemy, TCG, IP analysis, gardening, and specialty domains.
+3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 28 agents across development, compliance, review, project management, DevOps, MLOps, workflow visualization, swarm/morphic, alchemy, TCG, IP analysis, gardening, documentation, and specialty domains.
 
 Agents and skills complement each other: agents define *who* (persona, tools, style), skills define *how* (procedure, validation, recovery). An agent can reference skills to execute specific tasks.
 
 ### Registries
 
 - `skills/_registry.yml` is the machine-readable catalog of all 171 skills across 26 domains: r-packages (10), compliance (17), devops (13), observability (13), mlops (12), git (6), project-management (6), workflow-visualization (6), general (6), esoteric (14), review (6), swarm (8), morphic (6), design (5), containerization (4), reporting (4), mcp-integration (3), web-dev (3), bushcraft (3), defensive (6), alchemy (3), tcg (3), intellectual-property (2), jigsawr (5), data-serialization (2), gardening (5).
-- `agents/_registry.yml` is the machine-readable catalog of all 27 agents.
+- `agents/_registry.yml` is the machine-readable catalog of all 28 agents.
 
 When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
 

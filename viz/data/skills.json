@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated": "2026-02-12T11:01:43.268Z",
+    "generated": "2026-02-12T13:07:35.953Z",
     "totalSkills": 171,
-    "totalAgents": 27,
-    "totalNodes": 198,
-    "totalLinks": 967,
-    "totalAgentLinks": 224,
+    "totalAgents": 28,
+    "totalNodes": 199,
+    "totalLinks": 978,
+    "totalAgentLinks": 235,
     "totalDomains": 26
   },
   "domains": {
@@ -5197,6 +5197,44 @@
         "forage-plants"
       ],
       "path": "agents/gardener.md"
+    },
+    {
+      "id": "agent:quarto-developer",
+      "type": "agent",
+      "title": "Quarto Developer",
+      "priority": "normal",
+      "description": "Quarto CLI specialist for multilingual QMD files, technical documentation, books, websites, presentations, dashboards, and manuscript publishing",
+      "tags": [
+        "quarto",
+        "qmd",
+        "documentation",
+        "publishing",
+        "multilingual",
+        "technical-writing"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "create-quarto-report",
+        "format-apa-report",
+        "build-parameterized-report",
+        "generate-statistical-tables",
+        "write-vignette",
+        "build-pkgdown-site",
+        "write-roxygen-docs",
+        "render-puzzle-docs",
+        "write-claude-md",
+        "meditate",
+        "heal"
+      ],
+      "path": "agents/quarto-developer.md"
     }
   ],
   "links": [
@@ -10033,6 +10071,61 @@
     {
       "source": "agent:gardener",
       "target": "forage-plants",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "create-quarto-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "format-apa-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "build-parameterized-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "generate-statistical-tables",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "write-vignette",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "build-pkgdown-site",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "write-roxygen-docs",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "render-puzzle-docs",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "write-claude-md",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:quarto-developer",
+      "target": "heal",
       "type": "agent"
     }
   ]

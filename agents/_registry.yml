@@ -2,8 +2,8 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 27
-version: "1.8"
+total_agents: 28
+version: "1.9"
 last_updated: "2026-02-12"
 
 agents:
@@ -449,3 +449,22 @@ agents:
       - meditate
       - heal
       - forage-plants
+
+  - id: quarto-developer
+    path: agents/quarto-developer.md
+    description: Quarto CLI specialist for multilingual QMD files, technical documentation, books, websites, presentations, dashboards, and manuscript publishing
+    tags: [quarto, qmd, documentation, publishing, multilingual, technical-writing]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - create-quarto-report
+      - format-apa-report
+      - build-parameterized-report
+      - generate-statistical-tables
+      - write-vignette
+      - build-pkgdown-site
+      - write-roxygen-docs
+      - render-puzzle-docs
+      - write-claude-md
+      - meditate
+      - heal
