@@ -1,7 +1,7 @@
 version: "1.4"
 generated: "2026-02-12"
 standard: "agentskills.io/specification"
-total_skills: 162
+total_skills: 163
 
 domains:
   r-packages:
@@ -314,6 +314,11 @@ domains:
         complexity: intermediate
         language: multi
         description: Perform security audits checking for vulnerabilities and secrets
+      - id: manage-memory
+        path: general/manage-memory/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Organize, extract, prune, and verify Claude Code persistent memory files
       - id: skill-creation
         path: general/skill-creation/SKILL.md
         complexity: intermediate
