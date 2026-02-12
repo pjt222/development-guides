@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated": "2026-02-12T13:07:35.953Z",
-    "totalSkills": 171,
-    "totalAgents": 28,
-    "totalNodes": 199,
-    "totalLinks": 978,
-    "totalAgentLinks": 235,
-    "totalDomains": 26
+    "generated": "2026-02-12T16:41:01.066Z",
+    "totalSkills": 177,
+    "totalAgents": 29,
+    "totalNodes": 206,
+    "totalLinks": 1026,
+    "totalAgentLinks": 255,
+    "totalDomains": 27
   },
   "domains": {
     "r-packages": {
@@ -112,6 +112,10 @@
     "gardening": {
       "description": "Plant cultivation, soil preparation, garden observation, and hand tool care",
       "count": 5
+    },
+    "shiny": {
+      "description": "Shiny web application development, modules, testing, and deployment",
+      "count": 6
     }
   },
   "nodes": [
@@ -4236,6 +4240,156 @@
       "path": "gardening/maintain-hand-tools/SKILL.md"
     },
     {
+      "id": "scaffold-shiny-app",
+      "type": "skill",
+      "title": "Scaffold Shiny App",
+      "domain": "shiny",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Scaffold a Shiny app with golem, rhino, or vanilla structure",
+      "tags": [
+        "shiny",
+        "golem",
+        "rhino",
+        "scaffold",
+        "web-app",
+        "reactive"
+      ],
+      "related": [
+        "build-shiny-module",
+        "test-shiny-app",
+        "deploy-shiny-app",
+        "design-shiny-ui",
+        "create-r-package",
+        "manage-renv-dependencies"
+      ],
+      "path": "shiny/scaffold-shiny-app/SKILL.md"
+    },
+    {
+      "id": "build-shiny-module",
+      "type": "skill",
+      "title": "Build Shiny Module",
+      "domain": "shiny",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Build reusable UI/server modules with NS namespace isolation",
+      "tags": [
+        "shiny",
+        "modules",
+        "namespace",
+        "reactive",
+        "composition"
+      ],
+      "related": [
+        "scaffold-shiny-app",
+        "test-shiny-app",
+        "design-shiny-ui",
+        "optimize-shiny-performance"
+      ],
+      "path": "shiny/build-shiny-module/SKILL.md"
+    },
+    {
+      "id": "test-shiny-app",
+      "type": "skill",
+      "title": "Test Shiny App",
+      "domain": "shiny",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Test Shiny apps with shinytest2 end-to-end and testServer unit tests",
+      "tags": [
+        "shiny",
+        "testing",
+        "shinytest2",
+        "testServer",
+        "snapshot",
+        "CI"
+      ],
+      "related": [
+        "build-shiny-module",
+        "scaffold-shiny-app",
+        "write-testthat-tests",
+        "setup-github-actions-ci"
+      ],
+      "path": "shiny/test-shiny-app/SKILL.md"
+    },
+    {
+      "id": "deploy-shiny-app",
+      "type": "skill",
+      "title": "Deploy Shiny App",
+      "domain": "shiny",
+      "complexity": "basic",
+      "language": "R",
+      "description": "Deploy to shinyapps.io, Posit Connect, or Docker containers",
+      "tags": [
+        "shiny",
+        "deployment",
+        "shinyapps-io",
+        "posit-connect",
+        "docker",
+        "rsconnect"
+      ],
+      "related": [
+        "scaffold-shiny-app",
+        "create-r-dockerfile",
+        "setup-docker-compose",
+        "setup-github-actions-ci",
+        "optimize-shiny-performance"
+      ],
+      "path": "shiny/deploy-shiny-app/SKILL.md"
+    },
+    {
+      "id": "optimize-shiny-performance",
+      "type": "skill",
+      "title": "Optimize Shiny Performance",
+      "domain": "shiny",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Profile and optimize with bindCache, async promises, and reactive graph tuning",
+      "tags": [
+        "shiny",
+        "performance",
+        "profiling",
+        "caching",
+        "async",
+        "promises",
+        "optimization"
+      ],
+      "related": [
+        "build-shiny-module",
+        "scaffold-shiny-app",
+        "deploy-shiny-app",
+        "test-shiny-app"
+      ],
+      "path": "shiny/optimize-shiny-performance/SKILL.md"
+    },
+    {
+      "id": "design-shiny-ui",
+      "type": "skill",
+      "title": "Design Shiny UI",
+      "domain": "shiny",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Design UIs with bslib theming, layout_columns, cards, and value boxes",
+      "tags": [
+        "shiny",
+        "bslib",
+        "ui",
+        "theming",
+        "layout",
+        "css",
+        "accessibility",
+        "responsive"
+      ],
+      "related": [
+        "scaffold-shiny-app",
+        "build-shiny-module",
+        "optimize-shiny-performance",
+        "review-web-design",
+        "review-ux-ui"
+      ],
+      "path": "shiny/design-shiny-ui/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -5235,6 +5389,58 @@
         "heal"
       ],
       "path": "agents/quarto-developer.md"
+    },
+    {
+      "id": "agent:shiny-developer",
+      "type": "agent",
+      "title": "Shiny Developer",
+      "priority": "high",
+      "description": "Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment",
+      "tags": [
+        "R",
+        "shiny",
+        "web-app",
+        "reactive",
+        "bslib",
+        "modules",
+        "deployment",
+        "golem",
+        "rhino"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [
+        "r-mcptools"
+      ],
+      "skills": [
+        "scaffold-shiny-app",
+        "build-shiny-module",
+        "test-shiny-app",
+        "deploy-shiny-app",
+        "optimize-shiny-performance",
+        "design-shiny-ui",
+        "write-testthat-tests",
+        "write-roxygen-docs",
+        "manage-renv-dependencies",
+        "setup-github-actions-ci",
+        "release-package-version",
+        "create-r-dockerfile",
+        "setup-docker-compose",
+        "create-quarto-report",
+        "commit-changes",
+        "create-pull-request",
+        "manage-git-branches",
+        "write-claude-md",
+        "meditate",
+        "heal"
+      ],
+      "path": "agents/shiny-developer.md"
     }
   ],
   "links": [
@@ -8954,6 +9160,146 @@
       "type": "skill"
     },
     {
+      "source": "scaffold-shiny-app",
+      "target": "build-shiny-module",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-shiny-app",
+      "target": "test-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-shiny-app",
+      "target": "deploy-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-shiny-app",
+      "target": "design-shiny-ui",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-shiny-app",
+      "target": "create-r-package",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-shiny-app",
+      "target": "manage-renv-dependencies",
+      "type": "skill"
+    },
+    {
+      "source": "build-shiny-module",
+      "target": "scaffold-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "build-shiny-module",
+      "target": "test-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "build-shiny-module",
+      "target": "design-shiny-ui",
+      "type": "skill"
+    },
+    {
+      "source": "build-shiny-module",
+      "target": "optimize-shiny-performance",
+      "type": "skill"
+    },
+    {
+      "source": "test-shiny-app",
+      "target": "build-shiny-module",
+      "type": "skill"
+    },
+    {
+      "source": "test-shiny-app",
+      "target": "scaffold-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "test-shiny-app",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "test-shiny-app",
+      "target": "setup-github-actions-ci",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shiny-app",
+      "target": "scaffold-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shiny-app",
+      "target": "create-r-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shiny-app",
+      "target": "setup-docker-compose",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shiny-app",
+      "target": "setup-github-actions-ci",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shiny-app",
+      "target": "optimize-shiny-performance",
+      "type": "skill"
+    },
+    {
+      "source": "optimize-shiny-performance",
+      "target": "build-shiny-module",
+      "type": "skill"
+    },
+    {
+      "source": "optimize-shiny-performance",
+      "target": "scaffold-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "optimize-shiny-performance",
+      "target": "deploy-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "optimize-shiny-performance",
+      "target": "test-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "design-shiny-ui",
+      "target": "scaffold-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "design-shiny-ui",
+      "target": "build-shiny-module",
+      "type": "skill"
+    },
+    {
+      "source": "design-shiny-ui",
+      "target": "optimize-shiny-performance",
+      "type": "skill"
+    },
+    {
+      "source": "design-shiny-ui",
+      "target": "review-web-design",
+      "type": "skill"
+    },
+    {
+      "source": "design-shiny-ui",
+      "target": "review-ux-ui",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -10125,6 +10471,106 @@
     },
     {
       "source": "agent:quarto-developer",
+      "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "scaffold-shiny-app",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "build-shiny-module",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "test-shiny-app",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "deploy-shiny-app",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "optimize-shiny-performance",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "design-shiny-ui",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "write-testthat-tests",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "write-roxygen-docs",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "manage-renv-dependencies",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "setup-github-actions-ci",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "release-package-version",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "create-r-dockerfile",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "setup-docker-compose",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "create-quarto-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "commit-changes",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "create-pull-request",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "manage-git-branches",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "write-claude-md",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shiny-developer",
       "target": "heal",
       "type": "agent"
     }

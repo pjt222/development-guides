@@ -47,6 +47,7 @@ AGENT_GLYPHS <- list(
   "swarm-strategist"          = "glyph_agent_swarm",
   "shapeshifter"              = "glyph_agent_shifter",
 
-  # ── Documentation ──────────────────────────────────────────────────────
-  "quarto-developer"          = "glyph_agent_quarto"
+  # ── Documentation & Shiny ──────────────────────────────────────────────
+  "quarto-developer"          = "glyph_agent_quarto",
+  "shiny-developer"           = "glyph_agent_shiny_dev"
 )

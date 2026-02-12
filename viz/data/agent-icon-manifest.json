@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 28,
+    "total_agents": 29,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -158,6 +158,11 @@
       "description": "Quarto CLI specialist for multilingual documentation and publishing",
       "glow": "teal",
       "concept": "Document page with Q lettermark and multilingual code blocks"
+    },
+    "shiny-developer": {
+      "description": "Shiny reactive web app specialist for R",
+      "glow": "electric-blue",
+      "concept": "Reactive diamond inside browser with reactive graph connections"
     }
   },
   "icons": [
@@ -299,6 +304,11 @@
     {
       "agentId": "quarto-developer",
       "path": "icons/cyberpunk/agents/quarto-developer.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "shiny-developer",
+      "path": "icons/cyberpunk/agents/shiny-developer.webp",
       "status": "done"
     }
   ]

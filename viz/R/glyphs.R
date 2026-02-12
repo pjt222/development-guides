@@ -221,6 +221,14 @@ SKILL_GLYPHS <- list(
   "build-tcg-deck"                 = "glyph_deck_build",
   "manage-tcg-collection"          = "glyph_collection_grid",
 
+  # ── shiny (6) ──────────────────────────────────────────────────────────
+  "scaffold-shiny-app"             = "glyph_shiny_scaffold",
+  "build-shiny-module"             = "glyph_shiny_module",
+  "test-shiny-app"                 = "glyph_shiny_test",
+  "deploy-shiny-app"               = "glyph_shiny_deploy",
+  "optimize-shiny-performance"     = "glyph_shiny_optimize",
+  "design-shiny-ui"                = "glyph_shiny_ui",
+
   # ── workflow-visualization (6) ────────────────────────────────────────
   "install-putior"                 = "glyph_putior_install",
   "analyze-codebase-workflow"      = "glyph_workflow_scan",

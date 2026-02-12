@@ -23,6 +23,7 @@ DOMAIN_COLORS <- list(
   "project-management" = "#ff8844",
   "r-packages"         = "#00f0ff",
   "reporting"          = "#ffdd00",
+  "shiny"              = "#3399ff",
   "review"             = "#ff66aa",
   "morphic"            = "#bb88ff",
   "swarm"              = "#aadd44",

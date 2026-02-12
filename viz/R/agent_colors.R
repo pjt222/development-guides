@@ -42,6 +42,7 @@ AGENT_COLORS <- list(
   "swarm-strategist"        = "#aadd44",   # lime
   "shapeshifter"            = "#bb88ff",   # lavender
 
-  # ── Documentation ──────────────────────────────────────────────────────
-  "quarto-developer"        = "#33ddcc"    # teal
+  # ── Documentation & Shiny ──────────────────────────────────────────────
+  "quarto-developer"        = "#33ddcc",   # teal
+  "shiny-developer"         = "#3399ff"    # electric blue
 )

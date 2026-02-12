@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 171,
+    "total_skills": 177,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -121,6 +121,10 @@
     "gardening": {
       "basePrompt": "Neon bonsai tree, garden tools, soil layers, moon calendar",
       "glow": "spring-green"
+    },
+    "shiny": {
+      "basePrompt": "Neon reactive diamond, Shiny app browser, reactive graph connections",
+      "glow": "electric-blue"
     }
   },
   "icons": [
@@ -1282,6 +1286,54 @@
       "prompt": "Glowing magnifying glass, code lens, merge arrow, PR review checkmark, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 170006,
       "path": "icons/cyberpunk/review/review-pull-request.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "scaffold-shiny-app",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, app scaffold, framework tabs, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270001,
+      "path": "icons/cyberpunk/shiny/scaffold-shiny-app.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "build-shiny-module",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, NS module boxes, reactive flow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270002,
+      "path": "icons/cyberpunk/shiny/build-shiny-module.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "test-shiny-app",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, test checkmark, shinytest2 browser, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270003,
+      "path": "icons/cyberpunk/shiny/test-shiny-app.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "deploy-shiny-app",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, cloud upload, deployment arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270004,
+      "path": "icons/cyberpunk/shiny/deploy-shiny-app.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "optimize-shiny-performance",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, speedometer gauge, lightning bolt, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270005,
+      "path": "icons/cyberpunk/shiny/optimize-shiny-performance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "design-shiny-ui",
+      "domain": "shiny",
+      "prompt": "Neon reactive diamond, Shiny app browser, reactive graph connections, bslib layout grid, value boxes, theme palette, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 270006,
+      "path": "icons/cyberpunk/shiny/design-shiny-ui.webp",
       "status": "done"
     },
     {

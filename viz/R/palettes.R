@@ -14,7 +14,7 @@ PALETTE_DOMAIN_ORDER <- c(
   "data-serialization", "defensive", "design", "devops", "esoteric",
   "gardening", "general", "git", "intellectual-property", "jigsawr", "mcp-integration",
   "mlops", "morphic", "observability", "project-management", "r-packages",
-  "reporting", "review", "swarm", "tcg", "web-dev",
+  "reporting", "review", "shiny", "swarm", "tcg", "web-dev",
   "workflow-visualization"
 )
 
@@ -23,7 +23,7 @@ PALETTE_AGENT_ORDER <- c(
   "alchemist", "auditor", "code-reviewer", "designer", "devops-engineer",
   "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
   "mlops-engineer", "mystic", "polymath", "project-manager",
-  "putior-integrator", "quarto-developer", "r-developer", "security-analyst",
+  "putior-integrator", "quarto-developer", "r-developer", "security-analyst", "shiny-developer",
   "senior-data-scientist", "senior-researcher",
   "senior-software-developer", "senior-ux-ui-specialist",
   "senior-web-designer", "shapeshifter", "survivalist",
@@ -84,6 +84,7 @@ get_cyberpunk_colors <- function() {
     "r-packages"             = "#00f0ff",
     "reporting"              = "#ffdd00",
     "review"                 = "#ff66aa",
+    "shiny"                  = "#3399ff",
     "swarm"                  = "#aadd44",
     "tcg"                    = "#ff5577",
     "web-dev"                = "#ff6633",
@@ -109,6 +110,7 @@ get_cyberpunk_colors <- function() {
     "quarto-developer"          = "#33ddcc",
     "r-developer"               = "#00f0ff",
     "security-analyst"          = "#ff3333",
+    "shiny-developer"           = "#3399ff",
     "senior-data-scientist"     = "#aa66ff",
     "senior-researcher"         = "#ffaa00",
     "senior-software-developer" = "#44ddff",

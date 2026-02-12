@@ -1159,3 +1159,75 @@ glyph_agent_quarto <- function(cx, cy, s, col, bright) {
       color = col, linewidth = .lw(s, 1.5))
   )
 }
+
+# ── glyph_agent_shiny_dev: reactive diamond inside browser with graph ─────
+glyph_agent_shiny_dev <- function(cx, cy, s, col, bright) {
+  # Browser frame
+  win <- data.frame(
+    xmin = cx - 26 * s, xmax = cx + 26 * s,
+    ymin = cy - 24 * s, ymax = cy + 24 * s
+  )
+  # Title bar
+  bar <- data.frame(
+    xmin = cx - 26 * s, xmax = cx + 26 * s,
+    ymin = cy + 18 * s, ymax = cy + 24 * s
+  )
+  # Window dots
+  dots <- data.frame(
+    x = cx + c(-22, -18, -14) * s,
+    y = rep(cy + 21 * s, 3)
+  )
+  # Reactive diamond (center, Shiny logo evocative)
+  diamond <- data.frame(
+    x = cx + c(0, 10, 0, -10) * s,
+    y = cy + c(10, 0, -10, 0) * s
+  )
+  # Inner diamond
+  diamond_inner <- data.frame(
+    x = cx + c(0, 5, 0, -5) * s,
+    y = cy + c(5, 0, -5, 0) * s
+  )
+  # Reactive graph nodes (4 nodes around diamond)
+  layers <- list(
+    # Browser frame
+    ggplot2::geom_rect(data = win,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.08), color = bright, linewidth = .lw(s, 2)),
+    # Title bar
+    ggplot2::geom_rect(data = bar,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = NA),
+    # Dots
+    ggplot2::geom_point(data = dots, .aes(x, y),
+      color = bright, size = 2 * s)
+  )
+  # Reactive graph: 4 small nodes with lines to diamond
+  node_pos <- list(
+    c(cx - 20 * s, cy + 8 * s),
+    c(cx - 20 * s, cy - 8 * s),
+    c(cx + 20 * s, cy + 8 * s),
+    c(cx + 20 * s, cy - 8 * s)
+  )
+  for (pos in node_pos) {
+    line <- data.frame(x = c(pos[1], cx), y = c(pos[2], cy))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+    node <- data.frame(x0 = pos[1], y0 = pos[2], r = 3.5 * s)
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = node,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.2))
+  }
+  # Reactive diamond (on top)
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = diamond, .aes(x, y),
+    fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2.5))
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = diamond_inner, .aes(x, y),
+    fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5))
+  # "S" hint below diamond
+  s_path <- data.frame(
+    x = cx + c(3, 3, -3, -3) * s,
+    y = cy + c(-14, -17, -17, -20) * s
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = s_path, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2))
+  layers
+}
