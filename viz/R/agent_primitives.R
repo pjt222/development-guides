@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 26 agent persona icons
+# agent_primitives.R - Glyph library for 27 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -980,6 +980,70 @@ glyph_agent_tcg <- function(cx, cy, s, col, bright) {
       fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5)),
     ggplot2::geom_path(data = l1, .aes(x, y), color = col, linewidth = .lw(s, 1)),
     ggplot2::geom_path(data = l2, .aes(x, y), color = col, linewidth = .lw(s, 1))
+  )
+}
+
+# ── glyph_agent_gardener: bonsai tree inside contemplative enso circle ─────
+glyph_agent_gardener <- function(cx, cy, s, col, bright) {
+  # Outer enso ring (incomplete circle, ~300 degrees)
+  t_enso <- seq(pi / 6, pi / 6 + 5 * pi / 3, length.out = 60)
+  r_enso <- 28 * s
+  enso <- data.frame(
+    x = cx + r_enso * cos(t_enso),
+    y = cy + r_enso * sin(t_enso)
+  )
+  # Soil line (horizontal segment at base)
+  soil <- data.frame(
+    x = c(cx - 16 * s, cx + 16 * s),
+    y = c(cy - 12 * s, cy - 12 * s)
+  )
+  # Trunk: vertical rectangle from center-bottom
+  trunk <- data.frame(
+    xmin = cx - 2.5 * s, xmax = cx + 2.5 * s,
+    ymin = cy - 12 * s, ymax = cy + 2 * s
+  )
+  # Canopy: 2 overlapping filled circles forming rounded crown
+  canopy1 <- data.frame(x0 = cx - 6 * s, y0 = cy + 8 * s, r = 9 * s)
+  canopy2 <- data.frame(x0 = cx + 6 * s, y0 = cy + 8 * s, r = 9 * s)
+  canopy3 <- data.frame(x0 = cx, y0 = cy + 14 * s, r = 8 * s)
+  # Root hints: 3 short diagonal path segments below trunk
+  root1 <- data.frame(
+    x = c(cx - 2 * s, cx - 8 * s),
+    y = c(cy - 12 * s, cy - 18 * s)
+  )
+  root2 <- data.frame(
+    x = c(cx, cx + 2 * s),
+    y = c(cy - 12 * s, cy - 20 * s)
+  )
+  root3 <- data.frame(
+    x = c(cx + 2 * s, cx + 7 * s),
+    y = c(cy - 12 * s, cy - 17 * s)
+  )
+  list(
+    # Enso ring
+    ggplot2::geom_path(data = enso, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    # Soil line
+    ggplot2::geom_path(data = soil, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    # Roots
+    ggplot2::geom_path(data = root1, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = root2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = root3, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.2)),
+    # Trunk
+    ggplot2::geom_rect(data = trunk,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    # Canopy
+    ggforce::geom_circle(data = canopy1, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = canopy2, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = canopy3, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.5))
   )
 }
 

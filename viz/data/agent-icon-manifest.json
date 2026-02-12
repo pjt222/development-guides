@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 26,
+    "total_agents": 27,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -63,6 +63,11 @@
       "description": "Ornamental design and AI image generation",
       "glow": "pink",
       "concept": "Golden spiral inside compass circle"
+    },
+    "gardener": {
+      "description": "Plant cultivation guide with contemplative checkpoints",
+      "glow": "spring-green",
+      "concept": "Bonsai tree inside contemplative enso circle"
     },
     "gxp-validator": {
       "description": "Computer systems validation and compliance",
@@ -199,6 +204,11 @@
     {
       "agentId": "designer",
       "path": "icons/cyberpunk/agents/designer.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "gardener",
+      "path": "icons/cyberpunk/agents/gardener.webp",
       "status": "done"
     },
     {

@@ -1,12 +1,12 @@
 {
   "meta": {
-    "generated": "2026-02-11T18:29:32.915Z",
-    "totalSkills": 157,
-    "totalAgents": 26,
-    "totalNodes": 183,
-    "totalLinks": 891,
-    "totalAgentLinks": 216,
-    "totalDomains": 25
+    "generated": "2026-02-12T08:55:30.713Z",
+    "totalSkills": 162,
+    "totalAgents": 27,
+    "totalNodes": 189,
+    "totalLinks": 925,
+    "totalAgentLinks": 224,
+    "totalDomains": 26
   },
   "domains": {
     "r-packages": {
@@ -108,6 +108,10 @@
     "intellectual-property": {
       "description": "Patent landscape analysis, prior art search, and IP strategy",
       "count": 2
+    },
+    "gardening": {
+      "description": "Plant cultivation, soil preparation, garden observation, and hand tool care",
+      "count": 5
     }
   },
   "nodes": [
@@ -3882,6 +3886,135 @@
       "path": "intellectual-property/search-prior-art/SKILL.md"
     },
     {
+      "id": "cultivate-bonsai",
+      "type": "skill",
+      "title": "Cultivate Bonsai",
+      "domain": "gardening",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Bonsai cultivation from species selection through seasonal care with contemplative sitting",
+      "tags": [
+        "gardening",
+        "bonsai",
+        "pruning",
+        "wiring",
+        "repotting",
+        "zen",
+        "contemplative"
+      ],
+      "related": [
+        "prepare-soil",
+        "maintain-hand-tools",
+        "meditate",
+        "heal",
+        "plan-garden-calendar"
+      ],
+      "path": "gardening/cultivate-bonsai/SKILL.md"
+    },
+    {
+      "id": "prepare-soil",
+      "type": "skill",
+      "title": "Prepare Soil",
+      "domain": "gardening",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Soil assessment, amendment, composting, and biodynamic preparations",
+      "tags": [
+        "gardening",
+        "soil",
+        "compost",
+        "biodynamic",
+        "amendment",
+        "no-till",
+        "cover-crop"
+      ],
+      "related": [
+        "cultivate-bonsai",
+        "plan-garden-calendar",
+        "read-garden",
+        "heal",
+        "forage-plants",
+        "make-fire"
+      ],
+      "path": "gardening/prepare-soil/SKILL.md"
+    },
+    {
+      "id": "plan-garden-calendar",
+      "type": "skill",
+      "title": "Plan Garden Calendar",
+      "domain": "gardening",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Solar, lunar, and biodynamic calendar integration for garden scheduling",
+      "tags": [
+        "gardening",
+        "calendar",
+        "lunar",
+        "biodynamic",
+        "solar",
+        "frost-dates",
+        "succession-planting"
+      ],
+      "related": [
+        "read-garden",
+        "prepare-soil",
+        "cultivate-bonsai",
+        "meditate",
+        "maintain-hand-tools"
+      ],
+      "path": "gardening/plan-garden-calendar/SKILL.md"
+    },
+    {
+      "id": "read-garden",
+      "type": "skill",
+      "title": "Read Garden",
+      "domain": "gardening",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Observation-first garden assessment using CRV-adapted sensory protocol",
+      "tags": [
+        "gardening",
+        "observation",
+        "diagnosis",
+        "assessment",
+        "plant-health",
+        "CRV-adapted"
+      ],
+      "related": [
+        "meditate",
+        "heal",
+        "prepare-soil",
+        "cultivate-bonsai",
+        "plan-garden-calendar",
+        "remote-viewing"
+      ],
+      "path": "gardening/read-garden/SKILL.md"
+    },
+    {
+      "id": "maintain-hand-tools",
+      "type": "skill",
+      "title": "Maintain Hand Tools",
+      "domain": "gardening",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Sharpening, handle care, rust prevention, and winter maintenance for essential garden hand tools",
+      "tags": [
+        "gardening",
+        "tools",
+        "sharpening",
+        "maintenance",
+        "hand-tools",
+        "care"
+      ],
+      "related": [
+        "cultivate-bonsai",
+        "make-fire",
+        "plan-garden-calendar",
+        "meditate"
+      ],
+      "path": "gardening/maintain-hand-tools/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -4807,6 +4940,42 @@
         "search-prior-art"
       ],
       "path": "agents/ip-analyst.md"
+    },
+    {
+      "id": "agent:gardener",
+      "type": "agent",
+      "title": "Gardener",
+      "priority": "normal",
+      "description": "Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints",
+      "tags": [
+        "gardening",
+        "bonsai",
+        "botanics",
+        "biodynamics",
+        "lunar-calendar",
+        "soil",
+        "zen",
+        "demeter",
+        "hand-tools"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "cultivate-bonsai",
+        "prepare-soil",
+        "plan-garden-calendar",
+        "read-garden",
+        "maintain-hand-tools",
+        "meditate",
+        "heal",
+        "forage-plants"
+      ],
+      "path": "agents/gardener.md"
     }
   ],
   "links": [
@@ -8186,6 +8355,136 @@
       "type": "skill"
     },
     {
+      "source": "cultivate-bonsai",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "cultivate-bonsai",
+      "target": "maintain-hand-tools",
+      "type": "skill"
+    },
+    {
+      "source": "cultivate-bonsai",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "cultivate-bonsai",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "cultivate-bonsai",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "cultivate-bonsai",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "read-garden",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "forage-plants",
+      "type": "skill"
+    },
+    {
+      "source": "prepare-soil",
+      "target": "make-fire",
+      "type": "skill"
+    },
+    {
+      "source": "plan-garden-calendar",
+      "target": "read-garden",
+      "type": "skill"
+    },
+    {
+      "source": "plan-garden-calendar",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "plan-garden-calendar",
+      "target": "cultivate-bonsai",
+      "type": "skill"
+    },
+    {
+      "source": "plan-garden-calendar",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "plan-garden-calendar",
+      "target": "maintain-hand-tools",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "cultivate-bonsai",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "read-garden",
+      "target": "remote-viewing",
+      "type": "skill"
+    },
+    {
+      "source": "maintain-hand-tools",
+      "target": "cultivate-bonsai",
+      "type": "skill"
+    },
+    {
+      "source": "maintain-hand-tools",
+      "target": "make-fire",
+      "type": "skill"
+    },
+    {
+      "source": "maintain-hand-tools",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "maintain-hand-tools",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -9263,6 +9562,46 @@
     {
       "source": "agent:ip-analyst",
       "target": "search-prior-art",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "cultivate-bonsai",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "prepare-soil",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "plan-garden-calendar",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "read-garden",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "maintain-hand-tools",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:gardener",
+      "target": "forage-plants",
       "type": "agent"
     }
   ]

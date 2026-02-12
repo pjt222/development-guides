@@ -8,20 +8,20 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 25 domains) ──────────────────────────────
+# ── Domain order (alphabetical, 26 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
   "alchemy", "bushcraft", "compliance", "containerization",
   "data-serialization", "defensive", "design", "devops", "esoteric",
-  "general", "git", "intellectual-property", "jigsawr", "mcp-integration",
+  "gardening", "general", "git", "intellectual-property", "jigsawr", "mcp-integration",
   "mlops", "morphic", "observability", "project-management", "r-packages",
   "reporting", "review", "swarm", "tcg", "web-dev",
   "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 26 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 27 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
   "alchemist", "auditor", "code-reviewer", "designer", "devops-engineer",
-  "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
+  "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
   "mlops-engineer", "mystic", "polymath", "project-manager",
   "putior-integrator", "r-developer", "security-analyst",
   "senior-data-scientist", "senior-researcher",
@@ -71,6 +71,7 @@ get_cyberpunk_colors <- function() {
     "design"                 = "#ff88dd",
     "devops"                 = "#00ff88",
     "esoteric"               = "#dd44ff",
+    "gardening"              = "#44bb66",
     "general"                = "#ccccff",
     "git"                    = "#66ffcc",
     "intellectual-property"  = "#33ccff",
@@ -95,6 +96,7 @@ get_cyberpunk_colors <- function() {
     "code-reviewer"             = "#ff66aa",
     "designer"                  = "#ff88dd",
     "devops-engineer"           = "#00ff88",
+    "gardener"                  = "#44bb66",
     "gxp-validator"             = "#ff3399",
     "ip-analyst"                = "#33ccff",
     "jigsawr-developer"         = "#22ddaa",

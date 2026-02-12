@@ -12,6 +12,7 @@ DOMAIN_COLORS <- list(
   "design"             = "#ff88dd",
   "devops"             = "#00ff88",
   "esoteric"           = "#dd44ff",
+  "gardening"          = "#44bb66",
   "general"            = "#ccccff",
   "git"                = "#66ffcc",
   "intellectual-property" = "#33ccff",

@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 157,
+    "total_skills": 162,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -116,6 +116,10 @@
     },
     "workflow-visualization": {
       "basePrompt": "Glowing flowchart diagram, putior workflow nodes",
+      "glow": "spring-green"
+    },
+    "gardening": {
+      "basePrompt": "Neon bonsai tree, garden tools, soil layers, moon calendar",
       "glow": "spring-green"
     }
   },
@@ -590,6 +594,46 @@
       "prompt": "Glowing third eye, mandala spiral, third eye with monitor figure and clipboard, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 80006,
       "path": "icons/cyberpunk/esoteric/remote-viewing-guidance.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "cultivate-bonsai",
+      "domain": "gardening",
+      "prompt": "Neon bonsai tree, garden tools, soil layers, moon calendar, stylized bonsai, pot, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 260001,
+      "path": "icons/cyberpunk/gardening/cultivate-bonsai.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "maintain-hand-tools",
+      "domain": "gardening",
+      "prompt": "Neon bonsai tree, garden tools, soil layers, moon calendar, pruning shears, whetstone, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 260002,
+      "path": "icons/cyberpunk/gardening/maintain-hand-tools.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "plan-garden-calendar",
+      "domain": "gardening",
+      "prompt": "Neon bonsai tree, garden tools, soil layers, moon calendar, crescent moon, planting schedule, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 260003,
+      "path": "icons/cyberpunk/gardening/plan-garden-calendar.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "prepare-soil",
+      "domain": "gardening",
+      "prompt": "Neon bonsai tree, garden tools, soil layers, moon calendar, soil cross-section, root system, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 260004,
+      "path": "icons/cyberpunk/gardening/prepare-soil.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "read-garden",
+      "domain": "gardening",
+      "prompt": "Neon bonsai tree, garden tools, soil layers, moon calendar, observing eye, leaf veins, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 260005,
+      "path": "icons/cyberpunk/gardening/read-garden.webp",
       "status": "done"
     },
     {

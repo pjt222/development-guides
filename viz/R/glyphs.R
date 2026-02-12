@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 157 skillIds to a specific glyph drawing function.
+# Maps each of 162 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -82,6 +82,13 @@ SKILL_GLYPHS <- list(
   "meditate-guidance"              = "glyph_lotus_seated_guide",
   "remote-viewing"                 = "glyph_third_eye",
   "remote-viewing-guidance"        = "glyph_third_eye_guide",
+
+  # ── gardening (5) ─────────────────────────────────────────────────────
+  "cultivate-bonsai"                   = "glyph_bonsai_tree",
+  "maintain-hand-tools"                = "glyph_pruning_shears",
+  "plan-garden-calendar"               = "glyph_moon_calendar",
+  "prepare-soil"                       = "glyph_soil_layers",
+  "read-garden"                        = "glyph_garden_eye",
 
   # ── general (5) ────────────────────────────────────────────────────────
   "setup-wsl-dev-environment"      = "glyph_terminal",
