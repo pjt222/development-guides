@@ -1,6 +1,6 @@
 # Agents Library for Claude Code
 
-A collection of 28 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 29 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 ## How Agents Differ from Skills and Guides
 
@@ -43,8 +43,9 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [ip-analyst](ip-analyst.md) | high | Intellectual property: patent landscape, prior art search, FTO analysis |
 | [gardener](gardener.md) | normal | Plant cultivation: bonsai, soil, biodynamic calendar, garden observation, hand tools |
 | [quarto-developer](quarto-developer.md) | normal | Quarto CLI: multilingual QMD, technical docs, books, websites, presentations, dashboards |
+| [shiny-developer](shiny-developer.md) | high | Shiny web apps: golem/rhino scaffolding, modules, bslib UI, shinytest2, deployment |
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 28 agents cover 155 of the 171 skills in the library. The sixteen uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the four AI meta-cognitive skills (`learn`, `teach`, `listen`, `observe`), the seven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 29 agents cover 161 of the 177 skills in the library. The sixteen uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the four AI meta-cognitive skills (`learn`, `teach`, `listen`, `observe`), the seven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
 
 ## Using Agents in Claude Code
 
@@ -96,6 +97,7 @@ Task(subagent_type="tcg-specialist", prompt="Grade this 1st Edition Charizard an
 Task(subagent_type="ip-analyst", prompt="Map the patent landscape for federated learning before we start R&D")
 Task(subagent_type="gardener", prompt="Help me plan spring planting using the lunar calendar")
 Task(subagent_type="quarto-developer", prompt="Create a multilingual technical book with R and Python chapters")
+Task(subagent_type="shiny-developer", prompt="Build a golem Shiny app with filter modules and deploy to shinyapps.io")
 ```
 
 ## Agent File Format

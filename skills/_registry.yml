@@ -1,7 +1,7 @@
 version: "1.4"
 generated: "2026-02-12"
 standard: "agentskills.io/specification"
-total_skills: 171
+total_skills: 177
 
 domains:
   r-packages:
@@ -962,3 +962,37 @@ domains:
         complexity: basic
         language: natural
         description: Sharpening, handle care, rust prevention, and winter maintenance for essential garden hand tools
+
+  shiny:
+    description: Shiny web application development, modules, testing, and deployment
+    skills:
+      - id: scaffold-shiny-app
+        path: shiny/scaffold-shiny-app/SKILL.md
+        complexity: basic
+        language: R
+        description: Scaffold a Shiny app with golem, rhino, or vanilla structure
+      - id: build-shiny-module
+        path: shiny/build-shiny-module/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Build reusable UI/server modules with NS namespace isolation
+      - id: test-shiny-app
+        path: shiny/test-shiny-app/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Test Shiny apps with shinytest2 end-to-end and testServer unit tests
+      - id: deploy-shiny-app
+        path: shiny/deploy-shiny-app/SKILL.md
+        complexity: basic
+        language: R
+        description: Deploy to shinyapps.io, Posit Connect, or Docker containers
+      - id: optimize-shiny-performance
+        path: shiny/optimize-shiny-performance/SKILL.md
+        complexity: advanced
+        language: R
+        description: Profile and optimize with bindCache, async promises, and reactive graph tuning
+      - id: design-shiny-ui
+        path: shiny/design-shiny-ui/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Design UIs with bslib theming, layout_columns, cards, and value boxes

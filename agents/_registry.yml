@@ -2,8 +2,8 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 28
-version: "1.9"
+total_agents: 29
+version: "2.0"
 last_updated: "2026-02-12"
 
 agents:
@@ -465,6 +465,35 @@ agents:
       - build-pkgdown-site
       - write-roxygen-docs
       - render-puzzle-docs
+      - write-claude-md
+      - meditate
+      - heal
+
+  - id: shiny-developer
+    path: agents/shiny-developer.md
+    description: Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment
+    tags: [R, shiny, web-app, reactive, bslib, modules, deployment, golem, rhino]
+    priority: high
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    mcp_servers: [r-mcptools]
+    skills:
+      - scaffold-shiny-app
+      - build-shiny-module
+      - test-shiny-app
+      - deploy-shiny-app
+      - optimize-shiny-performance
+      - design-shiny-ui
+      - write-testthat-tests
+      - write-roxygen-docs
+      - manage-renv-dependencies
+      - setup-github-actions-ci
+      - release-package-version
+      - create-r-dockerfile
+      - setup-docker-compose
+      - create-quarto-report
+      - commit-changes
+      - create-pull-request
+      - manage-git-branches
       - write-claude-md
       - meditate
       - heal
