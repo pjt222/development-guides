@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-12T08:55:30.713Z",
-    "totalSkills": 162,
+    "generated": "2026-02-12T09:55:16.410Z",
+    "totalSkills": 163,
     "totalAgents": 27,
-    "totalNodes": 189,
-    "totalLinks": 925,
+    "totalNodes": 190,
+    "totalLinks": 929,
     "totalAgentLinks": 224,
     "totalDomains": 26
   },
@@ -43,7 +43,7 @@
     },
     "general": {
       "description": "Cross-cutting development environment and workflow skills",
-      "count": 5
+      "count": 6
     },
     "data-serialization": {
       "description": "Data serialization formats, schemas, and evolution strategies",
@@ -1390,6 +1390,29 @@
         "setup-gxp-r-project"
       ],
       "path": "general/security-audit-codebase/SKILL.md"
+    },
+    {
+      "id": "manage-memory",
+      "type": "skill",
+      "title": "Manage Memory",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Organize, extract, prune, and verify Claude Code persistent memory files",
+      "tags": [
+        "memory",
+        "claude-code",
+        "organization",
+        "maintenance",
+        "auto-memory"
+      ],
+      "related": [
+        "write-claude-md",
+        "skill-creation",
+        "heal",
+        "meditate"
+      ],
+      "path": "general/manage-memory/SKILL.md"
     },
     {
       "id": "skill-creation",
@@ -6067,6 +6090,26 @@
     {
       "source": "security-audit-codebase",
       "target": "setup-gxp-r-project",
+      "type": "skill"
+    },
+    {
+      "source": "manage-memory",
+      "target": "write-claude-md",
+      "type": "skill"
+    },
+    {
+      "source": "manage-memory",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "manage-memory",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "manage-memory",
+      "target": "meditate",
       "type": "skill"
     },
     {

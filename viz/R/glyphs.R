@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 162 skillIds to a specific glyph drawing function.
+# Maps each of 163 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -90,12 +90,13 @@ SKILL_GLYPHS <- list(
   "prepare-soil"                       = "glyph_soil_layers",
   "read-garden"                        = "glyph_garden_eye",
 
-  # ── general (5) ────────────────────────────────────────────────────────
+  # ── general (6) ────────────────────────────────────────────────────────
   "setup-wsl-dev-environment"      = "glyph_terminal",
   "write-claude-md"                = "glyph_robot_doc",
   "security-audit-codebase"        = "glyph_shield_scan",
   "skill-creation"                 = "glyph_spark_create",
   "skill-evolution"                = "glyph_evolution_arrow",
+  "manage-memory"                  = "glyph_memory_file",
 
   # ── git (6) ────────────────────────────────────────────────────────────
   "configure-git-repository"       = "glyph_git_config",

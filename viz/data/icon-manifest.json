@@ -3,7 +3,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_skills": 162,
+    "total_skills": 163,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -674,6 +674,14 @@
       "prompt": "Glowing terminal prompt, wrench tool, evolution spiral, skill upgrade arrow, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90005,
       "path": "icons/cyberpunk/general/skill-evolution.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "manage-memory",
+      "domain": "general",
+      "prompt": "Glowing document index, linked topic files, memory organization, pruning arrows, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90006,
+      "path": "icons/cyberpunk/general/manage-memory.webp",
       "status": "done"
     },
     {

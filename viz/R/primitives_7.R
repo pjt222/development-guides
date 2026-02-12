@@ -1,5 +1,88 @@
-# primitives_7.R - Glyph library part 7: Gardening domain (5 skills)
+# primitives_7.R - Glyph library part 7: Gardening domain (5) + general (1)
 # Sourced by build-icons.R
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Gardening domain glyphs (5) + general domain additions (1)
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ══════════════════════════════════════════════════════════════════════════════
+# General domain additions
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── glyph_memory_file: document index with linked topic files ────────────────
+glyph_memory_file <- function(cx, cy, s, col, bright) {
+  # Main document (MEMORY.md) — larger rectangle with folded corner
+  doc <- data.frame(
+    xmin = cx - 16 * s, xmax = cx + 16 * s,
+    ymin = cy - 24 * s, ymax = cy + 24 * s
+  )
+  # Folded corner triangle (top-right)
+  fold <- data.frame(
+    x = c(cx + 8 * s, cx + 16 * s, cx + 16 * s),
+    y = c(cy + 24 * s, cy + 24 * s, cy + 16 * s)
+  )
+  # Index lines (short dashes representing concise entries)
+  lines <- list()
+  y_positions <- c(16, 10, 4, -2, -8)
+  line_widths <- c(20, 16, 18, 14, 20) # varying lengths
+  for (i in seq_along(y_positions)) {
+    ln <- data.frame(
+      x = c(cx - 10 * s, cx - 10 * s + line_widths[i] * s),
+      y = rep(cy + y_positions[i] * s, 2)
+    )
+    alpha <- if (i <= 2) 0.7 else 0.4
+    lines[[i]] <- ggplot2::geom_path(data = ln, .aes(x, y),
+      color = hex_with_alpha(bright, alpha), linewidth = .lw(s, 1.8))
+  }
+  # Link arrow (bottom-right, pointing to topic file)
+  arrow_shaft <- data.frame(
+    x = c(cx + 4 * s, cx + 14 * s),
+    y = c(cy - 16 * s, cy - 22 * s)
+  )
+  arrow_head <- data.frame(
+    x = c(cx + 10 * s, cx + 14 * s, cx + 12 * s),
+    y = c(cy - 18 * s, cy - 22 * s, cy - 24 * s)
+  )
+  # Small linked file (topic file, offset bottom-right)
+  topic <- data.frame(
+    xmin = cx + 10 * s, xmax = cx + 24 * s,
+    ymin = cy - 28 * s, ymax = cy - 16 * s
+  )
+  # Topic file content lines
+  tl1 <- data.frame(
+    x = c(cx + 13 * s, cx + 21 * s),
+    y = rep(cy - 19 * s, 2)
+  )
+  tl2 <- data.frame(
+    x = c(cx + 13 * s, cx + 19 * s),
+    y = rep(cy - 23 * s, 2)
+  )
+  c(
+    list(
+      # Main document
+      ggplot2::geom_rect(data = doc,
+        .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+        fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+      # Folded corner
+      ggplot2::geom_polygon(data = fold, .aes(x, y),
+        fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.2)),
+      # Link arrow
+      ggplot2::geom_path(data = arrow_shaft, .aes(x, y),
+        color = col, linewidth = .lw(s, 1.5)),
+      ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+        fill = col, color = col, linewidth = .lw(s, 0.5)),
+      # Topic file
+      ggplot2::geom_rect(data = topic,
+        .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+        fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+      ggplot2::geom_path(data = tl1, .aes(x, y),
+        color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.2)),
+      ggplot2::geom_path(data = tl2, .aes(x, y),
+        color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1.2))
+    ),
+    lines
+  )
+}
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Gardening domain glyphs (5)
