@@ -489,10 +489,16 @@ function isNodeHighlighted(node) {
   return highlightedNodeIds === null || highlightedNodeIds.has(node.id);
 }
 
+/** Invalidate canvas so drawNode() re-runs with current state. */
+function redraw() {
+  if (graph) graph.nodeCanvasObject(drawNode);
+}
+
 function handleNodeClick(node) {
   if (node) {
     selectedNodeId = node.id;
     rebuildHighlightSet();
+    redraw();
     if (onNodeClick) onNodeClick(node);
   }
 }
@@ -500,12 +506,14 @@ function handleNodeClick(node) {
 function handleNodeHover(node) {
   hoveredNodeId = node ? node.id : null;
   rebuildHighlightSet();
+  redraw();
   if (onNodeHover) onNodeHover(node);
 }
 
 function handleBackgroundClick() {
   selectedNodeId = null;
   rebuildHighlightSet();
+  redraw();
   if (onNodeClick) onNodeClick(null);
 }
 
@@ -523,6 +531,7 @@ export function clearSelection() {
   selectedNodeId = null;
   hoveredNodeId = null;
   rebuildHighlightSet();
+  redraw();
 }
 
 export function focusNode(id) {
@@ -596,7 +605,7 @@ export function setDomainVisibility(visibleDomains) {
 export function refreshGraph() {
   precomputeLinkColors();
   glowCache.clear(); // invalidate gradient textures on theme switch
-  if (graph) graph.nodeCanvasObject(drawNode);
+  redraw();
 }
 
 export function getGraph() { return graph; }
