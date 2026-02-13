@@ -1,7 +1,7 @@
 version: "1.5"
 generated: "2026-02-13"
 standard: "agentskills.io/specification"
-total_skills: 178
+total_skills: 185
 
 domains:
   r-packages:
@@ -110,6 +110,36 @@ domains:
         complexity: intermediate
         language: Docker
         description: Optimize Docker builds with layer caching and multi-stage builds
+      - id: create-dockerfile
+        path: containerization/create-dockerfile/SKILL.md
+        complexity: basic
+        language: Docker
+        description: Create general-purpose Dockerfiles for Node.js, Python, Go, Rust, and Java projects
+      - id: create-multistage-dockerfile
+        path: containerization/create-multistage-dockerfile/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Create multi-stage Dockerfiles for minimal production images
+      - id: setup-compose-stack
+        path: containerization/setup-compose-stack/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Configure general-purpose Docker Compose stacks with databases, caches, and workers
+      - id: configure-nginx
+        path: containerization/configure-nginx/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Configure Nginx as web server and reverse proxy with SSL and security headers
+      - id: configure-reverse-proxy
+        path: containerization/configure-reverse-proxy/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Reverse proxy patterns across Nginx, Traefik, and ShinyProxy with WebSocket support
+      - id: deploy-searxng
+        path: containerization/deploy-searxng/SKILL.md
+        complexity: intermediate
+        language: Docker
+        description: Deploy self-hosted SearXNG meta search engine via Docker Compose
 
   reporting:
     description: Quarto, R Markdown, and publication-ready report skills
@@ -1001,3 +1031,8 @@ domains:
         complexity: intermediate
         language: R
         description: Design UIs with bslib theming, layout_columns, cards, and value boxes
+      - id: deploy-shinyproxy
+        path: shiny/deploy-shinyproxy/SKILL.md
+        complexity: advanced
+        language: R
+        description: Deploy ShinyProxy for hosting multiple containerized Shiny applications
