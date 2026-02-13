@@ -1,0 +1,24 @@
+name: Update READMEs
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'skills/_registry.yml'
+      - 'agents/_registry.yml'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: node scripts/generate-readmes.js
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "docs: auto-update README statistics"
+          file_pattern: "README.md skills/README.md agents/README.md CLAUDE.md guides/README.md viz/README.md"

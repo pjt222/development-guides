@@ -1,6 +1,8 @@
 # Agents Library for Claude Code
 
+<!-- AUTO:START:agents-intro -->
 A collection of 29 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+<!-- AUTO:END:agents-intro -->
 
 ## How Agents Differ from Skills and Guides
 
@@ -14,36 +16,39 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 
 ## Available Agents
 
+<!-- AUTO:START:agents-table -->
 | Agent | Priority | Description |
 |-------|----------|-------------|
-| [r-developer](r-developer.md) | high | R package development, data analysis, statistical computing with MCP integration |
-| [code-reviewer](code-reviewer.md) | high | Code quality, security review, and best practices enforcement |
-| [security-analyst](security-analyst.md) | critical | Security auditing, vulnerability assessment, defensive security |
-| [web-developer](web-developer.md) | normal | Full-stack Next.js, TypeScript, Tailwind CSS, Vercel deployment |
-| [gxp-validator](gxp-validator.md) | high | CSV and compliance lifecycle: architecture, validation, change control, data integrity |
-| [auditor](auditor.md) | high | GxP audit, CAPA investigation, inspection readiness, vendor qualification |
-| [senior-researcher](senior-researcher.md) | high | Peer review of research methodology, statistics, reproducibility |
-| [senior-data-scientist](senior-data-scientist.md) | high | Statistical analysis, ML pipeline, data quality, and model validation review |
-| [senior-software-developer](senior-software-developer.md) | high | Architecture review: SOLID, API design, scalability, technical debt |
-| [senior-web-designer](senior-web-designer.md) | high | Visual design review: layout, typography, colour, responsive, branding |
-| [senior-ux-ui-specialist](senior-ux-ui-specialist.md) | high | Usability and accessibility: heuristics, WCAG, keyboard/screen reader audit |
-| [survivalist](survivalist.md) | normal | Wilderness survival: fire craft, water purification, plant foraging |
-| [mystic](mystic.md) | normal | Esoteric practices: energy healing, meditation, coordinate remote viewing |
-| [martial-artist](martial-artist.md) | normal | Defensive martial arts: tai chi, aikido, situational awareness |
-| [designer](designer.md) | normal | Ornamental design: historical style analysis, Z-Image generation, Speltz taxonomy |
-| [project-manager](project-manager.md) | normal | Agile & classic PM: charters, WBS, sprints, backlogs, status reports |
-| [devops-engineer](devops-engineer.md) | high | CI/CD, Kubernetes, GitOps, service mesh, observability, chaos engineering |
-| [mlops-engineer](mlops-engineer.md) | high | Experiment tracking, model registry, feature stores, ML pipelines, AIOps |
-| [putior-integrator](putior-integrator.md) | normal | Workflow visualization: putior integration, annotation, Mermaid diagrams |
-| [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence: distributed coordination, foraging, consensus, defense, scaling |
-| [shapeshifter](shapeshifter.md) | normal | Metamorphic transformation: form assessment, architectural adaptation, regenerative repair |
-| [alchemist](alchemist.md) | normal | Code/data transmutation: four-stage alchemical process with meditate/heal checkpoints |
-| [polymath](polymath.md) | high | Cross-disciplinary synthesis: spawns domain agents, synthesizes findings |
-| [tcg-specialist](tcg-specialist.md) | normal | Trading card games: grading (PSA/BGS/CGC), deck building, collection management |
-| [ip-analyst](ip-analyst.md) | high | Intellectual property: patent landscape, prior art search, FTO analysis |
-| [gardener](gardener.md) | normal | Plant cultivation: bonsai, soil, biodynamic calendar, garden observation, hand tools |
-| [quarto-developer](quarto-developer.md) | normal | Quarto CLI: multilingual QMD, technical docs, books, websites, presentations, dashboards |
-| [shiny-developer](shiny-developer.md) | high | Shiny web apps: golem/rhino scaffolding, modules, bslib UI, shinytest2, deployment |
+| [security-analyst](security-analyst.md) | critical | Specialized agent for security auditing, vulnerability assessment, and defensive security practices |
+| [auditor](auditor.md) | high | GxP audit and investigation specialist for audit planning, execution, finding classification, CAPA root cause analysis, inspection readiness, data integrity monitoring, and vendor qualification |
+| [code-reviewer](code-reviewer.md) | high | Reviews code changes, pull requests, and provides detailed feedback on code quality, security, and best practices |
+| [devops-engineer](devops-engineer.md) | high | Infrastructure and platform engineering agent for CI/CD, Kubernetes, GitOps, service mesh, observability, and chaos engineering |
+| [gxp-validator](gxp-validator.md) | high | Computer Systems Validation and compliance lifecycle specialist covering 21 CFR Part 11, EU Annex 11, GAMP 5, compliance architecture, change control, electronic signatures, SOPs, data integrity monitoring, training programmes, and system decommissioning |
+| [ip-analyst](ip-analyst.md) | high | Patent landscape mapping, prior art search, trademark screening, FTO analysis |
+| [jigsawr-developer](jigsawr-developer.md) | high | Specialized agent for jigsawR package development covering puzzle generation, pipeline integration, PILES notation, ggpuzzle layers, Quarto docs, and Shiny app |
+| [mlops-engineer](mlops-engineer.md) | high | ML operations agent for experiment tracking, model registry, feature stores, ML pipelines, model serving, drift monitoring, and AIOps |
+| [polymath](polymath.md) | high | Cross-disciplinary synthesis; spawns domain-specific subagents, synthesizes findings across domains, and produces integrated insights |
+| [r-developer](r-developer.md) | high | Specialized agent for R package development, data analysis, and statistical computing with MCP integration |
+| [senior-data-scientist](senior-data-scientist.md) | high | Reviews statistical analyses, ML pipelines, data quality, model validation, and data serialization practices |
+| [senior-researcher](senior-researcher.md) | high | Expert peer reviewer of research methodology, experimental design, statistical analysis, and scientific writing |
+| [senior-software-developer](senior-software-developer.md) | high | Architecture reviewer evaluating system design, SOLID principles, scalability, API design, and technical debt |
+| [senior-ux-ui-specialist](senior-ux-ui-specialist.md) | high | Usability and accessibility reviewer applying Nielsen heuristics, WCAG 2.1, keyboard/screen reader audits, and user flow analysis |
+| [senior-web-designer](senior-web-designer.md) | high | Visual design reviewer evaluating layout, typography, colour, spacing, responsive behaviour, and brand consistency |
+| [shiny-developer](shiny-developer.md) | high | Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment |
+| [alchemist](alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
+| [designer](designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
+| [gardener](gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
+| [martial-artist](martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
+| [mystic](mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
+| [project-manager](project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
+| [putior-integrator](putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
+| [quarto-developer](quarto-developer.md) | normal | Quarto CLI specialist for multilingual QMD files, technical documentation, books, websites, presentations, dashboards, and manuscript publishing |
+| [shapeshifter](shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
+| [survivalist](survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
+| [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
+| [tcg-specialist](tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
+| [web-developer](web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
+<!-- AUTO:END:agents-table -->
 
 Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 29 agents cover 161 of the 177 skills in the library. The sixteen uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the four AI meta-cognitive skills (`learn`, `teach`, `listen`, `observe`), the seven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
 

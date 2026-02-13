@@ -18,6 +18,8 @@ Thumbs.db
 *.bak
 *.backup
 
+# Node dependencies
+node_modules/
+
 # Viz build artifacts
-viz/node_modules/
 viz/logs/

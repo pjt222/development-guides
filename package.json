@@ -1,0 +1,14 @@
+{
+  "name": "development-guides",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Agentic development platform with skills, agents, and guides",
+  "type": "module",
+  "scripts": {
+    "update-readmes": "node scripts/generate-readmes.js",
+    "check-readmes": "node scripts/generate-readmes.js --check"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}

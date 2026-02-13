@@ -4,9 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A documentation-only repository containing 6 long-form markdown guides, a skills library of 178 agentic skills, and 29 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+<!-- AUTO:START:overview -->
+A documentation-only repository containing 6 long-form markdown guides, a skills library of 185 agentic skills, and 29 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
+<!-- AUTO:END:overview -->
 
 ## Architecture
 
@@ -22,10 +24,12 @@ Agents and skills complement each other: agents define *who* (persona, tools, st
 
 ### Registries
 
-- `skills/_registry.yml` is the machine-readable catalog of all 178 skills across 27 domains: r-packages (10), compliance (17), devops (13), observability (13), mlops (12), git (6), project-management (6), workflow-visualization (6), general (6), esoteric (15), review (6), swarm (8), morphic (6), design (5), containerization (4), reporting (4), mcp-integration (3), web-dev (3), bushcraft (3), defensive (6), alchemy (3), tcg (3), intellectual-property (2), jigsawr (5), data-serialization (2), gardening (5), shiny (6).
+<!-- AUTO:START:registries -->
+- `skills/_registry.yml` is the machine-readable catalog of all 185 skills across 27 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (3), web-dev (3), git (6), general (6), data-serialization (2), review (6), bushcraft (3), esoteric (15), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (6), alchemy (3), tcg (3), intellectual-property (2), gardening (5), shiny (7).
 - `agents/_registry.yml` is the machine-readable catalog of all 29 agents.
 
 When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
+<!-- AUTO:END:registries -->
 
 ### Cross-References
 
@@ -63,7 +67,8 @@ Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` 
 2. Add the entry to `skills/_registry.yml` under the appropriate domain
 3. Update `total_skills` count in `_registry.yml`
 4. Reference related skills in the new skill's "Related Skills" section
-5. The meta-skill at `skills/general/skill-creation/SKILL.md` documents this process in detail
+5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
+6. The meta-skill at `skills/general/skill-creation/SKILL.md` documents this process in detail
 
 ## Adding a New Agent
 
@@ -71,5 +76,19 @@ Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` 
 2. Fill in YAML frontmatter (required: `name`, `description`, `tools`, `model`, `version`, `author`)
 3. Write Purpose, Capabilities, Usage Scenarios, Examples, and Limitations sections
 4. Add the entry to `agents/_registry.yml`
-5. Update the table in `agents/README.md`
+5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
 6. See `agents/best-practices.md` for detailed guidance
+
+## README Automation
+
+Dynamic sections in README files are auto-generated from the registries. Sections between `<!-- AUTO:START:name -->` and `<!-- AUTO:END:name -->` markers are replaced by `scripts/generate-readmes.js`. Two files (`guides/README.md`, `viz/README.md`) are fully generated.
+
+```bash
+# Update all READMEs from registries
+npm run update-readmes
+
+# Check if READMEs are up to date (exits 1 if stale)
+npm run check-readmes
+```
+
+CI auto-commits README updates when registry files change on `main` (`.github/workflows/update-readmes.yml`). Manual `agents/README.md` table updates in step 5 above are no longer needed — the script handles it.

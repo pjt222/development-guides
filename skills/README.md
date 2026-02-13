@@ -1,6 +1,8 @@
 # Skills Library for Agentic Systems
 
-A collection of 125 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+<!-- AUTO:START:skills-intro -->
+A collection of 185 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+<!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
 
@@ -16,27 +18,37 @@ Skills complement agents. An agent defines *who* (persona, tools, style); a skil
 
 Browse by domain:
 
+<!-- AUTO:START:skills-table -->
 | Domain | Skills | Description |
 |--------|--------|-------------|
-| [r-packages/](r-packages/) | 10 | R package development lifecycle |
-| [compliance/](compliance/) | 17 | GxP validation, CSV, audits, change control, data integrity, SOPs, training, inspections |
-| [devops/](devops/) | 13 | CI/CD, Kubernetes, GitOps, service mesh, infrastructure automation |
-| [observability/](observability/) | 13 | Prometheus, Grafana, logging, tracing, alerting, SLOs, chaos engineering |
-| [mlops/](mlops/) | 12 | Experiment tracking, model serving, feature stores, pipelines, AIOps |
-| [git/](git/) | 6 | Git version control & GitHub workflows |
-| [project-management/](project-management/) | 6 | Agile & classic project management |
-| [general/](general/) | 5 | Cross-cutting dev environment skills |
-| [review/](review/) | 5 | Research, data, architecture & design review |
-| [containerization/](containerization/) | 4 | Docker & container workflows |
-| [reporting/](reporting/) | 4 | Quarto, Rmd, publication-ready reports |
-| [mcp-integration/](mcp-integration/) | 3 | MCP server setup & troubleshooting |
-| [web-dev/](web-dev/) | 3 | Next.js, Tailwind, Vercel |
-| [bushcraft/](bushcraft/) | 3 | Wilderness survival & primitive skills |
-| [esoteric/](esoteric/) | 6 | Meditation, healing, remote viewing — self-practice and guided variants |
-| [defensive/](defensive/) | 3 | Martial arts & situational awareness |
-| [design/](design/) | 4 | Ornamental design, AI image generation & R-based skill glyph creation |
-| [data-serialization/](data-serialization/) | 2 | Data formats, schemas & evolution |
-| [workflow-visualization/](workflow-visualization/) | 6 | Putior integration, Mermaid diagrams, annotation, CI/CD |
+| [R Packages](r-packages/) | 10 | R package development lifecycle skills |
+| [Jigsawr](jigsawr/) | 5 | jigsawR puzzle package development skills |
+| [Containerization](containerization/) | 10 | Docker and container workflow skills |
+| [Reporting](reporting/) | 4 | Quarto, R Markdown, and publication-ready report skills |
+| [Compliance](compliance/) | 17 | GxP regulatory and validation skills |
+| [Mcp Integration](mcp-integration/) | 3 | MCP server setup and troubleshooting skills |
+| [Web Dev](web-dev/) | 3 | Web development skills for Next.js and modern frontend |
+| [Git](git/) | 6 | Git version control and GitHub workflow skills |
+| [General](general/) | 6 | Cross-cutting development environment and workflow skills |
+| [Data Serialization](data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
+| [Review](review/) | 6 | Senior-level review skills for research, data, architecture, and design |
+| [Bushcraft](bushcraft/) | 3 | Wilderness survival and primitive skills |
+| [Esoteric](esoteric/) | 15 | Esoteric practices — AI self-directed variants and human-guidance variants |
+| [Design](design/) | 5 | Ornamental design and AI-assisted image generation skills |
+| [Defensive](defensive/) | 6 | Martial arts and applied defensive awareness skills |
+| [Project Management](project-management/) | 6 | Agile and classic project management skills |
+| [Devops](devops/) | 13 | CI/CD, Kubernetes, GitOps, and infrastructure automation skills |
+| [Observability](observability/) | 13 | Monitoring, logging, tracing, alerting, and reliability engineering skills |
+| [Mlops](mlops/) | 12 | ML experiment tracking, model serving, feature stores, pipelines, and AIOps skills |
+| [Workflow Visualization](workflow-visualization/) | 6 | Workflow annotation and Mermaid diagram generation with putior |
+| [Swarm](swarm/) | 8 | Collective intelligence, emergent coordination, and distributed decision-making strategies |
+| [Morphic](morphic/) | 6 | Adaptive transformation, structural metamorphosis, and reconfiguration strategies |
+| [Alchemy](alchemy/) | 3 | Code and data transmutation through systematic decomposition, purification, and synthesis |
+| [Tcg](tcg/) | 3 | Trading card game grading, deck building, and collection management |
+| [Intellectual Property](intellectual-property/) | 2 | Patent landscape analysis, prior art search, and IP strategy |
+| [Gardening](gardening/) | 5 | Plant cultivation, soil preparation, garden observation, and hand tool care |
+| [Shiny](shiny/) | 7 | Shiny web application development, modules, testing, and deployment |
+<!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format
 
