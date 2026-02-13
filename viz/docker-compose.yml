@@ -1,0 +1,16 @@
+services:
+  viz:
+    build:
+      context: ..                     # repo root — build-data.js needs ../skills/
+      dockerfile: viz/Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./icons:/app/viz/icons        # persist generated icons
+      - ./data:/app/viz/data          # persist generated data
+    environment:
+      - SKIP_EXISTING=1               # incremental builds by default
+      # - PALETTE=cyberpunk           # uncomment to build single palette
+      # - ONLY_DOMAIN=git             # uncomment to build single domain
+      # - SKIP_ICONS=1                # uncomment for data-only rebuild
+      # - DRY_RUN=1                   # uncomment for dry run

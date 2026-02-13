@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-13T08:38:37.158Z",
-    "totalSkills": 178,
+    "generated": "2026-02-13T14:43:42.297Z",
+    "totalSkills": 185,
     "totalAgents": 29,
-    "totalNodes": 207,
-    "totalLinks": 1031,
+    "totalNodes": 214,
+    "totalLinks": 1052,
     "totalAgentLinks": 255,
     "totalDomains": 27
   },
@@ -19,7 +19,7 @@
     },
     "containerization": {
       "description": "Docker and container workflow skills",
-      "count": 4
+      "count": 10
     },
     "reporting": {
       "description": "Quarto, R Markdown, and publication-ready report skills",
@@ -115,7 +115,7 @@
     },
     "shiny": {
       "description": "Shiny web application development, modules, testing, and deployment",
-      "count": 6
+      "count": 7
     }
   },
   "nodes": [
@@ -551,6 +551,153 @@
         "containerize-mcp-server"
       ],
       "path": "containerization/optimize-docker-build-cache/SKILL.md"
+    },
+    {
+      "id": "create-dockerfile",
+      "type": "skill",
+      "title": "Create Dockerfile",
+      "domain": "containerization",
+      "complexity": "basic",
+      "language": "Docker",
+      "description": "Create general-purpose Dockerfiles for Node.js, Python, Go, Rust, and Java projects",
+      "tags": [
+        "docker",
+        "dockerfile",
+        "node",
+        "python",
+        "go",
+        "rust",
+        "java",
+        "container"
+      ],
+      "related": [
+        "create-r-dockerfile",
+        "create-multistage-dockerfile",
+        "optimize-docker-build-cache",
+        "setup-compose-stack"
+      ],
+      "path": "containerization/create-dockerfile/SKILL.md"
+    },
+    {
+      "id": "create-multistage-dockerfile",
+      "type": "skill",
+      "title": "Create Multi-Stage Dockerfile",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Create multi-stage Dockerfiles for minimal production images",
+      "tags": [
+        "docker",
+        "multi-stage",
+        "distroless",
+        "alpine",
+        "scratch",
+        "optimization"
+      ],
+      "related": [
+        "create-dockerfile",
+        "create-r-dockerfile",
+        "optimize-docker-build-cache",
+        "setup-compose-stack"
+      ],
+      "path": "containerization/create-multistage-dockerfile/SKILL.md"
+    },
+    {
+      "id": "setup-compose-stack",
+      "type": "skill",
+      "title": "Set Up Compose Stack",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Configure general-purpose Docker Compose stacks with databases, caches, and workers",
+      "tags": [
+        "docker-compose",
+        "orchestration",
+        "postgres",
+        "redis",
+        "multi-service",
+        "health-checks"
+      ],
+      "related": [
+        "setup-docker-compose",
+        "create-dockerfile",
+        "create-multistage-dockerfile",
+        "configure-nginx"
+      ],
+      "path": "containerization/setup-compose-stack/SKILL.md"
+    },
+    {
+      "id": "configure-nginx",
+      "type": "skill",
+      "title": "Configure Nginx",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Configure Nginx as web server and reverse proxy with SSL and security headers",
+      "tags": [
+        "nginx",
+        "reverse-proxy",
+        "ssl",
+        "tls",
+        "lets-encrypt",
+        "web-server",
+        "security-headers"
+      ],
+      "related": [
+        "configure-reverse-proxy",
+        "setup-compose-stack",
+        "deploy-searxng",
+        "configure-ingress-networking"
+      ],
+      "path": "containerization/configure-nginx/SKILL.md"
+    },
+    {
+      "id": "configure-reverse-proxy",
+      "type": "skill",
+      "title": "Configure Reverse Proxy",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Reverse proxy patterns across Nginx, Traefik, and ShinyProxy with WebSocket support",
+      "tags": [
+        "reverse-proxy",
+        "traefik",
+        "nginx",
+        "websocket",
+        "routing",
+        "shinyproxy",
+        "ssl"
+      ],
+      "related": [
+        "configure-nginx",
+        "deploy-shinyproxy",
+        "setup-compose-stack",
+        "configure-api-gateway"
+      ],
+      "path": "containerization/configure-reverse-proxy/SKILL.md"
+    },
+    {
+      "id": "deploy-searxng",
+      "type": "skill",
+      "title": "Deploy SearXNG",
+      "domain": "containerization",
+      "complexity": "intermediate",
+      "language": "Docker",
+      "description": "Deploy self-hosted SearXNG meta search engine via Docker Compose",
+      "tags": [
+        "searxng",
+        "self-hosted",
+        "search-engine",
+        "privacy",
+        "docker-compose",
+        "meta-search"
+      ],
+      "related": [
+        "setup-compose-stack",
+        "configure-nginx",
+        "configure-reverse-proxy"
+      ],
+      "path": "containerization/deploy-searxng/SKILL.md"
     },
     {
       "id": "create-quarto-report",
@@ -2848,14 +2995,7 @@
         "deployment",
         "templating"
       ],
-      "related": [
-        "deploy-to-kubernetes",
-        "setup-local-kubernetes",
-        "implement-gitops-workflow",
-        "configure-ingress-networking",
-        "setup-prometheus-monitoring",
-        "enforce-policy-as-code"
-      ],
+      "related": [],
       "path": "devops/write-helm-chart/SKILL.md"
     },
     {
@@ -4415,6 +4555,31 @@
       "path": "shiny/design-shiny-ui/SKILL.md"
     },
     {
+      "id": "deploy-shinyproxy",
+      "type": "skill",
+      "title": "Deploy ShinyProxy",
+      "domain": "shiny",
+      "complexity": "advanced",
+      "language": "R",
+      "description": "Deploy ShinyProxy for hosting multiple containerized Shiny applications",
+      "tags": [
+        "shinyproxy",
+        "shiny",
+        "docker",
+        "deployment",
+        "multi-app",
+        "authentication",
+        "self-hosted"
+      ],
+      "related": [
+        "deploy-shiny-app",
+        "configure-reverse-proxy",
+        "create-dockerfile",
+        "create-r-dockerfile"
+      ],
+      "path": "shiny/deploy-shinyproxy/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -5832,6 +5997,121 @@
     {
       "source": "optimize-docker-build-cache",
       "target": "containerize-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "create-dockerfile",
+      "target": "create-r-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "create-dockerfile",
+      "target": "create-multistage-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "create-dockerfile",
+      "target": "optimize-docker-build-cache",
+      "type": "skill"
+    },
+    {
+      "source": "create-dockerfile",
+      "target": "setup-compose-stack",
+      "type": "skill"
+    },
+    {
+      "source": "create-multistage-dockerfile",
+      "target": "create-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "create-multistage-dockerfile",
+      "target": "create-r-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "create-multistage-dockerfile",
+      "target": "optimize-docker-build-cache",
+      "type": "skill"
+    },
+    {
+      "source": "create-multistage-dockerfile",
+      "target": "setup-compose-stack",
+      "type": "skill"
+    },
+    {
+      "source": "setup-compose-stack",
+      "target": "setup-docker-compose",
+      "type": "skill"
+    },
+    {
+      "source": "setup-compose-stack",
+      "target": "create-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "setup-compose-stack",
+      "target": "create-multistage-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "setup-compose-stack",
+      "target": "configure-nginx",
+      "type": "skill"
+    },
+    {
+      "source": "configure-nginx",
+      "target": "configure-reverse-proxy",
+      "type": "skill"
+    },
+    {
+      "source": "configure-nginx",
+      "target": "setup-compose-stack",
+      "type": "skill"
+    },
+    {
+      "source": "configure-nginx",
+      "target": "deploy-searxng",
+      "type": "skill"
+    },
+    {
+      "source": "configure-nginx",
+      "target": "configure-ingress-networking",
+      "type": "skill"
+    },
+    {
+      "source": "configure-reverse-proxy",
+      "target": "configure-nginx",
+      "type": "skill"
+    },
+    {
+      "source": "configure-reverse-proxy",
+      "target": "deploy-shinyproxy",
+      "type": "skill"
+    },
+    {
+      "source": "configure-reverse-proxy",
+      "target": "setup-compose-stack",
+      "type": "skill"
+    },
+    {
+      "source": "configure-reverse-proxy",
+      "target": "configure-api-gateway",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-searxng",
+      "target": "setup-compose-stack",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-searxng",
+      "target": "configure-nginx",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-searxng",
+      "target": "configure-reverse-proxy",
       "type": "skill"
     },
     {
@@ -7870,36 +8150,6 @@
       "type": "skill"
     },
     {
-      "source": "write-helm-chart",
-      "target": "deploy-to-kubernetes",
-      "type": "skill"
-    },
-    {
-      "source": "write-helm-chart",
-      "target": "setup-local-kubernetes",
-      "type": "skill"
-    },
-    {
-      "source": "write-helm-chart",
-      "target": "implement-gitops-workflow",
-      "type": "skill"
-    },
-    {
-      "source": "write-helm-chart",
-      "target": "configure-ingress-networking",
-      "type": "skill"
-    },
-    {
-      "source": "write-helm-chart",
-      "target": "setup-prometheus-monitoring",
-      "type": "skill"
-    },
-    {
-      "source": "write-helm-chart",
-      "target": "enforce-policy-as-code",
-      "type": "skill"
-    },
-    {
       "source": "setup-prometheus-monitoring",
       "target": "configure-alerting-rules",
       "type": "skill"
@@ -9347,6 +9597,26 @@
     {
       "source": "design-shiny-ui",
       "target": "review-ux-ui",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shinyproxy",
+      "target": "deploy-shiny-app",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shinyproxy",
+      "target": "configure-reverse-proxy",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shinyproxy",
+      "target": "create-dockerfile",
+      "type": "skill"
+    },
+    {
+      "source": "deploy-shinyproxy",
+      "target": "create-r-dockerfile",
       "type": "skill"
     },
     {

@@ -1,0 +1,27 @@
+# Docker build context: repo root (development-guides/)
+# Paths are relative to the build context
+
+.git
+.github
+
+# Node.js
+viz/node_modules
+
+# R environment cache (restored inside container)
+viz/renv/library
+viz/renv/cache
+viz/renv/staging
+
+# Generated outputs (mounted as volumes)
+viz/icons
+viz/data
+
+# Logs and session artifacts
+viz/logs
+viz/.Rhistory
+viz/.RData
+viz/.Rproj.user
+
+# OS artifacts
+**/.DS_Store
+**/Thumbs.db

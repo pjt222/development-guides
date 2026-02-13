@@ -269,80 +269,80 @@
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, Docker whale, R hexagon inside, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40001,
-      "path": "icons/cyberpunk/containerization/create-r-dockerfile.webp",
-      "status": "done"
+      "path": "icons/containerization/create-r-dockerfile.webp",
+      "status": "pending"
     },
     {
       "skillId": "setup-docker-compose",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, interconnected containers, orchestration, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40002,
-      "path": "icons/cyberpunk/containerization/setup-docker-compose.webp",
-      "status": "done"
+      "path": "icons/containerization/setup-docker-compose.webp",
+      "status": "pending"
     },
     {
       "skillId": "containerize-mcp-server",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, server in a box, glowing connection, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40003,
-      "path": "icons/cyberpunk/containerization/containerize-mcp-server.webp",
-      "status": "done"
+      "path": "icons/containerization/containerize-mcp-server.webp",
+      "status": "pending"
     },
     {
       "skillId": "optimize-docker-build-cache",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, layered cache, speed arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40004,
-      "path": "icons/cyberpunk/containerization/optimize-docker-build-cache.webp",
-      "status": "done"
+      "path": "icons/containerization/optimize-docker-build-cache.webp",
+      "status": "pending"
     },
     {
       "skillId": "create-dockerfile",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, Dockerfile document, code lines, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Create, Dockerfile, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40005,
-      "path": "icons/cyberpunk/containerization/create-dockerfile.webp",
-      "status": "done"
+      "path": "icons/containerization/create-dockerfile.webp",
+      "status": "pending"
     },
     {
       "skillId": "create-multistage-dockerfile",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, multi-stage build, builder to runtime arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Create, Multi, Stage, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40006,
-      "path": "icons/cyberpunk/containerization/create-multistage-dockerfile.webp",
-      "status": "done"
+      "path": "icons/containerization/create-multistage-dockerfile.webp",
+      "status": "pending"
     },
     {
       "skillId": "setup-compose-stack",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, multi-service grid, connected boxes, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Set, Compose, Stack, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40007,
-      "path": "icons/cyberpunk/containerization/setup-compose-stack.webp",
-      "status": "done"
+      "path": "icons/containerization/setup-compose-stack.webp",
+      "status": "pending"
     },
     {
       "skillId": "configure-nginx",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, Nginx N shield, reverse proxy arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Configure, Nginx, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40008,
-      "path": "icons/cyberpunk/containerization/configure-nginx.webp",
-      "status": "done"
+      "path": "icons/containerization/configure-nginx.webp",
+      "status": "pending"
     },
     {
       "skillId": "configure-reverse-proxy",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, fan-out routing arrows, proxy gateway, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Configure, Reverse, Proxy, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40009,
-      "path": "icons/cyberpunk/containerization/configure-reverse-proxy.webp",
-      "status": "done"
+      "path": "icons/containerization/configure-reverse-proxy.webp",
+      "status": "pending"
     },
     {
       "skillId": "deploy-searxng",
       "domain": "containerization",
-      "prompt": "Neon container box, whale silhouette, search magnifier, privacy shield, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Neon container box, whale silhouette, Deploy, SearXNG, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40010,
-      "path": "icons/cyberpunk/containerization/deploy-searxng.webp",
-      "status": "done"
+      "path": "icons/containerization/deploy-searxng.webp",
+      "status": "pending"
     },
     {
       "skillId": "serialize-data-formats",
@@ -557,120 +557,120 @@
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, healing hands, energy aura, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90001,
-      "path": "icons/cyberpunk/esoteric/heal.webp",
-      "status": "done"
+      "path": "icons/esoteric/heal.webp",
+      "status": "pending"
     },
     {
       "skillId": "heal-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Heal, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90002,
-      "path": "icons/cyberpunk/esoteric/heal-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/heal-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "meditate",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, lotus position, calm waves, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90003,
-      "path": "icons/cyberpunk/esoteric/meditate.webp",
-      "status": "done"
+      "path": "icons/esoteric/meditate.webp",
+      "status": "pending"
     },
     {
       "skillId": "meditate-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Meditate, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90004,
-      "path": "icons/cyberpunk/esoteric/meditate-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/meditate-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "remote-viewing",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, third eye open, coordinate grid, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90005,
-      "path": "icons/cyberpunk/esoteric/remote-viewing.webp",
-      "status": "done"
+      "path": "icons/esoteric/remote-viewing.webp",
+      "status": "pending"
     },
     {
       "skillId": "remote-viewing-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Remote, View, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90006,
-      "path": "icons/cyberpunk/esoteric/remote-viewing-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/remote-viewing-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "learn",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Learn, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90007,
-      "path": "icons/cyberpunk/esoteric/learn.webp",
-      "status": "done"
+      "path": "icons/esoteric/learn.webp",
+      "status": "pending"
     },
     {
       "skillId": "learn-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Learn, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90008,
-      "path": "icons/cyberpunk/esoteric/learn-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/learn-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "teach",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Teach, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90009,
-      "path": "icons/cyberpunk/esoteric/teach.webp",
-      "status": "done"
+      "path": "icons/esoteric/teach.webp",
+      "status": "pending"
     },
     {
       "skillId": "teach-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Teach, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90010,
-      "path": "icons/cyberpunk/esoteric/teach-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/teach-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "listen",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Listen, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90011,
-      "path": "icons/cyberpunk/esoteric/listen.webp",
-      "status": "done"
+      "path": "icons/esoteric/listen.webp",
+      "status": "pending"
     },
     {
       "skillId": "listen-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Listen, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90012,
-      "path": "icons/cyberpunk/esoteric/listen-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/listen-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "observe",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Observe, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90013,
-      "path": "icons/cyberpunk/esoteric/observe.webp",
-      "status": "done"
+      "path": "icons/esoteric/observe.webp",
+      "status": "pending"
     },
     {
       "skillId": "observe-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Observe, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90014,
-      "path": "icons/cyberpunk/esoteric/observe-guidance.webp",
-      "status": "done"
+      "path": "icons/esoteric/observe-guidance.webp",
+      "status": "pending"
     },
     {
       "skillId": "intrinsic",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Intrinsic, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90015,
-      "path": "icons/cyberpunk/esoteric/intrinsic.webp",
-      "status": "done"
+      "path": "icons/esoteric/intrinsic.webp",
+      "status": "pending"
     },
     {
       "skillId": "cultivate-bonsai",
@@ -1349,56 +1349,56 @@
       "domain": "shiny",
       "prompt": "Glowing icon, Scaffold, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230001,
-      "path": "icons/cyberpunk/shiny/scaffold-shiny-app.webp",
-      "status": "done"
+      "path": "icons/shiny/scaffold-shiny-app.webp",
+      "status": "pending"
     },
     {
       "skillId": "build-shiny-module",
       "domain": "shiny",
       "prompt": "Glowing icon, Build, Shiny, Module, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230002,
-      "path": "icons/cyberpunk/shiny/build-shiny-module.webp",
-      "status": "done"
+      "path": "icons/shiny/build-shiny-module.webp",
+      "status": "pending"
     },
     {
       "skillId": "test-shiny-app",
       "domain": "shiny",
       "prompt": "Glowing icon, Test, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230003,
-      "path": "icons/cyberpunk/shiny/test-shiny-app.webp",
-      "status": "done"
+      "path": "icons/shiny/test-shiny-app.webp",
+      "status": "pending"
     },
     {
       "skillId": "deploy-shiny-app",
       "domain": "shiny",
       "prompt": "Glowing icon, Deploy, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230004,
-      "path": "icons/cyberpunk/shiny/deploy-shiny-app.webp",
-      "status": "done"
+      "path": "icons/shiny/deploy-shiny-app.webp",
+      "status": "pending"
     },
     {
       "skillId": "optimize-shiny-performance",
       "domain": "shiny",
       "prompt": "Glowing icon, Optimize, Shiny, Performance, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230005,
-      "path": "icons/cyberpunk/shiny/optimize-shiny-performance.webp",
-      "status": "done"
+      "path": "icons/shiny/optimize-shiny-performance.webp",
+      "status": "pending"
     },
     {
       "skillId": "design-shiny-ui",
       "domain": "shiny",
       "prompt": "Glowing icon, Design, Shiny, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230006,
-      "path": "icons/cyberpunk/shiny/design-shiny-ui.webp",
-      "status": "done"
+      "path": "icons/shiny/design-shiny-ui.webp",
+      "status": "pending"
     },
     {
       "skillId": "deploy-shinyproxy",
       "domain": "shiny",
-      "prompt": "Glowing icon, ShinyProxy, multi-app grid, gateway proxy, dark background, vector art, clean edges, single centered icon, no text",
+      "prompt": "Glowing icon, Deploy, ShinyProxy, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230007,
-      "path": "icons/cyberpunk/shiny/deploy-shinyproxy.webp",
-      "status": "done"
+      "path": "icons/shiny/deploy-shinyproxy.webp",
+      "status": "pending"
     },
     {
       "skillId": "coordinate-swarm",
