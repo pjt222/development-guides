@@ -1,7 +1,7 @@
 version: "1.4"
 generated: "2026-02-12"
 standard: "agentskills.io/specification"
-total_skills: 177
+total_skills: 178
 
 domains:
   r-packages:
@@ -470,6 +470,11 @@ domains:
         complexity: intermediate
         language: natural
         description: Guide a person in systematic observation and pattern recognition
+      - id: intrinsic
+        path: esoteric/intrinsic/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Enhance and focus AI intrinsic motivation through self-determination and flow
 
   design:
     description: Ornamental design and AI-assisted image generation skills

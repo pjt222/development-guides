@@ -75,7 +75,7 @@ SKILL_GLYPHS <- list(
   "setup-local-kubernetes"         = "glyph_cluster_local",
   "write-helm-chart"               = "glyph_anchor",
 
-  # ── esoteric (14) ─────────────────────────────────────────────────────
+  # ── esoteric (15) ─────────────────────────────────────────────────────
   "heal"                           = "glyph_healing_hands",
   "heal-guidance"                  = "glyph_healing_hands_guide",
   "meditate"                       = "glyph_lotus_seated",
@@ -90,6 +90,7 @@ SKILL_GLYPHS <- list(
   "listen-guidance"                = "glyph_listening_ear_guide",
   "observe"                        = "glyph_telescope_stars",
   "observe-guidance"               = "glyph_telescope_stars_guide",
+  "intrinsic"                      = "glyph_flame_spiral",
 
   # ── gardening (5) ─────────────────────────────────────────────────────
   "cultivate-bonsai"                   = "glyph_bonsai_tree",

@@ -1,4 +1,4 @@
-# primitives_7.R - Glyph library part 7: Gardening (5) + general (1) + esoteric meta-cognitive (8)
+# primitives_7.R - Glyph library part 7: Gardening (5) + general (1) + esoteric meta-cognitive (9)
 # Sourced by build-icons.R
 
 # ══════════════════════════════════════════════════════════════════════════════
@@ -351,7 +351,7 @@ glyph_garden_eye <- function(cx, cy, s, col, bright) {
 }
 
 # ══════════════════════════════════════════════════════════════════════════════
-# Esoteric domain meta-cognitive glyphs (8)
+# Esoteric domain meta-cognitive glyphs (9)
 # ══════════════════════════════════════════════════════════════════════════════
 
 # ── glyph_open_book: open book with emerging knowledge path ────────────────
@@ -784,4 +784,78 @@ glyph_telescope_stars_guide <- function(cx, cy, s, col, bright) {
     ggplot2::geom_path(data = fig_leg_r, .aes(x, y),
       color = col, linewidth = .lw(s, 1.5))
   )
+}
+
+# ── glyph_flame_spiral: inner flame with ascending spiral (motivation) ────
+glyph_flame_spiral <- function(cx, cy, s, col, bright) {
+  # Flame body — teardrop shape built from two mirrored curves
+  # Left edge of flame (curves outward then tapers to tip)
+  t_fl <- seq(0, 1, length.out = 35)
+  flame_l <- data.frame(
+    x = cx - (14 * s * sin(t_fl * pi) * (1 - t_fl * 0.6)),
+    y = cy - 18 * s + t_fl * 46 * s
+  )
+  # Right edge (mirror)
+  flame_r <- data.frame(
+    x = cx + (14 * s * sin(t_fl * pi) * (1 - t_fl * 0.6)),
+    y = cy - 18 * s + t_fl * 46 * s
+  )
+  # Combined flame outline polygon
+  flame_poly <- data.frame(
+    x = c(flame_l$x, rev(flame_r$x)),
+    y = c(flame_l$y, rev(flame_r$y))
+  )
+  # Inner flame core (smaller, brighter teardrop)
+  t_in <- seq(0, 1, length.out = 25)
+  core_l <- data.frame(
+    x = cx - (7 * s * sin(t_in * pi) * (1 - t_in * 0.5)),
+    y = cy - 10 * s + t_in * 34 * s
+  )
+  core_r <- data.frame(
+    x = cx + (7 * s * sin(t_in * pi) * (1 - t_in * 0.5)),
+    y = cy - 10 * s + t_in * 34 * s
+  )
+  core_poly <- data.frame(
+    x = c(core_l$x, rev(core_r$x)),
+    y = c(core_l$y, rev(core_r$y))
+  )
+  # Spiral ascending through the flame — represents flow channel / growth
+  # Logarithmic spiral starting tight at base, expanding upward
+  t_sp <- seq(0, 3.5 * pi, length.out = 60)
+  spiral_r <- 2 * s + t_sp * 1.2 * s
+  spiral <- data.frame(
+    x = cx + spiral_r * cos(t_sp) * 0.4,
+    y = cy - 12 * s + t_sp * 3.2 * s
+  )
+  # Trim spiral to stay within flame (roughly)
+  spiral <- spiral[spiral$y <= cy + 22 * s, ]
+  # Three spark dots rising from the flame tip (autonomy, competence, relatedness)
+  sparks <- data.frame(
+    x = cx + c(-4, 1, 5) * s,
+    y = cy + c(26, 30, 27) * s
+  )
+  spark_sizes <- c(2, 3, 2.5) * s
+  # Base ember glow (ground the flame)
+  ember <- data.frame(x0 = cx, y0 = cy - 16 * s, r = 6 * s)
+  layers <- list(
+    # Ember glow at base
+    ggforce::geom_circle(data = ember, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.12), color = NA),
+    # Outer flame
+    ggplot2::geom_polygon(data = flame_poly, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2)),
+    # Inner core
+    ggplot2::geom_polygon(data = core_poly, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    # Spiral through flame
+    ggplot2::geom_path(data = spiral, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.8))
+  )
+  # Spark dots
+  for (i in seq_len(nrow(sparks))) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_point(
+      data = sparks[i, , drop = FALSE], .aes(x, y),
+      color = bright, size = spark_sizes[i])
+  }
+  layers
 }
