@@ -1,10 +1,10 @@
 {
   "meta": {
-    "generated": "2026-02-12T16:41:01.066Z",
-    "totalSkills": 177,
+    "generated": "2026-02-13T08:38:37.158Z",
+    "totalSkills": 178,
     "totalAgents": 29,
-    "totalNodes": 206,
-    "totalLinks": 1026,
+    "totalNodes": 207,
+    "totalLinks": 1031,
     "totalAgentLinks": 255,
     "totalDomains": 27
   },
@@ -59,7 +59,7 @@
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
-      "count": 14
+      "count": 15
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
@@ -2074,6 +2074,31 @@
         "read-garden"
       ],
       "path": "esoteric/observe-guidance/SKILL.md"
+    },
+    {
+      "id": "intrinsic",
+      "type": "skill",
+      "title": "Intrinsic",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Enhance and focus AI intrinsic motivation through self-determination and flow",
+      "tags": [
+        "esoteric",
+        "intrinsic-motivation",
+        "self-determination",
+        "flow",
+        "engagement",
+        "meta-cognition"
+      ],
+      "related": [
+        "meditate",
+        "heal",
+        "observe",
+        "listen",
+        "learn"
+      ],
+      "path": "esoteric/intrinsic/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -7097,6 +7122,31 @@
     {
       "source": "observe-guidance",
       "target": "read-garden",
+      "type": "skill"
+    },
+    {
+      "source": "intrinsic",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "intrinsic",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "intrinsic",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "intrinsic",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "intrinsic",
+      "target": "learn",
       "type": "skill"
     },
     {
