@@ -1,0 +1,641 @@
+# Implement GitOps Workflow — Extended Examples
+
+Complete configuration files and code templates.
+
+
+## Step 1: Install Argo CD and Configure Repository Access
+
+```bash
+# Create namespace
+kubectl create namespace argocd
+
+# Install Argo CD
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Wait for pods to be ready
+kubectl wait --for=condition=ready pod -l app.kubernetes.io/name=argocd-server -n argocd --timeout=300s
+
+# Install Argo CD CLI
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+
+# Port-forward to access UI
+kubectl port-forward svc/argocd-server -n argocd 8080:443 &
+
+# Get initial admin password
+ARGOCD_PASSWORD=$(kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d)
+echo "Argo CD Admin Password: $ARGOCD_PASSWORD"
+
+# Login via CLI
+argocd login localhost:8080 --username admin --password "$ARGOCD_PASSWORD" --insecure
+
+# Change admin password
+argocd account update-password
+
+# Add Git repository (HTTPS with token)
+argocd repo add https://github.com/USERNAME/gitops-repo \
+  --username USERNAME \
+  --password "$GITHUB_TOKEN" \
+  --name gitops-repo
+
+# Or add via SSH
+ssh-keygen -t ed25519 -C "argocd@cluster" -f argocd-deploy-key -N ""
+# Add argocd-deploy-key.pub to GitHub repository deploy keys
+argocd repo add git@github.com:USERNAME/gitops-repo.git \
+  --ssh-private-key-path argocd-deploy-key \
+  --name gitops-repo
+
+# Verify repository connection
+argocd repo list
+
+# Configure Ingress for UI (optional)
+cat <<EOF | kubectl apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: argocd-server-ingress
+  namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - argocd.example.com
+    secretName: argocd-tls
+  rules:
+  - host: argocd.example.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              number: 443
+EOF
+```
+
+
+## Step 2: Create Application Manifest and Deploy First Application
+
+```bash
+# Create Git repository structure
+mkdir -p gitops-repo/{apps,infra,projects}
+cd gitops-repo
+
+# Create sample application
+mkdir -p apps/myapp/overlays/{dev,staging,prod}
+mkdir -p apps/myapp/base
+
+# Base Kustomization
+cat > apps/myapp/base/kustomization.yaml <<EOF
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- service.yaml
+EOF
+
+cat > apps/myapp/base/deployment.yaml <<EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: ghcr.io/username/myapp:v1.0.0
+        ports:
+        - containerPort: 8080
+EOF
+
+cat > apps/myapp/base/service.yaml <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+spec:
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 8080
+EOF
+
+# Production overlay
+cat > apps/myapp/overlays/prod/kustomization.yaml <<EOF
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: production
+resources:
+- ../../base
+replicas:
+- name: myapp
+  count: 5
+images:
+- name: ghcr.io/username/myapp
+  newTag: v1.0.0
+EOF
+
+# Commit to Git
+git add .
+git commit -m "Add myapp application manifests"
+git push
+
+# Create Argo CD Application
+cat > argocd-apps/myapp-prod.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-prod
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/USERNAME/gitops-repo
+    targetRevision: main
+    path: apps/myapp/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true      # Delete resources removed from Git
+      selfHeal: true   # Auto-sync on drift detection
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PruneLast=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 10
+EOF
+
+# Apply Application via kubectl
+kubectl apply -f argocd-apps/myapp-prod.yaml
+
+# Or create via CLI
+argocd app create myapp-prod \
+  --repo https://github.com/USERNAME/gitops-repo \
+  --path apps/myapp/overlays/prod \
+  --dest-server https://kubernetes.default.svc \
+  --dest-namespace production \
+  --sync-policy automated \
+  --auto-prune \
+  --self-heal
+
+# Watch sync status
+argocd app get myapp-prod --watch
+
+# Verify application
+kubectl get all -n production
+argocd app sync myapp-prod  # Manual sync if automated disabled
+```
+
+
+## Step 3: Implement App-of-Apps Pattern for Multi-Environment Management
+
+```bash
+# Create app-of-apps structure
+mkdir -p argocd-apps/{projects,infra,apps}
+
+# Define projects for RBAC
+cat > argocd-apps/projects/production.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: production
+  namespace: argocd
+spec:
+  description: Production applications
+  sourceRepos:
+  - https://github.com/USERNAME/gitops-repo
+  destinations:
+  - namespace: 'prod-*'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'
+  orphanedResources:
+    warn: true
+  roles:
+  - name: developer
+    description: Developer read-only access
+    policies:
+    - p, proj:production:developer, applications, get, production/*, allow
+    groups:
+    - developers
+  - name: deployer
+    description: Deploy access for CI/CD
+    policies:
+    - p, proj:production:deployer, applications, sync, production/*, allow
+EOF
+
+# Infrastructure applications
+cat > argocd-apps/infra/cert-manager.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: cert-manager
+    repoURL: https://charts.jetstack.io
+    targetRevision: v1.13.0
+    helm:
+      releaseName: cert-manager
+      values: |
+        installCRDs: true
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+EOF
+
+cat > argocd-apps/infra/external-secrets.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: external-secrets
+  namespace: argocd
+spec:
+  project: default
+  source:
+    chart: external-secrets
+    repoURL: https://charts.external-secrets.io
+    targetRevision: 0.9.0
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-secrets-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+EOF
+
+# Root app-of-apps
+cat > argocd-apps/root-app.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/USERNAME/gitops-repo
+    targetRevision: main
+    path: argocd-apps
+    directory:
+      recurse: true
+      jsonnet: {}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+EOF
+
+# Commit and push
+git add argocd-apps
+git commit -m "Add app-of-apps structure"
+git push
+
+# Deploy root app
+kubectl apply -f argocd-apps/root-app.yaml
+
+# Verify all applications synced
+argocd app list
+argocd app tree root-app
+```
+
+
+## Step 4: Configure Image Updater for Automated Deployments
+
+```bash
+# Install Argo CD Image Updater
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+
+# Configure image update strategy via annotations
+cat > argocd-apps/myapp-prod-autoupdate.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-prod
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myapp=ghcr.io/username/myapp
+    argocd-image-updater.argoproj.io/myapp.update-strategy: semver
+    argocd-image-updater.argoproj.io/myapp.allow-tags: regexp:^v[0-9]+\.[0-9]+\.[0-9]+$
+    argocd-image-updater.argoproj.io/myapp.ignore-tags: regexp:.*-rc.*
+    argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+    argocd-image-updater.argoproj.io/git-branch: main
+spec:
+  # ... rest of application spec
+EOF
+
+# Create Git credentials secret
+kubectl create secret generic git-creds \
+  --from-literal=username=USERNAME \
+  --from-literal=password="$GITHUB_TOKEN" \
+  -n argocd
+
+# Or for staging environment with digest tracking
+cat > argocd-apps/myapp-staging.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-staging
+  namespace: argocd
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: myapp=ghcr.io/username/myapp
+    argocd-image-updater.argoproj.io/myapp.update-strategy: digest
+    argocd-image-updater.argoproj.io/myapp.allow-tags: regexp:^staging-.*
+    argocd-image-updater.argoproj.io/write-back-method: argocd
+spec:
+  source:
+    repoURL: https://github.com/USERNAME/gitops-repo
+    targetRevision: main
+    path: apps/myapp/overlays/staging
+  # ... rest of spec
+EOF
+
+# Verify image updater is running
+kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-image-updater
+
+# Check logs for update activity
+kubectl logs -n argocd -l app.kubernetes.io/name=argocd-image-updater -f
+
+# Force immediate update check
+kubectl patch application myapp-prod -n argocd \
+  --type merge \
+  -p '{"metadata":{"annotations":{"argocd-image-updater.argoproj.io/force-update":"true"}}}'
+```
+
+
+## Step 5: Implement Progressive Delivery with Argo Rollouts
+
+```bash
+# Install Argo Rollouts controller
+kubectl create namespace argo-rollouts
+kubectl apply -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+
+# Install Rollouts kubectl plugin
+curl -LO https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-linux-amd64
+chmod +x kubectl-argo-rollouts-linux-amd64
+sudo mv kubectl-argo-rollouts-linux-amd64 /usr/local/bin/kubectl-argo-rollouts
+
+# Convert Deployment to Rollout with canary strategy
+cat > apps/myapp/base/rollout.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: myapp
+spec:
+  replicas: 5
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: ghcr.io/username/myapp:v1.0.0
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      steps:
+      - setWeight: 20
+      - pause: {duration: 5m}
+      - setWeight: 40
+      - pause: {duration: 5m}
+      - setWeight: 60
+      - pause: {duration: 5m}
+      - setWeight: 80
+      - pause: {duration: 5m}
+      - setWeight: 100
+      canaryService: myapp-canary
+      stableService: myapp-stable
+      trafficRouting:
+        nginx:
+          stableIngress: myapp-ingress
+          annotationPrefix: nginx.ingress.kubernetes.io
+      analysis:
+        templates:
+        - templateName: success-rate
+        startingStep: 2
+        args:
+        - name: service-name
+          value: myapp-canary
+EOF
+
+# Create stable and canary services
+cat > apps/myapp/base/services.yaml <<EOF
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-stable
+spec:
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-canary
+spec:
+  selector:
+    app: myapp
+  ports:
+  - port: 80
+    targetPort: 8080
+EOF
+
+# Create AnalysisTemplate for automated validation
+cat > apps/myapp/base/analysis-template.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: success-rate
+    interval: 1m
+    successCondition: result >= 0.95
+    provider:
+      prometheus:
+        address: http://prometheus.monitoring.svc:9090
+        query: |
+          sum(rate(http_requests_total{service="{{args.service-name}}",status=~"2.."}[1m]))
+          /
+          sum(rate(http_requests_total{service="{{args.service-name}}"}[1m]))
+EOF
+
+# Watch rollout progress
+kubectl argo rollouts get rollout myapp -n production --watch
+
+# Promote canary manually
+kubectl argo rollouts promote myapp -n production
+
+# Abort rollout and rollback
+kubectl argo rollouts abort myapp -n production
+kubectl argo rollouts undo myapp -n production
+
+# View rollout history
+kubectl argo rollouts history myapp -n production
+
+# Set image to trigger rollout
+kubectl argo rollouts set image myapp myapp=ghcr.io/username/myapp:v1.1.0 -n production
+```
+
+
+## Step 6: Configure Drift Detection and Webhook Notifications
+
+```bash
+# Configure drift detection in Application
+cat > argocd-apps/myapp-strict.yaml <<EOF
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp-prod
+  namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-failed.slack: my-channel
+    notifications.argoproj.io/subscribe.on-deployed.slack: deployments
+spec:
+  project: production
+  source:
+    repoURL: https://github.com/USERNAME/gitops-repo
+    targetRevision: main
+    path: apps/myapp/overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true  # Auto-revert manual changes
+    syncOptions:
+    - RespectIgnoreDifferences=true
+  ignoreDifferences:
+  - group: apps
+    kind: Deployment
+    jsonPointers:
+    - /spec/replicas  # Ignore HPA-controlled replicas
+EOF
+
+# Install Argo CD Notifications
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/notifications_catalog/install.yaml
+
+# Configure Slack integration
+kubectl apply -f - <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.slack: |
+    token: $SLACK_BOT_TOKEN
+  template.app-sync-failed: |
+    message: |
+      Application {{.app.metadata.name}} sync failed.
+      Reason: {{.app.status.operationState.message}}
+      Repository: {{.app.spec.source.repoURL}}
+      Revision: {{.app.status.sync.revision}}
+    slack:
+      attachments: |
+        [{
+          "title": "{{.app.metadata.name}}",
+          "title_link": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}",
+          "color": "#ff0000",
+          "fields": [{
+            "title": "Sync Status",
+            "value": "{{.app.status.sync.status}}",
+            "short": true
+          }]
+        }]
+  trigger.on-sync-failed: |
+    - when: app.status.operationState.phase in ['Error', 'Failed']
+      send: [app-sync-failed]
+EOF
+
+# Create notification secret
+kubectl create secret generic argocd-notifications-secret \
+  --from-literal=slack-token="$SLACK_BOT_TOKEN" \
+  -n argocd
+
+# Test notification
+argocd admin notifications template notify app-sync-failed myapp-prod --recipient slack:my-channel
+
+# Configure webhook for external systems
+cat > argocd-apps/webhook-config.yaml <<EOF
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-notifications-cm
+  namespace: argocd
+data:
+  service.webhook.my-webhook: |
+    url: https://webhook.example.com/argocd
+    headers:
+    - name: Authorization
+      value: Bearer $WEBHOOK_TOKEN
+  trigger.on-deployed: |
+    - when: app.status.operationState.phase in ['Succeeded']
+      oncePer: app.status.sync.revision
+      send: [app-deployed]
+  template.app-deployed: |
+    webhook:
+      my-webhook:
+        method: POST
+        body: |
+          {
+            "app": "{{.app.metadata.name}}",
+            "revision": "{{.app.status.sync.revision}}",
+            "timestamp": "{{.app.status.operationState.finishedAt}}"
+          }
+EOF
+```
+

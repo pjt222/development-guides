@@ -39,6 +39,9 @@ Configure production-ready container registries with security scanning, access c
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Configure GitHub Container Registry (ghcr.io)
 
 Set up GitHub Container Registry with personal access tokens and CI/CD integration.
@@ -342,94 +345,7 @@ docker tag myapp:latest harbor.example.com/myapp/app:v1.2.3
 docker tag myapp:latest harbor.example.com/myapp/app:v1.2
 docker tag myapp:latest harbor.example.com/myapp/app:v1
 docker tag myapp:latest harbor.example.com/myapp/app:latest
-
-# 2. Git commit SHA
-docker tag myapp:latest harbor.example.com/myapp/app:sha-${GIT_SHA:0:7}
-
-# 3. Branch name + build number
-docker tag myapp:latest harbor.example.com/myapp/app:main-${BUILD_NUMBER}
-
-# 4. Environment-specific
-docker tag myapp:latest harbor.example.com/myapp/app:staging-v1.2.3
-
-# Harbor retention policy (via API)
-cat > retention-policy.json <<EOF
-{
-  "algorithm": "or",
-  "rules": [
-    {
-      "disabled": false,
-      "action": "retain",
-      "template": "latestPushedK",
-      "params": {
-        "latestPushedK": 10
-      },
-      "tag_selectors": [
-        {
-          "kind": "doublestar",
-          "decoration": "matches",
-          "pattern": "v*"
-        }
-      ],
-      "scope_selectors": {
-        "repository": [
-          {
-            "kind": "doublestar",
-            "decoration": "matches",
-            "pattern": "**"
-          }
-        ]
-      }
-    },
-    {
-      "disabled": false,
-      "action": "retain",
-      "template": "nDaysSinceLastPull",
-      "params": {
-        "nDaysSinceLastPull": 30
-      },
-      "tag_selectors": [
-        {
-          "kind": "doublestar",
-          "decoration": "matches",
-          "pattern": "**"
-        }
-      ],
-      "scope_selectors": {
-        "repository": [
-          {
-            "kind": "doublestar",
-            "decoration": "matches",
-            "pattern": "**"
-          }
-        ]
-      }
-    }
-  ],
-  "trigger": {
-    "kind": "Schedule",
-    "settings": {
-      "cron": "0 2 * * *"
-    }
-  }
-}
-EOF
-
-curl -u "admin:$HARBOR_PASSWORD" -X POST \
-  https://harbor.example.com/api/v2.0/projects/myapp/retentions \
-  -H "Content-Type: application/json" \
-  -d @retention-policy.json
-
-# GitHub Container Registry retention (via GitHub UI)
-# Go to: Package settings → Manage versions
-# Configure rules:
-# - Keep last N versions
-# - Delete versions older than N days
-# - Delete untagged versions
-
-# Docker Hub retention (via UI or API)
-# Go to: Repository → Settings → Image retention policies
-# Only available on Team/Business plans
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Images tagged with semantic versions, commit SHAs, and environment labels. Retention policies automatically clean old images based on age, pull activity, or count limits. Production tags (v* pattern) retained longer than development branches. Untagged images deleted to save storage.
@@ -447,71 +363,7 @@ kubectl create secret docker-registry ghcr-secret \
   --docker-username=USERNAME \
   --docker-password=$GITHUB_TOKEN \
   --docker-email=user@example.com \
-  --namespace=default
-
-# Create Harbor registry secret
-kubectl create secret docker-registry harbor-secret \
-  --docker-server=harbor.example.com \
-  --docker-username='robot$myapp-ci' \
-  --docker-password=$ROBOT_TOKEN \
-  --namespace=default
-
-# Verify secret
-kubectl get secret ghcr-secret -o yaml
-
-# Use in Pod spec
-cat <<EOF | kubectl apply -f -
-apiVersion: v1
-kind: Pod
-metadata:
-  name: myapp-pod
-spec:
-  containers:
-  - name: myapp
-    image: ghcr.io/USERNAME/myapp:latest
-  imagePullSecrets:
-  - name: ghcr-secret
-EOF
-
-# Use in Deployment
-cat <<EOF | kubectl apply -f -
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: myapp
-  template:
-    metadata:
-      labels:
-        app: myapp
-    spec:
-      imagePullSecrets:
-      - name: ghcr-secret
-      - name: harbor-secret
-      containers:
-      - name: myapp
-        image: ghcr.io/USERNAME/myapp:latest
-EOF
-
-# Configure default service account
-kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-secret"}]}'
-
-# Verify service account
-kubectl get serviceaccount default -o yaml
-
-# For multiple namespaces, create secret in all namespaces
-for ns in dev staging prod; do
-  kubectl create namespace $ns || true
-  kubectl create secret docker-registry ghcr-secret \
-    --docker-server=ghcr.io \
-    --docker-username=USERNAME \
-    --docker-password=$GITHUB_TOKEN \
-    --namespace=$ns
-done
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Image pull secrets created in target namespaces. Pods successfully pull images from private registries. Service accounts include imagePullSecrets. No ImagePullBackOff errors.
@@ -529,110 +381,7 @@ tar zxvf trivy_0.47.0_Linux-64bit.tar.gz
 sudo mv trivy /usr/local/bin/
 
 # Scan local image
-trivy image myapp:latest
-
-# Scan with severity filter
-trivy image --severity HIGH,CRITICAL myapp:latest
-
-# Output JSON for CI/CD integration
-trivy image --format json --output results.json myapp:latest
-
-# Scan in CI/CD pipeline
-cat >> .github/workflows/security.yml <<'EOF'
-  security-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Build image
-        run: docker build -t myapp:latest .
-
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'myapp:latest'
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-
-      - name: Upload Trivy results to GitHub Security
-        uses: github/codeql-action/upload-sarif@v2
-        if: always()
-        with:
-          sarif_file: 'trivy-results.sarif'
-
-      - name: Fail build on high vulnerabilities
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: 'myapp:latest'
-          exit-code: '1'
-          severity: 'CRITICAL'
-EOF
-
-# Install Cosign for image signing
-wget https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64
-sudo mv cosign-linux-amd64 /usr/local/bin/cosign
-sudo chmod +x /usr/local/bin/cosign
-
-# Generate signing key
-cosign generate-key-pair
-
-# Sign image
-cosign sign --key cosign.key ghcr.io/USERNAME/myapp:latest
-
-# Verify signature
-cosign verify --key cosign.pub ghcr.io/USERNAME/myapp:latest
-
-# Sign in GitHub Actions (keyless signing)
-cat >> .github/workflows/sign.yml <<'EOF'
-  sign-image:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write  # Required for keyless signing
-    steps:
-      - name: Install Cosign
-        uses: sigstore/cosign-installer@v3
-
-      - name: Login to ghcr.io
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Sign image with keyless signing
-        run: |
-          cosign sign --yes ghcr.io/${{ github.repository }}:latest
-EOF
-
-# Enforce signature verification in Kubernetes
-# Using Kyverno policy
-cat <<EOF | kubectl apply -f -
-apiVersion: kyverno.io/v1
-kind: ClusterPolicy
-metadata:
-  name: verify-image-signatures
-spec:
-  validationFailureAction: enforce
-  rules:
-  - name: verify-ghcr-images
-    match:
-      any:
-      - resources:
-          kinds:
-          - Pod
-    verifyImages:
-    - imageReferences:
-      - "ghcr.io/USERNAME/*"
-      attestors:
-      - count: 1
-        entries:
-        - keys:
-            publicKeys: |-
-              $(cat cosign.pub)
-EOF
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Trivy scans detect vulnerabilities with severity ratings. SARIF results upload to GitHub Security tab. Critical vulnerabilities fail CI/CD builds. Cosign signs images with keypair or keyless (Fulcio). Verification succeeds for signed images. Kyverno blocks unsigned images in Kubernetes.

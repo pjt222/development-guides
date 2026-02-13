@@ -39,6 +39,9 @@ Set up production-grade Kubernetes Ingress with NGINX controller, automated TLS 
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Install NGINX Ingress Controller
 
 Deploy NGINX Ingress Controller with Helm and configure cloud provider integration.
@@ -369,101 +372,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: api-ratelimit
-  annotations:
-    nginx.ingress.kubernetes.io/limit-rps: "10"  # 10 requests per second
-    nginx.ingress.kubernetes.io/limit-burst-multiplier: "5"
-    nginx.ingress.kubernetes.io/limit-connections: "100"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: api.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api
-            port:
-              number: 5678
-EOF
-
-# Basic authentication
-kubectl create secret generic basic-auth \
-  --from-literal=auth=$(htpasswd -nb admin secretpassword)
-
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: admin-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/auth-type: basic
-    nginx.ingress.kubernetes.io/auth-secret: basic-auth
-    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - admin.example.com
-    secretName: admin-tls
-  rules:
-  - host: admin.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: admin
-            port:
-              number: 5678
-EOF
-
-# OAuth2 authentication with oauth2-proxy
-helm repo add oauth2-proxy https://oauth2-proxy.github.io/manifests
-helm install oauth2-proxy oauth2-proxy/oauth2-proxy \
-  --set config.clientID="$OAUTH2_CLIENT_ID" \
-  --set config.clientSecret="$OAUTH2_CLIENT_SECRET" \
-  --set config.cookieSecret="$(openssl rand -base64 32 | tr -d /=+ | cut -c -32)" \
-  --set config.configFile="email_domains=['*']" \
-  --set extraArgs.provider=google \
-  --set extraArgs.upstream="file:///dev/null"
-
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: protected-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.example.com/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.example.com/oauth2/start?rd=\$scheme://\$host\$escaped_request_uri"
-    nginx.ingress.kubernetes.io/auth-response-headers: "X-Auth-Request-User,X-Auth-Request-Email"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: protected.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web
-            port:
-              number: 80
-EOF
-
-# Test rate limiting
-for i in {1..20}; do curl -s -o /dev/null -w "%{http_code}\n" https://api.example.com; done
-# Should show 200s then 503 (rate limit exceeded)
-
-# Test basic auth
-curl -u admin:secretpassword https://admin.example.com
-# Should return 200 OK
-
-curl https://admin.example.com
-# Should return 401 Unauthorized
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Rate limiting blocks excessive requests with 503 Service Temporarily Unavailable. Basic auth prompts for credentials, rejects unauthorized requests. OAuth2 redirects to provider login page, sets authentication cookies.
@@ -481,119 +390,7 @@ kubectl create configmap custom-errors --from-file=404.html --from-file=503.html
 # Configure NGINX to use custom error pages
 cat <<EOF | kubectl apply -f -
 apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: ingress-nginx-controller
-  namespace: ingress-nginx
-data:
-  custom-http-errors: "404,503"
-  error-log-level: "info"
-EOF
-
-# Deploy custom error backend
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/docs/examples/customization/custom-errors/custom-default-backend.yaml
-
-# Update Ingress controller to use custom backend
-helm upgrade ingress-nginx ingress-nginx/ingress-nginx \
-  --namespace ingress-nginx \
-  --reuse-values \
-  --set defaultBackend.enabled=true
-
-# Configure CORS headers
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: api-cors
-  annotations:
-    nginx.ingress.kubernetes.io/enable-cors: "true"
-    nginx.ingress.kubernetes.io/cors-allow-origin: "https://app.example.com,https://admin.example.com"
-    nginx.ingress.kubernetes.io/cors-allow-methods: "GET, POST, PUT, DELETE, OPTIONS"
-    nginx.ingress.kubernetes.io/cors-allow-headers: "DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization"
-    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
-    nginx.ingress.kubernetes.io/cors-max-age: "86400"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: api.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: api
-            port:
-              number: 5678
-EOF
-
-# Add custom request/response headers
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: web-headers
-  annotations:
-    nginx.ingress.kubernetes.io/configuration-snippet: |
-      more_set_headers "X-Frame-Options: DENY";
-      more_set_headers "X-Content-Type-Options: nosniff";
-      more_set_headers "X-XSS-Protection: 1; mode=block";
-      more_set_headers "Referrer-Policy: strict-origin-when-cross-origin";
-    nginx.ingress.kubernetes.io/server-snippet: |
-      location / {
-        proxy_set_header X-Forwarded-Proto \$scheme;
-        proxy_set_header X-Real-IP \$remote_addr;
-      }
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: web.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: web
-            port:
-              number: 80
-EOF
-
-# Configure client body size limit
-cat <<EOF | kubectl apply -f -
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: upload-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "100m"
-    nginx.ingress.kubernetes.io/proxy-connect-timeout: "600"
-    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
-    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: upload.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: upload-service
-            port:
-              number: 8080
-EOF
-
-# Test CORS
-curl -H "Origin: https://app.example.com" \
-     -H "Access-Control-Request-Method: POST" \
-     -X OPTIONS https://api.example.com -v
-# Should return Access-Control-Allow-Origin header
-
-# Test security headers
-curl -I https://web.example.com
-# Should show X-Frame-Options, X-Content-Type-Options, etc.
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Custom 404 and 503 pages display instead of default NGINX pages. CORS headers allow specified origins and methods. Security headers protect against XSS and clickjacking. Request body size limit allows large file uploads. Timeout settings prevent premature connection closes.

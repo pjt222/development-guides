@@ -39,6 +39,9 @@ Implement production-grade secrets management for Kubernetes with encryption, ro
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Enable Kubernetes Secrets Encryption at Rest
 
 Configure encryption at rest for Secrets using KMS or local encryption.
@@ -328,57 +331,7 @@ kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/
 # Verify installation
 kubectl get pods -n cert-manager
 
-# Create ClusterIssuer for Let's Encrypt
-cat <<EOF | kubectl apply -f -
-apiVersion: cert-manager.io/v1
-kind: ClusterIssuer
-metadata:
-  name: letsencrypt-prod
-spec:
-  acme:
-    server: https://acme-v02.api.letsencrypt.org/directory
-    email: admin@example.com
-    privateKeySecretRef:
-      name: letsencrypt-prod-account-key
-    solvers:
-    - http01:
-        ingress:
-          class: nginx
-    - dns01:
-        route53:
-          region: us-east-1
-          hostedZoneID: Z1234567890ABC
-EOF
-
-# Create Certificate resource
-cat <<EOF | kubectl apply -f -
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: myapp-tls
-  namespace: default
-spec:
-  secretName: myapp-tls-secret
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  dnsNames:
-  - myapp.example.com
-  - www.myapp.example.com
-EOF
-
-# Watch certificate issuance
-kubectl get certificate myapp-tls -w
-kubectl describe certificate myapp-tls
-
-# Verify secret was created
-kubectl get secret myapp-tls-secret
-kubectl describe secret myapp-tls-secret
-
-# Check certificate details
-kubectl get secret myapp-tls-secret -o jsonpath='{.data.tls\.crt}' | \
-  base64 -d | \
-  openssl x509 -text -noout
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 For ingress annotation-based certificate issuance:
@@ -390,24 +343,7 @@ metadata:
   name: myapp-ingress
   annotations:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-spec:
-  ingressClassName: nginx
-  tls:
-  - hosts:
-    - myapp.example.com
-    secretName: myapp-tls-secret  # cert-manager creates this
-  rules:
-  - host: myapp.example.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: myapp
-            port:
-              number: 80
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** cert-manager obtains certificate from Let's Encrypt. TLS secret created with valid certificate and private key. Certificate auto-renews before expiration. Ingress uses certificate for HTTPS termination.
@@ -425,79 +361,7 @@ kubectl apply -f https://raw.githubusercontent.com/stakater/Reloader/master/depl
 # Annotate Deployment to watch Secrets
 cat <<EOF | kubectl apply -f -
 apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-  annotations:
-    reloader.stakater.com/auto: "true"
-    # Or explicitly watch specific secrets:
-    # reloader.stakater.com/search: "true"
-    # secret.reloader.stakater.com/reload: "myapp-secret,myapp-db-secret"
-spec:
-  # ... rest of deployment
-EOF
-
-# Create rotation script for AWS Secrets Manager
-cat > rotate-secret.sh <<'EOFSCRIPT'
-#!/bin/bash
-set -euo pipefail
-
-SECRET_NAME="myapp/database"
-NEW_PASSWORD=$(openssl rand -base64 32)
-
-# Update secret in AWS Secrets Manager
-aws secretsmanager update-secret \
-  --secret-id "$SECRET_NAME" \
-  --secret-string "{
-    \"username\":\"dbadmin\",
-    \"password\":\"$NEW_PASSWORD\",
-    \"endpoint\":\"db.example.com:5432\",
-    \"database\":\"myapp\"
-  }"
-
-# Update actual database password
-psql -h db.example.com -U postgres -c "ALTER USER dbadmin WITH PASSWORD '$NEW_PASSWORD';"
-
-# External Secrets Operator will sync automatically within refreshInterval
-# Reloader will restart pods when Secret changes
-
-echo "Secret rotated successfully. New version will sync within refresh interval."
-EOFSCRIPT
-
-chmod +x rotate-secret.sh
-
-# Schedule rotation via CronJob
-cat <<EOF | kubectl apply -f -
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: secret-rotation
-  namespace: default
-spec:
-  schedule: "0 2 * * 0"  # Weekly at 2 AM Sunday
-  jobTemplate:
-    spec:
-      template:
-        spec:
-          serviceAccountName: secret-rotator
-          containers:
-          - name: rotator
-            image: amazon/aws-cli
-            command:
-            - /bin/bash
-            - -c
-            - |
-              # Rotation logic here
-              echo "Rotating secrets..."
-          restartPolicy: OnFailure
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: secret-rotator
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::ACCOUNT_ID:role/secret-rotator-role
-EOF
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Verify rotation workflow:
@@ -532,69 +396,7 @@ kind: Namespace
 metadata:
   name: production
 ---
-# ServiceAccount for application
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: myapp
-  namespace: production
----
-# Role that allows reading only specific secrets
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: secret-reader
-  namespace: production
-rules:
-- apiGroups: [""]
-  resources: ["secrets"]
-  resourceNames: ["myapp-db-secret", "myapp-api-secret"]
-  verbs: ["get"]
-- apiGroups: [""]
-  resources: ["configmaps"]
-  verbs: ["get", "list"]
----
-# Bind role to service account
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: myapp-secret-reader
-  namespace: production
-subjects:
-- kind: ServiceAccount
-  name: myapp
-  namespace: production
-roleRef:
-  kind: Role
-  name: secret-reader
-  apiGroup: rbac.authorization.k8s.io
----
-# ClusterRole for secret management (admins only)
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: secret-manager
-rules:
-- apiGroups: [""]
-  resources: ["secrets"]
-  verbs: ["create", "update", "patch", "delete"]
-- apiGroups: ["external-secrets.io"]
-  resources: ["externalsecrets", "secretstores"]
-  verbs: ["*"]
----
-# Bind to admin group
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: secret-managers
-subjects:
-- kind: Group
-  name: secret-admins
-  apiGroup: rbac.authorization.k8s.io
-roleRef:
-  kind: ClusterRole
-  name: secret-manager
-  apiGroup: rbac.authorization.k8s.io
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Test RBAC:
@@ -606,20 +408,7 @@ kubectl apply -f rbac.yaml
 # Test as application service account
 kubectl auth can-i get secret myapp-db-secret --as=system:serviceaccount:production:myapp -n production
 # Should return "yes"
-
-kubectl auth can-i delete secret myapp-db-secret --as=system:serviceaccount:production:myapp -n production
-# Should return "no"
-
-# Test as regular user
-kubectl auth can-i get secret myapp-db-secret --as=dev-user -n production
-# Should return "no" (unless user in secret-admins group)
-
-# Audit secret access
-kubectl get events -n production --field-selector reason=FailedMount
-
-# View RBAC for service account
-kubectl describe sa myapp -n production
-kubectl describe rolebinding myapp-secret-reader -n production
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Service accounts have read-only access to specific secrets via resourceNames. Developers cannot view secrets in production namespace. Only secret-admins group can create/update/delete secrets. RBAC denials logged in audit logs.

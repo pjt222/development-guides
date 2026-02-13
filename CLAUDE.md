@@ -39,6 +39,24 @@ Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` 
 - Guides use GitHub-flavored markdown with code blocks for all commands
 - All R examples use `::` for package-qualified calls (e.g., `devtools::check()`) rather than `library()` calls
 
+## Skill Validation
+
+- SKILL.md files must stay under 500 lines; extract extended examples to `references/EXAMPLES.md` using the progressive disclosure pattern
+- The `references/` subdirectory pattern follows [agentskills.io progressive disclosure](https://agentskills.io/specification) — large code blocks (>15 lines), full configs, and multi-variant examples go in `references/EXAMPLES.md` with cross-references from the main SKILL.md
+- CI enforces validation on all PRs touching `skills/` (`.github/workflows/validate-skills.yml`): frontmatter fields, required sections, line counts, and registry sync
+- To validate locally before committing:
+  ```bash
+  # Check a single skill
+  lines=$(wc -l < skills/<domain>/<skill>/SKILL.md)
+  [ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "FAIL ($lines lines > 500)"
+
+  # Check all skills
+  for f in skills/*/*/SKILL.md; do
+    lines=$(wc -l < "$f")
+    [ "$lines" -gt 500 ] && echo "OVER: $f ($lines lines)"
+  done
+  ```
+
 ## Adding a New Skill
 
 1. Create `skills/<domain>/<skill-name>/SKILL.md` following the format of existing skills

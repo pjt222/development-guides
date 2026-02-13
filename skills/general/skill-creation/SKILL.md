@@ -194,7 +194,31 @@ Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
 
 Update the `total_skills` count at the top of the registry.
 
-### Step 11: Create Slash Command Symlinks
+### Step 11: Validate Skill
+
+Run local validation checks before committing:
+
+```bash
+# Check line count (must be ≤500)
+lines=$(wc -l < skills/<domain>/<skill-name>/SKILL.md)
+[ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "FAIL: $lines lines > 500"
+
+# Check required frontmatter fields
+head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
+head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
+```
+
+**Expected**: Line count ≤500, all required fields present.
+
+**On failure**: If over 500 lines, apply progressive disclosure — extract large code blocks (>15 lines) to `references/EXAMPLES.md`:
+
+```bash
+mkdir -p skills/<domain>/<skill-name>/references/
+```
+
+Move extended code examples, full configuration files, and multi-variant examples to `references/EXAMPLES.md`. Add cross-reference in SKILL.md: `See [EXAMPLES.md](references/EXAMPLES.md) for complete configuration examples.` Keep brief inline snippets (3-10 lines) in the main SKILL.md. The CI workflow at `.github/workflows/validate-skills.yml` enforces these limits on all PRs.
+
+### Step 12: Create Slash Command Symlinks
 
 Create symlinks so Claude Code discovers the skill as a `/slash-command`:
 
@@ -221,6 +245,7 @@ ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name> ~/.claude/ski
 - [ ] Related Skills reference valid skill names
 - [ ] Skill is listed in `_registry.yml` with correct path
 - [ ] `total_skills` count in registry is updated
+- [ ] SKILL.md is ≤500 lines (extract to `references/EXAMPLES.md` if over)
 - [ ] Symlink exists at `.claude/skills/<skill-name>` pointing to skill directory
 - [ ] Global symlink exists at `~/.claude/skills/<skill-name>` (if globally available)
 
@@ -246,6 +271,7 @@ Size reference from this library:
 - Basic skills: ~80-120 lines (e.g., `write-vignette`, `configure-git-repository`)
 - Intermediate skills: ~120-180 lines (e.g., `write-testthat-tests`, `manage-renv-dependencies`)
 - Advanced skills: ~180-250 lines (e.g., `submit-to-cran`, `setup-gxp-r-project`)
+- Skills with extended examples: SKILL.md ≤500 lines + `references/EXAMPLES.md` for large configs
 
 ## Related Skills
 

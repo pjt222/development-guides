@@ -1,0 +1,574 @@
+# Setup Container Registry — Extended Examples
+
+Complete configuration files and code templates.
+
+
+## Step 1: Configure GitHub Container Registry (ghcr.io)
+
+```bash
+# Create GitHub Personal Access Token
+# Go to: Settings → Developer settings → Personal access tokens → Tokens (classic)
+# Required scopes: write:packages, read:packages, delete:packages
+
+# Login to ghcr.io
+echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin
+
+# Verify login
+docker info | grep -A 5 "Registry:"
+
+# Tag image for ghcr.io
+docker tag myapp:latest ghcr.io/USERNAME/myapp:latest
+docker tag myapp:latest ghcr.io/USERNAME/myapp:v1.0.0
+
+# Push image
+docker push ghcr.io/USERNAME/myapp:latest
+docker push ghcr.io/USERNAME/myapp:v1.0.0
+
+# Configure in GitHub Actions
+cat > .github/workflows/docker-build.yml <<'EOF'
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=sha,prefix={{branch}}-
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+EOF
+
+# Make package public (default is private)
+# Go to: github.com/USERNAME?tab=packages → Select package → Package settings → Change visibility
+
+# Pull image (public packages don't require authentication)
+docker pull ghcr.io/USERNAME/myapp:latest
+```
+
+
+## Step 2: Configure Docker Hub with Automated Builds
+
+```bash
+# Create Docker Hub access token
+# Go to: hub.docker.com → Account Settings → Security → New Access Token
+
+# Login to Docker Hub
+echo $DOCKERHUB_TOKEN | docker login -u USERNAME --password-stdin
+
+# Create repository
+# Go to: hub.docker.com → Repositories → Create Repository
+# Select: public or private, enable vulnerability scanning (Pro/Team plan)
+
+# Tag for Docker Hub
+docker tag myapp:latest USERNAME/myapp:latest
+docker tag myapp:latest USERNAME/myapp:v1.0.0
+
+# Push to Docker Hub
+docker push USERNAME/myapp:latest
+docker push USERNAME/myapp:v1.0.0
+
+# Configure automated builds (legacy feature, deprecated)
+# Modern approach: Use GitHub Actions with Docker Hub
+
+cat > .github/workflows/dockerhub.yml <<'EOF'
+name: Docker Hub Push
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          push: true
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/myapp:${{ github.ref_name }}
+          build-args: |
+            BUILD_DATE=$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+            VCS_REF=${{ github.sha }}
+
+      - name: Update Docker Hub description
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/myapp
+          readme-filepath: ./README.md
+EOF
+
+# View vulnerability scan results
+# Go to: hub.docker.com → Repository → Tags → View scan results
+
+# Configure webhook for automated triggers
+# Go to: Repository → Webhooks → Add webhook
+WEBHOOK_URL="https://example.com/webhook"
+curl -X POST https://hub.docker.com/api/content/v1/repositories/USERNAME/myapp/webhooks \
+  -H "Authorization: Bearer $DOCKERHUB_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d "{\"name\":\"CI Trigger\",\"webhook_url\":\"$WEBHOOK_URL\"}"
+```
+
+
+## Step 3: Deploy Harbor Self-Hosted Registry
+
+```bash
+# Add Harbor Helm repository
+helm repo add harbor https://helm.gopharbor.io
+helm repo update
+
+# Create namespace
+kubectl create namespace harbor
+
+# Create values file
+cat > harbor-values.yaml <<EOF
+expose:
+  type: ingress
+  tls:
+    enabled: true
+    certSource: secret
+    secret:
+      secretName: harbor-tls
+  ingress:
+    hosts:
+      core: harbor.example.com
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+
+externalURL: https://harbor.example.com
+
+persistence:
+  enabled: true
+  persistentVolumeClaim:
+    registry:
+      size: 200Gi
+      storageClass: gp3
+    database:
+      size: 10Gi
+      storageClass: gp3
+
+harborAdminPassword: "ChangeMe123!"
+
+database:
+  type: internal  # Use external: postgres for production
+
+redis:
+  type: internal  # Use external: redis for production
+
+trivy:
+  enabled: true
+  skipUpdate: false
+
+notary:
+  enabled: true  # Image signing
+
+chartmuseum:
+  enabled: true  # Helm chart storage
+EOF
+
+# Install Harbor
+helm install harbor harbor/harbor \
+  --namespace harbor \
+  --values harbor-values.yaml \
+  --timeout 10m
+
+# Wait for pods to be ready
+kubectl get pods -n harbor -w
+
+# Get admin password
+kubectl get secret -n harbor harbor-core -o jsonpath='{.data.HARBOR_ADMIN_PASSWORD}' | base64 -d
+
+# Access Harbor UI
+echo "Harbor UI: https://harbor.example.com"
+echo "Username: admin"
+
+# Login via Docker CLI
+docker login harbor.example.com
+# Username: admin
+# Password: (from above)
+
+# Create project via API
+curl -u "admin:$HARBOR_PASSWORD" -X POST \
+  https://harbor.example.com/api/v2.0/projects \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project_name": "myapp",
+    "public": false,
+    "metadata": {
+      "auto_scan": "true",
+      "severity": "high",
+      "enable_content_trust": "true"
+    }
+  }'
+
+# Tag and push to Harbor
+docker tag myapp:latest harbor.example.com/myapp/app:latest
+docker push harbor.example.com/myapp/app:latest
+
+# Configure robot account for CI/CD
+# UI: Administration → Robot Accounts → New Robot Account
+# Permissions: Pull, Push to specific projects
+
+# Use robot account in CI/CD
+docker login harbor.example.com -u 'robot$myapp-ci' -p "$ROBOT_TOKEN"
+```
+
+
+## Step 4: Implement Image Tagging Strategy and Retention Policies
+
+```bash
+# Tagging best practices
+# 1. Semantic versioning
+docker tag myapp:latest harbor.example.com/myapp/app:v1.2.3
+docker tag myapp:latest harbor.example.com/myapp/app:v1.2
+docker tag myapp:latest harbor.example.com/myapp/app:v1
+docker tag myapp:latest harbor.example.com/myapp/app:latest
+
+# 2. Git commit SHA
+docker tag myapp:latest harbor.example.com/myapp/app:sha-${GIT_SHA:0:7}
+
+# 3. Branch name + build number
+docker tag myapp:latest harbor.example.com/myapp/app:main-${BUILD_NUMBER}
+
+# 4. Environment-specific
+docker tag myapp:latest harbor.example.com/myapp/app:staging-v1.2.3
+
+# Harbor retention policy (via API)
+cat > retention-policy.json <<EOF
+{
+  "algorithm": "or",
+  "rules": [
+    {
+      "disabled": false,
+      "action": "retain",
+      "template": "latestPushedK",
+      "params": {
+        "latestPushedK": 10
+      },
+      "tag_selectors": [
+        {
+          "kind": "doublestar",
+          "decoration": "matches",
+          "pattern": "v*"
+        }
+      ],
+      "scope_selectors": {
+        "repository": [
+          {
+            "kind": "doublestar",
+            "decoration": "matches",
+            "pattern": "**"
+          }
+        ]
+      }
+    },
+    {
+      "disabled": false,
+      "action": "retain",
+      "template": "nDaysSinceLastPull",
+      "params": {
+        "nDaysSinceLastPull": 30
+      },
+      "tag_selectors": [
+        {
+          "kind": "doublestar",
+          "decoration": "matches",
+          "pattern": "**"
+        }
+      ],
+      "scope_selectors": {
+        "repository": [
+          {
+            "kind": "doublestar",
+            "decoration": "matches",
+            "pattern": "**"
+          }
+        ]
+      }
+    }
+  ],
+  "trigger": {
+    "kind": "Schedule",
+    "settings": {
+      "cron": "0 2 * * *"
+    }
+  }
+}
+EOF
+
+curl -u "admin:$HARBOR_PASSWORD" -X POST \
+  https://harbor.example.com/api/v2.0/projects/myapp/retentions \
+  -H "Content-Type: application/json" \
+  -d @retention-policy.json
+
+# GitHub Container Registry retention (via GitHub UI)
+# Go to: Package settings → Manage versions
+# Configure rules:
+# - Keep last N versions
+# - Delete versions older than N days
+# - Delete untagged versions
+
+# Docker Hub retention (via UI or API)
+# Go to: Repository → Settings → Image retention policies
+# Only available on Team/Business plans
+```
+
+
+## Step 5: Configure Kubernetes Image Pull Secrets
+
+```bash
+# Create Docker registry secret
+kubectl create secret docker-registry ghcr-secret \
+  --docker-server=ghcr.io \
+  --docker-username=USERNAME \
+  --docker-password=$GITHUB_TOKEN \
+  --docker-email=user@example.com \
+  --namespace=default
+
+# Create Harbor registry secret
+kubectl create secret docker-registry harbor-secret \
+  --docker-server=harbor.example.com \
+  --docker-username='robot$myapp-ci' \
+  --docker-password=$ROBOT_TOKEN \
+  --namespace=default
+
+# Verify secret
+kubectl get secret ghcr-secret -o yaml
+
+# Use in Pod spec
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+  - name: myapp
+    image: ghcr.io/USERNAME/myapp:latest
+  imagePullSecrets:
+  - name: ghcr-secret
+EOF
+
+# Use in Deployment
+cat <<EOF | kubectl apply -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    spec:
+      imagePullSecrets:
+      - name: ghcr-secret
+      - name: harbor-secret
+      containers:
+      - name: myapp
+        image: ghcr.io/USERNAME/myapp:latest
+EOF
+
+# Configure default service account
+kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "ghcr-secret"}]}'
+
+# Verify service account
+kubectl get serviceaccount default -o yaml
+
+# For multiple namespaces, create secret in all namespaces
+for ns in dev staging prod; do
+  kubectl create namespace $ns || true
+  kubectl create secret docker-registry ghcr-secret \
+    --docker-server=ghcr.io \
+    --docker-username=USERNAME \
+    --docker-password=$GITHUB_TOKEN \
+    --namespace=$ns
+done
+```
+
+
+## Step 6: Enable Vulnerability Scanning and Image Signing
+
+```bash
+# Install Trivy CLI
+wget https://github.com/aquasecurity/trivy/releases/latest/download/trivy_0.47.0_Linux-64bit.tar.gz
+tar zxvf trivy_0.47.0_Linux-64bit.tar.gz
+sudo mv trivy /usr/local/bin/
+
+# Scan local image
+trivy image myapp:latest
+
+# Scan with severity filter
+trivy image --severity HIGH,CRITICAL myapp:latest
+
+# Output JSON for CI/CD integration
+trivy image --format json --output results.json myapp:latest
+
+# Scan in CI/CD pipeline
+cat >> .github/workflows/security.yml <<'EOF'
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t myapp:latest .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'myapp:latest'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Fail build on high vulnerabilities
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'myapp:latest'
+          exit-code: '1'
+          severity: 'CRITICAL'
+EOF
+
+# Install Cosign for image signing
+wget https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64
+sudo mv cosign-linux-amd64 /usr/local/bin/cosign
+sudo chmod +x /usr/local/bin/cosign
+
+# Generate signing key
+cosign generate-key-pair
+
+# Sign image
+cosign sign --key cosign.key ghcr.io/USERNAME/myapp:latest
+
+# Verify signature
+cosign verify --key cosign.pub ghcr.io/USERNAME/myapp:latest
+
+# Sign in GitHub Actions (keyless signing)
+cat >> .github/workflows/sign.yml <<'EOF'
+  sign-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write  # Required for keyless signing
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Login to ghcr.io
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sign image with keyless signing
+        run: |
+          cosign sign --yes ghcr.io/${{ github.repository }}:latest
+EOF
+
+# Enforce signature verification in Kubernetes
+# Using Kyverno policy
+cat <<EOF | kubectl apply -f -
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-signatures
+spec:
+  validationFailureAction: enforce
+  rules:
+  - name: verify-ghcr-images
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+    verifyImages:
+    - imageReferences:
+      - "ghcr.io/USERNAME/*"
+      attestors:
+      - count: 1
+        entries:
+        - keys:
+            publicKeys: |-
+              $(cat cosign.pub)
+EOF
+```
+

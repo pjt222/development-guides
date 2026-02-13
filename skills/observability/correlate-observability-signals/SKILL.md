@@ -37,6 +37,9 @@ Connect metrics, logs, and traces for unified debugging across the three pillars
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Implement Trace Context Propagation
 
 Add trace IDs to all logs and metrics using OpenTelemetry:
@@ -402,61 +405,7 @@ Build a dashboard that brings all signals together:
     "templating": {
       "list": [
         {
-          "name": "trace_id",
-          "type": "textbox",
-          "label": "Trace ID"
-        },
-        {
-          "name": "time_range",
-          "type": "interval",
-          "auto": true
-        }
-      ]
-    },
-    "panels": [
-      {
-        "title": "Trace Details",
-        "type": "trace",
-        "datasource": "Tempo",
-        "targets": [
-          {
-            "query": "$trace_id"
-          }
-        ]
-      },
-      {
-        "title": "Logs for Trace",
-        "type": "logs",
-        "datasource": "Loki",
-        "targets": [
-          {
-            "expr": "{job=\"api-service\"} |= \"$trace_id\""
-          }
-        ]
-      },
-      {
-        "title": "Request Rate During Incident",
-        "type": "graph",
-        "datasource": "Prometheus",
-        "targets": [
-          {
-            "expr": "sum(rate(http_requests_total{job=\"api-service\"}[1m]))"
-          }
-        ]
-      },
-      {
-        "title": "Error Rate During Incident",
-        "type": "graph",
-        "datasource": "Prometheus",
-        "targets": [
-          {
-            "expr": "sum(rate(http_requests_total{job=\"api-service\", status=~\"5..\"}[1m]))"
-          }
-        ]
-      }
-    ]
-  }
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Workflow during incident:

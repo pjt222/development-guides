@@ -37,6 +37,9 @@ Monitor service availability from external vantage points and prevent SSL certif
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Deploy Blackbox Exporter
 
 Install Blackbox Exporter via Docker or Kubernetes:
@@ -347,71 +350,7 @@ Create Grafana dashboard:
     "panels": [
       {
         "title": "Endpoint Availability (7 days)",
-        "type": "stat",
-        "targets": [
-          {
-            "expr": "avg_over_time(probe_success{job=\"blackbox-http\"}[7d]) * 100",
-            "legendFormat": "{{ instance }}"
-          }
-        ],
-        "fieldConfig": {
-          "defaults": {
-            "unit": "percent",
-            "thresholds": {
-              "steps": [
-                { "value": 0, "color": "red" },
-                { "value": 99, "color": "yellow" },
-                { "value": 99.9, "color": "green" }
-              ]
-            }
-          }
-        }
-      },
-      {
-        "title": "SSL Certificate Expiry (Days)",
-        "type": "graph",
-        "targets": [
-          {
-            "expr": "(probe_ssl_earliest_cert_expiry - time()) / 86400",
-            "legendFormat": "{{ instance }}"
-          }
-        ],
-        "yaxes": [
-          { "label": "Days", "format": "short" }
-        ],
-        "alert": {
-          "conditions": [
-            {
-              "evaluator": { "params": [14], "type": "lt" },
-              "query": { "params": ["A", "5m", "now"] }
-            }
-          ]
-        }
-      },
-      {
-        "title": "Response Time (p95)",
-        "type": "graph",
-        "targets": [
-          {
-            "expr": "histogram_quantile(0.95, rate(probe_http_duration_seconds_bucket[5m]))",
-            "legendFormat": "{{ instance }}"
-          }
-        ]
-      },
-      {
-        "title": "HTTP Status Codes (Last Hour)",
-        "type": "table",
-        "targets": [
-          {
-            "expr": "probe_http_status_code",
-            "format": "table",
-            "instant": true
-          }
-        ]
-      }
-    ]
-  }
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Dashboard showing uptime %, SSL expiry, response times.
@@ -446,29 +385,7 @@ services:
   cachet:
     image: cachethq/docker:latest
     ports:
-      - "8000:8000"
-    environment:
-      DB_DRIVER: pgsql
-      DB_HOST: postgres
-      DB_DATABASE: cachet
-      DB_USERNAME: cachet
-      DB_PASSWORD: secret
-      APP_KEY: base64:YOUR_APP_KEY
-      APP_URL: https://status.company.com
-    depends_on:
-      - postgres
-
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: cachet
-      POSTGRES_USER: cachet
-      POSTGRES_PASSWORD: secret
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
-volumes:
-  postgres-data:
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Option C: Custom status page from Prometheus metrics:
@@ -480,29 +397,7 @@ Option C: Custom status page from Prometheus metrics:
 <head>
   <title>Company Status</title>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
-<body>
-  <h1>Service Status</h1>
-  <div id="services"></div>
-
-  <script>
-    async function fetchStatus() {
-      const response = await axios.get('https://prometheus.company.com/api/v1/query?query=probe_success');
-      const services = response.data.data.result;
-
-      const html = services.map(s => {
-        const status = s.value[1] == '1' ? '✅ Operational' : '❌ Down';
-        return `<p><strong>${s.metric.instance}</strong>: ${status}</p>`;
-      }).join('');
-
-      document.getElementById('services').innerHTML = html;
-    }
-
-    fetchStatus();
-    setInterval(fetchStatus, 60000);  // Refresh every minute
-  </script>
-</body>
-</html>
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Public status page shows current service status and incidents.

@@ -39,6 +39,9 @@ Deploy containerized applications to Kubernetes with production-ready configurat
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Create Namespace and Resource Quotas
 
 Organize applications into namespaces with resource limits and RBAC.
@@ -362,61 +365,7 @@ kind: Service
 metadata:
   name: myapp
   namespace: myapp-prod
-  labels:
-    app: myapp
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
-    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "http"
-spec:
-  type: LoadBalancer
-  selector:
-    app: myapp
-  ports:
-  - name: http
-    port: 80
-    targetPort: http
-    protocol: TCP
-  sessionAffinity: ClientIP
-  sessionAffinityConfig:
-    clientIP:
-      timeoutSeconds: 10800
----
-# Internal service for inter-service communication
-apiVersion: v1
-kind: Service
-metadata:
-  name: myapp-internal
-  namespace: myapp-prod
-  labels:
-    app: myapp
-spec:
-  type: ClusterIP
-  selector:
-    app: myapp
-  ports:
-  - name: http
-    port: 8080
-    targetPort: http
-    protocol: TCP
-  - name: metrics
-    port: 9090
-    targetPort: metrics
-    protocol: TCP
----
-# Headless service for StatefulSets
-apiVersion: v1
-kind: Service
-metadata:
-  name: myapp-headless
-  namespace: myapp-prod
-spec:
-  clusterIP: None
-  selector:
-    app: myapp
-  ports:
-  - name: http
-    port: 8080
-    targetPort: http
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Apply and test services:
@@ -428,19 +377,7 @@ kubectl apply -f service.yaml
 # Get service details
 kubectl get svc -n myapp-prod
 
-# Wait for LoadBalancer external IP
-kubectl get svc myapp -n myapp-prod -w
-
-# Test internal service
-kubectl run -it --rm debug --image=curlimages/curl --restart=Never -n myapp-prod -- \
-  curl http://myapp-internal.myapp-prod.svc.cluster.local:8080/healthz
-
-# Test external LoadBalancer
-EXTERNAL_IP=$(kubectl get svc myapp -n myapp-prod -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')
-curl http://$EXTERNAL_IP/healthz
-
-# Check endpoints
-kubectl get endpoints myapp -n myapp-prod
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** LoadBalancer Service provisions external LB with public IP/hostname. ClusterIP Service provides stable internal DNS. Endpoints list shows healthy Pod IPs. Curl requests succeed with expected responses.
@@ -458,47 +395,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: myapp-hpa
   namespace: myapp-prod
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: myapp
-  minReplicas: 3
-  maxReplicas: 10
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 70
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageUtilization: 80
-  behavior:
-    scaleDown:
-      stabilizationWindowSeconds: 300
-      policies:
-      - type: Percent
-        value: 50
-        periodSeconds: 60
-      - type: Pods
-        value: 2
-        periodSeconds: 60
-      selectPolicy: Min
-    scaleUp:
-      stabilizationWindowSeconds: 0
-      policies:
-      - type: Percent
-        value: 100
-        periodSeconds: 30
-      - type: Pods
-        value: 4
-        periodSeconds: 30
-      selectPolicy: Max
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Install metrics-server if not available:
@@ -510,20 +407,7 @@ kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/late
 # Verify metrics-server
 kubectl get deployment metrics-server -n kube-system
 kubectl top nodes
-kubectl top pods -n myapp-prod
-
-# Apply HPA
-kubectl apply -f hpa.yaml
-
-# Check HPA status
-kubectl get hpa -n myapp-prod
-kubectl describe hpa myapp-hpa -n myapp-prod
-
-# Generate load to test autoscaling
-kubectl run -i --tty load-generator --rm --image=busybox --restart=Never -- /bin/sh -c "while sleep 0.01; do wget -q -O- http://myapp.myapp-prod.svc.cluster.local; done"
-
-# Watch scaling in another terminal
-kubectl get hpa myapp-hpa -n myapp-prod --watch
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** HPA monitors CPU/memory metrics. When thresholds exceeded, replicas scale up to maxReplicas. When load decreases, replicas scale down gradually (stabilization window prevents flapping). Metrics visible with `kubectl top`.
@@ -541,96 +425,7 @@ cd myapp-chart
 
 # Edit Chart.yaml
 cat > Chart.yaml <<EOF
-apiVersion: v2
-name: myapp
-description: A Helm chart for MyApp
-type: application
-version: 1.0.0
-appVersion: "1.0.0"
-keywords:
-  - web
-  - api
-maintainers:
-  - name: Philipp Thoss
-    email: ph.thoss@example.com
-EOF
-
-# Edit values.yaml
-cat > values.yaml <<EOF
-replicaCount: 3
-
-image:
-  repository: myregistry.io/myapp
-  pullPolicy: IfNotPresent
-  tag: "v1.0.0"
-
-imagePullSecrets:
-  - name: registry-credentials
-
-serviceAccount:
-  create: true
-  name: myapp
-
-service:
-  type: LoadBalancer
-  port: 80
-  targetPort: 8080
-
-ingress:
-  enabled: false
-  className: nginx
-  hosts:
-    - host: myapp.example.com
-      paths:
-        - path: /
-          pathType: Prefix
-
-resources:
-  limits:
-    cpu: 500m
-    memory: 512Mi
-  requests:
-    cpu: 250m
-    memory: 256Mi
-
-autoscaling:
-  enabled: true
-  minReplicas: 3
-  maxReplicas: 10
-  targetCPUUtilizationPercentage: 70
-
-config:
-  logLevel: info
-  apiTimeout: 30s
-
-secrets:
-  dbUsername: appuser
-  dbPassword: changeme
-EOF
-
-# Edit templates/deployment.yaml to use values
-# (Helm will template {{ .Values.replicaCount }}, etc.)
-
-# Validate chart
-helm lint .
-
-# Dry-run to see rendered manifests
-helm install myapp . --dry-run --debug --namespace myapp-prod
-
-# Install chart
-helm install myapp . --namespace myapp-prod --create-namespace
-
-# Upgrade with new values
-helm upgrade myapp . --namespace myapp-prod --set replicaCount=5
-
-# Rollback if needed
-helm rollback myapp 1 --namespace myapp-prod
-
-# List releases
-helm list -n myapp-prod
-
-# Uninstall
-helm uninstall myapp -n myapp-prod
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Expected:** Helm chart packages all Kubernetes resources with templated values. Dry-run shows rendered manifests. Install deploys all resources in correct order. Upgrades perform rolling updates. Rollback reverts to previous revision.

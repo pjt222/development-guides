@@ -37,6 +37,9 @@ Design and deploy Grafana dashboards with best practices for maintainability, re
 
 ## Procedure
 
+> See [Extended Examples](references/EXAMPLES.md) for complete configuration files and templates.
+
+
 ### Step 1: Design Dashboard Structure
 
 Plan dashboard layout and organization before building panels.
@@ -251,36 +254,7 @@ Create panels for each metric with appropriate visualization types.
   "gridPos": {"h": 4, "w": 6, "x": 12, "y": 0},
   "targets": [
     {
-      "expr": "sum(rate(http_requests_total{job=\"api-service\",environment=\"$environment\",status=~\"5..\"}[$interval])) / sum(rate(http_requests_total{job=\"api-service\",environment=\"$environment\"}[$interval])) * 100",
-      "refId": "A"
-    }
-  ],
-  "fieldConfig": {
-    "defaults": {
-      "unit": "percent",
-      "decimals": 2,
-      "thresholds": {
-        "mode": "absolute",
-        "steps": [
-          {"value": null, "color": "green"},
-          {"value": 0.1, "color": "yellow"},
-          {"value": 1, "color": "red"}
-        ]
-      },
-      "mappings": []
-    }
-  },
-  "options": {
-    "reduceOptions": {
-      "values": false,
-      "calcs": ["lastNotNull"]
-    },
-    "orientation": "auto",
-    "textMode": "value_and_name",
-    "colorMode": "background",
-    "graphMode": "area"
-  }
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 **Heatmap panel** (latency distribution):
@@ -292,31 +266,7 @@ Create panels for each metric with appropriate visualization types.
   "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
   "targets": [
     {
-      "expr": "sum(rate(http_request_duration_seconds_bucket{job=\"api-service\",environment=\"$environment\",instance=~\"$instance\"}[$interval])) by (le)",
-      "format": "heatmap",
-      "legendFormat": "{{le}}",
-      "refId": "A"
-    }
-  ],
-  "options": {
-    "calculate": true,
-    "calculation": {
-      "xBuckets": {
-        "mode": "size",
-        "value": "1m"
-      }
-    },
-    "color": {
-      "mode": "scheme",
-      "scheme": "Spectral"
-    },
-    "cellGap": 2,
-    "yAxis": {
-      "unit": "s",
-      "decimals": 2
-    }
-  }
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Panel selection guide:
@@ -348,37 +298,7 @@ Organize panels into collapsible rows for logical grouping.
       "type": "row",
       "title": "High-Level Metrics",
       "collapsed": false,
-      "gridPos": {"h": 1, "w": 24, "x": 0, "y": 0},
-      "panels": []
-    },
-    {
-      "type": "stat",
-      "title": "Request Rate",
-      "gridPos": {"h": 4, "w": 6, "x": 0, "y": 1},
-      "targets": [...]
-    },
-    {
-      "type": "stat",
-      "title": "Error Rate",
-      "gridPos": {"h": 4, "w": 6, "x": 6, "y": 1},
-      "targets": [...]
-    },
-    {
-      "type": "row",
-      "title": "Detailed Metrics",
-      "collapsed": true,
-      "gridPos": {"h": 1, "w": 24, "x": 0, "y": 5},
-      "panels": [
-        {
-          "type": "timeseries",
-          "title": "Latency by Endpoint",
-          "gridPos": {"h": 8, "w": 12, "x": 0, "y": 6},
-          "targets": [...]
-        }
-      ]
-    }
-  ]
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Layout best practices:
@@ -409,22 +329,7 @@ Dashboard-level links in JSON:
       "title": "Service Details",
       "type": "link",
       "icon": "external link",
-      "url": "/d/service-details?var-service=$service&var-environment=$environment&$__url_time_range",
-      "tooltip": "Detailed metrics for selected service",
-      "targetBlank": false
-    },
-    {
-      "title": "Database Dashboard",
-      "type": "dashboards",
-      "tags": ["database"],
-      "icon": "dashboard",
-      "tooltip": "All database-related dashboards",
-      "asDropdown": true,
-      "includeVars": true,
-      "keepTime": true
-    }
-  ]
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Panel-level data links:
@@ -436,17 +341,7 @@ Panel-level data links:
       "links": [
         {
           "title": "View Logs for ${__field.labels.instance}",
-          "url": "/explore?left={\"datasource\":\"Loki\",\"queries\":[{\"refId\":\"A\",\"expr\":\"{instance=\\\"${__field.labels.instance}\\\"}\"}],\"range\":{\"from\":\"${__from}\",\"to\":\"${__to}\"}}",
-          "targetBlank": true
-        },
-        {
-          "title": "View Traces",
-          "url": "/explore?left={\"datasource\":\"Tempo\",\"queries\":[{\"refId\":\"A\",\"query\":\"${__field.labels.trace_id}\"}]}"
-        }
-      ]
-    }
-  }
-}
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Link variables:
@@ -482,21 +377,7 @@ datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
-    url: http://prometheus:9090
-    isDefault: true
-    jsonData:
-      timeInterval: "15s"
-      queryTimeout: "60s"
-      httpMethod: POST
-    editable: false
-
-  - name: Loki
-    type: loki
-    access: proxy
-    url: http://loki:3100
-    jsonData:
-      maxLines: 1000
-    editable: false
+# ... (see EXAMPLES.md for complete configuration)
 ```
 
 Dashboard provisioning (`/etc/grafana/provisioning/dashboards/default.yml`):
