@@ -15,6 +15,12 @@ let skillsByDomain = {};    // domain -> [nodeObj, ...]
 let domainExpanded = {};    // domain -> boolean
 let onChange = null;
 let onAgentChange = null;
+let onTagChange = null;
+
+// Tag filter state
+let nodeTagsMap = {};       // nodeId -> Set<string> (lowercase tags)
+let allTags = [];           // sorted array of { tag, count }
+let selectedTags = new Set();
 
 /**
  * @param {HTMLElement} el - Filter panel element
@@ -22,10 +28,11 @@ let onAgentChange = null;
  * @param {Array} agents - Array of agent node objects
  * @param {Object} callbacks - { onFilterChange, onAgentFilterChange }
  */
-export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFilterChange } = {}) {
+export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFilterChange, onTagFilterChange } = {}) {
   filterEl = el;
   onChange = onFilterChange;
   onAgentChange = onAgentFilterChange;
+  onTagChange = onTagFilterChange;
 
   // Build domain -> skills lookup
   skillsByDomain = {};
@@ -57,6 +64,8 @@ export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFil
   renderSearchBox();
   renderSkills();
   renderAgents(agents);
+  buildTagIndex(skillNodes, agents);
+  renderTagFilter();
   bindSectionHeaders();
   bindPanelToggle();
 
@@ -279,6 +288,91 @@ function updateAgentsCount(agents) {
   el.textContent = visible < total ? `${visible}/${total}` : String(total);
 }
 
+// ── Tag filter ──────────────────────────────────────────────────
+
+function buildTagIndex(skillNodes, agents) {
+  nodeTagsMap = {};
+  const tagCounts = {};
+
+  for (const node of [...skillNodes, ...agents]) {
+    if (!Array.isArray(node.tags) || node.tags.length === 0) continue;
+    const normalized = new Set(node.tags.map(t => String(t).toLowerCase()));
+    nodeTagsMap[node.id] = normalized;
+    for (const tag of normalized) {
+      tagCounts[tag] = (tagCounts[tag] || 0) + 1;
+    }
+  }
+
+  allTags = Object.entries(tagCounts)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+}
+
+function renderTagFilter() {
+  const container = filterEl.querySelector('#tags-filter-list');
+  if (!container) return;
+  container.innerHTML = '';
+
+  const list = document.createElement('div');
+  list.className = 'tag-label-list';
+
+  for (const { tag, count } of allTags) {
+    const label = document.createElement('span');
+    label.className = 'tag-label';
+    label.dataset.tag = tag;
+    label.innerHTML = `${tag}<span class="tag-label-count">${count}</span>`;
+    label.addEventListener('click', () => toggleTag(tag));
+    list.appendChild(label);
+  }
+
+  container.appendChild(list);
+}
+
+function toggleTag(tag) {
+  if (selectedTags.has(tag)) {
+    selectedTags.delete(tag);
+  } else {
+    selectedTags.add(tag);
+  }
+  refreshTagSelection();
+  updateTagsCount();
+  fireTagFilterChange();
+}
+
+function clearAllTags() {
+  selectedTags.clear();
+  refreshTagSelection();
+  updateTagsCount();
+  fireTagFilterChange();
+}
+
+function refreshTagSelection() {
+  const labels = filterEl.querySelectorAll('#tags-filter-list .tag-label');
+  for (const label of labels) {
+    label.classList.toggle('selected', selectedTags.has(label.dataset.tag));
+  }
+}
+
+function updateTagsCount() {
+  const el = filterEl.querySelector('#tags-section-count');
+  if (!el) return;
+  el.textContent = selectedTags.size > 0 ? `${selectedTags.size} selected` : '0 selected';
+}
+
+function nodePassesTagFilter(nodeId) {
+  if (selectedTags.size === 0) return true;
+  const tags = nodeTagsMap[nodeId];
+  if (!tags) return false;
+  for (const t of selectedTags) {
+    if (tags.has(t)) return true;
+  }
+  return false;
+}
+
+function fireTagFilterChange() {
+  if (onTagChange) onTagChange();
+}
+
 // ── Section collapse / expand ────────────────────────────────────
 
 function toggleSection(header) {
@@ -336,6 +430,8 @@ function bindSectionHeaders() {
             Object.keys(agentStates).map(id => ({ id }))
           );
           fireAgentChange();
+        } else if (target === 'tags') {
+          clearAllTags();
         }
       });
     });
@@ -384,7 +480,7 @@ function fireAgentChange() {
 
 export function getVisibleSkillIds() {
   return Object.entries(skillStates)
-    .filter(([, v]) => v)
+    .filter(([id, v]) => v && nodePassesTagFilter(id))
     .map(([k]) => k);
 }
 
@@ -402,7 +498,7 @@ export function getVisibleDomains() {
 
 export function getVisibleAgentIds() {
   return Object.entries(agentStates)
-    .filter(([, v]) => v)
+    .filter(([id, v]) => v && nodePassesTagFilter(id))
     .map(([k]) => k);
 }
 

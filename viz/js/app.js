@@ -4,7 +4,7 @@
 
 import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
-import { initFilters, getVisibleSkillIds, refreshSwatches } from './filters.js';
+import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
 const DATA_URL = 'data/skills.json';
@@ -74,6 +74,12 @@ async function main() {
       setVisibleAgents(visibleIds);
       setSkillVisibility(getVisibleSkillIds());
       updateFilteredStats(getVisibleSkillIds());
+    },
+    onTagFilterChange() {
+      const visSkills = getVisibleSkillIds();
+      setSkillVisibility(visSkills);
+      setVisibleAgents(getFilteredAgentIds());
+      updateFilteredStats(visSkills);
     },
   });
 

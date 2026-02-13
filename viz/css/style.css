@@ -521,6 +521,47 @@ body::after {
   opacity: 0.85;
 }
 
+/* ── Tag Filter Labels ──────────────────────────────────────── */
+.tag-label-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  padding: 4px 8px 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.tag-label {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.tag-label:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.tag-label.selected {
+  background: rgba(0, 240, 255, 0.12);
+  border-color: rgba(0, 240, 255, 0.35);
+  color: var(--text-accent);
+}
+
+.tag-label-count {
+  font-size: 9px;
+  opacity: 0.5;
+  margin-left: 2px;
+}
+
 /* ── Detail Panel (Right) ────────────────────────────────────── */
 .detail-panel {
   position: fixed;
