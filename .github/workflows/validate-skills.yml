@@ -43,7 +43,7 @@ jobs:
       - name: Verify registry count
         run: |
           disk_count=$(find skills -name SKILL.md | wc -l)
-          reg_count=$(grep 'total_skills:' skills/_registry.yml | awk '{print $2}')
+          reg_count=$(grep 'total_skills:' skills/_registry.yml | tr -d '\r' | awk '{print $2}')
           if [ "$disk_count" != "$reg_count" ]; then
             echo "FAIL: disk=$disk_count registry=$reg_count"
             exit 1
