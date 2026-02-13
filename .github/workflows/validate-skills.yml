@@ -11,42 +11,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate frontmatter and sections
+      - name: Install skills-ref
+        run: |
+          pip install "git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref"
+          skills-ref --version
+
+      - name: Validate all skills
         run: |
           failed=0
-          for f in skills/*/*/SKILL.md; do
-            # Check YAML frontmatter exists
-            if ! head -1 "$f" | grep -q '^---$'; then
-              echo "FAIL: $f missing YAML frontmatter"
-              failed=1
-              continue
-            fi
-
-            # Extract frontmatter
-            fm=$(sed -n '1,/^---$/p' "$f" | tail -n +2 | head -n -1)
-
-            # Check required fields
-            for field in name description; do
-              if ! echo "$fm" | grep -q "^${field}:"; then
-                echo "FAIL: $f missing required field '$field'"
+          for dir in skills/*/*/; do
+            if [ -f "$dir/SKILL.md" ]; then
+              if ! skills-ref validate "$dir"; then
                 failed=1
               fi
-            done
-
-            # Check name constraints (lowercase, hyphens, max 50 chars)
-            name=$(echo "$fm" | grep '^name:' | sed 's/^name: *//')
-            if ! echo "$name" | grep -qE '^[a-z][a-z0-9-]{0,49}$'; then
-              echo "FAIL: $f invalid name '$name'"
-              failed=1
             fi
-
-            # Check required sections
-            for section in "When to Use" "Inputs" "Procedure" "Validation" "Common Pitfalls" "Related Skills"; do
-              if ! grep -q "## ${section}" "$f"; then
-                echo "FAIL: $f missing section '## ${section}'"
-                failed=1
-              fi
-            done
           done
           exit $failed
 
