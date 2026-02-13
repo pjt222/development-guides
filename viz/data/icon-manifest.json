@@ -269,32 +269,80 @@
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, Docker whale, R hexagon inside, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40001,
-      "path": "icons/containerization/create-r-dockerfile.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/containerization/create-r-dockerfile.webp",
+      "status": "done"
     },
     {
       "skillId": "setup-docker-compose",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, interconnected containers, orchestration, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40002,
-      "path": "icons/containerization/setup-docker-compose.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/containerization/setup-docker-compose.webp",
+      "status": "done"
     },
     {
       "skillId": "containerize-mcp-server",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, server in a box, glowing connection, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40003,
-      "path": "icons/containerization/containerize-mcp-server.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/containerization/containerize-mcp-server.webp",
+      "status": "done"
     },
     {
       "skillId": "optimize-docker-build-cache",
       "domain": "containerization",
       "prompt": "Neon container box, whale silhouette, layered cache, speed arrows, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 40004,
-      "path": "icons/containerization/optimize-docker-build-cache.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/containerization/optimize-docker-build-cache.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "create-dockerfile",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, Dockerfile document, code lines, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40005,
+      "path": "icons/cyberpunk/containerization/create-dockerfile.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "create-multistage-dockerfile",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, multi-stage build, builder to runtime arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40006,
+      "path": "icons/cyberpunk/containerization/create-multistage-dockerfile.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "setup-compose-stack",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, multi-service grid, connected boxes, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40007,
+      "path": "icons/cyberpunk/containerization/setup-compose-stack.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "configure-nginx",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, Nginx N shield, reverse proxy arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40008,
+      "path": "icons/cyberpunk/containerization/configure-nginx.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "configure-reverse-proxy",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, fan-out routing arrows, proxy gateway, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40009,
+      "path": "icons/cyberpunk/containerization/configure-reverse-proxy.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "deploy-searxng",
+      "domain": "containerization",
+      "prompt": "Neon container box, whale silhouette, search magnifier, privacy shield, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 40010,
+      "path": "icons/cyberpunk/containerization/deploy-searxng.webp",
+      "status": "done"
     },
     {
       "skillId": "serialize-data-formats",
@@ -1301,48 +1349,56 @@
       "domain": "shiny",
       "prompt": "Glowing icon, Scaffold, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230001,
-      "path": "icons/shiny/scaffold-shiny-app.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/scaffold-shiny-app.webp",
+      "status": "done"
     },
     {
       "skillId": "build-shiny-module",
       "domain": "shiny",
       "prompt": "Glowing icon, Build, Shiny, Module, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230002,
-      "path": "icons/shiny/build-shiny-module.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/build-shiny-module.webp",
+      "status": "done"
     },
     {
       "skillId": "test-shiny-app",
       "domain": "shiny",
       "prompt": "Glowing icon, Test, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230003,
-      "path": "icons/shiny/test-shiny-app.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/test-shiny-app.webp",
+      "status": "done"
     },
     {
       "skillId": "deploy-shiny-app",
       "domain": "shiny",
       "prompt": "Glowing icon, Deploy, Shiny, App, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230004,
-      "path": "icons/shiny/deploy-shiny-app.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/deploy-shiny-app.webp",
+      "status": "done"
     },
     {
       "skillId": "optimize-shiny-performance",
       "domain": "shiny",
       "prompt": "Glowing icon, Optimize, Shiny, Performance, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230005,
-      "path": "icons/shiny/optimize-shiny-performance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/optimize-shiny-performance.webp",
+      "status": "done"
     },
     {
       "skillId": "design-shiny-ui",
       "domain": "shiny",
       "prompt": "Glowing icon, Design, Shiny, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 230006,
-      "path": "icons/shiny/design-shiny-ui.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/shiny/design-shiny-ui.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "deploy-shinyproxy",
+      "domain": "shiny",
+      "prompt": "Glowing icon, ShinyProxy, multi-app grid, gateway proxy, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 230007,
+      "path": "icons/cyberpunk/shiny/deploy-shinyproxy.webp",
+      "status": "done"
     },
     {
       "skillId": "coordinate-swarm",

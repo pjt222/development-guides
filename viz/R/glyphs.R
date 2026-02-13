@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 171 skillIds to a specific glyph drawing function.
+# Maps each of 185 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -35,11 +35,17 @@ SKILL_GLYPHS <- list(
   "investigate-capa-root-cause"    = "glyph_fishbone",
   "qualify-vendor"                 = "glyph_badge_star",
 
-  # ── containerization (4) ───────────────────────────────────────────────
+  # ── containerization (10) ──────────────────────────────────────────────
   "create-r-dockerfile"            = "glyph_docker_box",
   "setup-docker-compose"           = "glyph_compose_stack",
   "containerize-mcp-server"        = "glyph_box_plug",
   "optimize-docker-build-cache"    = "glyph_layers_arrow",
+  "create-dockerfile"              = "glyph_dockerfile",
+  "create-multistage-dockerfile"   = "glyph_multistage_build",
+  "setup-compose-stack"            = "glyph_compose_services",
+  "configure-nginx"                = "glyph_nginx_shield",
+  "configure-reverse-proxy"        = "glyph_proxy_routes",
+  "deploy-searxng"                 = "glyph_search_lens_shield",
 
   # ── data-serialization (2) ────────────────────────────────────────────
   "serialize-data-formats"         = "glyph_brackets_stream",
@@ -222,7 +228,8 @@ SKILL_GLYPHS <- list(
   "build-tcg-deck"                 = "glyph_deck_build",
   "manage-tcg-collection"          = "glyph_collection_grid",
 
-  # ── shiny (6) ──────────────────────────────────────────────────────────
+  # ── shiny (7) ──────────────────────────────────────────────────────────
+  "deploy-shinyproxy"              = "glyph_shinyproxy_grid",
   "scaffold-shiny-app"             = "glyph_shiny_scaffold",
   "build-shiny-module"             = "glyph_shiny_module",
   "test-shiny-app"                 = "glyph_shiny_test",
