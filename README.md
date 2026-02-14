@@ -5,10 +5,10 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **185 skills** across 27 domains — structured, executable procedures
+- **186 skills** across 27 domains — structured, executable procedures
 - **29 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 185 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 186 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Three Pillars
@@ -24,7 +24,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 185 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 186 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -41,7 +41,7 @@ The **[Skills Library](skills/)** provides 185 task-level skills following the [
 | [General](skills/general/) | 6 | Cross-cutting development environment and workflow skills |
 | [Data Serialization](skills/data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
 | [Review](skills/review/) | 6 | Senior-level review skills for research, data, architecture, and design |
-| [Bushcraft](skills/bushcraft/) | 3 | Wilderness survival and primitive skills |
+| [Bushcraft](skills/bushcraft/) | 4 | Wilderness survival and primitive skills |
 | [Esoteric](skills/esoteric/) | 15 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](skills/design/) | 5 | Ornamental design and AI-assisted image generation skills |
 | [Defensive](skills/defensive/) | 6 | Martial arts and applied defensive awareness skills |

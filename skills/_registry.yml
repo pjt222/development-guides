@@ -1,7 +1,7 @@
 version: "1.5"
 generated: "2026-02-13"
 standard: "agentskills.io/specification"
-total_skills: 185
+total_skills: 186
 
 domains:
   r-packages:
@@ -426,6 +426,11 @@ domains:
         complexity: advanced
         language: natural
         description: Identify and safely gather edible and useful wild plants
+      - id: sharpen-knife
+        path: bushcraft/sharpen-knife/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Sharpen and maintain knives using whetstones, field stones, and improvised abrasives
 
   esoteric:
     description: Esoteric practices — AI self-directed variants and human-guidance variants

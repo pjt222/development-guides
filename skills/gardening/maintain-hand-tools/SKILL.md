@@ -283,6 +283,7 @@ before you are.
 ## Related Skills
 
 - `cultivate-bonsai` — Bonsai tools (concave cutter, wire cutter, jin pliers) follow the same maintenance protocol
+- `sharpen-knife` — Deeper knife-specific sharpening technique applicable to hori-hori and other garden blades
 - `make-fire` — Fire-making tools (ferro rod, striker) also benefit from regular maintenance
 - `plan-garden-calendar` — Winter tool care is a scheduled seasonal task
 - `meditate` — Winter tool care ritual uses the meditate checkpoint (full protocol)
