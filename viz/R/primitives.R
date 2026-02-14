@@ -87,6 +87,54 @@ glyph_leaf <- function(cx, cy, s, col, bright) {
   )
 }
 
+# ── glyph_whetstone_blade: knife on sharpening stone ─────────────────────
+glyph_whetstone_blade <- function(cx, cy, s, col, bright) {
+  # Whetstone base (rounded rectangle via polygon)
+  sw <- 28 * s; sh <- 8 * s
+  stone_y <- cy - 12 * s
+  stone <- data.frame(
+    x = c(cx - sw / 2, cx + sw / 2, cx + sw / 2, cx - sw / 2),
+    y = c(stone_y - sh / 2, stone_y - sh / 2, stone_y + sh / 2, stone_y + sh / 2)
+  )
+  # Knife blade (angled ~30 deg, resting on stone)
+  # Blade tip top-right, handle bottom-left
+  a <- 25 * pi / 180
+  bl <- 36 * s   # blade total length
+  bw <- 6 * s    # blade width
+  bx <- cx - 4 * s; by <- stone_y + sh / 2  # base point on stone
+  # Spine line and edge line
+  tip_x <- bx + bl * cos(a); tip_y <- by + bl * sin(a)
+  spine_dx <- -bw * sin(a); spine_dy <- bw * cos(a)
+  blade <- data.frame(
+    x = c(bx, tip_x, tip_x + spine_dx * 0.3, bx + spine_dx),
+    y = c(by, tip_y, tip_y + spine_dy * 0.3, by + spine_dy)
+  )
+  # Handle (small rectangle at base of blade)
+  hl <- 14 * s
+  hx <- bx - hl * cos(a); hy <- by - hl * sin(a)
+  handle <- data.frame(
+    x = c(bx, bx + spine_dx, hx + spine_dx, hx),
+    y = c(by, by + spine_dy, hy + spine_dy, hy)
+  )
+  # Spark lines (3 small strokes at contact point)
+  sp_x <- bx + 8 * s * cos(a)
+  sp_y <- stone_y + sh / 2
+  spark1 <- data.frame(x = c(sp_x, sp_x - 6 * s), y = c(sp_y, sp_y + 10 * s))
+  spark2 <- data.frame(x = c(sp_x + 3 * s, sp_x + 1 * s), y = c(sp_y, sp_y + 11 * s))
+  spark3 <- data.frame(x = c(sp_x - 4 * s, sp_x - 9 * s), y = c(sp_y, sp_y + 8 * s))
+  list(
+    ggplot2::geom_polygon(data = stone, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s)),
+    ggplot2::geom_polygon(data = handle, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = blade, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = spark1, .aes(x, y), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = spark2, .aes(x, y), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = spark3, .aes(x, y), color = col, linewidth = .lw(s, 1))
+  )
+}
+
 # ── glyph_shield_check: shield outline + checkmark ────────────────────────
 glyph_shield_check <- function(cx, cy, s, col, bright) {
   w <- 32 * s; h <- 40 * s

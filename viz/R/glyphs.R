@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 185 skillIds to a specific glyph drawing function.
+# Maps each of 186 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -11,10 +11,11 @@ SKILL_GLYPHS <- list(
   "transmute"                      = "glyph_transmute",
   "chrysopoeia"                    = "glyph_chrysopoeia",
 
-  # ── bushcraft (3) ──────────────────────────────────────────────────────
+  # ── bushcraft (4) ──────────────────────────────────────────────────────
   "make-fire"                      = "glyph_flame",
   "purify-water"                   = "glyph_droplet",
   "forage-plants"                  = "glyph_leaf",
+  "sharpen-knife"                  = "glyph_whetstone_blade",
 
   # ── compliance (17) ────────────────────────────────────────────────────
   "setup-gxp-r-project"            = "glyph_shield_check",

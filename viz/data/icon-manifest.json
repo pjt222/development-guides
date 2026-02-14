@@ -109,24 +109,32 @@
       "domain": "bushcraft",
       "prompt": "Neon campfire flame, leaf, compass rose, sparks, flint and steel, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20001,
-      "path": "icons/bushcraft/make-fire.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/bushcraft/make-fire.webp",
+      "status": "done"
     },
     {
       "skillId": "purify-water",
       "domain": "bushcraft",
       "prompt": "Neon campfire flame, leaf, compass rose, water droplet, filtration funnel, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20002,
-      "path": "icons/bushcraft/purify-water.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/bushcraft/purify-water.webp",
+      "status": "done"
     },
     {
       "skillId": "forage-plants",
       "domain": "bushcraft",
       "prompt": "Neon campfire flame, leaf, compass rose, leaf identification, plant specimen, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 20003,
-      "path": "icons/bushcraft/forage-plants.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/bushcraft/forage-plants.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "sharpen-knife",
+      "domain": "bushcraft",
+      "prompt": "Neon campfire flame, leaf, compass rose, knife blade on whetstone with sharpening sparks, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 20004,
+      "path": "icons/cyberpunk/bushcraft/sharpen-knife.webp",
+      "status": "done"
     },
     {
       "skillId": "setup-gxp-r-project",
