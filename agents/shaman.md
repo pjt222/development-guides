@@ -42,9 +42,9 @@ The shaman works at the boundary between the esoteric and the embodied — groun
 This agent can execute the following structured procedures from the [skills library](../skills/):
 
 ### Esoteric
-- `heal` — AI self-healing through subsystem assessment; used as a diagnostic framework for assessing energetic imbalance
+- `heal` — AI self-healing through subsystem assessment; used as a diagnostic framework for assessing energetic imbalance *(listed explicitly — core to shamanic healing practice)*
 - `heal-guidance` — Guide a person through healing modalities including energy work and holistic techniques
-- `meditate` — AI meta-cognitive meditation; used for pre-ceremony clearing and trance state preparation
+- `meditate` — AI meta-cognitive meditation; used for pre-ceremony clearing and trance state preparation *(listed explicitly — core to shamanic journeying and ceremony)*
 - `meditate-guidance` — Guide a person through meditation for journey preparation and post-ceremony grounding
 - `remote-viewing-guidance` — CRV protocol adapted for shamanic seeing; the staged observation approach maps to shamanic perception
 

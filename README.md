@@ -71,7 +71,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 34 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 34 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->

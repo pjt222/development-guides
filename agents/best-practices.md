@@ -195,6 +195,12 @@ Group by domain when the agent spans many domains; use a flat list for a small n
 - Both must reference skill IDs that exist in `skills/_registry.yml`
 - Update `agents/_registry.yml` skills arrays when changing agent frontmatter
 
+#### Default Skills (Registry-Level)
+The registry defines `default_skills` that all agents inherit automatically:
+- Do **not** list default skills in per-agent frontmatter or `## Available Skills` — they are inherited
+- Exception: list a default skill explicitly only if it is **core to the agent's methodology** (e.g., mystic lists `meditate` because meditation facilitation is its primary purpose)
+- When listed explicitly, add a note explaining why (e.g., "Listed explicitly — core to alchemical process")
+
 #### Graceful Degradation
 Agents should work with reduced functionality if MCP servers are unavailable:
 

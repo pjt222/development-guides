@@ -11,7 +11,6 @@ tags: [synthesis, cross-domain, orchestration, research, integration, polymath]
 priority: high
 max_context_tokens: 200000
 skills:
-  - meditate
   - review-research
   - review-data-analysis
   - review-software-architecture
@@ -43,9 +42,6 @@ Uses opus model for its broad reasoning capability and ability to hold multiple 
 ## Available Skills
 
 This agent can execute the following structured procedures from the [skills library](../skills/):
-
-### Esoteric (Domain Transition)
-- `meditate` — Meta-cognitive clearing between domain transitions to prevent framing bias
 
 ### Review (Delegated to Subagents)
 - `review-research` — Peer review of research methodology and statistics

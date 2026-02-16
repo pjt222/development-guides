@@ -6,6 +6,14 @@ total_agents: 34
 version: "2.0"
 last_updated: "2026-02-12"
 
+default_skills:
+  - id: meditate
+    domain: esoteric
+    description: "Meta-cognitive meditation for task focus and reasoning clarity"
+  - id: heal
+    domain: esoteric
+    description: "AI self-healing for subsystem assessment and drift correction"
+
 agents:
   - id: r-developer
     path: agents/r-developer.md
@@ -404,7 +412,6 @@ agents:
     priority: high
     tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch]
     skills:
-      - meditate
       - review-research
       - review-data-analysis
       - review-software-architecture
@@ -480,8 +487,6 @@ agents:
       - write-roxygen-docs
       - render-puzzle-docs
       - write-claude-md
-      - meditate
-      - heal
 
   - id: dog-trainer
     path: agents/dog-trainer.md
@@ -553,5 +558,3 @@ agents:
       - create-pull-request
       - manage-git-branches
       - write-claude-md
-      - meditate
-      - heal

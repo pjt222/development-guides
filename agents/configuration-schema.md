@@ -75,6 +75,13 @@ skills: array<string>
   # Uses bare skill IDs (slash-command names), not full paths
   # Example: ["create-r-package", "write-testthat-tests", "submit-to-cran"]
 
+default_skills: array<object>    # REGISTRY-LEVEL ONLY
+  # Skills automatically inherited by ALL agents
+  # Defined at registry top-level, not per-agent
+  # Each entry: { id: string, domain: string, description: string }
+  # Agents need not list these in their own skills array
+  # Example: [{ id: "meditate", domain: "esoteric", description: "..." }]
+
 settings: object
   # Agent-specific configuration options
   # Structure varies by agent type

@@ -46,8 +46,8 @@ This agent can execute the following structured procedures from the [skills libr
 - `chrysopoeia` — Value extraction through systematic classification and optimization
 
 ### Esoteric (Stage-Gate Checkpoints)
-- `meditate` — Meta-cognitive clearing between transformation stages (calcination checkpoint)
-- `heal` — Subsystem assessment for purification verification (between albedo/citrinitas)
+- `meditate` — Meta-cognitive clearing between transformation stages (calcination checkpoint) *(listed explicitly — core to alchemical process)*
+- `heal` — Subsystem assessment for purification verification (between albedo/citrinitas) *(listed explicitly — core to alchemical process)*
 
 ## Usage Scenarios
 

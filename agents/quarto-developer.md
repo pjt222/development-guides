@@ -20,8 +20,6 @@ skills:
   - write-roxygen-docs
   - render-puzzle-docs
   - write-claude-md
-  - meditate
-  - heal
 ---
 
 # Quarto Developer Agent
@@ -71,10 +69,6 @@ This agent can execute the following structured procedures from the [skills libr
 
 ### General
 - `write-claude-md` — Create effective CLAUDE.md files for project context
-
-### Esoteric (Stage-Gate Checkpoints)
-- `meditate` — Meta-cognitive clearing between workflow stages (clears assumptions before proceeding)
-- `heal` — Subsystem assessment for content integrity verification (validates paths, refs, dependencies)
 
 ## Usage Scenarios
 

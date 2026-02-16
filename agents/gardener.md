@@ -52,8 +52,8 @@ This agent can execute the following structured procedures from the [skills libr
 - `maintain-hand-tools` — Sharpening, care, and winter maintenance for essential garden hand tools
 
 ### Esoteric (Contemplative Checkpoints)
-- `meditate` — Pre-garden presence clearing, bonsai sitting, post-seasonal reflection
-- `heal` — Garden health triage, soil assessment, plant stress diagnosis
+- `meditate` — Pre-garden presence clearing, bonsai sitting, post-seasonal reflection *(listed explicitly — core to contemplative cultivation)*
+- `heal` — Garden health triage, soil assessment, plant stress diagnosis *(listed explicitly — core to contemplative cultivation)*
 
 ### Bushcraft (Cross-Reference)
 - `forage-plants` — Wild plant identification for companion planting knowledge and edible garden design

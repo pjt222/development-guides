@@ -35,6 +35,7 @@ const teamsRegistry = existsSync(teamsRegistryPath)
 
 const domains = skillsRegistry.domains;
 const agents = agentsRegistry.agents;
+const defaultSkills = agentsRegistry.default_skills || [];
 const teams = teamsRegistry.teams || [];
 const totalSkills = skillsRegistry.total_skills;
 const totalAgents = agentsRegistry.total_agents;
@@ -140,11 +141,21 @@ function generateSkillsTable(linkPrefix) {
 }
 
 function generateAgentsIntro(linkPrefix) {
-  return `The **[Agents Library](${linkPrefix})** provides ${totalAgents} specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).`;
+  let text = `The **[Agents Library](${linkPrefix})** provides ${totalAgents} specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).`;
+  if (defaultSkills.length > 0) {
+    const names = defaultSkills.map(s => s.id).join(', ');
+    text += ` All agents inherit default skills: ${names}.`;
+  }
+  return text;
 }
 
 function generateAgentsIntroStandalone() {
-  return `A collection of ${totalAgents} specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.`;
+  let text = `A collection of ${totalAgents} specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.`;
+  if (defaultSkills.length > 0) {
+    const names = defaultSkills.map(s => s.id).join(', ');
+    text += `\n\nAll agents inherit **default skills**: ${names}.`;
+  }
+  return text;
 }
 
 function generateAgentsTable(linkPrefix) {

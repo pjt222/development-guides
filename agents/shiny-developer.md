@@ -30,8 +30,6 @@ skills:
   - create-pull-request
   - manage-git-branches
   - write-claude-md
-  - meditate
-  - heal
 ---
 
 # Shiny Developer Agent
@@ -93,10 +91,6 @@ This agent can execute the following structured procedures from the [skills libr
 
 ### General
 - `write-claude-md` — project instructions for Shiny apps
-
-### Esoteric (Checkpoints)
-- `meditate` — clear reactive design assumptions before implementation
-- `heal` — verify module interfaces, data flow, and namespace integrity
 
 ## Usage Scenarios
 

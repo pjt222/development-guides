@@ -11,6 +11,8 @@ tags: [development, general]
 priority: normal
 max_context_tokens: 200000
 skills: []
+# Note: All agents inherit default skills (meditate, heal) from the registry.
+# Only list them here if they are core to this agent's methodology.
 ---
 
 # Your Agent Name

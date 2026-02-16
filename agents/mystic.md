@@ -38,8 +38,8 @@ This agent guides users through contemplative and esoteric practices using well-
 This agent can execute the following structured procedures from the [skills library](../skills/):
 
 ### Esoteric
-- `heal` — Apply healing modalities including energy work, herbal remedies, and holistic techniques
-- `meditate` — Guide a meditation session from preparation through closing
+- `heal` — Apply healing modalities including energy work, herbal remedies, and holistic techniques *(listed explicitly — core to this agent's primary purpose)*
+- `meditate` — Guide a meditation session from preparation through closing *(listed explicitly — meditation facilitation is this agent's primary purpose)*
 - `remote-viewing` — Conduct a Coordinate Remote Viewing session following CRV protocol
 
 ## Usage Scenarios
