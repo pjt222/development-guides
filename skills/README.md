@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 202 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 228 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -26,7 +26,7 @@ Browse by domain:
 | [Containerization](containerization/) | 10 | Docker and container workflow skills |
 | [Reporting](reporting/) | 4 | Quarto, R Markdown, and publication-ready report skills |
 | [Compliance](compliance/) | 17 | GxP regulatory and validation skills |
-| [Mcp Integration](mcp-integration/) | 3 | MCP server setup and troubleshooting skills |
+| [Mcp Integration](mcp-integration/) | 5 | MCP server setup and troubleshooting skills |
 | [Web Dev](web-dev/) | 3 | Web development skills for Next.js and modern frontend |
 | [Git](git/) | 6 | Git version control and GitHub workflow skills |
 | [General](general/) | 6 | Cross-cutting development environment and workflow skills |
@@ -53,6 +53,13 @@ Browse by domain:
 | [Prospecting](prospecting/) | 2 | Mineral identification and precious metal recovery |
 | [Crafting](crafting/) | 1 | Traditional handcraft and artisan skills |
 | [Library Science](library-science/) | 3 | Library cataloging, collection management, and material preservation |
+| [Travel](travel/) | 6 | Tour planning, hiking, route visualization, and outdoor trip logistics |
+| [Relocation](relocation/) | 3 | Cross-border EU/DACH relocation planning, documents, and bureaucracy |
+| [A2a Protocol](a2a-protocol/) | 3 | Google A2A agent-to-agent protocol implementation and interoperability |
+| [Geometry](geometry/) | 3 | Classical and computational geometry, trigonometry, and proofs |
+| [Stochastic Processes](stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
+| [Theoretical Science](theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
+| [Diffusion](diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

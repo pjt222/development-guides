@@ -1,5 +1,5 @@
 # agent_glyphs.R - Agent-to-glyph mapping
-# Maps each of 34 agent IDs to a specific glyph drawing function.
+# Maps each of 43 agent IDs to a specific glyph drawing function.
 #
 # Each entry: agentId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -51,10 +51,25 @@ AGENT_GLYPHS <- list(
   "quarto-developer"          = "glyph_agent_quarto",
   "shiny-developer"           = "glyph_agent_shiny_dev",
 
-  # ── New Specialty ─────────────────────────────────────────────────────
+  # ── Nature & Esoteric ─────────────────────────────────────────────────
   "dog-trainer"               = "glyph_agent_dog_trainer",
   "librarian"                 = "glyph_agent_librarian",
   "mycologist"                = "glyph_agent_mycologist",
   "prospector"                = "glyph_agent_prospector",
-  "shaman"                    = "glyph_agent_shaman"
+  "shaman"                    = "glyph_agent_shaman",
+
+  # ── Travel & Relocation ───────────────────────────────────────────────
+  "tour-planner"              = "glyph_agent_tour_planner",
+  "hiking-guide"              = "glyph_agent_hiking_guide",
+  "relocation-expert"         = "glyph_agent_relocation",
+
+  # ── Protocol & MCP ────────────────────────────────────────────────────
+  "mcp-developer"             = "glyph_agent_mcp_dev",
+  "acp-developer"             = "glyph_agent_acp_dev",
+
+  # ── Mathematics & Science ─────────────────────────────────────────────
+  "geometrist"                = "glyph_agent_geometrist",
+  "markovian"                 = "glyph_agent_markovian",
+  "theoretical-researcher"    = "glyph_agent_theorist",
+  "diffusion-specialist"      = "glyph_agent_diffusion"
 )

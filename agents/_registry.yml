@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 34
-version: "2.0"
-last_updated: "2026-02-12"
+total_agents: 43
+version: "2.1"
+last_updated: "2026-02-16"
 
 default_skills:
   - id: meditate
@@ -558,3 +558,104 @@ agents:
       - create-pull-request
       - manage-git-branches
       - write-claude-md
+
+  - id: tour-planner
+    path: agents/tour-planner.md
+    description: Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output
+    tags: [travel, mapping, geospatial, leaflet, gpx, cartography, route-planning]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - plan-tour-route
+      - create-spatial-visualization
+      - generate-tour-report
+
+  - id: hiking-guide
+    path: agents/hiking-guide.md
+    description: Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols
+    tags: [travel, hiking, trails, gear, safety, outdoor, mountains]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - plan-hiking-tour
+      - check-hiking-gear
+      - assess-trail-conditions
+
+  - id: relocation-expert
+    path: agents/relocation-expert.md
+    description: Cross-border relocation specialist for EU/DACH region covering residence registration, work permits, tax, health insurance, and social security coordination
+    tags: [relocation, eu, dach, bureaucracy, immigration, tax, insurance]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - plan-eu-relocation
+      - check-relocation-documents
+      - navigate-dach-bureaucracy
+
+  - id: mcp-developer
+    path: agents/mcp-developer.md
+    description: MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers
+    tags: [mcp, server, protocol, sdk, typescript, python, tool-design]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - analyze-codebase-for-mcp
+      - scaffold-mcp-server
+      - configure-mcp-server
+      - build-custom-mcp-server
+      - troubleshoot-mcp-connection
+
+  - id: acp-developer
+    path: agents/acp-developer.md
+    description: Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming
+    tags: [a2a, agent-protocol, interoperability, json-rpc, agent-card, streaming]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+    skills:
+      - design-a2a-agent-card
+      - implement-a2a-server
+      - test-a2a-interop
+
+  - id: geometrist
+    path: agents/geometrist.md
+    description: Classical and computational geometry specialist for ruler-and-compass constructions, Euclidean proofs, trigonometric problem solving, and geometric transformations
+    tags: [geometry, trigonometry, euclidean, constructions, proofs, transformations]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - construct-geometric-figure
+      - solve-trigonometric-problem
+      - prove-geometric-theorem
+
+  - id: markovian
+    path: agents/markovian.md
+    description: Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics
+    tags: [stochastic-processes, markov, hmm, mcmc, probability, simulation]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - model-markov-chain
+      - fit-hidden-markov-model
+      - simulate-stochastic-process
+
+  - id: theoretical-researcher
+    path: agents/theoretical-researcher.md
+    description: Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis
+    tags: [theoretical-science, quantum-physics, quantum-chemistry, mathematics, derivation, proof]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - formulate-quantum-problem
+      - derive-theoretical-result
+      - survey-theoretical-literature
+
+  - id: diffusion-specialist
+    path: agents/diffusion-specialist.md
+    description: Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation
+    tags: [diffusion, ddm, drift-diffusion, denoising, generative-ai, cognitive-science]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - fit-drift-diffusion-model
+      - implement-diffusion-network
+      - analyze-diffusion-dynamics

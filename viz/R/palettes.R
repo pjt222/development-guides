@@ -8,32 +8,36 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 32 domains) ──────────────────────────────
+# ── Domain order (alphabetical, 39 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
-  "alchemy", "animal-training", "bushcraft", "compliance", "containerization",
-  "crafting", "data-serialization", "defensive", "design", "devops", "esoteric",
-  "gardening", "general", "git", "intellectual-property", "jigsawr", "library-science",
-  "mcp-integration", "mlops", "morphic", "mycology", "observability", "project-management",
-  "prospecting", "r-packages", "reporting", "review", "shiny", "swarm", "tcg", "web-dev",
-  "workflow-visualization"
+  "a2a-protocol", "alchemy", "animal-training", "bushcraft", "compliance",
+  "containerization", "crafting", "data-serialization", "defensive", "design",
+  "devops", "diffusion", "esoteric", "gardening", "general", "geometry", "git",
+  "intellectual-property", "jigsawr", "library-science", "mcp-integration", "mlops",
+  "morphic", "mycology", "observability", "project-management", "prospecting",
+  "r-packages", "relocation", "reporting", "review", "shiny", "stochastic-processes",
+  "swarm", "tcg", "theoretical-science", "travel", "web-dev", "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 34 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 43 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
-  "alchemist", "auditor", "code-reviewer", "designer", "dog-trainer", "devops-engineer",
-  "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "librarian",
-  "martial-artist", "mlops-engineer", "mycologist", "mystic", "polymath",
-  "project-manager", "prospector", "putior-integrator", "quarto-developer",
-  "r-developer", "security-analyst", "shaman", "senior-data-scientist",
-  "senior-researcher", "senior-software-developer", "senior-ux-ui-specialist",
-  "senior-web-designer", "shapeshifter", "shiny-developer", "survivalist",
-  "swarm-strategist", "tcg-specialist", "web-developer"
+  "acp-developer", "alchemist", "auditor", "code-reviewer", "designer",
+  "devops-engineer", "diffusion-specialist", "dog-trainer", "gardener", "geometrist",
+  "gxp-validator", "hiking-guide", "ip-analyst", "jigsawr-developer", "librarian",
+  "markovian", "martial-artist", "mcp-developer", "mlops-engineer", "mycologist",
+  "mystic", "polymath", "project-manager", "prospector", "putior-integrator",
+  "quarto-developer", "r-developer", "relocation-expert", "security-analyst",
+  "senior-data-scientist", "senior-researcher", "senior-software-developer",
+  "senior-ux-ui-specialist", "senior-web-designer", "shaman", "shapeshifter",
+  "shiny-developer", "survivalist", "swarm-strategist", "tcg-specialist",
+  "theoretical-researcher", "tour-planner", "web-developer"
 )
 
-# ── Team order (alphabetical, 6 teams) ────────────────────────────────────
+# ── Team order (alphabetical, 8 teams) ────────────────────────────────────
 PALETTE_TEAM_ORDER <- c(
   "ai-self-care", "devops-platform-engineering", "fullstack-web-dev",
-  "gxp-compliance-validation", "ml-data-science-review", "r-package-review"
+  "gxp-compliance-validation", "ml-data-science-review", "opaque-team",
+  "r-package-review", "scrum-team"
 )
 
 # ── viridisLite option mapping ────────────────────────────────────────────
@@ -68,6 +72,7 @@ get_palette_colors <- function(name) {
 #' Get cyberpunk palette (hand-tuned neon colors)
 get_cyberpunk_colors <- function() {
   domains <- list(
+    "a2a-protocol"           = "#44bbaa",
     "alchemy"                = "#ffaa33",
     "animal-training"        = "#ff9944",
     "bushcraft"              = "#88cc44",
@@ -78,9 +83,11 @@ get_cyberpunk_colors <- function() {
     "defensive"              = "#ff4444",
     "design"                 = "#ff88dd",
     "devops"                 = "#00ff88",
+    "diffusion"              = "#cc77ff",
     "esoteric"               = "#dd44ff",
     "gardening"              = "#44bb66",
     "general"                = "#ccccff",
+    "geometry"               = "#55ccdd",
     "git"                    = "#66ffcc",
     "intellectual-property"  = "#33ccff",
     "jigsawr"                = "#22ddaa",
@@ -93,28 +100,38 @@ get_cyberpunk_colors <- function() {
     "project-management"     = "#ff8844",
     "prospecting"            = "#ddaa33",
     "r-packages"             = "#00f0ff",
+    "relocation"             = "#ff9977",
     "reporting"              = "#ffdd00",
     "review"                 = "#ff66aa",
     "shiny"                  = "#3399ff",
+    "stochastic-processes"   = "#77aaff",
     "swarm"                  = "#aadd44",
     "tcg"                    = "#ff5577",
+    "theoretical-science"    = "#ddbb55",
+    "travel"                 = "#66cc99",
     "web-dev"                = "#ff6633",
     "workflow-visualization" = "#66dd88"
   )
 
   agents <- list(
+    "acp-developer"             = "#44bbaa",
     "alchemist"                 = "#ffaa33",
     "auditor"                   = "#ff7744",
     "code-reviewer"             = "#ff66aa",
     "designer"                  = "#ff88dd",
-    "dog-trainer"               = "#ff9944",
     "devops-engineer"           = "#00ff88",
+    "diffusion-specialist"      = "#cc77ff",
+    "dog-trainer"               = "#ff9944",
     "gardener"                  = "#44bb66",
+    "geometrist"                = "#55ccdd",
     "gxp-validator"             = "#ff3399",
+    "hiking-guide"              = "#77cc66",
     "ip-analyst"                = "#33ccff",
     "jigsawr-developer"         = "#22ddaa",
     "librarian"                 = "#8B7355",
+    "markovian"                 = "#77aaff",
     "martial-artist"            = "#ff4466",
+    "mcp-developer"             = "#00ccaa",
     "mlops-engineer"            = "#bb77ff",
     "mycologist"                = "#aa77cc",
     "mystic"                    = "#dd44ff",
@@ -124,18 +141,21 @@ get_cyberpunk_colors <- function() {
     "putior-integrator"         = "#66dd88",
     "quarto-developer"          = "#33ddcc",
     "r-developer"               = "#00f0ff",
+    "relocation-expert"         = "#ff9977",
     "security-analyst"          = "#ff3333",
-    "shaman"                    = "#9944ff",
     "senior-data-scientist"     = "#aa66ff",
     "senior-researcher"         = "#ffaa00",
     "senior-software-developer" = "#44ddff",
     "senior-ux-ui-specialist"   = "#66ffcc",
     "senior-web-designer"       = "#ffdd00",
+    "shaman"                    = "#9944ff",
     "shapeshifter"              = "#bb88ff",
     "shiny-developer"           = "#3399ff",
     "survivalist"               = "#88cc44",
     "swarm-strategist"          = "#aadd44",
     "tcg-specialist"            = "#ff5577",
+    "theoretical-researcher"    = "#ddbb55",
+    "tour-planner"              = "#66cc99",
     "web-developer"             = "#ff6633"
   )
 
@@ -145,7 +165,9 @@ get_cyberpunk_colors <- function() {
     "fullstack-web-dev"           = "#ffcc00",   # golden yellow
     "gxp-compliance-validation"   = "#ff6ec7",   # hot pink
     "ml-data-science-review"      = "#7b68ee",   # medium slate blue
-    "r-package-review"            = "#00ccff"    # bright cyan
+    "opaque-team"                 = "#bb88ff",   # lavender (shapeshifter)
+    "r-package-review"            = "#00ccff",   # bright cyan
+    "scrum-team"                  = "#ff8844"    # warm orange (PM)
   )
 
   list(domains = domains, agents = agents, teams = teams)

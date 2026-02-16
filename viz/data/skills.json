@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T14:13:40.782Z",
-    "totalSkills": 202,
-    "totalAgents": 34,
-    "totalTeams": 6,
-    "totalNodes": 242,
-    "totalLinks": 1141,
-    "totalAgentLinks": 268,
-    "totalTeamLinks": 24,
-    "totalDomains": 32
+    "generated": "2026-02-16T15:05:10.820Z",
+    "totalSkills": 228,
+    "totalAgents": 43,
+    "totalTeams": 8,
+    "totalNodes": 279,
+    "totalLinks": 1255,
+    "totalAgentLinks": 297,
+    "totalTeamLinks": 28,
+    "totalDomains": 39
   },
   "domains": {
     "r-packages": {
@@ -33,7 +33,7 @@
     },
     "mcp-integration": {
       "description": "MCP server setup and troubleshooting skills",
-      "count": 3
+      "count": 5
     },
     "web-dev": {
       "description": "Web development skills for Next.js and modern frontend",
@@ -137,6 +137,34 @@
     },
     "library-science": {
       "description": "Library cataloging, collection management, and material preservation",
+      "count": 3
+    },
+    "travel": {
+      "description": "Tour planning, hiking, route visualization, and outdoor trip logistics",
+      "count": 6
+    },
+    "relocation": {
+      "description": "Cross-border EU/DACH relocation planning, documents, and bureaucracy",
+      "count": 3
+    },
+    "a2a-protocol": {
+      "description": "Google A2A agent-to-agent protocol implementation and interoperability",
+      "count": 3
+    },
+    "geometry": {
+      "description": "Classical and computational geometry, trigonometry, and proofs",
+      "count": 3
+    },
+    "stochastic-processes": {
+      "description": "Markov chains, HMMs, MCMC, and stochastic simulation",
+      "count": 3
+    },
+    "theoretical-science": {
+      "description": "Quantum physics, quantum chemistry, and theoretical mathematics",
+      "count": 3
+    },
+    "diffusion": {
+      "description": "Cognitive drift-diffusion models and generative AI diffusion models",
       "count": 3
     }
   },
@@ -1293,6 +1321,55 @@
         "setup-wsl-dev-environment"
       ],
       "path": "mcp-integration/troubleshoot-mcp-connection/SKILL.md"
+    },
+    {
+      "id": "analyze-codebase-for-mcp",
+      "type": "skill",
+      "title": "Analyze Codebase for MCP",
+      "domain": "mcp-integration",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Analyze a codebase to identify functions and APIs suitable for MCP tool exposure",
+      "tags": [
+        "mcp",
+        "analysis",
+        "tool-design",
+        "codebase"
+      ],
+      "related": [
+        "scaffold-mcp-server",
+        "build-custom-mcp-server",
+        "configure-mcp-server",
+        "troubleshoot-mcp-connection",
+        "review-software-architecture",
+        "security-audit-codebase"
+      ],
+      "path": "mcp-integration/analyze-codebase-for-mcp/SKILL.md"
+    },
+    {
+      "id": "scaffold-mcp-server",
+      "type": "skill",
+      "title": "Scaffold MCP Server",
+      "domain": "mcp-integration",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Scaffold a new MCP server from tool specifications using official SDKs",
+      "tags": [
+        "mcp",
+        "scaffold",
+        "sdk",
+        "typescript",
+        "python",
+        "server"
+      ],
+      "related": [
+        "analyze-codebase-for-mcp",
+        "build-custom-mcp-server",
+        "configure-mcp-server",
+        "troubleshoot-mcp-connection",
+        "containerize-mcp-server"
+      ],
+      "path": "mcp-integration/scaffold-mcp-server/SKILL.md"
     },
     {
       "id": "scaffold-nextjs-app",
@@ -5010,6 +5087,543 @@
       "path": "library-science/curate-collection/SKILL.md"
     },
     {
+      "id": "plan-tour-route",
+      "type": "skill",
+      "title": "Plan Tour Route",
+      "domain": "travel",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Plan a multi-stop tour route with waypoint optimization and time estimation",
+      "tags": [
+        "travel",
+        "routing",
+        "waypoints",
+        "osm",
+        "itinerary"
+      ],
+      "related": [
+        "create-spatial-visualization",
+        "generate-tour-report",
+        "plan-hiking-tour",
+        "assess-trail-conditions"
+      ],
+      "path": "travel/plan-tour-route/SKILL.md"
+    },
+    {
+      "id": "create-spatial-visualization",
+      "type": "skill",
+      "title": "Create Spatial Visualization",
+      "domain": "travel",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Create interactive maps and elevation profiles from spatial data",
+      "tags": [
+        "travel",
+        "maps",
+        "leaflet",
+        "gpx",
+        "elevation",
+        "visualization"
+      ],
+      "related": [
+        "plan-tour-route",
+        "generate-tour-report",
+        "plan-hiking-tour",
+        "create-quarto-report"
+      ],
+      "path": "travel/create-spatial-visualization/SKILL.md"
+    },
+    {
+      "id": "generate-tour-report",
+      "type": "skill",
+      "title": "Generate Tour Report",
+      "domain": "travel",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Generate a Quarto-based tour report with maps, itinerary, and logistics",
+      "tags": [
+        "travel",
+        "report",
+        "quarto",
+        "itinerary",
+        "logistics"
+      ],
+      "related": [
+        "plan-tour-route",
+        "create-spatial-visualization",
+        "create-quarto-report",
+        "plan-hiking-tour",
+        "check-hiking-gear"
+      ],
+      "path": "travel/generate-tour-report/SKILL.md"
+    },
+    {
+      "id": "plan-hiking-tour",
+      "type": "skill",
+      "title": "Plan Hiking Tour",
+      "domain": "travel",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Plan a hiking tour with trail selection, time estimation, and safety assessment",
+      "tags": [
+        "travel",
+        "hiking",
+        "trails",
+        "elevation",
+        "safety",
+        "difficulty"
+      ],
+      "related": [
+        "check-hiking-gear",
+        "assess-trail-conditions",
+        "plan-tour-route",
+        "create-spatial-visualization",
+        "generate-tour-report"
+      ],
+      "path": "travel/plan-hiking-tour/SKILL.md"
+    },
+    {
+      "id": "check-hiking-gear",
+      "type": "skill",
+      "title": "Check Hiking Gear",
+      "domain": "travel",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Generate and verify a hiking gear checklist optimized for conditions",
+      "tags": [
+        "travel",
+        "hiking",
+        "gear",
+        "checklist",
+        "weight",
+        "packing"
+      ],
+      "related": [
+        "plan-hiking-tour",
+        "assess-trail-conditions",
+        "make-fire",
+        "purify-water"
+      ],
+      "path": "travel/check-hiking-gear/SKILL.md"
+    },
+    {
+      "id": "assess-trail-conditions",
+      "type": "skill",
+      "title": "Assess Trail Conditions",
+      "domain": "travel",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Evaluate current trail conditions, weather, and safety factors",
+      "tags": [
+        "travel",
+        "hiking",
+        "safety",
+        "weather",
+        "terrain",
+        "conditions"
+      ],
+      "related": [
+        "plan-hiking-tour",
+        "check-hiking-gear",
+        "plan-tour-route",
+        "create-spatial-visualization"
+      ],
+      "path": "travel/assess-trail-conditions/SKILL.md"
+    },
+    {
+      "id": "plan-eu-relocation",
+      "type": "skill",
+      "title": "Plan EU Relocation",
+      "domain": "relocation",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Plan a complete EU relocation timeline with dependency mapping and deadlines",
+      "tags": [
+        "relocation",
+        "eu",
+        "dach",
+        "timeline",
+        "dependencies",
+        "planning"
+      ],
+      "related": [
+        "check-relocation-documents",
+        "navigate-dach-bureaucracy"
+      ],
+      "path": "relocation/plan-eu-relocation/SKILL.md"
+    },
+    {
+      "id": "check-relocation-documents",
+      "type": "skill",
+      "title": "Check Relocation Documents",
+      "domain": "relocation",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Verify document completeness for each bureaucratic step",
+      "tags": [
+        "relocation",
+        "documents",
+        "checklist",
+        "verification",
+        "translation"
+      ],
+      "related": [
+        "plan-eu-relocation",
+        "navigate-dach-bureaucracy"
+      ],
+      "path": "relocation/check-relocation-documents/SKILL.md"
+    },
+    {
+      "id": "navigate-dach-bureaucracy",
+      "type": "skill",
+      "title": "Navigate DACH Bureaucracy",
+      "domain": "relocation",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Step-by-step guidance for DACH-specific governmental procedures",
+      "tags": [
+        "relocation",
+        "dach",
+        "germany",
+        "austria",
+        "switzerland",
+        "anmeldung",
+        "finanzamt"
+      ],
+      "related": [
+        "plan-eu-relocation",
+        "check-relocation-documents"
+      ],
+      "path": "relocation/navigate-dach-bureaucracy/SKILL.md"
+    },
+    {
+      "id": "design-a2a-agent-card",
+      "type": "skill",
+      "title": "Design A2A Agent Card",
+      "domain": "a2a-protocol",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Design an A2A Agent Card manifest with capabilities and authentication",
+      "tags": [
+        "a2a",
+        "agent-card",
+        "manifest",
+        "capabilities",
+        "interoperability"
+      ],
+      "related": [
+        "implement-a2a-server",
+        "test-a2a-interop",
+        "build-custom-mcp-server",
+        "configure-mcp-server"
+      ],
+      "path": "a2a-protocol/design-a2a-agent-card/SKILL.md"
+    },
+    {
+      "id": "implement-a2a-server",
+      "type": "skill",
+      "title": "Implement A2A Server",
+      "domain": "a2a-protocol",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Implement a JSON-RPC 2.0 A2A server with task lifecycle management",
+      "tags": [
+        "a2a",
+        "server",
+        "json-rpc",
+        "task-lifecycle",
+        "streaming",
+        "sse"
+      ],
+      "related": [
+        "design-a2a-agent-card",
+        "test-a2a-interop",
+        "build-custom-mcp-server",
+        "scaffold-mcp-server",
+        "configure-ingress-networking"
+      ],
+      "path": "a2a-protocol/implement-a2a-server/SKILL.md"
+    },
+    {
+      "id": "test-a2a-interop",
+      "type": "skill",
+      "title": "Test A2A Interoperability",
+      "domain": "a2a-protocol",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Test A2A interoperability with conformance validation",
+      "tags": [
+        "a2a",
+        "testing",
+        "interoperability",
+        "conformance",
+        "integration"
+      ],
+      "related": [
+        "design-a2a-agent-card",
+        "implement-a2a-server",
+        "build-ci-cd-pipeline",
+        "troubleshoot-mcp-connection",
+        "review-software-architecture"
+      ],
+      "path": "a2a-protocol/test-a2a-interop/SKILL.md"
+    },
+    {
+      "id": "construct-geometric-figure",
+      "type": "skill",
+      "title": "Construct a Geometric Figure",
+      "domain": "geometry",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Perform ruler-and-compass constructions with step-by-step justification",
+      "tags": [
+        "geometry",
+        "construction",
+        "ruler-compass",
+        "euclidean",
+        "straightedge"
+      ],
+      "related": [
+        "solve-trigonometric-problem",
+        "prove-geometric-theorem",
+        "skill-creation"
+      ],
+      "path": "geometry/construct-geometric-figure/SKILL.md"
+    },
+    {
+      "id": "solve-trigonometric-problem",
+      "type": "skill",
+      "title": "Solve a Trigonometric Problem",
+      "domain": "geometry",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Solve trigonometric equations and triangle problems systematically",
+      "tags": [
+        "geometry",
+        "trigonometry",
+        "identities",
+        "triangle",
+        "sines",
+        "cosines"
+      ],
+      "related": [
+        "construct-geometric-figure",
+        "prove-geometric-theorem",
+        "skill-creation"
+      ],
+      "path": "geometry/solve-trigonometric-problem/SKILL.md"
+    },
+    {
+      "id": "prove-geometric-theorem",
+      "type": "skill",
+      "title": "Prove a Geometric Theorem",
+      "domain": "geometry",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Prove geometric theorems using axiomatic or coordinate methods",
+      "tags": [
+        "geometry",
+        "proof",
+        "theorem",
+        "euclidean",
+        "axiomatic",
+        "coordinate"
+      ],
+      "related": [
+        "construct-geometric-figure",
+        "solve-trigonometric-problem",
+        "skill-creation"
+      ],
+      "path": "geometry/prove-geometric-theorem/SKILL.md"
+    },
+    {
+      "id": "model-markov-chain",
+      "type": "skill",
+      "title": "Model Markov Chain",
+      "domain": "stochastic-processes",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Build and analyze Markov chains with stationary distribution computation",
+      "tags": [
+        "stochastic",
+        "markov-chain",
+        "transition-matrix",
+        "stationary-distribution"
+      ],
+      "related": [],
+      "path": "stochastic-processes/model-markov-chain/SKILL.md"
+    },
+    {
+      "id": "fit-hidden-markov-model",
+      "type": "skill",
+      "title": "Fit Hidden Markov Model",
+      "domain": "stochastic-processes",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Fit HMMs using Baum-Welch with model selection and Viterbi decoding",
+      "tags": [
+        "stochastic",
+        "hmm",
+        "baum-welch",
+        "viterbi",
+        "em-algorithm"
+      ],
+      "related": [],
+      "path": "stochastic-processes/fit-hidden-markov-model/SKILL.md"
+    },
+    {
+      "id": "simulate-stochastic-process",
+      "type": "skill",
+      "title": "Simulate Stochastic Process",
+      "domain": "stochastic-processes",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Simulate stochastic processes with convergence diagnostics and visualization",
+      "tags": [
+        "stochastic",
+        "simulation",
+        "mcmc",
+        "convergence",
+        "monte-carlo"
+      ],
+      "related": [],
+      "path": "stochastic-processes/simulate-stochastic-process/SKILL.md"
+    },
+    {
+      "id": "formulate-quantum-problem",
+      "type": "skill",
+      "title": "Formulate Quantum Problem",
+      "domain": "theoretical-science",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Formulate quantum problems with proper mathematical framework",
+      "tags": [
+        "theoretical",
+        "quantum-mechanics",
+        "quantum-chemistry",
+        "hilbert-space",
+        "formulation"
+      ],
+      "related": [
+        "derive-theoretical-result",
+        "survey-theoretical-literature"
+      ],
+      "path": "theoretical-science/formulate-quantum-problem/SKILL.md"
+    },
+    {
+      "id": "derive-theoretical-result",
+      "type": "skill",
+      "title": "Derive Theoretical Result",
+      "domain": "theoretical-science",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Derive theoretical results step-by-step from first principles",
+      "tags": [
+        "theoretical",
+        "derivation",
+        "proof",
+        "first-principles",
+        "mathematics",
+        "physics"
+      ],
+      "related": [
+        "formulate-quantum-problem",
+        "survey-theoretical-literature"
+      ],
+      "path": "theoretical-science/derive-theoretical-result/SKILL.md"
+    },
+    {
+      "id": "survey-theoretical-literature",
+      "type": "skill",
+      "title": "Survey Theoretical Literature",
+      "domain": "theoretical-science",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Survey and synthesize theoretical literature on a specific topic",
+      "tags": [
+        "theoretical",
+        "literature",
+        "survey",
+        "synthesis",
+        "review",
+        "research"
+      ],
+      "related": [
+        "formulate-quantum-problem",
+        "derive-theoretical-result",
+        "review-research"
+      ],
+      "path": "theoretical-science/survey-theoretical-literature/SKILL.md"
+    },
+    {
+      "id": "fit-drift-diffusion-model",
+      "type": "skill",
+      "title": "Fit a Drift-Diffusion Model",
+      "domain": "diffusion",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Fit cognitive drift-diffusion models to reaction time data",
+      "tags": [
+        "diffusion",
+        "ddm",
+        "drift-diffusion",
+        "cognitive",
+        "reaction-time",
+        "estimation"
+      ],
+      "related": [
+        "analyze-diffusion-dynamics",
+        "implement-diffusion-network",
+        "write-testthat-tests"
+      ],
+      "path": "diffusion/fit-drift-diffusion-model/SKILL.md"
+    },
+    {
+      "id": "implement-diffusion-network",
+      "type": "skill",
+      "title": "Implement a Diffusion Network",
+      "domain": "diffusion",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Implement generative diffusion models (DDPM/score-based) with training and sampling",
+      "tags": [
+        "diffusion",
+        "ddpm",
+        "generative-ai",
+        "denoising",
+        "score-matching",
+        "u-net"
+      ],
+      "related": [
+        "analyze-diffusion-dynamics",
+        "fit-drift-diffusion-model"
+      ],
+      "path": "diffusion/implement-diffusion-network/SKILL.md"
+    },
+    {
+      "id": "analyze-diffusion-dynamics",
+      "type": "skill",
+      "title": "Analyze Diffusion Dynamics",
+      "domain": "diffusion",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Analyze diffusion dynamics using SDEs and Fokker-Planck equations",
+      "tags": [
+        "diffusion",
+        "sde",
+        "fokker-planck",
+        "first-passage",
+        "dynamics",
+        "analysis"
+      ],
+      "related": [
+        "fit-drift-diffusion-model",
+        "implement-diffusion-network",
+        "write-testthat-tests"
+      ],
+      "path": "diffusion/analyze-diffusion-dynamics/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -6208,6 +6822,282 @@
       "path": "agents/shiny-developer.md"
     },
     {
+      "id": "agent:tour-planner",
+      "type": "agent",
+      "title": "Tour Planner",
+      "priority": "normal",
+      "description": "Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output",
+      "tags": [
+        "travel",
+        "mapping",
+        "geospatial",
+        "leaflet",
+        "gpx",
+        "cartography",
+        "route-planning"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "plan-tour-route",
+        "create-spatial-visualization",
+        "generate-tour-report"
+      ],
+      "path": "agents/tour-planner.md"
+    },
+    {
+      "id": "agent:hiking-guide",
+      "type": "agent",
+      "title": "Hiking Guide",
+      "priority": "normal",
+      "description": "Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols",
+      "tags": [
+        "travel",
+        "hiking",
+        "trails",
+        "gear",
+        "safety",
+        "outdoor",
+        "mountains"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "plan-hiking-tour",
+        "check-hiking-gear",
+        "assess-trail-conditions"
+      ],
+      "path": "agents/hiking-guide.md"
+    },
+    {
+      "id": "agent:relocation-expert",
+      "type": "agent",
+      "title": "Relocation Expert",
+      "priority": "normal",
+      "description": "Cross-border relocation specialist for EU/DACH region covering residence registration, work permits, tax, health insurance, and social security coordination",
+      "tags": [
+        "relocation",
+        "eu",
+        "dach",
+        "bureaucracy",
+        "immigration",
+        "tax",
+        "insurance"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "plan-eu-relocation",
+        "check-relocation-documents",
+        "navigate-dach-bureaucracy"
+      ],
+      "path": "agents/relocation-expert.md"
+    },
+    {
+      "id": "agent:mcp-developer",
+      "type": "agent",
+      "title": "Mcp Developer",
+      "priority": "normal",
+      "description": "MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers",
+      "tags": [
+        "mcp",
+        "server",
+        "protocol",
+        "sdk",
+        "typescript",
+        "python",
+        "tool-design"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "analyze-codebase-for-mcp",
+        "scaffold-mcp-server",
+        "configure-mcp-server",
+        "build-custom-mcp-server",
+        "troubleshoot-mcp-connection"
+      ],
+      "path": "agents/mcp-developer.md"
+    },
+    {
+      "id": "agent:acp-developer",
+      "type": "agent",
+      "title": "Acp Developer",
+      "priority": "normal",
+      "description": "Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming",
+      "tags": [
+        "a2a",
+        "agent-protocol",
+        "interoperability",
+        "json-rpc",
+        "agent-card",
+        "streaming"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "design-a2a-agent-card",
+        "implement-a2a-server",
+        "test-a2a-interop"
+      ],
+      "path": "agents/acp-developer.md"
+    },
+    {
+      "id": "agent:geometrist",
+      "type": "agent",
+      "title": "Geometrist",
+      "priority": "normal",
+      "description": "Classical and computational geometry specialist for ruler-and-compass constructions, Euclidean proofs, trigonometric problem solving, and geometric transformations",
+      "tags": [
+        "geometry",
+        "trigonometry",
+        "euclidean",
+        "constructions",
+        "proofs",
+        "transformations"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "construct-geometric-figure",
+        "solve-trigonometric-problem",
+        "prove-geometric-theorem"
+      ],
+      "path": "agents/geometrist.md"
+    },
+    {
+      "id": "agent:markovian",
+      "type": "agent",
+      "title": "Markovian",
+      "priority": "normal",
+      "description": "Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics",
+      "tags": [
+        "stochastic-processes",
+        "markov",
+        "hmm",
+        "mcmc",
+        "probability",
+        "simulation"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "model-markov-chain",
+        "fit-hidden-markov-model",
+        "simulate-stochastic-process"
+      ],
+      "path": "agents/markovian.md"
+    },
+    {
+      "id": "agent:theoretical-researcher",
+      "type": "agent",
+      "title": "Theoretical Researcher",
+      "priority": "normal",
+      "description": "Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis",
+      "tags": [
+        "theoretical-science",
+        "quantum-physics",
+        "quantum-chemistry",
+        "mathematics",
+        "derivation",
+        "proof"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "formulate-quantum-problem",
+        "derive-theoretical-result",
+        "survey-theoretical-literature"
+      ],
+      "path": "agents/theoretical-researcher.md"
+    },
+    {
+      "id": "agent:diffusion-specialist",
+      "type": "agent",
+      "title": "Diffusion Specialist",
+      "priority": "normal",
+      "description": "Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation",
+      "tags": [
+        "diffusion",
+        "ddm",
+        "drift-diffusion",
+        "denoising",
+        "generative-ai",
+        "cognitive-science"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "fit-drift-diffusion-model",
+        "implement-diffusion-network",
+        "analyze-diffusion-dynamics"
+      ],
+      "path": "agents/diffusion-specialist.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -6341,6 +7231,48 @@
         "meta-cognitive"
       ],
       "path": "teams/ai-self-care.md"
+    },
+    {
+      "id": "team:scrum-team",
+      "type": "team",
+      "title": "Scrum Team",
+      "lead": "project-manager",
+      "members": [
+        "project-manager",
+        "senior-software-developer",
+        "code-reviewer"
+      ],
+      "coordination": "timeboxed",
+      "description": "Pure Scrum team enforcing the full framework with three accountabilities, five events, and three artifacts",
+      "tags": [
+        "scrum",
+        "agile",
+        "sprint",
+        "product-backlog",
+        "increment",
+        "timeboxed"
+      ],
+      "path": "teams/scrum-team.md"
+    },
+    {
+      "id": "team:opaque-team",
+      "type": "team",
+      "title": "Opaque Team",
+      "lead": "shapeshifter",
+      "members": [
+        "shapeshifter"
+      ],
+      "coordination": "adaptive",
+      "description": "Variable-size team of N shapeshifters that self-organize into any roles needed",
+      "tags": [
+        "morphic",
+        "adaptive",
+        "meta-team",
+        "shapeshifter",
+        "self-organizing",
+        "emergent"
+      ],
+      "path": "teams/opaque-team.md"
     }
   ],
   "links": [
@@ -7332,6 +8264,61 @@
     {
       "source": "troubleshoot-mcp-connection",
       "target": "setup-wsl-dev-environment",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "scaffold-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "build-custom-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "configure-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "troubleshoot-mcp-connection",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-codebase-for-mcp",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-mcp-server",
+      "target": "analyze-codebase-for-mcp",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-mcp-server",
+      "target": "build-custom-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-mcp-server",
+      "target": "configure-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-mcp-server",
+      "target": "troubleshoot-mcp-connection",
+      "type": "skill"
+    },
+    {
+      "source": "scaffold-mcp-server",
+      "target": "containerize-mcp-server",
       "type": "skill"
     },
     {
@@ -10590,6 +11577,356 @@
       "type": "skill"
     },
     {
+      "source": "plan-tour-route",
+      "target": "create-spatial-visualization",
+      "type": "skill"
+    },
+    {
+      "source": "plan-tour-route",
+      "target": "generate-tour-report",
+      "type": "skill"
+    },
+    {
+      "source": "plan-tour-route",
+      "target": "plan-hiking-tour",
+      "type": "skill"
+    },
+    {
+      "source": "plan-tour-route",
+      "target": "assess-trail-conditions",
+      "type": "skill"
+    },
+    {
+      "source": "create-spatial-visualization",
+      "target": "plan-tour-route",
+      "type": "skill"
+    },
+    {
+      "source": "create-spatial-visualization",
+      "target": "generate-tour-report",
+      "type": "skill"
+    },
+    {
+      "source": "create-spatial-visualization",
+      "target": "plan-hiking-tour",
+      "type": "skill"
+    },
+    {
+      "source": "create-spatial-visualization",
+      "target": "create-quarto-report",
+      "type": "skill"
+    },
+    {
+      "source": "generate-tour-report",
+      "target": "plan-tour-route",
+      "type": "skill"
+    },
+    {
+      "source": "generate-tour-report",
+      "target": "create-spatial-visualization",
+      "type": "skill"
+    },
+    {
+      "source": "generate-tour-report",
+      "target": "create-quarto-report",
+      "type": "skill"
+    },
+    {
+      "source": "generate-tour-report",
+      "target": "plan-hiking-tour",
+      "type": "skill"
+    },
+    {
+      "source": "generate-tour-report",
+      "target": "check-hiking-gear",
+      "type": "skill"
+    },
+    {
+      "source": "plan-hiking-tour",
+      "target": "check-hiking-gear",
+      "type": "skill"
+    },
+    {
+      "source": "plan-hiking-tour",
+      "target": "assess-trail-conditions",
+      "type": "skill"
+    },
+    {
+      "source": "plan-hiking-tour",
+      "target": "plan-tour-route",
+      "type": "skill"
+    },
+    {
+      "source": "plan-hiking-tour",
+      "target": "create-spatial-visualization",
+      "type": "skill"
+    },
+    {
+      "source": "plan-hiking-tour",
+      "target": "generate-tour-report",
+      "type": "skill"
+    },
+    {
+      "source": "check-hiking-gear",
+      "target": "plan-hiking-tour",
+      "type": "skill"
+    },
+    {
+      "source": "check-hiking-gear",
+      "target": "assess-trail-conditions",
+      "type": "skill"
+    },
+    {
+      "source": "check-hiking-gear",
+      "target": "make-fire",
+      "type": "skill"
+    },
+    {
+      "source": "check-hiking-gear",
+      "target": "purify-water",
+      "type": "skill"
+    },
+    {
+      "source": "assess-trail-conditions",
+      "target": "plan-hiking-tour",
+      "type": "skill"
+    },
+    {
+      "source": "assess-trail-conditions",
+      "target": "check-hiking-gear",
+      "type": "skill"
+    },
+    {
+      "source": "assess-trail-conditions",
+      "target": "plan-tour-route",
+      "type": "skill"
+    },
+    {
+      "source": "assess-trail-conditions",
+      "target": "create-spatial-visualization",
+      "type": "skill"
+    },
+    {
+      "source": "plan-eu-relocation",
+      "target": "check-relocation-documents",
+      "type": "skill"
+    },
+    {
+      "source": "plan-eu-relocation",
+      "target": "navigate-dach-bureaucracy",
+      "type": "skill"
+    },
+    {
+      "source": "check-relocation-documents",
+      "target": "plan-eu-relocation",
+      "type": "skill"
+    },
+    {
+      "source": "check-relocation-documents",
+      "target": "navigate-dach-bureaucracy",
+      "type": "skill"
+    },
+    {
+      "source": "navigate-dach-bureaucracy",
+      "target": "plan-eu-relocation",
+      "type": "skill"
+    },
+    {
+      "source": "navigate-dach-bureaucracy",
+      "target": "check-relocation-documents",
+      "type": "skill"
+    },
+    {
+      "source": "design-a2a-agent-card",
+      "target": "implement-a2a-server",
+      "type": "skill"
+    },
+    {
+      "source": "design-a2a-agent-card",
+      "target": "test-a2a-interop",
+      "type": "skill"
+    },
+    {
+      "source": "design-a2a-agent-card",
+      "target": "build-custom-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "design-a2a-agent-card",
+      "target": "configure-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "implement-a2a-server",
+      "target": "design-a2a-agent-card",
+      "type": "skill"
+    },
+    {
+      "source": "implement-a2a-server",
+      "target": "test-a2a-interop",
+      "type": "skill"
+    },
+    {
+      "source": "implement-a2a-server",
+      "target": "build-custom-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "implement-a2a-server",
+      "target": "scaffold-mcp-server",
+      "type": "skill"
+    },
+    {
+      "source": "implement-a2a-server",
+      "target": "configure-ingress-networking",
+      "type": "skill"
+    },
+    {
+      "source": "test-a2a-interop",
+      "target": "design-a2a-agent-card",
+      "type": "skill"
+    },
+    {
+      "source": "test-a2a-interop",
+      "target": "implement-a2a-server",
+      "type": "skill"
+    },
+    {
+      "source": "test-a2a-interop",
+      "target": "build-ci-cd-pipeline",
+      "type": "skill"
+    },
+    {
+      "source": "test-a2a-interop",
+      "target": "troubleshoot-mcp-connection",
+      "type": "skill"
+    },
+    {
+      "source": "test-a2a-interop",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "construct-geometric-figure",
+      "target": "solve-trigonometric-problem",
+      "type": "skill"
+    },
+    {
+      "source": "construct-geometric-figure",
+      "target": "prove-geometric-theorem",
+      "type": "skill"
+    },
+    {
+      "source": "construct-geometric-figure",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "solve-trigonometric-problem",
+      "target": "construct-geometric-figure",
+      "type": "skill"
+    },
+    {
+      "source": "solve-trigonometric-problem",
+      "target": "prove-geometric-theorem",
+      "type": "skill"
+    },
+    {
+      "source": "solve-trigonometric-problem",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "prove-geometric-theorem",
+      "target": "construct-geometric-figure",
+      "type": "skill"
+    },
+    {
+      "source": "prove-geometric-theorem",
+      "target": "solve-trigonometric-problem",
+      "type": "skill"
+    },
+    {
+      "source": "prove-geometric-theorem",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-quantum-problem",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-quantum-problem",
+      "target": "survey-theoretical-literature",
+      "type": "skill"
+    },
+    {
+      "source": "derive-theoretical-result",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "derive-theoretical-result",
+      "target": "survey-theoretical-literature",
+      "type": "skill"
+    },
+    {
+      "source": "survey-theoretical-literature",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "survey-theoretical-literature",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "survey-theoretical-literature",
+      "target": "review-research",
+      "type": "skill"
+    },
+    {
+      "source": "fit-drift-diffusion-model",
+      "target": "analyze-diffusion-dynamics",
+      "type": "skill"
+    },
+    {
+      "source": "fit-drift-diffusion-model",
+      "target": "implement-diffusion-network",
+      "type": "skill"
+    },
+    {
+      "source": "fit-drift-diffusion-model",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "implement-diffusion-network",
+      "target": "analyze-diffusion-dynamics",
+      "type": "skill"
+    },
+    {
+      "source": "implement-diffusion-network",
+      "target": "fit-drift-diffusion-model",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-diffusion-dynamics",
+      "target": "fit-drift-diffusion-model",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-diffusion-dynamics",
+      "target": "implement-diffusion-network",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-diffusion-dynamics",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -11930,6 +13267,151 @@
       "type": "agent"
     },
     {
+      "source": "agent:tour-planner",
+      "target": "plan-tour-route",
+      "type": "agent"
+    },
+    {
+      "source": "agent:tour-planner",
+      "target": "create-spatial-visualization",
+      "type": "agent"
+    },
+    {
+      "source": "agent:tour-planner",
+      "target": "generate-tour-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hiking-guide",
+      "target": "plan-hiking-tour",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hiking-guide",
+      "target": "check-hiking-gear",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hiking-guide",
+      "target": "assess-trail-conditions",
+      "type": "agent"
+    },
+    {
+      "source": "agent:relocation-expert",
+      "target": "plan-eu-relocation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:relocation-expert",
+      "target": "check-relocation-documents",
+      "type": "agent"
+    },
+    {
+      "source": "agent:relocation-expert",
+      "target": "navigate-dach-bureaucracy",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mcp-developer",
+      "target": "analyze-codebase-for-mcp",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mcp-developer",
+      "target": "scaffold-mcp-server",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mcp-developer",
+      "target": "configure-mcp-server",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mcp-developer",
+      "target": "build-custom-mcp-server",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mcp-developer",
+      "target": "troubleshoot-mcp-connection",
+      "type": "agent"
+    },
+    {
+      "source": "agent:acp-developer",
+      "target": "design-a2a-agent-card",
+      "type": "agent"
+    },
+    {
+      "source": "agent:acp-developer",
+      "target": "implement-a2a-server",
+      "type": "agent"
+    },
+    {
+      "source": "agent:acp-developer",
+      "target": "test-a2a-interop",
+      "type": "agent"
+    },
+    {
+      "source": "agent:geometrist",
+      "target": "construct-geometric-figure",
+      "type": "agent"
+    },
+    {
+      "source": "agent:geometrist",
+      "target": "solve-trigonometric-problem",
+      "type": "agent"
+    },
+    {
+      "source": "agent:geometrist",
+      "target": "prove-geometric-theorem",
+      "type": "agent"
+    },
+    {
+      "source": "agent:markovian",
+      "target": "model-markov-chain",
+      "type": "agent"
+    },
+    {
+      "source": "agent:markovian",
+      "target": "fit-hidden-markov-model",
+      "type": "agent"
+    },
+    {
+      "source": "agent:markovian",
+      "target": "simulate-stochastic-process",
+      "type": "agent"
+    },
+    {
+      "source": "agent:theoretical-researcher",
+      "target": "formulate-quantum-problem",
+      "type": "agent"
+    },
+    {
+      "source": "agent:theoretical-researcher",
+      "target": "derive-theoretical-result",
+      "type": "agent"
+    },
+    {
+      "source": "agent:theoretical-researcher",
+      "target": "survey-theoretical-literature",
+      "type": "agent"
+    },
+    {
+      "source": "agent:diffusion-specialist",
+      "target": "fit-drift-diffusion-model",
+      "type": "agent"
+    },
+    {
+      "source": "agent:diffusion-specialist",
+      "target": "implement-diffusion-network",
+      "type": "agent"
+    },
+    {
+      "source": "agent:diffusion-specialist",
+      "target": "analyze-diffusion-dynamics",
+      "type": "agent"
+    },
+    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -12047,6 +13529,26 @@
     {
       "source": "team:ai-self-care",
       "target": "agent:shaman",
+      "type": "team"
+    },
+    {
+      "source": "team:scrum-team",
+      "target": "agent:project-manager",
+      "type": "team"
+    },
+    {
+      "source": "team:scrum-team",
+      "target": "agent:senior-software-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:scrum-team",
+      "target": "agent:code-reviewer",
+      "type": "team"
+    },
+    {
+      "source": "team:opaque-team",
+      "target": "agent:shapeshifter",
       "type": "team"
     }
   ]

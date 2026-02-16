@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 34,
+    "total_agents": 43,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -188,6 +188,51 @@
       "description": "Knowledge organization and library management specialist",
       "glow": "leather-brown",
       "concept": "Open book with catalog index tabs along right edge"
+    },
+    "tour-planner": {
+      "description": "Spatial and temporal tour planning with interactive maps",
+      "glow": "sage-green",
+      "concept": "Map pin with route line and compass rose"
+    },
+    "hiking-guide": {
+      "description": "Outdoor trip planning for hiking tours",
+      "glow": "earthy-green",
+      "concept": "Mountain peaks with winding trail path"
+    },
+    "relocation-expert": {
+      "description": "Cross-border EU/DACH relocation specialist",
+      "glow": "warm-coral",
+      "concept": "Suitcase with travel arrow and EU stars"
+    },
+    "mcp-developer": {
+      "description": "MCP server development and codebase analysis",
+      "glow": "teal",
+      "concept": "Socket connector with gear and cable"
+    },
+    "acp-developer": {
+      "description": "Agent-to-Agent protocol developer for interoperable systems",
+      "glow": "teal-aqua",
+      "concept": "Two agent circles with bidirectional arrows"
+    },
+    "geometrist": {
+      "description": "Classical and computational geometry specialist",
+      "glow": "ice-blue",
+      "concept": "Triangle with compass arc and angle markers"
+    },
+    "markovian": {
+      "description": "Stochastic process specialist for Markov models",
+      "glow": "soft-blue",
+      "concept": "Chain of connected state circles with transition arrows"
+    },
+    "theoretical-researcher": {
+      "description": "Theoretical science researcher spanning quantum physics and mathematics",
+      "glow": "warm-gold",
+      "concept": "Atom orbitals with central nucleus and integral sign"
+    },
+    "diffusion-specialist": {
+      "description": "Diffusion process specialist bridging cognitive and generative models",
+      "glow": "soft-purple",
+      "concept": "Gaussian bell curve with spreading particles"
     }
   },
   "icons": [
@@ -360,6 +405,51 @@
       "agentId": "librarian",
       "path": "icons/cyberpunk/agents/librarian.webp",
       "status": "done"
+    },
+    {
+      "agentId": "tour-planner",
+      "path": "icons/cyberpunk/agents/tour-planner.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "hiking-guide",
+      "path": "icons/cyberpunk/agents/hiking-guide.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "relocation-expert",
+      "path": "icons/cyberpunk/agents/relocation-expert.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "mcp-developer",
+      "path": "icons/cyberpunk/agents/mcp-developer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "acp-developer",
+      "path": "icons/cyberpunk/agents/acp-developer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "geometrist",
+      "path": "icons/cyberpunk/agents/geometrist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "markovian",
+      "path": "icons/cyberpunk/agents/markovian.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "theoretical-researcher",
+      "path": "icons/cyberpunk/agents/theoretical-researcher.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "diffusion-specialist",
+      "path": "icons/cyberpunk/agents/diffusion-specialist.webp",
+      "status": "pending"
     }
   ]
 }

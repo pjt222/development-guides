@@ -1,7 +1,7 @@
-version: "1.5"
-generated: "2026-02-13"
+version: "1.6"
+generated: "2026-02-16"
 standard: "agentskills.io/specification"
-total_skills: 202
+total_skills: 228
 
 domains:
   r-packages:
@@ -272,6 +272,16 @@ domains:
         complexity: intermediate
         language: multi
         description: Diagnose and fix MCP server connection issues
+      - id: analyze-codebase-for-mcp
+        path: mcp-integration/analyze-codebase-for-mcp/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Analyze a codebase to identify functions and APIs suitable for MCP tool exposure
+      - id: scaffold-mcp-server
+        path: mcp-integration/scaffold-mcp-server/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Scaffold a new MCP server from tool specifications using official SDKs
 
   web-dev:
     description: Web development skills for Next.js and modern frontend
@@ -1141,3 +1151,151 @@ domains:
         complexity: intermediate
         language: natural
         description: Build and maintain a library collection through acquisitions, weeding (CREW/MUSTIE method), collection assessment, and reader advisory
+
+  travel:
+    description: Tour planning, hiking, route visualization, and outdoor trip logistics
+    skills:
+      - id: plan-tour-route
+        path: travel/plan-tour-route/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Plan a multi-stop tour route with waypoint optimization and time estimation
+      - id: create-spatial-visualization
+        path: travel/create-spatial-visualization/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Create interactive maps and elevation profiles from spatial data
+      - id: generate-tour-report
+        path: travel/generate-tour-report/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Generate a Quarto-based tour report with maps, itinerary, and logistics
+      - id: plan-hiking-tour
+        path: travel/plan-hiking-tour/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Plan a hiking tour with trail selection, time estimation, and safety assessment
+      - id: check-hiking-gear
+        path: travel/check-hiking-gear/SKILL.md
+        complexity: basic
+        language: natural
+        description: Generate and verify a hiking gear checklist optimized for conditions
+      - id: assess-trail-conditions
+        path: travel/assess-trail-conditions/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Evaluate current trail conditions, weather, and safety factors
+
+  relocation:
+    description: Cross-border EU/DACH relocation planning, documents, and bureaucracy
+    skills:
+      - id: plan-eu-relocation
+        path: relocation/plan-eu-relocation/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Plan a complete EU relocation timeline with dependency mapping and deadlines
+      - id: check-relocation-documents
+        path: relocation/check-relocation-documents/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Verify document completeness for each bureaucratic step
+      - id: navigate-dach-bureaucracy
+        path: relocation/navigate-dach-bureaucracy/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Step-by-step guidance for DACH-specific governmental procedures
+
+  a2a-protocol:
+    description: Google A2A agent-to-agent protocol implementation and interoperability
+    skills:
+      - id: design-a2a-agent-card
+        path: a2a-protocol/design-a2a-agent-card/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Design an A2A Agent Card manifest with capabilities and authentication
+      - id: implement-a2a-server
+        path: a2a-protocol/implement-a2a-server/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Implement a JSON-RPC 2.0 A2A server with task lifecycle management
+      - id: test-a2a-interop
+        path: a2a-protocol/test-a2a-interop/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Test A2A interoperability with conformance validation
+
+  geometry:
+    description: Classical and computational geometry, trigonometry, and proofs
+    skills:
+      - id: construct-geometric-figure
+        path: geometry/construct-geometric-figure/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Perform ruler-and-compass constructions with step-by-step justification
+      - id: solve-trigonometric-problem
+        path: geometry/solve-trigonometric-problem/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Solve trigonometric equations and triangle problems systematically
+      - id: prove-geometric-theorem
+        path: geometry/prove-geometric-theorem/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Prove geometric theorems using axiomatic or coordinate methods
+
+  stochastic-processes:
+    description: Markov chains, HMMs, MCMC, and stochastic simulation
+    skills:
+      - id: model-markov-chain
+        path: stochastic-processes/model-markov-chain/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Build and analyze Markov chains with stationary distribution computation
+      - id: fit-hidden-markov-model
+        path: stochastic-processes/fit-hidden-markov-model/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Fit HMMs using Baum-Welch with model selection and Viterbi decoding
+      - id: simulate-stochastic-process
+        path: stochastic-processes/simulate-stochastic-process/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Simulate stochastic processes with convergence diagnostics and visualization
+
+  theoretical-science:
+    description: Quantum physics, quantum chemistry, and theoretical mathematics
+    skills:
+      - id: formulate-quantum-problem
+        path: theoretical-science/formulate-quantum-problem/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Formulate quantum problems with proper mathematical framework
+      - id: derive-theoretical-result
+        path: theoretical-science/derive-theoretical-result/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Derive theoretical results step-by-step from first principles
+      - id: survey-theoretical-literature
+        path: theoretical-science/survey-theoretical-literature/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Survey and synthesize theoretical literature on a specific topic
+
+  diffusion:
+    description: Cognitive drift-diffusion models and generative AI diffusion models
+    skills:
+      - id: fit-drift-diffusion-model
+        path: diffusion/fit-drift-diffusion-model/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Fit cognitive drift-diffusion models to reaction time data
+      - id: implement-diffusion-network
+        path: diffusion/implement-diffusion-network/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Implement generative diffusion models (DDPM/score-based) with training and sampling
+      - id: analyze-diffusion-dynamics
+        path: diffusion/analyze-diffusion-dynamics/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Analyze diffusion dynamics using SDEs and Fokker-Planck equations

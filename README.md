@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **202 skills** across 32 domains — structured, executable procedures
-- **34 agents** — specialized Claude Code personas covering development, review, compliance, and more
-- **6 teams** — predefined multi-agent compositions for complex workflows
+- **228 skills** across 39 domains — structured, executable procedures
+- **43 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **8 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 202 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 228 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 202 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 228 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -37,7 +37,7 @@ The **[Skills Library](skills/)** provides 202 task-level skills following the [
 | [Containerization](skills/containerization/) | 10 | Docker and container workflow skills |
 | [Reporting](skills/reporting/) | 4 | Quarto, R Markdown, and publication-ready report skills |
 | [Compliance](skills/compliance/) | 17 | GxP regulatory and validation skills |
-| [Mcp Integration](skills/mcp-integration/) | 3 | MCP server setup and troubleshooting skills |
+| [Mcp Integration](skills/mcp-integration/) | 5 | MCP server setup and troubleshooting skills |
 | [Web Dev](skills/web-dev/) | 3 | Web development skills for Next.js and modern frontend |
 | [Git](skills/git/) | 6 | Git version control and GitHub workflow skills |
 | [General](skills/general/) | 6 | Cross-cutting development environment and workflow skills |
@@ -64,6 +64,13 @@ The **[Skills Library](skills/)** provides 202 task-level skills following the [
 | [Prospecting](skills/prospecting/) | 2 | Mineral identification and precious metal recovery |
 | [Crafting](skills/crafting/) | 1 | Traditional handcraft and artisan skills |
 | [Library Science](skills/library-science/) | 3 | Library cataloging, collection management, and material preservation |
+| [Travel](skills/travel/) | 6 | Tour planning, hiking, route visualization, and outdoor trip logistics |
+| [Relocation](skills/relocation/) | 3 | Cross-border EU/DACH relocation planning, documents, and bureaucracy |
+| [A2a Protocol](skills/a2a-protocol/) | 3 | Google A2A agent-to-agent protocol implementation and interoperability |
+| [Geometry](skills/geometry/) | 3 | Classical and computational geometry, trigonometry, and proofs |
+| [Stochastic Processes](skills/stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
+| [Theoretical Science](skills/theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
+| [Diffusion](skills/diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
 <!-- AUTO:END:skills-table -->
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
@@ -71,7 +78,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 34 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
+The **[Agents Library](agents/)** provides 43 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -93,23 +100,32 @@ The **[Agents Library](agents/)** provides 34 specialized agent definitions for 
 | [senior-ux-ui-specialist](agents/senior-ux-ui-specialist.md) | high | Usability and accessibility reviewer applying Nielsen heuristics, WCAG 2.1, keyboard/screen reader audits, and user flow analysis |
 | [senior-web-designer](agents/senior-web-designer.md) | high | Visual design reviewer evaluating layout, typography, colour, spacing, responsive behaviour, and brand consistency |
 | [shiny-developer](agents/shiny-developer.md) | high | Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment |
+| [acp-developer](agents/acp-developer.md) | normal | Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming |
 | [alchemist](agents/alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
 | [designer](agents/designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
+| [diffusion-specialist](agents/diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |
 | [dog-trainer](agents/dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
 | [gardener](agents/gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
+| [geometrist](agents/geometrist.md) | normal | Classical and computational geometry specialist for ruler-and-compass constructions, Euclidean proofs, trigonometric problem solving, and geometric transformations |
+| [hiking-guide](agents/hiking-guide.md) | normal | Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols |
 | [librarian](agents/librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
+| [markovian](agents/markovian.md) | normal | Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
+| [mcp-developer](agents/mcp-developer.md) | normal | MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers |
 | [mycologist](agents/mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](agents/mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
 | [project-manager](agents/project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
 | [prospector](agents/prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |
 | [putior-integrator](agents/putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
 | [quarto-developer](agents/quarto-developer.md) | normal | Quarto CLI specialist for multilingual QMD files, technical documentation, books, websites, presentations, dashboards, and manuscript publishing |
+| [relocation-expert](agents/relocation-expert.md) | normal | Cross-border relocation specialist for EU/DACH region covering residence registration, work permits, tax, health insurance, and social security coordination |
 | [shaman](agents/shaman.md) | normal | Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach |
 | [shapeshifter](agents/shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
 | [survivalist](agents/survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](agents/swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
 | [tcg-specialist](agents/tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
+| [theoretical-researcher](agents/theoretical-researcher.md) | normal | Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis |
+| [tour-planner](agents/tour-planner.md) | normal | Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output |
 | [web-developer](agents/web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
 <!-- AUTO:END:agents-table -->
 
@@ -118,7 +134,7 @@ See [agents/README.md](agents/README.md) for usage instructions, the creation te
 ## Teams Library
 
 <!-- AUTO:START:teams-intro -->
-The **[Teams Library](teams/)** provides 6 predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+The **[Teams Library](teams/)** provides 8 predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
 <!-- AUTO:END:teams-intro -->
 
 <!-- AUTO:START:teams-table -->
@@ -130,6 +146,8 @@ The **[Teams Library](teams/)** provides 6 predefined multi-agent team compositi
 | [ml-data-science-review](teams/ml-data-science-review.md) | senior-data-scientist | 4 | hub-and-spoke | Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture |
 | [devops-platform-engineering](teams/devops-platform-engineering.md) | devops-engineer | 4 | parallel | Platform engineering combining infrastructure, ML platform, security, and architecture |
 | [ai-self-care](teams/ai-self-care.md) | mystic | 4 | sequential | AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying |
+| [scrum-team](teams/scrum-team.md) | project-manager | 3 | timeboxed | Pure Scrum team enforcing the full framework with three accountabilities, five events, and three artifacts |
+| [opaque-team](teams/opaque-team.md) | shapeshifter | 1 | adaptive | Variable-size team of N shapeshifters that self-organize into any roles needed |
 <!-- AUTO:END:teams-table -->
 
 See [teams/README.md](teams/README.md) for coordination patterns, the creation template, and machine-readable configuration.

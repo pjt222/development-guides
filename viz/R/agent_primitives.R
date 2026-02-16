@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 28 agent persona icons
+# agent_primitives.R - Glyph library for 43 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -1518,5 +1518,438 @@ glyph_agent_librarian <- function(cx, cy, s, col, bright) {
     ggplot2::geom_rect(data = tab3,
       .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
       fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_tour_planner: map pin with route line and compass ────────
+glyph_agent_tour_planner <- function(cx, cy, s, col, bright) {
+  # Map pin (teardrop shape)
+  t <- seq(0, 2 * pi, length.out = 40)
+  pin_r <- 10 * s
+  pin_x <- cx - 8 * s + pin_r * cos(t)
+  pin_y <- cy + 8 * s + pin_r * sin(t)
+  pin <- data.frame(x = pin_x, y = pin_y)
+  pin_point <- data.frame(
+    x = c(cx - 14 * s, cx - 8 * s, cx - 2 * s),
+    y = c(cy + 2 * s, cy - 8 * s, cy + 2 * s)
+  )
+  pin_center <- data.frame(x0 = cx - 8 * s, y0 = cy + 8 * s, r = 4 * s)
+  # Route line (curved path)
+  route_t <- seq(0, 1, length.out = 25)
+  route <- data.frame(
+    x = cx - 8 * s + 24 * s * route_t + 6 * s * sin(route_t * pi * 2),
+    y = cy - 8 * s + 20 * s * route_t * (1 - route_t) * 2
+  )
+  # Compass rose (small, bottom-right)
+  comp_cx <- cx + 16 * s; comp_cy <- cy - 14 * s
+  comp_r <- 8 * s
+  compass <- data.frame(x0 = comp_cx, y0 = comp_cy, r = comp_r)
+  # Cardinal ticks
+  n_tick <- data.frame(x = c(comp_cx, comp_cx), y = c(comp_cy + comp_r * 0.5, comp_cy + comp_r))
+  e_tick <- data.frame(x = c(comp_cx + comp_r * 0.5, comp_cx + comp_r), y = c(comp_cy, comp_cy))
+  list(
+    ggplot2::geom_polygon(data = pin, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = pin_point, .aes(x, y),
+      fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = pin_center, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.4), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = route, .aes(x, y),
+      color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 2), linetype = "dashed"),
+    ggforce::geom_circle(data = compass, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = n_tick, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = e_tick, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_hiking_guide: mountain peaks with trail path ─────────────
+glyph_agent_hiking_guide <- function(cx, cy, s, col, bright) {
+  # Large mountain peak
+  peak1 <- data.frame(
+    x = cx + c(-20, 0, 20) * s,
+    y = cy + c(-16, 20, -16) * s
+  )
+  # Smaller peak (overlapping)
+  peak2 <- data.frame(
+    x = cx + c(4, 18, 30) * s,
+    y = cy + c(-16, 10, -16) * s
+  )
+  # Snow cap on main peak
+  snow <- data.frame(
+    x = cx + c(-6, 0, 6) * s,
+    y = cy + c(14, 20, 14) * s
+  )
+  # Trail path (winding up from bottom-left)
+  trail_t <- seq(0, 1, length.out = 20)
+  trail <- data.frame(
+    x = cx - 16 * s + 20 * s * trail_t + 4 * s * sin(trail_t * pi * 3),
+    y = cy - 20 * s + 30 * s * trail_t
+  )
+  # Sun circle (top-right)
+  sun <- data.frame(x0 = cx + 22 * s, y0 = cy + 22 * s, r = 5 * s)
+  list(
+    ggplot2::geom_polygon(data = peak1, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = peak2, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = snow, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = trail, .aes(x, y),
+      color = hex_with_alpha(bright, 0.7), linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = sun, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.4), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_relocation: suitcase with arrow and EU stars ─────────────
+glyph_agent_relocation <- function(cx, cy, s, col, bright) {
+  # Suitcase body
+  case <- data.frame(
+    xmin = cx - 18 * s, xmax = cx + 18 * s,
+    ymin = cy - 16 * s, ymax = cy + 10 * s
+  )
+  # Handle
+  handle <- data.frame(
+    xmin = cx - 6 * s, xmax = cx + 6 * s,
+    ymin = cy + 10 * s, ymax = cy + 16 * s
+  )
+  handle_inner <- data.frame(
+    xmin = cx - 3 * s, xmax = cx + 3 * s,
+    ymin = cy + 12 * s, ymax = cy + 16 * s
+  )
+  # Horizontal straps on suitcase
+  strap1 <- data.frame(x = c(cx - 18 * s, cx + 18 * s), y = c(cy, cy))
+  strap2 <- data.frame(x = c(cx - 18 * s, cx + 18 * s), y = c(cy - 8 * s, cy - 8 * s))
+  # Arrow (direction of travel)
+  arrow_line <- data.frame(x = c(cx - 28 * s, cx - 22 * s), y = c(cy - 2 * s, cy - 2 * s))
+  arrow_head <- data.frame(
+    x = cx + c(-24, -20, -24) * s,
+    y = cy + c(2, -2, -6) * s
+  )
+  # EU-like star circle hint (3 small stars)
+  stars <- data.frame(
+    x = cx + c(22, 26, 24) * s,
+    y = cy + c(6, 6, 12) * s
+  )
+  list(
+    ggplot2::geom_rect(data = case,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = handle,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_rect(data = handle_inner,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.08), color = NA),
+    ggplot2::geom_path(data = strap1, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = strap2, .aes(x, y), color = col, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = arrow_line, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_point(data = stars, .aes(x, y), color = bright, size = 3 * s, shape = 8)
+  )
+}
+
+# ── glyph_agent_mcp_dev: socket connector with gear ─────────────────────
+glyph_agent_mcp_dev <- function(cx, cy, s, col, bright) {
+  # Plug/socket shape (rounded rectangle with prongs)
+  socket <- data.frame(
+    xmin = cx - 14 * s, xmax = cx + 14 * s,
+    ymin = cy - 8 * s, ymax = cy + 14 * s
+  )
+  # Connection prongs (3 vertical lines extending down)
+  prong1 <- data.frame(x = c(cx - 8 * s, cx - 8 * s), y = c(cy - 8 * s, cy - 18 * s))
+  prong2 <- data.frame(x = c(cx, cx), y = c(cy - 8 * s, cy - 18 * s))
+  prong3 <- data.frame(x = c(cx + 8 * s, cx + 8 * s), y = c(cy - 8 * s, cy - 18 * s))
+  # Gear on top-right
+  gear_cx <- cx + 10 * s; gear_cy <- cy + 20 * s
+  gear_outer <- data.frame(x0 = gear_cx, y0 = gear_cy, r = 8 * s)
+  gear_inner <- data.frame(x0 = gear_cx, y0 = gear_cy, r = 4 * s)
+  # Gear teeth (4 small rectangles)
+  teeth <- list()
+  for (i in 0:3) {
+    angle <- i * pi / 2
+    teeth[[i + 1]] <- data.frame(
+      x = c(gear_cx + 7 * s * cos(angle), gear_cx + 11 * s * cos(angle)),
+      y = c(gear_cy + 7 * s * sin(angle), gear_cy + 11 * s * sin(angle))
+    )
+  }
+  # Cable line from socket to left
+  cable <- data.frame(
+    x = c(cx - 14 * s, cx - 24 * s, cx - 28 * s),
+    y = c(cy + 3 * s, cy + 3 * s, cy + 8 * s)
+  )
+  layers <- list(
+    ggplot2::geom_rect(data = socket,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = prong1, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = prong2, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = prong3, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggforce::geom_circle(data = gear_outer, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = gear_inner, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = cable, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 2))
+  )
+  for (tooth in teeth) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = tooth, .aes(x, y),
+      color = col, linewidth = .lw(s, 2))
+  }
+  layers
+}
+
+# ── glyph_agent_acp_dev: two-arrow handshake / agent exchange ────────────
+glyph_agent_acp_dev <- function(cx, cy, s, col, bright) {
+  # Left agent circle
+  left_agent <- data.frame(x0 = cx - 16 * s, y0 = cy, r = 10 * s)
+  # Right agent circle
+  right_agent <- data.frame(x0 = cx + 16 * s, y0 = cy, r = 10 * s)
+  # Forward arrow (left to right, above center)
+  fwd_line <- data.frame(x = c(cx - 4 * s, cx + 4 * s), y = c(cy + 6 * s, cy + 6 * s))
+  fwd_head <- data.frame(
+    x = cx + c(2, 6, 2) * s,
+    y = cy + c(9, 6, 3) * s
+  )
+  # Return arrow (right to left, below center)
+  ret_line <- data.frame(x = c(cx + 4 * s, cx - 4 * s), y = c(cy - 6 * s, cy - 6 * s))
+  ret_head <- data.frame(
+    x = cx + c(-2, -6, -2) * s,
+    y = cy + c(-3, -6, -9) * s
+  )
+  # "A" letters inside circles
+  a_left <- data.frame(
+    x = c(cx - 20 * s, cx - 16 * s, cx - 12 * s),
+    y = c(cy - 4 * s, cy + 4 * s, cy - 4 * s)
+  )
+  a_right <- data.frame(
+    x = c(cx + 12 * s, cx + 16 * s, cx + 20 * s),
+    y = c(cy - 4 * s, cy + 4 * s, cy - 4 * s)
+  )
+  # Protocol indicator (brackets below)
+  bracket_l <- data.frame(
+    x = c(cx - 8 * s, cx - 12 * s, cx - 12 * s, cx - 8 * s),
+    y = c(cy - 18 * s, cy - 18 * s, cy - 24 * s, cy - 24 * s)
+  )
+  bracket_r <- data.frame(
+    x = c(cx + 8 * s, cx + 12 * s, cx + 12 * s, cx + 8 * s),
+    y = c(cy - 18 * s, cy - 18 * s, cy - 24 * s, cy - 24 * s)
+  )
+  list(
+    ggforce::geom_circle(data = left_agent, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = right_agent, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = fwd_line, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = fwd_head, .aes(x, y), fill = bright, color = bright),
+    ggplot2::geom_path(data = ret_line, .aes(x, y), color = col, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = ret_head, .aes(x, y), fill = col, color = col),
+    ggplot2::geom_path(data = a_left, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = a_right, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = bracket_l, .aes(x, y), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = bracket_r, .aes(x, y), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_geometrist: triangle with compass arc ────────────────────
+glyph_agent_geometrist <- function(cx, cy, s, col, bright) {
+  # Main triangle (equilateral)
+  h <- 24 * s
+  w <- 28 * s
+  tri <- data.frame(
+    x = c(cx, cx - w / 2, cx + w / 2),
+    y = c(cy + h * 0.6, cy - h * 0.4, cy - h * 0.4)
+  )
+  # Compass arc (quarter circle from one vertex)
+  t <- seq(-pi / 6, pi / 3, length.out = 25)
+  arc_r <- 18 * s
+  arc <- data.frame(
+    x = cx - w / 2 + arc_r * cos(t),
+    y = cy - h * 0.4 + arc_r * sin(t)
+  )
+  # Right-angle marker at bottom-left
+  sq_size <- 5 * s
+  right_angle <- data.frame(
+    x = c(cx - w / 2 + sq_size, cx - w / 2 + sq_size, cx - w / 2),
+    y = c(cy - h * 0.4, cy - h * 0.4 + sq_size, cy - h * 0.4 + sq_size)
+  )
+  # Angle arc at top vertex
+  top_arc_t <- seq(-pi / 2 - pi / 6, -pi / 2 + pi / 6, length.out = 15)
+  top_arc <- data.frame(
+    x = cx + 8 * s * cos(top_arc_t),
+    y = cy + h * 0.6 + 8 * s * sin(top_arc_t)
+  )
+  # Dotted construction line
+  bisector <- data.frame(
+    x = c(cx, cx),
+    y = c(cy + h * 0.6, cy - h * 0.4)
+  )
+  list(
+    ggplot2::geom_polygon(data = tri, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = arc, .aes(x, y),
+      color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = right_angle, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = top_arc, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = bisector, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1), linetype = "dashed")
+  )
+}
+
+# ── glyph_agent_markovian: chain of connected states with arrows ─────────
+glyph_agent_markovian <- function(cx, cy, s, col, bright) {
+  # Three state circles in a row
+  states <- list(
+    data.frame(x0 = cx - 20 * s, y0 = cy, r = 8 * s),
+    data.frame(x0 = cx, y0 = cy, r = 8 * s),
+    data.frame(x0 = cx + 20 * s, y0 = cy, r = 8 * s)
+  )
+  # Transition arrows between states
+  arrow1 <- data.frame(x = c(cx - 11 * s, cx - 9 * s), y = c(cy + 3 * s, cy + 3 * s))
+  arrow2 <- data.frame(x = c(cx + 9 * s, cx + 11 * s), y = c(cy + 3 * s, cy + 3 * s))
+  # Return arrows below
+  ret1 <- data.frame(x = c(cx - 9 * s, cx - 11 * s), y = c(cy - 3 * s, cy - 3 * s))
+  ret2 <- data.frame(x = c(cx + 11 * s, cx + 9 * s), y = c(cy - 3 * s, cy - 3 * s))
+  # Self-loop on middle state (arc above)
+  loop_t <- seq(pi / 4, 3 * pi / 4, length.out = 20)
+  loop <- data.frame(
+    x = cx + 10 * s * cos(loop_t),
+    y = cy + 8 * s + 10 * s * sin(loop_t)
+  )
+  # State labels (dots in center)
+  dots <- data.frame(
+    x = c(cx - 20 * s, cx, cx + 20 * s),
+    y = c(cy, cy, cy)
+  )
+  # Probability annotations (small numbers)
+  p_line1 <- data.frame(x = c(cx - 14 * s, cx - 8 * s), y = c(cy + 8 * s, cy + 8 * s))
+  p_line2 <- data.frame(x = c(cx + 8 * s, cx + 14 * s), y = c(cy + 8 * s, cy + 8 * s))
+  layers <- list()
+  # State circles
+  for (st in states) {
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = st,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2))
+  }
+  # State center dots
+  layers[[length(layers) + 1]] <- ggplot2::geom_point(data = dots, .aes(x, y),
+    color = bright, size = 3 * s)
+  # Arrows
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arrow1, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arrow2, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = ret1, .aes(x, y),
+    color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = ret2, .aes(x, y),
+    color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  # Self-loop
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = loop, .aes(x, y),
+    color = bright, linewidth = .lw(s, 1.8))
+  # Probability lines
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = p_line1, .aes(x, y),
+    color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = p_line2, .aes(x, y),
+    color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1))
+  layers
+}
+
+# ── glyph_agent_theorist: atom orbitals with central nucleus ─────────────
+glyph_agent_theorist <- function(cx, cy, s, col, bright) {
+  # Central nucleus
+  nucleus <- data.frame(x0 = cx, y0 = cy, r = 6 * s)
+  # Three elliptical orbits at different angles
+  orbits <- list()
+  for (angle_off in c(0, pi / 3, 2 * pi / 3)) {
+    t <- seq(0, 2 * pi, length.out = 50)
+    orbit_a <- 24 * s
+    orbit_b <- 10 * s
+    ox <- orbit_a * cos(t)
+    oy <- orbit_b * sin(t)
+    # Rotate by angle_off
+    rx <- cx + ox * cos(angle_off) - oy * sin(angle_off)
+    ry <- cy + ox * sin(angle_off) + oy * cos(angle_off)
+    orbits[[length(orbits) + 1]] <- data.frame(x = rx, y = ry)
+  }
+  # Electron dots on orbits
+  electrons <- data.frame(
+    x = c(cx + 24 * s, cx - 12 * s + 5 * s, cx - 12 * s - 5 * s),
+    y = c(cy, cy + 20.8 * s * 0.5, cy - 20.8 * s * 0.5)
+  )
+  # Formula hint (integral sign top-right)
+  integral <- data.frame(
+    x = c(cx + 22 * s, cx + 20 * s, cx + 22 * s, cx + 24 * s),
+    y = c(cy + 24 * s, cy + 20 * s, cy + 16 * s, cy + 12 * s)
+  )
+  layers <- list(
+    # Nucleus
+    ggforce::geom_circle(data = nucleus, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 2.5))
+  )
+  # Orbits
+  for (orbit in orbits) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = orbit, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  }
+  # Electrons
+  layers[[length(layers) + 1]] <- ggplot2::geom_point(data = electrons, .aes(x, y),
+    color = bright, size = 3.5 * s)
+  # Integral
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = integral, .aes(x, y),
+    color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 2))
+  layers
+}
+
+# ── glyph_agent_diffusion: bell curve with spreading particles ───────────
+glyph_agent_diffusion <- function(cx, cy, s, col, bright) {
+  # Gaussian bell curve
+  x_vals <- seq(-3, 3, length.out = 50)
+  gauss_y <- dnorm(x_vals) / dnorm(0)  # normalize to 0-1
+  curve_df <- data.frame(
+    x = cx + x_vals * 10 * s,
+    y = cy - 10 * s + gauss_y * 28 * s
+  )
+  # Baseline
+  baseline <- data.frame(
+    x = c(cx - 30 * s, cx + 30 * s),
+    y = c(cy - 10 * s, cy - 10 * s)
+  )
+  # Spreading particles (dots radiating outward from center)
+  particle_angles <- seq(0, 2 * pi, length.out = 13)[-13]
+  inner_r <- 6 * s; outer_r <- 14 * s
+  particles_inner <- data.frame(
+    x = cx + inner_r * cos(particle_angles[c(1, 3, 5, 7, 9, 11)]),
+    y = cy + 4 * s + inner_r * sin(particle_angles[c(1, 3, 5, 7, 9, 11)])
+  )
+  particles_outer <- data.frame(
+    x = cx + outer_r * cos(particle_angles),
+    y = cy + 4 * s + outer_r * sin(particle_angles)
+  )
+  # Time arrow below baseline
+  time_arrow <- data.frame(
+    x = c(cx - 24 * s, cx + 24 * s),
+    y = c(cy - 18 * s, cy - 18 * s)
+  )
+  arrow_head <- data.frame(
+    x = cx + c(20, 26, 20) * s,
+    y = cy + c(-15, -18, -21) * s
+  )
+  list(
+    ggplot2::geom_path(data = baseline, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = curve_df, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_point(data = particles_inner, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), size = 2.5 * s),
+    ggplot2::geom_point(data = particles_outer, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), size = 1.5 * s),
+    ggplot2::geom_path(data = time_arrow, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+      fill = col, color = col, linewidth = .lw(s, 0.5))
   )
 }
