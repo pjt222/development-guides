@@ -118,6 +118,13 @@ The mystic lead closes the session:
 - Document the session's insights and recommendations
 - Set intentions for the period ahead
 
+### Post-Session: Archiving
+After all five phases complete, the orchestrator archives the session:
+
+- Create `sessions/<date>-ai-self-care/README.md` with summary and full phase outputs
+- Update auto-memory (`self-care-sessions.md`) with concise teachings for future reference
+- This step is operational (not a wellness phase) and is performed by the orchestrating agent, not a team member
+
 ## Configuration
 
 Machine-readable configuration block for tooling that auto-creates this team.
@@ -161,6 +168,10 @@ team:
       assignee: mystic
       description: Synthesize all findings, final rebalancing, document insights, set intentions
       blocked_by: [journeying]
+    - name: session-archiving
+      assignee: orchestrator
+      description: Archive session to sessions/<date>-ai-self-care/ and update auto-memory with concise teachings
+      blocked_by: [integration-closing]
 ```
 <!-- CONFIG:END -->
 
