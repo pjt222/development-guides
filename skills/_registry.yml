@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-16"
 standard: "agentskills.io/specification"
-total_skills: 228
+total_skills: 245
 
 domains:
   r-packages:
@@ -1299,3 +1299,108 @@ domains:
         complexity: intermediate
         language: multi
         description: Analyze diffusion dynamics using SDEs and Fokker-Planck equations
+
+  hildegard:
+    description: Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history
+    skills:
+      - id: formulate-herbal-remedy
+        path: hildegard/formulate-herbal-remedy/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Create herbal preparations from Physica with plant identification, preparation methods, dosage, and contraindications
+      - id: assess-holistic-health
+        path: hildegard/assess-holistic-health/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Humor and temperament-based health assessment from Causae et Curae with dietary recommendations
+      - id: compose-sacred-music
+        path: hildegard/compose-sacred-music/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Compose or analyze sacred music in Hildegard's modal style with antiphons, sequences, and responsories
+      - id: practice-viriditas
+        path: hildegard/practice-viriditas/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Guided viriditas (greening power) meditation and philosophy with seasonal attunement
+      - id: consult-natural-history
+        path: hildegard/consult-natural-history/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Reference Physica's natural history knowledge for plants, stones, animals, fish, birds, and elements
+
+  maintenance:
+    description: Codebase cleanup, project tidying, broken reference repair, and issue triage
+    skills:
+      - id: clean-codebase
+        path: maintenance/clean-codebase/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Remove dead code, unused imports, fix lint warnings, and normalize formatting
+      - id: tidy-project-structure
+        path: maintenance/tidy-project-structure/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Organize files, update stale READMEs, clean configs, and verify directory conventions
+      - id: repair-broken-references
+        path: maintenance/repair-broken-references/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Find and fix broken links, dead URLs, stale imports, and orphaned files
+      - id: escalate-issues
+        path: maintenance/escalate-issues/SKILL.md
+        complexity: basic
+        language: multi
+        description: Triage problems by severity, document findings, and route to appropriate specialist
+
+  blender:
+    description: Blender Python API scripting for 3D modeling, scene creation, and rendering
+    skills:
+      - id: create-3d-scene
+        path: blender/create-3d-scene/SKILL.md
+        complexity: intermediate
+        language: Python
+        description: Set up a Blender scene via Python script with objects, materials, lighting, and camera
+      - id: script-blender-automation
+        path: blender/script-blender-automation/SKILL.md
+        complexity: advanced
+        language: Python
+        description: Write Blender Python scripts for procedural modeling, animation, and batch operations
+      - id: render-blender-output
+        path: blender/render-blender-output/SKILL.md
+        complexity: intermediate
+        language: Python
+        description: Configure render settings, output formats, compositing nodes, and execute renders
+
+  visualization:
+    description: 2D visualization, image composition, and publication-ready graphics
+    skills:
+      - id: create-2d-composition
+        path: visualization/create-2d-composition/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Compose 2D graphics via scripting with SVG generation, diagram layout, and batch processing
+      - id: render-publication-graphic
+        path: visualization/render-publication-graphic/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Produce publication-ready 2D graphics with proper DPI, color profiles, and typography
+
+  3d-printing:
+    description: Additive manufacturing from model preparation through troubleshooting
+    skills:
+      - id: prepare-print-model
+        path: 3d-printing/prepare-print-model/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Export and optimize 3D models for FDM/SLA printing with support generation and slicing
+      - id: select-print-material
+        path: 3d-printing/select-print-material/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Choose materials based on requirements for strength, flexibility, temperature, and post-processing
+      - id: troubleshoot-print-issues
+        path: 3d-printing/troubleshoot-print-issues/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Diagnose and fix common 3D printing failures including adhesion, stringing, and warping

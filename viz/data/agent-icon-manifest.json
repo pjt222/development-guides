@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 43,
+    "total_agents": 47,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -233,6 +233,26 @@
       "description": "Diffusion process specialist bridging cognitive and generative models",
       "glow": "soft-purple",
       "concept": "Gaussian bell curve with spreading particles"
+    },
+    "hildegard": {
+      "description": "Medieval polymath — Hildegard von Bingen herbal medicine, sacred music, viriditas",
+      "glow": "herb-green",
+      "concept": "Gothic abbey window with herbal sprig and radiance apex"
+    },
+    "janitor": {
+      "description": "Triple-scope maintenance for codebase cleanup and project tidying",
+      "glow": "sage",
+      "concept": "Broom with sparkle marks indicating cleanliness"
+    },
+    "blender-artist": {
+      "description": "3D and 2D visualization specialist using Blender Python API",
+      "glow": "blender-orange",
+      "concept": "Isometric 3D cube with viewport ring"
+    },
+    "fabricator": {
+      "description": "3D printing and additive manufacturing specialist",
+      "glow": "steel-blue",
+      "concept": "3D printer nozzle with layered printed output"
     }
   },
   "icons": [
@@ -449,6 +469,26 @@
     {
       "agentId": "diffusion-specialist",
       "path": "icons/cyberpunk/agents/diffusion-specialist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "hildegard",
+      "path": "icons/cyberpunk/agents/hildegard.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "janitor",
+      "path": "icons/cyberpunk/agents/janitor.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "blender-artist",
+      "path": "icons/cyberpunk/agents/blender-artist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "fabricator",
+      "path": "icons/cyberpunk/agents/fabricator.webp",
       "status": "done"
     }
   ]

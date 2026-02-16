@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **228 skills** across 39 domains — structured, executable procedures
-- **43 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **245 skills** across 44 domains — structured, executable procedures
+- **47 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **8 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 228 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 245 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 228 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 245 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -71,6 +71,11 @@ The **[Skills Library](skills/)** provides 228 task-level skills following the [
 | [Stochastic Processes](skills/stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
 | [Theoretical Science](skills/theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
 | [Diffusion](skills/diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
+| [Hildegard](skills/hildegard/) | 5 | Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history |
+| [Maintenance](skills/maintenance/) | 4 | Codebase cleanup, project tidying, broken reference repair, and issue triage |
+| [Blender](skills/blender/) | 3 | Blender Python API scripting for 3D modeling, scene creation, and rendering |
+| [Visualization](skills/visualization/) | 2 | 2D visualization, image composition, and publication-ready graphics |
+| [3d Printing](skills/3d-printing/) | 3 | Additive manufacturing from model preparation through troubleshooting |
 <!-- AUTO:END:skills-table -->
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
@@ -78,7 +83,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 43 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
+The **[Agents Library](agents/)** provides 47 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -102,12 +107,16 @@ The **[Agents Library](agents/)** provides 43 specialized agent definitions for 
 | [shiny-developer](agents/shiny-developer.md) | high | Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment |
 | [acp-developer](agents/acp-developer.md) | normal | Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming |
 | [alchemist](agents/alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
+| [blender-artist](agents/blender-artist.md) | normal | 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition |
 | [designer](agents/designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [diffusion-specialist](agents/diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |
 | [dog-trainer](agents/dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
+| [fabricator](agents/fabricator.md) | normal | 3D printing and additive manufacturing specialist covering FDM, SLA, and SLS processes from model preparation through troubleshooting |
 | [gardener](agents/gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
 | [geometrist](agents/geometrist.md) | normal | Classical and computational geometry specialist for ruler-and-compass constructions, Euclidean proofs, trigonometric problem solving, and geometric transformations |
 | [hiking-guide](agents/hiking-guide.md) | normal | Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols |
+| [hildegard](agents/hildegard.md) | normal | Medieval polymath persona channeling Hildegard von Bingen — herbal medicine from Physica, holistic health from Causae et Curae, sacred music composition, viriditas philosophy, and natural history consultation |
+| [janitor](agents/janitor.md) | normal | Triple-scope maintenance agent for codebase cleanup, project-level tidying, and physical space janitorial knowledge with triage-and-escalate pattern |
 | [librarian](agents/librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
 | [markovian](agents/markovian.md) | normal | Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |

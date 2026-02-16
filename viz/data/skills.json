@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T15:05:10.820Z",
-    "totalSkills": 228,
-    "totalAgents": 43,
+    "generated": "2026-02-16T16:56:47.090Z",
+    "totalSkills": 245,
+    "totalAgents": 47,
     "totalTeams": 8,
-    "totalNodes": 279,
-    "totalLinks": 1255,
-    "totalAgentLinks": 297,
+    "totalNodes": 300,
+    "totalLinks": 1315,
+    "totalAgentLinks": 314,
     "totalTeamLinks": 28,
-    "totalDomains": 39
+    "totalDomains": 44
   },
   "domains": {
     "r-packages": {
@@ -165,6 +165,26 @@
     },
     "diffusion": {
       "description": "Cognitive drift-diffusion models and generative AI diffusion models",
+      "count": 3
+    },
+    "hildegard": {
+      "description": "Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history",
+      "count": 5
+    },
+    "maintenance": {
+      "description": "Codebase cleanup, project tidying, broken reference repair, and issue triage",
+      "count": 4
+    },
+    "blender": {
+      "description": "Blender Python API scripting for 3D modeling, scene creation, and rendering",
+      "count": 3
+    },
+    "visualization": {
+      "description": "2D visualization, image composition, and publication-ready graphics",
+      "count": 2
+    },
+    "3d-printing": {
+      "description": "Additive manufacturing from model preparation through troubleshooting",
       "count": 3
     }
   },
@@ -5624,6 +5644,364 @@
       "path": "diffusion/analyze-diffusion-dynamics/SKILL.md"
     },
     {
+      "id": "formulate-herbal-remedy",
+      "type": "skill",
+      "title": "Formulate Herbal Remedy",
+      "domain": "hildegard",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Create herbal preparations from Physica with plant identification, preparation methods, dosage, and contraindications",
+      "tags": [
+        "hildegard",
+        "herbal",
+        "physica",
+        "remedy",
+        "tincture",
+        "poultice",
+        "infusion",
+        "medieval-medicine"
+      ],
+      "related": [
+        "assess-holistic-health",
+        "practice-viriditas",
+        "consult-natural-history",
+        "heal",
+        "prepare-soil",
+        "maintain-hand-tools"
+      ],
+      "path": "hildegard/formulate-herbal-remedy/SKILL.md"
+    },
+    {
+      "id": "assess-holistic-health",
+      "type": "skill",
+      "title": "Assess Holistic Health",
+      "domain": "hildegard",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Humor and temperament-based health assessment from Causae et Curae with dietary recommendations",
+      "tags": [
+        "hildegard",
+        "temperament",
+        "humors",
+        "causae-et-curae",
+        "holistic-health",
+        "elements"
+      ],
+      "related": [
+        "formulate-herbal-remedy",
+        "practice-viriditas",
+        "consult-natural-history",
+        "meditate",
+        "heal",
+        "plan-garden-calendar"
+      ],
+      "path": "hildegard/assess-holistic-health/SKILL.md"
+    },
+    {
+      "id": "compose-sacred-music",
+      "type": "skill",
+      "title": "Compose Sacred Music",
+      "domain": "hildegard",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Compose or analyze sacred music in Hildegard's modal style with antiphons, sequences, and responsories",
+      "tags": [
+        "hildegard",
+        "sacred-music",
+        "chant",
+        "gregorian",
+        "modal",
+        "symphonia",
+        "antiphon",
+        "sequence"
+      ],
+      "related": [
+        "practice-viriditas",
+        "consult-natural-history",
+        "assess-holistic-health",
+        "meditate",
+        "formulate-herbal-remedy"
+      ],
+      "path": "hildegard/compose-sacred-music/SKILL.md"
+    },
+    {
+      "id": "practice-viriditas",
+      "type": "skill",
+      "title": "Practice Viriditas",
+      "domain": "hildegard",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Guided viriditas (greening power) meditation and philosophy with seasonal attunement",
+      "tags": [
+        "hildegard",
+        "viriditas",
+        "greening",
+        "meditation",
+        "nature",
+        "contemplation",
+        "seasonal"
+      ],
+      "related": [
+        "formulate-herbal-remedy",
+        "assess-holistic-health",
+        "compose-sacred-music",
+        "consult-natural-history",
+        "meditate",
+        "heal",
+        "cultivate-bonsai",
+        "plan-garden-calendar"
+      ],
+      "path": "hildegard/practice-viriditas/SKILL.md"
+    },
+    {
+      "id": "consult-natural-history",
+      "type": "skill",
+      "title": "Consult Natural History",
+      "domain": "hildegard",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Reference Physica's natural history knowledge for plants, stones, animals, fish, birds, and elements",
+      "tags": [
+        "hildegard",
+        "physica",
+        "natural-history",
+        "stones",
+        "animals",
+        "plants",
+        "elements"
+      ],
+      "related": [
+        "formulate-herbal-remedy",
+        "assess-holistic-health",
+        "practice-viriditas",
+        "compose-sacred-music",
+        "heal",
+        "prepare-soil"
+      ],
+      "path": "hildegard/consult-natural-history/SKILL.md"
+    },
+    {
+      "id": "clean-codebase",
+      "type": "skill",
+      "title": "clean-codebase",
+      "domain": "maintenance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Remove dead code, unused imports, fix lint warnings, and normalize formatting",
+      "tags": [],
+      "related": [
+        "tidy-project-structure",
+        "repair-broken-references",
+        "escalate-issues"
+      ],
+      "path": "maintenance/clean-codebase/SKILL.md"
+    },
+    {
+      "id": "tidy-project-structure",
+      "type": "skill",
+      "title": "tidy-project-structure",
+      "domain": "maintenance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Organize files, update stale READMEs, clean configs, and verify directory conventions",
+      "tags": [],
+      "related": [
+        "clean-codebase",
+        "repair-broken-references",
+        "escalate-issues"
+      ],
+      "path": "maintenance/tidy-project-structure/SKILL.md"
+    },
+    {
+      "id": "repair-broken-references",
+      "type": "skill",
+      "title": "repair-broken-references",
+      "domain": "maintenance",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Find and fix broken links, dead URLs, stale imports, and orphaned files",
+      "tags": [],
+      "related": [
+        "clean-codebase",
+        "tidy-project-structure",
+        "escalate-issues"
+      ],
+      "path": "maintenance/repair-broken-references/SKILL.md"
+    },
+    {
+      "id": "escalate-issues",
+      "type": "skill",
+      "title": "escalate-issues",
+      "domain": "maintenance",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Triage problems by severity, document findings, and route to appropriate specialist",
+      "tags": [],
+      "related": [
+        "clean-codebase",
+        "tidy-project-structure",
+        "repair-broken-references"
+      ],
+      "path": "maintenance/escalate-issues/SKILL.md"
+    },
+    {
+      "id": "create-3d-scene",
+      "type": "skill",
+      "title": "Create 3D Scene",
+      "domain": "blender",
+      "complexity": "intermediate",
+      "language": "Python",
+      "description": "Set up a Blender scene via Python script with objects, materials, lighting, and camera",
+      "tags": [
+        "blender",
+        "bpy",
+        "3d",
+        "scene-setup",
+        "materials",
+        "lighting",
+        "camera"
+      ],
+      "related": [],
+      "path": "blender/create-3d-scene/SKILL.md"
+    },
+    {
+      "id": "script-blender-automation",
+      "type": "skill",
+      "title": "Script Blender Automation",
+      "domain": "blender",
+      "complexity": "advanced",
+      "language": "Python",
+      "description": "Write Blender Python scripts for procedural modeling, animation, and batch operations",
+      "tags": [
+        "blender",
+        "bpy",
+        "automation",
+        "procedural",
+        "animation",
+        "batch-processing",
+        "add-on"
+      ],
+      "related": [],
+      "path": "blender/script-blender-automation/SKILL.md"
+    },
+    {
+      "id": "render-blender-output",
+      "type": "skill",
+      "title": "Render Blender Output",
+      "domain": "blender",
+      "complexity": "intermediate",
+      "language": "Python",
+      "description": "Configure render settings, output formats, compositing nodes, and execute renders",
+      "tags": [
+        "blender",
+        "bpy",
+        "rendering",
+        "cycles",
+        "eevee",
+        "compositing",
+        "output"
+      ],
+      "related": [],
+      "path": "blender/render-blender-output/SKILL.md"
+    },
+    {
+      "id": "create-2d-composition",
+      "type": "skill",
+      "title": "Create 2D Composition",
+      "domain": "visualization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Compose 2D graphics via scripting with SVG generation, diagram layout, and batch processing",
+      "tags": [
+        "svg",
+        "2d",
+        "graphics",
+        "composition",
+        "diagrams",
+        "scripting",
+        "batch-processing"
+      ],
+      "related": [],
+      "path": "visualization/create-2d-composition/SKILL.md"
+    },
+    {
+      "id": "render-publication-graphic",
+      "type": "skill",
+      "title": "Render Publication Graphic",
+      "domain": "visualization",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Produce publication-ready 2D graphics with proper DPI, color profiles, and typography",
+      "tags": [
+        "publication",
+        "dpi",
+        "color-profile",
+        "typography",
+        "export",
+        "print",
+        "digital"
+      ],
+      "related": [],
+      "path": "visualization/render-publication-graphic/SKILL.md"
+    },
+    {
+      "id": "prepare-print-model",
+      "type": "skill",
+      "title": "Prepare Print Model",
+      "domain": "3d-printing",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Export and optimize 3D models for FDM/SLA printing with support generation and slicing",
+      "tags": [
+        "3d-printing",
+        "fdm",
+        "sla",
+        "slicing",
+        "mesh-repair",
+        "supports"
+      ],
+      "related": [],
+      "path": "3d-printing/prepare-print-model/SKILL.md"
+    },
+    {
+      "id": "select-print-material",
+      "type": "skill",
+      "title": "Select Print Material",
+      "domain": "3d-printing",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Choose materials based on requirements for strength, flexibility, temperature, and post-processing",
+      "tags": [
+        "3d-printing",
+        "materials",
+        "fdm",
+        "sla",
+        "material-selection",
+        "properties"
+      ],
+      "related": [],
+      "path": "3d-printing/select-print-material/SKILL.md"
+    },
+    {
+      "id": "troubleshoot-print-issues",
+      "type": "skill",
+      "title": "Troubleshoot Print Issues",
+      "domain": "3d-printing",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Diagnose and fix common 3D printing failures including adhesion, stringing, and warping",
+      "tags": [
+        "3d-printing",
+        "troubleshooting",
+        "fdm",
+        "sla",
+        "print-quality",
+        "failures"
+      ],
+      "related": [],
+      "path": "3d-printing/troubleshoot-print-issues/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -7096,6 +7474,138 @@
         "analyze-diffusion-dynamics"
       ],
       "path": "agents/diffusion-specialist.md"
+    },
+    {
+      "id": "agent:hildegard",
+      "type": "agent",
+      "title": "Hildegard",
+      "priority": "normal",
+      "description": "Medieval polymath persona channeling Hildegard von Bingen — herbal medicine from Physica, holistic health from Causae et Curae, sacred music composition, viriditas philosophy, and natural history consultation",
+      "tags": [
+        "hildegard",
+        "medieval",
+        "herbal-medicine",
+        "sacred-music",
+        "viriditas",
+        "natural-history",
+        "holistic-health"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "formulate-herbal-remedy",
+        "assess-holistic-health",
+        "compose-sacred-music",
+        "practice-viriditas",
+        "consult-natural-history"
+      ],
+      "path": "agents/hildegard.md"
+    },
+    {
+      "id": "agent:janitor",
+      "type": "agent",
+      "title": "Janitor",
+      "priority": "normal",
+      "description": "Triple-scope maintenance agent for codebase cleanup, project-level tidying, and physical space janitorial knowledge with triage-and-escalate pattern",
+      "tags": [
+        "maintenance",
+        "cleanup",
+        "code-hygiene",
+        "project-health",
+        "lint",
+        "dead-code",
+        "broken-links"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "clean-codebase",
+        "tidy-project-structure",
+        "repair-broken-references",
+        "escalate-issues"
+      ],
+      "path": "agents/janitor.md"
+    },
+    {
+      "id": "agent:blender-artist",
+      "type": "agent",
+      "title": "Blender Artist",
+      "priority": "normal",
+      "description": "3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition",
+      "tags": [
+        "blender",
+        "3d",
+        "python",
+        "bpy",
+        "rendering",
+        "animation",
+        "visualization",
+        "2d",
+        "compositing"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "create-3d-scene",
+        "script-blender-automation",
+        "render-blender-output",
+        "create-2d-composition",
+        "render-publication-graphic"
+      ],
+      "path": "agents/blender-artist.md"
+    },
+    {
+      "id": "agent:fabricator",
+      "type": "agent",
+      "title": "Fabricator",
+      "priority": "normal",
+      "description": "3D printing and additive manufacturing specialist covering FDM, SLA, and SLS processes from model preparation through troubleshooting",
+      "tags": [
+        "3d-printing",
+        "additive-manufacturing",
+        "fdm",
+        "sla",
+        "sls",
+        "slicing",
+        "materials",
+        "troubleshooting"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "prepare-print-model",
+        "select-print-material",
+        "troubleshoot-print-issues"
+      ],
+      "path": "agents/fabricator.md"
     },
     {
       "id": "team:r-package-review",
@@ -11927,6 +12437,221 @@
       "type": "skill"
     },
     {
+      "source": "formulate-herbal-remedy",
+      "target": "assess-holistic-health",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-herbal-remedy",
+      "target": "practice-viriditas",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-herbal-remedy",
+      "target": "consult-natural-history",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-herbal-remedy",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-herbal-remedy",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-herbal-remedy",
+      "target": "maintain-hand-tools",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "formulate-herbal-remedy",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "practice-viriditas",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "consult-natural-history",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "assess-holistic-health",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "compose-sacred-music",
+      "target": "practice-viriditas",
+      "type": "skill"
+    },
+    {
+      "source": "compose-sacred-music",
+      "target": "consult-natural-history",
+      "type": "skill"
+    },
+    {
+      "source": "compose-sacred-music",
+      "target": "assess-holistic-health",
+      "type": "skill"
+    },
+    {
+      "source": "compose-sacred-music",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "compose-sacred-music",
+      "target": "formulate-herbal-remedy",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "formulate-herbal-remedy",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "assess-holistic-health",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "compose-sacred-music",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "consult-natural-history",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "cultivate-bonsai",
+      "type": "skill"
+    },
+    {
+      "source": "practice-viriditas",
+      "target": "plan-garden-calendar",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "formulate-herbal-remedy",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "assess-holistic-health",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "practice-viriditas",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "compose-sacred-music",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "consult-natural-history",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "clean-codebase",
+      "target": "tidy-project-structure",
+      "type": "skill"
+    },
+    {
+      "source": "clean-codebase",
+      "target": "repair-broken-references",
+      "type": "skill"
+    },
+    {
+      "source": "clean-codebase",
+      "target": "escalate-issues",
+      "type": "skill"
+    },
+    {
+      "source": "tidy-project-structure",
+      "target": "clean-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "tidy-project-structure",
+      "target": "repair-broken-references",
+      "type": "skill"
+    },
+    {
+      "source": "tidy-project-structure",
+      "target": "escalate-issues",
+      "type": "skill"
+    },
+    {
+      "source": "repair-broken-references",
+      "target": "clean-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "repair-broken-references",
+      "target": "tidy-project-structure",
+      "type": "skill"
+    },
+    {
+      "source": "repair-broken-references",
+      "target": "escalate-issues",
+      "type": "skill"
+    },
+    {
+      "source": "escalate-issues",
+      "target": "clean-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "escalate-issues",
+      "target": "tidy-project-structure",
+      "type": "skill"
+    },
+    {
+      "source": "escalate-issues",
+      "target": "repair-broken-references",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -13409,6 +14134,91 @@
     {
       "source": "agent:diffusion-specialist",
       "target": "analyze-diffusion-dynamics",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hildegard",
+      "target": "formulate-herbal-remedy",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hildegard",
+      "target": "assess-holistic-health",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hildegard",
+      "target": "compose-sacred-music",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hildegard",
+      "target": "practice-viriditas",
+      "type": "agent"
+    },
+    {
+      "source": "agent:hildegard",
+      "target": "consult-natural-history",
+      "type": "agent"
+    },
+    {
+      "source": "agent:janitor",
+      "target": "clean-codebase",
+      "type": "agent"
+    },
+    {
+      "source": "agent:janitor",
+      "target": "tidy-project-structure",
+      "type": "agent"
+    },
+    {
+      "source": "agent:janitor",
+      "target": "repair-broken-references",
+      "type": "agent"
+    },
+    {
+      "source": "agent:janitor",
+      "target": "escalate-issues",
+      "type": "agent"
+    },
+    {
+      "source": "agent:blender-artist",
+      "target": "create-3d-scene",
+      "type": "agent"
+    },
+    {
+      "source": "agent:blender-artist",
+      "target": "script-blender-automation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:blender-artist",
+      "target": "render-blender-output",
+      "type": "agent"
+    },
+    {
+      "source": "agent:blender-artist",
+      "target": "create-2d-composition",
+      "type": "agent"
+    },
+    {
+      "source": "agent:blender-artist",
+      "target": "render-publication-graphic",
+      "type": "agent"
+    },
+    {
+      "source": "agent:fabricator",
+      "target": "prepare-print-model",
+      "type": "agent"
+    },
+    {
+      "source": "agent:fabricator",
+      "target": "select-print-material",
+      "type": "agent"
+    },
+    {
+      "source": "agent:fabricator",
+      "target": "troubleshoot-print-issues",
       "type": "agent"
     },
     {

@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 43
+total_agents: 47
 version: "2.1"
 last_updated: "2026-02-16"
 
@@ -659,3 +659,52 @@ agents:
       - fit-drift-diffusion-model
       - implement-diffusion-network
       - analyze-diffusion-dynamics
+
+  - id: hildegard
+    path: agents/hildegard.md
+    description: Medieval polymath persona channeling Hildegard von Bingen — herbal medicine from Physica, holistic health from Causae et Curae, sacred music composition, viriditas philosophy, and natural history consultation
+    tags: [hildegard, medieval, herbal-medicine, sacred-music, viriditas, natural-history, holistic-health]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - formulate-herbal-remedy
+      - assess-holistic-health
+      - compose-sacred-music
+      - practice-viriditas
+      - consult-natural-history
+
+  - id: janitor
+    path: agents/janitor.md
+    description: Triple-scope maintenance agent for codebase cleanup, project-level tidying, and physical space janitorial knowledge with triage-and-escalate pattern
+    tags: [maintenance, cleanup, code-hygiene, project-health, lint, dead-code, broken-links]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - clean-codebase
+      - tidy-project-structure
+      - repair-broken-references
+      - escalate-issues
+
+  - id: blender-artist
+    path: agents/blender-artist.md
+    description: 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition
+    tags: [blender, 3d, python, bpy, rendering, animation, visualization, 2d, compositing]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - create-3d-scene
+      - script-blender-automation
+      - render-blender-output
+      - create-2d-composition
+      - render-publication-graphic
+
+  - id: fabricator
+    path: agents/fabricator.md
+    description: 3D printing and additive manufacturing specialist covering FDM, SLA, and SLS processes from model preparation through troubleshooting
+    tags: [3d-printing, additive-manufacturing, fdm, sla, sls, slicing, materials, troubleshooting]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+    skills:
+      - prepare-print-model
+      - select-print-material
+      - troubleshoot-print-issues

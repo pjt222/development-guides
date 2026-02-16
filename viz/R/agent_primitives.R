@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 43 agent persona icons
+# agent_primitives.R - Glyph library for 47 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -1952,4 +1952,201 @@ glyph_agent_diffusion <- function(cx, cy, s, col, bright) {
     ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
       fill = col, color = col, linewidth = .lw(s, 0.5))
   )
+}
+
+# ── glyph_agent_hildegard: abbey window with herbal sprig ─────────────────
+glyph_agent_hildegard <- function(cx, cy, s, col, bright) {
+  # Gothic pointed arch (abbey window)
+  arch_t <- seq(-pi / 2 - 0.6, -pi / 2 + 0.6, length.out = 20)
+  arch_r <- 26 * s
+  arch_top <- data.frame(
+    x = cx + arch_r * cos(arch_t),
+    y = cy + 12 * s + arch_r * sin(arch_t) + arch_r
+  )
+  # Window pillars
+  left_pillar <- data.frame(
+    x = c(cx - 15.5 * s, cx - 15.5 * s),
+    y = c(cy - 24 * s, cy + 12 * s)
+  )
+  right_pillar <- data.frame(
+    x = c(cx + 15.5 * s, cx + 15.5 * s),
+    y = c(cy - 24 * s, cy + 12 * s)
+  )
+  # Base sill
+  sill <- data.frame(
+    x = c(cx - 18 * s, cx + 18 * s),
+    y = c(cy - 24 * s, cy - 24 * s)
+  )
+  # Herbal sprig (central stem + 3 leaf pairs)
+  stem <- data.frame(
+    x = c(cx, cx),
+    y = c(cy - 18 * s, cy + 6 * s)
+  )
+  leaves <- data.frame(x = numeric(0), y = numeric(0))
+  leaf_offsets <- c(-10, -2, 6) * s
+  for (yo in leaf_offsets) {
+    lt <- seq(0, pi, length.out = 12)
+    lr <- 7 * s
+    leaf_l <- data.frame(x = cx - lr * cos(lt) * 0.5, y = cy + yo + lr * sin(lt) * 0.4)
+    leaf_r <- data.frame(x = cx + lr * cos(lt) * 0.5, y = cy + yo + lr * sin(lt) * 0.4)
+    leaves <- rbind(leaves, leaf_l, data.frame(x = NA, y = NA), leaf_r, data.frame(x = NA, y = NA))
+  }
+  # Radiance point at apex
+  apex <- data.frame(x = cx, y = cy + 18 * s)
+  list(
+    ggplot2::geom_path(data = arch_top, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = left_pillar, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = right_pillar, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = sill, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = stem, .aes(x, y),
+      color = hex_with_alpha(bright, 0.7), linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = leaves, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_point(data = apex, .aes(x, y),
+      color = bright, size = 5 * s)
+  )
+}
+
+# ── glyph_agent_janitor: broom with sparkle marks ─────────────────────────
+glyph_agent_janitor <- function(cx, cy, s, col, bright) {
+  # Broom handle (diagonal)
+  handle <- data.frame(
+    x = c(cx - 8 * s, cx + 12 * s),
+    y = c(cy + 28 * s, cy - 12 * s)
+  )
+  # Broom bristles (fan at bottom)
+  bristle_angles <- seq(-0.5, 0.5, length.out = 7)
+  bristles <- do.call(rbind, lapply(bristle_angles, function(a) {
+    dx <- sin(a) * 14 * s
+    dy <- -cos(a) * 14 * s
+    rbind(
+      data.frame(x = cx + 12 * s, y = cy - 12 * s),
+      data.frame(x = cx + 12 * s + dx, y = cy - 12 * s + dy - 6 * s),
+      data.frame(x = NA, y = NA)
+    )
+  }))
+  # Sparkle marks (clean indicators)
+  spark1 <- data.frame(
+    x = c(cx - 18 * s, cx - 18 * s, NA, cx - 22 * s, cx - 14 * s),
+    y = c(cy + 6 * s, cy + 14 * s, NA, cy + 10 * s, cy + 10 * s)
+  )
+  spark2 <- data.frame(
+    x = c(cx - 24 * s, cx - 24 * s, NA, cx - 27 * s, cx - 21 * s),
+    y = c(cy - 4 * s, cy + 2 * s, NA, cy - 1 * s, cy - 1 * s)
+  )
+  spark3 <- data.frame(
+    x = c(cx + 20 * s, cx + 20 * s, NA, cx + 17 * s, cx + 23 * s),
+    y = c(cy + 14 * s, cy + 20 * s, NA, cy + 17 * s, cy + 17 * s)
+  )
+  list(
+    ggplot2::geom_path(data = handle, .aes(x, y),
+      color = hex_with_alpha(col, 0.7), linewidth = .lw(s, 3)),
+    ggplot2::geom_path(data = bristles, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = spark1, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = spark2, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = spark3, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.2))
+  )
+}
+
+# ── glyph_agent_blender: 3D cube with Blender viewport ring ──────────────
+glyph_agent_blender <- function(cx, cy, s, col, bright) {
+  # Isometric cube (3 visible faces)
+  sz <- 16 * s
+  # Front face
+  front <- data.frame(
+    x = c(cx - sz, cx, cx, cx - sz),
+    y = c(cy - sz * 0.4, cy - sz, cy + sz * 0.3, cy + sz * 0.7)
+  )
+  # Right face
+  right <- data.frame(
+    x = c(cx, cx + sz, cx + sz, cx),
+    y = c(cy - sz, cy - sz * 0.4, cy + sz * 0.7, cy + sz * 0.3)
+  )
+  # Top face
+  top <- data.frame(
+    x = c(cx - sz, cx, cx + sz, cx),
+    y = c(cy + sz * 0.7, cy + sz * 1.1, cy + sz * 0.7, cy + sz * 0.3)
+  )
+  # Viewport ring (circle around cube)
+  ring <- data.frame(x0 = cx, y0 = cy + 2 * s, r = 28 * s)
+  # Axis lines (RGB-style: x, y, z)
+  axis_x <- data.frame(
+    x = c(cx, cx + 20 * s), y = c(cy - sz * 0.2, cy - sz * 0.7)
+  )
+  axis_z <- data.frame(
+    x = c(cx, cx), y = c(cy + sz * 0.3, cy + sz * 1.4)
+  )
+  list(
+    ggforce::geom_circle(data = ring, .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = front, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = right, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = top, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = axis_x, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = axis_z, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1))
+  )
+}
+
+# ── glyph_agent_fabricator: 3D printer nozzle with layered output ─────────
+glyph_agent_fabricator <- function(cx, cy, s, col, bright) {
+  # Printer frame (inverted U)
+  frame <- data.frame(
+    x = c(cx - 22 * s, cx - 22 * s, cx + 22 * s, cx + 22 * s),
+    y = c(cy - 20 * s, cy + 20 * s, cy + 20 * s, cy - 20 * s)
+  )
+  # Horizontal rail at top
+  rail <- data.frame(
+    x = c(cx - 22 * s, cx + 22 * s),
+    y = c(cy + 14 * s, cy + 14 * s)
+  )
+  # Nozzle (triangle pointing down)
+  nozzle <- data.frame(
+    x = c(cx - 5 * s, cx + 5 * s, cx),
+    y = c(cy + 14 * s, cy + 14 * s, cy + 6 * s)
+  )
+  # Build plate
+  plate <- data.frame(
+    xmin = cx - 18 * s, xmax = cx + 18 * s,
+    ymin = cy - 22 * s, ymax = cy - 18 * s
+  )
+  # Printed layers (stacked horizontal lines)
+  layer_ys <- seq(cy - 16 * s, cy - 4 * s, length.out = 5)
+  layer_widths <- c(16, 14, 12, 10, 8) * s
+  layers_list <- list(
+    ggplot2::geom_path(data = frame, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = rail, .aes(x, y),
+      color = col, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = nozzle, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = plate,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1))
+  )
+  for (i in seq_along(layer_ys)) {
+    w <- layer_widths[i]
+    alpha <- 0.3 + 0.15 * i
+    ld <- data.frame(
+      x = c(cx - w / 2, cx + w / 2),
+      y = c(layer_ys[i], layer_ys[i])
+    )
+    layers_list[[length(layers_list) + 1]] <- ggplot2::geom_path(
+      data = ld, .aes(x, y),
+      color = hex_with_alpha(bright, min(alpha, 1)), linewidth = .lw(s, 2.5)
+    )
+  }
+  layers_list
 }

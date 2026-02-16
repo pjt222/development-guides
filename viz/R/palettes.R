@@ -10,20 +10,23 @@ PALETTE_NAMES <- c(
 
 # ── Domain order (alphabetical, 39 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
-  "a2a-protocol", "alchemy", "animal-training", "bushcraft", "compliance",
-  "containerization", "crafting", "data-serialization", "defensive", "design",
-  "devops", "diffusion", "esoteric", "gardening", "general", "geometry", "git",
-  "intellectual-property", "jigsawr", "library-science", "mcp-integration", "mlops",
-  "morphic", "mycology", "observability", "project-management", "prospecting",
-  "r-packages", "relocation", "reporting", "review", "shiny", "stochastic-processes",
-  "swarm", "tcg", "theoretical-science", "travel", "web-dev", "workflow-visualization"
+  "3d-printing", "a2a-protocol", "alchemy", "animal-training", "blender",
+  "bushcraft", "compliance", "containerization", "crafting", "data-serialization",
+  "defensive", "design", "devops", "diffusion", "esoteric", "gardening", "general",
+  "geometry", "git", "hildegard", "intellectual-property", "jigsawr",
+  "library-science", "maintenance", "mcp-integration", "mlops", "morphic",
+  "mycology", "observability", "project-management", "prospecting", "r-packages",
+  "relocation", "reporting", "review", "shiny", "stochastic-processes", "swarm",
+  "tcg", "theoretical-science", "travel", "visualization", "web-dev",
+  "workflow-visualization"
 )
 
 # ── Agent order (alphabetical, 43 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
-  "acp-developer", "alchemist", "auditor", "code-reviewer", "designer",
-  "devops-engineer", "diffusion-specialist", "dog-trainer", "gardener", "geometrist",
-  "gxp-validator", "hiking-guide", "ip-analyst", "jigsawr-developer", "librarian",
+  "acp-developer", "alchemist", "auditor", "blender-artist", "code-reviewer",
+  "designer", "devops-engineer", "diffusion-specialist", "dog-trainer",
+  "fabricator", "gardener", "geometrist", "gxp-validator", "hiking-guide",
+  "hildegard", "ip-analyst", "janitor", "jigsawr-developer", "librarian",
   "markovian", "martial-artist", "mcp-developer", "mlops-engineer", "mycologist",
   "mystic", "polymath", "project-manager", "prospector", "putior-integrator",
   "quarto-developer", "r-developer", "relocation-expert", "security-analyst",
@@ -72,9 +75,11 @@ get_palette_colors <- function(name) {
 #' Get cyberpunk palette (hand-tuned neon colors)
 get_cyberpunk_colors <- function() {
   domains <- list(
+    "3d-printing"            = "#55aadd",
     "a2a-protocol"           = "#44bbaa",
     "alchemy"                = "#ffaa33",
     "animal-training"        = "#ff9944",
+    "blender"                = "#ee8833",
     "bushcraft"              = "#88cc44",
     "compliance"             = "#ff3366",
     "containerization"       = "#44ddff",
@@ -89,9 +94,11 @@ get_cyberpunk_colors <- function() {
     "general"                = "#ccccff",
     "geometry"               = "#55ccdd",
     "git"                    = "#66ffcc",
+    "hildegard"              = "#99bb44",
     "intellectual-property"  = "#33ccff",
     "jigsawr"                = "#22ddaa",
     "library-science"        = "#8B7355",
+    "maintenance"            = "#aabb88",
     "mcp-integration"        = "#00ccaa",
     "mlops"                  = "#aa66ff",
     "morphic"                = "#bb88ff",
@@ -109,6 +116,7 @@ get_cyberpunk_colors <- function() {
     "tcg"                    = "#ff5577",
     "theoretical-science"    = "#ddbb55",
     "travel"                 = "#66cc99",
+    "visualization"          = "#ee77cc",
     "web-dev"                = "#ff6633",
     "workflow-visualization" = "#66dd88"
   )
@@ -117,16 +125,20 @@ get_cyberpunk_colors <- function() {
     "acp-developer"             = "#44bbaa",
     "alchemist"                 = "#ffaa33",
     "auditor"                   = "#ff7744",
+    "blender-artist"            = "#ee8833",
     "code-reviewer"             = "#ff66aa",
     "designer"                  = "#ff88dd",
     "devops-engineer"           = "#00ff88",
     "diffusion-specialist"      = "#cc77ff",
     "dog-trainer"               = "#ff9944",
+    "fabricator"                = "#55aadd",
     "gardener"                  = "#44bb66",
     "geometrist"                = "#55ccdd",
     "gxp-validator"             = "#ff3399",
     "hiking-guide"              = "#77cc66",
+    "hildegard"                 = "#99bb44",
     "ip-analyst"                = "#33ccff",
+    "janitor"                   = "#aabb88",
     "jigsawr-developer"         = "#22ddaa",
     "librarian"                 = "#8B7355",
     "markovian"                 = "#77aaff",

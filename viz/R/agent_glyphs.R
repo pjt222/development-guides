@@ -71,5 +71,15 @@ AGENT_GLYPHS <- list(
   "geometrist"                = "glyph_agent_geometrist",
   "markovian"                 = "glyph_agent_markovian",
   "theoretical-researcher"    = "glyph_agent_theorist",
-  "diffusion-specialist"      = "glyph_agent_diffusion"
+  "diffusion-specialist"      = "glyph_agent_diffusion",
+
+  # ── Medieval & Esoteric ─────────────────────────────────────────────
+  "hildegard"                 = "glyph_agent_hildegard",
+
+  # ── Maintenance ──────────────────────────────────────────────────────
+  "janitor"                   = "glyph_agent_janitor",
+
+  # ── 3D & Visualization ──────────────────────────────────────────────
+  "blender-artist"            = "glyph_agent_blender",
+  "fabricator"                = "glyph_agent_fabricator"
 )
