@@ -277,7 +277,7 @@ function renderAgents(agents) {
     item.className = 'filter-item';
     item.innerHTML = `
       <input type="checkbox" data-agent="${agent.id}" ${agentStates[agent.id] ? 'checked' : ''}>
-      <span class="filter-swatch agent-hex" data-agent-id="${agentId}" style="background: ${color}"></span>
+      <span class="filter-swatch agent-oct" data-agent-id="${agentId}" style="background: ${color}"></span>
       <span class="filter-name">${agent.title || agent.id}</span>
       <span class="filter-count">${agent.priority || ''}</span>
     `;
@@ -314,7 +314,7 @@ function renderTeams(teams) {
     item.className = 'filter-item';
     item.innerHTML = `
       <input type="checkbox" data-team="${team.id}" ${teamStates[team.id] ? 'checked' : ''}>
-      <span class="filter-swatch team-hex" data-team-id="${teamId}" style="background: ${color}"></span>
+      <span class="filter-swatch team-pent" data-team-id="${teamId}" style="background: ${color}"></span>
       <span class="filter-name">${team.title || team.id}</span>
       <span class="filter-count">${team.members ? team.members.length : 0} members</span>
     `;

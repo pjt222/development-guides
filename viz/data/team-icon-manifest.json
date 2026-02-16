@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "type": "team-icons",
+    "pipeline": "R/ggplot2 + ggfx neon glow",
+    "resolution": "1024x1024",
+    "format": "webp",
+    "total_teams": 1,
+    "palettes": [
+      "cyberpunk",
+      "viridis",
+      "magma",
+      "inferno",
+      "plasma",
+      "cividis",
+      "mako",
+      "rocket",
+      "turbo"
+    ],
+    "path_format": "icons/<palette>/teams/<teamId>.webp"
+  },
+  "teamStyles": {
+    "r-package-review": {
+      "description": "R package review team with coordinated multi-agent workflow",
+      "glow": "bright-cyan",
+      "concept": "Hub-and-spoke pentagon with 4 member nodes and coordination lines"
+    }
+  },
+  "icons": [
+    {
+      "teamId": "r-package-review",
+      "path": "icons/cyberpunk/teams/r-package-review.webp",
+      "status": "done"
+    }
+  ]
+}

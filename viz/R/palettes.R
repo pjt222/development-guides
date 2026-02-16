@@ -30,6 +30,11 @@ PALETTE_AGENT_ORDER <- c(
   "swarm-strategist", "tcg-specialist", "web-developer"
 )
 
+# ── Team order (alphabetical, 1 team) ────────────────────────────────────
+PALETTE_TEAM_ORDER <- c(
+  "r-package-review"
+)
+
 # ── viridisLite option mapping ────────────────────────────────────────────
 VIRIDIS_OPTIONS <- list(
   viridis = "D",
@@ -45,7 +50,7 @@ VIRIDIS_OPTIONS <- list(
 #' Get palette colors for a given palette name
 #'
 #' @param name Palette name (one of PALETTE_NAMES)
-#' @return List with $domains (named list domain->hex) and $agents (named list agent->hex)
+#' @return List with $domains, $agents, and $teams (named lists of id->hex)
 get_palette_colors <- function(name) {
   if (!name %in% PALETTE_NAMES) {
     stop("Unknown palette: ", name, ". Must be one of: ",
@@ -123,7 +128,11 @@ get_cyberpunk_colors <- function() {
     "web-developer"             = "#ff6633"
   )
 
-  list(domains = domains, agents = agents)
+  teams <- list(
+    "r-package-review" = "#00ccff"   # bright cyan
+  )
+
+  list(domains = domains, agents = agents, teams = teams)
 }
 
 #' Get viridis-family palette colors
@@ -134,6 +143,7 @@ get_viridis_colors <- function(name) {
 
   n_domains <- length(PALETTE_DOMAIN_ORDER)
   n_agents <- length(PALETTE_AGENT_ORDER)
+  n_teams <- length(PALETTE_TEAM_ORDER)
 
   # Generate domain colors evenly spaced across the colormap
 
@@ -144,10 +154,16 @@ get_viridis_colors <- function(name) {
   agent_hexes <- viridisLite::viridis(n_agents, option = opt,
                                        begin = 0.1, end = 0.9)
 
+  # Generate team colors from a distinct range to stand out
+  team_hexes <- viridisLite::viridis(max(n_teams, 3), option = opt,
+                                      begin = 0.3, end = 0.7)
+
   domains <- setNames(as.list(substr(domain_hexes, 1, 7)), PALETTE_DOMAIN_ORDER)
   agents <- setNames(as.list(substr(agent_hexes, 1, 7)), PALETTE_AGENT_ORDER)
+  teams <- setNames(as.list(substr(team_hexes[seq_len(n_teams)], 1, 7)),
+                    PALETTE_TEAM_ORDER)
 
-  list(domains = domains, agents = agents)
+  list(domains = domains, agents = agents, teams = teams)
 }
 
 #' Export all palette colors to JSON
@@ -164,9 +180,11 @@ export_palette_json <- function(out_path) {
       palette_count = length(PALETTE_NAMES),
       domain_count = length(PALETTE_DOMAIN_ORDER),
       agent_count = length(PALETTE_AGENT_ORDER),
+      team_count = length(PALETTE_TEAM_ORDER),
       palettes = PALETTE_NAMES,
       domains = PALETTE_DOMAIN_ORDER,
-      agents = PALETTE_AGENT_ORDER
+      agents = PALETTE_AGENT_ORDER,
+      teams = PALETTE_TEAM_ORDER
     ),
     palettes = palettes
   )

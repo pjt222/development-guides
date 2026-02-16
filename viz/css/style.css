@@ -368,12 +368,20 @@ body::after {
 .filter-swatch {
   width: 10px;
   height: 10px;
-  border-radius: 2px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
 
-.filter-swatch.agent-hex {
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+.filter-swatch.agent-oct {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  border-radius: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.filter-swatch.team-pent {
+  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+  border-radius: 0;
   width: 12px;
   height: 12px;
 }

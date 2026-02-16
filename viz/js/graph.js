@@ -107,11 +107,22 @@ function rebuildHighlightSet() {
   const activeId = selectedNodeId || hoveredNodeId;
   if (!activeId) { highlightedNodeIds = null; return; }
   const set = new Set([activeId]);
+  // 1-hop: direct neighbors
   for (const l of graphData.links) {
     const src = typeof l.source === 'object' ? l.source.id : l.source;
     const tgt = typeof l.target === 'object' ? l.target.id : l.target;
     if (src === activeId) set.add(tgt);
     else if (tgt === activeId) set.add(src);
+  }
+  // 2-hop for teams: also highlight agents' skill connections
+  if (activeId.startsWith('team:')) {
+    const firstHop = new Set(set);
+    for (const l of graphData.links) {
+      const src = typeof l.source === 'object' ? l.source.id : l.source;
+      const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+      if (firstHop.has(src) && src !== activeId) set.add(tgt);
+      else if (firstHop.has(tgt) && tgt !== activeId) set.add(src);
+    }
   }
   highlightedNodeIds = set;
 }
