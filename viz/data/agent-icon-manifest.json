@@ -384,17 +384,17 @@
     {
       "agentId": "dog-trainer",
       "path": "icons/cyberpunk/agents/dog-trainer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "mycologist",
       "path": "icons/cyberpunk/agents/mycologist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "prospector",
       "path": "icons/cyberpunk/agents/prospector.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "shaman",
@@ -409,47 +409,47 @@
     {
       "agentId": "tour-planner",
       "path": "icons/cyberpunk/agents/tour-planner.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "hiking-guide",
       "path": "icons/cyberpunk/agents/hiking-guide.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "relocation-expert",
       "path": "icons/cyberpunk/agents/relocation-expert.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "mcp-developer",
       "path": "icons/cyberpunk/agents/mcp-developer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "acp-developer",
       "path": "icons/cyberpunk/agents/acp-developer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "geometrist",
       "path": "icons/cyberpunk/agents/geometrist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "markovian",
       "path": "icons/cyberpunk/agents/markovian.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "theoretical-researcher",
       "path": "icons/cyberpunk/agents/theoretical-researcher.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "diffusion-specialist",
       "path": "icons/cyberpunk/agents/diffusion-specialist.webp",
-      "status": "pending"
+      "status": "done"
     }
   ]
 }
