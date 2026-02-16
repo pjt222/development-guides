@@ -2,10 +2,11 @@
  * panel.js - Right-side detail panel (open/close/populate)
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getCurrentThemeName } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
 
 const GITHUB_BASE = 'https://github.com/pjt222/development-guides/blob/main/skills/';
 const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
+const GITHUB_TEAMS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
 
 const PRIORITY_BADGE_COLORS = {
   critical: '#ff4444',
@@ -30,6 +31,11 @@ export function initPanel(el, { onRelated } = {}) {
 export function openPanel(node) {
   if (!panelEl || !node) return;
   currentNode = node;
+
+  if (node.type === 'team') {
+    openTeamPanel(node);
+    return;
+  }
 
   if (node.type === 'agent') {
     openAgentPanel(node);
@@ -84,6 +90,57 @@ function openSkillPanel(node) {
     <div class="panel-actions">
       <a href="${GITHUB_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
         View Source SKILL.md
+      </a>
+    </div>
+  `;
+
+  setPanelContent(html);
+}
+
+function openTeamPanel(node) {
+  const teamId = node.id.replace('team:', '');
+  const color = getTeamColor(teamId);
+
+  const iconSrc = `icons/${getCurrentThemeName()}/teams/${encodeURI(teamId)}.webp`;
+
+  let html = `
+    <div class="panel-icon-wrapper">
+      <img class="panel-icon" src="${iconSrc}" alt=""
+        onerror="this.parentElement.innerHTML='<div class=\\'panel-agent-hex\\' style=\\'color:${color};text-shadow:0 0 16px ${color}\\'>&#x2B1F;</div>'">
+    </div>
+    <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
+    <div class="panel-badges">
+      <span class="badge" style="border-color: ${color}; color: ${color}">team</span>
+      <span class="badge" style="border-color: #888; color: #888">${escHtml(node.coordination || 'hub-and-spoke')}</span>
+    </div>
+    <p class="panel-desc">${escHtml(node.description)}</p>
+  `;
+
+  if (node.lead) {
+    html += `<h3 class="panel-section-title">Lead</h3>`;
+    html += `<ul class="panel-related"><li><a href="#" class="related-link" data-id="agent:${escAttr(node.lead)}">${escHtml(node.lead)}</a></li></ul>`;
+  }
+
+  if (node.members && node.members.length) {
+    html += `<h3 class="panel-section-title">Members (${node.members.length})</h3><ul class="panel-related">`;
+    for (const memberId of node.members) {
+      const isLead = memberId === node.lead;
+      html += `<li><a href="#" class="related-link" data-id="agent:${escAttr(memberId)}">${escHtml(memberId)}</a>${isLead ? ' <span class="badge" style="border-color: ${color}; color: ${color}; font-size: 0.7em">lead</span>' : ''}</li>`;
+    }
+    html += `</ul>`;
+  }
+
+  if (node.tags && node.tags.length) {
+    html += `<h3 class="panel-section-title">Tags</h3>`;
+    html += `<div class="panel-tags">${node.tags.map(t =>
+      `<span class="tag">${escHtml(t)}</span>`
+    ).join('')}</div>`;
+  }
+
+  html += `
+    <div class="panel-actions">
+      <a href="${GITHUB_TEAMS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
+        View Team Definition
       </a>
     </div>
   `;

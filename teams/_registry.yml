@@ -1,0 +1,16 @@
+# Teams Registry
+# Machine-readable catalog of all team definitions in this library.
+# Keep in sync with the actual team files on disk.
+
+total_teams: 1
+version: "1.0"
+last_updated: "2026-02-16"
+
+teams:
+  - id: r-package-review
+    path: teams/r-package-review.md
+    description: Multi-agent team for comprehensive R package quality review
+    lead: r-developer
+    members: [r-developer, code-reviewer, senior-software-developer, security-analyst]
+    coordination: hub-and-spoke
+    tags: [R, code-review, quality, package-development]

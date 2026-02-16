@@ -6,15 +6,17 @@
  * A search box filters visible skills and auto-expands matching domains.
  */
 
-import { DOMAIN_COLORS, getAgentColor } from './colors.js';
+import { DOMAIN_COLORS, getAgentColor, getTeamColor } from './colors.js';
 
 let filterEl = null;
 let skillStates = {};       // skillId -> boolean
 let agentStates = {};       // agentId -> boolean
+let teamStates = {};        // teamId -> boolean
 let skillsByDomain = {};    // domain -> [nodeObj, ...]
 let domainExpanded = {};    // domain -> boolean
 let onChange = null;
 let onAgentChange = null;
+let onTeamChange = null;
 let onTagChange = null;
 
 // Tag filter state
@@ -26,12 +28,14 @@ let selectedTags = new Set();
  * @param {HTMLElement} el - Filter panel element
  * @param {Array} skillNodes - Array of skill node objects (from data.nodes where type==='skill')
  * @param {Array} agents - Array of agent node objects
- * @param {Object} callbacks - { onFilterChange, onAgentFilterChange }
+ * @param {Array} teams - Array of team node objects
+ * @param {Object} callbacks - { onFilterChange, onAgentFilterChange, onTeamFilterChange, onTagFilterChange }
  */
-export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFilterChange, onTagFilterChange } = {}) {
+export function initFilters(el, skillNodes, agents, teams, { onFilterChange, onAgentFilterChange, onTeamFilterChange, onTagFilterChange } = {}) {
   filterEl = el;
   onChange = onFilterChange;
   onAgentChange = onAgentFilterChange;
+  onTeamChange = onTeamFilterChange;
   onTagChange = onTagFilterChange;
 
   // Build domain -> skills lookup
@@ -56,6 +60,11 @@ export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFil
     agentStates[agent.id] = true;
   }
 
+  // Initialize all teams as visible
+  for (const team of teams) {
+    teamStates[team.id] = true;
+  }
+
   // Initialize all domains as collapsed
   for (const domain of Object.keys(skillsByDomain)) {
     domainExpanded[domain] = false;
@@ -64,7 +73,8 @@ export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFil
   renderSearchBox();
   renderSkills();
   renderAgents(agents);
-  buildTagIndex(skillNodes, agents);
+  renderTeams(teams);
+  buildTagIndex(skillNodes, agents, teams);
   renderTagFilter();
   bindSectionHeaders();
   bindPanelToggle();
@@ -72,6 +82,7 @@ export function initFilters(el, skillNodes, agents, { onFilterChange, onAgentFil
   // Update section counts
   updateSkillsCount();
   updateAgentsCount(agents);
+  updateTeamsCount(teams);
 }
 
 // ── Search box ─────────────────────────────────────────────────────
@@ -288,13 +299,61 @@ function updateAgentsCount(agents) {
   el.textContent = visible < total ? `${visible}/${total}` : String(total);
 }
 
+// ── Teams section ───────────────────────────────────────────────
+
+function renderTeams(teams) {
+  const list = filterEl.querySelector('#teams-filter-list');
+  if (!list) return;
+
+  list.innerHTML = '';
+
+  for (const team of teams) {
+    const teamId = team.id.replace('team:', '');
+    const color = getTeamColor(teamId);
+    const item = document.createElement('label');
+    item.className = 'filter-item';
+    item.innerHTML = `
+      <input type="checkbox" data-team="${team.id}" ${teamStates[team.id] ? 'checked' : ''}>
+      <span class="filter-swatch team-hex" data-team-id="${teamId}" style="background: ${color}"></span>
+      <span class="filter-name">${team.title || team.id}</span>
+      <span class="filter-count">${team.members ? team.members.length : 0} members</span>
+    `;
+    list.appendChild(item);
+
+    item.querySelector('input').addEventListener('change', e => {
+      teamStates[team.id] = e.target.checked;
+      fireTeamChange();
+    });
+  }
+}
+
+function updateTeamsCount(teams) {
+  const el = filterEl.querySelector('#teams-section-count');
+  if (!el) return;
+
+  const total = teams.length;
+  const visible = Object.values(teamStates).filter(Boolean).length;
+  el.textContent = visible < total ? `${visible}/${total}` : String(total);
+}
+
+function fireTeamChange() {
+  const totalTeams = Object.keys(teamStates).length;
+  const visibleTeams = Object.values(teamStates).filter(Boolean).length;
+  const el = filterEl.querySelector('#teams-section-count');
+  if (el) el.textContent = visibleTeams < totalTeams ? `${visibleTeams}/${totalTeams}` : String(totalTeams);
+
+  if (onTeamChange) {
+    onTeamChange(getVisibleTeamIds());
+  }
+}
+
 // ── Tag filter ──────────────────────────────────────────────────
 
-function buildTagIndex(skillNodes, agents) {
+function buildTagIndex(skillNodes, agents, teams) {
   nodeTagsMap = {};
   const tagCounts = {};
 
-  for (const node of [...skillNodes, ...agents]) {
+  for (const node of [...skillNodes, ...agents, ...(teams || [])]) {
     if (!Array.isArray(node.tags) || node.tags.length === 0) continue;
     const normalized = new Set(node.tags.map(t => String(t).toLowerCase()));
     nodeTagsMap[node.id] = normalized;
@@ -430,6 +489,14 @@ function bindSectionHeaders() {
             Object.keys(agentStates).map(id => ({ id }))
           );
           fireAgentChange();
+        } else if (target === 'teams') {
+          for (const t of Object.keys(teamStates)) teamStates[t] = isAll;
+          filterEl.querySelectorAll('#teams-filter-list input[type=checkbox]')
+            .forEach(cb => cb.checked = isAll);
+          updateTeamsCount(
+            Object.keys(teamStates).map(id => ({ id }))
+          );
+          fireTeamChange();
         } else if (target === 'tags') {
           clearAllTags();
         }
@@ -502,6 +569,12 @@ export function getVisibleAgentIds() {
     .map(([k]) => k);
 }
 
+export function getVisibleTeamIds() {
+  return Object.entries(teamStates)
+    .filter(([id, v]) => v && nodePassesTagFilter(id))
+    .map(([k]) => k);
+}
+
 // ── Swatch refresh (theme change) ────────────────────────────────
 
 export function refreshSwatches() {
@@ -520,5 +593,11 @@ export function refreshSwatches() {
   filterEl.querySelectorAll('#agents-filter-list .filter-swatch[data-agent-id]').forEach(swatch => {
     const agentId = swatch.dataset.agentId;
     swatch.style.background = getAgentColor(agentId);
+  });
+
+  // Refresh team swatches (per-team colors)
+  filterEl.querySelectorAll('#teams-filter-list .filter-swatch[data-team-id]').forEach(swatch => {
+    const teamId = swatch.dataset.teamId;
+    swatch.style.background = getTeamColor(teamId);
   });
 }

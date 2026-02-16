@@ -2,8 +2,8 @@
 /**
  * build-data.js
  *
- * Parses skills/_registry.yml and agents/_registry.yml to produce
- * viz/data/skills.json with nodes, links, domains, and meta.
+ * Parses skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
+ * to produce viz/data/skills.json with nodes, links, domains, and meta.
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -14,8 +14,10 @@ import yaml from 'js-yaml';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const SKILLS_DIR = resolve(__dirname, '..', 'skills');
 const AGENTS_DIR = resolve(__dirname, '..', 'agents');
+const TEAMS_DIR = resolve(__dirname, '..', 'teams');
 const REGISTRY_PATH = resolve(SKILLS_DIR, '_registry.yml');
 const AGENTS_REGISTRY_PATH = resolve(AGENTS_DIR, '_registry.yml');
+const TEAMS_REGISTRY_PATH = resolve(TEAMS_DIR, '_registry.yml');
 const OUTPUT_PATH = resolve(__dirname, 'data', 'skills.json');
 
 // ── Parse registry ──────────────────────────────────────────────
@@ -133,13 +135,17 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
 // ── Parse agents registry ───────────────────────────────────────
 const agentNodes = [];
 const agentLinks = [];
+const agentIds = new Set(); // for team -> agent link validation
 
 if (existsSync(AGENTS_REGISTRY_PATH)) {
   const agentsRegistry = yaml.load(readFileSync(AGENTS_REGISTRY_PATH, 'utf8'));
 
   for (const agent of agentsRegistry.agents || []) {
+    const agentNodeId = `agent:${agent.id}`;
+    agentIds.add(agentNodeId);
+
     agentNodes.push({
-      id: `agent:${agent.id}`,
+      id: agentNodeId,
       type: 'agent',
       title: agent.id.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
       priority: agent.priority || 'normal',
@@ -154,7 +160,7 @@ if (existsSync(AGENTS_REGISTRY_PATH)) {
     for (const skillId of agent.skills || []) {
       if (validIds.has(skillId)) {
         agentLinks.push({
-          source: `agent:${agent.id}`,
+          source: agentNodeId,
           target: skillId,
           type: 'agent',
         });
@@ -165,9 +171,47 @@ if (existsSync(AGENTS_REGISTRY_PATH)) {
   console.warn('WARN: agents/_registry.yml not found, skipping agents');
 }
 
+// ── Parse teams registry ────────────────────────────────────────
+const teamNodes = [];
+const teamLinks = [];
+
+if (existsSync(TEAMS_REGISTRY_PATH)) {
+  const teamsRegistry = yaml.load(readFileSync(TEAMS_REGISTRY_PATH, 'utf8'));
+
+  for (const team of teamsRegistry.teams || []) {
+    const teamNodeId = `team:${team.id}`;
+
+    teamNodes.push({
+      id: teamNodeId,
+      type: 'team',
+      title: team.id.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
+      lead: team.lead,
+      members: team.members || [],
+      coordination: team.coordination || 'hub-and-spoke',
+      description: team.description,
+      tags: team.tags || [],
+      path: team.path,
+    });
+
+    // Create team -> agent links for each member
+    for (const memberId of team.members || []) {
+      const agentNodeId = `agent:${memberId}`;
+      if (agentIds.has(agentNodeId)) {
+        teamLinks.push({
+          source: teamNodeId,
+          target: agentNodeId,
+          type: 'team',
+        });
+      }
+    }
+  }
+} else {
+  console.warn('WARN: teams/_registry.yml not found, skipping teams');
+}
+
 // ── Merge nodes and links ───────────────────────────────────────
-const allNodes = [...nodes, ...agentNodes];
-const allLinks = [...links, ...agentLinks];
+const allNodes = [...nodes, ...agentNodes, ...teamNodes];
+const allLinks = [...links, ...agentLinks, ...teamLinks];
 
 // ── Output ──────────────────────────────────────────────────────
 const output = {
@@ -175,9 +219,11 @@ const output = {
     generated: new Date().toISOString(),
     totalSkills: nodes.length,
     totalAgents: agentNodes.length,
+    totalTeams: teamNodes.length,
     totalNodes: allNodes.length,
     totalLinks: allLinks.length,
     totalAgentLinks: agentLinks.length,
+    totalTeamLinks: teamLinks.length,
     totalDomains: Object.keys(domains).length,
   },
   domains,
@@ -189,7 +235,9 @@ writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
 console.log(`Generated ${OUTPUT_PATH}`);
 console.log(`  Skills: ${nodes.length}`);
 console.log(`  Agents: ${agentNodes.length}`);
+console.log(`  Teams: ${teamNodes.length}`);
 console.log(`  Agent links: ${agentLinks.length}`);
+console.log(`  Team links: ${teamLinks.length}`);
 console.log(`  Total nodes: ${allNodes.length}`);
 console.log(`  Total links: ${allLinks.length}`);
 console.log(`  Domains: ${Object.keys(domains).length}`);

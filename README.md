@@ -1,25 +1,27 @@
 # Development Guides
 
-An agentic development platform providing structured skills, specialized agents, and reference guides for AI-assisted software engineering. Built on the [Agent Skills open standard](https://agentskills.io), the platform gives agentic systems (Claude Code, Codex, Cursor, Gemini CLI) executable procedures for tasks spanning R package development, DevOps, compliance, MLOps, observability, and more.
+An agentic development platform providing structured skills, specialized agents, predefined teams, and reference guides for AI-assisted software engineering. Built on the [Agent Skills open standard](https://agentskills.io), the platform gives agentic systems (Claude Code, Codex, Cursor, Gemini CLI) executable procedures for tasks spanning R package development, DevOps, compliance, MLOps, observability, and more.
 
 ## At a Glance
 
 <!-- AUTO:START:stats -->
 - **186 skills** across 27 domains — structured, executable procedures
 - **29 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **1 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
 - **Interactive visualization** — force-graph explorer with 186 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
-## Three Pillars
+## Four Pillars
 
 | Pillar | Location | Purpose | Example |
 |--------|----------|---------|---------|
 | **Guides** | `guides/` | Human-readable reference docs | "R Package Development Best Practices" |
 | **Skills** | `skills/<domain>/<skill>/` | Executable procedures for specific tasks | "Submit to CRAN" step-by-step |
 | **Agents** | `agents/<name>.md` | Personas with broad capabilities | "R Developer" agent |
+| **Teams** | `teams/<name>.md` | Multi-agent compositions | "R Package Review" team |
 
-Skills define *how* (procedure, validation, recovery). Agents define *who* (persona, tools, style). Guides provide the background knowledge both draw from. An agent can reference skills to execute specific tasks — see [agents/README.md](agents/README.md) for the full mapping.
+Skills define *how* (procedure, validation, recovery). Agents define *who* (persona, tools, style). Teams define *who works together* (composition, roles, coordination). Guides provide the background knowledge all draw from. An agent can reference skills to execute specific tasks — see [agents/README.md](agents/README.md) for the full mapping.
 
 ## Skills Library
 
@@ -103,6 +105,20 @@ The **[Agents Library](agents/)** provides 29 specialized agent definitions for 
 
 See [agents/README.md](agents/README.md) for usage instructions, the creation template, and best practices.
 
+## Teams Library
+
+<!-- AUTO:START:teams-intro -->
+The **[Teams Library](teams/)** provides 1 predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+<!-- AUTO:END:teams-intro -->
+
+<!-- AUTO:START:teams-table -->
+| Team | Lead | Members | Coordination | Description |
+|------|------|---------|--------------|-------------|
+| [r-package-review](teams/r-package-review.md) | r-developer | 4 | hub-and-spoke | Multi-agent team for comprehensive R package quality review |
+<!-- AUTO:END:teams-table -->
+
+See [teams/README.md](teams/README.md) for coordination patterns, the creation template, and machine-readable configuration.
+
 ## Interactive Visualization
 
 The `viz/` directory contains an interactive force-graph explorer for the entire skills library.
@@ -171,6 +187,11 @@ development-guides/
 │   ├── best-practices.md                  # Agent development guide
 │   ├── configuration-schema.md            # YAML frontmatter schema docs
 │   └── *.md                               # 29 agent persona files
+├── teams/                                 # Team compositions for multi-agent workflows
+│   ├── README.md                          # Team index and usage guide
+│   ├── _registry.yml                      # Machine-readable team registry
+│   ├── _template.md                       # Team creation template
+│   └── *.md                               # Team definition files
 ├── skills/                                # Agentic skills library (185 skills, 27 domains)
 │   ├── README.md                          # Skills index and usage guide
 │   ├── _registry.yml                      # Machine-readable skill registry
@@ -247,6 +268,7 @@ Contributions are welcome! See the relevant README for each content type:
 
 - **Skills**: [skills/README.md](skills/README.md) — format, consumption, and contribution guide
 - **Agents**: [agents/README.md](agents/README.md) — creation template, best practices, registry
+- **Teams**: [teams/README.md](teams/README.md) — coordination patterns, template, configuration
 - **Guides**: Follow the existing structure and GitHub-flavored markdown style
 
 When contributing, please maintain the existing structure, update registries (`_registry.yml`), and test instructions in a fresh environment.

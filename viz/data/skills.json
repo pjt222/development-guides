@@ -1,11 +1,13 @@
 {
   "meta": {
-    "generated": "2026-02-13T14:51:30.505Z",
-    "totalSkills": 185,
+    "generated": "2026-02-16T08:38:01.297Z",
+    "totalSkills": 186,
     "totalAgents": 29,
-    "totalNodes": 214,
-    "totalLinks": 1052,
+    "totalTeams": 1,
+    "totalNodes": 216,
+    "totalLinks": 1060,
     "totalAgentLinks": 255,
+    "totalTeamLinks": 4,
     "totalDomains": 27
   },
   "domains": {
@@ -55,7 +57,7 @@
     },
     "bushcraft": {
       "description": "Wilderness survival and primitive skills",
-      "count": 3
+      "count": 4
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
@@ -1874,6 +1876,31 @@
         "purify-water"
       ],
       "path": "bushcraft/forage-plants/SKILL.md"
+    },
+    {
+      "id": "sharpen-knife",
+      "type": "skill",
+      "title": "Sharpen Knife",
+      "domain": "bushcraft",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Sharpen and maintain knives using whetstones, field stones, and improvised abrasives",
+      "tags": [
+        "bushcraft",
+        "knife",
+        "sharpening",
+        "blade",
+        "maintenance",
+        "whetstone",
+        "tools",
+        "gardening"
+      ],
+      "related": [
+        "make-fire",
+        "forage-plants",
+        "maintain-hand-tools"
+      ],
+      "path": "bushcraft/sharpen-knife/SKILL.md"
     },
     {
       "id": "heal",
@@ -4398,6 +4425,7 @@
       ],
       "related": [
         "cultivate-bonsai",
+        "sharpen-knife",
         "make-fire",
         "plan-garden-calendar",
         "meditate"
@@ -5631,6 +5659,27 @@
         "heal"
       ],
       "path": "agents/shiny-developer.md"
+    },
+    {
+      "id": "team:r-package-review",
+      "type": "team",
+      "title": "R Package Review",
+      "lead": "r-developer",
+      "members": [
+        "r-developer",
+        "code-reviewer",
+        "senior-software-developer",
+        "security-analyst"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "Multi-agent team for comprehensive R package quality review",
+      "tags": [
+        "R",
+        "code-review",
+        "quality",
+        "package-development"
+      ],
+      "path": "teams/r-package-review.md"
     }
   ],
   "links": [
@@ -7072,6 +7121,21 @@
     {
       "source": "forage-plants",
       "target": "purify-water",
+      "type": "skill"
+    },
+    {
+      "source": "sharpen-knife",
+      "target": "make-fire",
+      "type": "skill"
+    },
+    {
+      "source": "sharpen-knife",
+      "target": "forage-plants",
+      "type": "skill"
+    },
+    {
+      "source": "sharpen-knife",
+      "target": "maintain-hand-tools",
       "type": "skill"
     },
     {
@@ -9446,6 +9510,11 @@
     },
     {
       "source": "maintain-hand-tools",
+      "target": "sharpen-knife",
+      "type": "skill"
+    },
+    {
+      "source": "maintain-hand-tools",
       "target": "make-fire",
       "type": "skill"
     },
@@ -10893,6 +10962,26 @@
       "source": "agent:shiny-developer",
       "target": "heal",
       "type": "agent"
+    },
+    {
+      "source": "team:r-package-review",
+      "target": "agent:r-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:r-package-review",
+      "target": "agent:code-reviewer",
+      "type": "team"
+    },
+    {
+      "source": "team:r-package-review",
+      "target": "agent:senior-software-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:r-package-review",
+      "target": "agent:security-analyst",
+      "type": "team"
     }
   ]
 }

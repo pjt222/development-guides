@@ -24,6 +24,7 @@
       <span><span class="stat-value" id="stat-edges">0</span> edges</span>
       <span><span class="stat-value" id="stat-domains">0</span> domains</span>
       <span><span class="stat-value" id="stat-agents">0</span> agents</span>
+      <span><span class="stat-value" id="stat-teams">0</span> teams</span>
     </div>
 
     <div class="header-controls">
@@ -83,6 +84,22 @@
       </div>
       <div id="agents-section-body" class="filter-section-body open">
         <div class="filter-list" id="agents-filter-list"></div>
+      </div>
+    </div>
+
+    <!-- ── Teams Section ──────────────────────────────────────── -->
+    <div class="filter-section" data-section="teams">
+      <div class="filter-section-header" role="button" tabindex="0" aria-expanded="true" aria-controls="teams-section-body">
+        <span class="filter-section-chevron" aria-hidden="true">&#x25BE;</span>
+        <h3>Teams</h3>
+        <span class="filter-section-count" id="teams-section-count" aria-live="polite">0</span>
+        <div class="filter-bulk" role="group" aria-label="Bulk actions for Teams">
+          <button class="filter-all" data-target="teams" aria-label="Select all teams">All</button>
+          <button class="filter-none" data-target="teams" aria-label="Deselect all teams">None</button>
+        </div>
+      </div>
+      <div id="teams-section-body" class="filter-section-body open">
+        <div class="filter-list" id="teams-filter-list"></div>
       </div>
     </div>
 

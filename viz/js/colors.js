@@ -614,6 +614,37 @@ export const AGENT_PRIORITY_CONFIG = {
   normal:   { radius: 5, glowRadius: 14, glowOpacity: 0.4 },
 };
 
+// ── Per-team per-palette colors ──────────────────────────────────
+const TEAM_PALETTE_COLORS = {
+  cyberpunk:  { 'r-package-review': '#00ffcc' },
+  viridis:    { 'r-package-review': '#5EC962' },
+  magma:      { 'r-package-review': '#F0605D' },
+  inferno:    { 'r-package-review': '#ED6925' },
+  plasma:     { 'r-package-review': '#E76F5A' },
+  cividis:    { 'r-package-review': '#B5A971' },
+  mako:       { 'r-package-review': '#D2204C' },
+  rocket:     { 'r-package-review': '#49C1AD' },
+  turbo:      { 'r-package-review': '#6EFE61' },
+};
+
+export function getTeamColor(teamId) {
+  if (teamId && TEAM_PALETTE_COLORS[currentTheme]?.[teamId]) {
+    return TEAM_PALETTE_COLORS[currentTheme][teamId];
+  }
+  const colors = TEAM_PALETTE_COLORS[currentTheme];
+  if (colors) {
+    const vals = Object.values(colors);
+    return vals[0] || '#00ffcc';
+  }
+  return '#00ffcc';
+}
+
+export const TEAM_CONFIG = {
+  radius: 7,
+  glowRadius: 20,
+  glowOpacity: 0.55,
+};
+
 // ── Complexity configs (unchanged) ──────────────────────────────────
 export const COMPLEXITY_CONFIG = {
   basic:        { radius: 5, glowRadius: 14, glowOpacity: 0.4,  label: 'Basic' },

@@ -5,14 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 <!-- AUTO:START:overview -->
-A documentation-only repository containing 6 long-form markdown guides, a skills library of 186 agentic skills, and 29 agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 6 long-form markdown guides, a skills library of 186 agentic skills, 29 agent definitions, and 1 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
 <!-- AUTO:END:overview -->
 
 ## Architecture
 
-### Three Content Types
+### Four Content Types
 
 1. **Guides** (`guides/` directory): Human-readable reference documentation covering WSL setup, R package development, MCP troubleshooting, etc.
 
@@ -20,20 +20,23 @@ The primary audience is developers working in WSL-Windows hybrid environments, p
 
 3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 29 agents across development, compliance, review, project management, DevOps, MLOps, workflow visualization, swarm/morphic, alchemy, TCG, IP analysis, gardening, documentation, Shiny, and specialty domains.
 
-Agents and skills complement each other: agents define *who* (persona, tools, style), skills define *how* (procedure, validation, recovery). An agent can reference skills to execute specific tasks.
+4. **Teams** (`teams/` directory): Predefined multi-agent compositions for complex workflows. Each team is a markdown file with YAML frontmatter (`name`, `description`, `lead`, `members[]`, `coordination`) and an embedded machine-readable configuration block. Teams define *who works together* — coordinated groups of agents with assigned roles and a defined coordination pattern.
+
+These four types complement each other: skills define *how* (procedure, validation, recovery), agents define *who* (persona, tools, style), teams define *who works together* (composition, roles, coordination), and guides provide the background knowledge all draw from.
 
 ### Registries
 
 <!-- AUTO:START:registries -->
 - `skills/_registry.yml` is the machine-readable catalog of all 186 skills across 27 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (3), web-dev (3), git (6), general (6), data-serialization (2), review (6), bushcraft (4), esoteric (15), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (6), alchemy (3), tcg (3), intellectual-property (2), gardening (5), shiny (7).
 - `agents/_registry.yml` is the machine-readable catalog of all 29 agents.
+- `teams/_registry.yml` is the machine-readable catalog of all 1 teams.
 
-When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.
+When adding or removing skills, agents, or teams, the corresponding registry must be updated to stay in sync.
 <!-- AUTO:END:registries -->
 
 ### Cross-References
 
-Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/guides/` paths. Skills reference related skills by relative path. The project `.claude/agents/` symlinks to `agents/` for Claude Code discovery.
+Guides, skills, agents, and teams are cross-referenced. The parent project `CLAUDE.md` at `/mnt/d/dev/p/CLAUDE.md` references several guides via `@development-guides/guides/` paths. Skills reference related skills by relative path. Teams reference their member agents. The project `.claude/agents/` symlinks to `agents/` for Claude Code discovery.
 
 ## Editing Conventions
 
@@ -79,9 +82,18 @@ Guides, skills, and agents are cross-referenced. The parent project `CLAUDE.md` 
 5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
 6. See `agents/best-practices.md` for detailed guidance
 
+## Adding a New Team
+
+1. Copy `teams/_template.md` to `teams/<team-name>.md`
+2. Fill in YAML frontmatter (required: `name`, `description`, `lead`, `members[]`, `coordination`, `version`, `author`)
+3. Write Purpose, Team Composition, Coordination Pattern, Task Decomposition, Configuration, Usage Scenarios, and Limitations sections
+4. Include a `<!-- CONFIG:START -->` / `<!-- CONFIG:END -->` block with machine-readable YAML for tooling
+5. Add the entry to `teams/_registry.yml` and update `total_teams` count
+6. Run `npm run update-readmes` (or let CI auto-commit on push to main)
+
 ## README Automation
 
-Dynamic sections in README files are auto-generated from the registries. Sections between `<!-- AUTO:START:name -->` and `<!-- AUTO:END:name -->` markers are replaced by `scripts/generate-readmes.js`. Two files (`guides/README.md`, `viz/README.md`) are fully generated.
+Dynamic sections in README files are auto-generated from the registries. Sections between `<!-- AUTO:START:name -->` and `<!-- AUTO:END:name -->` markers are replaced by `scripts/generate-readmes.js`. Three files (`guides/README.md`, `viz/README.md`, `teams/README.md`) are fully generated.
 
 ```bash
 # Update all READMEs from registries
@@ -91,4 +103,4 @@ npm run update-readmes
 npm run check-readmes
 ```
 
-CI auto-commits README updates when registry files change on `main` (`.github/workflows/update-readmes.yml`). Manual `agents/README.md` table updates in step 5 above are no longer needed — the script handles it.
+CI auto-commits README updates when registry files change on `main` (`.github/workflows/update-readmes.yml`). Manual table updates in step 5 above are no longer needed — the script handles it.

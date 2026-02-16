@@ -2,9 +2,9 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, getVisibleAgentIds } from './graph.js';
+import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
-import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, refreshSwatches } from './filters.js';
+import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 
 const DATA_URL = 'data/skills.json';
@@ -41,6 +41,7 @@ async function main() {
   document.getElementById('stat-edges').textContent = data.meta.totalLinks;
   document.getElementById('stat-domains').textContent = data.meta.totalDomains;
   document.getElementById('stat-agents').textContent = data.meta.totalAgents;
+  document.getElementById('stat-teams').textContent = data.meta.totalTeams;
 
   // ── Restore saved theme ──
   const savedTheme = localStorage.getItem('skillnet-theme');
@@ -65,7 +66,8 @@ async function main() {
   // ── Init filter panel ──
   const skillNodes = data.nodes.filter(n => n.type === 'skill');
   const agentNodes = data.nodes.filter(n => n.type === 'agent');
-  initFilters(document.getElementById('filter-panel'), skillNodes, agentNodes, {
+  const teamNodes = data.nodes.filter(n => n.type === 'team');
+  initFilters(document.getElementById('filter-panel'), skillNodes, agentNodes, teamNodes, {
     onFilterChange(visibleSkillIds) {
       setSkillVisibility(visibleSkillIds);
       updateFilteredStats(visibleSkillIds);
@@ -75,10 +77,16 @@ async function main() {
       setSkillVisibility(getVisibleSkillIds());
       updateFilteredStats(getVisibleSkillIds());
     },
+    onTeamFilterChange(visibleIds) {
+      setVisibleTeams(visibleIds);
+      setSkillVisibility(getVisibleSkillIds());
+      updateFilteredStats(getVisibleSkillIds());
+    },
     onTagFilterChange() {
       const visSkills = getVisibleSkillIds();
       setSkillVisibility(visSkills);
       setVisibleAgents(getFilteredAgentIds());
+      setVisibleTeams(getFilteredTeamIds());
       updateFilteredStats(visSkills);
     },
   });
@@ -154,9 +162,14 @@ function showTooltip(node) {
     if (tooltip) tooltip.style.display = 'none';
     return;
   }
-  const label = node.type === 'agent'
-    ? `${node.title || node.id} [agent / ${node.priority}]`
-    : `${node.title || node.id} [${node.domain}]`;
+  let label;
+  if (node.type === 'team') {
+    label = `${node.title || node.id} [team / ${node.members ? node.members.length : 0} members]`;
+  } else if (node.type === 'agent') {
+    label = `${node.title || node.id} [agent / ${node.priority}]`;
+  } else {
+    label = `${node.title || node.id} [${node.domain}]`;
+  }
   tooltip.textContent = label;
   tooltip.style.display = 'block';
 }
@@ -180,7 +193,8 @@ function updateFilteredStats(visibleSkillIds) {
     if (agentIds === null) return true;
     return agentIds.has(n.id);
   });
-  const visNodeIds = new Set([...visSkills, ...visAgents].map(n => n.id));
+  const visTeams = allData.nodes.filter(n => n.type === 'team');
+  const visNodeIds = new Set([...visSkills, ...visAgents, ...visTeams].map(n => n.id));
   const visLinks = allData.links.filter(l => visNodeIds.has(l.source) && visNodeIds.has(l.target));
 
   // Count unique domains among visible skills
@@ -190,6 +204,7 @@ function updateFilteredStats(visibleSkillIds) {
   document.getElementById('stat-edges').textContent = visLinks.length;
   document.getElementById('stat-domains').textContent = visDomains.size;
   document.getElementById('stat-agents').textContent = visAgents.length;
+  document.getElementById('stat-teams').textContent = visTeams.length;
 }
 
 main().catch(err => {

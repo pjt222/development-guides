@@ -2,9 +2,10 @@
 /**
  * generate-readmes.js
  *
- * Reads skills/_registry.yml and agents/_registry.yml to auto-generate
- * dynamic sections in README.md, skills/README.md, agents/README.md,
- * CLAUDE.md, guides/README.md, and viz/README.md.
+ * Reads skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
+ * to auto-generate dynamic sections in README.md, skills/README.md,
+ * agents/README.md, CLAUDE.md, guides/README.md, viz/README.md, and
+ * teams/README.md.
  *
  * Usage:
  *   node scripts/generate-readmes.js          # update files in-place
@@ -27,11 +28,17 @@ const skillsRegistry = yaml.load(
 const agentsRegistry = yaml.load(
   readFileSync(resolve(ROOT, 'agents/_registry.yml'), 'utf8')
 );
+const teamsRegistryPath = resolve(ROOT, 'teams/_registry.yml');
+const teamsRegistry = existsSync(teamsRegistryPath)
+  ? yaml.load(readFileSync(teamsRegistryPath, 'utf8'))
+  : { total_teams: 0, teams: [] };
 
 const domains = skillsRegistry.domains;
 const agents = agentsRegistry.agents;
+const teams = teamsRegistry.teams || [];
 const totalSkills = skillsRegistry.total_skills;
 const totalAgents = agentsRegistry.total_agents;
+const totalTeams = teamsRegistry.total_teams || 0;
 const totalDomains = Object.keys(domains).length;
 
 // ── Helpers ──────────────────────────────────────────────────────
@@ -45,6 +52,10 @@ function domainDisplayName(domainId) {
 
 function agentDisplayName(agentId) {
   return agentId;
+}
+
+function teamDisplayName(teamId) {
+  return teamId;
 }
 
 /**
@@ -97,12 +108,14 @@ function writeGeneratedFile(filePath, content) {
 // ── Section generators ───────────────────────────────────────────
 
 function generateStats() {
-  return [
+  const lines = [
     `- **${totalSkills} skills** across ${totalDomains} domains — structured, executable procedures`,
     `- **${totalAgents} agents** — specialized Claude Code personas covering development, review, compliance, and more`,
+    `- **${totalTeams} teams** — predefined multi-agent compositions for complex workflows`,
     `- **6 guides** — human-readable reference documentation`,
     `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 6 color themes`,
-  ].join('\n');
+  ];
+  return lines.join('\n');
 }
 
 function generateSkillsIntro(linkPrefix) {
@@ -155,8 +168,30 @@ function generateAgentsTable(linkPrefix) {
   return rows.join('\n');
 }
 
+function generateTeamsIntro(linkPrefix) {
+  return `The **[Teams Library](${linkPrefix})** provides ${totalTeams} predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.`;
+}
+
+function generateTeamsIntroStandalone() {
+  return `A collection of ${totalTeams} predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.`;
+}
+
+function generateTeamsTable(linkPrefix) {
+  const rows = [];
+  rows.push('| Team | Lead | Members | Coordination | Description |');
+  rows.push('|------|------|---------|--------------|-------------|');
+  for (const team of teams) {
+    const name = teamDisplayName(team.id);
+    const memberCount = team.members ? team.members.length : 0;
+    rows.push(
+      `| [${name}](${linkPrefix}${team.id}.md) | ${team.lead} | ${memberCount} | ${team.coordination || 'hub-and-spoke'} | ${team.description} |`
+    );
+  }
+  return rows.join('\n');
+}
+
 function generateOverview() {
-  return `A documentation-only repository containing 6 long-form markdown guides, a skills library of ${totalSkills} agentic skills, and ${totalAgents} agent definitions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+  return `A documentation-only repository containing 6 long-form markdown guides, a skills library of ${totalSkills} agentic skills, ${totalAgents} agent definitions, and ${totalTeams} team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.`;
 }
@@ -168,8 +203,9 @@ function generateRegistries() {
 
   return `- \`skills/_registry.yml\` is the machine-readable catalog of all ${totalSkills} skills across ${totalDomains} domains: ${domainList}.
 - \`agents/_registry.yml\` is the machine-readable catalog of all ${totalAgents} agents.
+- \`teams/_registry.yml\` is the machine-readable catalog of all ${totalTeams} teams.
 
-When adding or removing skills or agents, the corresponding registry must be updated to stay in sync.`;
+When adding or removing skills, agents, or teams, the corresponding registry must be updated to stay in sync.`;
 }
 
 // ── Fully generated files ────────────────────────────────────────
@@ -204,7 +240,7 @@ WSL-Windows path conversions, R package development commands, Git operations, sh
 function generateVizReadme() {
   return `# Interactive Skills Visualization
 
-Force-graph explorer for the ${totalSkills}-skill, ${totalAgents}-agent development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 6 color themes.
+Force-graph explorer for the ${totalSkills}-skill, ${totalAgents}-agent, ${totalTeams}-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 6 color themes.
 
 ## Architecture
 
@@ -212,7 +248,7 @@ Force-graph explorer for the ${totalSkills}-skill, ${totalAgents}-agent developm
 - **R icon pipeline** (\`R/\`): ggplot2 + ggfx neon glow pictograms rendered per-skill as transparent WebP icons
 - **${totalSkills} skill icons** (\`icons/<domain>/\`): one glyph per skill, domain-colored
 - **6 color themes**: cyberpunk, viridis, inferno, magma, plasma, cividis
-- **Data pipeline**: \`build-data.js\` reads both registries and generates \`data/skills.json\`
+- **Data pipeline**: \`build-data.js\` reads all three registries and generates \`data/skills.json\`
 
 ## Build Pipeline
 
@@ -262,6 +298,64 @@ viz/
 `;
 }
 
+function generateTeamsReadme() {
+  return `# Teams
+
+Predefined multi-agent team compositions for coordinated workflows in [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
+
+## Overview
+
+<!-- AUTO:START:teams-intro -->
+${generateTeamsIntroStandalone()}
+<!-- AUTO:END:teams-intro -->
+
+Teams complement agents and skills:
+- **Skills** define *how* (procedure, validation, recovery)
+- **Agents** define *who* (persona, tools, domain expertise)
+- **Teams** define *who works together* (composition, roles, coordination)
+
+## Available Teams
+
+<!-- AUTO:START:teams-table -->
+${generateTeamsTable('')}
+<!-- AUTO:END:teams-table -->
+
+## Creating a New Team
+
+1. Copy \`_template.md\` to \`<team-name>.md\`
+2. Fill in YAML frontmatter: \`name\`, \`description\`, \`lead\`, \`members[]\`, \`coordination\`
+3. Write Purpose, Team Composition, Coordination Pattern, Task Decomposition, and Configuration sections
+4. Include a \`<!-- CONFIG:START -->\` / \`<!-- CONFIG:END -->\` block with machine-readable YAML
+5. Add the entry to \`_registry.yml\`
+6. Run \`npm run update-readmes\` from the project root
+
+## Coordination Patterns
+
+| Pattern | Description | Best For |
+|---------|-------------|----------|
+| **Hub-and-spoke** | Lead distributes tasks and collects results | Review teams, audit teams |
+| **Sequential** | Each member processes in order | Pipeline workflows |
+| **Parallel** | Members work independently, lead merges | Independent subtasks |
+| **Consensus** | Members deliberate and reach agreement | Decision-making teams |
+
+## Machine-Readable Configuration
+
+Each team definition includes an embedded configuration block between \`<!-- CONFIG:START -->\` and \`<!-- CONFIG:END -->\` markers. Tooling can extract this YAML to auto-create teams via Claude Code's TeamCreate/SendMessage infrastructure.
+
+## Registry
+
+The \`_registry.yml\` file provides programmatic discovery of all teams:
+
+\`\`\`python
+import yaml
+with open("teams/_registry.yml") as f:
+    registry = yaml.safe_load(f)
+    for team in registry["teams"]:
+        print(f"{team['id']}: {team['lead']} + {len(team['members'])} members")
+\`\`\`
+`;
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 
 let staleCount = 0;
@@ -284,6 +378,8 @@ run(
     'skills-table': () => generateSkillsTable('skills/'),
     'agents-intro': () => generateAgentsIntro('agents/'),
     'agents-table': () => generateAgentsTable('agents/'),
+    'teams-intro': () => generateTeamsIntro('teams/'),
+    'teams-table': () => generateTeamsTable('teams/'),
   })
 );
 
@@ -326,9 +422,15 @@ run(
   writeGeneratedFile(resolve(ROOT, 'viz/README.md'), generateVizReadme())
 );
 
+// teams/README.md (fully generated)
+run(
+  'teams/README.md',
+  writeGeneratedFile(resolve(ROOT, 'teams/README.md'), generateTeamsReadme())
+);
+
 // Summary
 console.log(
-  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents`
+  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents, ${totalTeams} teams`
 );
 
 if (CHECK_MODE && staleCount > 0) {

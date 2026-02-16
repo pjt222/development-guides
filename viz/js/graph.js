@@ -2,7 +2,7 @@
  * graph.js - Force-graph setup, node/link rendering, interactions
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, AGENT_PRIORITY_CONFIG, getCurrentThemeName } from './colors.js';
+import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -70,8 +70,9 @@ function drawGlow(ctx, x, y, radius, profile, hex, opacity) {
   }
 }
 
-// ── Agent state ─────────────────────────────────────────────────────
+// ── Agent & Team state ──────────────────────────────────────────────
 let visibleAgentIds = null; // null = all visible, Set = specific IDs
+let visibleTeamIds = null;  // null = all visible, Set = specific IDs
 
 export function setAgentsVisible(v) {
   // Backward compat: boolean toggles all agents
@@ -91,6 +92,14 @@ export function getAgentsVisible() {
 
 export function getVisibleAgentIds() {
   return visibleAgentIds;
+}
+
+export function setVisibleTeams(ids) {
+  visibleTeamIds = new Set(ids);
+}
+
+export function getVisibleTeamIds() {
+  return visibleTeamIds;
 }
 
 // ── Performance helpers ─────────────────────────────────────────────
@@ -114,7 +123,19 @@ function rebuildNodeIndex() {
 
 function precomputeLinkColors() {
   for (const link of graphData.links) {
-    if (link.type !== 'agent') { link._agentHex = null; continue; }
+    if (link.type === 'team') {
+      // Team links get team color from the source (team node)
+      const src = typeof link.source === 'object' ? link.source : nodeById.get(typeof link.source === 'string' ? link.source : link.source?.id);
+      if (src && src.type === 'team') {
+        link._teamHex = getTeamColor(src.id.replace('team:', ''));
+      } else {
+        link._teamHex = getTeamColor();
+      }
+      link._agentHex = null;
+      continue;
+    }
+    if (link.type !== 'agent') { link._agentHex = null; link._teamHex = null; continue; }
+    link._teamHex = null;
     const src = typeof link.source === 'object' ? link.source : nodeById.get(typeof link.source === 'string' ? link.source : link.source?.id);
     if (src && src.type === 'agent') {
       link._agentHex = getAgentColor(src.id.replace('agent:', ''));
@@ -132,6 +153,7 @@ function precomputeLinkColors() {
 const SAME_DOMAIN_DISTANCE = 40;
 const CROSS_DOMAIN_DISTANCE = 100;
 const AGENT_LINK_DISTANCE = 120;
+const TEAM_LINK_DISTANCE = 80;
 const LABEL_ZOOM_THRESHOLD = 2.5;
 
 export function initGraph(container, data, { onClick, onHover } = {}) {
@@ -159,12 +181,18 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .linkTarget('target')
     .linkColor(link => {
       const isAgentLink = link.type === 'agent';
+      const isTeamLink = link.type === 'team';
       const activeId = selectedNodeId || hoveredNodeId;
       const getAgentLinkColor = (alpha) => {
         if (link._agentHex) return hexToRgba(link._agentHex, alpha);
         return hexToRgba(getAgentColor(), alpha);
       };
+      const getTeamLinkColor = (alpha) => {
+        if (link._teamHex) return hexToRgba(link._teamHex, alpha);
+        return hexToRgba(getTeamColor(), alpha);
+      };
       if (!activeId) {
+        if (isTeamLink) return getTeamLinkColor(0.06);
         return isAgentLink
           ? getAgentLinkColor(0.04)
           : 'rgba(255,255,255,0.06)';
@@ -172,11 +200,13 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
       const src = typeof link.source === 'object' ? link.source.id : link.source;
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
       if (src === activeId || tgt === activeId) {
+        if (isTeamLink) return getTeamLinkColor(0.4);
         if (isAgentLink) return getAgentLinkColor(0.3);
         const connectedNode = nodeById.get(src === activeId ? tgt : src);
         const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
         return hexToRgba(color, 0.35);
       }
+      if (isTeamLink) return getTeamLinkColor(0.01);
       return isAgentLink ? getAgentLinkColor(0.01) : 'rgba(255,255,255,0.02)';
     })
     .linkWidth(link => {
@@ -197,6 +227,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
   // Configure forces via the library's d3Force accessor
   graph.d3Force('link')
     .distance(link => {
+      if (link.type === 'team') return TEAM_LINK_DISTANCE;
       if (link.type === 'agent') return AGENT_LINK_DISTANCE;
       const src = typeof link.source === 'object' ? link.source : nodeById.get(link.source);
       const tgt = typeof link.target === 'object' ? link.target : nodeById.get(link.target);
@@ -235,9 +266,14 @@ export function preloadIcons(nodes, palette) {
   cachedPaletteIcons.set(pal, palMap);
 
   for (const node of nodes) {
-    const path = node.type === 'agent'
-      ? `icons/${pal}/agents/${node.id.replace('agent:', '')}.webp`
-      : `icons/${pal}/${node.domain}/${node.id}.webp`;
+    let path;
+    if (node.type === 'team') {
+      path = `icons/${pal}/teams/${node.id.replace('team:', '')}.webp`;
+    } else if (node.type === 'agent') {
+      path = `icons/${pal}/agents/${node.id.replace('agent:', '')}.webp`;
+    } else {
+      path = `icons/${pal}/${node.domain}/${node.id}.webp`;
+    }
     const img = new Image();
     img.onload = () => {
       palMap.set(node.id, img);
@@ -282,6 +318,18 @@ function drawOctPath(ctx, x, y, r) {
   ctx.beginPath();
   for (let i = 0; i < 8; i++) {
     const angle = (Math.PI / 4) * i - Math.PI / 8; // flat-top octagon
+    const vx = x + r * Math.cos(angle);
+    const vy = y + r * Math.sin(angle);
+    if (i === 0) ctx.moveTo(vx, vy);
+    else ctx.lineTo(vx, vy);
+  }
+  ctx.closePath();
+}
+
+function drawPentPath(ctx, x, y, r) {
+  ctx.beginPath();
+  for (let i = 0; i < 5; i++) {
+    const angle = (2 * Math.PI / 5) * i - Math.PI / 2; // point-up pentagon
     const vx = x + r * Math.cos(angle);
     const vy = y + r * Math.sin(angle);
     if (i === 0) ctx.moveTo(vx, vy);
@@ -369,6 +417,81 @@ function drawAgentNode(node, ctx, globalScale) {
   }
 }
 
+// ── Team node rendering ──────────────────────────────────────────────
+function drawTeamNode(node, ctx, globalScale) {
+  const x = node.x;
+  const y = node.y;
+  const teamId = node.id.replace('team:', '');
+  const color = getTeamColor(teamId);
+  const r = TEAM_CONFIG.radius;
+
+  const isHighlightedNode = isNodeHighlighted(node);
+  const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
+  const alpha = dimmed ? 0.12 : 1;
+
+  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+
+  if (useIcon) {
+    const img = activeIconMap.get(node.id);
+    const iconSize = r * 3.5;
+
+    drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
+
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
+    ctx.globalAlpha = 1;
+
+    // Pentagon frame around team icon
+    drawPentPath(ctx, x, y, iconSize + 1);
+    ctx.strokeStyle = hexToRgba(color, 0.5 * alpha);
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+  } else {
+    // ── Glow mode: pentagon rendering ──
+    drawGlow(ctx, x, y, TEAM_CONFIG.glowRadius, 'glow', color, TEAM_CONFIG.glowOpacity * alpha);
+
+    // Solid pentagon core
+    drawPentPath(ctx, x, y, r);
+    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
+    ctx.fill();
+
+    // White center dot
+    ctx.beginPath();
+    ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+    ctx.fill();
+
+    // Member count badge
+    const memberCount = node.members ? node.members.length : 0;
+    if (memberCount > 0 && globalScale > 1.5) {
+      const badgeR = r * 0.45;
+      const badgeX = x + r * 0.7;
+      const badgeY = y - r * 0.7;
+      ctx.beginPath();
+      ctx.arc(badgeX, badgeY, badgeR, 0, 2 * Math.PI);
+      ctx.fillStyle = hexToRgba(color, 0.9 * alpha);
+      ctx.fill();
+      ctx.font = `bold ${badgeR * 1.4}px 'Share Tech Mono', monospace`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = `rgba(0,0,0,${0.9 * alpha})`;
+      ctx.fillText(String(memberCount), badgeX, badgeY);
+    }
+  }
+
+  // Label
+  const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
+  const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
+  if (showLabel) {
+    ctx.font = cachedFontBold;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+    const labelY = useIcon ? y + r * 3.5 + 4 : y + r + 4;
+    ctx.fillText(node.title || node.id, x, labelY);
+  }
+}
+
 // ── Node rendering ──────────────────────────────────────────────────
 function drawNode(node, ctx, globalScale) {
   // Font cache — recompute only when scale changes
@@ -385,6 +508,11 @@ function drawNode(node, ctx, globalScale) {
 
   if (node.type === 'agent') {
     drawAgentNode(node, ctx, globalScale);
+    return;
+  }
+
+  if (node.type === 'team') {
+    drawTeamNode(node, ctx, globalScale);
     return;
   }
 
@@ -471,7 +599,9 @@ function drawNode(node, ctx, globalScale) {
 function drawHitArea(node, color, ctx) {
   if (!isFinite(node.x) || !isFinite(node.y)) return;
   let r;
-  if (node.type === 'agent') {
+  if (node.type === 'team') {
+    r = TEAM_CONFIG.radius;
+  } else if (node.type === 'agent') {
     const acfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
     r = acfg.radius;
   } else {
@@ -562,6 +692,10 @@ export function setSkillVisibility(visibleSkillIds) {
 
   const filteredNodes = fullData.nodes
     .filter(n => {
+      if (n.type === 'team') {
+        if (visibleTeamIds === null) return true;
+        return visibleTeamIds.has(n.id);
+      }
       if (n.type === 'agent') {
         if (visibleAgentIds === null) return true;
         return visibleAgentIds.has(n.id);
