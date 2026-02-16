@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **186 skills** across 27 domains — structured, executable procedures
-- **29 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **199 skills** across 31 domains — structured, executable procedures
+- **33 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **1 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 186 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 199 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 186 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 199 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -44,7 +44,7 @@ The **[Skills Library](skills/)** provides 186 task-level skills following the [
 | [Data Serialization](skills/data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
 | [Review](skills/review/) | 6 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](skills/bushcraft/) | 4 | Wilderness survival and primitive skills |
-| [Esoteric](skills/esoteric/) | 15 | Esoteric practices — AI self-directed variants and human-guidance variants |
+| [Esoteric](skills/esoteric/) | 21 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](skills/design/) | 5 | Ornamental design and AI-assisted image generation skills |
 | [Defensive](skills/defensive/) | 6 | Martial arts and applied defensive awareness skills |
 | [Project Management](skills/project-management/) | 6 | Agile and classic project management skills |
@@ -59,6 +59,10 @@ The **[Skills Library](skills/)** provides 186 task-level skills following the [
 | [Intellectual Property](skills/intellectual-property/) | 2 | Patent landscape analysis, prior art search, and IP strategy |
 | [Gardening](skills/gardening/) | 5 | Plant cultivation, soil preparation, garden observation, and hand tool care |
 | [Shiny](skills/shiny/) | 7 | Shiny web application development, modules, testing, and deployment |
+| [Animal Training](skills/animal-training/) | 2 | Canine behavior and obedience training skills |
+| [Mycology](skills/mycology/) | 2 | Fungi identification, cultivation, and mycelial ecology |
+| [Prospecting](skills/prospecting/) | 2 | Mineral identification and precious metal recovery |
+| [Crafting](skills/crafting/) | 1 | Traditional handcraft and artisan skills |
 <!-- AUTO:END:skills-table -->
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
@@ -66,7 +70,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 29 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 33 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -90,12 +94,16 @@ The **[Agents Library](agents/)** provides 29 specialized agent definitions for 
 | [shiny-developer](agents/shiny-developer.md) | high | Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment |
 | [alchemist](agents/alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
 | [designer](agents/designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
+| [dog-trainer](agents/dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
 | [gardener](agents/gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
+| [mycologist](agents/mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](agents/mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
 | [project-manager](agents/project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
+| [prospector](agents/prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |
 | [putior-integrator](agents/putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
 | [quarto-developer](agents/quarto-developer.md) | normal | Quarto CLI specialist for multilingual QMD files, technical documentation, books, websites, presentations, dashboards, and manuscript publishing |
+| [shaman](agents/shaman.md) | normal | Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach |
 | [shapeshifter](agents/shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
 | [survivalist](agents/survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](agents/swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |

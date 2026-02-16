@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 <!-- AUTO:START:overview -->
-A documentation-only repository containing 6 long-form markdown guides, a skills library of 186 agentic skills, 29 agent definitions, and 1 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 6 long-form markdown guides, a skills library of 199 agentic skills, 33 agent definitions, and 1 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
 <!-- AUTO:END:overview -->
@@ -27,8 +27,8 @@ These four types complement each other: skills define *how* (procedure, validati
 ### Registries
 
 <!-- AUTO:START:registries -->
-- `skills/_registry.yml` is the machine-readable catalog of all 186 skills across 27 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (3), web-dev (3), git (6), general (6), data-serialization (2), review (6), bushcraft (4), esoteric (15), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (6), alchemy (3), tcg (3), intellectual-property (2), gardening (5), shiny (7).
-- `agents/_registry.yml` is the machine-readable catalog of all 29 agents.
+- `skills/_registry.yml` is the machine-readable catalog of all 199 skills across 31 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (3), web-dev (3), git (6), general (6), data-serialization (2), review (6), bushcraft (4), esoteric (21), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (6), alchemy (3), tcg (3), intellectual-property (2), gardening (5), shiny (7), animal-training (2), mycology (2), prospecting (2), crafting (1).
+- `agents/_registry.yml` is the machine-readable catalog of all 33 agents.
 - `teams/_registry.yml` is the machine-readable catalog of all 1 teams.
 
 When adding or removing skills, agents, or teams, the corresponding registry must be updated to stay in sync.

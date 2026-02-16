@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 186 skillIds to a specific glyph drawing function.
+# Maps each of 199 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -98,6 +98,12 @@ SKILL_GLYPHS <- list(
   "observe"                        = "glyph_telescope_stars",
   "observe-guidance"               = "glyph_telescope_stars_guide",
   "intrinsic"                      = "glyph_flame_spiral",
+  "shiva-bhaga"                    = "glyph_trident_flame",
+  "vishnu-bhaga"                   = "glyph_conch_wheel",
+  "brahma-bhaga"                   = "glyph_lotus_create",
+  "conscientiousness"              = "glyph_checklist_thorough",
+  "honesty-humility"               = "glyph_mirror_truth",
+  "shine"                          = "glyph_radiant_star",
 
   # ── gardening (5) ─────────────────────────────────────────────────────
   "cultivate-bonsai"                   = "glyph_bonsai_tree",
@@ -244,5 +250,20 @@ SKILL_GLYPHS <- list(
   "annotate-source-files"          = "glyph_annotation_tag",
   "generate-workflow-diagram"      = "glyph_mermaid_diagram",
   "setup-putior-ci"                = "glyph_ci_diagram",
-  "configure-putior-mcp"           = "glyph_putior_mcp"
+  "configure-putior-mcp"           = "glyph_putior_mcp",
+
+  # ── animal-training (2) ──────────────────────────────────────────────
+  "basic-obedience"                = "glyph_dog_sit",
+  "behavioral-modification"        = "glyph_behavior_curve",
+
+  # ── mycology (2) ─────────────────────────────────────────────────────
+  "fungi-identification"           = "glyph_mushroom_cap",
+  "mushroom-cultivation"           = "glyph_mycelium_net",
+
+  # ── prospecting (2) ──────────────────────────────────────────────────
+  "mineral-identification"         = "glyph_crystal_facets",
+  "gold-washing"                   = "glyph_pan_nugget",
+
+  # ── crafting (1) ─────────────────────────────────────────────────────
+  "paper-making"                   = "glyph_fibre_sheet"
 )

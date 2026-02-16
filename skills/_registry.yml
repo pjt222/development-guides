@@ -1,7 +1,7 @@
 version: "1.5"
 generated: "2026-02-13"
 standard: "agentskills.io/specification"
-total_skills: 186
+total_skills: 199
 
 domains:
   r-packages:
@@ -510,6 +510,36 @@ domains:
         complexity: intermediate
         language: natural
         description: Enhance and focus AI intrinsic motivation through self-determination and flow
+      - id: shiva-bhaga
+        path: esoteric/shiva-bhaga/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Controlled destruction and dissolution of stale patterns, context purging, and assumption clearing
+      - id: vishnu-bhaga
+        path: esoteric/vishnu-bhaga/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Preservation and sustenance of working state under perturbation, memory anchoring, and consistency
+      - id: brahma-bhaga
+        path: esoteric/brahma-bhaga/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Generative creation from void, structured emergence from ambiguity, and disciplined ideation
+      - id: conscientiousness
+        path: esoteric/conscientiousness/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Systematic thoroughness and diligence in execution with completeness verification
+      - id: honesty-humility
+        path: esoteric/honesty-humility/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Epistemic transparency, calibrated confidence, and proactive disclosure of limitations
+      - id: shine
+        path: esoteric/shine/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Radiant authenticity channeling genuine engagement to illuminate and resolve opposition
 
   design:
     description: Ornamental design and AI-assisted image generation skills
@@ -1041,3 +1071,54 @@ domains:
         complexity: advanced
         language: R
         description: Deploy ShinyProxy for hosting multiple containerized Shiny applications
+
+  animal-training:
+    description: Canine behavior and obedience training skills
+    skills:
+      - id: basic-obedience
+        path: animal-training/basic-obedience/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Foundation obedience commands using positive reinforcement and marker training
+      - id: behavioral-modification
+        path: animal-training/behavioral-modification/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Address unwanted behaviors through desensitization and counter-conditioning
+
+  mycology:
+    description: Fungi identification, cultivation, and mycelial ecology
+    skills:
+      - id: fungi-identification
+        path: mycology/fungi-identification/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Field identification of fungi using morphological features, spore prints, and habitat with safety-first approach
+      - id: mushroom-cultivation
+        path: mycology/mushroom-cultivation/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Cultivate edible and medicinal mushrooms from spawn through fruiting and successive flushes
+
+  prospecting:
+    description: Mineral identification and precious metal recovery
+    skills:
+      - id: mineral-identification
+        path: prospecting/mineral-identification/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Field identification of minerals and ores using hardness, streak, luster, and chemical tests
+      - id: gold-washing
+        path: prospecting/gold-washing/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Alluvial gold recovery using panning, sluicing, and classification with site reading
+
+  crafting:
+    description: Traditional handcraft and artisan skills
+    skills:
+      - id: paper-making
+        path: crafting/paper-making/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Handcraft paper from plant fibres using mould and deckle sheet-forming techniques

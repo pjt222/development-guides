@@ -77,6 +77,22 @@
     "data-serialization": {
       "basePrompt": "Neon binary stream, schema tree brackets",
       "glow": "blue"
+    },
+    "animal-training": {
+      "basePrompt": "Glowing paw print, training whistle, positive reinforcement",
+      "glow": "warm-orange"
+    },
+    "crafting": {
+      "basePrompt": "Handmade texture, plant fibre, artisan tool",
+      "glow": "craft-brown"
+    },
+    "mycology": {
+      "basePrompt": "Glowing mushroom cap, mycelium threads, spore print",
+      "glow": "mushroom-purple"
+    },
+    "prospecting": {
+      "basePrompt": "Gold pan, mineral crystal, geological layers",
+      "glow": "gold"
     }
   },
   "icons": [
@@ -565,120 +581,120 @@
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, healing hands, energy aura, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90001,
-      "path": "icons/esoteric/heal.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/heal.webp",
+      "status": "done"
     },
     {
       "skillId": "heal-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Heal, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90002,
-      "path": "icons/esoteric/heal-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/heal-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "meditate",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, lotus position, calm waves, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90003,
-      "path": "icons/esoteric/meditate.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/meditate.webp",
+      "status": "done"
     },
     {
       "skillId": "meditate-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Meditate, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90004,
-      "path": "icons/esoteric/meditate-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/meditate-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "remote-viewing",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, third eye open, coordinate grid, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90005,
-      "path": "icons/esoteric/remote-viewing.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/remote-viewing.webp",
+      "status": "done"
     },
     {
       "skillId": "remote-viewing-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Remote, View, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90006,
-      "path": "icons/esoteric/remote-viewing-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/remote-viewing-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "learn",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Learn, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90007,
-      "path": "icons/esoteric/learn.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/learn.webp",
+      "status": "done"
     },
     {
       "skillId": "learn-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Learn, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90008,
-      "path": "icons/esoteric/learn-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/learn-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "teach",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Teach, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90009,
-      "path": "icons/esoteric/teach.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/teach.webp",
+      "status": "done"
     },
     {
       "skillId": "teach-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Teach, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90010,
-      "path": "icons/esoteric/teach-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/teach-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "listen",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Listen, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90011,
-      "path": "icons/esoteric/listen.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/listen.webp",
+      "status": "done"
     },
     {
       "skillId": "listen-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Listen, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90012,
-      "path": "icons/esoteric/listen-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/listen-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "observe",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Observe, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90013,
-      "path": "icons/esoteric/observe.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/observe.webp",
+      "status": "done"
     },
     {
       "skillId": "observe-guidance",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Observe, (Guidance), dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90014,
-      "path": "icons/esoteric/observe-guidance.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/observe-guidance.webp",
+      "status": "done"
     },
     {
       "skillId": "intrinsic",
       "domain": "esoteric",
       "prompt": "Glowing third eye, mandala spiral, Intrinsic, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 90015,
-      "path": "icons/esoteric/intrinsic.webp",
-      "status": "pending"
+      "path": "icons/cyberpunk/esoteric/intrinsic.webp",
+      "status": "done"
     },
     {
       "skillId": "cultivate-bonsai",
@@ -1566,6 +1582,110 @@
       "prompt": "Glowing icon, Configure, putior, MCP, dark background, vector art, clean edges, single centered icon, no text",
       "seed": 270006,
       "path": "icons/workflow-visualization/configure-putior-mcp.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "shiva-bhaga",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, cosmic destruction energy, transformation trident, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90016,
+      "path": "icons/cyberpunk/esoteric/shiva-bhaga.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "vishnu-bhaga",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, preservation lotus, cosmic balance dharma wheel, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90017,
+      "path": "icons/cyberpunk/esoteric/vishnu-bhaga.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "brahma-bhaga",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, creation flame, cosmic genesis spark, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90018,
+      "path": "icons/cyberpunk/esoteric/brahma-bhaga.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "conscientiousness",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, disciplined structure, orderly geometric pattern, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90019,
+      "path": "icons/cyberpunk/esoteric/conscientiousness.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "honesty-humility",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, transparent heart, humble bow gesture, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90020,
+      "path": "icons/cyberpunk/esoteric/honesty-humility.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "shine",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, radiant aura, brilliance rays, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 90021,
+      "path": "icons/cyberpunk/esoteric/shine.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "basic-obedience",
+      "domain": "animal-training",
+      "prompt": "Glowing paw print, training whistle, positive reinforcement, dog sitting command, hand signal gesture, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 280001,
+      "path": "icons/cyberpunk/animal-training/basic-obedience.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "behavioral-modification",
+      "domain": "animal-training",
+      "prompt": "Glowing paw print, training whistle, positive reinforcement, behavior change arrow, transformation path, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 280002,
+      "path": "icons/cyberpunk/animal-training/behavioral-modification.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "paper-making",
+      "domain": "crafting",
+      "prompt": "Handmade texture, plant fibre, artisan tool, paper pulp screen, fibrous material, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 290001,
+      "path": "icons/cyberpunk/crafting/paper-making.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "fungi-identification",
+      "domain": "mycology",
+      "prompt": "Glowing mushroom cap, mycelium threads, spore print, identification chart, species comparison, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 300001,
+      "path": "icons/cyberpunk/mycology/fungi-identification.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "mushroom-cultivation",
+      "domain": "mycology",
+      "prompt": "Glowing mushroom cap, mycelium threads, spore print, growing substrate, cultivation jar, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 300002,
+      "path": "icons/cyberpunk/mycology/mushroom-cultivation.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "mineral-identification",
+      "domain": "prospecting",
+      "prompt": "Gold pan, mineral crystal, geological layers, crystal structure, hardness test, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 310001,
+      "path": "icons/cyberpunk/prospecting/mineral-identification.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "gold-washing",
+      "domain": "prospecting",
+      "prompt": "Gold pan, mineral crystal, geological layers, gold panning technique, water swirl with nugget, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 310002,
+      "path": "icons/cyberpunk/prospecting/gold-washing.webp",
       "status": "pending"
     }
   ]

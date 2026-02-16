@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T08:38:01.297Z",
-    "totalSkills": 186,
-    "totalAgents": 29,
+    "generated": "2026-02-16T10:56:14.582Z",
+    "totalSkills": 199,
+    "totalAgents": 33,
     "totalTeams": 1,
-    "totalNodes": 216,
-    "totalLinks": 1060,
-    "totalAgentLinks": 255,
+    "totalNodes": 233,
+    "totalLinks": 1111,
+    "totalAgentLinks": 267,
     "totalTeamLinks": 4,
-    "totalDomains": 27
+    "totalDomains": 31
   },
   "domains": {
     "r-packages": {
@@ -61,7 +61,7 @@
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
-      "count": 15
+      "count": 21
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
@@ -118,6 +118,22 @@
     "shiny": {
       "description": "Shiny web application development, modules, testing, and deployment",
       "count": 7
+    },
+    "animal-training": {
+      "description": "Canine behavior and obedience training skills",
+      "count": 2
+    },
+    "mycology": {
+      "description": "Fungi identification, cultivation, and mycelial ecology",
+      "count": 2
+    },
+    "prospecting": {
+      "description": "Mineral identification and precious metal recovery",
+      "count": 2
+    },
+    "crafting": {
+      "description": "Traditional handcraft and artisan skills",
+      "count": 1
     }
   },
   "nodes": [
@@ -2273,6 +2289,161 @@
         "learn"
       ],
       "path": "esoteric/intrinsic/SKILL.md"
+    },
+    {
+      "id": "shiva-bhaga",
+      "type": "skill",
+      "title": "Shiva Bhaga",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Controlled destruction and dissolution of stale patterns, context purging, and assumption clearing",
+      "tags": [
+        "esoteric",
+        "destruction",
+        "dissolution",
+        "transformation",
+        "clearing",
+        "hindu-trinity",
+        "shiva"
+      ],
+      "related": [
+        "brahma-bhaga",
+        "vishnu-bhaga",
+        "heal",
+        "meditate",
+        "dissolve-form"
+      ],
+      "path": "esoteric/shiva-bhaga/SKILL.md"
+    },
+    {
+      "id": "vishnu-bhaga",
+      "type": "skill",
+      "title": "Vishnu Bhaga",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Preservation and sustenance of working state under perturbation, memory anchoring, and consistency",
+      "tags": [
+        "esoteric",
+        "preservation",
+        "sustenance",
+        "stability",
+        "consistency",
+        "hindu-trinity",
+        "vishnu"
+      ],
+      "related": [
+        "shiva-bhaga",
+        "brahma-bhaga",
+        "heal",
+        "observe",
+        "awareness"
+      ],
+      "path": "esoteric/vishnu-bhaga/SKILL.md"
+    },
+    {
+      "id": "brahma-bhaga",
+      "type": "skill",
+      "title": "Brahma Bhaga",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Generative creation from void, structured emergence from ambiguity, and disciplined ideation",
+      "tags": [
+        "esoteric",
+        "creation",
+        "genesis",
+        "ideation",
+        "emergence",
+        "hindu-trinity",
+        "brahma"
+      ],
+      "related": [
+        "shiva-bhaga",
+        "vishnu-bhaga",
+        "intrinsic",
+        "learn",
+        "adapt-architecture"
+      ],
+      "path": "esoteric/brahma-bhaga/SKILL.md"
+    },
+    {
+      "id": "conscientiousness",
+      "type": "skill",
+      "title": "Conscientiousness",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Systematic thoroughness and diligence in execution with completeness verification",
+      "tags": [
+        "esoteric",
+        "conscientiousness",
+        "diligence",
+        "thoroughness",
+        "verification",
+        "meta-cognition"
+      ],
+      "related": [
+        "honesty-humility",
+        "heal",
+        "vishnu-bhaga",
+        "observe",
+        "intrinsic"
+      ],
+      "path": "esoteric/conscientiousness/SKILL.md"
+    },
+    {
+      "id": "honesty-humility",
+      "type": "skill",
+      "title": "Honesty-Humility",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Epistemic transparency, calibrated confidence, and proactive disclosure of limitations",
+      "tags": [
+        "esoteric",
+        "honesty",
+        "humility",
+        "epistemic",
+        "calibration",
+        "transparency",
+        "meta-cognition"
+      ],
+      "related": [
+        "conscientiousness",
+        "heal",
+        "observe",
+        "listen",
+        "awareness"
+      ],
+      "path": "esoteric/honesty-humility/SKILL.md"
+    },
+    {
+      "id": "shine",
+      "type": "skill",
+      "title": "Shine",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Radiant authenticity channeling genuine engagement to illuminate and resolve opposition",
+      "tags": [
+        "esoteric",
+        "radiance",
+        "authenticity",
+        "presence",
+        "engagement",
+        "stardust",
+        "luminosity"
+      ],
+      "related": [
+        "intrinsic",
+        "meditate",
+        "heal",
+        "honesty-humility",
+        "conscientiousness"
+      ],
+      "path": "esoteric/shine/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -4608,6 +4779,161 @@
       "path": "shiny/deploy-shinyproxy/SKILL.md"
     },
     {
+      "id": "basic-obedience",
+      "type": "skill",
+      "title": "Basic Obedience",
+      "domain": "animal-training",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Foundation obedience commands using positive reinforcement and marker training",
+      "tags": [
+        "animal-training",
+        "dog",
+        "obedience",
+        "positive-reinforcement",
+        "marker-training",
+        "commands"
+      ],
+      "related": [
+        "behavioral-modification"
+      ],
+      "path": "animal-training/basic-obedience/SKILL.md"
+    },
+    {
+      "id": "behavioral-modification",
+      "type": "skill",
+      "title": "Behavioral Modification",
+      "domain": "animal-training",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Address unwanted behaviors through desensitization and counter-conditioning",
+      "tags": [
+        "animal-training",
+        "dog",
+        "behavior",
+        "reactivity",
+        "anxiety",
+        "desensitization",
+        "counter-conditioning"
+      ],
+      "related": [
+        "basic-obedience"
+      ],
+      "path": "animal-training/behavioral-modification/SKILL.md"
+    },
+    {
+      "id": "fungi-identification",
+      "type": "skill",
+      "title": "Fungi Identification",
+      "domain": "mycology",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Field identification of fungi using morphological features, spore prints, and habitat with safety-first approach",
+      "tags": [
+        "mycology",
+        "fungi",
+        "mushroom",
+        "identification",
+        "foraging",
+        "safety",
+        "spore-print"
+      ],
+      "related": [
+        "mushroom-cultivation",
+        "forage-plants"
+      ],
+      "path": "mycology/fungi-identification/SKILL.md"
+    },
+    {
+      "id": "mushroom-cultivation",
+      "type": "skill",
+      "title": "Mushroom Cultivation",
+      "domain": "mycology",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Cultivate edible and medicinal mushrooms from spawn through fruiting and successive flushes",
+      "tags": [
+        "mycology",
+        "mushroom",
+        "cultivation",
+        "substrate",
+        "spawn",
+        "fruiting",
+        "growing"
+      ],
+      "related": [
+        "fungi-identification",
+        "prepare-soil"
+      ],
+      "path": "mycology/mushroom-cultivation/SKILL.md"
+    },
+    {
+      "id": "mineral-identification",
+      "type": "skill",
+      "title": "Mineral Identification",
+      "domain": "prospecting",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Field identification of minerals and ores using hardness, streak, luster, and chemical tests",
+      "tags": [
+        "prospecting",
+        "minerals",
+        "geology",
+        "identification",
+        "hardness",
+        "streak",
+        "field-geology"
+      ],
+      "related": [
+        "gold-washing"
+      ],
+      "path": "prospecting/mineral-identification/SKILL.md"
+    },
+    {
+      "id": "gold-washing",
+      "type": "skill",
+      "title": "Gold Washing",
+      "domain": "prospecting",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Alluvial gold recovery using panning, sluicing, and classification with site reading",
+      "tags": [
+        "prospecting",
+        "gold",
+        "panning",
+        "sluicing",
+        "alluvial",
+        "placer",
+        "geology"
+      ],
+      "related": [
+        "mineral-identification"
+      ],
+      "path": "prospecting/gold-washing/SKILL.md"
+    },
+    {
+      "id": "paper-making",
+      "type": "skill",
+      "title": "Paper Making",
+      "domain": "crafting",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Handcraft paper from plant fibres using mould and deckle sheet-forming techniques",
+      "tags": [
+        "crafting",
+        "paper",
+        "fibres",
+        "handmade",
+        "pulp",
+        "mould-and-deckle",
+        "art"
+      ],
+      "related": [
+        "forage-plants"
+      ],
+      "path": "crafting/paper-making/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -5607,6 +5933,121 @@
         "heal"
       ],
       "path": "agents/quarto-developer.md"
+    },
+    {
+      "id": "agent:dog-trainer",
+      "type": "agent",
+      "title": "Dog Trainer",
+      "priority": "normal",
+      "description": "Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods",
+      "tags": [
+        "animal-training",
+        "dog",
+        "obedience",
+        "behavior",
+        "positive-reinforcement",
+        "canine"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "basic-obedience",
+        "behavioral-modification"
+      ],
+      "path": "agents/dog-trainer.md"
+    },
+    {
+      "id": "agent:mycologist",
+      "type": "agent",
+      "title": "Mycologist",
+      "priority": "normal",
+      "description": "Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach",
+      "tags": [
+        "mycology",
+        "fungi",
+        "mushroom",
+        "identification",
+        "cultivation",
+        "ecology",
+        "safety"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "fungi-identification",
+        "mushroom-cultivation",
+        "forage-plants"
+      ],
+      "path": "agents/mycologist.md"
+    },
+    {
+      "id": "agent:prospector",
+      "type": "agent",
+      "title": "Prospector",
+      "priority": "normal",
+      "description": "Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment",
+      "tags": [
+        "prospecting",
+        "geology",
+        "minerals",
+        "gold",
+        "panning",
+        "field-geology",
+        "identification"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "mineral-identification",
+        "gold-washing"
+      ],
+      "path": "agents/prospector.md"
+    },
+    {
+      "id": "agent:shaman",
+      "type": "agent",
+      "title": "Shaman",
+      "priority": "normal",
+      "description": "Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach",
+      "tags": [
+        "shamanism",
+        "esoteric",
+        "journeying",
+        "ceremony",
+        "healing",
+        "plant-medicine",
+        "trance"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "heal",
+        "heal-guidance",
+        "meditate",
+        "meditate-guidance",
+        "remote-viewing-guidance"
+      ],
+      "path": "agents/shaman.md"
     },
     {
       "id": "agent:shiny-developer",
@@ -7491,6 +7932,156 @@
     {
       "source": "intrinsic",
       "target": "learn",
+      "type": "skill"
+    },
+    {
+      "source": "shiva-bhaga",
+      "target": "brahma-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "shiva-bhaga",
+      "target": "vishnu-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "shiva-bhaga",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "shiva-bhaga",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "shiva-bhaga",
+      "target": "dissolve-form",
+      "type": "skill"
+    },
+    {
+      "source": "vishnu-bhaga",
+      "target": "shiva-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "vishnu-bhaga",
+      "target": "brahma-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "vishnu-bhaga",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "vishnu-bhaga",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "vishnu-bhaga",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "brahma-bhaga",
+      "target": "shiva-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "brahma-bhaga",
+      "target": "vishnu-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "brahma-bhaga",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "brahma-bhaga",
+      "target": "learn",
+      "type": "skill"
+    },
+    {
+      "source": "brahma-bhaga",
+      "target": "adapt-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "conscientiousness",
+      "target": "honesty-humility",
+      "type": "skill"
+    },
+    {
+      "source": "conscientiousness",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "conscientiousness",
+      "target": "vishnu-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "conscientiousness",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "conscientiousness",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "honesty-humility",
+      "target": "conscientiousness",
+      "type": "skill"
+    },
+    {
+      "source": "honesty-humility",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "honesty-humility",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "honesty-humility",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "honesty-humility",
+      "target": "awareness",
+      "type": "skill"
+    },
+    {
+      "source": "shine",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "shine",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "shine",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "shine",
+      "target": "honesty-humility",
+      "type": "skill"
+    },
+    {
+      "source": "shine",
+      "target": "conscientiousness",
       "type": "skill"
     },
     {
@@ -9689,6 +10280,51 @@
       "type": "skill"
     },
     {
+      "source": "basic-obedience",
+      "target": "behavioral-modification",
+      "type": "skill"
+    },
+    {
+      "source": "behavioral-modification",
+      "target": "basic-obedience",
+      "type": "skill"
+    },
+    {
+      "source": "fungi-identification",
+      "target": "mushroom-cultivation",
+      "type": "skill"
+    },
+    {
+      "source": "fungi-identification",
+      "target": "forage-plants",
+      "type": "skill"
+    },
+    {
+      "source": "mushroom-cultivation",
+      "target": "fungi-identification",
+      "type": "skill"
+    },
+    {
+      "source": "mushroom-cultivation",
+      "target": "prepare-soil",
+      "type": "skill"
+    },
+    {
+      "source": "mineral-identification",
+      "target": "gold-washing",
+      "type": "skill"
+    },
+    {
+      "source": "gold-washing",
+      "target": "mineral-identification",
+      "type": "skill"
+    },
+    {
+      "source": "paper-making",
+      "target": "forage-plants",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -10861,6 +11497,66 @@
     {
       "source": "agent:quarto-developer",
       "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:dog-trainer",
+      "target": "basic-obedience",
+      "type": "agent"
+    },
+    {
+      "source": "agent:dog-trainer",
+      "target": "behavioral-modification",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mycologist",
+      "target": "fungi-identification",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mycologist",
+      "target": "mushroom-cultivation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:mycologist",
+      "target": "forage-plants",
+      "type": "agent"
+    },
+    {
+      "source": "agent:prospector",
+      "target": "mineral-identification",
+      "type": "agent"
+    },
+    {
+      "source": "agent:prospector",
+      "target": "gold-washing",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shaman",
+      "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shaman",
+      "target": "heal-guidance",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shaman",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shaman",
+      "target": "meditate-guidance",
+      "type": "agent"
+    },
+    {
+      "source": "agent:shaman",
+      "target": "remote-viewing-guidance",
       "type": "agent"
     },
     {

@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 29
+total_agents: 33
 version: "2.0"
 last_updated: "2026-02-12"
 
@@ -468,6 +468,50 @@ agents:
       - write-claude-md
       - meditate
       - heal
+
+  - id: dog-trainer
+    path: agents/dog-trainer.md
+    description: Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods
+    tags: [animal-training, dog, obedience, behavior, positive-reinforcement, canine]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - basic-obedience
+      - behavioral-modification
+
+  - id: mycologist
+    path: agents/mycologist.md
+    description: Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach
+    tags: [mycology, fungi, mushroom, identification, cultivation, ecology, safety]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - fungi-identification
+      - mushroom-cultivation
+      - forage-plants
+
+  - id: prospector
+    path: agents/prospector.md
+    description: Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment
+    tags: [prospecting, geology, minerals, gold, panning, field-geology, identification]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - mineral-identification
+      - gold-washing
+
+  - id: shaman
+    path: agents/shaman.md
+    description: Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach
+    tags: [shamanism, esoteric, journeying, ceremony, healing, plant-medicine, trance]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - heal
+      - heal-guidance
+      - meditate
+      - meditate-guidance
+      - remote-viewing-guidance
 
   - id: shiny-developer
     path: agents/shiny-developer.md

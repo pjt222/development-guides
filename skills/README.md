@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 186 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 199 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -33,7 +33,7 @@ Browse by domain:
 | [Data Serialization](data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
 | [Review](review/) | 6 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](bushcraft/) | 4 | Wilderness survival and primitive skills |
-| [Esoteric](esoteric/) | 15 | Esoteric practices — AI self-directed variants and human-guidance variants |
+| [Esoteric](esoteric/) | 21 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](design/) | 5 | Ornamental design and AI-assisted image generation skills |
 | [Defensive](defensive/) | 6 | Martial arts and applied defensive awareness skills |
 | [Project Management](project-management/) | 6 | Agile and classic project management skills |
@@ -48,6 +48,10 @@ Browse by domain:
 | [Intellectual Property](intellectual-property/) | 2 | Patent landscape analysis, prior art search, and IP strategy |
 | [Gardening](gardening/) | 5 | Plant cultivation, soil preparation, garden observation, and hand tool care |
 | [Shiny](shiny/) | 7 | Shiny web application development, modules, testing, and deployment |
+| [Animal Training](animal-training/) | 2 | Canine behavior and obedience training skills |
+| [Mycology](mycology/) | 2 | Fungi identification, cultivation, and mycelial ecology |
+| [Prospecting](prospecting/) | 2 | Mineral identification and precious metal recovery |
+| [Crafting](crafting/) | 1 | Traditional handcraft and artisan skills |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

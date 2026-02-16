@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 29,
+    "total_agents": 33,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -163,6 +163,26 @@
       "description": "Shiny reactive web app specialist for R",
       "glow": "electric-blue",
       "concept": "Reactive diamond inside browser with reactive graph connections"
+    },
+    "dog-trainer": {
+      "description": "Canine behavior specialist using positive reinforcement",
+      "glow": "warm-orange",
+      "concept": "Seated dog with handler's hand signal above"
+    },
+    "mycologist": {
+      "description": "Fungi specialist for identification and cultivation",
+      "glow": "mushroom-purple",
+      "concept": "Mushroom cap with mycelium network threads"
+    },
+    "prospector": {
+      "description": "Mineral and gold finder for field geology",
+      "glow": "gold",
+      "concept": "Gold pan with water ripples and nugget"
+    },
+    "shaman": {
+      "description": "Shamanic practitioner for journeying and ceremony",
+      "glow": "deep-violet",
+      "concept": "Drum circle with spirit lines rising"
     }
   },
   "icons": [
@@ -309,6 +329,26 @@
     {
       "agentId": "shiny-developer",
       "path": "icons/cyberpunk/agents/shiny-developer.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "dog-trainer",
+      "path": "icons/cyberpunk/agents/dog-trainer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "mycologist",
+      "path": "icons/cyberpunk/agents/mycologist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "prospector",
+      "path": "icons/cyberpunk/agents/prospector.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "shaman",
+      "path": "icons/cyberpunk/agents/shaman.webp",
       "status": "done"
     }
   ]

@@ -8,25 +8,25 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 26 domains) ──────────────────────────────
+# ── Domain order (alphabetical, 31 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
-  "alchemy", "bushcraft", "compliance", "containerization",
-  "data-serialization", "defensive", "design", "devops", "esoteric",
+  "alchemy", "animal-training", "bushcraft", "compliance", "containerization",
+  "crafting", "data-serialization", "defensive", "design", "devops", "esoteric",
   "gardening", "general", "git", "intellectual-property", "jigsawr", "mcp-integration",
-  "mlops", "morphic", "observability", "project-management", "r-packages",
-  "reporting", "review", "shiny", "swarm", "tcg", "web-dev",
+  "mlops", "morphic", "mycology", "observability", "project-management", "prospecting",
+  "r-packages", "reporting", "review", "shiny", "swarm", "tcg", "web-dev",
   "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 28 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 33 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
-  "alchemist", "auditor", "code-reviewer", "designer", "devops-engineer",
+  "alchemist", "auditor", "code-reviewer", "designer", "dog-trainer", "devops-engineer",
   "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "martial-artist",
-  "mlops-engineer", "mystic", "polymath", "project-manager",
-  "putior-integrator", "quarto-developer", "r-developer", "security-analyst", "shiny-developer",
+  "mlops-engineer", "mycologist", "mystic", "polymath", "project-manager", "prospector",
+  "putior-integrator", "quarto-developer", "r-developer", "security-analyst", "shaman",
   "senior-data-scientist", "senior-researcher",
   "senior-software-developer", "senior-ux-ui-specialist",
-  "senior-web-designer", "shapeshifter", "survivalist",
+  "senior-web-designer", "shapeshifter", "shiny-developer", "survivalist",
   "swarm-strategist", "tcg-specialist", "web-developer"
 )
 
@@ -68,9 +68,11 @@ get_palette_colors <- function(name) {
 get_cyberpunk_colors <- function() {
   domains <- list(
     "alchemy"                = "#ffaa33",
+    "animal-training"        = "#ff9944",
     "bushcraft"              = "#88cc44",
     "compliance"             = "#ff3366",
     "containerization"       = "#44ddff",
+    "crafting"               = "#cc8855",
     "data-serialization"     = "#44aaff",
     "defensive"              = "#ff4444",
     "design"                 = "#ff88dd",
@@ -84,8 +86,10 @@ get_cyberpunk_colors <- function() {
     "mcp-integration"        = "#00ccaa",
     "mlops"                  = "#aa66ff",
     "morphic"                = "#bb88ff",
+    "mycology"               = "#aa77cc",
     "observability"          = "#ffaa00",
     "project-management"     = "#ff8844",
+    "prospecting"            = "#ddaa33",
     "r-packages"             = "#00f0ff",
     "reporting"              = "#ffdd00",
     "review"                 = "#ff66aa",
@@ -101,6 +105,7 @@ get_cyberpunk_colors <- function() {
     "auditor"                   = "#ff7744",
     "code-reviewer"             = "#ff66aa",
     "designer"                  = "#ff88dd",
+    "dog-trainer"               = "#ff9944",
     "devops-engineer"           = "#00ff88",
     "gardener"                  = "#44bb66",
     "gxp-validator"             = "#ff3399",
@@ -108,20 +113,23 @@ get_cyberpunk_colors <- function() {
     "jigsawr-developer"         = "#22ddaa",
     "martial-artist"            = "#ff4466",
     "mlops-engineer"            = "#bb77ff",
+    "mycologist"                = "#aa77cc",
     "mystic"                    = "#dd44ff",
     "polymath"                  = "#eedd44",
     "project-manager"           = "#ff8844",
+    "prospector"                = "#ddaa33",
     "putior-integrator"         = "#66dd88",
     "quarto-developer"          = "#33ddcc",
     "r-developer"               = "#00f0ff",
     "security-analyst"          = "#ff3333",
-    "shiny-developer"           = "#3399ff",
+    "shaman"                    = "#9944ff",
     "senior-data-scientist"     = "#aa66ff",
     "senior-researcher"         = "#ffaa00",
     "senior-software-developer" = "#44ddff",
     "senior-ux-ui-specialist"   = "#66ffcc",
     "senior-web-designer"       = "#ffdd00",
     "shapeshifter"              = "#bb88ff",
+    "shiny-developer"           = "#3399ff",
     "survivalist"               = "#88cc44",
     "swarm-strategist"          = "#aadd44",
     "tcg-specialist"            = "#ff5577",

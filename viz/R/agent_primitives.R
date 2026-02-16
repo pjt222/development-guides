@@ -1231,3 +1231,225 @@ glyph_agent_shiny_dev <- function(cx, cy, s, col, bright) {
     color = bright, linewidth = .lw(s, 2))
   layers
 }
+
+# ── glyph_agent_shaman: drum circle with spirit lines radiating upward ────
+glyph_agent_shaman <- function(cx, cy, s, col, bright) {
+  # Central drum circle
+  drum <- data.frame(x0 = cx, y0 = cy, r = 16 * s)
+  # Cross pattern on drum face
+  cross_h <- data.frame(x = c(cx - 12 * s, cx + 12 * s), y = c(cy, cy))
+  cross_v <- data.frame(x = c(cx, cx), y = c(cy - 12 * s, cy + 12 * s))
+  # Drum rim (smaller inner circle)
+  rim <- data.frame(x0 = cx, y0 = cy, r = 10 * s)
+  # Wavy spirit lines rising above drum
+  spirit_lines <- list()
+  for (i in 1:5) {
+    x_offset <- (i - 3) * 8 * s
+    t <- seq(0, 1, length.out = 15)
+    wave_x <- cx + x_offset + 3 * s * sin(t * pi * 3)
+    wave_y <- cy + 18 * s + t * 16 * s
+    spirit_lines[[i]] <- data.frame(x = wave_x, y = wave_y)
+  }
+  # Radiating dots around drum
+  dots <- data.frame(x = numeric(0), y = numeric(0))
+  for (i in 0:7) {
+    angle <- i * pi / 4
+    dots <- rbind(dots, data.frame(
+      x = cx + 22 * s * cos(angle),
+      y = cy + 22 * s * sin(angle)
+    ))
+  }
+  layers <- list(
+    # Drum
+    ggforce::geom_circle(data = drum, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2.5)),
+    # Cross pattern
+    ggplot2::geom_path(data = cross_h, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = cross_v, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    # Rim
+    ggforce::geom_circle(data = rim, .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = col, linewidth = .lw(s, 1.5)),
+    # Radiating dots
+    ggplot2::geom_point(data = dots, .aes(x, y), color = bright, size = 2.5 * s)
+  )
+  # Spirit lines
+  for (line in spirit_lines) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.5))
+  }
+  layers
+}
+
+# ── glyph_agent_dog_trainer: seated dog silhouette with hand signal ───────
+glyph_agent_dog_trainer <- function(cx, cy, s, col, bright) {
+  # Dog head (circle)
+  head <- data.frame(x0 = cx - 8 * s, y0 = cy + 4 * s, r = 6 * s)
+  # Ear triangles
+  ear_l <- data.frame(
+    x = c(cx - 12 * s, cx - 10 * s, cx - 8 * s),
+    y = c(cy + 12 * s, cy + 8 * s, cy + 10 * s)
+  )
+  ear_r <- data.frame(
+    x = c(cx - 4 * s, cx - 6 * s, cx - 8 * s),
+    y = c(cy + 12 * s, cy + 8 * s, cy + 10 * s)
+  )
+  # Triangular body (sitting pose)
+  body <- data.frame(
+    x = c(cx - 14 * s, cx - 2 * s, cx - 8 * s),
+    y = c(cy - 12 * s, cy - 12 * s, cy + 2 * s)
+  )
+  # Front legs (small rectangles)
+  leg_l <- data.frame(
+    xmin = cx - 12 * s, xmax = cx - 10 * s,
+    ymin = cy - 18 * s, ymax = cy - 12 * s
+  )
+  leg_r <- data.frame(
+    xmin = cx - 6 * s, xmax = cx - 4 * s,
+    ymin = cy - 18 * s, ymax = cy - 12 * s
+  )
+  # Hand/arm giving signal (open palm above dog)
+  arm <- data.frame(x = c(cx + 14 * s, cx + 14 * s), y = c(cy - 6 * s, cy + 8 * s))
+  palm <- data.frame(x0 = cx + 14 * s, y0 = cy + 12 * s, r = 5 * s)
+  # Connection line between hand and dog
+  connection <- data.frame(x = c(cx - 8 * s, cx + 14 * s), y = c(cy + 4 * s, cy + 12 * s))
+  list(
+    # Dog body
+    ggplot2::geom_polygon(data = body, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    # Dog head
+    ggforce::geom_circle(data = head, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 2)),
+    # Ears
+    ggplot2::geom_polygon(data = ear_l, .aes(x, y),
+      fill = hex_with_alpha(col, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = ear_r, .aes(x, y),
+      fill = hex_with_alpha(col, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    # Legs
+    ggplot2::geom_rect(data = leg_l,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = leg_r,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    # Hand signal
+    ggplot2::geom_path(data = arm, .aes(x, y), color = col, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = palm, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 2)),
+    # Connection line
+    ggplot2::geom_path(data = connection, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1), linetype = "dashed")
+  )
+}
+
+# ── glyph_agent_mycologist: mushroom cap with mycelium network below ──────
+glyph_agent_mycologist <- function(cx, cy, s, col, bright) {
+  # Dome-shaped mushroom cap (arc + polygon)
+  t <- seq(0, pi, length.out = 30)
+  cap_r <- 18 * s
+  cap_top <- data.frame(
+    x = cx + cap_r * cos(t),
+    y = cy + 12 * s + 8 * s * sin(t)
+  )
+  cap_bottom <- data.frame(
+    x = c(cx - cap_r, cx + cap_r, cx + cap_r * 0.8, cx - cap_r * 0.8),
+    y = c(cy + 12 * s, cy + 12 * s, cy + 8 * s, cy + 8 * s)
+  )
+  cap_full <- rbind(cap_top, cap_bottom)
+  # Stem (rectangle)
+  stem <- data.frame(
+    xmin = cx - 4 * s, xmax = cx + 4 * s,
+    ymin = cy - 10 * s, ymax = cy + 8 * s
+  )
+  # Mycelium threads (branching lines below stem)
+  myc_threads <- list()
+  # Main root
+  myc_threads[[1]] <- data.frame(x = c(cx, cx), y = c(cy - 10 * s, cy - 16 * s))
+  # Left branch
+  myc_threads[[2]] <- data.frame(x = c(cx, cx - 12 * s), y = c(cy - 16 * s, cy - 24 * s))
+  myc_threads[[3]] <- data.frame(x = c(cx - 6 * s, cx - 18 * s), y = c(cy - 20 * s, cy - 26 * s))
+  # Right branch
+  myc_threads[[4]] <- data.frame(x = c(cx, cx + 12 * s), y = c(cy - 16 * s, cy - 24 * s))
+  myc_threads[[5]] <- data.frame(x = c(cx + 6 * s, cx + 18 * s), y = c(cy - 20 * s, cy - 26 * s))
+  # Spore dots below cap
+  spores <- data.frame(
+    x = cx + c(-10, -4, 2, 8, -6, 4) * s,
+    y = cy + c(6, 8, 6, 8, 4, 4) * s
+  )
+  layers <- list(
+    # Mushroom cap
+    ggplot2::geom_polygon(data = cap_full, .aes(x, y),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2)),
+    # Stem
+    ggplot2::geom_rect(data = stem,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8)),
+    # Spore dots
+    ggplot2::geom_point(data = spores, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), size = 1.5 * s)
+  )
+  # Mycelium threads
+  for (thread in myc_threads) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = thread, .aes(x, y),
+      color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 1.2))
+  }
+  layers
+}
+
+# ── glyph_agent_prospector: gold pan with water ripples and nugget ────────
+glyph_agent_prospector <- function(cx, cy, s, col, bright) {
+  # Shallow elliptical pan (top view)
+  pan <- data.frame(x0 = cx, y0 = cy, r = 20 * s)
+  # Inner pan edge (slightly smaller)
+  pan_inner <- data.frame(x0 = cx, y0 = cy, r = 16 * s)
+  # Concentric water ripple circles
+  ripples <- list()
+  for (r in c(12, 8, 4) * s) {
+    ripples[[length(ripples) + 1]] <- data.frame(x0 = cx, y0 = cy, r = r)
+  }
+  # Gold nugget at center bottom
+  nugget <- data.frame(
+    x = cx + c(-2, 2, 3, 0, -3) * s,
+    y = cy + c(-8, -8, -5, -3, -5) * s
+  )
+  # Pan handle extending from side
+  handle_base <- data.frame(
+    xmin = cx + 18 * s, xmax = cx + 22 * s,
+    ymin = cy - 2 * s, ymax = cy + 2 * s
+  )
+  handle_ext <- data.frame(
+    x = c(cx + 22 * s, cx + 30 * s),
+    y = c(cy, cy)
+  )
+  # Small gravel dots in pan
+  gravel <- data.frame(
+    x = cx + c(-8, -4, 4, 8, -10, 10, -6, 6) * s,
+    y = cy + c(-4, 2, -2, 4, 0, -6, 6, -8) * s
+  )
+  list(
+    # Pan outer circle
+    ggforce::geom_circle(data = pan, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2.5)),
+    # Pan inner edge
+    ggforce::geom_circle(data = pan_inner, .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = col, linewidth = .lw(s, 1.2)),
+    # Water ripples
+    ggforce::geom_circle(data = ripples[[1]], .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = ripples[[2]], .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = ripples[[3]], .aes(x0 = x0, y0 = y0, r = r),
+      fill = NA, color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 1)),
+    # Gravel dots
+    ggplot2::geom_point(data = gravel, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), size = 1.5 * s),
+    # Gold nugget (bright point)
+    ggplot2::geom_polygon(data = nugget, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 1)),
+    # Handle
+    ggplot2::geom_rect(data = handle_base,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = handle_ext, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  )
+}
