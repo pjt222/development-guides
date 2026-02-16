@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 33 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 34 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 <!-- AUTO:END:agents-intro -->
 
 ## How Agents Differ from Skills and Guides
@@ -39,6 +39,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [designer](designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [dog-trainer](dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
 | [gardener](gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
+| [librarian](librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
 | [martial-artist](martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
 | [mycologist](mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |

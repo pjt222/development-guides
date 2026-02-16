@@ -132,6 +132,11 @@ SKILL_GLYPHS <- list(
   "assess-ip-landscape"            = "glyph_patent_landscape",
   "search-prior-art"               = "glyph_prior_art_search",
 
+  # ── library-science (3) ──────────────────────────────────────────────
+  "catalog-collection"         = "glyph_card_catalog",
+  "preserve-materials"         = "glyph_book_repair",
+  "curate-collection"          = "glyph_bookshelf",
+
   # ── jigsawr (5) ──────────────────────────────────────────────────────
   "generate-puzzle"            = "glyph_jigsaw_code",
   "add-puzzle-type"            = "glyph_jigsaw_plus",

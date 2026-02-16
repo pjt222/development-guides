@@ -1453,3 +1453,70 @@ glyph_agent_prospector <- function(cx, cy, s, col, bright) {
       color = bright, linewidth = .lw(s, 2.5))
   )
 }
+
+# ── glyph_agent_librarian: open book with catalog index tabs ───────────
+glyph_agent_librarian <- function(cx, cy, s, col, bright) {
+  # Open book — two angled pages meeting at spine
+  # Left page
+  left_page <- data.frame(
+    x = cx + c(-24, -2, -2, -24) * s,
+    y = cy + c(16, 20, -20, -16) * s
+  )
+  # Right page
+  right_page <- data.frame(
+    x = cx + c(2, 24, 24, 2) * s,
+    y = cy + c(20, 16, -16, -20) * s
+  )
+  # Spine line
+  spine <- data.frame(
+    x = c(cx, cx),
+    y = c(cy + 22 * s, cy - 22 * s)
+  )
+  # Text lines on left page
+  ll1 <- data.frame(x = c(cx - 20 * s, cx - 6 * s), y = c(cy + 10 * s, cy + 12 * s))
+  ll2 <- data.frame(x = c(cx - 20 * s, cx - 6 * s), y = c(cy + 4 * s, cy + 6 * s))
+  ll3 <- data.frame(x = c(cx - 20 * s, cx - 6 * s), y = c(cy - 2 * s, cy + 0 * s))
+  ll4 <- data.frame(x = c(cx - 20 * s, cx - 6 * s), y = c(cy - 8 * s, cy - 6 * s))
+  # Index tabs along right edge (catalog tabs)
+  tab1 <- data.frame(
+    xmin = cx + 22 * s, xmax = cx + 28 * s,
+    ymin = cy + 10 * s, ymax = cy + 16 * s
+  )
+  tab2 <- data.frame(
+    xmin = cx + 22 * s, xmax = cx + 28 * s,
+    ymin = cy + 0 * s,  ymax = cy + 6 * s
+  )
+  tab3 <- data.frame(
+    xmin = cx + 22 * s, xmax = cx + 28 * s,
+    ymin = cy - 10 * s, ymax = cy - 4 * s
+  )
+  list(
+    # Pages
+    ggplot2::geom_polygon(data = left_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = right_page, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8)),
+    # Spine
+    ggplot2::geom_path(data = spine, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    # Text lines
+    ggplot2::geom_path(data = ll1, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = ll2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = ll3, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = ll4, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    # Catalog index tabs
+    ggplot2::geom_rect(data = tab1,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = tab2,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = tab3,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.5))
+  )
+}

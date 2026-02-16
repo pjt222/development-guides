@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T10:56:14.582Z",
-    "totalSkills": 199,
-    "totalAgents": 33,
+    "generated": "2026-02-16T12:06:58.341Z",
+    "totalSkills": 202,
+    "totalAgents": 34,
     "totalTeams": 1,
-    "totalNodes": 233,
-    "totalLinks": 1111,
-    "totalAgentLinks": 267,
+    "totalNodes": 237,
+    "totalLinks": 1126,
+    "totalAgentLinks": 273,
     "totalTeamLinks": 4,
-    "totalDomains": 31
+    "totalDomains": 32
   },
   "domains": {
     "r-packages": {
@@ -134,6 +134,10 @@
     "crafting": {
       "description": "Traditional handcraft and artisan skills",
       "count": 1
+    },
+    "library-science": {
+      "description": "Library cataloging, collection management, and material preservation",
+      "count": 3
     }
   },
   "nodes": [
@@ -4934,6 +4938,78 @@
       "path": "crafting/paper-making/SKILL.md"
     },
     {
+      "id": "catalog-collection",
+      "type": "skill",
+      "title": "Catalog Collection",
+      "domain": "library-science",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Catalog and classify materials using Dewey Decimal or Library of Congress systems with descriptive cataloging, subject headings, and call number assignment",
+      "tags": [
+        "library-science",
+        "cataloging",
+        "classification",
+        "dewey",
+        "loc",
+        "marc",
+        "metadata",
+        "taxonomy"
+      ],
+      "related": [
+        "preserve-materials",
+        "curate-collection",
+        "manage-memory"
+      ],
+      "path": "library-science/catalog-collection/SKILL.md"
+    },
+    {
+      "id": "preserve-materials",
+      "type": "skill",
+      "title": "Preserve Materials",
+      "domain": "library-science",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Preserve and conserve library and archival materials through environmental controls, handling procedures, book repair, acid-free storage, and disaster recovery",
+      "tags": [
+        "library-science",
+        "preservation",
+        "conservation",
+        "book-repair",
+        "archival",
+        "acid-free",
+        "digitization"
+      ],
+      "related": [
+        "catalog-collection",
+        "curate-collection",
+        "maintain-hand-tools"
+      ],
+      "path": "library-science/preserve-materials/SKILL.md"
+    },
+    {
+      "id": "curate-collection",
+      "type": "skill",
+      "title": "Curate Collection",
+      "domain": "library-science",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Build and maintain a library collection through acquisitions, weeding (CREW/MUSTIE method), collection assessment, and reader advisory",
+      "tags": [
+        "library-science",
+        "collection-development",
+        "weeding",
+        "acquisitions",
+        "reader-advisory",
+        "curation"
+      ],
+      "related": [
+        "catalog-collection",
+        "preserve-materials",
+        "review-research"
+      ],
+      "path": "library-science/curate-collection/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -5859,6 +5935,41 @@
         "search-prior-art"
       ],
       "path": "agents/ip-analyst.md"
+    },
+    {
+      "id": "agent:librarian",
+      "type": "agent",
+      "title": "Librarian",
+      "priority": "normal",
+      "description": "Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval",
+      "tags": [
+        "knowledge-management",
+        "cataloging",
+        "taxonomy",
+        "information-retrieval",
+        "curation",
+        "archives",
+        "preservation",
+        "library-science",
+        "classification"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "catalog-collection",
+        "preserve-materials",
+        "curate-collection",
+        "manage-memory",
+        "review-research",
+        "observe"
+      ],
+      "path": "agents/librarian.md"
     },
     {
       "id": "agent:gardener",
@@ -10325,6 +10436,51 @@
       "type": "skill"
     },
     {
+      "source": "catalog-collection",
+      "target": "preserve-materials",
+      "type": "skill"
+    },
+    {
+      "source": "catalog-collection",
+      "target": "curate-collection",
+      "type": "skill"
+    },
+    {
+      "source": "catalog-collection",
+      "target": "manage-memory",
+      "type": "skill"
+    },
+    {
+      "source": "preserve-materials",
+      "target": "catalog-collection",
+      "type": "skill"
+    },
+    {
+      "source": "preserve-materials",
+      "target": "curate-collection",
+      "type": "skill"
+    },
+    {
+      "source": "preserve-materials",
+      "target": "maintain-hand-tools",
+      "type": "skill"
+    },
+    {
+      "source": "curate-collection",
+      "target": "catalog-collection",
+      "type": "skill"
+    },
+    {
+      "source": "curate-collection",
+      "target": "preserve-materials",
+      "type": "skill"
+    },
+    {
+      "source": "curate-collection",
+      "target": "review-research",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -11402,6 +11558,36 @@
     {
       "source": "agent:ip-analyst",
       "target": "search-prior-art",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "catalog-collection",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "preserve-materials",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "curate-collection",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "manage-memory",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "review-research",
+      "type": "agent"
+    },
+    {
+      "source": "agent:librarian",
+      "target": "observe",
       "type": "agent"
     },
     {

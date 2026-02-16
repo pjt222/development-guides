@@ -1,7 +1,7 @@
 version: "1.5"
 generated: "2026-02-13"
 standard: "agentskills.io/specification"
-total_skills: 199
+total_skills: 202
 
 domains:
   r-packages:
@@ -1122,3 +1122,22 @@ domains:
         complexity: intermediate
         language: natural
         description: Handcraft paper from plant fibres using mould and deckle sheet-forming techniques
+
+  library-science:
+    description: Library cataloging, collection management, and material preservation
+    skills:
+      - id: catalog-collection
+        path: library-science/catalog-collection/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Catalog and classify materials using Dewey Decimal or Library of Congress systems with descriptive cataloging, subject headings, and call number assignment
+      - id: preserve-materials
+        path: library-science/preserve-materials/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Preserve and conserve library and archival materials through environmental controls, handling procedures, book repair, acid-free storage, and disaster recovery
+      - id: curate-collection
+        path: library-science/curate-collection/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Build and maintain a library collection through acquisitions, weeding (CREW/MUSTIE method), collection assessment, and reader advisory

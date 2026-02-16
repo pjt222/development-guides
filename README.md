@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **199 skills** across 31 domains — structured, executable procedures
-- **33 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **202 skills** across 32 domains — structured, executable procedures
+- **34 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **1 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 199 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 202 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 199 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 202 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -63,6 +63,7 @@ The **[Skills Library](skills/)** provides 199 task-level skills following the [
 | [Mycology](skills/mycology/) | 2 | Fungi identification, cultivation, and mycelial ecology |
 | [Prospecting](skills/prospecting/) | 2 | Mineral identification and precious metal recovery |
 | [Crafting](skills/crafting/) | 1 | Traditional handcraft and artisan skills |
+| [Library Science](skills/library-science/) | 3 | Library cataloging, collection management, and material preservation |
 <!-- AUTO:END:skills-table -->
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
@@ -70,7 +71,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 33 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
+The **[Agents Library](agents/)** provides 34 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation).
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -96,6 +97,7 @@ The **[Agents Library](agents/)** provides 33 specialized agent definitions for 
 | [designer](agents/designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [dog-trainer](agents/dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
 | [gardener](agents/gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
+| [librarian](agents/librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
 | [mycologist](agents/mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](agents/mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |

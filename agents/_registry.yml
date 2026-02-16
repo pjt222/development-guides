@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 33
+total_agents: 34
 version: "2.0"
 last_updated: "2026-02-12"
 
@@ -433,6 +433,20 @@ agents:
     skills:
       - assess-ip-landscape
       - search-prior-art
+
+  - id: librarian
+    path: agents/librarian.md
+    description: Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval
+    tags: [knowledge-management, cataloging, taxonomy, information-retrieval, curation, archives, preservation, library-science, classification]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - catalog-collection
+      - preserve-materials
+      - curate-collection
+      - manage-memory
+      - review-research
+      - observe
 
   - id: gardener
     path: agents/gardener.md

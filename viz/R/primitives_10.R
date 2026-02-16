@@ -597,3 +597,169 @@ glyph_fibre_sheet <- function(cx, cy, s, col, bright) {
       color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 1.2))
   )
 }
+
+# ── glyph_card_catalog: index card with tabbed dividers ────────────────
+glyph_card_catalog <- function(cx, cy, s, col, bright) {
+  # Main card (rectangle)
+  card <- data.frame(
+    xmin = cx - 18 * s, xmax = cx + 18 * s,
+    ymin = cy - 22 * s, ymax = cy + 16 * s
+  )
+  # Horizontal rule lines on card
+  lines <- lapply(c(8, 2, -4, -10, -16) * s, function(yoff) {
+    data.frame(
+      x = c(cx - 14 * s, cx + 14 * s),
+      y = c(cy + yoff, cy + yoff)
+    )
+  })
+  # Tab dividers along right edge (3 tabs sticking out)
+  tab1 <- data.frame(
+    xmin = cx + 18 * s, xmax = cx + 24 * s,
+    ymin = cy + 10 * s, ymax = cy + 16 * s
+  )
+  tab2 <- data.frame(
+    xmin = cx + 18 * s, xmax = cx + 24 * s,
+    ymin = cy + 0 * s,  ymax = cy + 6 * s
+  )
+  tab3 <- data.frame(
+    xmin = cx + 18 * s, xmax = cx + 24 * s,
+    ymin = cy - 10 * s, ymax = cy - 4 * s
+  )
+  list(
+    # Card base
+    ggplot2::geom_rect(data = card,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2)),
+    # Rule lines
+    ggplot2::geom_path(data = lines[[1]], .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = lines[[2]], .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = lines[[3]], .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = lines[[4]], .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 0.8)),
+    ggplot2::geom_path(data = lines[[5]], .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 0.8)),
+    # Tabs
+    ggplot2::geom_rect(data = tab1,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = tab2,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = tab3,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_book_repair: book with protective binding wrap ───────────────
+glyph_book_repair <- function(cx, cy, s, col, bright) {
+  # Book spine (left edge)
+  spine <- data.frame(
+    xmin = cx - 20 * s, xmax = cx - 14 * s,
+    ymin = cy - 24 * s, ymax = cy + 24 * s
+  )
+  # Book cover (main rectangle)
+  cover <- data.frame(
+    xmin = cx - 14 * s, xmax = cx + 16 * s,
+    ymin = cy - 24 * s, ymax = cy + 24 * s
+  )
+  # Protective wrap bands (horizontal stripes across book)
+  band1 <- data.frame(
+    xmin = cx - 22 * s, xmax = cx + 18 * s,
+    ymin = cy + 14 * s, ymax = cy + 18 * s
+  )
+  band2 <- data.frame(
+    xmin = cx - 22 * s, xmax = cx + 18 * s,
+    ymin = cy - 2 * s,  ymax = cy + 2 * s
+  )
+  band3 <- data.frame(
+    xmin = cx - 22 * s, xmax = cx + 18 * s,
+    ymin = cy - 18 * s, ymax = cy - 14 * s
+  )
+  # Small shield symbol on cover (preservation mark)
+  shield <- data.frame(
+    x = cx + 1 * s + c(-6, 0, 6, 6, 3, 0, -3, -6) * s,
+    y = cy + c(6, 10, 6, 0, -6, -8, -6, 0) * s
+  )
+  list(
+    # Book cover
+    ggplot2::geom_rect(data = cover,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.12), color = col, linewidth = .lw(s, 1.5)),
+    # Spine
+    ggplot2::geom_rect(data = spine,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.25), color = bright, linewidth = .lw(s, 2)),
+    # Protective bands
+    ggplot2::geom_rect(data = band1,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_rect(data = band2,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_rect(data = band3,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.2)),
+    # Preservation shield
+    ggplot2::geom_polygon(data = shield, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_bookshelf: organized shelf with selection arrow ──────────────
+glyph_bookshelf <- function(cx, cy, s, col, bright) {
+  # Shelf base (horizontal line)
+  shelf <- data.frame(
+    xmin = cx - 26 * s, xmax = cx + 26 * s,
+    ymin = cy - 24 * s, ymax = cy - 22 * s
+  )
+  # Books on shelf (varying heights and widths)
+  b1 <- data.frame(xmin = cx - 24 * s, xmax = cx - 18 * s,
+                    ymin = cy - 22 * s, ymax = cy + 10 * s)
+  b2 <- data.frame(xmin = cx - 16 * s, xmax = cx - 12 * s,
+                    ymin = cy - 22 * s, ymax = cy + 16 * s)
+  b3 <- data.frame(xmin = cx - 10 * s, xmax = cx - 4 * s,
+                    ymin = cy - 22 * s, ymax = cy + 6 * s)
+  b4 <- data.frame(xmin = cx - 2 * s,  xmax = cx + 4 * s,
+                    ymin = cy - 22 * s, ymax = cy + 14 * s)
+  b5 <- data.frame(xmin = cx + 6 * s,  xmax = cx + 10 * s,
+                    ymin = cy - 22 * s, ymax = cy + 8 * s)
+  b6 <- data.frame(xmin = cx + 12 * s, xmax = cx + 18 * s,
+                    ymin = cy - 22 * s, ymax = cy + 18 * s)
+  # Selection arrow (pointing at one book, indicating curation)
+  arrow <- data.frame(
+    x = cx + c(22, 22, 26, 20, 14, 18, 18) * s,
+    y = cy + c(20, 24, 18, 12, 18, 24, 20) * s
+  )
+  list(
+    # Shelf
+    ggplot2::geom_rect(data = shelf,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.3), color = bright, linewidth = .lw(s, 2)),
+    # Books (varying opacity for visual variety)
+    ggplot2::geom_rect(data = b1,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = b2,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_rect(data = b3,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_rect(data = b4,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_rect(data = b5,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_rect(data = b6,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    # Selection arrow
+    ggplot2::geom_polygon(data = arrow, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.35), color = bright, linewidth = .lw(s, 1.5))
+  )
+}

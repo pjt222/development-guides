@@ -93,6 +93,10 @@
     "prospecting": {
       "basePrompt": "Gold pan, mineral crystal, geological layers",
       "glow": "gold"
+    },
+    "library-science": {
+      "basePrompt": "Catalog card, open book, index tabs, library shelf",
+      "glow": "leather-brown"
     }
   },
   "icons": [
@@ -1687,6 +1691,30 @@
       "seed": 310002,
       "path": "icons/cyberpunk/prospecting/gold-washing.webp",
       "status": "pending"
+    },
+    {
+      "skillId": "catalog-collection",
+      "domain": "library-science",
+      "prompt": "Catalog card, open book, index tabs, library shelf, card catalog with tabbed dividers, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 320001,
+      "path": "icons/cyberpunk/library-science/catalog-collection.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "preserve-materials",
+      "domain": "library-science",
+      "prompt": "Catalog card, open book, index tabs, library shelf, book with protective binding and conservation tools, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 320002,
+      "path": "icons/cyberpunk/library-science/preserve-materials.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "curate-collection",
+      "domain": "library-science",
+      "prompt": "Catalog card, open book, index tabs, library shelf, organized bookshelf with selection arrow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 320003,
+      "path": "icons/cyberpunk/library-science/curate-collection.webp",
+      "status": "done"
     }
   ]
 }

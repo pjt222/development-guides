@@ -1,5 +1,5 @@
 # agent_glyphs.R - Agent-to-glyph mapping
-# Maps each of 33 agent IDs to a specific glyph drawing function.
+# Maps each of 34 agent IDs to a specific glyph drawing function.
 #
 # Each entry: agentId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -53,6 +53,7 @@ AGENT_GLYPHS <- list(
 
   # ── New Specialty ─────────────────────────────────────────────────────
   "dog-trainer"               = "glyph_agent_dog_trainer",
+  "librarian"                 = "glyph_agent_librarian",
   "mycologist"                = "glyph_agent_mycologist",
   "prospector"                = "glyph_agent_prospector",
   "shaman"                    = "glyph_agent_shaman"

@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 33,
+    "total_agents": 34,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -183,6 +183,11 @@
       "description": "Shamanic practitioner for journeying and ceremony",
       "glow": "deep-violet",
       "concept": "Drum circle with spirit lines rising"
+    },
+    "librarian": {
+      "description": "Knowledge organization and library management specialist",
+      "glow": "leather-brown",
+      "concept": "Open book with catalog index tabs along right edge"
     }
   },
   "icons": [
@@ -349,6 +354,11 @@
     {
       "agentId": "shaman",
       "path": "icons/cyberpunk/agents/shaman.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "librarian",
+      "path": "icons/cyberpunk/agents/librarian.webp",
       "status": "done"
     }
   ]

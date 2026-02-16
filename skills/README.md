@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 199 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 202 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -52,6 +52,7 @@ Browse by domain:
 | [Mycology](mycology/) | 2 | Fungi identification, cultivation, and mycelial ecology |
 | [Prospecting](prospecting/) | 2 | Mineral identification and precious metal recovery |
 | [Crafting](crafting/) | 1 | Traditional handcraft and artisan skills |
+| [Library Science](library-science/) | 3 | Library cataloging, collection management, and material preservation |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

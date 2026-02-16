@@ -19,6 +19,7 @@ DOMAIN_COLORS <- list(
   "git"                = "#66ffcc",
   "intellectual-property" = "#33ccff",
   "jigsawr"            = "#22ddaa",
+  "library-science"    = "#8B7355",
   "mcp-integration"    = "#00ccaa",
   "mlops"              = "#aa66ff",
   "observability"      = "#ffaa00",
