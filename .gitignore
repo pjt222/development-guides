@@ -18,6 +18,9 @@ Thumbs.db
 *.bak
 *.backup
 
+# Local continuation markers
+CONTINUE_HERE.md
+
 # Node dependencies
 node_modules/
 
