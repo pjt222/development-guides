@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 1,
+    "total_teams": 6,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -23,9 +23,59 @@
       "description": "R package review team with coordinated multi-agent workflow",
       "glow": "bright-cyan",
       "concept": "Hub-and-spoke pentagon with 4 member nodes and coordination lines"
+    },
+    "gxp-compliance-validation": {
+      "description": "GxP compliance team with regulatory shield and audit nodes",
+      "glow": "hot-pink",
+      "concept": "Shield with checkmark and 4 audit nodes at corners"
+    },
+    "fullstack-web-dev": {
+      "description": "Full-stack web dev team with sequential pipeline chevrons",
+      "glow": "golden-yellow",
+      "concept": "Stacked chevrons (sequential pipeline) with 4 member nodes"
+    },
+    "ml-data-science-review": {
+      "description": "ML/data science review team with neural network hub",
+      "glow": "slate-blue",
+      "concept": "Neural network triangle with 4 outer review nodes"
+    },
+    "devops-platform-engineering": {
+      "description": "DevOps platform team with infrastructure gear",
+      "glow": "orange-red",
+      "concept": "Gear/cog with central hole and 4 platform nodes at cardinal directions"
+    },
+    "ai-self-care": {
+      "description": "AI self-care team with spiral mandala and modality nodes",
+      "glow": "orchid-purple",
+      "concept": "Archimedean spiral with 4 sequential modality nodes"
     }
   },
   "icons": [
+    {
+      "teamId": "ai-self-care",
+      "path": "icons/cyberpunk/teams/ai-self-care.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "devops-platform-engineering",
+      "path": "icons/cyberpunk/teams/devops-platform-engineering.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "fullstack-web-dev",
+      "path": "icons/cyberpunk/teams/fullstack-web-dev.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "gxp-compliance-validation",
+      "path": "icons/cyberpunk/teams/gxp-compliance-validation.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "ml-data-science-review",
+      "path": "icons/cyberpunk/teams/ml-data-science-review.webp",
+      "status": "done"
+    },
     {
       "teamId": "r-package-review",
       "path": "icons/cyberpunk/teams/r-package-review.webp",

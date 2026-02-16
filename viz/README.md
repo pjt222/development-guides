@@ -1,6 +1,6 @@
 # Interactive Skills Visualization
 
-Force-graph explorer for the 202-skill, 34-agent, 1-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 6 color themes.
+Force-graph explorer for the 202-skill, 34-agent, 6-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 6 color themes.
 
 ## Architecture
 

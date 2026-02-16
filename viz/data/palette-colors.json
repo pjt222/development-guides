@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T13:01:04",
+    "generated": "2026-02-16T15:13:17",
     "palette_count": 9,
     "domain_count": 32,
     "agent_count": 34,
-    "team_count": 1,
+    "team_count": 6,
     "palettes": ["cyberpunk", "viridis", "magma", "inferno", "plasma", "cividis", "mako", "rocket", "turbo"],
     "domains": ["alchemy", "animal-training", "bushcraft", "compliance", "containerization", "crafting", "data-serialization", "defensive", "design", "devops", "esoteric", "gardening", "general", "git", "intellectual-property", "jigsawr", "library-science", "mcp-integration", "mlops", "morphic", "mycology", "observability", "project-management", "prospecting", "r-packages", "reporting", "review", "shiny", "swarm", "tcg", "web-dev", "workflow-visualization"],
     "agents": ["alchemist", "auditor", "code-reviewer", "designer", "dog-trainer", "devops-engineer", "gardener", "gxp-validator", "ip-analyst", "jigsawr-developer", "librarian", "martial-artist", "mlops-engineer", "mycologist", "mystic", "polymath", "project-manager", "prospector", "putior-integrator", "quarto-developer", "r-developer", "security-analyst", "shaman", "senior-data-scientist", "senior-researcher", "senior-software-developer", "senior-ux-ui-specialist", "senior-web-designer", "shapeshifter", "shiny-developer", "survivalist", "swarm-strategist", "tcg-specialist", "web-developer"],
-    "teams": "r-package-review"
+    "teams": ["ai-self-care", "devops-platform-engineering", "fullstack-web-dev", "gxp-compliance-validation", "ml-data-science-review", "r-package-review"]
   },
   "palettes": {
     "cyberpunk": {
@@ -83,6 +83,11 @@
         "web-developer": "#ff6633"
       },
       "teams": {
+        "ai-self-care": "#da70d6",
+        "devops-platform-engineering": "#ff4500",
+        "fullstack-web-dev": "#ffcc00",
+        "gxp-compliance-validation": "#ff6ec7",
+        "ml-data-science-review": "#7b68ee",
         "r-package-review": "#00ccff"
       }
     },
@@ -158,7 +163,12 @@
         "web-developer": "#BBDF27"
       },
       "teams": {
-        "r-package-review": "#35608D"
+        "ai-self-care": "#35608D",
+        "devops-platform-engineering": "#2C738E",
+        "fullstack-web-dev": "#24868E",
+        "gxp-compliance-validation": "#1F9A8A",
+        "ml-data-science-review": "#26AD81",
+        "r-package-review": "#43BF71"
       }
     },
     "magma": {
@@ -233,7 +243,12 @@
         "web-developer": "#FECE91"
       },
       "teams": {
-        "r-package-review": "#641A80"
+        "ai-self-care": "#641A80",
+        "devops-platform-engineering": "#842681",
+        "fullstack-web-dev": "#A5317E",
+        "gxp-compliance-validation": "#C63D73",
+        "ml-data-science-review": "#E44F64",
+        "r-package-review": "#F76F5C"
       }
     },
     "inferno": {
@@ -308,7 +323,12 @@
         "web-developer": "#F6D645"
       },
       "teams": {
-        "r-package-review": "#6B186E"
+        "ai-self-care": "#6B186E",
+        "devops-platform-engineering": "#8C2369",
+        "fullstack-web-dev": "#AC2F5E",
+        "gxp-compliance-validation": "#C9404A",
+        "ml-data-science-review": "#E25734",
+        "r-package-review": "#F3771A"
       }
     },
     "plasma": {
@@ -383,7 +403,12 @@
         "web-developer": "#FCCE25"
       },
       "teams": {
-        "r-package-review": "#900DA4"
+        "ai-self-care": "#900DA4",
+        "devops-platform-engineering": "#AB2494",
+        "fullstack-web-dev": "#C13B82",
+        "gxp-compliance-validation": "#D5536F",
+        "ml-data-science-review": "#E56A5D",
+        "r-package-review": "#F1844B"
       }
     },
     "cividis": {
@@ -458,7 +483,12 @@
         "web-developer": "#E7D159"
       },
       "teams": {
-        "r-package-review": "#4E576C"
+        "ai-self-care": "#4E576C",
+        "devops-platform-engineering": "#62656F",
+        "fullstack-web-dev": "#737475",
+        "gxp-compliance-validation": "#868379",
+        "ml-data-science-review": "#9A9377",
+        "r-package-review": "#B0A473"
       }
     },
     "mako": {
@@ -533,7 +563,12 @@
         "web-developer": "#F7C5A5"
       },
       "teams": {
-        "r-package-review": "#751F58"
+        "ai-self-care": "#751F58",
+        "devops-platform-engineering": "#981B5B",
+        "fullstack-web-dev": "#BB1656",
+        "gxp-compliance-validation": "#D82648",
+        "ml-data-science-review": "#EB483E",
+        "r-package-review": "#F2704D"
       }
     },
     "rocket": {
@@ -608,7 +643,12 @@
         "web-developer": "#A8E1BC"
       },
       "teams": {
-        "r-package-review": "#414081"
+        "ai-self-care": "#414081",
+        "devops-platform-engineering": "#3B5799",
+        "fullstack-web-dev": "#366FA0",
+        "gxp-compliance-validation": "#3486A5",
+        "ml-data-science-review": "#359CAA",
+        "r-package-review": "#3DB4AD"
       }
     },
     "turbo": {
@@ -683,7 +723,12 @@
         "web-developer": "#C42503"
       },
       "teams": {
-        "r-package-review": "#18D6CB"
+        "ai-self-care": "#18D6CB",
+        "devops-platform-engineering": "#35F394",
+        "fullstack-web-dev": "#81FF52",
+        "gxp-compliance-validation": "#BDF434",
+        "ml-data-science-review": "#EBD339",
+        "r-package-review": "#FEA632"
       }
     }
   }

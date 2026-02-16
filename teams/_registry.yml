@@ -2,7 +2,7 @@
 # Machine-readable catalog of all team definitions in this library.
 # Keep in sync with the actual team files on disk.
 
-total_teams: 1
+total_teams: 6
 version: "1.0"
 last_updated: "2026-02-16"
 
@@ -14,3 +14,43 @@ teams:
     members: [r-developer, code-reviewer, senior-software-developer, security-analyst]
     coordination: hub-and-spoke
     tags: [R, code-review, quality, package-development]
+
+  - id: gxp-compliance-validation
+    path: teams/gxp-compliance-validation.md
+    description: End-to-end GxP compliance covering CSV assessment, audit, security, and methodology validation
+    lead: gxp-validator
+    members: [gxp-validator, auditor, security-analyst, senior-researcher]
+    coordination: hub-and-spoke
+    tags: [compliance, gxp, validation, audit, security, pharma]
+
+  - id: fullstack-web-dev
+    path: teams/fullstack-web-dev.md
+    description: Full-stack web development pipeline from scaffolding through design, UX, and security review
+    lead: web-developer
+    members: [web-developer, senior-web-designer, senior-ux-ui-specialist, security-analyst]
+    coordination: sequential
+    tags: [web-dev, design, ux, security, nextjs, tailwind]
+
+  - id: ml-data-science-review
+    path: teams/ml-data-science-review.md
+    description: Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture
+    lead: senior-data-scientist
+    members: [senior-data-scientist, senior-researcher, mlops-engineer, senior-software-developer]
+    coordination: hub-and-spoke
+    tags: [data-science, machine-learning, statistics, review, mlops]
+
+  - id: devops-platform-engineering
+    path: teams/devops-platform-engineering.md
+    description: Platform engineering combining infrastructure, ML platform, security, and architecture
+    lead: devops-engineer
+    members: [devops-engineer, mlops-engineer, security-analyst, senior-software-developer]
+    coordination: parallel
+    tags: [devops, kubernetes, ci-cd, security, infrastructure, platform]
+
+  - id: ai-self-care
+    path: teams/ai-self-care.md
+    description: AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying
+    lead: mystic
+    members: [mystic, alchemist, gardener, shaman]
+    coordination: sequential
+    tags: [esoteric, meditation, healing, self-care, wellness, meta-cognitive]

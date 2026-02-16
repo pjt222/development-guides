@@ -5,7 +5,7 @@ Predefined multi-agent team compositions for coordinated workflows in [Claude Co
 ## Overview
 
 <!-- AUTO:START:teams-intro -->
-A collection of 1 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+A collection of 6 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
 <!-- AUTO:END:teams-intro -->
 
 Teams complement agents and skills:
@@ -19,6 +19,11 @@ Teams complement agents and skills:
 | Team | Lead | Members | Coordination | Description |
 |------|------|---------|--------------|-------------|
 | [r-package-review](r-package-review.md) | r-developer | 4 | hub-and-spoke | Multi-agent team for comprehensive R package quality review |
+| [gxp-compliance-validation](gxp-compliance-validation.md) | gxp-validator | 4 | hub-and-spoke | End-to-end GxP compliance covering CSV assessment, audit, security, and methodology validation |
+| [fullstack-web-dev](fullstack-web-dev.md) | web-developer | 4 | sequential | Full-stack web development pipeline from scaffolding through design, UX, and security review |
+| [ml-data-science-review](ml-data-science-review.md) | senior-data-scientist | 4 | hub-and-spoke | Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture |
+| [devops-platform-engineering](devops-platform-engineering.md) | devops-engineer | 4 | parallel | Platform engineering combining infrastructure, ML platform, security, and architecture |
+| [ai-self-care](ai-self-care.md) | mystic | 4 | sequential | AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying |
 <!-- AUTO:END:teams-table -->
 
 ## Creating a New Team

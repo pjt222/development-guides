@@ -30,9 +30,10 @@ PALETTE_AGENT_ORDER <- c(
   "swarm-strategist", "tcg-specialist", "web-developer"
 )
 
-# ── Team order (alphabetical, 1 team) ────────────────────────────────────
+# ── Team order (alphabetical, 6 teams) ────────────────────────────────────
 PALETTE_TEAM_ORDER <- c(
-  "r-package-review"
+  "ai-self-care", "devops-platform-engineering", "fullstack-web-dev",
+  "gxp-compliance-validation", "ml-data-science-review", "r-package-review"
 )
 
 # ── viridisLite option mapping ────────────────────────────────────────────
@@ -139,7 +140,12 @@ get_cyberpunk_colors <- function() {
   )
 
   teams <- list(
-    "r-package-review" = "#00ccff"   # bright cyan
+    "ai-self-care"                = "#da70d6",   # orchid purple
+    "devops-platform-engineering" = "#ff4500",   # orange-red
+    "fullstack-web-dev"           = "#ffcc00",   # golden yellow
+    "gxp-compliance-validation"   = "#ff6ec7",   # hot pink
+    "ml-data-science-review"      = "#7b68ee",   # medium slate blue
+    "r-package-review"            = "#00ccff"    # bright cyan
   )
 
   list(domains = domains, agents = agents, teams = teams)

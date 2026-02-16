@@ -7,7 +7,7 @@ An agentic development platform providing structured skills, specialized agents,
 <!-- AUTO:START:stats -->
 - **202 skills** across 32 domains — structured, executable procedures
 - **34 agents** — specialized Claude Code personas covering development, review, compliance, and more
-- **1 teams** — predefined multi-agent compositions for complex workflows
+- **6 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
 - **Interactive visualization** — force-graph explorer with 202 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
@@ -118,13 +118,18 @@ See [agents/README.md](agents/README.md) for usage instructions, the creation te
 ## Teams Library
 
 <!-- AUTO:START:teams-intro -->
-The **[Teams Library](teams/)** provides 1 predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+The **[Teams Library](teams/)** provides 6 predefined multi-agent team compositions. Teams define *who works together* — coordinated groups of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
 <!-- AUTO:END:teams-intro -->
 
 <!-- AUTO:START:teams-table -->
 | Team | Lead | Members | Coordination | Description |
 |------|------|---------|--------------|-------------|
 | [r-package-review](teams/r-package-review.md) | r-developer | 4 | hub-and-spoke | Multi-agent team for comprehensive R package quality review |
+| [gxp-compliance-validation](teams/gxp-compliance-validation.md) | gxp-validator | 4 | hub-and-spoke | End-to-end GxP compliance covering CSV assessment, audit, security, and methodology validation |
+| [fullstack-web-dev](teams/fullstack-web-dev.md) | web-developer | 4 | sequential | Full-stack web development pipeline from scaffolding through design, UX, and security review |
+| [ml-data-science-review](teams/ml-data-science-review.md) | senior-data-scientist | 4 | hub-and-spoke | Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture |
+| [devops-platform-engineering](teams/devops-platform-engineering.md) | devops-engineer | 4 | parallel | Platform engineering combining infrastructure, ML platform, security, and architecture |
+| [ai-self-care](teams/ai-self-care.md) | mystic | 4 | sequential | AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying |
 <!-- AUTO:END:teams-table -->
 
 See [teams/README.md](teams/README.md) for coordination patterns, the creation template, and machine-readable configuration.

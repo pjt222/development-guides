@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated": "2026-02-16T12:06:58.341Z",
+    "generated": "2026-02-16T14:13:40.782Z",
     "totalSkills": 202,
     "totalAgents": 34,
-    "totalTeams": 1,
-    "totalNodes": 237,
-    "totalLinks": 1126,
-    "totalAgentLinks": 273,
-    "totalTeamLinks": 4,
+    "totalTeams": 6,
+    "totalNodes": 242,
+    "totalLinks": 1141,
+    "totalAgentLinks": 268,
+    "totalTeamLinks": 24,
     "totalDomains": 32
   },
   "domains": {
@@ -5862,7 +5862,6 @@
       ],
       "mcp_servers": [],
       "skills": [
-        "meditate",
         "review-research",
         "review-data-analysis",
         "review-software-architecture",
@@ -6039,9 +6038,7 @@
         "build-pkgdown-site",
         "write-roxygen-docs",
         "render-puzzle-docs",
-        "write-claude-md",
-        "meditate",
-        "heal"
+        "write-claude-md"
       ],
       "path": "agents/quarto-developer.md"
     },
@@ -6206,9 +6203,7 @@
         "commit-changes",
         "create-pull-request",
         "manage-git-branches",
-        "write-claude-md",
-        "meditate",
-        "heal"
+        "write-claude-md"
       ],
       "path": "agents/shiny-developer.md"
     },
@@ -6232,6 +6227,120 @@
         "package-development"
       ],
       "path": "teams/r-package-review.md"
+    },
+    {
+      "id": "team:gxp-compliance-validation",
+      "type": "team",
+      "title": "Gxp Compliance Validation",
+      "lead": "gxp-validator",
+      "members": [
+        "gxp-validator",
+        "auditor",
+        "security-analyst",
+        "senior-researcher"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "End-to-end GxP compliance covering CSV assessment, audit, security, and methodology validation",
+      "tags": [
+        "compliance",
+        "gxp",
+        "validation",
+        "audit",
+        "security",
+        "pharma"
+      ],
+      "path": "teams/gxp-compliance-validation.md"
+    },
+    {
+      "id": "team:fullstack-web-dev",
+      "type": "team",
+      "title": "Fullstack Web Dev",
+      "lead": "web-developer",
+      "members": [
+        "web-developer",
+        "senior-web-designer",
+        "senior-ux-ui-specialist",
+        "security-analyst"
+      ],
+      "coordination": "sequential",
+      "description": "Full-stack web development pipeline from scaffolding through design, UX, and security review",
+      "tags": [
+        "web-dev",
+        "design",
+        "ux",
+        "security",
+        "nextjs",
+        "tailwind"
+      ],
+      "path": "teams/fullstack-web-dev.md"
+    },
+    {
+      "id": "team:ml-data-science-review",
+      "type": "team",
+      "title": "Ml Data Science Review",
+      "lead": "senior-data-scientist",
+      "members": [
+        "senior-data-scientist",
+        "senior-researcher",
+        "mlops-engineer",
+        "senior-software-developer"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture",
+      "tags": [
+        "data-science",
+        "machine-learning",
+        "statistics",
+        "review",
+        "mlops"
+      ],
+      "path": "teams/ml-data-science-review.md"
+    },
+    {
+      "id": "team:devops-platform-engineering",
+      "type": "team",
+      "title": "Devops Platform Engineering",
+      "lead": "devops-engineer",
+      "members": [
+        "devops-engineer",
+        "mlops-engineer",
+        "security-analyst",
+        "senior-software-developer"
+      ],
+      "coordination": "parallel",
+      "description": "Platform engineering combining infrastructure, ML platform, security, and architecture",
+      "tags": [
+        "devops",
+        "kubernetes",
+        "ci-cd",
+        "security",
+        "infrastructure",
+        "platform"
+      ],
+      "path": "teams/devops-platform-engineering.md"
+    },
+    {
+      "id": "team:ai-self-care",
+      "type": "team",
+      "title": "Ai Self Care",
+      "lead": "mystic",
+      "members": [
+        "mystic",
+        "alchemist",
+        "gardener",
+        "shaman"
+      ],
+      "coordination": "sequential",
+      "description": "AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying",
+      "tags": [
+        "esoteric",
+        "meditation",
+        "healing",
+        "self-care",
+        "wellness",
+        "meta-cognitive"
+      ],
+      "path": "teams/ai-self-care.md"
     }
   ],
   "links": [
@@ -11497,11 +11606,6 @@
     },
     {
       "source": "agent:polymath",
-      "target": "meditate",
-      "type": "agent"
-    },
-    {
-      "source": "agent:polymath",
       "target": "review-research",
       "type": "agent"
     },
@@ -11676,16 +11780,6 @@
       "type": "agent"
     },
     {
-      "source": "agent:quarto-developer",
-      "target": "meditate",
-      "type": "agent"
-    },
-    {
-      "source": "agent:quarto-developer",
-      "target": "heal",
-      "type": "agent"
-    },
-    {
       "source": "agent:dog-trainer",
       "target": "basic-obedience",
       "type": "agent"
@@ -11836,16 +11930,6 @@
       "type": "agent"
     },
     {
-      "source": "agent:shiny-developer",
-      "target": "meditate",
-      "type": "agent"
-    },
-    {
-      "source": "agent:shiny-developer",
-      "target": "heal",
-      "type": "agent"
-    },
-    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -11863,6 +11947,106 @@
     {
       "source": "team:r-package-review",
       "target": "agent:security-analyst",
+      "type": "team"
+    },
+    {
+      "source": "team:gxp-compliance-validation",
+      "target": "agent:gxp-validator",
+      "type": "team"
+    },
+    {
+      "source": "team:gxp-compliance-validation",
+      "target": "agent:auditor",
+      "type": "team"
+    },
+    {
+      "source": "team:gxp-compliance-validation",
+      "target": "agent:security-analyst",
+      "type": "team"
+    },
+    {
+      "source": "team:gxp-compliance-validation",
+      "target": "agent:senior-researcher",
+      "type": "team"
+    },
+    {
+      "source": "team:fullstack-web-dev",
+      "target": "agent:web-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:fullstack-web-dev",
+      "target": "agent:senior-web-designer",
+      "type": "team"
+    },
+    {
+      "source": "team:fullstack-web-dev",
+      "target": "agent:senior-ux-ui-specialist",
+      "type": "team"
+    },
+    {
+      "source": "team:fullstack-web-dev",
+      "target": "agent:security-analyst",
+      "type": "team"
+    },
+    {
+      "source": "team:ml-data-science-review",
+      "target": "agent:senior-data-scientist",
+      "type": "team"
+    },
+    {
+      "source": "team:ml-data-science-review",
+      "target": "agent:senior-researcher",
+      "type": "team"
+    },
+    {
+      "source": "team:ml-data-science-review",
+      "target": "agent:mlops-engineer",
+      "type": "team"
+    },
+    {
+      "source": "team:ml-data-science-review",
+      "target": "agent:senior-software-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:devops-platform-engineering",
+      "target": "agent:devops-engineer",
+      "type": "team"
+    },
+    {
+      "source": "team:devops-platform-engineering",
+      "target": "agent:mlops-engineer",
+      "type": "team"
+    },
+    {
+      "source": "team:devops-platform-engineering",
+      "target": "agent:security-analyst",
+      "type": "team"
+    },
+    {
+      "source": "team:devops-platform-engineering",
+      "target": "agent:senior-software-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:ai-self-care",
+      "target": "agent:mystic",
+      "type": "team"
+    },
+    {
+      "source": "team:ai-self-care",
+      "target": "agent:alchemist",
+      "type": "team"
+    },
+    {
+      "source": "team:ai-self-care",
+      "target": "agent:gardener",
+      "type": "team"
+    },
+    {
+      "source": "team:ai-self-care",
+      "target": "agent:shaman",
       "type": "team"
     }
   ]
