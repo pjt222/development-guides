@@ -13,6 +13,7 @@
 #   Rscript build-agent-icons.R --dry-run                # List what would be generated
 #   Rscript build-agent-icons.R --palette-list           # List palette names
 #   Rscript build-agent-icons.R --glow-sigma 10          # Adjust glow intensity
+#   Rscript build-agent-icons.R --workers 4              # Use 4 parallel workers
 
 # ── Determine script directory ───────────────────────────────────────────
 get_script_dir <- function() {
@@ -111,60 +112,89 @@ suppressWarnings({
   library(ggplot2, quietly = TRUE, warn.conflicts = FALSE)
 })
 
-total_rendered <- 0
-total_errors <- 0
-start_time <- proc.time()
+# ── Setup parallel workers ───────────────────────────────────────────────
+future::plan(future::multisession, workers = opts$workers)
+on.exit(future::plan(future::sequential), add = TRUE)
+log_msg(sprintf("Using %d parallel workers", opts$workers))
 
+# ── Pre-compute all palette colors ───────────────────────────────────────
+all_pal_colors <- lapply(
+  setNames(palettes_to_render, palettes_to_render),
+  get_palette_colors
+)
+
+# ── Flatten palette x agent into a single task list ──────────────────────
+tasks <- list()
+skipped_color <- 0
 for (pal in palettes_to_render) {
-  pal_colors <- get_palette_colors(pal)
-  pal_start <- proc.time()
-  done_count <- 0
-  error_count <- 0
-
-  log_msg(sprintf("=== Palette: %s (%d agents) ===", pal, length(queue)))
-
-  for (idx in seq_along(queue)) {
-    ic <- queue[[idx]]
+  pal_colors <- all_pal_colors[[pal]]
+  for (ic in queue) {
     out_path <- file.path(script_dir, "icons", pal, "agents",
                           paste0(ic$agentId, ".webp"))
 
     # Skip existing if requested
-    if (opts$skip_existing && file.exists(out_path)) {
-      next
-    }
+    if (opts$skip_existing && file.exists(out_path)) next
 
     agent_color <- pal_colors$agents[[ic$agentId]]
     if (is.null(agent_color)) {
       log_msg(sprintf("ERROR: %s: No color in palette %s", ic$agentId, pal))
-      error_count <- error_count + 1
+      skipped_color <- skipped_color + 1
       next
     }
 
-    tryCatch({
-      render_agent_icon(
-        agent_id   = ic$agentId,
-        out_path   = out_path,
-        glow_sigma = opts$glow_sigma,
-        color      = agent_color
-      )
-
-      kb <- file_size_kb(out_path)
-      log_msg(sprintf("OK: [%s] %s (%.1fKB)", pal, ic$agentId, kb))
-      done_count <- done_count + 1
-
-    }, error = function(e) {
-      log_msg(sprintf("ERROR: [%s] %s: %s", pal, ic$agentId, conditionMessage(e)))
-      error_count <<- error_count + 1
-    })
+    tasks[[length(tasks) + 1]] <- list(
+      palette    = pal,
+      agent_id   = ic$agentId,
+      out_path   = out_path,
+      color      = agent_color,
+      glow_sigma = opts$glow_sigma
+    )
   }
-
-  pal_elapsed <- (proc.time() - pal_start)["elapsed"]
-  log_msg(sprintf("  [%s] Complete: %d succeeded, %d failed in %.1fs",
-                  pal, done_count, error_count, pal_elapsed))
-
-  total_rendered <- total_rendered + done_count
-  total_errors <- total_errors + error_count
 }
+
+log_msg(sprintf("Queued %d render tasks across %d palettes (%d skipped for missing color)",
+                length(tasks), length(palettes_to_render), skipped_color))
+
+# ── Parallel render ──────────────────────────────────────────────────────
+start_time <- proc.time()
+
+results <- furrr::future_map(tasks, function(task) {
+  t0 <- proc.time()
+  tryCatch({
+    dir.create(dirname(task$out_path), recursive = TRUE, showWarnings = FALSE)
+
+    render_agent_icon(
+      agent_id   = task$agent_id,
+      out_path   = task$out_path,
+      glow_sigma = task$glow_sigma,
+      color      = task$color
+    )
+
+    kb <- file_size_kb(task$out_path)
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "ok", palette = task$palette, agent_id = task$agent_id,
+         kb = kb, elapsed = elapsed)
+
+  }, error = function(e) {
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "error", palette = task$palette, agent_id = task$agent_id,
+         message = conditionMessage(e), elapsed = elapsed)
+  })
+}, .options = furrr::furrr_options(seed = TRUE))
+
+# ── Aggregate results ────────────────────────────────────────────────────
+total_rendered <- 0
+total_errors <- 0
+for (res in results) {
+  if (res$status == "ok") {
+    log_msg(sprintf("OK: [%s] %s (%.1fKB)", res$palette, res$agent_id, res$kb))
+    total_rendered <- total_rendered + 1
+  } else {
+    log_msg(sprintf("ERROR: [%s] %s: %s", res$palette, res$agent_id, res$message))
+    total_errors <- total_errors + 1
+  }
+}
+total_errors <- total_errors + skipped_color
 
 # Update manifest status and paths for cyberpunk palette
 if ("cyberpunk" %in% palettes_to_render) {

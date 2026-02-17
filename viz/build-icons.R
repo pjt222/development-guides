@@ -14,6 +14,7 @@
 #   Rscript build-icons.R --dry-run                # List what would be generated
 #   Rscript build-icons.R --palette-list           # List palette names and exit
 #   Rscript build-icons.R --glow-sigma 10          # Adjust glow intensity
+#   Rscript build-icons.R --workers 4              # Use 4 parallel workers
 
 # ── Determine script directory ───────────────────────────────────────────
 get_script_dir <- function() {
@@ -117,68 +118,96 @@ suppressWarnings({
   library(ggplot2, quietly = TRUE, warn.conflicts = FALSE)
 })
 
-total_rendered <- 0
-total_errors <- 0
-start_time <- proc.time()
+# ── Setup parallel workers ───────────────────────────────────────────────
+future::plan(future::multisession, workers = opts$workers)
+on.exit(future::plan(future::sequential), add = TRUE)
+log_msg(sprintf("Using %d parallel workers", opts$workers))
 
+# ── Pre-compute all palette colors ───────────────────────────────────────
+all_pal_colors <- lapply(
+  setNames(palettes_to_render, palettes_to_render),
+  get_palette_colors
+)
+
+# ── Flatten palette x icon into a single task list ───────────────────────
+tasks <- list()
+skipped_color <- 0
 for (pal in palettes_to_render) {
-  pal_colors <- get_palette_colors(pal)
-  pal_start <- proc.time()
-  done_count <- 0
-  error_count <- 0
-
-  log_msg(sprintf("=== Palette: %s (%d icons) ===", pal, length(queue)))
-
-  for (idx in seq_along(queue)) {
-    ic <- queue[[idx]]
+  pal_colors <- all_pal_colors[[pal]]
+  for (ic in queue) {
     out_path <- file.path(script_dir, "icons", pal, ic$domain,
                           paste0(ic$skillId, ".webp"))
 
     # Skip existing if requested
-    if (opts$skip_existing && file.exists(out_path)) {
-      next
-    }
+    if (opts$skip_existing && file.exists(out_path)) next
 
     domain_color <- pal_colors$domains[[ic$domain]]
     if (is.null(domain_color)) {
-      log_error(ic$domain, ic$skillId, paste("No color for domain in palette", pal))
-      error_count <- error_count + 1
+      log_error(ic$domain, ic$skillId,
+                paste("No color for domain in palette", pal))
+      skipped_color <- skipped_color + 1
       next
     }
 
-    tryCatch({
-      render_icon(
-        domain     = ic$domain,
-        skill_id   = ic$skillId,
-        seed       = ic$seed,
-        out_path   = out_path,
-        glow_sigma = opts$glow_sigma,
-        color      = domain_color
-      )
-
-      kb <- file_size_kb(out_path)
-      log_ok(ic$domain, ic$skillId, ic$seed, kb)
-      done_count <- done_count + 1
-
-    }, error = function(e) {
-      log_error(ic$domain, ic$skillId, conditionMessage(e))
-      error_count <<- error_count + 1
-    })
-
-    # Progress report every 20 icons
-    if (idx %% 20 == 0) {
-      log_msg(sprintf("  [%s] Progress: %d/%d (%d done, %d errors)",
-                      pal, idx, length(queue), done_count, error_count))
-    }
+    tasks[[length(tasks) + 1]] <- list(
+      palette    = pal,
+      domain     = ic$domain,
+      skill_id   = ic$skillId,
+      seed       = ic$seed,
+      out_path   = out_path,
+      color      = domain_color,
+      glow_sigma = opts$glow_sigma
+    )
   }
-
-  pal_elapsed <- (proc.time() - pal_start)["elapsed"]
-  log_msg(sprintf("  [%s] Complete: %d succeeded, %d failed in %.1fs",
-                  pal, done_count, error_count, pal_elapsed))
-
-  total_rendered <- total_rendered + done_count
-  total_errors <- total_errors + error_count
 }
+
+log_msg(sprintf("Queued %d render tasks across %d palettes (%d skipped for missing color)",
+                length(tasks), length(palettes_to_render), skipped_color))
+
+# ── Parallel render ──────────────────────────────────────────────────────
+start_time <- proc.time()
+
+results <- furrr::future_map(tasks, function(task) {
+  t0 <- proc.time()
+  tryCatch({
+    # Ensure output directory exists (safe for concurrent calls)
+    dir.create(dirname(task$out_path), recursive = TRUE, showWarnings = FALSE)
+
+    render_icon(
+      domain     = task$domain,
+      skill_id   = task$skill_id,
+      seed       = task$seed,
+      out_path   = task$out_path,
+      glow_sigma = task$glow_sigma,
+      color      = task$color
+    )
+
+    kb <- file_size_kb(task$out_path)
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "ok", palette = task$palette, domain = task$domain,
+         skill_id = task$skill_id, kb = kb, elapsed = elapsed)
+
+  }, error = function(e) {
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "error", palette = task$palette, domain = task$domain,
+         skill_id = task$skill_id, message = conditionMessage(e),
+         elapsed = elapsed)
+  })
+}, .options = furrr::furrr_options(seed = TRUE))
+
+# ── Aggregate results ────────────────────────────────────────────────────
+total_rendered <- 0
+total_errors <- 0
+for (res in results) {
+  if (res$status == "ok") {
+    log_ok(res$domain, res$skill_id, 0, res$kb)
+    total_rendered <- total_rendered + 1
+  } else {
+    log_error(res$domain, res$skill_id, res$message)
+    total_errors <- total_errors + 1
+  }
+}
+total_errors <- total_errors + skipped_color
 
 # Update manifest status for cyberpunk palette (primary palette for manifest tracking)
 if ("cyberpunk" %in% palettes_to_render) {

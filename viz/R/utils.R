@@ -76,6 +76,7 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     skip_existing = FALSE,
     dry_run       = FALSE,
     glow_sigma    = 8,
+    workers       = max(1, parallel::detectCores() - 1),
     help          = FALSE
   )
 
@@ -97,6 +98,9 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     } else if (arg == "--glow-sigma" && i < length(args)) {
       i <- i + 1
       opts$glow_sigma <- as.numeric(args[i])
+    } else if (arg == "--workers" && i < length(args)) {
+      i <- i + 1
+      opts$workers <- as.integer(args[i])
     } else if (arg %in% c("--help", "-h")) {
       opts$help <- TRUE
     }
@@ -117,6 +121,8 @@ print_usage <- function(script_name = "build-icons.R",
   cat("  --skip-existing     Skip icons marked 'done' with existing WebP files\n")
   cat("  --dry-run           List what would be generated without rendering\n")
   cat("  --glow-sigma <n>    Glow blur radius (default: 8)\n")
+  cat(sprintf("  --workers <n>       Parallel workers (default: %d = detectCores()-1)\n",
+              max(1, parallel::detectCores() - 1)))
   cat("  --help, -h          Show this help message\n")
 }
 
@@ -131,7 +137,8 @@ write_manifest <- function(manifest, path) {
 
 # ── Dependency check ─────────────────────────────────────────────────────
 check_dependencies <- function() {
-  required <- c("ggplot2", "ggforce", "ggfx", "ragg", "jsonlite", "magick")
+  required <- c("ggplot2", "ggforce", "ggfx", "ragg", "jsonlite", "magick",
+                 "future", "furrr")
   missing <- required[!vapply(required, requireNamespace, logical(1),
                               quietly = TRUE)]
   if (length(missing) > 0) {
