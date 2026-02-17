@@ -150,6 +150,7 @@ async function switchTo3D() {
 
     // Hide icon toggle in 3D mode (icons are 2D-only)
     document.getElementById('btn-icon-toggle').style.display = 'none';
+    document.getElementById('btn-hive-log').style.display = 'none';
 
     // Auto zoom-to-fit after layout settles
     setTimeout(() => {
@@ -202,6 +203,7 @@ function switchTo2D() {
 
   // Restore icon toggle visibility
   document.getElementById('btn-icon-toggle').style.display = '';
+  document.getElementById('btn-hive-log').style.display = 'none';
 
   // Auto zoom-to-fit
   setTimeout(() => {
@@ -258,6 +260,9 @@ async function switchToHive() {
 
     // Hide icon toggle (hive uses SVG, not canvas icons)
     document.getElementById('btn-icon-toggle').style.display = 'none';
+
+    // Show hive log button
+    document.getElementById('btn-hive-log').style.display = '';
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
     switchTo2D();
@@ -367,6 +372,11 @@ async function main() {
   document.getElementById('btn-reset').addEventListener('click', () => {
     activeResetView();
     closePanel();
+  });
+
+  // ── Hive log download ──
+  document.getElementById('btn-hive-log').addEventListener('click', () => {
+    if (hiveMod) hiveMod.downloadHiveLog();
   });
 
   // ── 3D toggle ──

@@ -25,6 +25,15 @@ let resizeHandler = null;
 let hoveredNodeId = null;
 let selectedNodeId = null;
 
+// ── Event Log ────────────────────────────────────────────────────────
+const hiveEventLog = [];
+
+function logEvent(entry) {
+  entry.ts = new Date().toISOString();
+  hiveEventLog.push(entry);
+  console.log('[hive-log]', entry);
+}
+
 // Axis angles (radians): skills=210°, agents=330°, teams=90°
 const AXIS_ANGLES = {
   skill:  (7 * Math.PI) / 6,
@@ -312,6 +321,7 @@ function render() {
 
   // Background click clears selection
   svg.on('click', () => {
+    logEvent({ event: 'bgClick' });
     handleDeselect();
     if (onNodeClick) onNodeClick(null);
   });
@@ -369,6 +379,20 @@ function handleHover(node, nodeById, positioned) {
     neighbors(node.id, 'skill').forEach(s => connected.add(s));
   }
 
+  // Log hover event
+  const connArr = [...connected];
+  logEvent({
+    event: 'hover',
+    node: { id: node.id, type: node.type, domain: node.domain },
+    connected: connArr,
+    connectedByType: {
+      skills: connArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
+      agents: connArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
+      teams: connArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
+    },
+    linksHighlighted: linkEls.filter(({ src, tgt }) => connected.has(src) && connected.has(tgt)).length,
+  });
+
   // Highlight links where both endpoints are in connected set
   for (const { el, src, tgt } of linkEls) {
     const on = connected.has(src) && connected.has(tgt);
@@ -385,6 +409,7 @@ function handleHover(node, nodeById, positioned) {
 
 function handleHoverEnd(positioned) {
   if (selectedNodeId) return;
+  logEvent({ event: 'hoverEnd', node: hoveredNodeId });
   hoveredNodeId = null;
   rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
   rootG.selectAll('.hive-node').classed('dimmed', false);
@@ -429,8 +454,28 @@ function handleSelect(node, nodeById) {
     }
   }
 
-  // Apply highlighting
+  // Log click event
   const connectedSet = new Set(connected.keys());
+  const clickConnArr = [...connectedSet];
+  // Build hop-cost map for diagnostics
+  const connectedWithHops = {};
+  for (const [id, hops] of connected) {
+    connectedWithHops[id] = hops;
+  }
+  logEvent({
+    event: 'click',
+    node: { id: node.id, type: node.type, domain: node.domain },
+    connected: clickConnArr,
+    connectedByType: {
+      skills: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
+      agents: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
+      teams: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
+    },
+    connectedWithHops,
+    linksHighlighted: linkEls.filter(({ src, tgt }) => connectedSet.has(src) && connectedSet.has(tgt)).length,
+  });
+
+  // Apply highlighting
   for (const { el, src, tgt } of linkEls) {
     const on = connectedSet.has(src) && connectedSet.has(tgt);
     el.classed('highlighted', on).classed('dimmed', !on);
@@ -442,6 +487,7 @@ function handleSelect(node, nodeById) {
 }
 
 function handleDeselect() {
+  logEvent({ event: 'deselect' });
   selectedNodeId = null;
   rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
   rootG.selectAll('.hive-node').classed('dimmed', false);
@@ -580,4 +626,19 @@ export function zoomInHive() {
 export function zoomOutHive() {
   if (!svg || !zoomBehavior || !window.d3) return;
   svg.transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
+}
+
+export function downloadHiveLog() {
+  const json = JSON.stringify(hiveEventLog, null, 2);
+  const blob = new Blob([json], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `hive-events-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+export function clearHiveLog() {
+  hiveEventLog.length = 0;
 }
