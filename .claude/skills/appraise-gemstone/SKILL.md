@@ -1,0 +1,1 @@
+../../../skills/lapidary/appraise-gemstone/SKILL.md

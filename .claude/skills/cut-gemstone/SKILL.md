@@ -1,0 +1,1 @@
+../../../skills/lapidary/cut-gemstone/SKILL.md

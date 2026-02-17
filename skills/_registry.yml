@@ -1,7 +1,7 @@
 version: "1.6"
-generated: "2026-02-16"
+generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 245
+total_skills: 262
 
 domains:
   r-packages:
@@ -417,6 +417,21 @@ domains:
         complexity: intermediate
         language: multi
         description: Review pull requests end-to-end using gh CLI with severity-leveled feedback
+      - id: review-skill-format
+        path: review/review-skill-format/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Validate a SKILL.md against the agentskills.io standard for frontmatter, sections, and registry sync
+      - id: update-skill-content
+        path: review/update-skill-content/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Update an existing SKILL.md to improve accuracy, completeness, and clarity with version bumping
+      - id: refactor-skill-structure
+        path: review/refactor-skill-structure/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Refactor an over-long SKILL.md by extracting examples and splitting compound procedures
 
   bushcraft:
     description: Wilderness survival and primitive skills
@@ -550,6 +565,21 @@ domains:
         complexity: intermediate
         language: natural
         description: Radiant authenticity channeling genuine engagement to illuminate and resolve opposition
+      - id: read-tree-of-life
+        path: esoteric/read-tree-of-life/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Navigate the Kabbalistic Tree of Life — sephirot, paths, worlds, pillars, and contemplative exercises
+      - id: apply-gematria
+        path: esoteric/apply-gematria/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Compute and analyze gematria using standard, ordinal, and reduced methods with isopsephy comparisons
+      - id: study-hebrew-letters
+        path: esoteric/study-hebrew-letters/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Study the twenty-two Hebrew letters as mystical symbols — form, value, correspondences, and letter meditation
 
   design:
     description: Ornamental design and AI-assisted image generation skills
@@ -1243,6 +1273,25 @@ domains:
         language: multi
         description: Prove geometric theorems using axiomatic or coordinate methods
 
+  number-theory:
+    description: Prime analysis, modular arithmetic, and Diophantine equations
+    skills:
+      - id: analyze-prime-numbers
+        path: number-theory/analyze-prime-numbers/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Analyze primes using primality tests, factorization algorithms, and sieve methods
+      - id: solve-modular-arithmetic
+        path: number-theory/solve-modular-arithmetic/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Solve congruences and modular systems via CRT, extended Euclidean, and Euler's theorem
+      - id: explore-diophantine-equations
+        path: number-theory/explore-diophantine-equations/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Find integer solutions to linear, quadratic, and Pell equations
+
   stochastic-processes:
     description: Markov chains, HMMs, MCMC, and stochastic simulation
     skills:
@@ -1404,3 +1453,51 @@ domains:
         complexity: intermediate
         language: multi
         description: Diagnose and fix common 3D printing failures including adhesion, stringing, and warping
+
+  lapidary:
+    description: Gemstone identification, cutting, polishing, and appraisal
+    skills:
+      - id: identify-gemstone
+        path: lapidary/identify-gemstone/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Identify gemstones using optical properties, physical tests, and inclusion analysis
+      - id: cut-gemstone
+        path: lapidary/cut-gemstone/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Cut gemstones using cabochon and faceting techniques with orientation planning
+      - id: polish-gemstone
+        path: lapidary/polish-gemstone/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Polish cut gemstones to final finish using progressive abrasive sequences
+      - id: appraise-gemstone
+        path: lapidary/appraise-gemstone/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Appraise gemstone value using the four Cs, treatment detection, and market analysis
+
+  versioning:
+    description: Semantic versioning, changelog management, release planning, and dependency auditing
+    skills:
+      - id: apply-semantic-versioning
+        path: versioning/apply-semantic-versioning/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Apply SemVer 2.0.0 to determine the correct version bump based on change analysis
+      - id: manage-changelog
+        path: versioning/manage-changelog/SKILL.md
+        complexity: basic
+        language: multi
+        description: Maintain a changelog following Keep a Changelog format with categorized entries
+      - id: plan-release-cycle
+        path: versioning/plan-release-cycle/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Plan release milestones, feature freezes, release candidates, and go/no-go criteria
+      - id: audit-dependency-versions
+        path: versioning/audit-dependency-versions/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Audit dependencies for staleness, security vulnerabilities, and upgrade paths

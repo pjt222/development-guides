@@ -1,0 +1,1 @@
+../../../skills/number-theory/explore-diophantine-equations/SKILL.md

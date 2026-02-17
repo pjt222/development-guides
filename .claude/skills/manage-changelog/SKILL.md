@@ -1,0 +1,1 @@
+../../../skills/versioning/manage-changelog/SKILL.md

@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 47
+total_agents: 54
 version: "2.1"
-last_updated: "2026-02-16"
+last_updated: "2026-02-17"
 
 default_skills:
   - id: meditate
@@ -519,6 +519,18 @@ agents:
       - mineral-identification
       - gold-washing
 
+  - id: lapidary
+    path: agents/lapidary.md
+    description: Gemstone specialist for identification, cutting techniques, polishing methods, and value appraisal with safety-first approach
+    tags: [lapidary, gemstones, cutting, polishing, appraisal, mineralogy]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - identify-gemstone
+      - cut-gemstone
+      - polish-gemstone
+      - appraise-gemstone
+
   - id: shaman
     path: agents/shaman.md
     description: Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach
@@ -708,3 +720,48 @@ agents:
       - prepare-print-model
       - select-print-material
       - troubleshoot-print-issues
+
+  - id: number-theorist
+    path: agents/number-theorist.md
+    description: Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches
+    tags: [number-theory, primes, modular-arithmetic, diophantine, mathematics, proofs]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebSearch]
+    skills:
+      - analyze-prime-numbers
+      - solve-modular-arithmetic
+      - explore-diophantine-equations
+
+  - id: kabalist
+    path: agents/kabalist.md
+    description: Kabbalistic studies guide for Tree of Life navigation, gematria computation, and Hebrew letter mysticism with scholarly and contemplative approaches
+    tags: [kabbalah, esoteric, tree-of-life, gematria, hebrew, mysticism, sephirot]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - read-tree-of-life
+      - apply-gematria
+      - study-hebrew-letters
+
+  - id: version-manager
+    path: agents/version-manager.md
+    description: Software versioning specialist for semantic versioning, changelog management, release planning, and dependency version auditing
+    tags: [versioning, semver, changelog, release, dependencies, maintenance]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - apply-semantic-versioning
+      - manage-changelog
+      - plan-release-cycle
+      - audit-dependency-versions
+
+  - id: skill-reviewer
+    path: agents/skill-reviewer.md
+    description: Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard
+    tags: [review, skills, quality, format, agentskills, refactoring]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - review-skill-format
+      - update-skill-content
+      - refactor-skill-structure
