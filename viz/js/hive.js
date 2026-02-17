@@ -546,10 +546,12 @@ export function initHiveGraph(container, data, { onClick, onHover } = {}) {
     const nh = containerEl.clientHeight || (window.innerHeight - 48);
     svg.attr('width', nw).attr('height', nh);
     render();
+    zoomToFitHive(0);
   };
   window.addEventListener('resize', resizeHandler);
 
   render();
+  zoomToFitHive(0);
 }
 
 export function destroyHiveGraph() {
@@ -609,12 +611,32 @@ export function focusNodeHive(id) {
     .attr('fill', origFill);
 }
 
+function zoomToFitHive(duration = 500) {
+  if (!svg || !rootG || !zoomBehavior || !window.d3) return;
+  const bbox = rootG.node().getBBox();
+  if (!bbox.width || !bbox.height) return;
+
+  const w = containerEl.clientWidth || window.innerWidth;
+  const h = containerEl.clientHeight || (window.innerHeight - 48);
+  const padding = 40;
+
+  const scale = Math.min(
+    (w - padding * 2) / bbox.width,
+    (h - padding * 2) / bbox.height
+  );
+  const cx = bbox.x + bbox.width / 2;
+  const cy = bbox.y + bbox.height / 2;
+
+  const transform = window.d3.zoomIdentity
+    .translate(w / 2 - cx * scale, h / 2 - cy * scale)
+    .scale(scale);
+
+  svg.transition().duration(duration).call(zoomBehavior.transform, transform);
+}
+
 export function resetViewHive() {
   if (!svg || !zoomBehavior || !window.d3) return;
-  svg.transition().duration(500).call(
-    zoomBehavior.transform,
-    window.d3.zoomIdentity
-  );
+  zoomToFitHive(500);
   hoveredNodeId = null;
 }
 
