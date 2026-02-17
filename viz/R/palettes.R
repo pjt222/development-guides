@@ -8,32 +8,34 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 39 domains) ──────────────────────────────
+# ── Domain order (alphabetical, 47 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
   "3d-printing", "a2a-protocol", "alchemy", "animal-training", "blender",
   "bushcraft", "compliance", "containerization", "crafting", "data-serialization",
   "defensive", "design", "devops", "diffusion", "esoteric", "gardening", "general",
   "geometry", "git", "hildegard", "intellectual-property", "jigsawr",
-  "library-science", "maintenance", "mcp-integration", "mlops", "morphic",
-  "mycology", "observability", "project-management", "prospecting", "r-packages",
-  "relocation", "reporting", "review", "shiny", "stochastic-processes", "swarm",
-  "tcg", "theoretical-science", "travel", "visualization", "web-dev",
-  "workflow-visualization"
+  "lapidary", "library-science", "maintenance", "mcp-integration", "mlops",
+  "morphic", "mycology", "number-theory", "observability", "project-management",
+  "prospecting", "r-packages", "relocation", "reporting", "review", "shiny",
+  "stochastic-processes", "swarm", "tcg", "theoretical-science", "travel",
+  "versioning", "visualization", "web-dev", "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 43 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 52 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
   "acp-developer", "alchemist", "auditor", "blender-artist", "code-reviewer",
   "designer", "devops-engineer", "diffusion-specialist", "dog-trainer",
   "fabricator", "gardener", "geometrist", "gxp-validator", "hiking-guide",
-  "hildegard", "ip-analyst", "janitor", "jigsawr-developer", "librarian",
-  "markovian", "martial-artist", "mcp-developer", "mlops-engineer", "mycologist",
-  "mystic", "polymath", "project-manager", "prospector", "putior-integrator",
-  "quarto-developer", "r-developer", "relocation-expert", "security-analyst",
+  "hildegard", "ip-analyst", "janitor", "jigsawr-developer", "kabalist",
+  "lapidary", "librarian", "markovian", "martial-artist", "mcp-developer",
+  "mlops-engineer", "mycologist", "mystic", "number-theorist", "polymath",
+  "project-manager", "prospector", "putior-integrator", "quarto-developer",
+  "r-developer", "relocation-expert", "security-analyst",
   "senior-data-scientist", "senior-researcher", "senior-software-developer",
   "senior-ux-ui-specialist", "senior-web-designer", "shaman", "shapeshifter",
-  "shiny-developer", "survivalist", "swarm-strategist", "tcg-specialist",
-  "theoretical-researcher", "tour-planner", "web-developer"
+  "shiny-developer", "skill-reviewer", "survivalist", "swarm-strategist",
+  "tcg-specialist", "theoretical-researcher", "tour-planner",
+  "version-manager", "web-developer"
 )
 
 # ── Team order (alphabetical, 8 teams) ────────────────────────────────────
@@ -97,12 +99,14 @@ get_cyberpunk_colors <- function() {
     "hildegard"              = "#99bb44",
     "intellectual-property"  = "#33ccff",
     "jigsawr"                = "#22ddaa",
+    "lapidary"               = "#88ccee",
     "library-science"        = "#8B7355",
     "maintenance"            = "#aabb88",
     "mcp-integration"        = "#00ccaa",
     "mlops"                  = "#aa66ff",
     "morphic"                = "#bb88ff",
     "mycology"               = "#aa77cc",
+    "number-theory"          = "#bbaaff",
     "observability"          = "#ffaa00",
     "project-management"     = "#ff8844",
     "prospecting"            = "#ddaa33",
@@ -116,6 +120,7 @@ get_cyberpunk_colors <- function() {
     "tcg"                    = "#ff5577",
     "theoretical-science"    = "#ddbb55",
     "travel"                 = "#66cc99",
+    "versioning"             = "#44ddaa",
     "visualization"          = "#ee77cc",
     "web-dev"                = "#ff6633",
     "workflow-visualization" = "#66dd88"
@@ -140,6 +145,8 @@ get_cyberpunk_colors <- function() {
     "ip-analyst"                = "#33ccff",
     "janitor"                   = "#aabb88",
     "jigsawr-developer"         = "#22ddaa",
+    "kabalist"                  = "#9966dd",
+    "lapidary"                  = "#88ccee",
     "librarian"                 = "#8B7355",
     "markovian"                 = "#77aaff",
     "martial-artist"            = "#ff4466",
@@ -147,6 +154,7 @@ get_cyberpunk_colors <- function() {
     "mlops-engineer"            = "#bb77ff",
     "mycologist"                = "#aa77cc",
     "mystic"                    = "#dd44ff",
+    "number-theorist"           = "#bbaaff",
     "polymath"                  = "#eedd44",
     "project-manager"           = "#ff8844",
     "prospector"                = "#ddaa33",
@@ -163,11 +171,13 @@ get_cyberpunk_colors <- function() {
     "shaman"                    = "#9944ff",
     "shapeshifter"              = "#bb88ff",
     "shiny-developer"           = "#3399ff",
+    "skill-reviewer"            = "#ff66bb",
     "survivalist"               = "#88cc44",
     "swarm-strategist"          = "#aadd44",
     "tcg-specialist"            = "#ff5577",
     "theoretical-researcher"    = "#ddbb55",
     "tour-planner"              = "#66cc99",
+    "version-manager"           = "#44ddaa",
     "web-developer"             = "#ff6633"
   )
 

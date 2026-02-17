@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 47,
+    "total_agents": 52,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -253,6 +253,31 @@
       "description": "3D printing and additive manufacturing specialist",
       "glow": "steel-blue",
       "concept": "3D printer nozzle with layered printed output"
+    },
+    "kabalist": {
+      "description": "Kabbalistic studies and Tree of Life navigation",
+      "glow": "mystic-violet",
+      "concept": "Tree of Life with sephirot circles and three pillars"
+    },
+    "lapidary": {
+      "description": "Gemstone identification, cutting, and appraisal",
+      "glow": "crystal-blue",
+      "concept": "Faceted gemstone with crown and pavilion angles"
+    },
+    "number-theorist": {
+      "description": "Prime analysis, modular arithmetic, and proofs",
+      "glow": "prime-violet",
+      "concept": "Archimedean spiral with prime number markers"
+    },
+    "skill-reviewer": {
+      "description": "SKILL.md quality validation and refactoring",
+      "glow": "review-pink",
+      "concept": "Document with magnifying glass overlay"
+    },
+    "version-manager": {
+      "description": "Semantic versioning and release management",
+      "glow": "semver-green",
+      "concept": "Version tag badge with increment arrow"
     }
   },
   "icons": [
@@ -490,6 +515,31 @@
       "agentId": "fabricator",
       "path": "icons/cyberpunk/agents/fabricator.webp",
       "status": "done"
+    },
+    {
+      "agentId": "kabalist",
+      "path": "icons/cyberpunk/agents/kabalist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "lapidary",
+      "path": "icons/cyberpunk/agents/lapidary.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "number-theorist",
+      "path": "icons/cyberpunk/agents/number-theorist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "skill-reviewer",
+      "path": "icons/cyberpunk/agents/skill-reviewer.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "version-manager",
+      "path": "icons/cyberpunk/agents/version-manager.webp",
+      "status": "pending"
     }
   ]
 }

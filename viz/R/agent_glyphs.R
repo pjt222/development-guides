@@ -81,5 +81,18 @@ AGENT_GLYPHS <- list(
 
   # ── 3D & Visualization ──────────────────────────────────────────────
   "blender-artist"            = "glyph_agent_blender",
-  "fabricator"                = "glyph_agent_fabricator"
+  "fabricator"                = "glyph_agent_fabricator",
+
+  # ── Esoteric & Knowledge ─────────────────────────────────────────────
+  "kabalist"                  = "glyph_agent_kabalist",
+
+  # ── Lapidary & Craft ─────────────────────────────────────────────────
+  "lapidary"                  = "glyph_agent_lapidary",
+
+  # ── Mathematics ──────────────────────────────────────────────────────
+  "number-theorist"           = "glyph_agent_number_theorist",
+
+  # ── Meta & Versioning ────────────────────────────────────────────────
+  "skill-reviewer"            = "glyph_agent_skill_reviewer",
+  "version-manager"           = "glyph_agent_version_manager"
 )

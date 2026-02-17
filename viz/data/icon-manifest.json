@@ -97,6 +97,18 @@
     "library-science": {
       "basePrompt": "Catalog card, open book, index tabs, library shelf",
       "glow": "leather-brown"
+    },
+    "lapidary": {
+      "basePrompt": "Faceted gemstone, crystal, cutting angles, mineral",
+      "glow": "crystal-blue"
+    },
+    "number-theory": {
+      "basePrompt": "Prime numbers, spiral pattern, integer lattice, mathematical",
+      "glow": "prime-violet"
+    },
+    "versioning": {
+      "basePrompt": "Version tag, changelog, release milestone, semantic version",
+      "glow": "semver-green"
     }
   },
   "icons": [
@@ -1715,6 +1727,94 @@
       "seed": 320003,
       "path": "icons/cyberpunk/library-science/curate-collection.webp",
       "status": "done"
+    },
+    {
+      "skillId": "identify-gemstone",
+      "domain": "lapidary",
+      "prompt": "Faceted gemstone, crystal, cutting angles, mineral, magnifying loupe over hexagonal gem, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 330001,
+      "path": "icons/cyberpunk/lapidary/identify-gemstone.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "cut-gemstone",
+      "domain": "lapidary",
+      "prompt": "Faceted gemstone, crystal, cutting angles, mineral, gem with facet cutting lines and angle indicator, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 330002,
+      "path": "icons/cyberpunk/lapidary/cut-gemstone.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "polish-gemstone",
+      "domain": "lapidary",
+      "prompt": "Faceted gemstone, crystal, cutting angles, mineral, polished oval gem with sparkle arcs, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 330003,
+      "path": "icons/cyberpunk/lapidary/polish-gemstone.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "appraise-gemstone",
+      "domain": "lapidary",
+      "prompt": "Faceted gemstone, crystal, cutting angles, mineral, balance scale with gemstone, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 330004,
+      "path": "icons/cyberpunk/lapidary/appraise-gemstone.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "analyze-prime-numbers",
+      "domain": "number-theory",
+      "prompt": "Prime numbers, spiral pattern, integer lattice, mathematical, grid of dots with highlighted primes, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 340001,
+      "path": "icons/cyberpunk/number-theory/analyze-prime-numbers.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "solve-modular-arithmetic",
+      "domain": "number-theory",
+      "prompt": "Prime numbers, spiral pattern, integer lattice, mathematical, clock face with modular arithmetic positions, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 340002,
+      "path": "icons/cyberpunk/number-theory/solve-modular-arithmetic.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "explore-diophantine-equations",
+      "domain": "number-theory",
+      "prompt": "Prime numbers, spiral pattern, integer lattice, mathematical, grid with diagonal line and integer solution points, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 340003,
+      "path": "icons/cyberpunk/number-theory/explore-diophantine-equations.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "apply-semantic-versioning",
+      "domain": "versioning",
+      "prompt": "Version tag, changelog, release milestone, semantic version, tag badge with three version dots, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 350001,
+      "path": "icons/cyberpunk/versioning/apply-semantic-versioning.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "manage-changelog",
+      "domain": "versioning",
+      "prompt": "Version tag, changelog, release milestone, semantic version, scrolled document with timeline dots, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 350002,
+      "path": "icons/cyberpunk/versioning/manage-changelog.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "plan-release-cycle",
+      "domain": "versioning",
+      "prompt": "Version tag, changelog, release milestone, semantic version, calendar with highlighted release date, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 350003,
+      "path": "icons/cyberpunk/versioning/plan-release-cycle.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "audit-dependency-versions",
+      "domain": "versioning",
+      "prompt": "Version tag, changelog, release milestone, semantic version, dependency tree graph with version nodes, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 350004,
+      "path": "icons/cyberpunk/versioning/audit-dependency-versions.webp",
+      "status": "pending"
     }
   ]
 }

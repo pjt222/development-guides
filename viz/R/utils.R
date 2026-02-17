@@ -19,6 +19,7 @@ DOMAIN_COLORS <- list(
   "git"                = "#66ffcc",
   "intellectual-property" = "#33ccff",
   "jigsawr"            = "#22ddaa",
+  "lapidary"           = "#88ccee",
   "library-science"    = "#8B7355",
   "mcp-integration"    = "#00ccaa",
   "mlops"              = "#aa66ff",
@@ -30,9 +31,11 @@ DOMAIN_COLORS <- list(
   "review"             = "#ff66aa",
   "morphic"            = "#bb88ff",
   "mycology"           = "#aa77cc",
+  "number-theory"      = "#bbaaff",
   "prospecting"        = "#ddaa33",
   "swarm"              = "#aadd44",
   "tcg"                = "#ff5577",
+  "versioning"         = "#44ddaa",
   "web-dev"            = "#ff6633",
   "workflow-visualization" = "#66dd88"
 )

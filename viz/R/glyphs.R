@@ -270,5 +270,22 @@ SKILL_GLYPHS <- list(
   "gold-washing"                   = "glyph_pan_nugget",
 
   # ── crafting (1) ─────────────────────────────────────────────────────
-  "paper-making"                   = "glyph_fibre_sheet"
+  "paper-making"                   = "glyph_fibre_sheet",
+
+  # ── lapidary (4) ───────────────────────────────────────────────────
+  "identify-gemstone"              = "glyph_gem_loupe",
+  "cut-gemstone"                   = "glyph_gem_facet",
+  "polish-gemstone"                = "glyph_gem_polish",
+  "appraise-gemstone"              = "glyph_gem_scale",
+
+  # ── number-theory (3) ──────────────────────────────────────────────
+  "analyze-prime-numbers"          = "glyph_prime_sieve",
+  "solve-modular-arithmetic"       = "glyph_modular_clock",
+  "explore-diophantine-equations"  = "glyph_diophantine_grid",
+
+  # ── versioning (4) ─────────────────────────────────────────────────
+  "apply-semantic-versioning"      = "glyph_semver_tag",
+  "manage-changelog"               = "glyph_changelog_scroll",
+  "plan-release-cycle"             = "glyph_release_calendar",
+  "audit-dependency-versions"      = "glyph_dependency_tree"
 )

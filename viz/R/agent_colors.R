@@ -49,5 +49,18 @@ AGENT_COLORS <- list(
 
   # ── Documentation & Shiny ──────────────────────────────────────────────
   "quarto-developer"        = "#33ddcc",   # teal
-  "shiny-developer"         = "#3399ff"    # electric blue
+  "shiny-developer"         = "#3399ff",   # electric blue
+
+  # ── Esoteric & Knowledge ───────────────────────────────────────────────
+  "kabalist"                = "#9966dd",   # mystic violet
+
+  # ── Lapidary & Craft ───────────────────────────────────────────────────
+  "lapidary"                = "#88ccee",   # crystal blue
+
+  # ── Mathematics ────────────────────────────────────────────────────────
+  "number-theorist"         = "#bbaaff",   # prime violet
+
+  # ── Meta & Versioning ──────────────────────────────────────────────────
+  "skill-reviewer"          = "#ff66bb",   # review pink
+  "version-manager"         = "#44ddaa"    # semver green
 )

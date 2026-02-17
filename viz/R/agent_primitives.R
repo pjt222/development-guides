@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 47 agent persona icons
+# agent_primitives.R - Glyph library for 52 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -2149,4 +2149,173 @@ glyph_agent_fabricator <- function(cx, cy, s, col, bright) {
     )
   }
   layers_list
+}
+
+# ── glyph_agent_kabalist: Tree of Life (3 pillars + sephirot circles) ─────
+glyph_agent_kabalist <- function(cx, cy, s, col, bright) {
+  layers <- list()
+  # Three pillars (vertical lines)
+  for (px in c(-16, 0, 16) * s) {
+    pillar <- data.frame(x = c(cx + px, cx + px), y = c(cy - 26 * s, cy + 26 * s))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = pillar, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.5))
+  }
+  # Sephirot positions (simplified Tree of Life: 10 circles)
+  seph <- data.frame(
+    x0 = cx + c(0, -16, 16, -16, 16, 0, -16, 16, 0, 0) * s,
+    y0 = cy + c(26, 16, 16, 4, 4, -2, -14, -14, -20, -26) * s,
+    r = rep(5 * s, 10)
+  )
+  # Connecting paths between sephirot
+  edges <- list(c(1,2), c(1,3), c(2,4), c(3,5), c(2,6), c(3,6),
+                c(4,6), c(5,6), c(4,7), c(5,8), c(6,9), c(7,9), c(8,9), c(9,10))
+  for (e in edges) {
+    ed <- data.frame(x = c(seph$x0[e[1]], seph$x0[e[2]]),
+                     y = c(seph$y0[e[1]], seph$y0[e[2]]))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = ed, .aes(x, y),
+      color = hex_with_alpha(bright, 0.25), linewidth = .lw(s, 1))
+  }
+  # Draw sephirot circles
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = seph,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5))
+  layers
+}
+
+# ── glyph_agent_lapidary: faceted gemstone with cutting angles ────────────
+glyph_agent_lapidary <- function(cx, cy, s, col, bright) {
+  # Crown (top facets: table + kite facets)
+  table <- data.frame(
+    x = c(cx - 10 * s, cx + 10 * s, cx + 14 * s, cx - 14 * s),
+    y = c(cy + 10 * s, cy + 10 * s, cy + 4 * s, cy + 4 * s)
+  )
+  # Crown outline (wider than table)
+  crown <- data.frame(
+    x = c(cx - 22 * s, cx - 14 * s, cx - 10 * s, cx + 10 * s, cx + 14 * s, cx + 22 * s),
+    y = c(cy - 2 * s, cy + 4 * s, cy + 10 * s, cy + 10 * s, cy + 4 * s, cy - 2 * s)
+  )
+  # Pavilion (bottom: V-shape)
+  pavilion <- data.frame(
+    x = c(cx - 22 * s, cx, cx + 22 * s),
+    y = c(cy - 2 * s, cy - 28 * s, cy - 2 * s)
+  )
+  # Internal facet lines
+  facet_l <- data.frame(x = c(cx - 14 * s, cx), y = c(cy + 4 * s, cy - 28 * s))
+  facet_r <- data.frame(x = c(cx + 14 * s, cx), y = c(cy + 4 * s, cy - 28 * s))
+  facet_m <- data.frame(x = c(cx, cx), y = c(cy + 10 * s, cy - 28 * s))
+  list(
+    ggplot2::geom_polygon(data = pavilion, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = crown, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_polygon(data = table, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = facet_l, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = facet_r, .aes(x, y),
+      color = hex_with_alpha(bright, 0.3), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = facet_m, .aes(x, y),
+      color = hex_with_alpha(bright, 0.15), linewidth = .lw(s, 0.8))
+  )
+}
+
+# ── glyph_agent_number_theorist: prime spiral with number markers ─────────
+glyph_agent_number_theorist <- function(cx, cy, s, col, bright) {
+  layers <- list()
+  # Spiral path (Archimedean)
+  t <- seq(0, 4 * pi, length.out = 80)
+  spiral <- data.frame(
+    x = cx + (4 + 5 * t) * s * cos(t),
+    y = cy + (4 + 5 * t) * s * sin(t)
+  )
+  layers[[1]] <- ggplot2::geom_path(data = spiral, .aes(x, y),
+    color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.5))
+  # Prime number markers at positions along the spiral
+  primes <- c(2, 3, 5, 7, 11, 13, 17, 19, 23)
+  idx <- round(primes / 23 * 79) + 1
+  idx <- pmin(idx, nrow(spiral))
+  pts <- data.frame(x0 = spiral$x[idx], y0 = spiral$y[idx], r = rep(3 * s, length(idx)))
+  layers[[2]] <- ggforce::geom_circle(data = pts,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1))
+  # Outer ring
+  ring <- data.frame(x0 = cx, y0 = cy, r = 28 * s)
+  layers[[3]] <- ggforce::geom_circle(data = ring,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = NA, color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.5))
+  layers
+}
+
+# ── glyph_agent_skill_reviewer: magnifier over SKILL.md document ──────────
+glyph_agent_skill_reviewer <- function(cx, cy, s, col, bright) {
+  # Document body
+  doc <- data.frame(
+    x = c(cx - 14 * s, cx + 14 * s, cx + 14 * s, cx - 14 * s),
+    y = c(cy - 22 * s, cy - 22 * s, cy + 18 * s, cy + 18 * s)
+  )
+  # Text lines on document
+  layers <- list(
+    ggplot2::geom_polygon(data = doc, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5))
+  )
+  for (ly in seq(cy - 14 * s, cy + 10 * s, by = 6 * s)) {
+    w <- if (ly > cy + 6 * s) 16 else 22
+    line_d <- data.frame(
+      x = c(cx - 10 * s, cx - 10 * s + w * s),
+      y = c(ly, ly)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line_d, .aes(x, y),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1.5))
+  }
+  # Magnifier (circle + handle) in top-right
+  mag <- data.frame(x0 = cx + 10 * s, y0 = cy + 12 * s, r = 10 * s)
+  handle <- data.frame(
+    x = c(cx + 17 * s, cx + 24 * s),
+    y = c(cy + 5 * s, cy - 2 * s)
+  )
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = mag,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.1), color = bright, linewidth = .lw(s, 2))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = handle, .aes(x, y),
+    color = bright, linewidth = .lw(s, 3))
+  layers
+}
+
+# ── glyph_agent_version_manager: semantic version tag with increment arrow ─
+glyph_agent_version_manager <- function(cx, cy, s, col, bright) {
+  # Version tag (rounded rectangle shape via polygon)
+  tag <- data.frame(
+    x = c(cx - 20 * s, cx + 20 * s, cx + 20 * s, cx - 20 * s),
+    y = c(cy - 8 * s, cy - 8 * s, cy + 8 * s, cy + 8 * s)
+  )
+  # Three version number segments (major.minor.patch)
+  sep1 <- data.frame(x = c(cx - 7 * s, cx - 7 * s), y = c(cy - 6 * s, cy + 6 * s))
+  sep2 <- data.frame(x = c(cx + 7 * s, cx + 7 * s), y = c(cy - 6 * s, cy + 6 * s))
+  # Upward arrow (version bump)
+  arrow_shaft <- data.frame(x = c(cx, cx), y = c(cy + 12 * s, cy + 26 * s))
+  arrow_head <- data.frame(
+    x = c(cx - 6 * s, cx, cx + 6 * s),
+    y = c(cy + 20 * s, cy + 26 * s, cy + 20 * s)
+  )
+  # Circular dots for major.minor.patch
+  dots <- data.frame(
+    x0 = c(cx - 14 * s, cx, cx + 14 * s),
+    y0 = rep(cy, 3),
+    r = rep(3.5 * s, 3)
+  )
+  list(
+    ggplot2::geom_polygon(data = tag, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = sep1, .aes(x, y),
+      color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = sep2, .aes(x, y),
+      color = hex_with_alpha(bright, 0.4), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = dots,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = arrow_shaft, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = arrow_head, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  )
 }
