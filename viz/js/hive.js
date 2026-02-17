@@ -10,6 +10,7 @@ import {
   DOMAIN_COLORS, getAgentColor, getTeamColor, hexToRgba,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG
 } from './colors.js';
+import { logEvent } from './eventlog.js';
 
 let svg = null;
 let rootG = null;
@@ -24,15 +25,6 @@ let containerEl = null;
 let resizeHandler = null;
 let hoveredNodeId = null;
 let selectedNodeId = null;
-
-// ── Event Log ────────────────────────────────────────────────────────
-const hiveEventLog = [];
-
-function logEvent(entry) {
-  entry.ts = new Date().toISOString();
-  hiveEventLog.push(entry);
-  console.log('[hive-log]', entry);
-}
 
 // Axis angles (radians): skills=210°, agents=330°, teams=90°
 const AXIS_ANGLES = {
@@ -320,7 +312,7 @@ function render() {
 
   // Background click clears selection
   svg.on('click', () => {
-    logEvent({ event: 'bgClick' });
+    logEvent('hive', { event: 'bgClick' });
     handleDeselect();
     if (onNodeClick) onNodeClick(null);
   });
@@ -383,7 +375,7 @@ function handleHover(node, nodeById, positioned) {
 
   // Log hover event
   const connArr = [...connected];
-  logEvent({
+  logEvent('hive', {
     event: 'hover',
     node: { id: node.id, type: node.type, domain: node.domain },
     connected: connArr,
@@ -411,7 +403,7 @@ function handleHover(node, nodeById, positioned) {
 
 function handleHoverEnd(positioned) {
   if (selectedNodeId) return;
-  logEvent({ event: 'hoverEnd', node: hoveredNodeId });
+  logEvent('hive', { event: 'hoverEnd', node: hoveredNodeId });
   hoveredNodeId = null;
   rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
   rootG.selectAll('.hive-node').classed('dimmed', false);
@@ -464,7 +456,7 @@ function handleSelect(node, nodeById) {
   for (const [id, hops] of connected) {
     connectedWithHops[id] = hops;
   }
-  logEvent({
+  logEvent('hive', {
     event: 'click',
     node: { id: node.id, type: node.type, domain: node.domain },
     connected: clickConnArr,
@@ -489,7 +481,7 @@ function handleSelect(node, nodeById) {
 }
 
 function handleDeselect() {
-  logEvent({ event: 'deselect' });
+  logEvent('hive', { event: 'deselect' });
   selectedNodeId = null;
   rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
   rootG.selectAll('.hive-node').classed('dimmed', false);
@@ -650,17 +642,3 @@ export function zoomOutHive() {
   svg.transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
 }
 
-export function downloadHiveLog() {
-  const json = JSON.stringify(hiveEventLog, null, 2);
-  const blob = new Blob([json], { type: 'application/json' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = `hive-events-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-export function clearHiveLog() {
-  hiveEventLog.length = 0;
-}

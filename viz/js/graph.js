@@ -3,6 +3,7 @@
  */
 
 import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
+import { logEvent } from './eventlog.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -651,6 +652,7 @@ function redraw() {
 
 function handleNodeClick(node) {
   if (node) {
+    logEvent('graph', { event: 'click', node: { id: node.id, type: node.type, domain: node.domain } });
     selectedNodeId = node.id;
     rebuildHighlightSet();
     redraw();
@@ -659,6 +661,11 @@ function handleNodeClick(node) {
 }
 
 function handleNodeHover(node) {
+  if (node) {
+    logEvent('graph', { event: 'hover', node: { id: node.id, type: node.type, domain: node.domain } });
+  } else {
+    logEvent('graph', { event: 'hoverEnd' });
+  }
   hoveredNodeId = node ? node.id : null;
   rebuildHighlightSet();
   redraw();
@@ -666,6 +673,7 @@ function handleNodeHover(node) {
 }
 
 function handleBackgroundClick() {
+  logEvent('graph', { event: 'bgClick' });
   selectedNodeId = null;
   rebuildHighlightSet();
   redraw();
@@ -673,6 +681,7 @@ function handleBackgroundClick() {
 }
 
 export function selectNode(id) {
+  logEvent('graph', { event: 'selectNode', nodeId: id });
   selectedNodeId = id;
   rebuildHighlightSet();
   const node = nodeById.get(id);
@@ -683,6 +692,7 @@ export function selectNode(id) {
 }
 
 export function clearSelection() {
+  logEvent('graph', { event: 'clearSelection' });
   selectedNodeId = null;
   hoveredNodeId = null;
   rebuildHighlightSet();
@@ -690,6 +700,7 @@ export function clearSelection() {
 }
 
 export function focusNode(id) {
+  logEvent('graph', { event: 'focusNode', nodeId: id });
   const node = nodeById.get(id);
   if (node && graph) {
     selectedNodeId = id;
@@ -700,20 +711,24 @@ export function focusNode(id) {
 }
 
 export function resetView() {
+  logEvent('graph', { event: 'resetView' });
   clearSelection();
   if (graph) graph.zoomToFit(600, 40);
 }
 
 export function zoomIn() {
+  logEvent('graph', { event: 'zoomIn' });
   if (graph) graph.zoom(graph.zoom() * 1.5, 300);
 }
 
 export function zoomOut() {
+  logEvent('graph', { event: 'zoomOut' });
   if (graph) graph.zoom(graph.zoom() / 1.5, 300);
 }
 
 export function setSkillVisibility(visibleSkillIds) {
   const visSet = visibleSkillIds instanceof Set ? visibleSkillIds : new Set(visibleSkillIds);
+  logEvent('graph', { event: 'setSkillVisibility', visibleCount: visSet.size });
 
   const filteredNodes = fullData.nodes
     .filter(n => {

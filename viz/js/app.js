@@ -6,6 +6,7 @@ import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkil
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
 import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
+import { logEvent, isEnabled as isEventLogEnabled, downloadLog } from './eventlog.js';
 
 const DATA_URL = 'data/skills.json';
 
@@ -145,12 +146,12 @@ async function switchTo3D() {
     graph3dMod.setSkillVisibility3D(getVisibleSkillIds());
 
     currentMode = '3d';
+    logEvent('app', { event: 'modeSwitch', mode: '3d' });
     btn.classList.add('active');
     document.getElementById('btn-hive-toggle').classList.remove('active');
 
     // Hide icon toggle in 3D mode (icons are 2D-only)
     document.getElementById('btn-icon-toggle').style.display = 'none';
-    document.getElementById('btn-hive-log').style.display = 'none';
 
     // Auto zoom-to-fit after layout settles
     setTimeout(() => {
@@ -198,12 +199,12 @@ function switchTo2D() {
   setSkillVisibility(getVisibleSkillIds());
 
   currentMode = '2d';
+  logEvent('app', { event: 'modeSwitch', mode: '2d' });
   btn.classList.remove('active');
   document.getElementById('btn-hive-toggle').classList.remove('active');
 
   // Restore icon toggle visibility
   document.getElementById('btn-icon-toggle').style.display = '';
-  document.getElementById('btn-hive-log').style.display = 'none';
 
   // Auto zoom-to-fit
   setTimeout(() => {
@@ -255,14 +256,12 @@ async function switchToHive() {
     hiveMod.setSkillVisibilityHive(getVisibleSkillIds());
 
     currentMode = 'hive';
+    logEvent('app', { event: 'modeSwitch', mode: 'hive' });
     hiveBtn.classList.add('active');
     btn3d.classList.remove('active');
 
     // Hide icon toggle (hive uses SVG, not canvas icons)
     document.getElementById('btn-icon-toggle').style.display = 'none';
-
-    // Show hive log button
-    document.getElementById('btn-hive-log').style.display = '';
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
     switchTo2D();
@@ -374,10 +373,13 @@ async function main() {
     closePanel();
   });
 
-  // ── Hive log download ──
-  document.getElementById('btn-hive-log').addEventListener('click', () => {
-    if (hiveMod) hiveMod.downloadHiveLog();
-  });
+  // ── Event log download ──
+  const logBtn = document.getElementById('btn-event-log');
+  if (isEventLogEnabled()) {
+    logBtn.style.display = '';
+    logBtn.title = 'Download Event Log';
+    logBtn.addEventListener('click', () => downloadLog());
+  }
 
   // ── 3D toggle ──
   document.getElementById('btn-3d-toggle').addEventListener('click', async () => {
@@ -406,6 +408,7 @@ async function main() {
   // ── Theme dropdown ──
   themeSelect.addEventListener('change', () => {
     try {
+      logEvent('app', { event: 'themeChange', theme: themeSelect.value });
       setTheme(themeSelect.value);
       localStorage.setItem('skillnet-theme', themeSelect.value);
       if (currentMode === '2d') {
@@ -428,11 +431,14 @@ async function main() {
   }
   iconBtn.addEventListener('click', () => {
     const next = !getIconMode();
+    logEvent('app', { event: 'iconToggle', enabled: next });
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
     refreshGraph();
   });
+
+  logEvent('app', { event: 'sessionStart', mode: currentMode, nodeCount: data.nodes.length, linkCount: data.links.length });
 
   // ── Auto zoom-to-fit after layout settles ──
   setTimeout(() => {

@@ -7,6 +7,7 @@
  */
 
 import { DOMAIN_COLORS, getAgentColor, getTeamColor } from './colors.js';
+import { logEvent } from './eventlog.js';
 
 let filterEl = null;
 let skillStates = {};       // skillId -> boolean
@@ -342,8 +343,10 @@ function fireTeamChange() {
   const el = filterEl.querySelector('#teams-section-count');
   if (el) el.textContent = visibleTeams < totalTeams ? `${visibleTeams}/${totalTeams}` : String(totalTeams);
 
+  const ids = getVisibleTeamIds();
+  logEvent('filters', { event: 'teamFilterChange', visibleCount: ids.length });
   if (onTeamChange) {
-    onTeamChange(getVisibleTeamIds());
+    onTeamChange(ids);
   }
 }
 
@@ -429,6 +432,7 @@ function nodePassesTagFilter(nodeId) {
 }
 
 function fireTagFilterChange() {
+  logEvent('filters', { event: 'tagFilterChange', selectedTags: [...selectedTags], tagCount: selectedTags.size });
   if (onTagChange) onTagChange();
 }
 
@@ -513,6 +517,7 @@ function bindPanelToggle() {
 
   toggle.addEventListener('click', () => {
     const collapsed = filterEl.classList.toggle('collapsed');
+    logEvent('filters', { event: 'panelToggle', collapsed });
     toggle.classList.toggle('collapsed', collapsed);
     toggle.setAttribute('aria-expanded', !collapsed);
 
@@ -527,8 +532,10 @@ function bindPanelToggle() {
 
 function fireSkillChange() {
   updateSkillsCount();
+  const ids = getVisibleSkillIds();
+  logEvent('filters', { event: 'skillFilterChange', visibleCount: ids.length });
   if (onChange) {
-    onChange(getVisibleSkillIds());
+    onChange(ids);
   }
 }
 
@@ -538,8 +545,10 @@ function fireAgentChange() {
   const el = filterEl.querySelector('#agents-section-count');
   if (el) el.textContent = visibleAgents < totalAgents ? `${visibleAgents}/${totalAgents}` : String(totalAgents);
 
+  const ids = getVisibleAgentIds();
+  logEvent('filters', { event: 'agentFilterChange', visibleCount: ids.length });
   if (onAgentChange) {
-    onAgentChange(getVisibleAgentIds());
+    onAgentChange(ids);
   }
 }
 

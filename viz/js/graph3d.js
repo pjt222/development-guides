@@ -10,6 +10,7 @@ import {
   hexToRgba, getAgentColor, getTeamColor,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG
 } from './colors.js';
+import { logEvent } from './eventlog.js';
 
 let graph3d = null;
 let graphData = { nodes: [], links: [] };
@@ -152,16 +153,23 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
     .linkOpacity(0.6)
     .onNodeClick(node => {
       if (node) {
+        logEvent('graph3d', { event: 'click', node: { id: node.id, type: node.type, domain: node.domain } });
         selectedNodeId = node.id;
         if (onNodeClick) onNodeClick(node);
       }
     })
     .onNodeHover(node => {
+      if (node) {
+        logEvent('graph3d', { event: 'hover', node: { id: node.id, type: node.type, domain: node.domain } });
+      } else {
+        logEvent('graph3d', { event: 'hoverEnd' });
+      }
       hoveredNodeId = node ? node.id : null;
       container.style.cursor = node ? 'pointer' : 'default';
       if (onNodeHover) onNodeHover(node);
     })
     .onBackgroundClick(() => {
+      logEvent('graph3d', { event: 'bgClick' });
       selectedNodeId = null;
       if (onNodeClick) onNodeClick(null);
     })
@@ -235,6 +243,7 @@ export function destroy3DGraph() {
 // ── Navigation ─────────────────────────────────────────────────────
 
 export function focusNode3D(id) {
+  logEvent('graph3d', { event: 'focusNode', nodeId: id });
   const node = nodeById.get(id);
   if (!node || !graph3d) return;
   selectedNodeId = id;
@@ -249,12 +258,14 @@ export function focusNode3D(id) {
 }
 
 export function resetView3D() {
+  logEvent('graph3d', { event: 'resetView' });
   selectedNodeId = null;
   hoveredNodeId = null;
   if (graph3d) graph3d.zoomToFit(600, 40);
 }
 
 export function zoomIn3D() {
+  logEvent('graph3d', { event: 'zoomIn' });
   if (!graph3d) return;
   const cam = graph3d.camera();
   const pos = cam.position;
@@ -266,6 +277,7 @@ export function zoomIn3D() {
 }
 
 export function zoomOut3D() {
+  logEvent('graph3d', { event: 'zoomOut' });
   if (!graph3d) return;
   const cam = graph3d.camera();
   const pos = cam.position;
@@ -280,6 +292,7 @@ export function zoomOut3D() {
 
 export function setSkillVisibility3D(visibleSkillIds) {
   const visSet = visibleSkillIds instanceof Set ? visibleSkillIds : new Set(visibleSkillIds);
+  logEvent('graph3d', { event: 'setSkillVisibility', visibleCount: visSet.size });
 
   const filteredNodes = fullData.nodes
     .filter(n => {
