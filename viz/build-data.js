@@ -12,6 +12,21 @@ import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+
+// ── Word overrides for proper casing ────────────────────────────
+const WORD_OVERRIDES = {
+  gxp: 'GxP', ai: 'AI', mcp: 'MCP', ip: 'IP',
+  ux: 'UX', ui: 'UI', a2a: 'A2A', acp: 'ACP',
+  tcg: 'TCG', r: 'R', ml: 'ML',
+  devops: 'DevOps', mlops: 'MLOps',
+};
+
+function smartTitleCase(slug) {
+  return slug.split(/[-_]/)
+    .map(w => WORD_OVERRIDES[w.toLowerCase()] || w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
 const SKILLS_DIR = resolve(__dirname, '..', 'skills');
 const AGENTS_DIR = resolve(__dirname, '..', 'agents');
 const TEAMS_DIR = resolve(__dirname, '..', 'teams');
@@ -147,7 +162,7 @@ if (existsSync(AGENTS_REGISTRY_PATH)) {
     agentNodes.push({
       id: agentNodeId,
       type: 'agent',
-      title: agent.id.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
+      title: smartTitleCase(agent.id),
       priority: agent.priority || 'normal',
       description: agent.description,
       tags: agent.tags || [],
@@ -184,7 +199,7 @@ if (existsSync(TEAMS_REGISTRY_PATH)) {
     teamNodes.push({
       id: teamNodeId,
       type: 'team',
-      title: team.id.split('-').map(w => w[0].toUpperCase() + w.slice(1)).join(' '),
+      title: smartTitleCase(team.id),
       lead: team.lead,
       members: team.members || [],
       coordination: team.coordination || 'hub-and-spoke',

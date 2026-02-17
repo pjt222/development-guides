@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-16T16:56:47.090Z",
-    "totalSkills": 245,
-    "totalAgents": 47,
+    "generated": "2026-02-17T09:41:16.730Z",
+    "totalSkills": 262,
+    "totalAgents": 52,
     "totalTeams": 8,
-    "totalNodes": 300,
-    "totalLinks": 1315,
-    "totalAgentLinks": 314,
+    "totalNodes": 322,
+    "totalLinks": 1394,
+    "totalAgentLinks": 331,
     "totalTeamLinks": 28,
-    "totalDomains": 44
+    "totalDomains": 47
   },
   "domains": {
     "r-packages": {
@@ -53,7 +53,7 @@
     },
     "review": {
       "description": "Senior-level review skills for research, data, architecture, and design",
-      "count": 6
+      "count": 9
     },
     "bushcraft": {
       "description": "Wilderness survival and primitive skills",
@@ -61,7 +61,7 @@
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
-      "count": 21
+      "count": 24
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
@@ -155,6 +155,10 @@
       "description": "Classical and computational geometry, trigonometry, and proofs",
       "count": 3
     },
+    "number-theory": {
+      "description": "Prime analysis, modular arithmetic, and Diophantine equations",
+      "count": 3
+    },
     "stochastic-processes": {
       "description": "Markov chains, HMMs, MCMC, and stochastic simulation",
       "count": 3
@@ -186,6 +190,14 @@
     "3d-printing": {
       "description": "Additive manufacturing from model preparation through troubleshooting",
       "count": 3
+    },
+    "lapidary": {
+      "description": "Gemstone identification, cutting, polishing, and appraisal",
+      "count": 4
+    },
+    "versioning": {
+      "description": "Semantic versioning, changelog management, release planning, and dependency auditing",
+      "count": 4
     }
   },
   "nodes": [
@@ -1929,6 +1941,78 @@
       "path": "review/review-pull-request/SKILL.md"
     },
     {
+      "id": "review-skill-format",
+      "type": "skill",
+      "title": "Review Skill Format",
+      "domain": "review",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Validate a SKILL.md against the agentskills.io standard for frontmatter, sections, and registry sync",
+      "tags": [
+        "review",
+        "skills",
+        "format",
+        "validation",
+        "agentskills",
+        "quality"
+      ],
+      "related": [
+        "skill-creation",
+        "update-skill-content",
+        "refactor-skill-structure",
+        "review-pull-request"
+      ],
+      "path": "review/review-skill-format/SKILL.md"
+    },
+    {
+      "id": "update-skill-content",
+      "type": "skill",
+      "title": "Update Skill Content",
+      "domain": "review",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Update an existing SKILL.md to improve accuracy, completeness, and clarity with version bumping",
+      "tags": [
+        "review",
+        "skills",
+        "content",
+        "update",
+        "maintenance",
+        "quality"
+      ],
+      "related": [
+        "review-skill-format",
+        "refactor-skill-structure",
+        "skill-evolution",
+        "skill-creation",
+        "repair-broken-references"
+      ],
+      "path": "review/update-skill-content/SKILL.md"
+    },
+    {
+      "id": "refactor-skill-structure",
+      "type": "skill",
+      "title": "Refactor Skill Structure",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Refactor an over-long SKILL.md by extracting examples and splitting compound procedures",
+      "tags": [
+        "review",
+        "skills",
+        "refactoring",
+        "structure",
+        "progressive-disclosure"
+      ],
+      "related": [
+        "review-skill-format",
+        "update-skill-content",
+        "skill-creation",
+        "skill-evolution"
+      ],
+      "path": "review/refactor-skill-structure/SKILL.md"
+    },
+    {
       "id": "make-fire",
       "type": "skill",
       "title": "Make Fire",
@@ -2545,6 +2629,76 @@
         "conscientiousness"
       ],
       "path": "esoteric/shine/SKILL.md"
+    },
+    {
+      "id": "read-tree-of-life",
+      "type": "skill",
+      "title": "Read Tree of Life",
+      "domain": "esoteric",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Navigate the Kabbalistic Tree of Life — sephirot, paths, worlds, pillars, and contemplative exercises",
+      "tags": [
+        "esoteric",
+        "kabbalah",
+        "tree-of-life",
+        "sephirot",
+        "paths",
+        "contemplation"
+      ],
+      "related": [
+        "apply-gematria",
+        "study-hebrew-letters",
+        "meditate",
+        "practice-viriditas"
+      ],
+      "path": "esoteric/read-tree-of-life/SKILL.md"
+    },
+    {
+      "id": "apply-gematria",
+      "type": "skill",
+      "title": "Apply Gematria",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Compute and analyze gematria using standard, ordinal, and reduced methods with isopsephy comparisons",
+      "tags": [
+        "esoteric",
+        "kabbalah",
+        "gematria",
+        "hebrew",
+        "numerology",
+        "isopsephy"
+      ],
+      "related": [
+        "read-tree-of-life",
+        "study-hebrew-letters",
+        "observe"
+      ],
+      "path": "esoteric/apply-gematria/SKILL.md"
+    },
+    {
+      "id": "study-hebrew-letters",
+      "type": "skill",
+      "title": "Study Hebrew Letters",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Study the twenty-two Hebrew letters as mystical symbols — form, value, correspondences, and letter meditation",
+      "tags": [
+        "esoteric",
+        "kabbalah",
+        "hebrew-letters",
+        "sefer-yetzirah",
+        "meditation"
+      ],
+      "related": [
+        "read-tree-of-life",
+        "apply-gematria",
+        "meditate",
+        "meditate-guidance"
+      ],
+      "path": "esoteric/study-hebrew-letters/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -5457,6 +5611,72 @@
       "path": "geometry/prove-geometric-theorem/SKILL.md"
     },
     {
+      "id": "analyze-prime-numbers",
+      "type": "skill",
+      "title": "Analyze Prime Numbers",
+      "domain": "number-theory",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Analyze primes using primality tests, factorization algorithms, and sieve methods",
+      "tags": [
+        "number-theory",
+        "primes",
+        "primality",
+        "factorization",
+        "sieve"
+      ],
+      "related": [
+        "solve-modular-arithmetic",
+        "explore-diophantine-equations",
+        "formulate-quantum-problem"
+      ],
+      "path": "number-theory/analyze-prime-numbers/SKILL.md"
+    },
+    {
+      "id": "solve-modular-arithmetic",
+      "type": "skill",
+      "title": "Solve Modular Arithmetic",
+      "domain": "number-theory",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Solve congruences and modular systems via CRT, extended Euclidean, and Euler's theorem",
+      "tags": [
+        "number-theory",
+        "modular-arithmetic",
+        "congruences",
+        "crt",
+        "euler"
+      ],
+      "related": [
+        "analyze-prime-numbers",
+        "explore-diophantine-equations",
+        "prove-geometric-theorem"
+      ],
+      "path": "number-theory/solve-modular-arithmetic/SKILL.md"
+    },
+    {
+      "id": "explore-diophantine-equations",
+      "type": "skill",
+      "title": "Explore Diophantine Equations",
+      "domain": "number-theory",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Find integer solutions to linear, quadratic, and Pell equations",
+      "tags": [
+        "number-theory",
+        "diophantine",
+        "integer-solutions",
+        "pell-equation",
+        "euclidean"
+      ],
+      "related": [
+        "analyze-prime-numbers",
+        "solve-modular-arithmetic",
+        "derive-theoretical-result"
+      ],
+      "path": "number-theory/explore-diophantine-equations/SKILL.md"
+    },
+    {
       "id": "model-markov-chain",
       "type": "skill",
       "title": "Model Markov Chain",
@@ -6002,6 +6222,184 @@
       "path": "3d-printing/troubleshoot-print-issues/SKILL.md"
     },
     {
+      "id": "identify-gemstone",
+      "type": "skill",
+      "title": "Identify Gemstone",
+      "domain": "lapidary",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Identify gemstones using optical properties, physical tests, and inclusion analysis",
+      "tags": [
+        "lapidary",
+        "gemstones",
+        "identification",
+        "mineralogy",
+        "optics"
+      ],
+      "related": [
+        "cut-gemstone",
+        "appraise-gemstone",
+        "mineral-identification"
+      ],
+      "path": "lapidary/identify-gemstone/SKILL.md"
+    },
+    {
+      "id": "cut-gemstone",
+      "type": "skill",
+      "title": "Cut Gemstone",
+      "domain": "lapidary",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Cut gemstones using cabochon and faceting techniques with orientation planning",
+      "tags": [
+        "lapidary",
+        "cutting",
+        "faceting",
+        "cabochon",
+        "gemstones"
+      ],
+      "related": [
+        "identify-gemstone",
+        "polish-gemstone"
+      ],
+      "path": "lapidary/cut-gemstone/SKILL.md"
+    },
+    {
+      "id": "polish-gemstone",
+      "type": "skill",
+      "title": "Polish Gemstone",
+      "domain": "lapidary",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Polish cut gemstones to final finish using progressive abrasive sequences",
+      "tags": [
+        "lapidary",
+        "polishing",
+        "finishing",
+        "abrasives",
+        "gemstones"
+      ],
+      "related": [
+        "cut-gemstone",
+        "appraise-gemstone"
+      ],
+      "path": "lapidary/polish-gemstone/SKILL.md"
+    },
+    {
+      "id": "appraise-gemstone",
+      "type": "skill",
+      "title": "Appraise Gemstone",
+      "domain": "lapidary",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Appraise gemstone value using the four Cs, treatment detection, and market analysis",
+      "tags": [
+        "lapidary",
+        "appraisal",
+        "valuation",
+        "gemstones",
+        "grading"
+      ],
+      "related": [
+        "identify-gemstone",
+        "grade-tcg-card"
+      ],
+      "path": "lapidary/appraise-gemstone/SKILL.md"
+    },
+    {
+      "id": "apply-semantic-versioning",
+      "type": "skill",
+      "title": "Apply Semantic Versioning",
+      "domain": "versioning",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Apply SemVer 2.0.0 to determine the correct version bump based on change analysis",
+      "tags": [
+        "versioning",
+        "semver",
+        "version-bump",
+        "breaking-changes"
+      ],
+      "related": [
+        "manage-changelog",
+        "plan-release-cycle",
+        "release-package-version",
+        "commit-changes",
+        "create-github-release"
+      ],
+      "path": "versioning/apply-semantic-versioning/SKILL.md"
+    },
+    {
+      "id": "manage-changelog",
+      "type": "skill",
+      "title": "Manage Changelog",
+      "domain": "versioning",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Maintain a changelog following Keep a Changelog format with categorized entries",
+      "tags": [
+        "versioning",
+        "changelog",
+        "documentation",
+        "keep-a-changelog"
+      ],
+      "related": [
+        "apply-semantic-versioning",
+        "plan-release-cycle",
+        "commit-changes",
+        "release-package-version",
+        "create-github-release"
+      ],
+      "path": "versioning/manage-changelog/SKILL.md"
+    },
+    {
+      "id": "plan-release-cycle",
+      "type": "skill",
+      "title": "Plan Release Cycle",
+      "domain": "versioning",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Plan release milestones, feature freezes, release candidates, and go/no-go criteria",
+      "tags": [
+        "versioning",
+        "release-planning",
+        "milestones",
+        "release-cycle"
+      ],
+      "related": [
+        "apply-semantic-versioning",
+        "manage-changelog",
+        "plan-sprint",
+        "draft-project-charter",
+        "generate-status-report"
+      ],
+      "path": "versioning/plan-release-cycle/SKILL.md"
+    },
+    {
+      "id": "audit-dependency-versions",
+      "type": "skill",
+      "title": "Audit Dependency Versions",
+      "domain": "versioning",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Audit dependencies for staleness, security vulnerabilities, and upgrade paths",
+      "tags": [
+        "versioning",
+        "dependencies",
+        "audit",
+        "security",
+        "upgrades"
+      ],
+      "related": [
+        "apply-semantic-versioning",
+        "manage-renv-dependencies",
+        "security-audit-codebase",
+        "manage-changelog",
+        "plan-release-cycle"
+      ],
+      "path": "versioning/audit-dependency-versions/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -6274,7 +6672,7 @@
     {
       "id": "agent:gxp-validator",
       "type": "agent",
-      "title": "Gxp Validator",
+      "title": "GxP Validator",
       "priority": "high",
       "description": "Computer Systems Validation and compliance lifecycle specialist covering 21 CFR Part 11, EU Annex 11, GAMP 5, compliance architecture, change control, electronic signatures, SOPs, data integrity monitoring, training programmes, and system decommissioning",
       "tags": [
@@ -6480,7 +6878,7 @@
     {
       "id": "agent:senior-ux-ui-specialist",
       "type": "agent",
-      "title": "Senior Ux Ui Specialist",
+      "title": "Senior UX UI Specialist",
       "priority": "high",
       "description": "Usability and accessibility reviewer applying Nielsen heuristics, WCAG 2.1, keyboard/screen reader audits, and user flow analysis",
       "tags": [
@@ -6546,7 +6944,7 @@
     {
       "id": "agent:devops-engineer",
       "type": "agent",
-      "title": "Devops Engineer",
+      "title": "DevOps Engineer",
       "priority": "high",
       "description": "Infrastructure and platform engineering agent for CI/CD, Kubernetes, GitOps, service mesh, observability, and chaos engineering",
       "tags": [
@@ -6610,7 +7008,7 @@
     {
       "id": "agent:mlops-engineer",
       "type": "agent",
-      "title": "Mlops Engineer",
+      "title": "MLOps Engineer",
       "priority": "high",
       "description": "ML operations agent for experiment tracking, model registry, feature stores, ML pipelines, model serving, drift monitoring, and AIOps",
       "tags": [
@@ -6867,7 +7265,7 @@
     {
       "id": "agent:tcg-specialist",
       "type": "agent",
-      "title": "Tcg Specialist",
+      "title": "TCG Specialist",
       "priority": "normal",
       "description": "Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou",
       "tags": [
@@ -6901,7 +7299,7 @@
     {
       "id": "agent:ip-analyst",
       "type": "agent",
-      "title": "Ip Analyst",
+      "title": "IP Analyst",
       "priority": "high",
       "description": "Patent landscape mapping, prior art search, trademark screening, FTO analysis",
       "tags": [
@@ -7119,6 +7517,36 @@
       "path": "agents/prospector.md"
     },
     {
+      "id": "agent:lapidary",
+      "type": "agent",
+      "title": "Lapidary",
+      "priority": "normal",
+      "description": "Gemstone specialist for identification, cutting techniques, polishing methods, and value appraisal with safety-first approach",
+      "tags": [
+        "lapidary",
+        "gemstones",
+        "cutting",
+        "polishing",
+        "appraisal",
+        "mineralogy"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "identify-gemstone",
+        "cut-gemstone",
+        "polish-gemstone",
+        "appraise-gemstone"
+      ],
+      "path": "agents/lapidary.md"
+    },
+    {
       "id": "agent:shaman",
       "type": "agent",
       "title": "Shaman",
@@ -7295,7 +7723,7 @@
     {
       "id": "agent:mcp-developer",
       "type": "agent",
-      "title": "Mcp Developer",
+      "title": "MCP Developer",
       "priority": "normal",
       "description": "MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers",
       "tags": [
@@ -7328,7 +7756,7 @@
     {
       "id": "agent:acp-developer",
       "type": "agent",
-      "title": "Acp Developer",
+      "title": "ACP Developer",
       "priority": "normal",
       "description": "Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming",
       "tags": [
@@ -7608,6 +8036,128 @@
       "path": "agents/fabricator.md"
     },
     {
+      "id": "agent:number-theorist",
+      "type": "agent",
+      "title": "Number Theorist",
+      "priority": "normal",
+      "description": "Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches",
+      "tags": [
+        "number-theory",
+        "primes",
+        "modular-arithmetic",
+        "diophantine",
+        "mathematics",
+        "proofs"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "analyze-prime-numbers",
+        "solve-modular-arithmetic",
+        "explore-diophantine-equations"
+      ],
+      "path": "agents/number-theorist.md"
+    },
+    {
+      "id": "agent:kabalist",
+      "type": "agent",
+      "title": "Kabalist",
+      "priority": "normal",
+      "description": "Kabbalistic studies guide for Tree of Life navigation, gematria computation, and Hebrew letter mysticism with scholarly and contemplative approaches",
+      "tags": [
+        "kabbalah",
+        "esoteric",
+        "tree-of-life",
+        "gematria",
+        "hebrew",
+        "mysticism",
+        "sephirot"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "read-tree-of-life",
+        "apply-gematria",
+        "study-hebrew-letters"
+      ],
+      "path": "agents/kabalist.md"
+    },
+    {
+      "id": "agent:version-manager",
+      "type": "agent",
+      "title": "Version Manager",
+      "priority": "normal",
+      "description": "Software versioning specialist for semantic versioning, changelog management, release planning, and dependency version auditing",
+      "tags": [
+        "versioning",
+        "semver",
+        "changelog",
+        "release",
+        "dependencies",
+        "maintenance"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "apply-semantic-versioning",
+        "manage-changelog",
+        "plan-release-cycle",
+        "audit-dependency-versions"
+      ],
+      "path": "agents/version-manager.md"
+    },
+    {
+      "id": "agent:skill-reviewer",
+      "type": "agent",
+      "title": "Skill Reviewer",
+      "priority": "normal",
+      "description": "Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard",
+      "tags": [
+        "review",
+        "skills",
+        "quality",
+        "format",
+        "agentskills",
+        "refactoring"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "review-skill-format",
+        "update-skill-content",
+        "refactor-skill-structure"
+      ],
+      "path": "agents/skill-reviewer.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -7631,7 +8181,7 @@
     {
       "id": "team:gxp-compliance-validation",
       "type": "team",
-      "title": "Gxp Compliance Validation",
+      "title": "GxP Compliance Validation",
       "lead": "gxp-validator",
       "members": [
         "gxp-validator",
@@ -7677,7 +8227,7 @@
     {
       "id": "team:ml-data-science-review",
       "type": "team",
-      "title": "Ml Data Science Review",
+      "title": "ML Data Science Review",
       "lead": "senior-data-scientist",
       "members": [
         "senior-data-scientist",
@@ -7699,7 +8249,7 @@
     {
       "id": "team:devops-platform-engineering",
       "type": "team",
-      "title": "Devops Platform Engineering",
+      "title": "DevOps Platform Engineering",
       "lead": "devops-engineer",
       "members": [
         "devops-engineer",
@@ -7722,7 +8272,7 @@
     {
       "id": "team:ai-self-care",
       "type": "team",
-      "title": "Ai Self Care",
+      "title": "AI Self Care",
       "lead": "mystic",
       "members": [
         "mystic",
@@ -9252,6 +9802,71 @@
       "type": "skill"
     },
     {
+      "source": "review-skill-format",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "review-skill-format",
+      "target": "update-skill-content",
+      "type": "skill"
+    },
+    {
+      "source": "review-skill-format",
+      "target": "refactor-skill-structure",
+      "type": "skill"
+    },
+    {
+      "source": "review-skill-format",
+      "target": "review-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "update-skill-content",
+      "target": "review-skill-format",
+      "type": "skill"
+    },
+    {
+      "source": "update-skill-content",
+      "target": "refactor-skill-structure",
+      "type": "skill"
+    },
+    {
+      "source": "update-skill-content",
+      "target": "skill-evolution",
+      "type": "skill"
+    },
+    {
+      "source": "update-skill-content",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "update-skill-content",
+      "target": "repair-broken-references",
+      "type": "skill"
+    },
+    {
+      "source": "refactor-skill-structure",
+      "target": "review-skill-format",
+      "type": "skill"
+    },
+    {
+      "source": "refactor-skill-structure",
+      "target": "update-skill-content",
+      "type": "skill"
+    },
+    {
+      "source": "refactor-skill-structure",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "refactor-skill-structure",
+      "target": "skill-evolution",
+      "type": "skill"
+    },
+    {
       "source": "make-fire",
       "target": "purify-water",
       "type": "skill"
@@ -9799,6 +10414,61 @@
     {
       "source": "shine",
       "target": "conscientiousness",
+      "type": "skill"
+    },
+    {
+      "source": "read-tree-of-life",
+      "target": "apply-gematria",
+      "type": "skill"
+    },
+    {
+      "source": "read-tree-of-life",
+      "target": "study-hebrew-letters",
+      "type": "skill"
+    },
+    {
+      "source": "read-tree-of-life",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "read-tree-of-life",
+      "target": "practice-viriditas",
+      "type": "skill"
+    },
+    {
+      "source": "apply-gematria",
+      "target": "read-tree-of-life",
+      "type": "skill"
+    },
+    {
+      "source": "apply-gematria",
+      "target": "study-hebrew-letters",
+      "type": "skill"
+    },
+    {
+      "source": "apply-gematria",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "study-hebrew-letters",
+      "target": "read-tree-of-life",
+      "type": "skill"
+    },
+    {
+      "source": "study-hebrew-letters",
+      "target": "apply-gematria",
+      "type": "skill"
+    },
+    {
+      "source": "study-hebrew-letters",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "study-hebrew-letters",
+      "target": "meditate-guidance",
       "type": "skill"
     },
     {
@@ -12362,6 +13032,51 @@
       "type": "skill"
     },
     {
+      "source": "analyze-prime-numbers",
+      "target": "solve-modular-arithmetic",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-prime-numbers",
+      "target": "explore-diophantine-equations",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-prime-numbers",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "solve-modular-arithmetic",
+      "target": "analyze-prime-numbers",
+      "type": "skill"
+    },
+    {
+      "source": "solve-modular-arithmetic",
+      "target": "explore-diophantine-equations",
+      "type": "skill"
+    },
+    {
+      "source": "solve-modular-arithmetic",
+      "target": "prove-geometric-theorem",
+      "type": "skill"
+    },
+    {
+      "source": "explore-diophantine-equations",
+      "target": "analyze-prime-numbers",
+      "type": "skill"
+    },
+    {
+      "source": "explore-diophantine-equations",
+      "target": "solve-modular-arithmetic",
+      "type": "skill"
+    },
+    {
+      "source": "explore-diophantine-equations",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
       "source": "formulate-quantum-problem",
       "target": "derive-theoretical-result",
       "type": "skill"
@@ -12649,6 +13364,151 @@
     {
       "source": "escalate-issues",
       "target": "repair-broken-references",
+      "type": "skill"
+    },
+    {
+      "source": "identify-gemstone",
+      "target": "cut-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "identify-gemstone",
+      "target": "appraise-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "identify-gemstone",
+      "target": "mineral-identification",
+      "type": "skill"
+    },
+    {
+      "source": "cut-gemstone",
+      "target": "identify-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "cut-gemstone",
+      "target": "polish-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "polish-gemstone",
+      "target": "cut-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "polish-gemstone",
+      "target": "appraise-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "appraise-gemstone",
+      "target": "identify-gemstone",
+      "type": "skill"
+    },
+    {
+      "source": "appraise-gemstone",
+      "target": "grade-tcg-card",
+      "type": "skill"
+    },
+    {
+      "source": "apply-semantic-versioning",
+      "target": "manage-changelog",
+      "type": "skill"
+    },
+    {
+      "source": "apply-semantic-versioning",
+      "target": "plan-release-cycle",
+      "type": "skill"
+    },
+    {
+      "source": "apply-semantic-versioning",
+      "target": "release-package-version",
+      "type": "skill"
+    },
+    {
+      "source": "apply-semantic-versioning",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
+      "source": "apply-semantic-versioning",
+      "target": "create-github-release",
+      "type": "skill"
+    },
+    {
+      "source": "manage-changelog",
+      "target": "apply-semantic-versioning",
+      "type": "skill"
+    },
+    {
+      "source": "manage-changelog",
+      "target": "plan-release-cycle",
+      "type": "skill"
+    },
+    {
+      "source": "manage-changelog",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
+      "source": "manage-changelog",
+      "target": "release-package-version",
+      "type": "skill"
+    },
+    {
+      "source": "manage-changelog",
+      "target": "create-github-release",
+      "type": "skill"
+    },
+    {
+      "source": "plan-release-cycle",
+      "target": "apply-semantic-versioning",
+      "type": "skill"
+    },
+    {
+      "source": "plan-release-cycle",
+      "target": "manage-changelog",
+      "type": "skill"
+    },
+    {
+      "source": "plan-release-cycle",
+      "target": "plan-sprint",
+      "type": "skill"
+    },
+    {
+      "source": "plan-release-cycle",
+      "target": "draft-project-charter",
+      "type": "skill"
+    },
+    {
+      "source": "plan-release-cycle",
+      "target": "generate-status-report",
+      "type": "skill"
+    },
+    {
+      "source": "audit-dependency-versions",
+      "target": "apply-semantic-versioning",
+      "type": "skill"
+    },
+    {
+      "source": "audit-dependency-versions",
+      "target": "manage-renv-dependencies",
+      "type": "skill"
+    },
+    {
+      "source": "audit-dependency-versions",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "audit-dependency-versions",
+      "target": "manage-changelog",
+      "type": "skill"
+    },
+    {
+      "source": "audit-dependency-versions",
+      "target": "plan-release-cycle",
       "type": "skill"
     },
     {
@@ -13877,6 +14737,26 @@
       "type": "agent"
     },
     {
+      "source": "agent:lapidary",
+      "target": "identify-gemstone",
+      "type": "agent"
+    },
+    {
+      "source": "agent:lapidary",
+      "target": "cut-gemstone",
+      "type": "agent"
+    },
+    {
+      "source": "agent:lapidary",
+      "target": "polish-gemstone",
+      "type": "agent"
+    },
+    {
+      "source": "agent:lapidary",
+      "target": "appraise-gemstone",
+      "type": "agent"
+    },
+    {
       "source": "agent:shaman",
       "target": "heal",
       "type": "agent"
@@ -14219,6 +15099,71 @@
     {
       "source": "agent:fabricator",
       "target": "troubleshoot-print-issues",
+      "type": "agent"
+    },
+    {
+      "source": "agent:number-theorist",
+      "target": "analyze-prime-numbers",
+      "type": "agent"
+    },
+    {
+      "source": "agent:number-theorist",
+      "target": "solve-modular-arithmetic",
+      "type": "agent"
+    },
+    {
+      "source": "agent:number-theorist",
+      "target": "explore-diophantine-equations",
+      "type": "agent"
+    },
+    {
+      "source": "agent:kabalist",
+      "target": "read-tree-of-life",
+      "type": "agent"
+    },
+    {
+      "source": "agent:kabalist",
+      "target": "apply-gematria",
+      "type": "agent"
+    },
+    {
+      "source": "agent:kabalist",
+      "target": "study-hebrew-letters",
+      "type": "agent"
+    },
+    {
+      "source": "agent:version-manager",
+      "target": "apply-semantic-versioning",
+      "type": "agent"
+    },
+    {
+      "source": "agent:version-manager",
+      "target": "manage-changelog",
+      "type": "agent"
+    },
+    {
+      "source": "agent:version-manager",
+      "target": "plan-release-cycle",
+      "type": "agent"
+    },
+    {
+      "source": "agent:version-manager",
+      "target": "audit-dependency-versions",
+      "type": "agent"
+    },
+    {
+      "source": "agent:skill-reviewer",
+      "target": "review-skill-format",
+      "type": "agent"
+    },
+    {
+      "source": "agent:skill-reviewer",
+      "target": "update-skill-content",
+      "type": "agent"
+    },
+    {
+      "source": "agent:skill-reviewer",
+      "target": "refactor-skill-structure",
       "type": "agent"
     },
     {

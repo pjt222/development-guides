@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 245 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 262 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -31,9 +31,9 @@ Browse by domain:
 | [Git](git/) | 6 | Git version control and GitHub workflow skills |
 | [General](general/) | 6 | Cross-cutting development environment and workflow skills |
 | [Data Serialization](data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
-| [Review](review/) | 6 | Senior-level review skills for research, data, architecture, and design |
+| [Review](review/) | 9 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](bushcraft/) | 4 | Wilderness survival and primitive skills |
-| [Esoteric](esoteric/) | 21 | Esoteric practices — AI self-directed variants and human-guidance variants |
+| [Esoteric](esoteric/) | 24 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](design/) | 5 | Ornamental design and AI-assisted image generation skills |
 | [Defensive](defensive/) | 6 | Martial arts and applied defensive awareness skills |
 | [Project Management](project-management/) | 6 | Agile and classic project management skills |
@@ -57,6 +57,7 @@ Browse by domain:
 | [Relocation](relocation/) | 3 | Cross-border EU/DACH relocation planning, documents, and bureaucracy |
 | [A2a Protocol](a2a-protocol/) | 3 | Google A2A agent-to-agent protocol implementation and interoperability |
 | [Geometry](geometry/) | 3 | Classical and computational geometry, trigonometry, and proofs |
+| [Number Theory](number-theory/) | 3 | Prime analysis, modular arithmetic, and Diophantine equations |
 | [Stochastic Processes](stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
 | [Theoretical Science](theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
 | [Diffusion](diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
@@ -65,6 +66,8 @@ Browse by domain:
 | [Blender](blender/) | 3 | Blender Python API scripting for 3D modeling, scene creation, and rendering |
 | [Visualization](visualization/) | 2 | 2D visualization, image composition, and publication-ready graphics |
 | [3d Printing](3d-printing/) | 3 | Additive manufacturing from model preparation through troubleshooting |
+| [Lapidary](lapidary/) | 4 | Gemstone identification, cutting, polishing, and appraisal |
+| [Versioning](versioning/) | 4 | Semantic versioning, changelog management, release planning, and dependency auditing |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

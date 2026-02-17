@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 54
+total_agents: 52
 version: "2.1"
 last_updated: "2026-02-17"
 

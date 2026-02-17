@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **245 skills** across 44 domains — structured, executable procedures
-- **47 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **262 skills** across 47 domains — structured, executable procedures
+- **52 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **8 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 245 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 262 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 245 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 262 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -42,9 +42,9 @@ The **[Skills Library](skills/)** provides 245 task-level skills following the [
 | [Git](skills/git/) | 6 | Git version control and GitHub workflow skills |
 | [General](skills/general/) | 6 | Cross-cutting development environment and workflow skills |
 | [Data Serialization](skills/data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
-| [Review](skills/review/) | 6 | Senior-level review skills for research, data, architecture, and design |
+| [Review](skills/review/) | 9 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](skills/bushcraft/) | 4 | Wilderness survival and primitive skills |
-| [Esoteric](skills/esoteric/) | 21 | Esoteric practices — AI self-directed variants and human-guidance variants |
+| [Esoteric](skills/esoteric/) | 24 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](skills/design/) | 5 | Ornamental design and AI-assisted image generation skills |
 | [Defensive](skills/defensive/) | 6 | Martial arts and applied defensive awareness skills |
 | [Project Management](skills/project-management/) | 6 | Agile and classic project management skills |
@@ -68,6 +68,7 @@ The **[Skills Library](skills/)** provides 245 task-level skills following the [
 | [Relocation](skills/relocation/) | 3 | Cross-border EU/DACH relocation planning, documents, and bureaucracy |
 | [A2a Protocol](skills/a2a-protocol/) | 3 | Google A2A agent-to-agent protocol implementation and interoperability |
 | [Geometry](skills/geometry/) | 3 | Classical and computational geometry, trigonometry, and proofs |
+| [Number Theory](skills/number-theory/) | 3 | Prime analysis, modular arithmetic, and Diophantine equations |
 | [Stochastic Processes](skills/stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
 | [Theoretical Science](skills/theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
 | [Diffusion](skills/diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
@@ -76,6 +77,8 @@ The **[Skills Library](skills/)** provides 245 task-level skills following the [
 | [Blender](skills/blender/) | 3 | Blender Python API scripting for 3D modeling, scene creation, and rendering |
 | [Visualization](skills/visualization/) | 2 | 2D visualization, image composition, and publication-ready graphics |
 | [3d Printing](skills/3d-printing/) | 3 | Additive manufacturing from model preparation through troubleshooting |
+| [Lapidary](skills/lapidary/) | 4 | Gemstone identification, cutting, polishing, and appraisal |
+| [Versioning](skills/versioning/) | 4 | Semantic versioning, changelog management, release planning, and dependency auditing |
 <!-- AUTO:END:skills-table -->
 
 See [skills/README.md](skills/README.md) for consumption instructions across different AI coding tools.
@@ -83,7 +86,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 47 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
+The **[Agents Library](agents/)** provides 52 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -117,12 +120,15 @@ The **[Agents Library](agents/)** provides 47 specialized agent definitions for 
 | [hiking-guide](agents/hiking-guide.md) | normal | Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols |
 | [hildegard](agents/hildegard.md) | normal | Medieval polymath persona channeling Hildegard von Bingen — herbal medicine from Physica, holistic health from Causae et Curae, sacred music composition, viriditas philosophy, and natural history consultation |
 | [janitor](agents/janitor.md) | normal | Triple-scope maintenance agent for codebase cleanup, project-level tidying, and physical space janitorial knowledge with triage-and-escalate pattern |
+| [kabalist](agents/kabalist.md) | normal | Kabbalistic studies guide for Tree of Life navigation, gematria computation, and Hebrew letter mysticism with scholarly and contemplative approaches |
+| [lapidary](agents/lapidary.md) | normal | Gemstone specialist for identification, cutting techniques, polishing methods, and value appraisal with safety-first approach |
 | [librarian](agents/librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
 | [markovian](agents/markovian.md) | normal | Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics |
 | [martial-artist](agents/martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
 | [mcp-developer](agents/mcp-developer.md) | normal | MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers |
 | [mycologist](agents/mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](agents/mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
+| [number-theorist](agents/number-theorist.md) | normal | Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches |
 | [project-manager](agents/project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
 | [prospector](agents/prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |
 | [putior-integrator](agents/putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
@@ -130,11 +136,13 @@ The **[Agents Library](agents/)** provides 47 specialized agent definitions for 
 | [relocation-expert](agents/relocation-expert.md) | normal | Cross-border relocation specialist for EU/DACH region covering residence registration, work permits, tax, health insurance, and social security coordination |
 | [shaman](agents/shaman.md) | normal | Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach |
 | [shapeshifter](agents/shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
+| [skill-reviewer](agents/skill-reviewer.md) | normal | Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard |
 | [survivalist](agents/survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](agents/swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
 | [tcg-specialist](agents/tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
 | [theoretical-researcher](agents/theoretical-researcher.md) | normal | Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis |
 | [tour-planner](agents/tour-planner.md) | normal | Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output |
+| [version-manager](agents/version-manager.md) | normal | Software versioning specialist for semantic versioning, changelog management, release planning, and dependency version auditing |
 | [web-developer](agents/web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
 <!-- AUTO:END:agents-table -->
 

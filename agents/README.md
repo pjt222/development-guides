@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 47 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 52 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -49,12 +49,15 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [hiking-guide](hiking-guide.md) | normal | Outdoor trip planning guide for hiking tours covering trail selection, difficulty grading, gear checklists, route duration estimation, and safety protocols |
 | [hildegard](hildegard.md) | normal | Medieval polymath persona channeling Hildegard von Bingen — herbal medicine from Physica, holistic health from Causae et Curae, sacred music composition, viriditas philosophy, and natural history consultation |
 | [janitor](janitor.md) | normal | Triple-scope maintenance agent for codebase cleanup, project-level tidying, and physical space janitorial knowledge with triage-and-escalate pattern |
+| [kabalist](kabalist.md) | normal | Kabbalistic studies guide for Tree of Life navigation, gematria computation, and Hebrew letter mysticism with scholarly and contemplative approaches |
+| [lapidary](lapidary.md) | normal | Gemstone specialist for identification, cutting techniques, polishing methods, and value appraisal with safety-first approach |
 | [librarian](librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
 | [markovian](markovian.md) | normal | Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics |
 | [martial-artist](martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
 | [mcp-developer](mcp-developer.md) | normal | MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers |
 | [mycologist](mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
+| [number-theorist](number-theorist.md) | normal | Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches |
 | [project-manager](project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
 | [prospector](prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |
 | [putior-integrator](putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
@@ -62,11 +65,13 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [relocation-expert](relocation-expert.md) | normal | Cross-border relocation specialist for EU/DACH region covering residence registration, work permits, tax, health insurance, and social security coordination |
 | [shaman](shaman.md) | normal | Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach |
 | [shapeshifter](shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
+| [skill-reviewer](skill-reviewer.md) | normal | Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard |
 | [survivalist](survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
 | [tcg-specialist](tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
 | [theoretical-researcher](theoretical-researcher.md) | normal | Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis |
 | [tour-planner](tour-planner.md) | normal | Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output |
+| [version-manager](version-manager.md) | normal | Software versioning specialist for semantic versioning, changelog management, release planning, and dependency version auditing |
 | [web-developer](web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
 <!-- AUTO:END:agents-table -->
 
