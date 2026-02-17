@@ -760,6 +760,61 @@ body::after {
   backdrop-filter: blur(8px);
 }
 
+/* ── Hive Plot ───────────────────────────────────────────────── */
+.hive-axis {
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
+.hive-axis-label {
+  fill: var(--text-muted);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hive-link {
+  fill: none;
+  stroke-width: 0.5;
+  opacity: 1;
+  transition: opacity 0.15s;
+}
+
+.hive-link.highlighted {
+  stroke-width: 1.5 !important;
+  opacity: 1 !important;
+}
+
+.hive-link.dimmed {
+  opacity: 0.03;
+}
+
+.hive-link-skill {
+  stroke-width: 0.3;
+}
+
+.hive-node {
+  cursor: pointer;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 0.5;
+  transition: opacity 0.15s;
+}
+
+.hive-node:hover {
+  filter: brightness(1.4);
+  stroke: rgba(255, 255, 255, 0.5);
+  stroke-width: 1;
+}
+
+.hive-node.dimmed {
+  opacity: 0.08;
+}
+
+#graph-container svg {
+  display: block;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .filter-panel {

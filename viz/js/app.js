@@ -12,53 +12,63 @@ const DATA_URL = 'data/skills.json';
 let allData = null;
 let currentMode = '2d';
 let graph3dMod = null;
+let hiveMod = null;
 let libs3dLoaded = false;
 let switching = false;
 
 // ── Mode-aware wrappers ─────────────────────────────────────────────
 
 function activeFocusNode(id) {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.focusNode3D(id);
+  if (currentMode === 'hive' && hiveMod) hiveMod.focusNodeHive(id);
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.focusNode3D(id);
   else focusNode(id);
 }
 
 function activeResetView() {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.resetView3D();
+  if (currentMode === 'hive' && hiveMod) hiveMod.resetViewHive();
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.resetView3D();
   else resetView();
 }
 
 function activeZoomIn() {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.zoomIn3D();
+  if (currentMode === 'hive' && hiveMod) hiveMod.zoomInHive();
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomIn3D();
   else zoomIn();
 }
 
 function activeZoomOut() {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.zoomOut3D();
+  if (currentMode === 'hive' && hiveMod) hiveMod.zoomOutHive();
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomOut3D();
   else zoomOut();
 }
 
 function activeSetSkillVisibility(ids) {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.setSkillVisibility3D(ids);
+  if (currentMode === 'hive' && hiveMod) hiveMod.setSkillVisibilityHive(ids);
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.setSkillVisibility3D(ids);
   else setSkillVisibility(ids);
 }
 
 function activeSetVisibleAgents(ids) {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleAgents3D(ids);
+  if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleAgentsHive(ids);
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleAgents3D(ids);
   else setVisibleAgents(ids);
 }
 
 function activeSetVisibleTeams(ids) {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleTeams3D(ids);
+  if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleTeamsHive(ids);
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleTeams3D(ids);
   else setVisibleTeams(ids);
 }
 
 function activeRefreshGraph() {
-  if (currentMode === '3d' && graph3dMod) graph3dMod.refreshGraph3D();
+  if (currentMode === 'hive' && hiveMod) hiveMod.refreshHiveGraph();
+  else if (currentMode === '3d' && graph3dMod) graph3dMod.refreshGraph3D();
   else refreshGraph();
 }
 
 function activeGetVisibleAgentIds() {
-  if (currentMode === '3d' && graph3dMod) return graph3dMod.getVisibleAgentIds3D();
+  if (currentMode === 'hive' && hiveMod) return hiveMod.getVisibleAgentIdsHive();
+  else if (currentMode === '3d' && graph3dMod) return graph3dMod.getVisibleAgentIds3D();
   return getVisibleAgentIds();
 }
 
@@ -110,8 +120,12 @@ async function switchTo3D() {
       graph3dMod = await import('./graph3d.js');
     }
 
-    // Destroy 2D graph
-    destroyGraph();
+    // Destroy current mode
+    if (currentMode === 'hive' && hiveMod) {
+      hiveMod.destroyHiveGraph();
+    } else {
+      destroyGraph();
+    }
     container.innerHTML = '';
 
     // Initialize 3D graph with same data and callbacks
@@ -132,6 +146,7 @@ async function switchTo3D() {
 
     currentMode = '3d';
     btn.classList.add('active');
+    document.getElementById('btn-hive-toggle').classList.remove('active');
 
     // Hide icon toggle in 3D mode (icons are 2D-only)
     document.getElementById('btn-icon-toggle').style.display = 'none';
@@ -152,8 +167,10 @@ function switchTo2D() {
   const container = document.getElementById('graph-container');
   const btn = document.getElementById('btn-3d-toggle');
 
-  // Destroy 3D graph
-  if (graph3dMod) {
+  // Destroy current non-2D mode
+  if (currentMode === 'hive' && hiveMod) {
+    hiveMod.destroyHiveGraph();
+  } else if (graph3dMod) {
     graph3dMod.destroy3DGraph();
   }
   container.innerHTML = '';
@@ -181,6 +198,7 @@ function switchTo2D() {
 
   currentMode = '2d';
   btn.classList.remove('active');
+  document.getElementById('btn-hive-toggle').classList.remove('active');
 
   // Restore icon toggle visibility
   document.getElementById('btn-icon-toggle').style.display = '';
@@ -190,6 +208,53 @@ function switchTo2D() {
     const g = getGraph();
     if (g) g.zoomToFit(800, 40);
   }, 3500);
+}
+
+// ── Hive Mode ────────────────────────────────────────────────────────
+
+async function switchToHive() {
+  const container = document.getElementById('graph-container');
+  const hiveBtn = document.getElementById('btn-hive-toggle');
+  const btn3d = document.getElementById('btn-3d-toggle');
+
+  try {
+    if (!hiveMod) {
+      hiveMod = await import('./hive.js');
+    }
+
+    // Destroy current mode
+    if (currentMode === '3d' && graph3dMod) {
+      graph3dMod.destroy3DGraph();
+    } else {
+      destroyGraph();
+    }
+    container.innerHTML = '';
+
+    hiveMod.initHiveGraph(container, allData, {
+      onClick(node) {
+        if (node) openPanel(node);
+        else closePanel();
+      },
+      onHover(node) {
+        showTooltip(node);
+      },
+    });
+
+    // Apply current filter state
+    hiveMod.setVisibleAgentsHive(getFilteredAgentIds());
+    hiveMod.setVisibleTeamsHive(getFilteredTeamIds());
+    hiveMod.setSkillVisibilityHive(getVisibleSkillIds());
+
+    currentMode = 'hive';
+    hiveBtn.classList.add('active');
+    btn3d.classList.remove('active');
+
+    // Hide icon toggle (hive uses SVG, not canvas icons)
+    document.getElementById('btn-icon-toggle').style.display = 'none';
+  } catch (err) {
+    console.error('Failed to switch to Hive:', err);
+    switchTo2D();
+  }
 }
 
 // ── Main ────────────────────────────────────────────────────────────
@@ -302,7 +367,19 @@ async function main() {
     if (switching) return;
     switching = true;
     try {
-      if (currentMode === '2d') await switchTo3D();
+      if (currentMode !== '3d') await switchTo3D();
+      else switchTo2D();
+    } finally {
+      switching = false;
+    }
+  });
+
+  // ── Hive toggle ──
+  document.getElementById('btn-hive-toggle').addEventListener('click', async () => {
+    if (switching) return;
+    switching = true;
+    try {
+      if (currentMode !== 'hive') await switchToHive();
       else switchTo2D();
     } finally {
       switching = false;
@@ -356,6 +433,7 @@ function showTooltip(node) {
     return;
   }
   // In 3D mode, use built-in HTML tooltip from nodeLabel; skip custom tooltip
+  // In hive mode, show custom tooltip as in 2D
   if (currentMode === '3d') {
     if (tooltip) tooltip.style.display = 'none';
     return;
