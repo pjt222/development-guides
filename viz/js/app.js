@@ -2,7 +2,7 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
+import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
 import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -10,6 +10,189 @@ import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 const DATA_URL = 'data/skills.json';
 
 let allData = null;
+let currentMode = '2d';
+let graph3dMod = null;
+let libs3dLoaded = false;
+let switching = false;
+
+// ── Mode-aware wrappers ─────────────────────────────────────────────
+
+function activeFocusNode(id) {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.focusNode3D(id);
+  else focusNode(id);
+}
+
+function activeResetView() {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.resetView3D();
+  else resetView();
+}
+
+function activeZoomIn() {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.zoomIn3D();
+  else zoomIn();
+}
+
+function activeZoomOut() {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.zoomOut3D();
+  else zoomOut();
+}
+
+function activeSetSkillVisibility(ids) {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.setSkillVisibility3D(ids);
+  else setSkillVisibility(ids);
+}
+
+function activeSetVisibleAgents(ids) {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleAgents3D(ids);
+  else setVisibleAgents(ids);
+}
+
+function activeSetVisibleTeams(ids) {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleTeams3D(ids);
+  else setVisibleTeams(ids);
+}
+
+function activeRefreshGraph() {
+  if (currentMode === '3d' && graph3dMod) graph3dMod.refreshGraph3D();
+  else refreshGraph();
+}
+
+function activeGetVisibleAgentIds() {
+  if (currentMode === '3d' && graph3dMod) return graph3dMod.getVisibleAgentIds3D();
+  return getVisibleAgentIds();
+}
+
+// ── 3D Library Loading ──────────────────────────────────────────────
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Failed to load: ${src}`));
+    document.head.appendChild(script);
+  });
+}
+
+async function ensure3DLibs() {
+  if (libs3dLoaded) return;
+  await loadScript('https://unpkg.com/three@0.159.0/build/three.min.js');
+  await loadScript('https://unpkg.com/3d-force-graph@1/dist/3d-force-graph.min.js');
+  libs3dLoaded = true;
+}
+
+function isWebGLAvailable() {
+  try {
+    const canvas = document.createElement('canvas');
+    return !!(window.WebGLRenderingContext &&
+      (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')));
+  } catch (e) {
+    return false;
+  }
+}
+
+// ── Mode Switching ──────────────────────────────────────────────────
+
+async function switchTo3D() {
+  if (!isWebGLAvailable()) {
+    alert('WebGL is not supported in your browser. 3D mode requires WebGL.');
+    return;
+  }
+
+  const container = document.getElementById('graph-container');
+  const btn = document.getElementById('btn-3d-toggle');
+
+  try {
+    await ensure3DLibs();
+
+    if (!graph3dMod) {
+      graph3dMod = await import('./graph3d.js');
+    }
+
+    // Destroy 2D graph
+    destroyGraph();
+    container.innerHTML = '';
+
+    // Initialize 3D graph with same data and callbacks
+    graph3dMod.init3DGraph(container, allData, {
+      onClick(node) {
+        if (node) openPanel(node);
+        else closePanel();
+      },
+      onHover(node) {
+        showTooltip(node);
+      },
+    });
+
+    // Apply current filter state
+    graph3dMod.setVisibleAgents3D(getFilteredAgentIds());
+    graph3dMod.setVisibleTeams3D(getFilteredTeamIds());
+    graph3dMod.setSkillVisibility3D(getVisibleSkillIds());
+
+    currentMode = '3d';
+    btn.classList.add('active');
+
+    // Hide icon toggle in 3D mode (icons are 2D-only)
+    document.getElementById('btn-icon-toggle').style.display = 'none';
+
+    // Auto zoom-to-fit after layout settles
+    setTimeout(() => {
+      const g = graph3dMod.getGraph3D();
+      if (g) g.zoomToFit(800, 40);
+    }, 3500);
+  } catch (err) {
+    console.error('Failed to switch to 3D:', err);
+    // Fallback: reinit 2D
+    switchTo2D();
+  }
+}
+
+function switchTo2D() {
+  const container = document.getElementById('graph-container');
+  const btn = document.getElementById('btn-3d-toggle');
+
+  // Destroy 3D graph
+  if (graph3dMod) {
+    graph3dMod.destroy3DGraph();
+  }
+  container.innerHTML = '';
+
+  // Re-init 2D graph
+  initGraph(container, allData, {
+    onClick(node) {
+      if (node) openPanel(node);
+      else closePanel();
+    },
+    onHover(node) {
+      showTooltip(node);
+    },
+  });
+
+  // Restore icon mode
+  const savedIconMode = localStorage.getItem('skillnet-icons') === 'true';
+  if (savedIconMode) setIconMode(true);
+  preloadIcons(allData.nodes, getCurrentThemeName());
+
+  // Apply current filter state
+  setVisibleAgents(getFilteredAgentIds());
+  setVisibleTeams(getFilteredTeamIds());
+  setSkillVisibility(getVisibleSkillIds());
+
+  currentMode = '2d';
+  btn.classList.remove('active');
+
+  // Restore icon toggle visibility
+  document.getElementById('btn-icon-toggle').style.display = '';
+
+  // Auto zoom-to-fit
+  setTimeout(() => {
+    const g = getGraph();
+    if (g) g.zoomToFit(800, 40);
+  }, 3500);
+}
+
+// ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
   // ── Verify force-graph loaded ──
@@ -57,7 +240,7 @@ async function main() {
       // Skill links from agent panel use plain skill IDs
       const node = allData.nodes.find(n => n.id === id || n.id === `agent:${id}`);
       if (node) {
-        focusNode(node.id);
+        activeFocusNode(node.id);
         openPanel(node);
       }
     },
@@ -69,24 +252,24 @@ async function main() {
   const teamNodes = data.nodes.filter(n => n.type === 'team');
   initFilters(document.getElementById('filter-panel'), skillNodes, agentNodes, teamNodes, {
     onFilterChange(visibleSkillIds) {
-      setSkillVisibility(visibleSkillIds);
+      activeSetSkillVisibility(visibleSkillIds);
       updateFilteredStats(visibleSkillIds);
     },
     onAgentFilterChange(visibleIds) {
-      setVisibleAgents(visibleIds);
-      setSkillVisibility(getVisibleSkillIds());
+      activeSetVisibleAgents(visibleIds);
+      activeSetSkillVisibility(getVisibleSkillIds());
       updateFilteredStats(getVisibleSkillIds());
     },
     onTeamFilterChange(visibleIds) {
-      setVisibleTeams(visibleIds);
-      setSkillVisibility(getVisibleSkillIds());
+      activeSetVisibleTeams(visibleIds);
+      activeSetSkillVisibility(getVisibleSkillIds());
       updateFilteredStats(getVisibleSkillIds());
     },
     onTagFilterChange() {
       const visSkills = getVisibleSkillIds();
-      setSkillVisibility(visSkills);
-      setVisibleAgents(getFilteredAgentIds());
-      setVisibleTeams(getFilteredTeamIds());
+      activeSetSkillVisibility(visSkills);
+      activeSetVisibleAgents(getFilteredAgentIds());
+      activeSetVisibleTeams(getFilteredTeamIds());
       updateFilteredStats(visSkills);
     },
   });
@@ -95,11 +278,8 @@ async function main() {
   const container = document.getElementById('graph-container');
   initGraph(container, data, {
     onClick(node) {
-      if (node) {
-        openPanel(node);
-      } else {
-        closePanel();
-      }
+      if (node) openPanel(node);
+      else closePanel();
     },
     onHover(node) {
       showTooltip(node);
@@ -110,11 +290,23 @@ async function main() {
   preloadIcons(data.nodes, getCurrentThemeName());
 
   // ── Bind controls ──
-  document.getElementById('btn-zoom-in').addEventListener('click', zoomIn);
-  document.getElementById('btn-zoom-out').addEventListener('click', zoomOut);
+  document.getElementById('btn-zoom-in').addEventListener('click', () => activeZoomIn());
+  document.getElementById('btn-zoom-out').addEventListener('click', () => activeZoomOut());
   document.getElementById('btn-reset').addEventListener('click', () => {
-    resetView();
+    activeResetView();
     closePanel();
+  });
+
+  // ── 3D toggle ──
+  document.getElementById('btn-3d-toggle').addEventListener('click', async () => {
+    if (switching) return;
+    switching = true;
+    try {
+      if (currentMode === '2d') await switchTo3D();
+      else switchTo2D();
+    } finally {
+      switching = false;
+    }
   });
 
   // ── Theme dropdown ──
@@ -122,10 +314,12 @@ async function main() {
     try {
       setTheme(themeSelect.value);
       localStorage.setItem('skillnet-theme', themeSelect.value);
-      switchIconPalette(themeSelect.value, data.nodes);
+      if (currentMode === '2d') {
+        switchIconPalette(themeSelect.value, data.nodes);
+      }
       refreshSwatches();
       refreshPanelTheme();
-      refreshGraph();
+      activeRefreshGraph();
     } catch (err) {
       console.error('Theme switch failed:', err);
     }
@@ -143,7 +337,6 @@ async function main() {
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
-    const g = getGraph();
     refreshGraph();
   });
 
@@ -159,6 +352,11 @@ const tooltip = document.getElementById('tooltip');
 
 function showTooltip(node) {
   if (!node || !tooltip) {
+    if (tooltip) tooltip.style.display = 'none';
+    return;
+  }
+  // In 3D mode, use built-in HTML tooltip from nodeLabel; skip custom tooltip
+  if (currentMode === '3d') {
     if (tooltip) tooltip.style.display = 'none';
     return;
   }
@@ -185,7 +383,7 @@ document.addEventListener('mousemove', e => {
 function updateFilteredStats(visibleSkillIds) {
   if (!allData) return;
   const skillSet = new Set(visibleSkillIds);
-  const agentIds = getVisibleAgentIds();
+  const agentIds = activeGetVisibleAgentIds();
 
   const visSkills = allData.nodes.filter(n => n.type === 'skill' && skillSet.has(n.id));
   const visAgents = allData.nodes.filter(n => {

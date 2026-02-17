@@ -257,6 +257,20 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
   return graph;
 }
 
+export function destroyGraph() {
+  if (graph) {
+    graph.pauseAnimation();
+    graph = null;
+  }
+  graphData = { nodes: [], links: [] };
+  fullData = { nodes: [], links: [] };
+  selectedNodeId = null;
+  hoveredNodeId = null;
+  highlightedNodeIds = null;
+  nodeById = new Map();
+  glowCache.clear();
+}
+
 // ── Icon management ─────────────────────────────────────────────────
 let _iconRefreshTimer = null;
 function _scheduleIconRefresh() {
