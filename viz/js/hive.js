@@ -436,21 +436,21 @@ function handleSelect(node, nodeById) {
     adj.get(tgt).push({ neighbor: src, linkType: type });
   });
 
-  // BFS with skill-hop budget: team/agent links = free, skill links = max 1 hop
-  const MAX_SKILL_HOPS = 1;
-  const connected = new Map(); // id → best (lowest) skillHops
+  // BFS with total-hop budget: every link costs 1 hop regardless of type
+  const MAX_HOPS = 2;
+  const connected = new Map(); // id → best (lowest) hops
   connected.set(node.id, 0);
-  const queue = [{ id: node.id, skillHops: 0 }];
+  const queue = [{ id: node.id, hops: 0 }];
 
   while (queue.length) {
-    const { id: cur, skillHops } = queue.shift();
-    for (const { neighbor, linkType } of (adj.get(cur) || [])) {
-      const nextHops = linkType === 'skill' ? skillHops + 1 : skillHops;
-      if (nextHops > MAX_SKILL_HOPS) continue;
+    const { id: cur, hops } = queue.shift();
+    if (hops >= MAX_HOPS) continue;
+    for (const { neighbor } of (adj.get(cur) || [])) {
+      const nextHops = hops + 1;
       const prev = connected.get(neighbor);
       if (prev !== undefined && prev <= nextHops) continue;
       connected.set(neighbor, nextHops);
-      queue.push({ id: neighbor, skillHops: nextHops });
+      queue.push({ id: neighbor, hops: nextHops });
     }
   }
 
