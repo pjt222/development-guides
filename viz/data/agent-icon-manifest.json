@@ -519,27 +519,27 @@
     {
       "agentId": "kabalist",
       "path": "icons/cyberpunk/agents/kabalist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "lapidary",
       "path": "icons/cyberpunk/agents/lapidary.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "number-theorist",
       "path": "icons/cyberpunk/agents/number-theorist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "skill-reviewer",
       "path": "icons/cyberpunk/agents/skill-reviewer.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "version-manager",
       "path": "icons/cyberpunk/agents/version-manager.webp",
-      "status": "pending"
+      "status": "done"
     }
   ]
 }

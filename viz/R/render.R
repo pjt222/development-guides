@@ -11,17 +11,19 @@
 #' @param size_px Output dimension in pixels (default 1024)
 #' @return Invisible TRUE on success
 render_glyph <- function(color, glyph_fn_name, entity_id, out_path,
-                         glow_sigma = 8, size_px = 1024) {
+                         glow_sigma = 8, size_px = 1024, glyph_fn = NULL) {
   bright_color <- brighten_hex(color, 1.4)
 
-  # Resolve glyph function
-  glyph_fn <- tryCatch(
-    match.fun(glyph_fn_name),
-    error = function(e) {
-      stop("Cannot resolve glyph function '", glyph_fn_name,
-           "' for: ", entity_id, call. = FALSE)
-    }
-  )
+  # Resolve glyph function (use pre-resolved function if provided)
+  if (is.null(glyph_fn)) {
+    glyph_fn <- tryCatch(
+      match.fun(glyph_fn_name),
+      error = function(e) {
+        stop("Cannot resolve glyph function '", glyph_fn_name,
+             "' for: ", entity_id, call. = FALSE)
+      }
+    )
+  }
 
   # Draw the glyph centered on a 100x100 canvas
   glyph_layers <- glyph_fn(cx = 50, cy = 50, s = 1.0,
@@ -87,7 +89,8 @@ render_glyph <- function(color, glyph_fn_name, entity_id, out_path,
 #' @param color Optional explicit hex color (overrides domain lookup)
 #' @return Invisible TRUE on success
 render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
-                        glow_sigma = 8, size_px = 1024, color = NULL) {
+                        glow_sigma = 8, size_px = 1024, color = NULL,
+                        glyph_fn = NULL) {
   if (is.null(color)) {
     color <- DOMAIN_COLORS[[domain]]
     if (is.null(color)) {
@@ -101,10 +104,11 @@ render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
 
   glyph_fn_name <- SKILL_GLYPHS[[skill_id]]
   if (is.null(glyph_fn_name)) {
-    stop("No glyph mapped for skill: ", skill_id, call. = FALSE)
+    glyph_fn_name <- "unknown"
   }
 
   render_glyph(color = color, glyph_fn_name = glyph_fn_name,
                entity_id = skill_id, out_path = out_path,
-               glow_sigma = glow_sigma, size_px = size_px)
+               glow_sigma = glow_sigma, size_px = size_px,
+               glyph_fn = glyph_fn)
 }

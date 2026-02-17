@@ -11,7 +11,8 @@
 #' @param color Optional explicit hex color (overrides AGENT_COLORS lookup)
 #' @return Invisible TRUE on success
 render_agent_icon <- function(agent_id, out_path, glow_sigma = 8,
-                               size_px = 1024, color = NULL) {
+                               size_px = 1024, color = NULL,
+                               glyph_fn = NULL) {
   if (is.null(color)) {
     color <- AGENT_COLORS[[agent_id]]
     if (is.null(color)) {
@@ -21,10 +22,11 @@ render_agent_icon <- function(agent_id, out_path, glow_sigma = 8,
 
   glyph_fn_name <- AGENT_GLYPHS[[agent_id]]
   if (is.null(glyph_fn_name)) {
-    stop("No glyph mapped for agent: ", agent_id, call. = FALSE)
+    glyph_fn_name <- "unknown"
   }
 
   render_glyph(color = color, glyph_fn_name = glyph_fn_name,
                entity_id = agent_id, out_path = out_path,
-               glow_sigma = glow_sigma, size_px = size_px)
+               glow_sigma = glow_sigma, size_px = size_px,
+               glyph_fn = glyph_fn)
 }

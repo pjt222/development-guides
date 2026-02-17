@@ -149,6 +149,10 @@ for (pal in palettes_to_render) {
       next
     }
 
+    # Resolve glyph function in main process for worker access
+    glyph_fn_name <- SKILL_GLYPHS[[ic$skillId]]
+    glyph_fn <- if (!is.null(glyph_fn_name)) match.fun(glyph_fn_name) else NULL
+
     tasks[[length(tasks) + 1]] <- list(
       palette    = pal,
       domain     = ic$domain,
@@ -156,7 +160,8 @@ for (pal in palettes_to_render) {
       seed       = ic$seed,
       out_path   = out_path,
       color      = domain_color,
-      glow_sigma = opts$glow_sigma
+      glow_sigma = opts$glow_sigma,
+      glyph_fn   = glyph_fn
     )
   }
 }
@@ -179,7 +184,8 @@ results <- furrr::future_map(tasks, function(task) {
       seed       = task$seed,
       out_path   = task$out_path,
       glow_sigma = task$glow_sigma,
-      color      = task$color
+      color      = task$color,
+      glyph_fn   = task$glyph_fn
     )
 
     kb <- file_size_kb(task$out_path)
