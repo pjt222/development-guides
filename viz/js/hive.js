@@ -222,8 +222,7 @@ function render() {
 
   rootG.selectAll('*').remove();
 
-  // Center group
-  const g = rootG.append('g').attr('transform', `translate(${w / 2},${h / 2})`);
+  const g = rootG.append('g');
 
   // ── Axis lines (dual-track) ──
   const TRACK_SPREAD = { skill: 4, agent: 5, team: 6 };
@@ -330,6 +329,9 @@ function render() {
   if (selectedNodeId && nodeById.has(selectedNodeId)) {
     handleSelect(nodeById.get(selectedNodeId), nodeById);
   }
+
+  // Fit content to viewport after rebuild
+  zoomToFitHive(0);
 }
 
 // ── Hover highlight ─────────────────────────────────────────────────
@@ -546,12 +548,10 @@ export function initHiveGraph(container, data, { onClick, onHover } = {}) {
     const nh = containerEl.clientHeight || (window.innerHeight - 48);
     svg.attr('width', nw).attr('height', nh);
     render();
-    zoomToFitHive(0);
   };
   window.addEventListener('resize', resizeHandler);
 
   render();
-  zoomToFitHive(0);
 }
 
 export function destroyHiveGraph() {
