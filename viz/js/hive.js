@@ -23,6 +23,7 @@ let onNodeHover = null;
 let containerEl = null;
 let resizeHandler = null;
 let hoveredNodeId = null;
+let selectedNodeId = null;
 
 // Axis angles (radians): skills=210°, agents=330°, teams=90°
 const AXIS_ANGLES = {
@@ -67,8 +68,8 @@ function computeLayout(nodes, links) {
   const w = containerEl.clientWidth || window.innerWidth;
   const h = containerEl.clientHeight || (window.innerHeight - 48);
   const dim = Math.min(w, h);
-  const innerR = dim * 0.12;
-  const outerR = dim * 0.42;
+  const innerR = dim * 0.08;
+  const outerR = dim * 0.46;
 
   // Build adjacency for degree computation
   const degree = new Map();
@@ -89,6 +90,9 @@ function computeLayout(nodes, links) {
   byType.agent.sort((a, b) => ((a.skills?.length || 0) - (b.skills?.length || 0)));
   byType.team.sort((a, b) => ((a.members?.length || 0) - (b.members?.length || 0)));
 
+  // Perpendicular offset for dual-track layout (avoids overlap on dense axes)
+  const TRACK_SPREAD = { skill: 4, agent: 5, team: 6 };
+
   const positioned = [];
   const nodeById = new Map();
 
@@ -97,11 +101,23 @@ function computeLayout(nodes, links) {
     const angle = AXIS_ANGLES[type];
     const maxRank = Math.max(axis.length - 1, 1);
     const scale = d3.scaleLinear().domain([0, maxRank]).range([innerR, outerR]);
+    const perpAngle = angle + Math.PI / 2;
+    const spread = TRACK_SPREAD[type];
 
     for (let i = 0; i < axis.length; i++) {
       const node = axis[i];
       const r = scale(i);
-      const { x, y } = polar(angle, r);
+      // 3-track for skills (center/left/right), 2-track for agents/teams
+      let side;
+      if (type === 'skill') {
+        const track = i % 3;  // 0=center, 1=left, 2=right
+        side = track === 0 ? 0 : track === 1 ? -1 : 1;
+      } else {
+        side = (i % 2 === 0) ? 1 : -1;
+      }
+      const offset = side * spread;
+      const x = r * Math.cos(angle) + offset * Math.cos(perpAngle);
+      const y = r * Math.sin(angle) + offset * Math.sin(perpAngle);
       const pos = { ...node, _x: x, _y: y, _r: r, _angle: angle, _rank: i };
       positioned.push(pos);
       nodeById.set(node.id, pos);
@@ -145,10 +161,9 @@ function linkPath(pl) {
 }
 
 function nodeShape(d) {
-  // Skills: circle (rendered as <circle>)
-  // Agents: octagon, Teams: pentagon (rendered as <polygon>)
+  // Skills: circle, Agents: octagon, Teams: pentagon
   if (d.type === 'agent') {
-    const r = 5;
+    const r = 4;
     const pts = [];
     for (let i = 0; i < 8; i++) {
       const a = (Math.PI * 2 * i) / 8 - Math.PI / 8;
@@ -165,7 +180,7 @@ function nodeShape(d) {
     }
     return { tag: 'polygon', attrs: { points: pts.join(' ') } };
   }
-  return { tag: 'circle', attrs: { cx: d._x, cy: d._y, r: 3.5 } };
+  return { tag: 'circle', attrs: { cx: d._x, cy: d._y, r: 2 } };
 }
 
 // ── Filter helpers ──────────────────────────────────────────────────
@@ -201,14 +216,23 @@ function render() {
   // Center group
   const g = rootG.append('g').attr('transform', `translate(${w / 2},${h / 2})`);
 
-  // ── Axis lines ──
+  // ── Axis lines (dual-track) ──
+  const TRACK_SPREAD = { skill: 4, agent: 5, team: 6 };
   for (const [type, angle] of Object.entries(AXIS_ANGLES)) {
-    const inner = polar(angle, innerR * 0.8);
-    const outer = polar(angle, outerR * 1.08);
-    g.append('line')
-      .attr('class', 'hive-axis')
-      .attr('x1', inner.x).attr('y1', inner.y)
-      .attr('x2', outer.x).attr('y2', outer.y);
+    const perpAngle = angle + Math.PI / 2;
+    const spread = TRACK_SPREAD[type];
+
+    const sides = (type === 'skill') ? [-1, 0, 1] : [-1, 1];
+    for (const side of sides) {
+      const ox = side * spread * Math.cos(perpAngle);
+      const oy = side * spread * Math.sin(perpAngle);
+      const inner = polar(angle, innerR * 0.8);
+      const outer = polar(angle, outerR * 1.08);
+      g.append('line')
+        .attr('class', 'hive-axis')
+        .attr('x1', inner.x + ox).attr('y1', inner.y + oy)
+        .attr('x2', outer.x + ox).attr('y2', outer.y + oy);
+    }
 
     // Label
     const labelPos = polar(angle, outerR * 1.15);
@@ -233,7 +257,8 @@ function render() {
       .attr('d', linkPath(pl))
       .attr('stroke', hexToRgba(linkColor(pl, nodeById), 0.12))
       .attr('data-source', pl.source)
-      .attr('data-target', pl.target);
+      .attr('data-target', pl.target)
+      .attr('data-type', 'skill');
   }
 
   for (const pl of otherLinks) {
@@ -245,7 +270,8 @@ function render() {
       .attr('stroke', hexToRgba(linkColor(pl, nodeById), opacity))
       .attr('stroke-width', width)
       .attr('data-source', pl.source)
-      .attr('data-target', pl.target);
+      .attr('data-target', pl.target)
+      .attr('data-type', pl.type);
   }
 
   // ── Nodes ──
@@ -274,50 +300,151 @@ function render() {
       .on('mouseleave', () => handleHoverEnd(positioned))
       .on('click', (event) => {
         event.stopPropagation();
-        if (onNodeClick) onNodeClick(d);
+        if (selectedNodeId === d.id) {
+          handleDeselect();
+          if (onNodeClick) onNodeClick(null);
+        } else {
+          handleSelect(d, nodeById);
+          if (onNodeClick) onNodeClick(d);
+        }
       });
   }
 
   // Background click clears selection
   svg.on('click', () => {
+    handleDeselect();
     if (onNodeClick) onNodeClick(null);
   });
+
+  // Re-apply selection highlighting if a node is selected
+  if (selectedNodeId && nodeById.has(selectedNodeId)) {
+    handleSelect(nodeById.get(selectedNodeId), nodeById);
+  }
 }
 
 // ── Hover highlight ─────────────────────────────────────────────────
 
 function handleHover(node, nodeById, positioned) {
+  if (selectedNodeId) return;
   hoveredNodeId = node.id;
 
-  // Find connected node IDs
-  const connected = new Set([node.id]);
+  // Collect links by type, building typed adjacency
+  const linkEls = [];
+  const byType = { team: [], agent: [], skill: [] };
   rootG.selectAll('.hive-link').each(function () {
     const el = window.d3.select(this);
     const src = el.attr('data-source');
     const tgt = el.attr('data-target');
-    if (src === node.id || tgt === node.id) {
-      connected.add(src);
-      connected.add(tgt);
-      el.classed('highlighted', true).classed('dimmed', false);
-    } else {
-      el.classed('highlighted', false).classed('dimmed', true);
-    }
+    const type = el.attr('data-type');
+    linkEls.push({ el, src, tgt });
+    if (type && byType[type]) byType[type].push({ src, tgt });
   });
+
+  // Helper: find neighbors via a specific link type
+  const neighbors = (id, linkType) => {
+    const result = [];
+    for (const { src, tgt } of byType[linkType]) {
+      if (src === id) result.push(tgt);
+      if (tgt === id) result.push(src);
+    }
+    return result;
+  };
+
+  const connected = new Set([node.id]);
+
+  if (node.type === 'team') {
+    // team → agents (via team links) → skills (via agent links)
+    const agents = neighbors(node.id, 'team');
+    agents.forEach(a => connected.add(a));
+    agents.forEach(a => neighbors(a, 'agent').forEach(s => connected.add(s)));
+
+  } else if (node.type === 'agent') {
+    // agent → teams (via team links) + skills (via agent links)
+    neighbors(node.id, 'team').forEach(t => connected.add(t));
+    neighbors(node.id, 'agent').forEach(s => connected.add(s));
+
+  } else {
+    // skill → agents (via agent links) + related skills (via skill links)
+    neighbors(node.id, 'agent').forEach(a => connected.add(a));
+    neighbors(node.id, 'skill').forEach(s => connected.add(s));
+  }
+
+  // Highlight links where both endpoints are in connected set
+  for (const { el, src, tgt } of linkEls) {
+    const on = connected.has(src) && connected.has(tgt);
+    el.classed('highlighted', on).classed('dimmed', !on);
+  }
 
   rootG.selectAll('.hive-node').each(function () {
     const el = window.d3.select(this);
-    const id = el.attr('data-id');
-    el.classed('dimmed', !connected.has(id));
+    el.classed('dimmed', !connected.has(el.attr('data-id')));
   });
 
   if (onNodeHover) onNodeHover(node);
 }
 
 function handleHoverEnd(positioned) {
+  if (selectedNodeId) return;
   hoveredNodeId = null;
   rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
   rootG.selectAll('.hive-node').classed('dimmed', false);
   if (onNodeHover) onNodeHover(null);
+}
+
+// ── Click select (type-aware BFS) ───────────────────────────────────
+
+function handleSelect(node, nodeById) {
+  selectedNodeId = node.id;
+
+  // Build typed adjacency from rendered links
+  const linkEls = [];
+  const adj = new Map(); // id → [{ neighbor, linkType }]
+  rootG.selectAll('.hive-link').each(function () {
+    const el = window.d3.select(this);
+    const src = el.attr('data-source');
+    const tgt = el.attr('data-target');
+    const type = el.attr('data-type');
+    linkEls.push({ el, src, tgt });
+    if (!adj.has(src)) adj.set(src, []);
+    if (!adj.has(tgt)) adj.set(tgt, []);
+    adj.get(src).push({ neighbor: tgt, linkType: type });
+    adj.get(tgt).push({ neighbor: src, linkType: type });
+  });
+
+  // BFS with skill-hop budget: team/agent links = free, skill links = max 1 hop
+  const MAX_SKILL_HOPS = 1;
+  const connected = new Map(); // id → best (lowest) skillHops
+  connected.set(node.id, 0);
+  const queue = [{ id: node.id, skillHops: 0 }];
+
+  while (queue.length) {
+    const { id: cur, skillHops } = queue.shift();
+    for (const { neighbor, linkType } of (adj.get(cur) || [])) {
+      const nextHops = linkType === 'skill' ? skillHops + 1 : skillHops;
+      if (nextHops > MAX_SKILL_HOPS) continue;
+      const prev = connected.get(neighbor);
+      if (prev !== undefined && prev <= nextHops) continue;
+      connected.set(neighbor, nextHops);
+      queue.push({ id: neighbor, skillHops: nextHops });
+    }
+  }
+
+  // Apply highlighting
+  const connectedSet = new Set(connected.keys());
+  for (const { el, src, tgt } of linkEls) {
+    const on = connectedSet.has(src) && connectedSet.has(tgt);
+    el.classed('highlighted', on).classed('dimmed', !on);
+  }
+  rootG.selectAll('.hive-node').each(function () {
+    const el = window.d3.select(this);
+    el.classed('dimmed', !connectedSet.has(el.attr('data-id')));
+  });
+}
+
+function handleDeselect() {
+  selectedNodeId = null;
+  rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
+  rootG.selectAll('.hive-node').classed('dimmed', false);
 }
 
 // ── Public API ──────────────────────────────────────────────────────
@@ -345,13 +472,21 @@ export function initHiveGraph(container, data, { onClick, onHover } = {}) {
   svg = d3.select(container).append('svg')
     .attr('width', w)
     .attr('height', h)
-    .style('display', 'block');
+    .style('display', 'block')
+    .style('overflow', 'hidden');
 
   rootG = svg.append('g');
 
   // Zoom behavior
   zoomBehavior = d3.zoom()
     .scaleExtent([0.3, 5])
+    .clickDistance(5)
+    .filter((event) => {
+      // Block pointer/touch on nodes so native click fires, but allow wheel zoom everywhere
+      if (event.target.classList?.contains('hive-node') && event.type !== 'wheel') return false;
+      // Replicate d3-zoom default: allow ctrl+wheel (trackpad pinch), reject secondary buttons
+      return (!event.ctrlKey || event.type === 'wheel') && !event.button;
+    })
     .on('zoom', (event) => {
       rootG.attr('transform', event.transform);
     });
@@ -390,6 +525,7 @@ export function destroyHiveGraph() {
   onNodeHover = null;
   containerEl = null;
   hoveredNodeId = null;
+  selectedNodeId = null;
 }
 
 export function setSkillVisibilityHive(ids) {

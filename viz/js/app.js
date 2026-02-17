@@ -212,12 +212,19 @@ function switchTo2D() {
 
 // ── Hive Mode ────────────────────────────────────────────────────────
 
+async function ensureD3() {
+  if (window.d3) return;
+  await loadScript('https://unpkg.com/d3@7/dist/d3.min.js');
+}
+
 async function switchToHive() {
   const container = document.getElementById('graph-container');
   const hiveBtn = document.getElementById('btn-hive-toggle');
   const btn3d = document.getElementById('btn-3d-toggle');
 
   try {
+    await ensureD3();
+
     if (!hiveMod) {
       hiveMod = await import('./hive.js');
     }

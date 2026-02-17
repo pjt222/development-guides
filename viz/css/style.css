@@ -779,6 +779,7 @@ body::after {
   stroke-width: 0.5;
   opacity: 1;
   transition: opacity 0.15s;
+  pointer-events: none;
 }
 
 .hive-link.highlighted {
