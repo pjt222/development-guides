@@ -14,7 +14,7 @@
     "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &"
   },
   "dependencies": {
-    "three": "^0.159.0",
+    "three": "^0.182.0",
     "3d-force-graph": "^1",
     "force-graph": "^1.47.4",
     "d3": "^7"
