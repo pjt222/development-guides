@@ -25,4 +25,5 @@ CONTINUE_HERE.md
 node_modules/
 
 # Viz build artifacts
+viz/dist/
 viz/logs/

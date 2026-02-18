@@ -33,7 +33,7 @@ const TEAMS_DIR = resolve(__dirname, '..', 'teams');
 const REGISTRY_PATH = resolve(SKILLS_DIR, '_registry.yml');
 const AGENTS_REGISTRY_PATH = resolve(AGENTS_DIR, '_registry.yml');
 const TEAMS_REGISTRY_PATH = resolve(TEAMS_DIR, '_registry.yml');
-const OUTPUT_PATH = resolve(__dirname, 'data', 'skills.json');
+const OUTPUT_PATH = resolve(__dirname, 'public', 'data', 'skills.json');
 
 // ── Parse registry ──────────────────────────────────────────────
 const registry = yaml.load(readFileSync(REGISTRY_PATH, 'utf8'));

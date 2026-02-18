@@ -14,7 +14,6 @@ let allData = null;
 let currentMode = '2d';
 let graph3dMod = null;
 let hiveMod = null;
-let libs3dLoaded = false;
 let switching = false;
 
 // ── Mode-aware wrappers ─────────────────────────────────────────────
@@ -73,24 +72,12 @@ function activeGetVisibleAgentIds() {
   return getVisibleAgentIds();
 }
 
-// ── 3D Library Loading ──────────────────────────────────────────────
+// ── Layout button helper ────────────────────────────────────────────
 
-function loadScript(src) {
-  return new Promise((resolve, reject) => {
-    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
-    const script = document.createElement('script');
-    script.src = src;
-    script.onload = resolve;
-    script.onerror = () => reject(new Error(`Failed to load: ${src}`));
-    document.head.appendChild(script);
-  });
-}
-
-async function ensure3DLibs() {
-  if (libs3dLoaded) return;
-  await loadScript('https://unpkg.com/three@0.159.0/build/three.min.js');
-  await loadScript('https://unpkg.com/3d-force-graph@1/dist/3d-force-graph.min.js');
-  libs3dLoaded = true;
+function setActiveMode(mode) {
+  document.getElementById('btn-2d').classList.toggle('active', mode === '2d');
+  document.getElementById('btn-3d').classList.toggle('active', mode === '3d');
+  document.getElementById('btn-hive').classList.toggle('active', mode === 'hive');
 }
 
 function isWebGLAvailable() {
@@ -112,11 +99,8 @@ async function switchTo3D() {
   }
 
   const container = document.getElementById('graph-container');
-  const btn = document.getElementById('btn-3d-toggle');
 
   try {
-    await ensure3DLibs();
-
     if (!graph3dMod) {
       graph3dMod = await import('./graph3d.js');
     }
@@ -147,8 +131,7 @@ async function switchTo3D() {
 
     currentMode = '3d';
     logEvent('app', { event: 'modeSwitch', mode: '3d' });
-    btn.classList.add('active');
-    document.getElementById('btn-hive-toggle').classList.remove('active');
+    setActiveMode('3d');
 
     // Hide icon toggle in 3D mode (icons are 2D-only)
     document.getElementById('btn-icon-toggle').style.display = 'none';
@@ -171,7 +154,6 @@ async function switchTo3D() {
 
 function switchTo2D() {
   const container = document.getElementById('graph-container');
-  const btn = document.getElementById('btn-3d-toggle');
 
   // Destroy current non-2D mode
   if (currentMode === 'hive' && hiveMod) {
@@ -204,8 +186,7 @@ function switchTo2D() {
 
   currentMode = '2d';
   logEvent('app', { event: 'modeSwitch', mode: '2d' });
-  btn.classList.remove('active');
-  document.getElementById('btn-hive-toggle').classList.remove('active');
+  setActiveMode('2d');
 
   // Restore icon toggle visibility
   document.getElementById('btn-icon-toggle').style.display = '';
@@ -223,19 +204,10 @@ function switchTo2D() {
 
 // ── Hive Mode ────────────────────────────────────────────────────────
 
-async function ensureD3() {
-  if (window.d3) return;
-  await loadScript('https://unpkg.com/d3@7/dist/d3.min.js');
-}
-
 async function switchToHive() {
   const container = document.getElementById('graph-container');
-  const hiveBtn = document.getElementById('btn-hive-toggle');
-  const btn3d = document.getElementById('btn-3d-toggle');
 
   try {
-    await ensureD3();
-
     if (!hiveMod) {
       hiveMod = await import('./hive.js');
     }
@@ -265,8 +237,7 @@ async function switchToHive() {
 
     currentMode = 'hive';
     logEvent('app', { event: 'modeSwitch', mode: 'hive' });
-    hiveBtn.classList.add('active');
-    btn3d.classList.remove('active');
+    setActiveMode('hive');
 
     // Hide icon toggle (hive uses SVG, not canvas icons)
     document.getElementById('btn-icon-toggle').style.display = 'none';
@@ -289,11 +260,6 @@ async function switchToHive() {
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
-  // ── Verify force-graph loaded ──
-  if (typeof ForceGraph === 'undefined') {
-    throw new Error('ForceGraph library not loaded. Check CDN script tag.');
-  }
-
   // ── Load data ──
   let data;
   try {
@@ -399,28 +365,23 @@ async function main() {
     logBtn.addEventListener('click', () => downloadLog());
   }
 
-  // ── 3D toggle ──
-  document.getElementById('btn-3d-toggle').addEventListener('click', async () => {
-    if (switching) return;
+  // ── Layout buttons (radio group: 2D / 3D / Hive) ──
+  document.getElementById('btn-2d').addEventListener('click', async () => {
+    if (switching || currentMode === '2d') return;
     switching = true;
-    try {
-      if (currentMode !== '3d') await switchTo3D();
-      else switchTo2D();
-    } finally {
-      switching = false;
-    }
+    try { switchTo2D(); } finally { switching = false; }
   });
 
-  // ── Hive toggle ──
-  document.getElementById('btn-hive-toggle').addEventListener('click', async () => {
-    if (switching) return;
+  document.getElementById('btn-3d').addEventListener('click', async () => {
+    if (switching || currentMode === '3d') return;
     switching = true;
-    try {
-      if (currentMode !== 'hive') await switchToHive();
-      else switchTo2D();
-    } finally {
-      switching = false;
-    }
+    try { await switchTo3D(); } finally { switching = false; }
+  });
+
+  document.getElementById('btn-hive').addEventListener('click', async () => {
+    if (switching || currentMode === 'hive') return;
+    switching = true;
+    try { await switchToHive(); } finally { switching = false; }
   });
 
   // ── Hive sort toggle ──

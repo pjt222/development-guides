@@ -2,6 +2,7 @@
  * graph.js - Force-graph setup, node/link rendering, interactions
  */
 
+import ForceGraph from 'force-graph';
 import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';
 

@@ -6,6 +6,7 @@
  * Loaded lazily when user clicks the Hive toggle button.
  */
 
+import * as d3 from 'd3';
 import {
   DOMAIN_COLORS, getAgentColor, getTeamColor, hexToRgba,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG
@@ -82,7 +83,6 @@ function linkColor(link, nodeById) {
 }
 
 function computeLayout(nodes, links) {
-  const d3 = window.d3;
   if (!containerEl) return { positioned: [], posLinks: [], innerR: 0, outerR: 0 };
 
   const w = containerEl.clientWidth || window.innerWidth;
@@ -218,8 +218,7 @@ function getFilteredData() {
 // ── Render ──────────────────────────────────────────────────────────
 
 function render() {
-  const d3 = window.d3;
-  if (!svg || !rootG || !d3) return;
+  if (!svg || !rootG) return;
 
   const w = containerEl.clientWidth || window.innerWidth;
   const h = containerEl.clientHeight || (window.innerHeight - 48);
@@ -351,7 +350,7 @@ function handleHover(node, nodeById, positioned) {
   const linkEls = [];
   const byType = { team: [], agent: [], skill: [] };
   rootG.selectAll('.hive-link').each(function () {
-    const el = window.d3.select(this);
+    const el = d3.select(this);
     const src = el.attr('data-source');
     const tgt = el.attr('data-target');
     const type = el.attr('data-type');
@@ -411,7 +410,7 @@ function handleHover(node, nodeById, positioned) {
   }
 
   rootG.selectAll('.hive-node').each(function () {
-    const el = window.d3.select(this);
+    const el = d3.select(this);
     el.classed('dimmed', !connected.has(el.attr('data-id')));
   });
 
@@ -436,7 +435,7 @@ function handleSelect(node, nodeById) {
   const linkEls = [];
   const byType = { team: [], agent: [], skill: [] };
   rootG.selectAll('.hive-link').each(function () {
-    const el = window.d3.select(this);
+    const el = d3.select(this);
     const src = el.attr('data-source');
     const tgt = el.attr('data-target');
     const type = el.attr('data-type');
@@ -495,7 +494,7 @@ function handleSelect(node, nodeById) {
     el.classed('highlighted', on).classed('dimmed', !on);
   }
   rootG.selectAll('.hive-node').each(function () {
-    const el = window.d3.select(this);
+    const el = d3.select(this);
     el.classed('dimmed', !connected.has(el.attr('data-id')));
   });
 }
@@ -510,8 +509,6 @@ function handleDeselect() {
 // ── Public API ──────────────────────────────────────────────────────
 
 export function initHiveGraph(container, data, { onClick, onHover } = {}) {
-  const d3 = window.d3;
-  if (!d3) throw new Error('D3 library not loaded');
 
   containerEl = container;
   onNodeClick = onClick;
@@ -612,7 +609,7 @@ export function refreshHiveGraph() {
 }
 
 export function focusNodeHive(id) {
-  if (!svg || !rootG || !window.d3) return;
+  if (!svg || !rootG) return;
   const node = rootG.select(`.hive-node[data-id="${id}"]`);
   if (node.empty()) return;
 
@@ -624,7 +621,7 @@ export function focusNodeHive(id) {
 }
 
 function zoomToFitHive(duration = 500) {
-  if (!svg || !rootG || !zoomBehavior || !window.d3) return;
+  if (!svg || !rootG || !zoomBehavior) return;
   const bbox = rootG.node().getBBox();
   if (!bbox.width || !bbox.height) return;
 
@@ -639,7 +636,7 @@ function zoomToFitHive(duration = 500) {
   const cx = bbox.x + bbox.width / 2;
   const cy = bbox.y + bbox.height / 2;
 
-  const transform = window.d3.zoomIdentity
+  const transform = d3.zoomIdentity
     .translate(w / 2 - cx * scale, h / 2 - cy * scale)
     .scale(scale);
 
@@ -647,18 +644,18 @@ function zoomToFitHive(duration = 500) {
 }
 
 export function resetViewHive() {
-  if (!svg || !zoomBehavior || !window.d3) return;
+  if (!svg || !zoomBehavior) return;
   zoomToFitHive(500);
   hoveredNodeId = null;
 }
 
 export function zoomInHive() {
-  if (!svg || !zoomBehavior || !window.d3) return;
+  if (!svg || !zoomBehavior) return;
   svg.transition().duration(300).call(zoomBehavior.scaleBy, 1.4);
 }
 
 export function zoomOutHive() {
-  if (!svg || !zoomBehavior || !window.d3) return;
+  if (!svg || !zoomBehavior) return;
   svg.transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
 }
 

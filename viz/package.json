@@ -5,14 +5,24 @@
   "description": "Cyberpunk Skillnet Visualization for development-guides",
   "type": "module",
   "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "build-data": "node build-data.js",
     "build-manifest": "node build-icon-manifest.js",
     "build-icons": "node build-icons.js",
     "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &"
   },
+  "dependencies": {
+    "three": "^0.159.0",
+    "3d-force-graph": "^1",
+    "force-graph": "^1.47.4",
+    "d3": "^7"
+  },
   "devDependencies": {
     "@gradio/client": "^1.0.0",
     "js-yaml": "^4.1.0",
-    "sharp": "^0.33.0"
+    "sharp": "^0.33.0",
+    "vite": "^6"
   }
 }

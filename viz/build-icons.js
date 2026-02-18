@@ -25,8 +25,8 @@ import { Client } from '@gradio/client';
 import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const MANIFEST_PATH = resolve(__dirname, 'data', 'icon-manifest.json');
-const ICONS_DIR = resolve(__dirname, 'icons');
+const MANIFEST_PATH = resolve(__dirname, 'public', 'data', 'icon-manifest.json');
+const ICONS_DIR = resolve(__dirname, 'public', 'icons');
 const LOGS_DIR = resolve(__dirname, 'logs');
 
 // ── CLI args ────────────────────────────────────────────────────────

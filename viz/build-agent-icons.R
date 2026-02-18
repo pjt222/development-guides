@@ -71,7 +71,7 @@ if (opts$palette == "all") {
 }
 
 # ── Load manifest ────────────────────────────────────────────────────────
-manifest_path <- file.path(script_dir, "data", "agent-icon-manifest.json")
+manifest_path <- file.path(script_dir, "public", "data", "agent-icon-manifest.json")
 if (!file.exists(manifest_path)) {
   stop("Agent manifest not found: ", manifest_path, call. = FALSE)
 }
@@ -129,7 +129,7 @@ skipped_color <- 0
 for (pal in palettes_to_render) {
   pal_colors <- all_pal_colors[[pal]]
   for (ic in queue) {
-    out_path <- file.path(script_dir, "icons", pal, "agents",
+    out_path <- file.path(script_dir, "public", "icons", pal, "agents",
                           paste0(ic$agentId, ".webp"))
 
     # Skip existing if requested
@@ -205,7 +205,7 @@ total_errors <- total_errors + skipped_color
 # Update manifest status and paths for cyberpunk palette
 if ("cyberpunk" %in% palettes_to_render) {
   for (ic in queue) {
-    out_path <- file.path(script_dir, "icons", "cyberpunk", "agents",
+    out_path <- file.path(script_dir, "public", "icons", "cyberpunk", "agents",
                           paste0(ic$agentId, ".webp"))
     for (j in seq_along(manifest$icons)) {
       if (manifest$icons[[j]]$agentId == ic$agentId) {
@@ -213,7 +213,7 @@ if ("cyberpunk" %in% palettes_to_render) {
           manifest$icons[[j]]$status <- "done"
           manifest$icons[[j]]$lastError <- NULL
         }
-        manifest$icons[[j]]$path <- sprintf("icons/cyberpunk/agents/%s.webp",
+        manifest$icons[[j]]$path <- sprintf("public/icons/cyberpunk/agents/%s.webp",
                                              ic$agentId)
         break
       }

@@ -77,7 +77,7 @@ if (opts$palette == "all") {
 }
 
 # ── Load manifest ────────────────────────────────────────────────────────
-manifest_path <- file.path(script_dir, "data", "icon-manifest.json")
+manifest_path <- file.path(script_dir, "public", "data", "icon-manifest.json")
 if (!file.exists(manifest_path)) {
   stop("Manifest not found: ", manifest_path, call. = FALSE)
 }
@@ -135,7 +135,7 @@ skipped_color <- 0
 for (pal in palettes_to_render) {
   pal_colors <- all_pal_colors[[pal]]
   for (ic in queue) {
-    out_path <- file.path(script_dir, "icons", pal, ic$domain,
+    out_path <- file.path(script_dir, "public", "icons", pal, ic$domain,
                           paste0(ic$skillId, ".webp"))
 
     # Skip existing if requested
@@ -218,7 +218,7 @@ total_errors <- total_errors + skipped_color
 # Update manifest status for cyberpunk palette (primary palette for manifest tracking)
 if ("cyberpunk" %in% palettes_to_render) {
   for (ic in queue) {
-    out_path <- file.path(script_dir, "icons", "cyberpunk", ic$domain,
+    out_path <- file.path(script_dir, "public", "icons", "cyberpunk", ic$domain,
                           paste0(ic$skillId, ".webp"))
     for (j in seq_along(manifest$icons)) {
       if (manifest$icons[[j]]$skillId == ic$skillId &&
@@ -228,7 +228,7 @@ if ("cyberpunk" %in% palettes_to_render) {
           manifest$icons[[j]]$lastError <- NULL
         }
         # Update path to palette-aware format
-        manifest$icons[[j]]$path <- sprintf("icons/cyberpunk/%s/%s.webp",
+        manifest$icons[[j]]$path <- sprintf("public/icons/cyberpunk/%s/%s.webp",
                                              ic$domain, ic$skillId)
         break
       }

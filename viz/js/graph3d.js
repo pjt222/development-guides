@@ -5,6 +5,8 @@
  * Loaded lazily when user clicks the 3D toggle button.
  */
 
+import * as THREE from 'three';
+import ForceGraph3D from '3d-force-graph';
 import {
   DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES,
   hexToRgba, getAgentColor, getTeamColor,
@@ -167,9 +169,6 @@ const TEAM_LINK_DISTANCE = 80;
 // ── Node object creation ───────────────────────────────────────────
 
 function createNodeObject(node) {
-  const THREE = window.THREE;
-  if (!THREE) return undefined;
-
   let geometry, material, size;
 
   if (node.type === 'agent') {

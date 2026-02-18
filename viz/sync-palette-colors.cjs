@@ -11,7 +11,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const PALETTE_JSON = path.join(__dirname, 'data', 'palette-colors.json');
+const PALETTE_JSON = path.join(__dirname, 'public', 'data', 'palette-colors.json');
 const COLORS_JS = path.join(__dirname, 'js', 'colors.js');
 
 // ── Read palette data ────────────────────────────────────────────────

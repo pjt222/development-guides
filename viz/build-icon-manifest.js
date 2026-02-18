@@ -11,9 +11,9 @@ import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const SKILLS_PATH = resolve(__dirname, 'data', 'skills.json');
-const OUTPUT_PATH = resolve(__dirname, 'data', 'icon-manifest.json');
-const ICONS_DIR = resolve(__dirname, 'icons');
+const SKILLS_PATH = resolve(__dirname, 'public', 'data', 'skills.json');
+const OUTPUT_PATH = resolve(__dirname, 'public', 'data', 'icon-manifest.json');
+const ICONS_DIR = resolve(__dirname, 'public', 'icons');
 
 // ── Generation config ───────────────────────────────────────────────
 const META = {
@@ -214,7 +214,7 @@ for (const domain of domainsSorted) {
     const seed = computeSeed(domain, domainIdx, i + 1);
     const keywords = skillKeywords(node.id, node.title);
     const prompt = `${style.basePrompt}, ${keywords}, ${SHARED_SUFFIX}`;
-    const path = `icons/${domain}/${node.id}.webp`;
+    const path = `public/icons/${domain}/${node.id}.webp`;
 
     icons.push({
       skillId: node.id,
