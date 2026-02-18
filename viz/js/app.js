@@ -137,9 +137,11 @@ async function switchTo3D() {
     logEvent('app', { event: 'modeSwitch', mode: '3d' });
     setActiveMode('3d');
 
-    // Hide hive sort toggle
+    // Hide hive controls
     const hiveSortBtn3d = document.getElementById('btn-hive-sort');
     if (hiveSortBtn3d) hiveSortBtn3d.style.display = 'none';
+    const hiveSpreadLabel3d = document.getElementById('hive-spread-label');
+    if (hiveSpreadLabel3d) hiveSpreadLabel3d.style.display = 'none';
 
     // Auto zoom-to-fit after layout settles
     setTimeout(() => {
@@ -189,9 +191,11 @@ function switchTo2D() {
   logEvent('app', { event: 'modeSwitch', mode: '2d' });
   setActiveMode('2d');
 
-  // Hide hive sort toggle
+  // Hide hive controls
   const hiveSortBtn2d = document.getElementById('btn-hive-sort');
   if (hiveSortBtn2d) hiveSortBtn2d.style.display = 'none';
+  const hiveSpreadLabel2d = document.getElementById('hive-spread-label');
+  if (hiveSpreadLabel2d) hiveSpreadLabel2d.style.display = 'none';
 
   // Auto zoom-to-fit
   setTimeout(() => {
@@ -245,6 +249,16 @@ async function switchToHive() {
       hiveMod.setHiveSortMode(savedSort);
       sortBtn.classList.toggle('active', savedSort === 'interleaved');
       sortBtn.textContent = savedSort === 'interleaved' ? 'Ranked' : 'Spread';
+    }
+
+    // Show and restore hive spread slider
+    const spreadLabel = document.getElementById('hive-spread-label');
+    const spreadSlider = document.getElementById('hive-spread');
+    if (spreadLabel && spreadSlider) {
+      spreadLabel.style.display = '';
+      const savedSpread = parseFloat(localStorage.getItem('skillnet-hive-spread')) || 3.0;
+      spreadSlider.value = savedSpread;
+      hiveMod.setHiveSpread(savedSpread);
     }
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
@@ -392,6 +406,16 @@ async function main() {
     logEvent('app', { event: 'hiveSortToggle', mode: next });
   });
 
+  // ── Hive spread slider ──
+  const hiveSpreadSlider = document.getElementById('hive-spread');
+  if (hiveSpreadSlider) hiveSpreadSlider.addEventListener('input', function () {
+    if (!hiveMod) return;
+    const val = parseFloat(this.value);
+    hiveMod.setHiveSpread(val);
+    localStorage.setItem('skillnet-hive-spread', val);
+    logEvent('app', { event: 'hiveSpreadChange', value: val });
+  });
+
   // ── Theme dropdown ──
   themeSelect.addEventListener('change', () => {
     try {
@@ -400,7 +424,8 @@ async function main() {
       localStorage.setItem('skillnet-theme', themeSelect.value);
       switchIconPalette(themeSelect.value, data.nodes);  // 2D cache
       if (graph3dMod) graph3dMod.switchIconPalette3D(themeSelect.value, data.nodes);
-      // Hive: render() uses getCurrentThemeName() dynamically — no explicit call needed
+      // Hive: preload icons for new palette so isIconLoaded() passes
+      if (currentMode === 'hive' && hiveMod) hiveMod.preloadHiveIcons(data.nodes, themeSelect.value);
       refreshSwatches();
       refreshPanelTheme();
       activeRefreshGraph();

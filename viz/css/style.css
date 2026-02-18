@@ -761,6 +761,65 @@ body::after {
   backdrop-filter: blur(8px);
 }
 
+/* ── Hive Spread Slider ─────────────────────────────────────── */
+#btn-hive-sort {
+  margin-left: 8px;
+}
+
+.hive-control {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+}
+
+#hive-spread {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;
+}
+
+#hive-spread::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+#hive-spread::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  cursor: pointer;
+}
+
+#hive-spread::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+#hive-spread::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
 /* ── Hive Plot ───────────────────────────────────────────────── */
 .hive-axis {
   stroke: rgba(255, 255, 255, 0.12);
