@@ -107,24 +107,44 @@ export function getVisibleTeamIds() {
 function rebuildHighlightSet() {
   const activeId = selectedNodeId || hoveredNodeId;
   if (!activeId) { highlightedNodeIds = null; return; }
+
+  const activeNode = nodeById.get(activeId);
   const set = new Set([activeId]);
-  // 1-hop: direct neighbors
+
+  // Build typed adjacency
+  const byType = { team: [], agent: [], skill: [] };
   for (const l of graphData.links) {
     const src = typeof l.source === 'object' ? l.source.id : l.source;
     const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-    if (src === activeId) set.add(tgt);
-    else if (tgt === activeId) set.add(src);
+    if (l.type && byType[l.type]) byType[l.type].push({ src, tgt });
   }
-  // 2-hop for teams: also highlight agents' skill connections
-  if (activeId.startsWith('team:')) {
-    const firstHop = new Set(set);
-    for (const l of graphData.links) {
-      const src = typeof l.source === 'object' ? l.source.id : l.source;
-      const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-      if (firstHop.has(src) && src !== activeId) set.add(tgt);
-      else if (firstHop.has(tgt) && tgt !== activeId) set.add(src);
+
+  const neighbors = (id, linkType) => {
+    const result = [];
+    for (const { src, tgt } of byType[linkType]) {
+      if (src === id) result.push(tgt);
+      if (tgt === id) result.push(src);
     }
+    return result;
+  };
+
+  if (activeNode && activeNode.type === 'team') {
+    // Team: self + direct agents + those agents' skills
+    const agents = neighbors(activeId, 'team');
+    agents.forEach(a => set.add(a));
+    agents.forEach(a => neighbors(a, 'agent').forEach(s => set.add(s)));
+  } else if (activeNode && activeNode.type === 'agent') {
+    // Agent: self + direct skills + direct teams
+    neighbors(activeId, 'team').forEach(t => set.add(t));
+    neighbors(activeId, 'agent').forEach(s => set.add(s));
+  } else {
+    // Skill: self + one-hop skills + direct agents + those agents' teams
+    const agents = neighbors(activeId, 'agent');
+    agents.forEach(a => set.add(a));
+    agents.forEach(a => neighbors(a, 'team').forEach(t => set.add(t)));
+    neighbors(activeId, 'skill').forEach(s => set.add(s));
   }
+
   highlightedNodeIds = set;
 }
 
@@ -194,7 +214,6 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .linkColor(link => {
       const isAgentLink = link.type === 'agent';
       const isTeamLink = link.type === 'team';
-      const activeId = selectedNodeId || hoveredNodeId;
       const getAgentLinkColor = (alpha) => {
         if (link._agentHex) return hexToRgba(link._agentHex, alpha);
         return hexToRgba(getAgentColor(), alpha);
@@ -203,7 +222,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
         if (link._teamHex) return hexToRgba(link._teamHex, alpha);
         return hexToRgba(getTeamColor(), alpha);
       };
-      if (!activeId) {
+      if (!highlightedNodeIds) {
         if (isTeamLink) return getTeamLinkColor(0.06);
         return isAgentLink
           ? getAgentLinkColor(0.04)
@@ -211,9 +230,11 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
       }
       const src = typeof link.source === 'object' ? link.source.id : link.source;
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
-      if (src === activeId || tgt === activeId) {
+      const both = highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt);
+      if (both) {
         if (isTeamLink) return getTeamLinkColor(0.4);
         if (isAgentLink) return getAgentLinkColor(0.3);
+        const activeId = selectedNodeId || hoveredNodeId;
         const connectedNode = nodeById.get(src === activeId ? tgt : src);
         const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
         return hexToRgba(color, 0.35);
@@ -222,11 +243,10 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
       return isAgentLink ? getAgentLinkColor(0.01) : 'rgba(255,255,255,0.02)';
     })
     .linkWidth(link => {
-      const activeId = selectedNodeId || hoveredNodeId;
-      if (!activeId) return 0.5;
+      if (!highlightedNodeIds) return 0.5;
       const src = typeof link.source === 'object' ? link.source.id : link.source;
       const tgt = typeof link.target === 'object' ? link.target.id : link.target;
-      return (src === activeId || tgt === activeId) ? 1.5 : 0.3;
+      return (highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt)) ? 1.5 : 0.3;
     })
     .nodeCanvasObject(drawNode)
     .nodePointerAreaPaint(drawHitArea)

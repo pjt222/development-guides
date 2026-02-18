@@ -23,6 +23,7 @@ let onNodeHover = null;
 let visibleAgentIds = null;
 let visibleTeamIds = null;
 let nodeById = new Map();
+let highlightedNodeIds = null;
 
 // ── Helpers ────────────────────────────────────────────────────────
 
@@ -33,6 +34,66 @@ function hexToInt(hex) {
 function rebuildNodeIndex() {
   nodeById = new Map();
   for (const n of graphData.nodes) nodeById.set(n.id, n);
+}
+
+function rebuildHighlightSet() {
+  const activeId = selectedNodeId || hoveredNodeId;
+  if (!activeId) { highlightedNodeIds = null; return; }
+
+  const activeNode = nodeById.get(activeId);
+  const set = new Set([activeId]);
+
+  // Build typed adjacency
+  const byType = { team: [], agent: [], skill: [] };
+  for (const l of graphData.links) {
+    const src = typeof l.source === 'object' ? l.source.id : l.source;
+    const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+    if (l.type && byType[l.type]) byType[l.type].push({ src, tgt });
+  }
+
+  const neighbors = (id, linkType) => {
+    const result = [];
+    for (const { src, tgt } of byType[linkType]) {
+      if (src === id) result.push(tgt);
+      if (tgt === id) result.push(src);
+    }
+    return result;
+  };
+
+  if (activeNode && activeNode.type === 'team') {
+    const agents = neighbors(activeId, 'team');
+    agents.forEach(a => set.add(a));
+    agents.forEach(a => neighbors(a, 'agent').forEach(s => set.add(s)));
+  } else if (activeNode && activeNode.type === 'agent') {
+    neighbors(activeId, 'team').forEach(t => set.add(t));
+    neighbors(activeId, 'agent').forEach(s => set.add(s));
+  } else {
+    const agents = neighbors(activeId, 'agent');
+    agents.forEach(a => set.add(a));
+    agents.forEach(a => neighbors(a, 'team').forEach(t => set.add(t)));
+    neighbors(activeId, 'skill').forEach(s => set.add(s));
+  }
+
+  highlightedNodeIds = set;
+}
+
+function isNodeHighlighted(node) {
+  return highlightedNodeIds === null || highlightedNodeIds.has(node.id);
+}
+
+function updateVisuals() {
+  if (!graph3d) return;
+
+  // Update node opacity via Three.js materials
+  graphData.nodes.forEach(node => {
+    const obj = node.__threeObj;
+    if (!obj || !obj.material) return;
+    const highlighted = !highlightedNodeIds || highlightedNodeIds.has(node.id);
+    obj.material.opacity = highlighted ? 0.9 : 0.08;
+  });
+
+  // Force link color recalculation
+  graph3d.linkColor(graph3d.linkColor());
 }
 
 // ── Link color helpers ─────────────────────────────────────────────
@@ -145,9 +206,22 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
       return `${node.title || node.id} [${node.domain}]`;
     })
     .linkColor(link => {
-      if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.15);
-      if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.1);
-      return 'rgba(255,255,255,0.1)';
+      if (!highlightedNodeIds) {
+        if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.15);
+        if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.1);
+        return 'rgba(255,255,255,0.1)';
+      }
+      const src = typeof link.source === 'object' ? link.source.id : link.source;
+      const tgt = typeof link.target === 'object' ? link.target.id : link.target;
+      const both = highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt);
+      if (both) {
+        if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.5);
+        if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.4);
+        return 'rgba(255,255,255,0.4)';
+      }
+      if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.02);
+      if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.01);
+      return 'rgba(255,255,255,0.02)';
     })
     .linkWidth(0.5)
     .linkOpacity(0.6)
@@ -155,6 +229,8 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
       if (node) {
         logEvent('graph3d', { event: 'click', node: { id: node.id, type: node.type, domain: node.domain } });
         selectedNodeId = node.id;
+        rebuildHighlightSet();
+        updateVisuals();
         if (onNodeClick) onNodeClick(node);
       }
     })
@@ -165,12 +241,16 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
         logEvent('graph3d', { event: 'hoverEnd' });
       }
       hoveredNodeId = node ? node.id : null;
+      rebuildHighlightSet();
+      updateVisuals();
       container.style.cursor = node ? 'pointer' : 'default';
       if (onNodeHover) onNodeHover(node);
     })
     .onBackgroundClick(() => {
       logEvent('graph3d', { event: 'bgClick' });
       selectedNodeId = null;
+      rebuildHighlightSet();
+      updateVisuals();
       if (onNodeClick) onNodeClick(null);
     })
     .cooldownTicks(200)
@@ -235,6 +315,7 @@ export function destroy3DGraph() {
   fullData = { nodes: [], links: [] };
   selectedNodeId = null;
   hoveredNodeId = null;
+  highlightedNodeIds = null;
   nodeById = new Map();
   visibleAgentIds = null;
   visibleTeamIds = null;
@@ -247,6 +328,8 @@ export function focusNode3D(id) {
   const node = nodeById.get(id);
   if (!node || !graph3d) return;
   selectedNodeId = id;
+  rebuildHighlightSet();
+  updateVisuals();
   const distance = 120;
   const hypot = Math.hypot(node.x || 0, node.y || 0, node.z || 0) || 1;
   const distRatio = 1 + distance / hypot;
@@ -261,6 +344,8 @@ export function resetView3D() {
   logEvent('graph3d', { event: 'resetView' });
   selectedNodeId = null;
   hoveredNodeId = null;
+  highlightedNodeIds = null;
+  updateVisuals();
   if (graph3d) graph3d.zoomToFit(600, 40);
 }
 
