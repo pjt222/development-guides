@@ -2,7 +2,8 @@
  * app.js - Bootstrap: load data, init subsystems, bind controls
  */
 
-import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setIconMode, getIconMode, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
+import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
+import { setIconMode, getIconMode } from './icons.js';
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
 import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -129,12 +130,12 @@ async function switchTo3D() {
     graph3dMod.setVisibleTeams3D(getFilteredTeamIds());
     graph3dMod.setSkillVisibility3D(getVisibleSkillIds());
 
+    // Preload 3D icon textures
+    graph3dMod.preload3DIcons(allData.nodes, getCurrentThemeName());
+
     currentMode = '3d';
     logEvent('app', { event: 'modeSwitch', mode: '3d' });
     setActiveMode('3d');
-
-    // Hide icon toggle in 3D mode (icons are 2D-only)
-    document.getElementById('btn-icon-toggle').style.display = 'none';
 
     // Hide hive sort toggle
     const hiveSortBtn3d = document.getElementById('btn-hive-sort');
@@ -188,9 +189,6 @@ function switchTo2D() {
   logEvent('app', { event: 'modeSwitch', mode: '2d' });
   setActiveMode('2d');
 
-  // Restore icon toggle visibility
-  document.getElementById('btn-icon-toggle').style.display = '';
-
   // Hide hive sort toggle
   const hiveSortBtn2d = document.getElementById('btn-hive-sort');
   if (hiveSortBtn2d) hiveSortBtn2d.style.display = 'none';
@@ -238,9 +236,6 @@ async function switchToHive() {
     currentMode = 'hive';
     logEvent('app', { event: 'modeSwitch', mode: 'hive' });
     setActiveMode('hive');
-
-    // Hide icon toggle (hive uses SVG, not canvas icons)
-    document.getElementById('btn-icon-toggle').style.display = 'none';
 
     // Show and restore hive sort toggle
     const sortBtn = document.getElementById('btn-hive-sort');
@@ -403,9 +398,9 @@ async function main() {
       logEvent('app', { event: 'themeChange', theme: themeSelect.value });
       setTheme(themeSelect.value);
       localStorage.setItem('skillnet-theme', themeSelect.value);
-      if (currentMode === '2d') {
-        switchIconPalette(themeSelect.value, data.nodes);
-      }
+      switchIconPalette(themeSelect.value, data.nodes);  // 2D cache
+      if (graph3dMod) graph3dMod.switchIconPalette3D(themeSelect.value, data.nodes);
+      // Hive: render() uses getCurrentThemeName() dynamically — no explicit call needed
       refreshSwatches();
       refreshPanelTheme();
       activeRefreshGraph();
@@ -427,7 +422,7 @@ async function main() {
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
-    refreshGraph();
+    activeRefreshGraph();
   });
 
   logEvent('app', { event: 'sessionStart', mode: currentMode, nodeCount: data.nodes.length, linkCount: data.links.length });

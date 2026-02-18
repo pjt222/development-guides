@@ -45,6 +45,18 @@ const DOMAIN_STYLES = {
   'defensive':          { basePrompt: 'Neon flowing water circle, yin-yang shield',              glow: 'red' },
   'design':             { basePrompt: 'Glowing compass, golden spiral ornament',                 glow: 'rose-gold' },
   'data-serialization': { basePrompt: 'Neon binary stream, schema tree brackets',                glow: 'blue' },
+  'travel':              { basePrompt: 'Neon compass rose, map route trail, wanderlust path',        glow: 'sand-gold' },
+  'relocation':          { basePrompt: 'Glowing moving box, passport stamp, border crossing',        glow: 'slate-teal' },
+  'a2a-protocol':        { basePrompt: 'Neon agent handshake, protocol arrows, JSON-RPC',            glow: 'electric-blue' },
+  'geometry':            { basePrompt: 'Ruler and compass, Euclidean circle, geometric proof',        glow: 'golden' },
+  'stochastic-processes':{ basePrompt: 'Random walk path, probability distribution, Markov chain',   glow: 'deep-purple' },
+  'theoretical-science': { basePrompt: 'Quantum wave function, mathematical derivation, proof',      glow: 'astral-blue' },
+  'diffusion':           { basePrompt: 'Diffusion gradient, noise-to-signal, spreading pattern',     glow: 'misty-pink' },
+  'hildegard':           { basePrompt: 'Medieval manuscript, herbal illustration, sacred music',      glow: 'emerald' },
+  'maintenance':         { basePrompt: 'Broom and mop, tidy workspace, cleanup tools',               glow: 'utility-gray' },
+  'blender':             { basePrompt: '3D wireframe cube, Blender viewport, rendering light',        glow: 'blender-orange' },
+  'visualization':       { basePrompt: 'Data chart, plot grid, color palette, graph axis',            glow: 'chart-green' },
+  '3d-printing':         { basePrompt: 'Layer-by-layer print, FDM nozzle, 3D model',                 glow: 'filament-blue' },
 };
 
 // ── Per-skill keyword extraction ────────────────────────────────────
@@ -167,6 +179,70 @@ function skillKeywords(id, title) {
     'setup-automl-pipeline':         'AutoML optimizer, hyperparameter grid',
     'run-ab-test-models':            'A/B split, model comparison',
     'monitor-model-drift':           'drift curve, distribution shift',
+    // mcp-integration (2 missing)
+    'analyze-codebase-for-mcp':      'code scan, MCP tool opportunity',
+    'scaffold-mcp-server':           'scaffold frame, MCP server skeleton',
+    // review (3 missing)
+    'review-skill-format':           'skill document, format validation',
+    'update-skill-content':          'skill file, content update arrow',
+    'refactor-skill-structure':      'skill structure, refactor arrows',
+    // esoteric (3 missing - Kabbalistic)
+    'read-tree-of-life':             'Tree of Life, sephiroth circles, paths',
+    'apply-gematria':                'Hebrew letters, numerical values, computation',
+    'study-hebrew-letters':          'aleph beth, Hebrew letter forms, mystical',
+    // travel (6)
+    'plan-tour-route':               'route path, waypoints, map optimization',
+    'create-spatial-visualization':  'interactive map, elevation profile, spatial data',
+    'generate-tour-report':          'tour document, map insert, itinerary',
+    'plan-hiking-tour':              'mountain trail, hiking path, elevation',
+    'check-hiking-gear':             'backpack, gear checklist, equipment',
+    'assess-trail-conditions':       'trail weather, condition assessment, safety',
+    // relocation (3)
+    'plan-eu-relocation':            'EU map, relocation timeline, dependency flow',
+    'check-relocation-documents':    'passport, document verification, checkmark',
+    'navigate-dach-bureaucracy':     'German forms, bureaucratic steps, stamp',
+    // a2a-protocol (3)
+    'design-a2a-agent-card':         'agent card, capability manifest, JSON',
+    'implement-a2a-server':          'server, JSON-RPC, task lifecycle',
+    'test-a2a-interop':              'two agents, handshake test, conformance',
+    // geometry (3)
+    'construct-geometric-figure':    'compass, ruler, geometric construction',
+    'solve-trigonometric-problem':   'unit circle, sine wave, triangle',
+    'prove-geometric-theorem':       'proof triangle, QED, axiomatic',
+    // stochastic-processes (3)
+    'model-markov-chain':            'state graph, transition arrows, steady state',
+    'fit-hidden-markov-model':       'hidden states, observation layer, Viterbi',
+    'simulate-stochastic-process':   'random walk, simulation path, Monte Carlo',
+    // theoretical-science (3)
+    'formulate-quantum-problem':     'psi wave function, quantum bracket, Hamiltonian',
+    'derive-theoretical-result':     'derivation steps, proof chain, first principles',
+    'survey-theoretical-literature': 'papers stack, literature synthesis, survey',
+    // diffusion (3)
+    'fit-drift-diffusion-model':     'drift accumulator, decision boundary, RT',
+    'implement-diffusion-network':   'noise-to-image, denoising steps, U-Net',
+    'analyze-diffusion-dynamics':    'SDE curve, Fokker-Planck, diffusion equation',
+    // hildegard (5)
+    'formulate-herbal-remedy':       'mortar pestle, herb, medieval preparation',
+    'assess-holistic-health':        'four humors, temperament wheel, balance',
+    'compose-sacred-music':          'neume notation, antiphon, modal music',
+    'practice-viriditas':            'green spiral, viriditas power, living green',
+    'consult-natural-history':       'illustrated manuscript, plant, stone, Physica',
+    // maintenance (4)
+    'clean-codebase':                'broom, dead code sweep, lint cleanup',
+    'tidy-project-structure':        'organized folders, tidy structure, convention',
+    'repair-broken-references':      'broken link, repair chain, fix connection',
+    'escalate-issues':               'priority arrow, severity triage, escalation',
+    // blender (3)
+    'create-3d-scene':               '3D cube, viewport grid, scene setup',
+    'script-blender-automation':     'Python script, 3D automation, procedural',
+    'render-blender-output':         'camera lens, render output, compositing',
+    // visualization (2)
+    'create-2d-composition':         'SVG canvas, 2D layers, diagram layout',
+    'render-publication-graphic':    'publication chart, DPI, typography',
+    // 3d-printing (3)
+    'prepare-print-model':           'sliced model layers, support generation',
+    'select-print-material':         'filament spool, material properties',
+    'troubleshoot-print-issues':     'printer nozzle, wrench, adhesion fix',
   };
 
   if (overrides[id]) return overrides[id];

@@ -4,7 +4,10 @@
 
 import ForceGraph from 'force-graph';
 import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
+import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded } from './icons.js';
 import { logEvent } from './eventlog.js';
+
+export { setIconMode, getIconMode } from './icons.js';
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -15,10 +18,8 @@ let onNodeClick = null;
 let onNodeHover = null;
 
 // ── Icon state ──────────────────────────────────────────────────────
-let iconMode = false;
 const cachedPaletteIcons = new Map(); // palette -> Map(nodeId -> Image)
 let activeIconMap = new Map();        // current palette's nodeId -> Image
-const ICON_ZOOM_THRESHOLD = 1.0;
 
 // ── Performance caches ──────────────────────────────────────────────
 let highlightedNodeIds = null;  // Set of active + neighbor IDs (null = all highlighted)
@@ -313,17 +314,11 @@ export function preloadIcons(nodes, palette) {
   cachedPaletteIcons.set(pal, palMap);
 
   for (const node of nodes) {
-    let path;
-    if (node.type === 'team') {
-      path = `icons/${pal}/teams/${node.id.replace('team:', '')}.webp`;
-    } else if (node.type === 'agent') {
-      path = `icons/${pal}/agents/${node.id.replace('agent:', '')}.webp`;
-    } else {
-      path = `icons/${pal}/${node.domain}/${node.id}.webp`;
-    }
+    const path = getIconPath(node, pal);
     const img = new Image();
     img.onload = () => {
       palMap.set(node.id, img);
+      markIconLoaded(pal, node.id);
       _scheduleIconRefresh();
     };
     img.onerror = () => {}; // silently skip missing icons
@@ -340,13 +335,7 @@ export function switchIconPalette(palette, nodes) {
   }
 }
 
-export function setIconMode(enabled) {
-  iconMode = !!enabled;
-}
-
-export function getIconMode() {
-  return iconMode;
-}
+// setIconMode and getIconMode are re-exported from icons.js (see top of file)
 
 // ── Shape helpers ───────────────────────────────────────────────────
 function drawHexPath(ctx, x, y, r) {
@@ -398,7 +387,7 @@ function drawAgentNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
   const alpha = dimmed ? 0.12 : 1;
 
-  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+  const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
   if (useIcon) {
     // ── Icon mode: draw agent icon with glow ──
@@ -476,7 +465,7 @@ function drawTeamNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
   const alpha = dimmed ? 0.12 : 1;
 
-  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+  const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
   if (useIcon) {
     const img = activeIconMap.get(node.id);
@@ -572,7 +561,7 @@ function drawNode(node, ctx, globalScale) {
   const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlighted;
   const alpha = dimmed ? 0.12 : 1;
 
-  const useIcon = iconMode && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
+  const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
 
   if (useIcon) {
     // ── Icon mode: draw image with domain-colored glow ──

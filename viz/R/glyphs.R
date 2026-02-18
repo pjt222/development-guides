@@ -82,7 +82,7 @@ SKILL_GLYPHS <- list(
   "setup-local-kubernetes"         = "glyph_cluster_local",
   "write-helm-chart"               = "glyph_anchor",
 
-  # ── esoteric (15) ─────────────────────────────────────────────────────
+  # ── esoteric (24) ─────────────────────────────────────────────────────
   "heal"                           = "glyph_healing_hands",
   "heal-guidance"                  = "glyph_healing_hands_guide",
   "meditate"                       = "glyph_lotus_seated",
@@ -104,6 +104,9 @@ SKILL_GLYPHS <- list(
   "conscientiousness"              = "glyph_checklist_thorough",
   "honesty-humility"               = "glyph_mirror_truth",
   "shine"                          = "glyph_radiant_star",
+  "read-tree-of-life"              = "glyph_tree_of_life",
+  "apply-gematria"                 = "glyph_gematria",
+  "study-hebrew-letters"           = "glyph_hebrew_letters",
 
   # ── gardening (5) ─────────────────────────────────────────────────────
   "cultivate-bonsai"                   = "glyph_bonsai_tree",
@@ -144,10 +147,12 @@ SKILL_GLYPHS <- list(
   "run-puzzle-tests"           = "glyph_jigsaw_check",
   "validate-piles-notation"    = "glyph_jigsaw_stack",
 
-  # ── mcp-integration (3) ───────────────────────────────────────────────
+  # ── mcp-integration (5) ───────────────────────────────────────────────
   "configure-mcp-server"           = "glyph_server_plug",
   "build-custom-mcp-server"        = "glyph_wrench_server",
   "troubleshoot-mcp-connection"    = "glyph_debug_cable",
+  "analyze-codebase-for-mcp"       = "glyph_mcp_analyze",
+  "scaffold-mcp-server"            = "glyph_mcp_scaffold",
 
   # ── mlops (12) ─────────────────────────────────────────────────────────
   "track-ml-experiments"           = "glyph_experiment_flask",
@@ -204,13 +209,16 @@ SKILL_GLYPHS <- list(
   "build-parameterized-report"     = "glyph_template_params",
   "generate-statistical-tables"    = "glyph_table_stats",
 
-  # ── review (6) ─────────────────────────────────────────────────────────
+  # ── review (9) ─────────────────────────────────────────────────────────
   "review-research"                = "glyph_magnifier_paper",
   "review-data-analysis"           = "glyph_magnifier_chart",
   "review-software-architecture"   = "glyph_magnifier_arch",
   "review-web-design"              = "glyph_magnifier_layout",
   "review-ux-ui"                   = "glyph_magnifier_user",
   "review-pull-request"            = "glyph_pr_review",
+  "review-skill-format"            = "glyph_magnifier_skill",
+  "update-skill-content"           = "glyph_skill_update",
+  "refactor-skill-structure"       = "glyph_skill_refactor",
 
   # ── web-dev (3) ────────────────────────────────────────────────────────
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
@@ -287,5 +295,70 @@ SKILL_GLYPHS <- list(
   "apply-semantic-versioning"      = "glyph_semver_tag",
   "manage-changelog"               = "glyph_changelog_scroll",
   "plan-release-cycle"             = "glyph_release_calendar",
-  "audit-dependency-versions"      = "glyph_dependency_tree"
+  "audit-dependency-versions"      = "glyph_dependency_tree",
+
+  # ── travel (6) ───────────────────────────────────────────────────
+  "plan-tour-route"                = "glyph_tour_route",
+  "create-spatial-visualization"   = "glyph_spatial_map",
+  "generate-tour-report"           = "glyph_tour_report",
+  "plan-hiking-tour"               = "glyph_hiking_trail",
+  "check-hiking-gear"              = "glyph_gear_checklist",
+  "assess-trail-conditions"        = "glyph_trail_assess",
+
+  # ── relocation (3) ──────────────────────────────────────────────
+  "plan-eu-relocation"             = "glyph_relocation_plan",
+  "check-relocation-documents"     = "glyph_document_check",
+  "navigate-dach-bureaucracy"      = "glyph_bureaucracy",
+
+  # ── a2a-protocol (3) ────────────────────────────────────────────
+  "design-a2a-agent-card"          = "glyph_agent_card",
+  "implement-a2a-server"           = "glyph_a2a_server",
+  "test-a2a-interop"               = "glyph_a2a_test",
+
+  # ── geometry (3) ────────────────────────────────────────────────
+  "construct-geometric-figure"     = "glyph_compass_ruler",
+  "solve-trigonometric-problem"    = "glyph_trig_circle",
+  "prove-geometric-theorem"        = "glyph_proof_triangle",
+
+  # ── stochastic-processes (3) ────────────────────────────────────
+  "model-markov-chain"             = "glyph_markov_nodes",
+  "fit-hidden-markov-model"        = "glyph_hmm_states",
+  "simulate-stochastic-process"    = "glyph_random_walk",
+
+  # ── theoretical-science (3) ─────────────────────────────────────
+  "formulate-quantum-problem"      = "glyph_wave_function",
+  "derive-theoretical-result"      = "glyph_derivation",
+  "survey-theoretical-literature"  = "glyph_literature_survey",
+
+  # ── diffusion (3) ──────────────────────────────────────────────
+  "fit-drift-diffusion-model"      = "glyph_drift_diffusion",
+  "implement-diffusion-network"    = "glyph_diffusion_network",
+  "analyze-diffusion-dynamics"     = "glyph_diffusion_sde",
+
+  # ── hildegard (5) ──────────────────────────────────────────────
+  "formulate-herbal-remedy"        = "glyph_herbal_mortar",
+  "assess-holistic-health"         = "glyph_humoral_balance",
+  "compose-sacred-music"           = "glyph_neume_notes",
+  "practice-viriditas"             = "glyph_viriditas_spiral",
+  "consult-natural-history"        = "glyph_physica_book",
+
+  # ── maintenance (4) ─────────────────────────────────────────────
+  "clean-codebase"                 = "glyph_broom_clean",
+  "tidy-project-structure"         = "glyph_tidy_folders",
+  "repair-broken-references"       = "glyph_repair_link",
+  "escalate-issues"                = "glyph_escalation_arrow",
+
+  # ── blender (3) ─────────────────────────────────────────────────
+  "create-3d-scene"                = "glyph_3d_cube",
+  "script-blender-automation"      = "glyph_blender_script",
+  "render-blender-output"          = "glyph_render_camera",
+
+  # ── visualization (2) ──────────────────────────────────────────
+  "create-2d-composition"          = "glyph_2d_canvas",
+  "render-publication-graphic"     = "glyph_pub_chart",
+
+  # ── 3d-printing (3) ────────────────────────────────────────────
+  "prepare-print-model"            = "glyph_3d_model_prep",
+  "select-print-material"          = "glyph_material_spool",
+  "troubleshoot-print-issues"      = "glyph_print_debug"
 )

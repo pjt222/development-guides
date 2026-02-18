@@ -10,8 +10,9 @@ import ForceGraph3D from '3d-force-graph';
 import {
   DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES,
   hexToRgba, getAgentColor, getTeamColor,
-  AGENT_PRIORITY_CONFIG, TEAM_CONFIG
+  AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
+import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded } from './icons.js';
 import { logEvent } from './eventlog.js';
 
 let graph3d = null;
@@ -26,6 +27,47 @@ let visibleAgentIds = null;
 let visibleTeamIds = null;
 let nodeById = new Map();
 let highlightedNodeIds = null;
+
+// ── Icon texture cache ────────────────────────────────────────────
+const textureLoader = new THREE.TextureLoader();
+const cachedPaletteTextures = new Map(); // palette -> Map(nodeId -> THREE.Texture)
+let activeTextureMap = new Map();
+let _texRefreshTimer = null;
+
+function _scheduleTexRefresh() {
+  if (_texRefreshTimer) clearTimeout(_texRefreshTimer);
+  _texRefreshTimer = setTimeout(() => {
+    _texRefreshTimer = null;
+    if (graph3d && getIconMode()) graph3d.nodeThreeObject(createNodeObject);
+  }, 500);
+}
+
+export function preload3DIcons(nodes, palette) {
+  const pal = palette || getCurrentThemeName();
+  if (cachedPaletteTextures.has(pal)) {
+    activeTextureMap = cachedPaletteTextures.get(pal);
+    return;
+  }
+  const palMap = new Map();
+  cachedPaletteTextures.set(pal, palMap);
+  for (const node of nodes) {
+    textureLoader.load(getIconPath(node, pal), (texture) => {
+      texture.colorSpace = THREE.SRGBColorSpace;
+      palMap.set(node.id, texture);
+      markIconLoaded(pal, node.id);
+      _scheduleTexRefresh();
+    }, undefined, () => {});
+  }
+  activeTextureMap = palMap;
+}
+
+export function switchIconPalette3D(palette, nodes) {
+  if (cachedPaletteTextures.has(palette)) {
+    activeTextureMap = cachedPaletteTextures.get(palette);
+  } else {
+    preload3DIcons(nodes, palette);
+  }
+}
 
 // ── Helpers ────────────────────────────────────────────────────────
 
@@ -168,7 +210,33 @@ const TEAM_LINK_DISTANCE = 80;
 
 // ── Node object creation ───────────────────────────────────────────
 
+function createIconSprite(node) {
+  const texture = activeTextureMap.get(node.id);
+  let size;
+  if (node.type === 'agent') {
+    size = (AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal).radius * 2.0;
+  } else if (node.type === 'team') {
+    size = TEAM_CONFIG.radius * 2.0;
+  } else {
+    const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
+    const featured = FEATURED_NODES[node.id];
+    size = (featured ? featured.radius : cfg.radius) * 1.5;
+  }
+  const material = new THREE.SpriteMaterial({
+    map: texture, transparent: true, opacity: 0.9,
+    depthWrite: false, sizeAttenuation: true,
+  });
+  const sprite = new THREE.Sprite(material);
+  sprite.scale.set(size, size, 1);
+  sprite.userData.nodeId = node.id;
+  return sprite;
+}
+
 function createNodeObject(node) {
+  if (getIconMode() && activeTextureMap.has(node.id)) {
+    return createIconSprite(node);
+  }
+
   let geometry, material, size;
 
   if (node.type === 'agent') {
@@ -348,6 +416,8 @@ export function destroy3DGraph() {
   nodeById = new Map();
   visibleAgentIds = null;
   visibleTeamIds = null;
+  activeTextureMap = new Map();
+  // Note: cachedPaletteTextures kept across rebuilds for palette reuse
 }
 
 // ── Navigation ─────────────────────────────────────────────────────

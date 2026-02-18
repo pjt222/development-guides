@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 6,
+    "total_teams": 8,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -48,37 +48,57 @@
       "description": "AI self-care team with spiral mandala and modality nodes",
       "glow": "orchid-purple",
       "concept": "Archimedean spiral with 4 sequential modality nodes"
+    },
+    "scrum-team": {
+      "description": "Scrum team with sprint board and timeboxed coordination",
+      "glow": "sprint-green",
+      "concept": "Sprint board with 3 core nodes and flex slots at edges"
+    },
+    "opaque-team": {
+      "description": "Adaptive shapeshifter collective with emergent structure",
+      "glow": "obsidian-silver",
+      "concept": "Amorphous cluster of N identical nodes with shifting connections"
     }
   },
   "icons": [
     {
       "teamId": "ai-self-care",
-      "path": "icons/cyberpunk/teams/ai-self-care.webp",
+      "path": "public/icons/cyberpunk/teams/ai-self-care.webp",
       "status": "done"
     },
     {
       "teamId": "devops-platform-engineering",
-      "path": "icons/cyberpunk/teams/devops-platform-engineering.webp",
+      "path": "public/icons/cyberpunk/teams/devops-platform-engineering.webp",
       "status": "done"
     },
     {
       "teamId": "fullstack-web-dev",
-      "path": "icons/cyberpunk/teams/fullstack-web-dev.webp",
+      "path": "public/icons/cyberpunk/teams/fullstack-web-dev.webp",
       "status": "done"
     },
     {
       "teamId": "gxp-compliance-validation",
-      "path": "icons/cyberpunk/teams/gxp-compliance-validation.webp",
+      "path": "public/icons/cyberpunk/teams/gxp-compliance-validation.webp",
       "status": "done"
     },
     {
       "teamId": "ml-data-science-review",
-      "path": "icons/cyberpunk/teams/ml-data-science-review.webp",
+      "path": "public/icons/cyberpunk/teams/ml-data-science-review.webp",
       "status": "done"
     },
     {
       "teamId": "r-package-review",
-      "path": "icons/cyberpunk/teams/r-package-review.webp",
+      "path": "public/icons/cyberpunk/teams/r-package-review.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "scrum-team",
+      "path": "public/icons/cyberpunk/teams/scrum-team.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "opaque-team",
+      "path": "public/icons/cyberpunk/teams/opaque-team.webp",
       "status": "done"
     }
   ]

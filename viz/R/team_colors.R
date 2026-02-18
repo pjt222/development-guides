@@ -8,5 +8,7 @@ TEAM_COLORS <- list(
   "fullstack-web-dev"           = "#ffcc00",   # golden yellow
   "gxp-compliance-validation"   = "#ff6ec7",   # hot pink
   "ml-data-science-review"      = "#7b68ee",   # medium slate blue
-  "r-package-review"            = "#00ccff"    # bright cyan
+  "r-package-review"            = "#00ccff",   # bright cyan
+  "scrum-team"                  = "#39ff14",   # sprint green
+  "opaque-team"                 = "#8f8f8f"    # obsidian silver
 )

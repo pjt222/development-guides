@@ -305,3 +305,56 @@ glyph_team_ai_self_care <- function(cx, cy, s, col, bright) {
 
   layers
 }
+
+# ── glyph_team_scrum: sprint board with 3 columns and cards ──────────────────
+glyph_team_scrum <- function(cx, cy, s, col, bright) {
+  # Sprint board with 3 columns
+  board <- data.frame(
+    x = c(cx - 22 * s, cx + 22 * s, cx + 22 * s, cx - 22 * s),
+    y = c(cy + 16 * s, cy + 16 * s, cy - 16 * s, cy - 16 * s))
+  col1 <- data.frame(x = c(cx - 8 * s, cx - 8 * s), y = c(cy + 16 * s, cy - 16 * s))
+  col2 <- data.frame(x = c(cx + 8 * s, cx + 8 * s), y = c(cy + 16 * s, cy - 16 * s))
+  # Cards in columns
+  cards <- data.frame(
+    xmin = cx + c(-20, -20, -6, -6, 10) * s,
+    xmax = cx + c(-10, -10, 6, 6, 20) * s,
+    ymin = cy + c(8, -2, 8, -6, 4) * s,
+    ymax = cy + c(14, 4, 14, 0, 10) * s)
+  list(
+    ggplot2::geom_polygon(data = board, .aes(x, y),
+      fill = hex_with_alpha(col, 0.06), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = col1, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = col2, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_rect(data = cards,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 1))
+  )
+}
+
+# ── glyph_team_opaque: amorphous cluster of shifting nodes ───────────────────
+glyph_team_opaque <- function(cx, cy, s, col, bright) {
+  # Amorphous cluster of shifting nodes
+  set.seed(99)
+  n <- 8
+  t <- seq(0, 2 * pi, length.out = n + 1)[-(n + 1)]
+  r_base <- 14
+  nodes <- data.frame(
+    x0 = cx + (r_base + runif(n, -4, 4)) * s * cos(t),
+    y0 = cy + (r_base + runif(n, -4, 4)) * s * sin(t),
+    r = rep(5 * s, n))
+  # Shifting connections (partial mesh)
+  edges <- data.frame(
+    x = nodes$x0[c(1, 2, 3, 5, 6, 8)],
+    y = nodes$y0[c(1, 2, 3, 5, 6, 8)],
+    xend = nodes$x0[c(4, 5, 7, 8, 1, 3)],
+    yend = nodes$y0[c(4, 5, 7, 8, 1, 3)])
+  list(
+    ggplot2::geom_segment(data = edges,
+      .aes(x = x, y = y, xend = xend, yend = yend),
+      color = hex_with_alpha(col, 0.3), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = nodes, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.12), color = bright, linewidth = .lw(s, 1.5))
+  )
+}

@@ -11,5 +11,7 @@ TEAM_GLYPHS <- list(
   "fullstack-web-dev"           = "glyph_team_fullstack_web",
   "gxp-compliance-validation"   = "glyph_team_gxp_compliance",
   "ml-data-science-review"      = "glyph_team_ml_data_science",
-  "r-package-review"            = "glyph_team_r_package_review"
+  "r-package-review"            = "glyph_team_r_package_review",
+  "scrum-team"                  = "glyph_team_scrum",
+  "opaque-team"                 = "glyph_team_opaque"
 )
