@@ -779,17 +779,7 @@ body::after {
   fill: none;
   stroke-width: 0.5;
   opacity: 1;
-  transition: opacity 0.15s;
   pointer-events: none;
-}
-
-.hive-link.highlighted {
-  stroke-width: 1.5 !important;
-  opacity: 1 !important;
-}
-
-.hive-link.dimmed {
-  opacity: 0.03;
 }
 
 .hive-link-skill {
@@ -809,9 +799,11 @@ body::after {
   stroke-width: 1;
 }
 
-.hive-node.dimmed {
-  opacity: 0.08;
-}
+/* Hover/select active: dim all, un-dim connected */
+.hive-active-hover .hive-link { opacity: 0.03; }
+.hive-active-hover .hive-node { opacity: 0.08; }
+.hive-active-hover .hive-link.highlighted { opacity: 1; stroke-width: 1.5; }
+.hive-active-hover .hive-node.highlighted { opacity: 1; }
 
 #graph-container svg {
   display: block;

@@ -9,8 +9,9 @@
 import * as d3 from 'd3';
 import {
   DOMAIN_COLORS, getAgentColor, getTeamColor, hexToRgba,
-  AGENT_PRIORITY_CONFIG, TEAM_CONFIG
+  AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
+import { getIconMode, getIconPath, isIconLoaded } from './icons.js';
 import { logEvent } from './eventlog.js';
 
 let svg = null;
@@ -26,6 +27,10 @@ let containerEl = null;
 let resizeHandler = null;
 let hoveredNodeId = null;
 let selectedNodeId = null;
+let adjacencyByLinkType = null; // { team: Map, agent: Map, skill: Map }
+let linkElementArr = [];        // [{ el, source, target, type }]
+let nodeElementArr = [];        // [{ el, id, type }]
+let currentNodeById = null;
 
 // Axis angles (radians): skills=210°, agents=330°, teams=90°
 const AXIS_ANGLES = {
@@ -42,6 +47,8 @@ const AXIS_CONFIG = {
   agent: { tracks: 5, spread: 4 },
   team:  { tracks: 3, spread: 5 },
 };
+
+const HIVE_ICON_SIZE = { skill: 10, agent: 14, team: 18 };
 
 // ── Sort mode state ─────────────────────────────────────────────────
 let hiveSortMode = 'ranked'; // 'ranked' | 'interleaved'
@@ -200,6 +207,56 @@ function nodeShape(d) {
   return { tag: 'circle', attrs: { cx: d._x, cy: d._y, r: 2 } };
 }
 
+// ── Pre-computed adjacency & highlight helpers ──────────────────────
+
+function buildAdjacencyMap(posLinks) {
+  const map = { team: new Map(), agent: new Map(), skill: new Map() };
+  for (const pl of posLinks) {
+    const m = map[pl.type];
+    if (!m) continue;
+    if (!m.has(pl.source)) m.set(pl.source, new Set());
+    if (!m.has(pl.target)) m.set(pl.target, new Set());
+    m.get(pl.source).add(pl.target);
+    m.get(pl.target).add(pl.source);
+  }
+  return map;
+}
+
+function getConnected(node) {
+  const connected = new Set([node.id]);
+  const neighbors = (id, linkType) => adjacencyByLinkType[linkType]?.get(id) || new Set();
+
+  if (node.type === 'team') {
+    const agents = neighbors(node.id, 'team');
+    agents.forEach(a => { connected.add(a); neighbors(a, 'agent').forEach(s => connected.add(s)); });
+  } else if (node.type === 'agent') {
+    neighbors(node.id, 'team').forEach(t => connected.add(t));
+    neighbors(node.id, 'agent').forEach(s => connected.add(s));
+  } else {
+    const agents = neighbors(node.id, 'agent');
+    agents.forEach(a => { connected.add(a); neighbors(a, 'team').forEach(t => connected.add(t)); });
+    neighbors(node.id, 'skill').forEach(s => connected.add(s));
+  }
+
+  return connected;
+}
+
+function applyHighlight(connected) {
+  rootG.classed('hive-active-hover', true);
+  for (const { el, source, target } of linkElementArr) {
+    el.classed('highlighted', connected.has(source) && connected.has(target));
+  }
+  for (const { el, id } of nodeElementArr) {
+    el.classed('highlighted', connected.has(id));
+  }
+}
+
+function clearHighlight() {
+  rootG.classed('hive-active-hover', false);
+  for (const { el } of linkElementArr) el.classed('highlighted', false);
+  for (const { el } of nodeElementArr) el.classed('highlighted', false);
+}
+
 // ── Filter helpers ──────────────────────────────────────────────────
 
 function getFilteredData() {
@@ -228,6 +285,8 @@ function render() {
   const { positioned, posLinks, nodeById, innerR, outerR } = computeLayout(nodes, links);
 
   rootG.selectAll('*').remove();
+  linkElementArr = [];
+  nodeElementArr = [];
 
   const g = rootG.append('g');
 
@@ -266,26 +325,22 @@ function render() {
   const otherLinks = posLinks.filter(l => l.type !== 'skill');
 
   for (const pl of skillLinks) {
-    linkG.append('path')
+    const el = linkG.append('path')
       .attr('class', 'hive-link hive-link-skill')
       .attr('d', linkPath(pl))
-      .attr('stroke', hexToRgba(linkColor(pl, nodeById), 0.12))
-      .attr('data-source', pl.source)
-      .attr('data-target', pl.target)
-      .attr('data-type', 'skill');
+      .attr('stroke', hexToRgba(linkColor(pl, nodeById), 0.12));
+    linkElementArr.push({ el, source: pl.source, target: pl.target, type: 'skill' });
   }
 
   for (const pl of otherLinks) {
     const opacity = pl.type === 'team' ? 0.25 : 0.18;
     const width = pl.type === 'team' ? 0.8 : 0.5;
-    linkG.append('path')
+    const el = linkG.append('path')
       .attr('class', `hive-link hive-link-${pl.type}`)
       .attr('d', linkPath(pl))
       .attr('stroke', hexToRgba(linkColor(pl, nodeById), opacity))
-      .attr('stroke-width', width)
-      .attr('data-source', pl.source)
-      .attr('data-target', pl.target)
-      .attr('data-type', pl.type);
+      .attr('stroke-width', width);
+    linkElementArr.push({ el, source: pl.source, target: pl.target, type: pl.type });
   }
 
   // ── Nodes ──
@@ -293,36 +348,51 @@ function render() {
 
   for (const d of positioned) {
     const color = getNodeColor(d);
-    const shape = nodeShape(d);
     let el;
 
-    if (shape.tag === 'circle') {
-      el = nodeG.append('circle')
-        .attr('cx', shape.attrs.cx)
-        .attr('cy', shape.attrs.cy)
-        .attr('r', shape.attrs.r);
+    if (getIconMode() && isIconLoaded(d.id)) {
+      const iconSize = HIVE_ICON_SIZE[d.type] || 10;
+      el = nodeG.append('image')
+        .attr('href', getIconPath(d, getCurrentThemeName()))
+        .attr('x', d._x - iconSize)
+        .attr('y', d._y - iconSize)
+        .attr('width', iconSize * 2)
+        .attr('height', iconSize * 2);
     } else {
-      el = nodeG.append('polygon')
-        .attr('points', shape.attrs.points);
+      const shape = nodeShape(d);
+      if (shape.tag === 'circle') {
+        el = nodeG.append('circle')
+          .attr('cx', shape.attrs.cx)
+          .attr('cy', shape.attrs.cy)
+          .attr('r', shape.attrs.r);
+      } else {
+        el = nodeG.append('polygon')
+          .attr('points', shape.attrs.points);
+      }
+      el.attr('fill', color);
     }
 
     el.attr('class', 'hive-node')
-      .attr('fill', color)
       .attr('data-id', d.id)
       .attr('data-type', d.type)
-      .on('mouseenter', () => handleHover(d, nodeById, positioned))
-      .on('mouseleave', () => handleHoverEnd(positioned))
+      .on('mouseenter', () => handleHover(d))
+      .on('mouseleave', () => handleHoverEnd())
       .on('click', (event) => {
         event.stopPropagation();
         if (selectedNodeId === d.id) {
           handleDeselect();
           if (onNodeClick) onNodeClick(null);
         } else {
-          handleSelect(d, nodeById);
+          handleSelect(d);
           if (onNodeClick) onNodeClick(d);
         }
       });
+    nodeElementArr.push({ el, id: d.id, type: d.type });
   }
+
+  // Build adjacency map for hover/select lookups
+  adjacencyByLinkType = buildAdjacencyMap(posLinks);
+  currentNodeById = nodeById;
 
   // Background click clears selection
   svg.on('click', () => {
@@ -333,7 +403,7 @@ function render() {
 
   // Re-apply selection highlighting if a node is selected
   if (selectedNodeId && nodeById.has(selectedNodeId)) {
-    handleSelect(nodeById.get(selectedNodeId), nodeById);
+    handleSelect(nodeById.get(selectedNodeId));
   }
 
   // Fit content to viewport after rebuild
@@ -342,168 +412,64 @@ function render() {
 
 // ── Hover highlight ─────────────────────────────────────────────────
 
-function handleHover(node, nodeById, positioned) {
+function handleHover(node) {
   if (selectedNodeId) return;
   hoveredNodeId = node.id;
 
-  // Collect links by type, building typed adjacency
-  const linkEls = [];
-  const byType = { team: [], agent: [], skill: [] };
-  rootG.selectAll('.hive-link').each(function () {
-    const el = d3.select(this);
-    const src = el.attr('data-source');
-    const tgt = el.attr('data-target');
-    const type = el.attr('data-type');
-    linkEls.push({ el, src, tgt });
-    if (type && byType[type]) byType[type].push({ src, tgt });
-  });
+  const connected = getConnected(node);
 
-  // Helper: find neighbors via a specific link type
-  const neighbors = (id, linkType) => {
-    const result = [];
-    for (const { src, tgt } of byType[linkType]) {
-      if (src === id) result.push(tgt);
-      if (tgt === id) result.push(src);
-    }
-    return result;
-  };
-
-  const connected = new Set([node.id]);
-
-  if (node.type === 'team') {
-    // team → agents (via team links) → skills (via agent links)
-    const agents = neighbors(node.id, 'team');
-    agents.forEach(a => connected.add(a));
-    agents.forEach(a => neighbors(a, 'agent').forEach(s => connected.add(s)));
-
-  } else if (node.type === 'agent') {
-    // agent → teams (via team links) + skills (via agent links)
-    neighbors(node.id, 'team').forEach(t => connected.add(t));
-    neighbors(node.id, 'agent').forEach(s => connected.add(s));
-
-  } else {
-    // skill → agents (via agent links) → those agents' teams (via team links) + related skills (via skill links)
-    const agents = neighbors(node.id, 'agent');
-    agents.forEach(a => connected.add(a));
-    agents.forEach(a => neighbors(a, 'team').forEach(t => connected.add(t)));
-    neighbors(node.id, 'skill').forEach(s => connected.add(s));
-  }
-
-  // Log hover event
   const connArr = [...connected];
   logEvent('hive', {
     event: 'hover',
     node: { id: node.id, type: node.type, domain: node.domain },
     connected: connArr,
     connectedByType: {
-      skills: connArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
-      agents: connArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
-      teams: connArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
+      skills: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'skill').length,
+      agents: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'agent').length,
+      teams: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'team').length,
     },
-    linksHighlighted: linkEls.filter(({ src, tgt }) => connected.has(src) && connected.has(tgt)).length,
+    linksHighlighted: linkElementArr.filter(({ source, target }) => connected.has(source) && connected.has(target)).length,
   });
 
-  // Highlight links where both endpoints are in connected set
-  for (const { el, src, tgt } of linkEls) {
-    const on = connected.has(src) && connected.has(tgt);
-    el.classed('highlighted', on).classed('dimmed', !on);
-  }
-
-  rootG.selectAll('.hive-node').each(function () {
-    const el = d3.select(this);
-    el.classed('dimmed', !connected.has(el.attr('data-id')));
-  });
-
+  applyHighlight(connected);
   if (onNodeHover) onNodeHover(node);
 }
 
-function handleHoverEnd(positioned) {
+function handleHoverEnd() {
   if (selectedNodeId) return;
   logEvent('hive', { event: 'hoverEnd', node: hoveredNodeId });
   hoveredNodeId = null;
-  rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
-  rootG.selectAll('.hive-node').classed('dimmed', false);
+  clearHighlight();
   if (onNodeHover) onNodeHover(null);
 }
 
 // ── Click select (type-aware neighbors) ─────────────────────────────
 
-function handleSelect(node, nodeById) {
+function handleSelect(node) {
   selectedNodeId = node.id;
 
-  // Build typed adjacency from rendered links
-  const linkEls = [];
-  const byType = { team: [], agent: [], skill: [] };
-  rootG.selectAll('.hive-link').each(function () {
-    const el = d3.select(this);
-    const src = el.attr('data-source');
-    const tgt = el.attr('data-target');
-    const type = el.attr('data-type');
-    linkEls.push({ el, src, tgt });
-    if (type && byType[type]) byType[type].push({ src, tgt });
-  });
+  const connected = getConnected(node);
 
-  // Helper: find neighbors via a specific link type
-  const neighbors = (id, linkType) => {
-    const result = [];
-    for (const { src, tgt } of byType[linkType]) {
-      if (src === id) result.push(tgt);
-      if (tgt === id) result.push(src);
-    }
-    return result;
-  };
-
-  const connected = new Set([node.id]);
-
-  if (node.type === 'team') {
-    // team → agents (via team links) → those agents' skills (via agent links)
-    const agents = neighbors(node.id, 'team');
-    agents.forEach(a => connected.add(a));
-    agents.forEach(a => neighbors(a, 'agent').forEach(s => connected.add(s)));
-
-  } else if (node.type === 'agent') {
-    // agent → teams (via team links) + skills (via agent links)
-    neighbors(node.id, 'team').forEach(t => connected.add(t));
-    neighbors(node.id, 'agent').forEach(s => connected.add(s));
-
-  } else {
-    // skill → agents (via agent links) → those agents' teams (via team links) + related skills (via skill links)
-    const agents = neighbors(node.id, 'agent');
-    agents.forEach(a => connected.add(a));
-    agents.forEach(a => neighbors(a, 'team').forEach(t => connected.add(t)));
-    neighbors(node.id, 'skill').forEach(s => connected.add(s));
-  }
-
-  // Log click event
   const connArr = [...connected];
   logEvent('hive', {
     event: 'click',
     node: { id: node.id, type: node.type, domain: node.domain },
     connected: connArr,
     connectedByType: {
-      skills: connArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
-      agents: connArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
-      teams: connArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
+      skills: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'skill').length,
+      agents: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'agent').length,
+      teams: connArr.filter(id => (currentNodeById.get(id) || {}).type === 'team').length,
     },
-    linksHighlighted: linkEls.filter(({ src, tgt }) => connected.has(src) && connected.has(tgt)).length,
+    linksHighlighted: linkElementArr.filter(({ source, target }) => connected.has(source) && connected.has(target)).length,
   });
 
-  // Apply highlighting
-  for (const { el, src, tgt } of linkEls) {
-    const on = connected.has(src) && connected.has(tgt);
-    el.classed('highlighted', on).classed('dimmed', !on);
-  }
-  rootG.selectAll('.hive-node').each(function () {
-    const el = d3.select(this);
-    el.classed('dimmed', !connected.has(el.attr('data-id')));
-  });
+  applyHighlight(connected);
 }
 
 function handleDeselect() {
   logEvent('hive', { event: 'deselect' });
   selectedNodeId = null;
-  rootG.selectAll('.hive-link').classed('highlighted', false).classed('dimmed', false);
-  rootG.selectAll('.hive-node').classed('dimmed', false);
+  clearHighlight();
 }
 
 // ── Public API ──────────────────────────────────────────────────────
@@ -529,8 +495,8 @@ export function initHiveGraph(container, data, { onClick, onHover } = {}) {
   svg = d3.select(container).append('svg')
     .attr('width', w)
     .attr('height', h)
-    .style('display', 'block')
-    .style('overflow', 'hidden');
+    .attr('overflow', 'visible')
+    .style('display', 'block');
 
   rootG = svg.append('g');
 
@@ -583,6 +549,10 @@ export function destroyHiveGraph() {
   containerEl = null;
   hoveredNodeId = null;
   selectedNodeId = null;
+  adjacencyByLinkType = null;
+  linkElementArr = [];
+  nodeElementArr = [];
+  currentNodeById = null;
 }
 
 export function setSkillVisibilityHive(ids) {
