@@ -1,7 +1,7 @@
 /**
  * hive.js - Hive plot visualization (D3 SVG)
  *
- * 3-axis radial layout: Skills (210°), Agents (330°), Teams (90°)
+ * 3-axis multi-track radial layout: Skills (210°), Agents (330°), Teams (90°)
  * Nodes positioned along axes by rank metric; links as Bezier curves.
  * Loaded lazily when user clicks the Hive toggle button.
  */
@@ -34,6 +34,13 @@ const AXIS_ANGLES = {
 };
 
 const AXIS_LABELS = { skill: 'Skills', agent: 'Agents', team: 'Teams' };
+
+// Per-axis track count and perpendicular spread (px between parallel lines)
+const AXIS_CONFIG = {
+  skill: { tracks: 7, spread: 3 },
+  agent: { tracks: 5, spread: 4 },
+  team:  { tracks: 3, spread: 5 },
+};
 
 // ── Helpers ─────────────────────────────────────────────────────────
 
@@ -91,9 +98,6 @@ function computeLayout(nodes, links) {
   byType.agent.sort((a, b) => ((a.skills?.length || 0) - (b.skills?.length || 0)));
   byType.team.sort((a, b) => ((a.members?.length || 0) - (b.members?.length || 0)));
 
-  // Perpendicular offset for dual-track layout (avoids overlap on dense axes)
-  const TRACK_SPREAD = { skill: 4, agent: 5, team: 6 };
-
   const positioned = [];
   const nodeById = new Map();
 
@@ -103,19 +107,13 @@ function computeLayout(nodes, links) {
     const maxRank = Math.max(axis.length - 1, 1);
     const scale = d3.scaleLinear().domain([0, maxRank]).range([innerR, outerR]);
     const perpAngle = angle + Math.PI / 2;
-    const spread = TRACK_SPREAD[type];
+    const { tracks: N, spread } = AXIS_CONFIG[type];
 
     for (let i = 0; i < axis.length; i++) {
       const node = axis[i];
       const r = scale(i);
-      // 3-track for skills (center/left/right), 2-track for agents/teams
-      let side;
-      if (type === 'skill') {
-        const track = i % 3;  // 0=center, 1=left, 2=right
-        side = track === 0 ? 0 : track === 1 ? -1 : 1;
-      } else {
-        side = (i % 2 === 0) ? 1 : -1;
-      }
+      const track = i % N;
+      const side = track - Math.floor(N / 2);
       const offset = side * spread;
       const x = r * Math.cos(angle) + offset * Math.cos(perpAngle);
       const y = r * Math.sin(angle) + offset * Math.sin(perpAngle);
@@ -216,13 +214,12 @@ function render() {
 
   const g = rootG.append('g');
 
-  // ── Axis lines (dual-track) ──
-  const TRACK_SPREAD = { skill: 4, agent: 5, team: 6 };
+  // ── Axis lines (multi-track) ──
   for (const [type, angle] of Object.entries(AXIS_ANGLES)) {
     const perpAngle = angle + Math.PI / 2;
-    const spread = TRACK_SPREAD[type];
+    const { tracks: N, spread } = AXIS_CONFIG[type];
 
-    const sides = (type === 'skill') ? [-1, 0, 1] : [-1, 1];
+    const sides = Array.from({ length: N }, (_, k) => k - Math.floor(N / 2));
     for (const side of sides) {
       const ox = side * spread * Math.cos(perpAngle);
       const oy = side * spread * Math.sin(perpAngle);
