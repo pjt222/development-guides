@@ -11,7 +11,7 @@ import {
   DOMAIN_COLORS, getAgentColor, getTeamColor, hexToRgba,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
-import { getIconMode, getIconPath, isIconLoaded } from './icons.js';
+import { getIconMode, getIconPath, isIconLoaded, markIconLoaded } from './icons.js';
 import { logEvent } from './eventlog.js';
 
 let svg = null;
@@ -60,6 +60,18 @@ export function setHiveSortMode(mode) {
 
 export function getHiveSortMode() {
   return hiveSortMode;
+}
+
+// ── Spread multiplier state ─────────────────────────────────────────
+let hiveSpreadMultiplier = 1.0;
+
+export function setHiveSpread(v) {
+  hiveSpreadMultiplier = v;
+  render();
+}
+
+export function getHiveSpread() {
+  return hiveSpreadMultiplier;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
@@ -139,7 +151,7 @@ function computeLayout(nodes, links) {
         track = i % N;
       }
       const side = track - Math.floor(N / 2);
-      const offset = side * spread;
+      const offset = side * spread * hiveSpreadMultiplier;
       const x = r * Math.cos(angle) + offset * Math.cos(perpAngle);
       const y = r * Math.sin(angle) + offset * Math.sin(perpAngle);
       const pos = { ...node, _x: x, _y: y, _r: r, _angle: angle, _rank: i };
@@ -274,7 +286,7 @@ function getFilteredData() {
 
 // ── Render ──────────────────────────────────────────────────────────
 
-function render() {
+function render(preserveZoom = false) {
   if (!svg || !rootG) return;
 
   const w = containerEl.clientWidth || window.innerWidth;
@@ -297,8 +309,8 @@ function render() {
 
     const sides = Array.from({ length: N }, (_, k) => k - Math.floor(N / 2));
     for (const side of sides) {
-      const ox = side * spread * Math.cos(perpAngle);
-      const oy = side * spread * Math.sin(perpAngle);
+      const ox = side * spread * hiveSpreadMultiplier * Math.cos(perpAngle);
+      const oy = side * spread * hiveSpreadMultiplier * Math.sin(perpAngle);
       const inner = polar(angle, innerR * 0.8);
       const outer = polar(angle, outerR * 1.08);
       g.append('line')
@@ -407,7 +419,12 @@ function render() {
   }
 
   // Fit content to viewport after rebuild
-  zoomToFitHive(0);
+  if (preserveZoom) {
+    const currentTransform = d3.zoomTransform(svg.node());
+    rootG.attr('transform', currentTransform);
+  } else {
+    zoomToFitHive(0);
+  }
 }
 
 // ── Hover highlight ─────────────────────────────────────────────────
@@ -575,7 +592,7 @@ export function getVisibleAgentIdsHive() {
 }
 
 export function refreshHiveGraph() {
-  render();
+  render(true);
 }
 
 export function focusNodeHive(id) {
@@ -627,5 +644,27 @@ export function zoomInHive() {
 export function zoomOutHive() {
   if (!svg || !zoomBehavior) return;
   svg.transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
+}
+
+let _hiveIconRefreshTimer = null;
+function _scheduleHiveIconRefresh() {
+  if (_hiveIconRefreshTimer) return;
+  _hiveIconRefreshTimer = setTimeout(() => {
+    _hiveIconRefreshTimer = null;
+    render(true);
+  }, 200);
+}
+
+export function preloadHiveIcons(nodes, palette) {
+  const pal = palette || getCurrentThemeName();
+  for (const node of nodes) {
+    if (isIconLoaded(node.id, pal)) continue;
+    const img = new Image();
+    img.onload = () => {
+      markIconLoaded(pal, node.id);
+      _scheduleHiveIconRefresh();
+    };
+    img.src = getIconPath(node, pal);
+  }
 }
 
