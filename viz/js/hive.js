@@ -383,8 +383,10 @@ function handleHover(node, nodeById, positioned) {
     neighbors(node.id, 'agent').forEach(s => connected.add(s));
 
   } else {
-    // skill → agents (via agent links) + related skills (via skill links)
-    neighbors(node.id, 'agent').forEach(a => connected.add(a));
+    // skill → agents (via agent links) → those agents' teams (via team links) + related skills (via skill links)
+    const agents = neighbors(node.id, 'agent');
+    agents.forEach(a => connected.add(a));
+    agents.forEach(a => neighbors(a, 'team').forEach(t => connected.add(t)));
     neighbors(node.id, 'skill').forEach(s => connected.add(s));
   }
 
@@ -425,73 +427,76 @@ function handleHoverEnd(positioned) {
   if (onNodeHover) onNodeHover(null);
 }
 
-// ── Click select (type-aware BFS) ───────────────────────────────────
+// ── Click select (type-aware neighbors) ─────────────────────────────
 
 function handleSelect(node, nodeById) {
   selectedNodeId = node.id;
 
   // Build typed adjacency from rendered links
   const linkEls = [];
-  const adj = new Map(); // id → [{ neighbor, linkType }]
+  const byType = { team: [], agent: [], skill: [] };
   rootG.selectAll('.hive-link').each(function () {
     const el = window.d3.select(this);
     const src = el.attr('data-source');
     const tgt = el.attr('data-target');
     const type = el.attr('data-type');
     linkEls.push({ el, src, tgt });
-    if (!adj.has(src)) adj.set(src, []);
-    if (!adj.has(tgt)) adj.set(tgt, []);
-    adj.get(src).push({ neighbor: tgt, linkType: type });
-    adj.get(tgt).push({ neighbor: src, linkType: type });
+    if (type && byType[type]) byType[type].push({ src, tgt });
   });
 
-  // BFS with total-hop budget: every link costs 1 hop regardless of type
-  const MAX_HOPS = 2;
-  const connected = new Map(); // id → best (lowest) hops
-  connected.set(node.id, 0);
-  const queue = [{ id: node.id, hops: 0 }];
-
-  while (queue.length) {
-    const { id: cur, hops } = queue.shift();
-    if (hops >= MAX_HOPS) continue;
-    for (const { neighbor } of (adj.get(cur) || [])) {
-      const nextHops = hops + 1;
-      const prev = connected.get(neighbor);
-      if (prev !== undefined && prev <= nextHops) continue;
-      connected.set(neighbor, nextHops);
-      queue.push({ id: neighbor, hops: nextHops });
+  // Helper: find neighbors via a specific link type
+  const neighbors = (id, linkType) => {
+    const result = [];
+    for (const { src, tgt } of byType[linkType]) {
+      if (src === id) result.push(tgt);
+      if (tgt === id) result.push(src);
     }
+    return result;
+  };
+
+  const connected = new Set([node.id]);
+
+  if (node.type === 'team') {
+    // team → agents (via team links) → those agents' skills (via agent links)
+    const agents = neighbors(node.id, 'team');
+    agents.forEach(a => connected.add(a));
+    agents.forEach(a => neighbors(a, 'agent').forEach(s => connected.add(s)));
+
+  } else if (node.type === 'agent') {
+    // agent → teams (via team links) + skills (via agent links)
+    neighbors(node.id, 'team').forEach(t => connected.add(t));
+    neighbors(node.id, 'agent').forEach(s => connected.add(s));
+
+  } else {
+    // skill → agents (via agent links) → those agents' teams (via team links) + related skills (via skill links)
+    const agents = neighbors(node.id, 'agent');
+    agents.forEach(a => connected.add(a));
+    agents.forEach(a => neighbors(a, 'team').forEach(t => connected.add(t)));
+    neighbors(node.id, 'skill').forEach(s => connected.add(s));
   }
 
   // Log click event
-  const connectedSet = new Set(connected.keys());
-  const clickConnArr = [...connectedSet];
-  // Build hop-cost map for diagnostics
-  const connectedWithHops = {};
-  for (const [id, hops] of connected) {
-    connectedWithHops[id] = hops;
-  }
+  const connArr = [...connected];
   logEvent('hive', {
     event: 'click',
     node: { id: node.id, type: node.type, domain: node.domain },
-    connected: clickConnArr,
+    connected: connArr,
     connectedByType: {
-      skills: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
-      agents: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
-      teams: clickConnArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
+      skills: connArr.filter(id => (nodeById.get(id) || {}).type === 'skill').length,
+      agents: connArr.filter(id => (nodeById.get(id) || {}).type === 'agent').length,
+      teams: connArr.filter(id => (nodeById.get(id) || {}).type === 'team').length,
     },
-    connectedWithHops,
-    linksHighlighted: linkEls.filter(({ src, tgt }) => connectedSet.has(src) && connectedSet.has(tgt)).length,
+    linksHighlighted: linkEls.filter(({ src, tgt }) => connected.has(src) && connected.has(tgt)).length,
   });
 
   // Apply highlighting
   for (const { el, src, tgt } of linkEls) {
-    const on = connectedSet.has(src) && connectedSet.has(tgt);
+    const on = connected.has(src) && connected.has(tgt);
     el.classed('highlighted', on).classed('dimmed', !on);
   }
   rootG.selectAll('.hive-node').each(function () {
     const el = window.d3.select(this);
-    el.classed('dimmed', !connectedSet.has(el.attr('data-id')));
+    el.classed('dimmed', !connected.has(el.attr('data-id')));
   });
 }
 
