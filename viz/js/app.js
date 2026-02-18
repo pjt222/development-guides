@@ -153,6 +153,10 @@ async function switchTo3D() {
     // Hide icon toggle in 3D mode (icons are 2D-only)
     document.getElementById('btn-icon-toggle').style.display = 'none';
 
+    // Hide hive sort toggle
+    const hiveSortBtn3d = document.getElementById('btn-hive-sort');
+    if (hiveSortBtn3d) hiveSortBtn3d.style.display = 'none';
+
     // Auto zoom-to-fit after layout settles
     setTimeout(() => {
       const g = graph3dMod.getGraph3D();
@@ -205,6 +209,10 @@ function switchTo2D() {
 
   // Restore icon toggle visibility
   document.getElementById('btn-icon-toggle').style.display = '';
+
+  // Hide hive sort toggle
+  const hiveSortBtn2d = document.getElementById('btn-hive-sort');
+  if (hiveSortBtn2d) hiveSortBtn2d.style.display = 'none';
 
   // Auto zoom-to-fit
   setTimeout(() => {
@@ -262,6 +270,16 @@ async function switchToHive() {
 
     // Hide icon toggle (hive uses SVG, not canvas icons)
     document.getElementById('btn-icon-toggle').style.display = 'none';
+
+    // Show and restore hive sort toggle
+    const sortBtn = document.getElementById('btn-hive-sort');
+    if (sortBtn) {
+      sortBtn.style.display = '';
+      const savedSort = localStorage.getItem('skillnet-hive-sort') || 'ranked';
+      hiveMod.setHiveSortMode(savedSort);
+      sortBtn.classList.toggle('active', savedSort === 'interleaved');
+      sortBtn.textContent = savedSort === 'interleaved' ? 'Ranked' : 'Spread';
+    }
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
     switchTo2D();
@@ -403,6 +421,19 @@ async function main() {
     } finally {
       switching = false;
     }
+  });
+
+  // ── Hive sort toggle ──
+  const hiveSortBtn = document.getElementById('btn-hive-sort');
+  if (hiveSortBtn) hiveSortBtn.addEventListener('click', () => {
+    if (!hiveMod) return;
+    const next = hiveMod.getHiveSortMode() === 'ranked' ? 'interleaved' : 'ranked';
+    hiveMod.setHiveSortMode(next);
+    const btn = document.getElementById('btn-hive-sort');
+    btn.classList.toggle('active', next === 'interleaved');
+    btn.textContent = next === 'interleaved' ? 'Ranked' : 'Spread';
+    localStorage.setItem('skillnet-hive-sort', next);
+    logEvent('app', { event: 'hiveSortToggle', mode: next });
   });
 
   // ── Theme dropdown ──

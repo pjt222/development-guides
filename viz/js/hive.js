@@ -37,10 +37,22 @@ const AXIS_LABELS = { skill: 'Skills', agent: 'Agents', team: 'Teams' };
 
 // Per-axis track count and perpendicular spread (px between parallel lines)
 const AXIS_CONFIG = {
-  skill: { tracks: 7, spread: 3 },
+  skill: { tracks: 7, spread: 5 },
   agent: { tracks: 5, spread: 4 },
   team:  { tracks: 3, spread: 5 },
 };
+
+// ── Sort mode state ─────────────────────────────────────────────────
+let hiveSortMode = 'ranked'; // 'ranked' | 'interleaved'
+
+export function setHiveSortMode(mode) {
+  hiveSortMode = mode;
+  render();
+}
+
+export function getHiveSortMode() {
+  return hiveSortMode;
+}
 
 // ── Helpers ─────────────────────────────────────────────────────────
 
@@ -112,7 +124,13 @@ function computeLayout(nodes, links) {
     for (let i = 0; i < axis.length; i++) {
       const node = axis[i];
       const r = scale(i);
-      const track = i % N;
+      let track;
+      if (hiveSortMode === 'interleaved') {
+        const stride = Math.ceil(N / 2);
+        track = (i * stride) % N;
+      } else {
+        track = i % N;
+      }
       const side = track - Math.floor(N / 2);
       const offset = side * spread;
       const x = r * Math.cos(angle) + offset * Math.cos(perpAngle);
