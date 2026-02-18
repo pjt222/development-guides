@@ -37,63 +37,108 @@ function rebuildNodeIndex() {
 }
 
 function rebuildHighlightSet() {
-  const activeId = selectedNodeId || hoveredNodeId;
-  if (!activeId) { highlightedNodeIds = null; return; }
+  try {
+    const activeId = selectedNodeId || hoveredNodeId;
+    if (!activeId) { highlightedNodeIds = null; return; }
 
-  const activeNode = nodeById.get(activeId);
-  const set = new Set([activeId]);
+    const activeNode = nodeById.get(activeId);
+    const set = new Set([activeId]);
 
-  // Build typed adjacency
-  const byType = { team: [], agent: [], skill: [] };
-  for (const l of graphData.links) {
-    const src = typeof l.source === 'object' ? l.source.id : l.source;
-    const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-    if (l.type && byType[l.type]) byType[l.type].push({ src, tgt });
-  }
+    // Use library's current data to ensure links are up-to-date
+    const links = (graph3d && graph3d.graphData) ? graph3d.graphData().links : graphData.links;
 
-  const neighbors = (id, linkType) => {
-    const result = [];
-    for (const { src, tgt } of byType[linkType]) {
-      if (src === id) result.push(tgt);
-      if (tgt === id) result.push(src);
+    // Build typed adjacency
+    const byType = { team: [], agent: [], skill: [] };
+    for (const l of links) {
+      const src = typeof l.source === 'object' ? l.source.id : l.source;
+      const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+      if (src && tgt && l.type && byType[l.type]) byType[l.type].push({ src, tgt });
     }
-    return result;
-  };
 
-  if (activeNode && activeNode.type === 'team') {
-    const agents = neighbors(activeId, 'team');
-    agents.forEach(a => set.add(a));
-    agents.forEach(a => neighbors(a, 'agent').forEach(s => set.add(s)));
-  } else if (activeNode && activeNode.type === 'agent') {
-    neighbors(activeId, 'team').forEach(t => set.add(t));
-    neighbors(activeId, 'agent').forEach(s => set.add(s));
-  } else {
-    const agents = neighbors(activeId, 'agent');
-    agents.forEach(a => set.add(a));
-    agents.forEach(a => neighbors(a, 'team').forEach(t => set.add(t)));
-    neighbors(activeId, 'skill').forEach(s => set.add(s));
+    const neighbors = (id, linkType) => {
+      const result = [];
+      for (const { src, tgt } of byType[linkType]) {
+        if (src === id) result.push(tgt);
+        if (tgt === id) result.push(src);
+      }
+      return result;
+    };
+
+    if (activeNode && activeNode.type === 'team') {
+      const agents = neighbors(activeId, 'team');
+      agents.forEach(a => set.add(a));
+      agents.forEach(a => neighbors(a, 'agent').forEach(s => set.add(s)));
+    } else if (activeNode && activeNode.type === 'agent') {
+      neighbors(activeId, 'team').forEach(t => set.add(t));
+      neighbors(activeId, 'agent').forEach(s => set.add(s));
+    } else {
+      const agents = neighbors(activeId, 'agent');
+      agents.forEach(a => set.add(a));
+      agents.forEach(a => neighbors(a, 'team').forEach(t => set.add(t)));
+      neighbors(activeId, 'skill').forEach(s => set.add(s));
+    }
+
+    highlightedNodeIds = set;
+  } catch (e) {
+    console.error('[graph3d] rebuildHighlightSet error:', e);
+    highlightedNodeIds = null;
   }
-
-  highlightedNodeIds = set;
 }
 
-function isNodeHighlighted(node) {
-  return highlightedNodeIds === null || highlightedNodeIds.has(node.id);
+function getLinkColor(link) {
+  if (!highlightedNodeIds) {
+    if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.15);
+    if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.1);
+    return 'rgba(255,255,255,0.1)';
+  }
+  const src = typeof link.source === 'object' ? link.source.id : link.source;
+  const tgt = typeof link.target === 'object' ? link.target.id : link.target;
+  const both = highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt);
+  if (both) {
+    if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.5);
+    if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.4);
+    return 'rgba(255,255,255,0.4)';
+  }
+  if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.02);
+  if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.01);
+  return 'rgba(255,255,255,0.02)';
+}
+
+function getLinkWidth(link) {
+  if (!highlightedNodeIds) return 0.5;
+  const src = typeof link.source === 'object' ? link.source.id : link.source;
+  const tgt = typeof link.target === 'object' ? link.target.id : link.target;
+  return (highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt)) ? 1.5 : 0.3;
 }
 
 function updateVisuals() {
   if (!graph3d) return;
 
-  // Update node opacity via Three.js materials
-  graphData.nodes.forEach(node => {
-    const obj = node.__threeObj;
-    if (!obj || !obj.material) return;
-    const highlighted = !highlightedNodeIds || highlightedNodeIds.has(node.id);
-    obj.material.opacity = highlighted ? 0.9 : 0.08;
-  });
+  try {
+    // Get the library's internal data (has __threeObj references)
+    const currentData = graph3d.graphData();
+    let updated = 0;
 
-  // Force link color recalculation
-  graph3d.linkColor(graph3d.linkColor());
+    // Dim/brighten node materials directly via __threeObj
+    currentData.nodes.forEach(node => {
+      const obj = node.__threeObj;
+      if (!obj || !obj.material) return;
+      const hl = !highlightedNodeIds || highlightedNodeIds.has(node.id);
+      obj.material.opacity = hl ? 0.9 : 0.08;
+      if (obj.material.emissiveIntensity !== undefined) {
+        obj.material.emissiveIntensity = hl ? 0.4 : 0.05;
+      }
+      updated++;
+    });
+
+    // Force link re-evaluation with new function references
+    graph3d
+      .linkColor(link => getLinkColor(link))
+      .linkWidth(link => getLinkWidth(link));
+
+  } catch (e) {
+    console.error('[graph3d] updateVisuals error:', e);
+  }
 }
 
 // ── Link color helpers ─────────────────────────────────────────────
@@ -167,7 +212,9 @@ function createNodeObject(node) {
     });
   }
 
-  return new THREE.Mesh(geometry, material);
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.userData.nodeId = node.id;
+  return mesh;
 }
 
 // ── Init ───────────────────────────────────────────────────────────
@@ -205,25 +252,8 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
       }
       return `${node.title || node.id} [${node.domain}]`;
     })
-    .linkColor(link => {
-      if (!highlightedNodeIds) {
-        if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.15);
-        if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.1);
-        return 'rgba(255,255,255,0.1)';
-      }
-      const src = typeof link.source === 'object' ? link.source.id : link.source;
-      const tgt = typeof link.target === 'object' ? link.target.id : link.target;
-      const both = highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt);
-      if (both) {
-        if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.5);
-        if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.4);
-        return 'rgba(255,255,255,0.4)';
-      }
-      if (link.type === 'team') return hexToRgba(getTeamLinkHex(link), 0.02);
-      if (link.type === 'agent') return hexToRgba(getAgentLinkHex(link), 0.01);
-      return 'rgba(255,255,255,0.02)';
-    })
-    .linkWidth(0.5)
+    .linkColor(getLinkColor)
+    .linkWidth(getLinkWidth)
     .linkOpacity(0.6)
     .onNodeClick(node => {
       if (node) {
