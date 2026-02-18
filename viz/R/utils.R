@@ -75,8 +75,10 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     palette_list  = FALSE,
     skip_existing = FALSE,
     dry_run       = FALSE,
-    glow_sigma    = 8,
+    glow_sigma    = 4,
+    size_px       = 512,
     workers       = max(1, parallel::detectCores() - 1),
+    no_cache      = FALSE,
     help          = FALSE
   )
 
@@ -98,9 +100,14 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     } else if (arg == "--glow-sigma" && i < length(args)) {
       i <- i + 1
       opts$glow_sigma <- as.numeric(args[i])
+    } else if (arg == "--size" && i < length(args)) {
+      i <- i + 1
+      opts$size_px <- as.integer(args[i])
     } else if (arg == "--workers" && i < length(args)) {
       i <- i + 1
       opts$workers <- as.integer(args[i])
+    } else if (arg == "--no-cache") {
+      opts$no_cache <- TRUE
     } else if (arg %in% c("--help", "-h")) {
       opts$help <- TRUE
     }
@@ -120,9 +127,11 @@ print_usage <- function(script_name = "build-icons.R",
   cat("  --palette-list      List available palette names and exit\n")
   cat("  --skip-existing     Skip icons marked 'done' with existing WebP files\n")
   cat("  --dry-run           List what would be generated without rendering\n")
-  cat("  --glow-sigma <n>    Glow blur radius (default: 8)\n")
+  cat("  --size <n>          Output dimension in pixels (default: 512)\n")
+  cat("  --glow-sigma <n>    Glow blur radius (default: 4)\n")
   cat(sprintf("  --workers <n>       Parallel workers (default: %d = detectCores()-1)\n",
               max(1, parallel::detectCores() - 1)))
+  cat("  --no-cache          Ignore content-hash cache, re-render everything\n")
   cat("  --help, -h          Show this help message\n")
 }
 
@@ -138,7 +147,7 @@ write_manifest <- function(manifest, path) {
 # ── Dependency check ─────────────────────────────────────────────────────
 check_dependencies <- function() {
   required <- c("ggplot2", "ggforce", "ggfx", "ragg", "jsonlite", "magick",
-                 "future", "furrr")
+                 "future", "furrr", "digest")
   missing <- required[!vapply(required, requireNamespace, logical(1),
                               quietly = TRUE)]
   if (length(missing) > 0) {
@@ -172,4 +181,44 @@ log_ok <- function(domain, skill_id, seed, file_size_kb) {
 
 log_error <- function(domain, skill_id, err_msg) {
   log_msg(sprintf("ERROR: %s/%s: %s", domain, skill_id, err_msg))
+}
+
+# ── Content-hash cache for incremental rendering ─────────────────────────
+# Hash inputs per icon: glyph function body + glow_sigma + size_px
+# Stored at viz/.icon-cache.json
+
+#' Compute a render hash for a single icon configuration
+#'
+#' @param glyph_fn_name Name of the glyph function
+#' @param glow_sigma Glow blur sigma
+#' @param size_px Output size in pixels
+#' @return Character string hash (MD5)
+compute_render_hash <- function(glyph_fn_name, glow_sigma, size_px) {
+  fn_body <- tryCatch(
+    paste(deparse(match.fun(glyph_fn_name)), collapse = "\n"),
+    error = function(e) glyph_fn_name
+  )
+  input_str <- paste(fn_body, glow_sigma, size_px, sep = "|")
+  digest::digest(input_str, algo = "md5", serialize = FALSE)
+}
+
+#' Read the icon cache from disk
+#'
+#' @param cache_path Path to .icon-cache.json
+#' @return Named list of entity_id -> hash
+read_icon_cache <- function(cache_path) {
+  if (!file.exists(cache_path)) return(list())
+  tryCatch(
+    jsonlite::fromJSON(cache_path, simplifyVector = FALSE),
+    error = function(e) list()
+  )
+}
+
+#' Write the icon cache to disk
+#'
+#' @param cache Named list of entity_id -> hash
+#' @param cache_path Path to .icon-cache.json
+write_icon_cache <- function(cache, cache_path) {
+  dir.create(dirname(cache_path), recursive = TRUE, showWarnings = FALSE)
+  jsonlite::write_json(cache, cache_path, pretty = TRUE, auto_unbox = TRUE)
 }

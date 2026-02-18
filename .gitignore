@@ -27,3 +27,4 @@ node_modules/
 # Viz build artifacts
 viz/dist/
 viz/logs/
+viz/.icon-cache.json

@@ -5,6 +5,11 @@
 # Each team gets a unique color per palette + glyph.
 # Output: icons/<palette>/teams/<teamId>.webp
 #
+# Optimizations (Issue #25):
+#   - Renders white template once per glyph, recolors per palette via magick
+#   - Content-hash cache skips unchanged glyphs on incremental runs
+#   - Default 512px + sigma 4 (was 1024 + sigma 8)
+#
 # Usage:
 #   Rscript build-team-icons.R                          # All palettes, all teams
 #   Rscript build-team-icons.R --palette cyberpunk      # Single palette
@@ -12,8 +17,10 @@
 #   Rscript build-team-icons.R --skip-existing          # Skip existing WebP files
 #   Rscript build-team-icons.R --dry-run                # List what would be generated
 #   Rscript build-team-icons.R --palette-list           # List palette names
+#   Rscript build-team-icons.R --size 1024              # Override output size
 #   Rscript build-team-icons.R --glow-sigma 10          # Adjust glow intensity
 #   Rscript build-team-icons.R --workers 4              # Use 4 parallel workers
+#   Rscript build-team-icons.R --no-cache               # Ignore content-hash cache
 
 # ── Determine script directory ───────────────────────────────────────────
 get_script_dir <- function() {
@@ -123,57 +130,136 @@ all_pal_colors <- lapply(
   get_palette_colors
 )
 
-# ── Flatten palette x team into a single task list ───────────────────────
-tasks <- list()
+# ── Content-hash cache ───────────────────────────────────────────────────
+cache_path <- file.path(script_dir, ".icon-cache.json")
+icon_cache <- if (opts$no_cache) list() else read_icon_cache(cache_path)
+new_cache <- icon_cache
+
+# ── Phase 1: Render white templates (one per unique team glyph) ──────────
+template_dir <- file.path(tempdir(), "team-icon-templates")
+dir.create(template_dir, recursive = TRUE, showWarnings = FALSE)
+
+unique_glyphs <- list()
+for (ic in queue) {
+  glyph_fn_name <- TEAM_GLYPHS[[ic$teamId]]
+  if (is.null(glyph_fn_name)) glyph_fn_name <- "unknown"
+  cache_key <- paste0("team:", ic$teamId)
+
+  current_hash <- compute_render_hash(glyph_fn_name, opts$glow_sigma,
+                                       opts$size_px)
+
+  if (!opts$no_cache && identical(icon_cache[[cache_key]], current_hash)) {
+    all_exist <- all(vapply(palettes_to_render, function(pal) {
+      out_path <- file.path(script_dir, "public", "icons", pal, "teams",
+                            paste0(ic$teamId, ".webp"))
+      file.exists(out_path)
+    }, logical(1)))
+    if (all_exist && !opts$skip_existing) next
+  }
+
+  new_cache[[cache_key]] <- current_hash
+
+  if (is.null(unique_glyphs[[glyph_fn_name]])) {
+    glyph_fn <- tryCatch(match.fun(glyph_fn_name), error = function(e) NULL)
+    unique_glyphs[[glyph_fn_name]] <- list(
+      fn_name = glyph_fn_name,
+      fn      = glyph_fn,
+      teams   = list()
+    )
+  }
+  unique_glyphs[[glyph_fn_name]]$teams[[length(
+    unique_glyphs[[glyph_fn_name]]$teams
+  ) + 1]] <- ic
+}
+
+log_msg(sprintf("Rendering %d unique team glyph templates", length(unique_glyphs)))
+
+template_tasks <- lapply(names(unique_glyphs), function(fn_name) {
+  list(
+    fn_name      = fn_name,
+    fn           = unique_glyphs[[fn_name]]$fn,
+    template_png = file.path(template_dir, paste0(fn_name, ".png"))
+  )
+})
+
+template_results <- furrr::future_map(template_tasks, function(task) {
+  t0 <- proc.time()
+  tryCatch({
+    render_glyph_template(
+      glyph_fn_name = task$fn_name,
+      entity_id     = task$fn_name,
+      out_png       = task$template_png,
+      glow_sigma    = opts$glow_sigma,
+      size_px       = opts$size_px,
+      glyph_fn      = task$fn
+    )
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "ok", fn_name = task$fn_name, elapsed = elapsed)
+  }, error = function(e) {
+    elapsed <- (proc.time() - t0)["elapsed"]
+    list(status = "error", fn_name = task$fn_name,
+         message = conditionMessage(e), elapsed = elapsed)
+  })
+}, .options = furrr::furrr_options(seed = TRUE))
+
+template_ok <- vapply(template_results, function(r) r$status == "ok",
+                       logical(1))
+if (!all(template_ok)) {
+  for (r in template_results[!template_ok]) {
+    log_msg(sprintf("TEMPLATE ERROR: %s: %s", r$fn_name, r$message))
+  }
+}
+log_msg(sprintf("Templates rendered: %d ok, %d errors",
+                sum(template_ok), sum(!template_ok)))
+
+# ── Phase 2: Recolor templates per palette ───────────────────────────────
+recolor_tasks <- list()
 skipped_color <- 0
 for (pal in palettes_to_render) {
   pal_colors <- all_pal_colors[[pal]]
-  for (ic in queue) {
-    out_path <- file.path(script_dir, "public", "icons", pal, "teams",
-                          paste0(ic$teamId, ".webp"))
+  for (fn_name in names(unique_glyphs)) {
+    template_png <- file.path(template_dir, paste0(fn_name, ".png"))
+    if (!file.exists(template_png)) next
 
-    # Skip existing if requested
-    if (opts$skip_existing && file.exists(out_path)) next
+    for (ic in unique_glyphs[[fn_name]]$teams) {
+      out_path <- file.path(script_dir, "public", "icons", pal, "teams",
+                            paste0(ic$teamId, ".webp"))
 
-    team_color <- pal_colors$teams[[ic$teamId]]
-    if (is.null(team_color)) {
-      log_msg(sprintf("ERROR: %s: No color in palette %s", ic$teamId, pal))
-      skipped_color <- skipped_color + 1
-      next
+      if (opts$skip_existing && file.exists(out_path)) next
+
+      team_color <- pal_colors$teams[[ic$teamId]]
+      if (is.null(team_color)) {
+        log_msg(sprintf("ERROR: %s: No color in palette %s", ic$teamId, pal))
+        skipped_color <- skipped_color + 1
+        next
+      }
+
+      recolor_tasks[[length(recolor_tasks) + 1]] <- list(
+        palette      = pal,
+        team_id      = ic$teamId,
+        out_path     = out_path,
+        color        = team_color,
+        template_png = template_png
+      )
     }
-
-    # Resolve glyph function in main process for worker access
-    glyph_fn_name <- TEAM_GLYPHS[[ic$teamId]]
-    glyph_fn <- if (!is.null(glyph_fn_name)) match.fun(glyph_fn_name) else NULL
-
-    tasks[[length(tasks) + 1]] <- list(
-      palette    = pal,
-      team_id    = ic$teamId,
-      out_path   = out_path,
-      color      = team_color,
-      glow_sigma = opts$glow_sigma,
-      glyph_fn   = glyph_fn
-    )
   }
 }
 
-log_msg(sprintf("Queued %d render tasks across %d palettes (%d skipped for missing color)",
-                length(tasks), length(palettes_to_render), skipped_color))
+log_msg(sprintf("Queued %d recolor tasks across %d palettes (%d skipped for missing color)",
+                length(recolor_tasks), length(palettes_to_render), skipped_color))
 
-# ── Parallel render ──────────────────────────────────────────────────────
+# ── Parallel recolor ─────────────────────────────────────────────────────
 start_time <- proc.time()
 
-results <- furrr::future_map(tasks, function(task) {
+results <- furrr::future_map(recolor_tasks, function(task) {
   t0 <- proc.time()
   tryCatch({
     dir.create(dirname(task$out_path), recursive = TRUE, showWarnings = FALSE)
 
-    render_team_icon(
-      team_id    = task$team_id,
-      out_path   = task$out_path,
-      glow_sigma = task$glow_sigma,
-      color      = task$color,
-      glyph_fn   = task$glyph_fn
+    recolor_template(
+      template_png = task$template_png,
+      color        = task$color,
+      out_path     = task$out_path
     )
 
     kb <- file_size_kb(task$out_path)
@@ -221,6 +307,12 @@ if ("cyberpunk" %in% palettes_to_render) {
   }
   write_manifest(manifest, manifest_path)
 }
+
+# Write updated cache
+write_icon_cache(new_cache, cache_path)
+
+# Clean up templates
+unlink(template_dir, recursive = TRUE)
 
 elapsed <- (proc.time() - start_time)["elapsed"]
 log_msg(sprintf("All done: %d rendered, %d errors across %d palettes in %.1fs",

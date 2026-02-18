@@ -6,12 +6,12 @@
 #'
 #' @param team_id Team identifier (determines both color and glyph)
 #' @param out_path Output file path (WebP)
-#' @param glow_sigma Glow blur radius (default 8)
-#' @param size_px Output dimension in pixels (default 1024)
+#' @param glow_sigma Glow blur radius (default 4)
+#' @param size_px Output dimension in pixels (default 512)
 #' @param color Optional explicit hex color (overrides TEAM_COLORS lookup)
 #' @return Invisible TRUE on success
-render_team_icon <- function(team_id, out_path, glow_sigma = 8,
-                              size_px = 1024, color = NULL,
+render_team_icon <- function(team_id, out_path, glow_sigma = 4,
+                              size_px = 512, color = NULL,
                               glyph_fn = NULL) {
   if (is.null(color)) {
     color <- TEAM_COLORS[[team_id]]
