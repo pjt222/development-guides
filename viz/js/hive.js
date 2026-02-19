@@ -62,6 +62,26 @@ export function getHiveSortMode() {
   return hiveSortMode;
 }
 
+// ── Domain focus state ────────────────────────────────────────────────
+let domainFocus = null; // null = all domains, string = specific domain
+
+export function setDomainFocus(domain) {
+  domainFocus = domain || null;
+  render();
+}
+
+export function getDomainFocus() {
+  return domainFocus;
+}
+
+export function getDomainList() {
+  const domains = new Set();
+  for (const n of fullData.nodes) {
+    if (n.type === 'skill' && n.domain) domains.add(n.domain);
+  }
+  return [...domains].sort();
+}
+
 // ── Spread multiplier state ─────────────────────────────────────────
 let hiveSpreadMultiplier = 1.0;
 
@@ -272,9 +292,47 @@ function clearHighlight() {
 // ── Filter helpers ──────────────────────────────────────────────────
 
 function getFilteredData() {
+  // When domain focus is active, first find the matching skills, then
+  // include only agents/teams connected to those skills via links.
+  let focusedSkillIds = null;
+  let connectedAgentIds = null;
+  let connectedTeamIds = null;
+
+  if (domainFocus) {
+    focusedSkillIds = new Set();
+    for (const n of fullData.nodes) {
+      if (n.type === 'skill' && n.domain === domainFocus) focusedSkillIds.add(n.id);
+    }
+
+    // Find agents connected to these skills
+    connectedAgentIds = new Set();
+    connectedTeamIds = new Set();
+    for (const l of fullData.links) {
+      if (l.type === 'agent') {
+        if (focusedSkillIds.has(l.source)) connectedAgentIds.add(l.target);
+        if (focusedSkillIds.has(l.target)) connectedAgentIds.add(l.source);
+      }
+    }
+    // Find teams connected to those agents
+    for (const l of fullData.links) {
+      if (l.type === 'team') {
+        if (connectedAgentIds.has(l.source)) connectedTeamIds.add(l.target);
+        if (connectedAgentIds.has(l.target)) connectedTeamIds.add(l.source);
+      }
+    }
+  }
+
   const nodes = fullData.nodes.filter(n => {
-    if (n.type === 'team') return visibleTeamIds === null || visibleTeamIds.has(n.id);
-    if (n.type === 'agent') return visibleAgentIds === null || visibleAgentIds.has(n.id);
+    if (n.type === 'team') {
+      if (connectedTeamIds && !connectedTeamIds.has(n.id)) return false;
+      return visibleTeamIds === null || visibleTeamIds.has(n.id);
+    }
+    if (n.type === 'agent') {
+      if (connectedAgentIds && !connectedAgentIds.has(n.id)) return false;
+      return visibleAgentIds === null || visibleAgentIds.has(n.id);
+    }
+    // skill
+    if (focusedSkillIds && !focusedSkillIds.has(n.id)) return false;
     return visibleSkillSet === null || visibleSkillSet.has(n.id);
   });
 
@@ -564,6 +622,7 @@ export function destroyHiveGraph() {
   onNodeClick = null;
   onNodeHover = null;
   containerEl = null;
+  domainFocus = null;
   hoveredNodeId = null;
   selectedNodeId = null;
   adjacencyByLinkType = null;

@@ -761,6 +761,32 @@ body::after {
   backdrop-filter: blur(8px);
 }
 
+/* ── Hive Domain Focus Dropdown ─────────────────────────────── */
+#hive-domain-focus {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 6px;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  max-width: 160px;
+  transition: border-color var(--transition-speed);
+}
+
+#hive-domain-focus:hover,
+#hive-domain-focus:focus {
+  border-color: var(--text-accent);
+  color: var(--text-accent);
+}
+
+#hive-domain-focus option {
+  background: #0a0a0f;
+  color: var(--text-primary);
+}
+
 /* ── Hive Spread Slider ─────────────────────────────────────── */
 #btn-hive-sort {
   margin-left: 8px;

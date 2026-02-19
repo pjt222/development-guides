@@ -155,6 +155,8 @@ async function switchTo3D() {
     if (hiveSortBtn3d) hiveSortBtn3d.style.display = 'none';
     const hiveSpreadLabel3d = document.getElementById('hive-spread-label');
     if (hiveSpreadLabel3d) hiveSpreadLabel3d.style.display = 'none';
+    const domainSelect3d = document.getElementById('hive-domain-focus');
+    if (domainSelect3d) domainSelect3d.style.display = 'none';
 
     // Show and restore 3D sprite scale slider
     const spriteLabel = document.getElementById('3d-sprite-label');
@@ -221,6 +223,8 @@ function switchTo2D() {
   if (hiveSortBtn2d) hiveSortBtn2d.style.display = 'none';
   const hiveSpreadLabel2d = document.getElementById('hive-spread-label');
   if (hiveSpreadLabel2d) hiveSpreadLabel2d.style.display = 'none';
+  const domainSelect2d = document.getElementById('hive-domain-focus');
+  if (domainSelect2d) domainSelect2d.style.display = 'none';
   const spriteLabel2d = document.getElementById('3d-sprite-label');
   if (spriteLabel2d) spriteLabel2d.style.display = 'none';
 
@@ -269,6 +273,26 @@ async function switchToHive() {
     currentMode = 'hive';
     logEvent('app', { event: 'modeSwitch', mode: 'hive' });
     setActiveMode('hive');
+
+    // Show and populate domain focus dropdown
+    const domainSelect = document.getElementById('hive-domain-focus');
+    if (domainSelect) {
+      domainSelect.style.display = '';
+      const domains = hiveMod.getDomainList();
+      // Rebuild options only if count changed
+      if (domainSelect.options.length !== domains.length + 1) {
+        domainSelect.innerHTML = '<option value="">All Domains</option>';
+        for (const d of domains) {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = d;
+          domainSelect.appendChild(opt);
+        }
+      }
+      const savedDomain = localStorage.getItem('skillnet-hive-domain') || '';
+      domainSelect.value = savedDomain;
+      hiveMod.setDomainFocus(savedDomain);
+    }
 
     // Show and restore hive sort toggle
     const sortBtn = document.getElementById('btn-hive-sort');
@@ -338,6 +362,8 @@ async function switchToChord() {
     if (hiveSortBtn) hiveSortBtn.style.display = 'none';
     const hiveSpreadLabel = document.getElementById('hive-spread-label');
     if (hiveSpreadLabel) hiveSpreadLabel.style.display = 'none';
+    const domainSelectChord = document.getElementById('hive-domain-focus');
+    if (domainSelectChord) domainSelectChord.style.display = 'none';
     const spriteLabel = document.getElementById('3d-sprite-label');
     if (spriteLabel) spriteLabel.style.display = 'none';
   } catch (err) {
@@ -500,6 +526,16 @@ async function main() {
     hiveMod.setHiveSpread(val);
     localStorage.setItem('skillnet-hive-spread', val);
     logEvent('app', { event: 'hiveSpreadChange', value: val });
+  });
+
+  // ── Hive domain focus dropdown ──
+  const hiveDomainSelect = document.getElementById('hive-domain-focus');
+  if (hiveDomainSelect) hiveDomainSelect.addEventListener('change', function () {
+    if (!hiveMod) return;
+    const domain = this.value;
+    hiveMod.setDomainFocus(domain);
+    localStorage.setItem('skillnet-hive-domain', domain);
+    logEvent('app', { event: 'hiveDomainFocus', domain: domain || 'all' });
   });
 
   // ── 3D sprite scale slider ──
