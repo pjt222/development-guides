@@ -8,7 +8,7 @@ description: >
   programmatically, building template scenes for batch rendering workflows,
   or integrating 3D visualization into data pipelines.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

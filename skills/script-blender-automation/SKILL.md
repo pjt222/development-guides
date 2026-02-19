@@ -8,7 +8,7 @@ description: >
   parameter variations, building custom operators or add-ons, or integrating
   Blender with external data pipelines and APIs.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

@@ -9,7 +9,7 @@ description: >
   adhesion fails, or new material or hardware changes are causing inconsistent
   results.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+allowed-tools: Read Write Edit Bash Grep Glob WebFetch
 metadata:
   author: Philipp Thoss
   version: "1.0"

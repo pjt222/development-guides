@@ -8,7 +8,7 @@ description: >
   deleted modules, cross-references between files are out of sync, or files
   exist but are never referenced anywhere in the project.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

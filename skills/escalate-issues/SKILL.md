@@ -8,7 +8,7 @@ description: >
   expertise, breaking changes detected during cleanup, complex refactoring needed,
   or security-sensitive findings such as hardcoded secrets or vulnerabilities.
 license: MIT
-allowed-tools: [Read, Write, Edit, Grep, Glob]
+allowed-tools: Read Write Edit Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

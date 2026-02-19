@@ -8,7 +8,7 @@ description: >
   assets, building custom chart types not in standard libraries, or batch
   generating graphics with parameter variations.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

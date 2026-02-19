@@ -8,7 +8,7 @@ description: >
   exporting visualizations for web with proper optimization, or creating
   multi-format exports from a single source.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

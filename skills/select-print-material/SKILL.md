@@ -9,7 +9,7 @@ description: >
   printability vs. performance, or troubleshooting material-related print
   failures.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+allowed-tools: Read Write Edit Bash Grep Glob WebFetch
 metadata:
   author: Philipp Thoss
   version: "1.0"

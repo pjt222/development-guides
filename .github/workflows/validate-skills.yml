@@ -30,6 +30,7 @@ jobs:
         run: |
           failed=0
           for dir in skills/*/; do
+            [ "$(basename "$dir")" = "_template" ] && continue
             if [ -f "$dir/SKILL.md" ]; then
               if ! skills-ref validate "$dir"; then
                 failed=1

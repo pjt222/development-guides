@@ -7,7 +7,7 @@ description: >
   variables clutter files, dead code paths were never removed, formatting is
   inconsistent, or static analysis tools report fixable hygiene issues.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

@@ -9,7 +9,7 @@ description: >
   surface finish, or converting between model formats while preserving
   printability.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+allowed-tools: Read Write Edit Bash Grep Glob WebFetch
 metadata:
   author: Philipp Thoss
   version: "1.0"

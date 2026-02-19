@@ -8,7 +8,7 @@ description: >
   across dev/staging/prod, deprecated files remain in the project root, or
   naming conventions are inconsistent across directories.
 license: MIT
-allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"
