@@ -380,6 +380,14 @@ pyenv global 3.11.0
 options = "metadata,umask=22,fmask=11"
 ```
 
+### Git Directory Rename Failures on NTFS
+
+**Symptom**: After `git mv`, new directory shows `d?????????` permissions and is inaccessible.
+
+**Cause**: WSL2's NTFS interop layer (drvfs) does not reliably handle atomic directory renames.
+
+**Workaround**: Use `mkdir -p` + file copy + `git rm` the old path instead of `git mv` for directories on `/mnt/` paths. For cleanup of broken directories: `cmd.exe /c "rmdir /s /q D:\\path\\to\\broken-dir"`.
+
 ### R Path Issues
 
 **R command not found**: Use the full path or create wrapper scripts (see section 6):

@@ -313,6 +313,7 @@ ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skil
 - **Untestable validation**: "Code quality is good" can't be verified. "Linter passes with 0 warnings" can.
 - **Stale cross-references**: When renaming or removing skills, grep for the old name in all Related Skills sections.
 - **Description too long**: The description field is what agents read to decide activation. Keep it under 1024 characters and front-load the key information.
+- **Avoid `git mv` on NTFS-mounted paths (WSL)**: On `/mnt/` paths, `git mv` for directories can create broken permissions (`d?????????`). Use `mkdir -p` + copy files + `git rm` the old path instead. See the [environment guide](../../guides/setting-up-your-environment.md) troubleshooting section.
 
 ## Examples
 

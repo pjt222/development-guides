@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 269
+total_skills: 273
 
 domains:
   r-packages:
@@ -389,6 +389,16 @@ domains:
         complexity: intermediate
         language: multi
         description: Construct structured arguments using the hypothesis-argument-example triad
+      - id: evolve-agent
+        path: evolve-agent/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Evolve an existing agent by refining capabilities, updating skills, adjusting tools, and synchronizing the registry
+      - id: evolve-team
+        path: evolve-team/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Evolve an existing team by adjusting members, changing coordination patterns, and synchronizing the CONFIG block and registry
 
   citations:
     description: Academic and software citation management with R and BibTeX
@@ -1221,6 +1231,15 @@ domains:
         language: natural
         description: Build and maintain a library collection through acquisitions, weeding (CREW/MUSTIE method), collection assessment, and reader advisory
 
+  linguistics:
+    description: Historical and computational linguistics — etymology, philology, and NLP
+    skills:
+      - id: research-word-etymology
+        path: research-word-etymology/SKILL.md
+        complexity: intermediate
+        language: natural-language
+        description: Trace a word's origin through proto-language roots, cognate comparison, semantic drift, and folk etymology identification
+
   travel:
     description: Tour planning, hiking, route visualization, and outdoor trip logistics
     skills:
@@ -1387,6 +1406,11 @@ domains:
         complexity: intermediate
         language: multi
         description: Analyze diffusion dynamics using SDEs and Fokker-Planck equations
+      - id: analyze-generative-diffusion-model
+        path: analyze-generative-diffusion-model/SKILL.md
+        complexity: advanced
+        language: python
+        description: Evaluate pre-trained generative diffusion models using FID, attention maps, noise schedule inspection, and latent space probing
 
   hildegard:
     description: Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history

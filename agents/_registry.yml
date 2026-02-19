@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 53
+total_agents: 55
 version: "2.1"
 last_updated: "2026-02-17"
 
@@ -682,6 +682,7 @@ agents:
       - fit-drift-diffusion-model
       - implement-diffusion-network
       - analyze-diffusion-dynamics
+      - analyze-generative-diffusion-model
 
   - id: hildegard
     path: agents/hildegard.md
@@ -776,3 +777,20 @@ agents:
       - review-skill-format
       - update-skill-content
       - refactor-skill-structure
+
+  - id: etymologist
+    path: agents/etymologist.md
+    description: Historical linguistics specialist for etymology research, proto-language root tracing, cognate comparison, semantic drift documentation, and folk etymology identification
+    tags: [linguistics, etymology, historical-linguistics, philology]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - research-word-etymology
+
+  - id: nlp-specialist
+    path: agents/nlp-specialist.md
+    description: Computational natural language processing specialist for text preprocessing, transformer fine-tuning, named entity recognition, sentiment analysis, and NLP evaluation metrics
+    tags: [nlp, natural-language-processing, transformers, text-classification, ner]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
+    skills: []

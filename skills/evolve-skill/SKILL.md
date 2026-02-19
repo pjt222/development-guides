@@ -267,6 +267,7 @@ git diff
 - **Stale cross-references**: When creating a variant, both the original and the variant need to reference each other. One-directional references leave the graph incomplete.
 - **Registry count drift**: After creating a variant, the `total_skills` count must be incremented. Forgetting this causes validation failures in other skills that check the registry.
 - **Scope creep during refinement**: A refinement that doubles the skill's length should probably be a variant instead. If you're adding more than 3 new procedure steps, reconsider the scope decision from Step 3.
+- **Avoid `git mv` on NTFS-mounted paths (WSL)**: On `/mnt/` paths, `git mv` for directories can create broken permissions (`d?????????`). Use `mkdir -p` + copy files + `git rm` the old path instead. See the [environment guide](../../guides/setting-up-your-environment.md) troubleshooting section.
 
 ## Related Skills
 

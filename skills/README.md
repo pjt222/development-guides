@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 269 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 273 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -29,7 +29,7 @@ Browse by domain:
 | [Mcp Integration](mcp-integration/) | 5 | MCP server setup and troubleshooting skills |
 | [Web Dev](web-dev/) | 3 | Web development skills for Next.js and modern frontend |
 | [Git](git/) | 6 | Git version control and GitHub workflow skills |
-| [General](general/) | 10 | Cross-cutting development environment and workflow skills |
+| [General](general/) | 12 | Cross-cutting development environment and workflow skills |
 | [Citations](citations/) | 3 | Academic and software citation management with R and BibTeX |
 | [Data Serialization](data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
 | [Review](review/) | 9 | Senior-level review skills for research, data, architecture, and design |
@@ -54,6 +54,7 @@ Browse by domain:
 | [Prospecting](prospecting/) | 2 | Mineral identification and precious metal recovery |
 | [Crafting](crafting/) | 1 | Traditional handcraft and artisan skills |
 | [Library Science](library-science/) | 3 | Library cataloging, collection management, and material preservation |
+| [Linguistics](linguistics/) | 1 | Historical and computational linguistics — etymology, philology, and NLP |
 | [Travel](travel/) | 6 | Tour planning, hiking, route visualization, and outdoor trip logistics |
 | [Relocation](relocation/) | 3 | Cross-border EU/DACH relocation planning, documents, and bureaucracy |
 | [A2a Protocol](a2a-protocol/) | 3 | Google A2A agent-to-agent protocol implementation and interoperability |
@@ -61,7 +62,7 @@ Browse by domain:
 | [Number Theory](number-theory/) | 3 | Prime analysis, modular arithmetic, and Diophantine equations |
 | [Stochastic Processes](stochastic-processes/) | 3 | Markov chains, HMMs, MCMC, and stochastic simulation |
 | [Theoretical Science](theoretical-science/) | 3 | Quantum physics, quantum chemistry, and theoretical mathematics |
-| [Diffusion](diffusion/) | 3 | Cognitive drift-diffusion models and generative AI diffusion models |
+| [Diffusion](diffusion/) | 4 | Cognitive drift-diffusion models and generative AI diffusion models |
 | [Hildegard](hildegard/) | 5 | Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history |
 | [Maintenance](maintenance/) | 4 | Codebase cleanup, project tidying, broken reference repair, and issue triage |
 | [Blender](blender/) | 3 | Blender Python API scripting for 3D modeling, scene creation, and rendering |

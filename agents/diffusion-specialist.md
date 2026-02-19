@@ -14,6 +14,7 @@ skills:
   - fit-drift-diffusion-model
   - implement-diffusion-network
   - analyze-diffusion-dynamics
+  - analyze-generative-diffusion-model
 ---
 
 # Diffusion Specialist Agent
@@ -53,6 +54,7 @@ This agent can execute the following structured procedures from the [skills libr
 - `fit-drift-diffusion-model` — Fit cognitive drift-diffusion models to reaction time data with parameter estimation
 - `implement-diffusion-network` — Implement a generative diffusion model (DDPM/score-based) with training and sampling
 - `analyze-diffusion-dynamics` — Analyze the dynamics of diffusion processes using SDEs and Fokker-Planck equations
+- `analyze-generative-diffusion-model` — Evaluate pre-trained generative diffusion models using FID, attention maps, noise schedules, and latent space probing
 
 ## Usage Scenarios
 

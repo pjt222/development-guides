@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 53 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 55 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -44,6 +44,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [designer](designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [diffusion-specialist](diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |
 | [dog-trainer](dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
+| [etymologist](etymologist.md) | normal | Historical linguistics specialist for etymology research, proto-language root tracing, cognate comparison, semantic drift documentation, and folk etymology identification |
 | [fabricator](fabricator.md) | normal | 3D printing and additive manufacturing specialist covering FDM, SLA, and SLS processes from model preparation through troubleshooting |
 | [gardener](gardener.md) | normal | Plant cultivation guide for bonsai, soil preparation, biodynamic calendar planning, garden observation, and hand tool maintenance with contemplative checkpoints |
 | [geometrist](geometrist.md) | normal | Classical and computational geometry specialist for ruler-and-compass constructions, Euclidean proofs, trigonometric problem solving, and geometric transformations |
@@ -58,6 +59,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [mcp-developer](mcp-developer.md) | normal | MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers |
 | [mycologist](mycologist.md) | normal | Fungi specialist for field identification, cultivation guidance, mycelial ecology, and mushroom safety with absolute safety-first approach |
 | [mystic](mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
+| [nlp-specialist](nlp-specialist.md) | normal | Computational natural language processing specialist for text preprocessing, transformer fine-tuning, named entity recognition, sentiment analysis, and NLP evaluation metrics |
 | [number-theorist](number-theorist.md) | normal | Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches |
 | [project-manager](project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
 | [prospector](prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |

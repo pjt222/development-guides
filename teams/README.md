@@ -5,7 +5,7 @@ Predefined multi-agent team compositions for coordinated workflows in [Claude Co
 ## Overview
 
 <!-- AUTO:START:teams-intro -->
-A collection of 8 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+A collection of 9 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
 <!-- AUTO:END:teams-intro -->
 
 Teams complement agents and skills:
@@ -26,6 +26,7 @@ Teams complement agents and skills:
 | [ai-self-care](ai-self-care.md) | mystic | 4 | sequential | AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying |
 | [scrum-team](scrum-team.md) | project-manager | 3 | timeboxed | Pure Scrum team enforcing the full framework with three accountabilities, five events, and three artifacts |
 | [opaque-team](opaque-team.md) | shapeshifter | 1 | adaptive | Variable-size team of N shapeshifters that self-organize into any roles needed |
+| [agentskills-alignment](agentskills-alignment.md) | skill-reviewer | 4 | hub-and-spoke | Standards compliance team for maintaining alignment with the agentskills.io open standard |
 <!-- AUTO:END:teams-table -->
 
 ## Creating a New Team
