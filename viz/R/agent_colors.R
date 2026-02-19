@@ -1,5 +1,5 @@
 # agent_colors.R - Per-agent cyberpunk neon color palette
-# Each of 34 agents gets a unique color for glyph rendering.
+# Each of 56 agents gets a unique color for glyph rendering.
 # Follows the same hex format as DOMAIN_COLORS in utils.R.
 
 AGENT_COLORS <- list(
@@ -62,5 +62,40 @@ AGENT_COLORS <- list(
 
   # ── Meta & Versioning ──────────────────────────────────────────────────
   "skill-reviewer"          = "#ff66bb",   # review pink
-  "version-manager"         = "#44ddaa"    # semver green
+  "version-manager"         = "#44ddaa",   # semver green
+
+  # ── Travel & Relocation ────────────────────────────────────────────────
+  "tour-planner"            = "#ffaa55",   # map amber
+  "hiking-guide"            = "#77cc55",   # trail green
+  "relocation-expert"       = "#ffbb44",   # compass gold
+
+  # ── Protocol & MCP ─────────────────────────────────────────────────────
+  "mcp-developer"           = "#00ddbb",   # protocol green
+  "acp-developer"           = "#55ddbb",   # protocol teal
+
+  # ── Mathematics & Science ───────────────────────────────────────────────
+  "geometrist"              = "#44ffaa",   # compass green
+  "markovian"               = "#7799ff",   # probability blue
+  "theoretical-researcher"  = "#aabbff",   # theory blue
+  "diffusion-specialist"    = "#cc77ff",   # diffusion violet
+
+  # ── Medieval & Esoteric ─────────────────────────────────────────────────
+  "hildegard"               = "#88dd77",   # viriditas green
+
+  # ── Maintenance ─────────────────────────────────────────────────────────
+  "janitor"                 = "#99aacc",   # clean slate blue
+
+  # ── 3D & Visualization ─────────────────────────────────────────────────
+  "blender-artist"          = "#ff8833",   # render orange
+  "fabricator"              = "#55ccdd",   # filament cyan
+
+  # ── Critical Thinking ───────────────────────────────────────────────────
+  "advocatus-diaboli"       = "#ff4433",   # devil red
+
+  # ── Academic ────────────────────────────────────────────────────────────
+  "apa-specialist"          = "#77aadd",   # academic blue
+
+  # ── Linguistics ─────────────────────────────────────────────────────────
+  "etymologist"             = "#ddbb66",   # parchment gold
+  "nlp-specialist"          = "#bb88ff"    # language violet
 )

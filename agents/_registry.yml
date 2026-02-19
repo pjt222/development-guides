@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 55
+total_agents: 56
 version: "2.1"
-last_updated: "2026-02-17"
+last_updated: "2026-02-19"
 
 default_skills:
   - id: meditate
@@ -638,6 +638,20 @@ agents:
       - design-a2a-agent-card
       - implement-a2a-server
       - test-a2a-interop
+
+  - id: advocatus-diaboli
+    path: agents/advocatus-diaboli.md
+    description: Constructive contrarian for rigorous assumption-testing, counterargument generation, Socratic questioning, and logical fallacy detection
+    tags: [argumentation, critical-thinking, devil-advocate, logic, socratic, steelmanning, review]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - argumentation
+      - review-research
+      - review-software-architecture
+      - review-data-analysis
+      - search-prior-art
+      - investigate-capa-root-cause
 
   - id: geometrist
     path: agents/geometrist.md

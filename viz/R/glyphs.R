@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 199 skillIds to a specific glyph drawing function.
+# Maps each of 273 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -115,13 +115,19 @@ SKILL_GLYPHS <- list(
   "prepare-soil"                       = "glyph_soil_layers",
   "read-garden"                        = "glyph_garden_eye",
 
-  # ── general (6) ────────────────────────────────────────────────────────
+  # ── general (12) ───────────────────────────────────────────────────────
   "setup-wsl-dev-environment"      = "glyph_terminal",
   "write-claude-md"                = "glyph_robot_doc",
   "security-audit-codebase"        = "glyph_shield_scan",
   "create-skill"                   = "glyph_spark_create",
   "evolve-skill"                   = "glyph_evolution_arrow",
   "manage-memory"                  = "glyph_memory_file",
+  "create-agent"                   = "glyph_agent_create",
+  "create-team"                    = "glyph_team_create",
+  "evolve-agent"                   = "glyph_agent_evolve",
+  "evolve-team"                    = "glyph_team_evolve",
+  "fail-early-pattern"             = "glyph_fail_early",
+  "argumentation"                  = "glyph_argument_scale",
 
   # ── git (6) ────────────────────────────────────────────────────────────
   "configure-git-repository"       = "glyph_git_config",
@@ -330,10 +336,11 @@ SKILL_GLYPHS <- list(
   "derive-theoretical-result"      = "glyph_derivation",
   "survey-theoretical-literature"  = "glyph_literature_survey",
 
-  # ── diffusion (3) ──────────────────────────────────────────────
+  # ── diffusion (4) ──────────────────────────────────────────────
   "fit-drift-diffusion-model"      = "glyph_drift_diffusion",
   "implement-diffusion-network"    = "glyph_diffusion_network",
   "analyze-diffusion-dynamics"     = "glyph_diffusion_sde",
+  "analyze-generative-diffusion-model" = "glyph_gen_diffusion",
 
   # ── hildegard (5) ──────────────────────────────────────────────
   "formulate-herbal-remedy"        = "glyph_herbal_mortar",
@@ -360,5 +367,13 @@ SKILL_GLYPHS <- list(
   # ── 3d-printing (3) ────────────────────────────────────────────
   "prepare-print-model"            = "glyph_3d_model_prep",
   "select-print-material"          = "glyph_material_spool",
-  "troubleshoot-print-issues"      = "glyph_print_debug"
+  "troubleshoot-print-issues"      = "glyph_print_debug",
+
+  # ── citations (3) ────────────────────────────────────────────
+  "format-citations"               = "glyph_citation_format",
+  "manage-bibliography"            = "glyph_bibliography",
+  "validate-references"            = "glyph_ref_validate",
+
+  # ── linguistics (1) ──────────────────────────────────────────
+  "research-word-etymology"        = "glyph_etymology_tree"
 )

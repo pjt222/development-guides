@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-19T16:49:46.429Z",
-    "totalSkills": 267,
-    "totalAgents": 53,
-    "totalTeams": 8,
-    "totalNodes": 328,
-    "totalLinks": 1413,
-    "totalAgentLinks": 334,
-    "totalTeamLinks": 28,
-    "totalDomains": 48
+    "generated": "2026-02-19T21:18:33.035Z",
+    "totalSkills": 273,
+    "totalAgents": 56,
+    "totalTeams": 9,
+    "totalNodes": 338,
+    "totalLinks": 1445,
+    "totalAgentLinks": 342,
+    "totalTeamLinks": 32,
+    "totalDomains": 49
   },
   "domains": {
     "r-packages": {
@@ -45,7 +45,7 @@
     },
     "general": {
       "description": "Cross-cutting development environment and workflow skills",
-      "count": 8
+      "count": 12
     },
     "citations": {
       "description": "Academic and software citation management with R and BibTeX",
@@ -143,6 +143,10 @@
       "description": "Library cataloging, collection management, and material preservation",
       "count": 3
     },
+    "linguistics": {
+      "description": "Historical and computational linguistics — etymology, philology, and NLP",
+      "count": 1
+    },
     "travel": {
       "description": "Tour planning, hiking, route visualization, and outdoor trip logistics",
       "count": 6
@@ -173,7 +177,7 @@
     },
     "diffusion": {
       "description": "Cognitive drift-diffusion models and generative AI diffusion models",
-      "count": 3
+      "count": 4
     },
     "hildegard": {
       "description": "Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history",
@@ -1694,14 +1698,14 @@
       ],
       "related": [
         "write-claude-md",
-        "skill-creation",
+        "create-skill",
         "heal",
         "meditate"
       ],
       "path": "manage-memory/SKILL.md"
     },
     {
-      "id": "skill-creation",
+      "id": "create-skill",
       "type": "skill",
       "title": "Create a New Skill",
       "domain": "general",
@@ -1716,16 +1720,18 @@
         "authoring"
       ],
       "related": [
-        "skill-evolution",
+        "evolve-skill",
+        "create-agent",
+        "create-team",
         "write-claude-md",
         "configure-git-repository",
         "commit-changes",
         "security-audit-codebase"
       ],
-      "path": "skill-creation/SKILL.md"
+      "path": "create-skill/SKILL.md"
     },
     {
-      "id": "skill-evolution",
+      "id": "evolve-skill",
       "type": "skill",
       "title": "Evolve an Existing Skill",
       "domain": "general",
@@ -1741,12 +1747,56 @@
         "versioning"
       ],
       "related": [
-        "skill-creation",
+        "create-skill",
         "commit-changes",
         "configure-git-repository",
         "security-audit-codebase"
       ],
-      "path": "skill-evolution/SKILL.md"
+      "path": "evolve-skill/SKILL.md"
+    },
+    {
+      "id": "create-agent",
+      "type": "skill",
+      "title": "Create a New Agent",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create a new agent definition file with persona design, tool selection, and registry integration",
+      "tags": [
+        "meta",
+        "agent",
+        "creation",
+        "persona",
+        "agentskills"
+      ],
+      "related": [
+        "create-skill",
+        "create-team",
+        "commit-changes"
+      ],
+      "path": "create-agent/SKILL.md"
+    },
+    {
+      "id": "create-team",
+      "type": "skill",
+      "title": "Create a New Team",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Create a new team composition file with coordination pattern, member selection, and CONFIG block",
+      "tags": [
+        "meta",
+        "team",
+        "creation",
+        "composition",
+        "coordination"
+      ],
+      "related": [
+        "create-skill",
+        "create-agent",
+        "commit-changes"
+      ],
+      "path": "create-team/SKILL.md"
     },
     {
       "id": "fail-early-pattern",
@@ -1767,7 +1817,7 @@
         "write-testthat-tests",
         "review-pull-request",
         "review-software-architecture",
-        "skill-creation",
+        "create-skill",
         "security-audit-codebase"
       ],
       "path": "fail-early-pattern/SKILL.md"
@@ -1792,10 +1842,55 @@
         "review-pull-request",
         "review-research",
         "review-software-architecture",
-        "skill-creation",
+        "create-skill",
         "write-claude-md"
       ],
       "path": "argumentation/SKILL.md"
+    },
+    {
+      "id": "evolve-agent",
+      "type": "skill",
+      "title": "Evolve an Existing Agent",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Evolve an existing agent by refining capabilities, updating skills, adjusting tools, and synchronizing the registry",
+      "tags": [
+        "meta",
+        "agent",
+        "evolution",
+        "maintenance",
+        "versioning"
+      ],
+      "related": [
+        "create-agent",
+        "evolve-skill",
+        "commit-changes"
+      ],
+      "path": "evolve-agent/SKILL.md"
+    },
+    {
+      "id": "evolve-team",
+      "type": "skill",
+      "title": "Evolve an Existing Team",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Evolve an existing team by adjusting members, changing coordination patterns, and synchronizing the CONFIG block and registry",
+      "tags": [
+        "meta",
+        "team",
+        "evolution",
+        "coordination",
+        "maintenance"
+      ],
+      "related": [
+        "create-team",
+        "evolve-skill",
+        "evolve-agent",
+        "commit-changes"
+      ],
+      "path": "evolve-team/SKILL.md"
     },
     {
       "id": "manage-bibliography",
@@ -2073,7 +2168,7 @@
         "quality"
       ],
       "related": [
-        "skill-creation",
+        "create-skill",
         "update-skill-content",
         "refactor-skill-structure",
         "review-pull-request"
@@ -2099,8 +2194,8 @@
       "related": [
         "review-skill-format",
         "refactor-skill-structure",
-        "skill-evolution",
-        "skill-creation",
+        "evolve-skill",
+        "create-skill",
         "repair-broken-references"
       ],
       "path": "update-skill-content/SKILL.md"
@@ -2123,8 +2218,8 @@
       "related": [
         "review-skill-format",
         "update-skill-content",
-        "skill-creation",
-        "skill-evolution"
+        "create-skill",
+        "evolve-skill"
       ],
       "path": "refactor-skill-structure/SKILL.md"
     },
@@ -2913,7 +3008,7 @@
       "related": [
         "ornament-style-mono",
         "ornament-style-color",
-        "skill-creation"
+        "create-skill"
       ],
       "path": "create-skill-glyph/SKILL.md"
     },
@@ -5377,6 +5472,27 @@
       "path": "curate-collection/SKILL.md"
     },
     {
+      "id": "research-word-etymology",
+      "type": "skill",
+      "title": "Research Word Etymology",
+      "domain": "linguistics",
+      "complexity": "intermediate",
+      "language": "natural-language",
+      "description": "Trace a word's origin through proto-language roots, cognate comparison, semantic drift, and folk etymology identification",
+      "tags": [
+        "linguistics",
+        "etymology",
+        "historical-linguistics",
+        "proto-language",
+        "cognates"
+      ],
+      "related": [
+        "manage-memory",
+        "argumentation"
+      ],
+      "path": "research-word-etymology/SKILL.md"
+    },
+    {
       "id": "plan-tour-route",
       "type": "skill",
       "title": "Plan Tour Route",
@@ -5676,7 +5792,7 @@
       "related": [
         "solve-trigonometric-problem",
         "prove-geometric-theorem",
-        "skill-creation"
+        "create-skill"
       ],
       "path": "construct-geometric-figure/SKILL.md"
     },
@@ -5699,7 +5815,7 @@
       "related": [
         "construct-geometric-figure",
         "prove-geometric-theorem",
-        "skill-creation"
+        "create-skill"
       ],
       "path": "solve-trigonometric-problem/SKILL.md"
     },
@@ -5722,7 +5838,7 @@
       "related": [
         "construct-geometric-figure",
         "solve-trigonometric-problem",
-        "skill-creation"
+        "create-skill"
       ],
       "path": "prove-geometric-theorem/SKILL.md"
     },
@@ -5980,6 +6096,29 @@
       "path": "analyze-diffusion-dynamics/SKILL.md"
     },
     {
+      "id": "analyze-generative-diffusion-model",
+      "type": "skill",
+      "title": "Analyze a Generative Diffusion Model",
+      "domain": "diffusion",
+      "complexity": "advanced",
+      "language": "python",
+      "description": "Evaluate pre-trained generative diffusion models using FID, attention maps, noise schedule inspection, and latent space probing",
+      "tags": [
+        "diffusion",
+        "generative-ai",
+        "evaluation",
+        "FID",
+        "attention",
+        "latent-space"
+      ],
+      "related": [
+        "implement-diffusion-network",
+        "analyze-diffusion-dynamics",
+        "fit-drift-diffusion-model"
+      ],
+      "path": "analyze-generative-diffusion-model/SKILL.md"
+    },
+    {
       "id": "formulate-herbal-remedy",
       "type": "skill",
       "title": "Formulate Herbal Remedy",
@@ -6124,7 +6263,13 @@
       "complexity": "intermediate",
       "language": "multi",
       "description": "Remove dead code, unused imports, fix lint warnings, and normalize formatting",
-      "tags": [],
+      "tags": [
+        "maintenance",
+        "cleanup",
+        "lint",
+        "dead-code",
+        "formatting"
+      ],
       "related": [
         "tidy-project-structure",
         "repair-broken-references",
@@ -6140,7 +6285,13 @@
       "complexity": "intermediate",
       "language": "multi",
       "description": "Organize files, update stale READMEs, clean configs, and verify directory conventions",
-      "tags": [],
+      "tags": [
+        "maintenance",
+        "organization",
+        "structure",
+        "readme",
+        "config"
+      ],
       "related": [
         "clean-codebase",
         "repair-broken-references",
@@ -6156,7 +6307,13 @@
       "complexity": "intermediate",
       "language": "multi",
       "description": "Find and fix broken links, dead URLs, stale imports, and orphaned files",
-      "tags": [],
+      "tags": [
+        "maintenance",
+        "links",
+        "imports",
+        "references",
+        "orphans"
+      ],
       "related": [
         "clean-codebase",
         "tidy-project-structure",
@@ -6172,7 +6329,13 @@
       "complexity": "basic",
       "language": "multi",
       "description": "Triage problems by severity, document findings, and route to appropriate specialist",
-      "tags": [],
+      "tags": [
+        "maintenance",
+        "triage",
+        "escalation",
+        "routing",
+        "issue-reporting"
+      ],
       "related": [
         "clean-codebase",
         "tidy-project-structure",
@@ -7930,6 +8093,39 @@
       "path": "agents/acp-developer.md"
     },
     {
+      "id": "agent:advocatus-diaboli",
+      "type": "agent",
+      "title": "Advocatus Diaboli",
+      "priority": "normal",
+      "description": "Constructive contrarian for rigorous assumption-testing, counterargument generation, Socratic questioning, and logical fallacy detection",
+      "tags": [
+        "argumentation",
+        "critical-thinking",
+        "devil-advocate",
+        "logic",
+        "socratic",
+        "steelmanning",
+        "review"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "argumentation",
+        "review-research",
+        "review-software-architecture",
+        "review-data-analysis",
+        "search-prior-art",
+        "investigate-capa-root-cause"
+      ],
+      "path": "agents/advocatus-diaboli.md"
+    },
+    {
       "id": "agent:geometrist",
       "type": "agent",
       "title": "Geometrist",
@@ -8044,7 +8240,8 @@
       "skills": [
         "fit-drift-diffusion-model",
         "implement-diffusion-network",
-        "analyze-diffusion-dynamics"
+        "analyze-diffusion-dynamics",
+        "analyze-generative-diffusion-model"
       ],
       "path": "agents/diffusion-specialist.md"
     },
@@ -8303,6 +8500,57 @@
       "path": "agents/skill-reviewer.md"
     },
     {
+      "id": "agent:etymologist",
+      "type": "agent",
+      "title": "Etymologist",
+      "priority": "normal",
+      "description": "Historical linguistics specialist for etymology research, proto-language root tracing, cognate comparison, semantic drift documentation, and folk etymology identification",
+      "tags": [
+        "linguistics",
+        "etymology",
+        "historical-linguistics",
+        "philology"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "research-word-etymology"
+      ],
+      "path": "agents/etymologist.md"
+    },
+    {
+      "id": "agent:nlp-specialist",
+      "type": "agent",
+      "title": "Nlp Specialist",
+      "priority": "normal",
+      "description": "Computational natural language processing specialist for text preprocessing, transformer fine-tuning, named entity recognition, sentiment analysis, and NLP evaluation metrics",
+      "tags": [
+        "nlp",
+        "natural-language-processing",
+        "transformers",
+        "text-classification",
+        "ner"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [],
+      "path": "agents/nlp-specialist.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -8478,6 +8726,28 @@
         "emergent"
       ],
       "path": "teams/opaque-team.md"
+    },
+    {
+      "id": "team:agentskills-alignment",
+      "type": "team",
+      "title": "Agentskills Alignment",
+      "lead": "skill-reviewer",
+      "members": [
+        "skill-reviewer",
+        "senior-researcher",
+        "senior-software-developer",
+        "librarian"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "Standards compliance team for maintaining alignment with the agentskills.io open standard",
+      "tags": [
+        "standards",
+        "compliance",
+        "agentskills",
+        "quality",
+        "alignment"
+      ],
+      "path": "teams/agentskills-alignment.md"
     }
   ],
   "links": [
@@ -9748,7 +10018,7 @@
     },
     {
       "source": "manage-memory",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -9762,48 +10032,88 @@
       "type": "skill"
     },
     {
-      "source": "skill-creation",
-      "target": "skill-evolution",
+      "source": "create-skill",
+      "target": "evolve-skill",
       "type": "skill"
     },
     {
-      "source": "skill-creation",
+      "source": "create-skill",
+      "target": "create-agent",
+      "type": "skill"
+    },
+    {
+      "source": "create-skill",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "create-skill",
       "target": "write-claude-md",
       "type": "skill"
     },
     {
-      "source": "skill-creation",
+      "source": "create-skill",
       "target": "configure-git-repository",
       "type": "skill"
     },
     {
-      "source": "skill-creation",
+      "source": "create-skill",
       "target": "commit-changes",
       "type": "skill"
     },
     {
-      "source": "skill-creation",
+      "source": "create-skill",
       "target": "security-audit-codebase",
       "type": "skill"
     },
     {
-      "source": "skill-evolution",
-      "target": "skill-creation",
+      "source": "evolve-skill",
+      "target": "create-skill",
       "type": "skill"
     },
     {
-      "source": "skill-evolution",
+      "source": "evolve-skill",
       "target": "commit-changes",
       "type": "skill"
     },
     {
-      "source": "skill-evolution",
+      "source": "evolve-skill",
       "target": "configure-git-repository",
       "type": "skill"
     },
     {
-      "source": "skill-evolution",
+      "source": "evolve-skill",
       "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "create-agent",
+      "target": "create-skill",
+      "type": "skill"
+    },
+    {
+      "source": "create-agent",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "create-agent",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
+      "source": "create-team",
+      "target": "create-skill",
+      "type": "skill"
+    },
+    {
+      "source": "create-team",
+      "target": "create-agent",
+      "type": "skill"
+    },
+    {
+      "source": "create-team",
+      "target": "commit-changes",
       "type": "skill"
     },
     {
@@ -9823,7 +10133,7 @@
     },
     {
       "source": "fail-early-pattern",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -9848,12 +10158,47 @@
     },
     {
       "source": "argumentation",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
       "source": "argumentation",
       "target": "write-claude-md",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-agent",
+      "target": "create-agent",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-agent",
+      "target": "evolve-skill",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-agent",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-team",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-team",
+      "target": "evolve-skill",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-team",
+      "target": "evolve-agent",
+      "type": "skill"
+    },
+    {
+      "source": "evolve-team",
+      "target": "commit-changes",
       "type": "skill"
     },
     {
@@ -10028,7 +10373,7 @@
     },
     {
       "source": "review-skill-format",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -10058,12 +10403,12 @@
     },
     {
       "source": "update-skill-content",
-      "target": "skill-evolution",
+      "target": "evolve-skill",
       "type": "skill"
     },
     {
       "source": "update-skill-content",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -10083,12 +10428,12 @@
     },
     {
       "source": "refactor-skill-structure",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
       "source": "refactor-skill-structure",
-      "target": "skill-evolution",
+      "target": "evolve-skill",
       "type": "skill"
     },
     {
@@ -10763,7 +11108,7 @@
     },
     {
       "source": "create-skill-glyph",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -12982,6 +13327,16 @@
       "type": "skill"
     },
     {
+      "source": "research-word-etymology",
+      "target": "manage-memory",
+      "type": "skill"
+    },
+    {
+      "source": "research-word-etymology",
+      "target": "argumentation",
+      "type": "skill"
+    },
+    {
       "source": "plan-tour-route",
       "target": "create-spatial-visualization",
       "type": "skill"
@@ -13223,7 +13578,7 @@
     },
     {
       "source": "construct-geometric-figure",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -13238,7 +13593,7 @@
     },
     {
       "source": "solve-trigonometric-problem",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -13253,7 +13608,7 @@
     },
     {
       "source": "prove-geometric-theorem",
-      "target": "skill-creation",
+      "target": "create-skill",
       "type": "skill"
     },
     {
@@ -13374,6 +13729,21 @@
     {
       "source": "analyze-diffusion-dynamics",
       "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-generative-diffusion-model",
+      "target": "implement-diffusion-network",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-generative-diffusion-model",
+      "target": "analyze-diffusion-dynamics",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-generative-diffusion-model",
+      "target": "fit-drift-diffusion-model",
       "type": "skill"
     },
     {
@@ -15197,6 +15567,36 @@
       "type": "agent"
     },
     {
+      "source": "agent:advocatus-diaboli",
+      "target": "argumentation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:advocatus-diaboli",
+      "target": "review-research",
+      "type": "agent"
+    },
+    {
+      "source": "agent:advocatus-diaboli",
+      "target": "review-software-architecture",
+      "type": "agent"
+    },
+    {
+      "source": "agent:advocatus-diaboli",
+      "target": "review-data-analysis",
+      "type": "agent"
+    },
+    {
+      "source": "agent:advocatus-diaboli",
+      "target": "search-prior-art",
+      "type": "agent"
+    },
+    {
+      "source": "agent:advocatus-diaboli",
+      "target": "investigate-capa-root-cause",
+      "type": "agent"
+    },
+    {
       "source": "agent:geometrist",
       "target": "construct-geometric-figure",
       "type": "agent"
@@ -15254,6 +15654,11 @@
     {
       "source": "agent:diffusion-specialist",
       "target": "analyze-diffusion-dynamics",
+      "type": "agent"
+    },
+    {
+      "source": "agent:diffusion-specialist",
+      "target": "analyze-generative-diffusion-model",
       "type": "agent"
     },
     {
@@ -15407,6 +15812,11 @@
       "type": "agent"
     },
     {
+      "source": "agent:etymologist",
+      "target": "research-word-etymology",
+      "type": "agent"
+    },
+    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -15544,6 +15954,26 @@
     {
       "source": "team:opaque-team",
       "target": "agent:shapeshifter",
+      "type": "team"
+    },
+    {
+      "source": "team:agentskills-alignment",
+      "target": "agent:skill-reviewer",
+      "type": "team"
+    },
+    {
+      "source": "team:agentskills-alignment",
+      "target": "agent:senior-researcher",
+      "type": "team"
+    },
+    {
+      "source": "team:agentskills-alignment",
+      "target": "agent:senior-software-developer",
+      "type": "team"
+    },
+    {
+      "source": "team:agentskills-alignment",
+      "target": "agent:librarian",
       "type": "team"
     }
   ]

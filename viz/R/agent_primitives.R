@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 52 agent persona icons
+# agent_primitives.R - Glyph library for 56 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -2318,4 +2318,157 @@ glyph_agent_version_manager <- function(cx, cy, s, col, bright) {
     ggplot2::geom_path(data = arrow_head, .aes(x, y),
       color = bright, linewidth = .lw(s, 2.5))
   )
+}
+
+# ── glyph_agent_advocatus: devil's pitchfork crossed with scales ──────────
+glyph_agent_advocatus <- function(cx, cy, s, col, bright) {
+  # Pitchfork handle
+  handle <- data.frame(x = c(cx, cx), y = c(cy - 22 * s, cy + 8 * s))
+  # Three prongs
+  prong_l <- data.frame(x = c(cx - 10 * s, cx - 10 * s, cx - 6 * s),
+                        y = c(cy + 18 * s, cy + 12 * s, cy + 8 * s))
+  prong_m <- data.frame(x = c(cx, cx), y = c(cy + 22 * s, cy + 8 * s))
+  prong_r <- data.frame(x = c(cx + 10 * s, cx + 10 * s, cx + 6 * s),
+                        y = c(cy + 18 * s, cy + 12 * s, cy + 8 * s))
+  # Small balance scale at base
+  beam <- data.frame(x = c(cx - 12 * s, cx + 12 * s),
+                     y = c(cy - 14 * s, cy - 14 * s))
+  pan_l <- data.frame(x0 = cx - 12 * s, y0 = cy - 18 * s, r = 4 * s)
+  pan_r <- data.frame(x0 = cx + 12 * s, y0 = cy - 18 * s, r = 4 * s)
+  list(
+    ggplot2::geom_path(data = handle, .aes(x, y),
+      color = col, linewidth = .lw(s, 3)),
+    ggplot2::geom_path(data = prong_l, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = prong_m, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = prong_r, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = beam, .aes(x, y),
+      color = col, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = pan_l, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = pan_r, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_apa: academic document with APA header ───────────────────
+glyph_agent_apa <- function(cx, cy, s, col, bright) {
+  # Document outline
+  doc <- data.frame(
+    x = c(cx - 16 * s, cx + 16 * s, cx + 16 * s, cx - 16 * s),
+    y = c(cy + 22 * s, cy + 22 * s, cy - 22 * s, cy - 22 * s)
+  )
+  # Header line (bold - represents "APA" title)
+  header <- data.frame(x = c(cx - 10 * s, cx + 10 * s), y = c(cy + 16 * s, cy + 16 * s))
+  # Centered text lines
+  lines_y <- c(8, 2, -4, -10, -16)
+  layers <- list(
+    ggplot2::geom_polygon(data = doc, .aes(x, y),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = header, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3))
+  )
+  for (y_off in lines_y) {
+    w <- if (y_off == -16) 6 else 10
+    line <- data.frame(
+      x = c(cx - w * s, cx + w * s),
+      y = c(cy + y_off * s, cy + y_off * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5))
+  }
+  layers
+}
+
+# ── glyph_agent_etymologist: root tree with word-family branches ─────────
+glyph_agent_etymologist <- function(cx, cy, s, col, bright) {
+  # Central trunk (word root)
+  trunk <- data.frame(x = c(cx, cx), y = c(cy - 16 * s, cy + 4 * s))
+  # Deep root (origin language)
+  root <- data.frame(x = c(cx, cx), y = c(cy - 16 * s, cy - 24 * s))
+  root_l <- data.frame(x = c(cx, cx - 8 * s), y = c(cy - 24 * s, cy - 28 * s))
+  root_r <- data.frame(x = c(cx, cx + 8 * s), y = c(cy - 24 * s, cy - 28 * s))
+  # Branch out to descendant words
+  br1 <- data.frame(x = c(cx, cx - 18 * s), y = c(cy + 4 * s, cy + 16 * s))
+  br2 <- data.frame(x = c(cx, cx - 6 * s), y = c(cy + 4 * s, cy + 20 * s))
+  br3 <- data.frame(x = c(cx, cx + 6 * s), y = c(cy + 4 * s, cy + 20 * s))
+  br4 <- data.frame(x = c(cx, cx + 18 * s), y = c(cy + 4 * s, cy + 16 * s))
+  # Leaf nodes (modern word forms)
+  leaves <- data.frame(
+    x0 = cx + c(-18, -6, 6, 18) * s,
+    y0 = cy + c(16, 20, 20, 16) * s,
+    r = rep(3.5 * s, 4)
+  )
+  # Root node
+  root_node <- data.frame(x0 = cx, y0 = cy - 24 * s, r = 4 * s)
+  list(
+    ggplot2::geom_path(data = trunk, .aes(x, y), color = col, linewidth = .lw(s, 3)),
+    ggplot2::geom_path(data = root, .aes(x, y), color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = root_l, .aes(x, y), color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = root_r, .aes(x, y), color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = root_node, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = br1, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = br2, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = br3, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = br4, .aes(x, y), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = leaves, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_nlp: text tokens flowing through transformer ─────────────
+glyph_agent_nlp <- function(cx, cy, s, col, bright) {
+  layers <- list()
+  # Input token blocks (left column)
+  for (i in 0:2) {
+    y_pos <- cy + (8 - i * 10) * s
+    tok <- data.frame(
+      xmin = cx - 24 * s, xmax = cx - 12 * s,
+      ymin = y_pos - 3 * s, ymax = y_pos + 3 * s
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = tok,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.5))
+  }
+  # Central transformer block
+  trans <- data.frame(
+    xmin = cx - 6 * s, xmax = cx + 6 * s,
+    ymin = cy - 14 * s, ymax = cy + 14 * s
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = trans,
+    .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+    fill = hex_with_alpha(bright, 0.12), color = bright, linewidth = .lw(s, 2))
+  # Attention lines inside transformer
+  for (y_off in c(-6, 0, 6)) {
+    attn <- data.frame(
+      x = c(cx - 4 * s, cx + 4 * s),
+      y = c(cy + y_off * s, cy + y_off * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = attn, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1))
+  }
+  # Output token blocks (right column)
+  for (i in 0:2) {
+    y_pos <- cy + (8 - i * 10) * s
+    tok <- data.frame(
+      xmin = cx + 12 * s, xmax = cx + 24 * s,
+      ymin = y_pos - 3 * s, ymax = y_pos + 3 * s
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = tok,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.5))
+  }
+  # Flow arrows
+  arr_l <- data.frame(x = c(cx - 12 * s, cx - 6 * s), y = c(cy, cy))
+  arr_r <- data.frame(x = c(cx + 6 * s, cx + 12 * s), y = c(cy, cy))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arr_l, .aes(x, y),
+    color = col, linewidth = .lw(s, 2),
+    arrow = ggplot2::arrow(length = ggplot2::unit(3 * s, "pt"), type = "closed"))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arr_r, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2),
+    arrow = ggplot2::arrow(length = ggplot2::unit(3 * s, "pt"), type = "closed"))
+  layers
 }

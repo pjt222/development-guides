@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 52,
+    "total_agents": 56,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -278,6 +278,26 @@
       "description": "Semantic versioning and release management",
       "glow": "semver-green",
       "concept": "Version tag badge with increment arrow"
+    },
+    "advocatus-diaboli": {
+      "description": "Critical thinking and devil's advocate argumentation",
+      "glow": "devil-red",
+      "concept": "Devil's pitchfork crossed with scales of justice"
+    },
+    "apa-specialist": {
+      "description": "APA 7th edition compliance for academic manuscripts",
+      "glow": "academic-blue",
+      "concept": "Academic document with APA header mark"
+    },
+    "etymologist": {
+      "description": "Word origin research and historical linguistics",
+      "glow": "parchment-gold",
+      "concept": "Root tree with branching word-family connections"
+    },
+    "nlp-specialist": {
+      "description": "Natural language processing and text analysis",
+      "glow": "language-violet",
+      "concept": "Text tokens flowing through transformer architecture"
     }
   },
   "icons": [
@@ -539,6 +559,26 @@
     {
       "agentId": "version-manager",
       "path": "public/icons/cyberpunk/agents/version-manager.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "advocatus-diaboli",
+      "path": "public/icons/cyberpunk/agents/advocatus-diaboli.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "apa-specialist",
+      "path": "public/icons/cyberpunk/agents/apa-specialist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "etymologist",
+      "path": "public/icons/cyberpunk/agents/etymologist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "nlp-specialist",
+      "path": "public/icons/cyberpunk/agents/nlp-specialist.webp",
       "status": "done"
     }
   ]

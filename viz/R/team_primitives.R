@@ -358,3 +358,56 @@ glyph_team_opaque <- function(cx, cy, s, col, bright) {
       fill = hex_with_alpha(bright, 0.12), color = bright, linewidth = .lw(s, 1.5))
   )
 }
+
+# ── glyph_team_agentskills_alignment: magnifier over SKILL.md with alignment grid + 4 nodes ──
+glyph_team_agentskills_alignment <- function(cx, cy, s, col, bright) {
+  layers <- list()
+
+  # Central document (SKILL.md representation)
+  doc <- data.frame(
+    x = c(cx - 10 * s, cx + 10 * s, cx + 10 * s, cx - 10 * s),
+    y = c(cy + 12 * s, cy + 12 * s, cy - 12 * s, cy - 12 * s)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = doc, .aes(x, y),
+    fill = hex_with_alpha(col, 0.1), color = col, linewidth = .lw(s, 1.5))
+
+  # Alignment grid lines inside document
+  for (y_off in c(6, 0, -6)) {
+    gl <- data.frame(
+      x = c(cx - 6 * s, cx + 6 * s),
+      y = c(cy + y_off * s, cy + y_off * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = gl, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1))
+  }
+
+  # Magnifier overlaying the document
+  loupe <- data.frame(x0 = cx + 6 * s, y0 = cy + 4 * s, r = 10 * s)
+  handle <- data.frame(
+    x = c(cx + 13 * s, cx + 20 * s),
+    y = c(cy - 3 * s, cy - 10 * s)
+  )
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = loupe,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.05), color = bright, linewidth = .lw(s, 2))
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = handle, .aes(x, y),
+    color = bright, linewidth = .lw(s, 3))
+
+  # 4 member nodes around the document
+  member_r <- 24 * s
+  node_r <- 4.5 * s
+  angles <- c(-pi / 4, pi / 4, 3 * pi / 4, -3 * pi / 4)
+  for (angle in angles) {
+    mx <- cx + member_r * cos(angle)
+    my <- cy + member_r * sin(angle)
+    line <- data.frame(x = c(cx, mx), y = c(cy, my))
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = line, .aes(x, y),
+      color = hex_with_alpha(col, 0.35), linewidth = .lw(s, 1.2))
+    node <- data.frame(x0 = mx, y0 = my, r = node_r)
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = node,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5))
+  }
+
+  layers
+}

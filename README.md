@@ -6,7 +6,7 @@ An agentic development platform providing structured skills, specialized agents,
 
 <!-- AUTO:START:stats -->
 - **273 skills** across 49 domains — structured, executable procedures
-- **55 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **56 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **9 teams** — predefined multi-agent compositions for complex workflows
 - **11 guides** — human-readable workflow, infrastructure, and reference documentation
 - **Interactive visualization** — force-graph explorer with 273 R-generated skill icons and 9 color themes

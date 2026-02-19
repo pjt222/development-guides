@@ -1,5 +1,5 @@
 # agent_glyphs.R - Agent-to-glyph mapping
-# Maps each of 43 agent IDs to a specific glyph drawing function.
+# Maps each of 56 agent IDs to a specific glyph drawing function.
 #
 # Each entry: agentId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -94,5 +94,15 @@ AGENT_GLYPHS <- list(
 
   # ── Meta & Versioning ────────────────────────────────────────────────
   "skill-reviewer"            = "glyph_agent_skill_reviewer",
-  "version-manager"           = "glyph_agent_version_manager"
+  "version-manager"           = "glyph_agent_version_manager",
+
+  # ── Critical Thinking ──────────────────────────────────────────────
+  "advocatus-diaboli"         = "glyph_agent_advocatus",
+
+  # ── Academic ───────────────────────────────────────────────────────
+  "apa-specialist"            = "glyph_agent_apa",
+
+  # ── Linguistics ────────────────────────────────────────────────────
+  "etymologist"               = "glyph_agent_etymologist",
+  "nlp-specialist"            = "glyph_agent_nlp"
 )
