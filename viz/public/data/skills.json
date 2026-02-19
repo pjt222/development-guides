@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-18T12:05:21.487Z",
-    "totalSkills": 262,
-    "totalAgents": 52,
+    "generated": "2026-02-19T11:42:15.457Z",
+    "totalSkills": 267,
+    "totalAgents": 53,
     "totalTeams": 8,
-    "totalNodes": 322,
-    "totalLinks": 1394,
-    "totalAgentLinks": 331,
+    "totalNodes": 328,
+    "totalLinks": 1413,
+    "totalAgentLinks": 334,
     "totalTeamLinks": 28,
-    "totalDomains": 47
+    "totalDomains": 48
   },
   "domains": {
     "r-packages": {
@@ -45,7 +45,11 @@
     },
     "general": {
       "description": "Cross-cutting development environment and workflow skills",
-      "count": 6
+      "count": 8
+    },
+    "citations": {
+      "description": "Academic and software citation management with R and BibTeX",
+      "count": 3
     },
     "data-serialization": {
       "description": "Data serialization formats, schemas, and evolution strategies",
@@ -1743,6 +1747,118 @@
         "security-audit-codebase"
       ],
       "path": "general/skill-evolution/SKILL.md"
+    },
+    {
+      "id": "fail-early-pattern",
+      "type": "skill",
+      "title": "Fail Early",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Replace silent warnings and deferred errors with loud, meaningful, immediate failures",
+      "tags": [
+        "error-handling",
+        "validation",
+        "defensive-programming",
+        "guard-clauses",
+        "fail-fast"
+      ],
+      "related": [
+        "write-testthat-tests",
+        "review-pull-request",
+        "review-software-architecture",
+        "skill-creation",
+        "security-audit-codebase"
+      ],
+      "path": "general/fail-early-pattern/SKILL.md"
+    },
+    {
+      "id": "argumentation",
+      "type": "skill",
+      "title": "Construct Arguments",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Construct structured arguments using the hypothesis-argument-example triad",
+      "tags": [
+        "argumentation",
+        "reasoning",
+        "hypothesis",
+        "logic",
+        "rhetoric",
+        "critical-thinking"
+      ],
+      "related": [
+        "review-pull-request",
+        "review-research",
+        "review-software-architecture",
+        "skill-creation",
+        "write-claude-md"
+      ],
+      "path": "general/argumentation/SKILL.md"
+    },
+    {
+      "id": "manage-bibliography",
+      "type": "skill",
+      "title": "Manage Bibliography",
+      "domain": "citations",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Create, merge, and deduplicate .bib files using R packages",
+      "tags": [
+        "citations",
+        "bibliography",
+        "bibtex",
+        "R",
+        "RefManageR"
+      ],
+      "related": [
+        "format-citations",
+        "validate-references"
+      ],
+      "path": "citations/manage-bibliography/SKILL.md"
+    },
+    {
+      "id": "format-citations",
+      "type": "skill",
+      "title": "Format Citations",
+      "domain": "citations",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Format citations across academic styles using CSL and citeproc",
+      "tags": [
+        "citations",
+        "formatting",
+        "csl",
+        "apa",
+        "academic"
+      ],
+      "related": [
+        "manage-bibliography",
+        "validate-references"
+      ],
+      "path": "citations/format-citations/SKILL.md"
+    },
+    {
+      "id": "validate-references",
+      "type": "skill",
+      "title": "Validate References",
+      "domain": "citations",
+      "complexity": "intermediate",
+      "language": "R",
+      "description": "Check .bib entries for completeness, DOI resolution, and broken links",
+      "tags": [
+        "citations",
+        "validation",
+        "doi",
+        "bibtex",
+        "quality"
+      ],
+      "related": [
+        "manage-bibliography",
+        "format-citations"
+      ],
+      "path": "citations/validate-references/SKILL.md"
     },
     {
       "id": "serialize-data-formats",
@@ -7195,6 +7311,35 @@
       "path": "agents/shapeshifter.md"
     },
     {
+      "id": "agent:apa-specialist",
+      "type": "agent",
+      "title": "Apa Specialist",
+      "priority": "normal",
+      "description": "APA 7th edition specialist for academic table formatting, writing guidance, Quarto/papaja implementation, and citation auditing",
+      "tags": [
+        "apa",
+        "academic-writing",
+        "citations",
+        "formatting",
+        "quarto"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "format-apa-report",
+        "format-citations",
+        "validate-references"
+      ],
+      "path": "agents/apa-specialist.md"
+    },
+    {
       "id": "agent:alchemist",
       "type": "agent",
       "title": "Alchemist",
@@ -9659,6 +9804,86 @@
     {
       "source": "skill-evolution",
       "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "fail-early-pattern",
+      "target": "write-testthat-tests",
+      "type": "skill"
+    },
+    {
+      "source": "fail-early-pattern",
+      "target": "review-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "fail-early-pattern",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "fail-early-pattern",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "fail-early-pattern",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "argumentation",
+      "target": "review-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "argumentation",
+      "target": "review-research",
+      "type": "skill"
+    },
+    {
+      "source": "argumentation",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "argumentation",
+      "target": "skill-creation",
+      "type": "skill"
+    },
+    {
+      "source": "argumentation",
+      "target": "write-claude-md",
+      "type": "skill"
+    },
+    {
+      "source": "manage-bibliography",
+      "target": "format-citations",
+      "type": "skill"
+    },
+    {
+      "source": "manage-bibliography",
+      "target": "validate-references",
+      "type": "skill"
+    },
+    {
+      "source": "format-citations",
+      "target": "manage-bibliography",
+      "type": "skill"
+    },
+    {
+      "source": "format-citations",
+      "target": "validate-references",
+      "type": "skill"
+    },
+    {
+      "source": "validate-references",
+      "target": "manage-bibliography",
+      "type": "skill"
+    },
+    {
+      "source": "validate-references",
+      "target": "format-citations",
       "type": "skill"
     },
     {
@@ -14499,6 +14724,21 @@
     {
       "source": "agent:shapeshifter",
       "target": "shift-camouflage",
+      "type": "agent"
+    },
+    {
+      "source": "agent:apa-specialist",
+      "target": "format-apa-report",
+      "type": "agent"
+    },
+    {
+      "source": "agent:apa-specialist",
+      "target": "format-citations",
+      "type": "agent"
+    },
+    {
+      "source": "agent:apa-specialist",
+      "target": "validate-references",
       "type": "agent"
     },
     {

@@ -967,3 +967,17 @@ body::after {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
 }
+
+/* ── Chord Diagram ──────────────────────────────────────────── */
+.chord-svg {
+  display: block;
+}
+
+.chord-svg .chords path {
+  mix-blend-mode: screen;
+}
+
+.chord-svg .groups text {
+  pointer-events: none;
+  user-select: none;
+}

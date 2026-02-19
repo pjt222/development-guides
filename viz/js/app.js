@@ -15,60 +15,70 @@ let allData = null;
 let currentMode = '2d';
 let graph3dMod = null;
 let hiveMod = null;
+let chordMod = null;
 let switching = false;
 
 // ── Mode-aware wrappers ─────────────────────────────────────────────
 
 function activeFocusNode(id) {
-  if (currentMode === 'hive' && hiveMod) hiveMod.focusNodeHive(id);
+  if (currentMode === 'chord' && chordMod) chordMod.focusNodeChord(id);
+  else if (currentMode === 'hive' && hiveMod) hiveMod.focusNodeHive(id);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.focusNode3D(id);
   else focusNode(id);
 }
 
 function activeResetView() {
-  if (currentMode === 'hive' && hiveMod) hiveMod.resetViewHive();
+  if (currentMode === 'chord' && chordMod) chordMod.resetViewChord();
+  else if (currentMode === 'hive' && hiveMod) hiveMod.resetViewHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.resetView3D();
   else resetView();
 }
 
 function activeZoomIn() {
-  if (currentMode === 'hive' && hiveMod) hiveMod.zoomInHive();
+  if (currentMode === 'chord' && chordMod) chordMod.zoomInChord();
+  else if (currentMode === 'hive' && hiveMod) hiveMod.zoomInHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomIn3D();
   else zoomIn();
 }
 
 function activeZoomOut() {
-  if (currentMode === 'hive' && hiveMod) hiveMod.zoomOutHive();
+  if (currentMode === 'chord' && chordMod) chordMod.zoomOutChord();
+  else if (currentMode === 'hive' && hiveMod) hiveMod.zoomOutHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomOut3D();
   else zoomOut();
 }
 
 function activeSetSkillVisibility(ids) {
-  if (currentMode === 'hive' && hiveMod) hiveMod.setSkillVisibilityHive(ids);
+  if (currentMode === 'chord' && chordMod) chordMod.setSkillVisibilityChord(ids);
+  else if (currentMode === 'hive' && hiveMod) hiveMod.setSkillVisibilityHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setSkillVisibility3D(ids);
   else setSkillVisibility(ids);
 }
 
 function activeSetVisibleAgents(ids) {
-  if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleAgentsHive(ids);
+  if (currentMode === 'chord' && chordMod) chordMod.setVisibleAgentsChord(ids);
+  else if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleAgentsHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleAgents3D(ids);
   else setVisibleAgents(ids);
 }
 
 function activeSetVisibleTeams(ids) {
-  if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleTeamsHive(ids);
+  if (currentMode === 'chord' && chordMod) chordMod.setVisibleTeamsChord(ids);
+  else if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleTeamsHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleTeams3D(ids);
   else setVisibleTeams(ids);
 }
 
 function activeRefreshGraph() {
-  if (currentMode === 'hive' && hiveMod) hiveMod.refreshHiveGraph();
+  if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
+  else if (currentMode === 'hive' && hiveMod) hiveMod.refreshHiveGraph();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.refreshGraph3D();
   else refreshGraph();
 }
 
 function activeGetVisibleAgentIds() {
-  if (currentMode === 'hive' && hiveMod) return hiveMod.getVisibleAgentIdsHive();
+  if (currentMode === 'chord' && chordMod) return chordMod.getVisibleAgentIdsChord();
+  else if (currentMode === 'hive' && hiveMod) return hiveMod.getVisibleAgentIdsHive();
   else if (currentMode === '3d' && graph3dMod) return graph3dMod.getVisibleAgentIds3D();
   return getVisibleAgentIds();
 }
@@ -79,6 +89,7 @@ function setActiveMode(mode) {
   document.getElementById('btn-2d').classList.toggle('active', mode === '2d');
   document.getElementById('btn-3d').classList.toggle('active', mode === '3d');
   document.getElementById('btn-hive').classList.toggle('active', mode === 'hive');
+  document.getElementById('btn-chord').classList.toggle('active', mode === 'chord');
 }
 
 function isWebGLAvailable() {
@@ -107,7 +118,9 @@ async function switchTo3D() {
     }
 
     // Destroy current mode
-    if (currentMode === 'hive' && hiveMod) {
+    if (currentMode === 'chord' && chordMod) {
+      chordMod.destroyChordGraph();
+    } else if (currentMode === 'hive' && hiveMod) {
       hiveMod.destroyHiveGraph();
     } else {
       destroyGraph();
@@ -169,7 +182,9 @@ function switchTo2D() {
   const container = document.getElementById('graph-container');
 
   // Destroy current non-2D mode
-  if (currentMode === 'hive' && hiveMod) {
+  if (currentMode === 'chord' && chordMod) {
+    chordMod.destroyChordGraph();
+  } else if (currentMode === 'hive' && hiveMod) {
     hiveMod.destroyHiveGraph();
   } else if (graph3dMod) {
     graph3dMod.destroy3DGraph();
@@ -227,7 +242,9 @@ async function switchToHive() {
     }
 
     // Destroy current mode
-    if (currentMode === '3d' && graph3dMod) {
+    if (currentMode === 'chord' && chordMod) {
+      chordMod.destroyChordGraph();
+    } else if (currentMode === '3d' && graph3dMod) {
       graph3dMod.destroy3DGraph();
     } else {
       destroyGraph();
@@ -278,6 +295,53 @@ async function switchToHive() {
     if (spriteLabelHive) spriteLabelHive.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
+    switchTo2D();
+  }
+}
+
+// ── Chord Mode ──────────────────────────────────────────────────────
+
+async function switchToChord() {
+  const container = document.getElementById('graph-container');
+
+  try {
+    if (!chordMod) {
+      chordMod = await import('./chord.js');
+    }
+
+    // Destroy current mode
+    if (currentMode === 'hive' && hiveMod) {
+      hiveMod.destroyHiveGraph();
+    } else if (currentMode === '3d' && graph3dMod) {
+      graph3dMod.destroy3DGraph();
+    } else {
+      destroyGraph();
+    }
+    container.innerHTML = '';
+
+    chordMod.initChordGraph(container, allData, {
+      onClick(node) {
+        if (node) openPanel(node);
+        else closePanel();
+      },
+      onHover(node) {
+        showTooltip(node);
+      },
+    });
+
+    currentMode = 'chord';
+    logEvent('app', { event: 'modeSwitch', mode: 'chord' });
+    setActiveMode('chord');
+
+    // Hide hive and 3D controls
+    const hiveSortBtn = document.getElementById('btn-hive-sort');
+    if (hiveSortBtn) hiveSortBtn.style.display = 'none';
+    const hiveSpreadLabel = document.getElementById('hive-spread-label');
+    if (hiveSpreadLabel) hiveSpreadLabel.style.display = 'none';
+    const spriteLabel = document.getElementById('3d-sprite-label');
+    if (spriteLabel) spriteLabel.style.display = 'none';
+  } catch (err) {
+    console.error('Failed to switch to Chord:', err);
     switchTo2D();
   }
 }
@@ -409,6 +473,12 @@ async function main() {
     try { await switchToHive(); } finally { switching = false; }
   });
 
+  document.getElementById('btn-chord').addEventListener('click', async () => {
+    if (switching || currentMode === 'chord') return;
+    switching = true;
+    try { await switchToChord(); } finally { switching = false; }
+  });
+
   // ── Hive sort toggle ──
   const hiveSortBtn = document.getElementById('btn-hive-sort');
   if (hiveSortBtn) hiveSortBtn.addEventListener('click', () => {
@@ -452,6 +522,8 @@ async function main() {
       if (graph3dMod) graph3dMod.switchIconPalette3D(themeSelect.value, data.nodes);
       // Hive: preload icons for new palette so isIconLoaded() passes
       if (currentMode === 'hive' && hiveMod) hiveMod.preloadHiveIcons(data.nodes, themeSelect.value);
+      // Chord: refresh to pick up new palette colors
+      if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
       refreshSwatches();
       refreshPanelTheme();
       activeRefreshGraph();
@@ -497,6 +569,12 @@ function showTooltip(node) {
   // In hive mode, show custom tooltip as in 2D
   if (currentMode === '3d') {
     if (tooltip) tooltip.style.display = 'none';
+    return;
+  }
+  // Chord mode: use _chordTooltip if available
+  if (node._chordTooltip) {
+    tooltip.textContent = node._chordTooltip;
+    tooltip.style.display = 'block';
     return;
   }
   let label;
