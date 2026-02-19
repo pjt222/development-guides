@@ -660,11 +660,16 @@ function updateFilteredStats(visibleSkillIds) {
 
 main().catch(err => {
   console.error(err);
-  document.getElementById('graph-container').innerHTML = `
-    <div class="load-error">
-      <h2>Runtime Error</h2>
-      <p>${err.message}</p>
-      <p class="error-detail">${err.stack || ''}</p>
-    </div>
-  `;
+  const container = document.getElementById('graph-container');
+  const wrapper = document.createElement('div');
+  wrapper.className = 'load-error';
+  const h2 = document.createElement('h2');
+  h2.textContent = 'Runtime Error';
+  const p1 = document.createElement('p');
+  p1.textContent = err.message;
+  const p2 = document.createElement('p');
+  p2.className = 'error-detail';
+  p2.textContent = err.stack || '';
+  wrapper.append(h2, p1, p2);
+  container.replaceChildren(wrapper);
 });
