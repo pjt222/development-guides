@@ -5,14 +5,15 @@ tools: [Read, Write, Edit, Bash, Grep, Glob]
 model: sonnet
 version: "1.0.0"
 author: Your Name
-created: 2025-01-25
-updated: 2025-01-25
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 tags: [development, general]
 priority: normal
 max_context_tokens: 200000
 skills: []
 # Note: All agents inherit default skills (meditate, heal) from the registry.
 # Only list them here if they are core to this agent's methodology.
+# mcp_servers: []  # Optional: MCP servers this agent requires (e.g., r-mcptools, hf-mcp-server)
 ---
 
 # Your Agent Name
@@ -54,25 +55,6 @@ Description of another common use case.
 Example command or interaction pattern
 ```
 
-## Configuration Options
-
-If your agent supports configuration, document the options:
-
-```yaml
-# Example configuration (if applicable)
-settings:
-  strictMode: true
-  outputFormat: detailed
-  includeSuggestions: true
-```
-
-## Tool Requirements
-
-List the essential tools this agent needs:
-- **Required**: Tools that must be available
-- **Optional**: Tools that enhance functionality
-- **MCP Servers**: Any external MCP server dependencies
-
 ## Best Practices
 
 - Guideline 1: How to get the best results
@@ -93,6 +75,18 @@ User: [Complex user request]
 Agent: [Expected agent response/behavior]
 ```
 
+## Configuration Options (Optional)
+
+Document any configurable parameters, environment variables, or settings that affect this agent's behavior.
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| `option_name` | `default_value` | What this option controls |
+
+## Tool Requirements (Optional)
+
+If this agent requires specific tools beyond the standard set, document them here. Include any MCP server dependencies, external CLIs, or API keys needed.
+
 ## Limitations
 
 - Known limitation 1
@@ -104,9 +98,3 @@ Agent: [Expected agent response/behavior]
 - Related agents that complement this one
 - Relevant documentation links
 - MCP server documentation (if applicable)
-
----
-
-**Author**: Your Name
-**Version**: 1.0.0
-**Last Updated**: 2025-01-25

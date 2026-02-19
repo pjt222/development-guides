@@ -78,7 +78,7 @@ Guides, skills, agents, and teams are cross-referenced. The parent project `CLAU
 
 1. Copy `agents/_template.md` to `agents/<agent-name>.md`
 2. Fill in YAML frontmatter (required: `name`, `description`, `tools`, `model`, `version`, `author`)
-3. Write Purpose, Capabilities, Usage Scenarios, Examples, and Limitations sections
+3. Write Purpose, Capabilities, Available Skills, Usage Scenarios, Best Practices, Examples, Limitations, and See Also sections
 4. Add the entry to `agents/_registry.yml`
 5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
 6. See `agents/best-practices.md` for detailed guidance

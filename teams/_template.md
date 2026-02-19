@@ -4,8 +4,8 @@ description: Brief description of what this team accomplishes (1-2 sentences)
 lead: agent-name
 version: "1.0.0"
 author: Your Name
-created: 2026-01-01
-updated: 2026-01-01
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
 tags: [development, general]
 coordination: hub-and-spoke
 members:
@@ -39,7 +39,8 @@ Describe how the team members interact. Common patterns:
 - **Hub-and-spoke**: Lead distributes tasks and collects results
 - **Sequential**: Each member processes in order, passing to the next
 - **Parallel**: Members work independently, lead merges results
-- **Consensus**: Members deliberate and reach agreement
+- **Timeboxed**: Work organized into fixed-length iterations (sprints)
+- **Adaptive**: Team self-organizes dynamically based on the task
 
 ```
 Lead (agent-name)
@@ -70,8 +71,10 @@ team:
   members:
     - agent: agent-name
       role: Lead
+      subagent_type: general-purpose  # Claude Code subagent type for spawning
     - agent: another-agent
       role: Reviewer
+      subagent_type: general-purpose
   tasks:
     - name: example-task
       assignee: another-agent
@@ -113,9 +116,3 @@ Key entries with the team name prefix (e.g., `scrum-team:schwaber2020scrum`). Gr
 - Related agents that participate in this team
 - Related teams for similar workflows
 - Relevant documentation links
-
----
-
-**Author**: Your Name
-**Version**: 1.0.0
-**Last Updated**: 2026-01-01

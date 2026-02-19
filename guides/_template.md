@@ -1,7 +1,7 @@
 ---
 title: "Guide Title"
 description: "One-line description (max 160 chars) for README/discovery"
-category: workflow | infrastructure | reference | design
+category: workflow  # one of: workflow, infrastructure, reference, design
 agents: []
 teams: []
 skills: []
@@ -48,3 +48,5 @@ Common problems focused on the human-AI interaction.
 - [Skill Name](../skills/domain/skill-name/SKILL.md) -- relevant skill
 - [Team Name](../teams/team-name.md) -- relevant team
 - [Other Guide](other-guide.md) -- related guide
+
+<!-- Target: 200-400 lines (500 max). Extract large examples to a references/ subdirectory if needed. -->
