@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 52
+total_agents: 53
 version: "2.1"
 last_updated: "2026-02-17"
 
@@ -391,6 +391,17 @@ agents:
       - dissolve-form
       - repair-damage
       - shift-camouflage
+
+  - id: apa-specialist
+    path: agents/apa-specialist.md
+    description: APA 7th edition specialist for academic table formatting, writing guidance, Quarto/papaja implementation, and citation auditing
+    tags: [apa, academic-writing, citations, formatting, quarto]
+    priority: normal
+    tools: [Read, Write, Edit, Bash, Grep, Glob]
+    skills:
+      - format-apa-report
+      - format-citations
+      - validate-references
 
   - id: alchemist
     path: agents/alchemist.md

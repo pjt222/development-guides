@@ -5,11 +5,11 @@ An agentic development platform providing structured skills, specialized agents,
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **262 skills** across 47 domains — structured, executable procedures
-- **52 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **267 skills** across 48 domains — structured, executable procedures
+- **53 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **8 teams** — predefined multi-agent compositions for complex workflows
 - **6 guides** — human-readable reference documentation
-- **Interactive visualization** — force-graph explorer with 262 R-generated skill icons and 6 color themes
+- **Interactive visualization** — force-graph explorer with 267 R-generated skill icons and 6 color themes
 <!-- AUTO:END:stats -->
 
 ## Four Pillars
@@ -26,7 +26,7 @@ Skills define *how* (procedure, validation, recovery). Agents define *who* (pers
 ## Skills Library
 
 <!-- AUTO:START:skills-intro -->
-The **[Skills Library](skills/)** provides 262 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
+The **[Skills Library](skills/)** provides 267 task-level skills following the [Agent Skills open standard](https://agentskills.io). Each skill is a `SKILL.md` with YAML frontmatter and standardized sections: When to Use, Inputs, Procedure (with expected outcomes and failure recovery), Validation, Common Pitfalls, and Related Skills.
 <!-- AUTO:END:skills-intro -->
 
 <!-- AUTO:START:skills-table -->
@@ -40,7 +40,8 @@ The **[Skills Library](skills/)** provides 262 task-level skills following the [
 | [Mcp Integration](skills/mcp-integration/) | 5 | MCP server setup and troubleshooting skills |
 | [Web Dev](skills/web-dev/) | 3 | Web development skills for Next.js and modern frontend |
 | [Git](skills/git/) | 6 | Git version control and GitHub workflow skills |
-| [General](skills/general/) | 6 | Cross-cutting development environment and workflow skills |
+| [General](skills/general/) | 8 | Cross-cutting development environment and workflow skills |
+| [Citations](skills/citations/) | 3 | Academic and software citation management with R and BibTeX |
 | [Data Serialization](skills/data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
 | [Review](skills/review/) | 9 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](skills/bushcraft/) | 4 | Wilderness survival and primitive skills |
@@ -86,7 +87,7 @@ See [skills/README.md](skills/README.md) for consumption instructions across dif
 ## Agents Library
 
 <!-- AUTO:START:agents-intro -->
-The **[Agents Library](agents/)** provides 52 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
+The **[Agents Library](agents/)** provides 53 specialized agent definitions for Claude Code. Agents define *who* handles a task (persona, tools, domain expertise), complementing skills which define *how* (procedure, validation). All agents inherit default skills: meditate, heal.
 <!-- AUTO:END:agents-intro -->
 
 <!-- AUTO:START:agents-table -->
@@ -110,6 +111,7 @@ The **[Agents Library](agents/)** provides 52 specialized agent definitions for 
 | [shiny-developer](agents/shiny-developer.md) | high | Shiny application specialist for reactive web apps in R, covering scaffolding (golem/rhino/vanilla), modules, bslib theming, testing with shinytest2, performance optimization, and deployment |
 | [acp-developer](agents/acp-developer.md) | normal | Agent-to-Agent (A2A) protocol developer for building interoperable agent systems using Google's open A2A standard with JSON-RPC, task lifecycle, and streaming |
 | [alchemist](agents/alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
+| [apa-specialist](agents/apa-specialist.md) | normal | APA 7th edition specialist for academic table formatting, writing guidance, Quarto/papaja implementation, and citation auditing |
 | [blender-artist](agents/blender-artist.md) | normal | 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition |
 | [designer](agents/designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [diffusion-specialist](agents/diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |

@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 262
+total_skills: 267
 
 domains:
   r-packages:
@@ -369,6 +369,35 @@ domains:
         complexity: intermediate
         language: multi
         description: Evolve an existing skill by refining content or creating an advanced variant
+      - id: fail-early-pattern
+        path: general/fail-early-pattern/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Replace silent warnings and deferred errors with loud, meaningful, immediate failures
+      - id: argumentation
+        path: general/argumentation/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Construct structured arguments using the hypothesis-argument-example triad
+
+  citations:
+    description: Academic and software citation management with R and BibTeX
+    skills:
+      - id: manage-bibliography
+        path: citations/manage-bibliography/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Create, merge, and deduplicate .bib files using R packages
+      - id: format-citations
+        path: citations/format-citations/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Format citations across academic styles using CSL and citeproc
+      - id: validate-references
+        path: citations/validate-references/SKILL.md
+        complexity: intermediate
+        language: R
+        description: Check .bib entries for completeness, DOI resolution, and broken links
 
   data-serialization:
     description: Data serialization formats, schemas, and evolution strategies
