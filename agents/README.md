@@ -76,7 +76,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [web-developer](web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
 <!-- AUTO:END:agents-table -->
 
-Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 29 agents cover 161 of the 177 skills in the library. The sixteen uncovered skills are the two meta-skills (`skill-creation` and `skill-evolution`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the four AI meta-cognitive skills (`learn`, `teach`, `listen`, `observe`), the seven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
+Each agent lists the skills it can execute in its `skills` frontmatter field and `## Available Skills` section. The devops-engineer agent covers the most ground (35 skills across 5 domains). Together, the 29 agents cover 161 of the 177 skills in the library. The sixteen uncovered skills are the two meta-skills (`create-skill` and `evolve-skill`), the two visualization utilities (`create-skill-glyph`, `glyph-enhance`), the four AI meta-cognitive skills (`learn`, `teach`, `listen`, `observe`), the seven human-guidance skills (`heal-guidance`, `meditate-guidance`, `remote-viewing-guidance`, `learn-guidance`, `teach-guidance`, `listen-guidance`, `observe-guidance`), and the memory utility (`manage-memory`).
 
 ## Using Agents in Claude Code
 

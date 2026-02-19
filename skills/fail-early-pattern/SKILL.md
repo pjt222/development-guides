@@ -346,5 +346,5 @@ Rscript -e "devtools::test()"
 - `write-testthat-tests` - write tests that verify error paths
 - `review-pull-request` - review code for missing validation and silent failures
 - `review-software-architecture` - assess error-handling strategy at the system level
-- `skill-creation` - create new skills following the agentskills.io standard
+- `create-skill` - create new skills following the agentskills.io standard
 - `security-audit-codebase` - security-focused review that overlaps with input validation

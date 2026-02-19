@@ -228,5 +228,5 @@ Combine hypothesis, argument, and examples into the appropriate format for the c
 - `review-pull-request` -- applying argumentation to structured code review feedback
 - `review-research` -- constructing evidence-based arguments in research contexts
 - `review-software-architecture` -- justifying architectural decisions with the hypothesis-argument-example triad
-- `skill-creation` -- skills themselves are structured arguments for how to accomplish a task
+- `create-skill` -- skills themselves are structured arguments for how to accomplish a task
 - `write-claude-md` -- documenting conventions and decisions that benefit from clear justification

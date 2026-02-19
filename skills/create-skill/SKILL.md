@@ -1,5 +1,5 @@
 ---
-name: skill-creation
+name: create-skill
 description: >
   Create a new SKILL.md file following the Agent Skills open standard
   (agentskills.io). Covers frontmatter schema, section structure,
@@ -10,10 +10,10 @@ description: >
   agent-consumable format, or standardizing a workflow across projects
   or teams.
 license: MIT
-allowed-tools: Read Write Edit Bash Grep Glob
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "1.1"
   domain: general
   complexity: intermediate
   language: multi
@@ -54,7 +54,7 @@ Author a SKILL.md file that agentic systems can consume to execute a specific pr
 Each skill lives in its own directory:
 
 ```bash
-mkdir -p skills/<domain>/<skill-name>/
+mkdir -p skills/<skill-name>/
 ```
 
 Naming conventions:
@@ -202,7 +202,7 @@ Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
 
 ```yaml
 - id: skill-name-here
-  path: domain/skill-name-here/SKILL.md
+  path: skill-name-here/SKILL.md
   complexity: intermediate
   language: multi
   description: One-line description matching the frontmatter
@@ -215,7 +215,7 @@ Update the `total_skills` count at the top of the registry.
 If the skill is based on established methodologies, research papers, software packages, or standards, add citation subfiles to the `references/` directory:
 
 ```bash
-mkdir -p skills/<domain>/<skill-name>/references/
+mkdir -p skills/<skill-name>/references/
 ```
 
 Create two files:
@@ -255,12 +255,12 @@ Run local validation checks before committing:
 
 ```bash
 # Check line count (must be ≤500)
-lines=$(wc -l < skills/<domain>/<skill-name>/SKILL.md)
+lines=$(wc -l < skills/<skill-name>/SKILL.md)
 [ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "FAIL: $lines lines > 500"
 
 # Check required frontmatter fields
-head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
-head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
+head -20 skills/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
+head -20 skills/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
 ```
 
 **Expected**: Line count ≤500, all required fields present.
@@ -268,7 +268,7 @@ head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^description:' && echo
 **On failure**: If over 500 lines, apply progressive disclosure — extract large code blocks (>15 lines) to `references/EXAMPLES.md`:
 
 ```bash
-mkdir -p skills/<domain>/<skill-name>/references/
+mkdir -p skills/<skill-name>/references/
 ```
 
 Move extended code examples, full configuration files, and multi-variant examples to `references/EXAMPLES.md`. Add cross-reference in SKILL.md: `See [EXAMPLES.md](references/EXAMPLES.md) for complete configuration examples.` Keep brief inline snippets (3-10 lines) in the main SKILL.md. The CI workflow at `.github/workflows/validate-skills.yml` enforces these limits on all PRs.
@@ -279,19 +279,19 @@ Create symlinks so Claude Code discovers the skill as a `/slash-command`:
 
 ```bash
 # Project-level (available in this project)
-ln -s ../../skills/<domain>/<skill-name> .claude/skills/<skill-name>
+ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 
 # Global (available in all projects)
-ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name> ~/.claude/skills/<skill-name>
+ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skill-name>
 ```
 
 **Expected**: `ls -la .claude/skills/<skill-name>/SKILL.md` resolves to the skill file.
 
-**On failure**: Verify the relative path is correct. From `.claude/skills/`, the path `../../skills/<domain>/<skill-name>` should reach the skill directory. Use `readlink -f` to debug symlink resolution. Claude Code expects a flat structure at `.claude/skills/<name>/SKILL.md` — domain nesting must be flattened via symlinks.
+**On failure**: Verify the relative path is correct. From `.claude/skills/`, the path `../../skills/<skill-name>` should reach the skill directory. Use `readlink -f` to debug symlink resolution. Claude Code expects a flat structure at `.claude/skills/<name>/SKILL.md`.
 
 ## Validation
 
-- [ ] SKILL.md exists at `skills/<domain>/<skill-name>/SKILL.md`
+- [ ] SKILL.md exists at `skills/<skill-name>/SKILL.md`
 - [ ] YAML frontmatter parses without errors
 - [ ] `name` field matches directory name
 - [ ] `description` is under 1024 characters
@@ -331,7 +331,9 @@ Size reference from this library:
 
 ## Related Skills
 
-- `skill-evolution` - evolve and refine skills created with this procedure
+- `evolve-skill` - evolve and refine skills created with this procedure
+- `create-agent` - parallel procedure for creating agent definitions
+- `create-team` - parallel procedure for creating team compositions
 - `write-claude-md` - CLAUDE.md can reference skills for project-specific workflows
 - `configure-git-repository` - skills should be version-controlled
 - `commit-changes` - commit the new skill and its symlinks

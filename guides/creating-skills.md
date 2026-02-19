@@ -4,7 +4,7 @@ description: "Authoring, evolving, and reviewing skills following the agentskill
 category: workflow
 agents: [skill-reviewer]
 teams: []
-skills: [skill-creation, skill-evolution, review-skill-format, refactor-skill-structure, update-skill-content]
+skills: [create-skill, evolve-skill, review-skill-format, refactor-skill-structure, update-skill-content]
 ---
 
 # Creating Skills
@@ -36,8 +36,8 @@ create --> use --> evolve --> review --> refactor (if needed) --> use --> ...
 
 Three skills drive this cycle:
 
-1. **skill-creation** ([SKILL.md](../skills/skill-creation/SKILL.md)) -- authoring a new skill from scratch
-2. **skill-evolution** ([SKILL.md](../skills/skill-evolution/SKILL.md)) -- refining or extending an existing skill
+1. **create-skill** ([SKILL.md](../skills/create-skill/SKILL.md)) -- authoring a new skill from scratch
+2. **evolve-skill** ([SKILL.md](../skills/evolve-skill/SKILL.md)) -- refining or extending an existing skill
 3. **review-skill-format** ([SKILL.md](../skills/review-skill-format/SKILL.md)) -- validating format compliance
 
 Two additional skills handle maintenance:
@@ -99,7 +99,7 @@ Every SKILL.md must contain these six sections in order:
 
 ## Creating a New Skill
 
-This section walks through the process step by step. For the full machine-consumable procedure, see the [skill-creation](../skills/skill-creation/SKILL.md) skill.
+This section walks through the process step by step. For the full machine-consumable procedure, see the [create-skill](../skills/create-skill/SKILL.md) skill.
 
 ### 1. Choose a Domain and Name
 
@@ -219,7 +219,7 @@ After extracting, add a cross-reference in the main SKILL.md pointing to the ext
 
 ## Evolving Skills
 
-Skills improve through use. When real-world usage reveals gaps, stale content, or missing edge cases, the skill needs evolution. The [skill-evolution](../skills/skill-evolution/SKILL.md) skill documents this process in full.
+Skills improve through use. When real-world usage reveals gaps, stale content, or missing edge cases, the skill needs evolution. The [evolve-skill](../skills/evolve-skill/SKILL.md) skill documents this process in full.
 
 ### When to Evolve
 
@@ -335,8 +335,8 @@ domains:
 ## Related Resources
 
 - [Skill Reviewer Agent](../agents/skill-reviewer.md) -- the designated agent for skill quality review
-- [skill-creation](../skills/skill-creation/SKILL.md) -- full machine-consumable procedure for authoring a new skill
-- [skill-evolution](../skills/skill-evolution/SKILL.md) -- procedure for evolving existing skills
+- [create-skill](../skills/create-skill/SKILL.md) -- full machine-consumable procedure for authoring a new skill
+- [evolve-skill](../skills/evolve-skill/SKILL.md) -- procedure for evolving existing skills
 - [review-skill-format](../skills/review-skill-format/SKILL.md) -- format validation checklist
 - [update-skill-content](../skills/update-skill-content/SKILL.md) -- content improvement procedure
 - [refactor-skill-structure](../skills/refactor-skill-structure/SKILL.md) -- structural refactoring for over-long skills

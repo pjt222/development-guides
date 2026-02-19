@@ -297,4 +297,4 @@ Solution: x in {pi/2, 7*pi/6, 11*pi/6} for x in [0, 2*pi).
 
 - `construct-geometric-figure` - constructions often require trigonometric analysis to determine angles and lengths
 - `prove-geometric-theorem` - trigonometric identities frequently appear as lemmas within geometric proofs
-- `skill-creation` - follow when packaging a new trigonometric method as a reusable skill
+- `create-skill` - follow when packaging a new trigonometric method as a reusable skill

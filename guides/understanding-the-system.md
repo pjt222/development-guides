@@ -4,7 +4,7 @@ description: "Entry point: what skills, agents, and teams are, how they compose,
 category: workflow
 agents: []
 teams: []
-skills: [skill-creation]
+skills: [create-skill]
 ---
 
 # Understanding the System
@@ -249,7 +249,7 @@ Use this decision matrix to pick the right level of composition for your task:
 |-----------|----------|---------|
 | Simple, well-defined task | Single skill | `/submit-to-cran` to submit a package |
 | Task requiring domain expertise | Single agent | "Use the r-developer agent to add Rcpp integration" |
-| Repeatable procedure you want to codify | Create a new skill | Write a SKILL.md following the skill-creation meta-skill |
+| Repeatable procedure you want to codify | Create a new skill | Write a SKILL.md following the create-skill meta-skill |
 | Multi-perspective review or complex workflow | Full team | "Activate the r-package-review team" |
 | Fixed-iteration project work | Scrum team | "Use the scrum-team for a two-week sprint" |
 | Unknown or highly variable task | Opaque team | "Use the opaque-team to figure out the best approach" |
@@ -276,7 +276,7 @@ Use this decision matrix to pick the right level of composition for your task:
 - [Creating Skills](creating-skills.md) -- how to author, evolve, and review skills
 - [Creating Agents and Teams](creating-agents-and-teams.md) -- how to design agent personas and compose teams
 - [Quick Reference](quick-reference.md) -- command cheat sheet for daily operations
-- [Skill Creation Meta-Skill](../skills/skill-creation/SKILL.md) -- the skill that teaches you how to create skills
+- [Skill Creation Meta-Skill](../skills/create-skill/SKILL.md) -- the skill that teaches you how to create skills
 - [Skills Library README](../skills/README.md) -- browsable catalog of all 267 skills
 - [Agents Library README](../agents/README.md) -- browsable catalog of all 53 agents
 - [Teams Library README](../teams/README.md) -- browsable catalog of all 8 teams

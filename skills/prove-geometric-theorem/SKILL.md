@@ -311,4 +311,4 @@ QED.
 
 - `construct-geometric-figure` - constructions and proofs are complementary: constructions demonstrate existence, proofs establish properties
 - `solve-trigonometric-problem` - trigonometric computations often appear as sub-tasks within geometric proofs
-- `skill-creation` - follow when packaging a new proof technique as a reusable skill
+- `create-skill` - follow when packaging a new proof technique as a reusable skill

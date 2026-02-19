@@ -119,8 +119,8 @@ SKILL_GLYPHS <- list(
   "setup-wsl-dev-environment"      = "glyph_terminal",
   "write-claude-md"                = "glyph_robot_doc",
   "security-audit-codebase"        = "glyph_shield_scan",
-  "skill-creation"                 = "glyph_spark_create",
-  "skill-evolution"                = "glyph_evolution_arrow",
+  "create-skill"                   = "glyph_spark_create",
+  "evolve-skill"                   = "glyph_evolution_arrow",
   "manage-memory"                  = "glyph_memory_file",
 
   # ── git (6) ────────────────────────────────────────────────────────────

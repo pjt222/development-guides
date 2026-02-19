@@ -11,7 +11,7 @@ license: MIT
 allowed-tools: Read, Write, Edit, Grep, Glob
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "1.1"
   domain: review
   complexity: intermediate
   language: multi
@@ -69,10 +69,10 @@ Common staleness indicators:
 
 ```bash
 # Check for version-specific references
-grep -nE '[vV][0-9]+\.[0-9]+' skills/<domain>/<skill-name>/SKILL.md
+grep -nE '[vV][0-9]+\.[0-9]+' skills/<skill-name>/SKILL.md
 
 # Check for URLs
-grep -nE 'https?://' skills/<domain>/<skill-name>/SKILL.md
+grep -nE 'https?://' skills/<skill-name>/SKILL.md
 ```
 
 **Expected:** A list of potentially stale references with line numbers. Each reference is verified as current or flagged for update.
@@ -124,7 +124,7 @@ Verify all cross-references in the Related Skills section are valid and add any 
 1. For each referenced skill, verify it exists:
    ```bash
    # Check if referenced skill exists
-   test -d skills/*/referenced-skill-name && echo "EXISTS" || echo "NOT FOUND"
+   test -d skills/referenced-skill-name && echo "EXISTS" || echo "NOT FOUND"
    ```
 2. Search for skills that reference this skill (they should be cross-linked):
    ```bash
@@ -175,6 +175,6 @@ Also update any date fields if present in the frontmatter.
 
 - `review-skill-format` — Run format validation before content updates to ensure the base structure is sound
 - `refactor-skill-structure` — When content updates push the skill over 500 lines, refactor structure to make room
-- `skill-evolution` — For deeper changes that go beyond content updates (e.g., creating an advanced variant)
-- `skill-creation` — Reference the canonical format spec when adding new sections or procedure steps
+- `evolve-skill` — For deeper changes that go beyond content updates (e.g., creating an advanced variant)
+- `create-skill` — Reference the canonical format spec when adding new sections or procedure steps
 - `repair-broken-references` — Use for bulk cross-reference repair across the entire skills library

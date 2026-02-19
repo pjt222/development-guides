@@ -11,7 +11,7 @@ license: MIT
 allowed-tools: Read, Write, Edit, Grep, Glob
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "1.1"
   domain: review
   complexity: advanced
   language: multi
@@ -46,10 +46,10 @@ Read the skill and create a section-by-section line budget to identify where the
 
 ```bash
 # Total line count
-wc -l < skills/<domain>/<skill-name>/SKILL.md
+wc -l < skills/<skill-name>/SKILL.md
 
 # Line count per section (approximate)
-grep -n "^## \|^### " skills/<domain>/<skill-name>/SKILL.md
+grep -n "^## \|^### " skills/<skill-name>/SKILL.md
 ```
 
 Classify bloat sources:
@@ -68,7 +68,7 @@ Move code blocks longer than 15 lines to a `references/EXAMPLES.md` file, leavin
 
 1. Create the references directory:
    ```bash
-   mkdir -p skills/<domain>/<skill-name>/references/
+   mkdir -p skills/<skill-name>/references/
    ```
 
 2. For each extractable code block:
@@ -150,12 +150,12 @@ Re-measure the SKILL.md line count after all changes.
 
 ```bash
 # Check main SKILL.md
-lines=$(wc -l < skills/<domain>/<skill-name>/SKILL.md)
+lines=$(wc -l < skills/<skill-name>/SKILL.md)
 [ "$lines" -le 500 ] && echo "SKILL.md: OK ($lines lines)" || echo "SKILL.md: STILL OVER ($lines lines)"
 
 # Check references file if created
-if [ -f skills/<domain>/<skill-name>/references/EXAMPLES.md ]; then
-  ref_lines=$(wc -l < skills/<domain>/<skill-name>/references/EXAMPLES.md)
+if [ -f skills/<skill-name>/references/EXAMPLES.md ]; then
+  ref_lines=$(wc -l < skills/<skill-name>/references/EXAMPLES.md)
   echo "EXAMPLES.md: $ref_lines lines"
 fi
 
@@ -165,7 +165,7 @@ echo "Total content: $((lines + ${ref_lines:-0})) lines"
 
 **Expected:** SKILL.md is under 500 lines. Ideally under 400 lines to leave room for future growth. The `references/EXAMPLES.md` has no line limit.
 
-**On failure:** If still over 500 lines after extraction and splitting, consider whether the skill should be decomposed into two separate skills. A skill covering too much ground is a sign of scope creep. Use `skill-creation` to author the second skill and update Related Skills cross-references in both.
+**On failure:** If still over 500 lines after extraction and splitting, consider whether the skill should be decomposed into two separate skills. A skill covering too much ground is a sign of scope creep. Use `create-skill` to author the second skill and update Related Skills cross-references in both.
 
 ### Step 6: Validate All Sections Still Present
 
@@ -180,14 +180,14 @@ Run the `review-skill-format` checklist:
 ```bash
 # Quick section check
 for section in "## When to Use" "## Inputs" "## Procedure" "## Common Pitfalls" "## Related Skills"; do
-  grep -q "$section" skills/<domain>/<skill-name>/SKILL.md && echo "$section: OK" || echo "$section: MISSING"
+  grep -q "$section" skills/<skill-name>/SKILL.md && echo "$section: OK" || echo "$section: MISSING"
 done
-grep -qE "## Validation( Checklist)?" skills/<domain>/<skill-name>/SKILL.md && echo "Validation: OK" || echo "Validation: MISSING"
+grep -qE "## Validation( Checklist)?" skills/<skill-name>/SKILL.md && echo "Validation: OK" || echo "Validation: MISSING"
 ```
 
 **Expected:** All sections present. No content was accidentally deleted during extraction. Cross-references in SKILL.md resolve to actual headings in EXAMPLES.md.
 
-**On failure:** If a section was accidentally removed, restore it from git history: `git diff skills/<domain>/<skill-name>/SKILL.md` to see what changed. If cross-references are broken, verify the heading anchors in EXAMPLES.md match the links in SKILL.md (GitHub-flavored markdown anchor rules: lowercase, hyphens for spaces, strip punctuation).
+**On failure:** If a section was accidentally removed, restore it from git history: `git diff skills/<skill-name>/SKILL.md` to see what changed. If cross-references are broken, verify the heading anchors in EXAMPLES.md match the links in SKILL.md (GitHub-flavored markdown anchor rules: lowercase, hyphens for spaces, strip punctuation).
 
 ## Validation
 
@@ -214,5 +214,5 @@ grep -qE "## Validation( Checklist)?" skills/<domain>/<skill-name>/SKILL.md && e
 
 - `review-skill-format` — Run format validation after refactoring to confirm the skill is still compliant
 - `update-skill-content` — Content updates are often the trigger for structural refactoring when they push a skill over the line limit
-- `skill-creation` — Reference the canonical structure when deciding how to organize extracted content
-- `skill-evolution` — When a skill needs to be split into two separate skills, use evolution to create the derivative
+- `create-skill` — Reference the canonical structure when deciding how to organize extracted content
+- `evolve-skill` — When a skill needs to be split into two separate skills, use evolution to create the derivative

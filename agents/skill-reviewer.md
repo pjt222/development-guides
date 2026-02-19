@@ -90,7 +90,7 @@ The agent adapts its review depth based on:
 ## Best Practices
 
 - **Validate Before Reviewing Content**: Always check format compliance first; a skill with broken frontmatter cannot be meaningfully content-reviewed
-- **Use the Skill-Creation Meta-Skill as Reference**: The canonical format specification lives at `skills/skill-creation/SKILL.md`
+- **Use the Skill-Creation Meta-Skill as Reference**: The canonical format specification lives at `skills/create-skill/SKILL.md`
 - **Check Registry Sync Last**: Registry issues are easy to fix but often forgotten; always end with a sync check
 - **Report with Severity Levels**: Use BLOCKING (must fix), SUGGEST (should fix), and NIT (optional) to prioritize feedback
 - **Preserve Author Intent**: When refactoring, maintain the original procedure logic; only change structure, not semantics
@@ -138,14 +138,14 @@ Registry: In sync
 - **No Runtime Validation**: Cannot execute procedure steps to verify they actually work; reviews are static analysis only
 - **No Domain Expertise**: Validates format and structure but cannot assess whether a bushcraft or alchemy procedure is technically correct
 - **Single-Skill Scope**: Reviews one SKILL.md at a time; does not perform library-wide consistency audits
-- **Cannot Create Skills**: The skill-reviewer validates and improves existing skills; use the `skill-creation` meta-skill to author new ones
+- **Cannot Create Skills**: The skill-reviewer validates and improves existing skills; use the `create-skill` meta-skill to author new ones
 
 ## See Also
 
 - [Code Reviewer Agent](code-reviewer.md) — For reviewing application code (complementary to skill format review)
 - [Janitor Agent](janitor.md) — For broader project cleanup including broken references and stale files
 - [Skills Library](../skills/) — Full catalog of executable procedures
-- [Skill Creation Meta-Skill](../skills/skill-creation/SKILL.md) — Canonical format specification
+- [Skill Creation Meta-Skill](../skills/create-skill/SKILL.md) — Canonical format specification
 
 ---
 

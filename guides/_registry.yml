@@ -25,7 +25,7 @@ guides:
     category: workflow
     agents: []
     teams: []
-    skills: [skill-creation]
+    skills: [create-skill]
 
   - id: creating-skills
     path: guides/creating-skills.md
@@ -34,7 +34,7 @@ guides:
     category: workflow
     agents: [skill-reviewer]
     teams: []
-    skills: [skill-creation, skill-evolution, review-skill-format, refactor-skill-structure, update-skill-content]
+    skills: [create-skill, evolve-skill, review-skill-format, refactor-skill-structure, update-skill-content]
 
   - id: creating-agents-and-teams
     path: guides/creating-agents-and-teams.md
@@ -43,7 +43,7 @@ guides:
     category: workflow
     agents: [skill-reviewer]
     teams: []
-    skills: [skill-creation]
+    skills: [create-skill]
 
   - id: running-a-code-review
     path: guides/running-a-code-review.md

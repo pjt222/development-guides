@@ -1,5 +1,5 @@
 ---
-name: skill-evolution
+name: evolve-skill
 description: >
   Evolve an existing skill by refining its content in-place or creating an
   advanced variant. Covers assessing the current skill, gathering evolution
@@ -9,10 +9,10 @@ description: >
   a skill needs a complexity upgrade, an advanced variant is needed alongside
   the original, or related skills are added and cross-references are stale.
 license: MIT
-allowed-tools: Read Write Edit Bash Grep Glob
+allowed-tools: Read, Write, Edit, Bash, Grep, Glob
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "1.1"
   domain: general
   complexity: intermediate
   language: multi
@@ -21,7 +21,7 @@ metadata:
 
 # Evolve an Existing Skill
 
-Improve, extend, or create an advanced variant of a skill that was originally authored with `skill-creation`. This procedure covers the maintenance side of the skill lifecycle: assessing gaps, applying targeted improvements, bumping versions, and keeping the registry and cross-references in sync.
+Improve, extend, or create an advanced variant of a skill that was originally authored with `create-skill`. This procedure covers the maintenance side of the skill lifecycle: assessing gaps, applying targeted improvements, bumping versions, and keeping the registry and cross-references in sync.
 
 ## When to Use
 
@@ -56,18 +56,18 @@ Read the existing SKILL.md and evaluate each section against the quality checkli
 
 ```bash
 # Read the skill
-cat skills/<domain>/<skill-name>/SKILL.md
+cat skills/<skill-name>/SKILL.md
 
 # Check frontmatter parses
-head -20 skills/<domain>/<skill-name>/SKILL.md
+head -20 skills/<skill-name>/SKILL.md
 
 # Verify related skills still exist
-grep -oP '`[\w-]+`' skills/<domain>/<skill-name>/SKILL.md | sort -u
+grep -oP '`[\w-]+`' skills/<skill-name>/SKILL.md | sort -u
 ```
 
 **Expected**: A list of specific gaps, weaknesses, or improvement opportunities.
 
-**On failure**: If the SKILL.md doesn't exist or has no frontmatter, this skill doesn't apply — use `skill-creation` instead to author it from scratch.
+**On failure**: If the SKILL.md doesn't exist or has no frontmatter, this skill doesn't apply — use `create-skill` instead to author it from scratch.
 
 ### Step 2: Gather Evolution Requirements
 
@@ -136,10 +136,10 @@ Follow these editing rules:
 
 ```bash
 # Create the variant directory
-mkdir -p skills/<domain>/<skill-name>-advanced/
+mkdir -p skills/<skill-name>-advanced/
 
 # Copy the original as a starting point
-cp skills/<domain>/<skill-name>/SKILL.md skills/<domain>/<skill-name>-advanced/SKILL.md
+cp skills/<skill-name>/SKILL.md skills/<skill-name>-advanced/SKILL.md
 
 # Edit the variant:
 # - Change `name` to `<skill-name>-advanced`
@@ -181,7 +181,7 @@ No registry changes are needed (path unchanged). Update cross-references only if
 
 ```bash
 # Check if any skill references the evolved skill
-grep -r "<skill-name>" skills/*/SKILL.md skills/*/*/SKILL.md
+grep -r "<skill-name>" skills/*/SKILL.md
 ```
 
 #### For Variants
@@ -190,7 +190,7 @@ Add the new skill to `skills/_registry.yml`:
 
 ```yaml
 - id: <skill-name>-advanced
-  path: <domain>/<skill-name>-advanced/SKILL.md
+  path: <skill-name>-advanced/SKILL.md
   complexity: advanced
   language: multi
   description: One-line description of the advanced variant
@@ -204,10 +204,10 @@ Then:
 
 ```bash
 # Project-level
-ln -s ../../skills/<domain>/<skill-name>-advanced .claude/skills/<skill-name>-advanced
+ln -s ../../skills/<skill-name>-advanced .claude/skills/<skill-name>-advanced
 
 # Global
-ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name>-advanced ~/.claude/skills/<skill-name>-advanced
+ln -s /mnt/d/dev/p/development-guides/skills/<skill-name>-advanced ~/.claude/skills/<skill-name>-advanced
 ```
 
 **Expected**: Registry `total_skills` matches `find skills -name SKILL.md | wc -l`. Cross-references are bidirectional.
@@ -231,7 +231,7 @@ Run the full validation checklist:
 
 ```bash
 # Verify frontmatter
-head -20 skills/<domain>/<skill-name>/SKILL.md
+head -20 skills/<skill-name>/SKILL.md
 
 # Count skills on disk vs registry
 find skills -name SKILL.md | wc -l
@@ -270,7 +270,7 @@ git diff
 
 ## Related Skills
 
-- `skill-creation` — foundation for authoring new skills; skill-evolution assumes this was followed originally
+- `create-skill` — foundation for authoring new skills; evolve-skill assumes this was followed originally
 - `commit-changes` — commit the evolved skill with a descriptive message
 - `configure-git-repository` — version-controlled skill changes
 - `security-audit-codebase` — review evolved skills for accidentally included secrets

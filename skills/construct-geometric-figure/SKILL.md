@@ -212,4 +212,4 @@ Triangle ABC: sides AB = BC = CA = 1. VERIFIED.
 
 - `solve-trigonometric-problem` - trigonometric analysis often motivates or verifies constructions
 - `prove-geometric-theorem` - constructions frequently appear as steps within geometric proofs
-- `skill-creation` - follow when packaging a new construction as a reusable skill
+- `create-skill` - follow when packaging a new construction as a reusable skill

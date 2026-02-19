@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 267
+total_skills: 269
 
 domains:
   r-packages:
@@ -359,16 +359,26 @@ domains:
         complexity: intermediate
         language: multi
         description: Organize, extract, prune, and verify Claude Code persistent memory files
-      - id: skill-creation
-        path: skill-creation/SKILL.md
+      - id: create-skill
+        path: create-skill/SKILL.md
         complexity: intermediate
         language: multi
         description: Author a new SKILL.md following the Agent Skills open standard
-      - id: skill-evolution
-        path: skill-evolution/SKILL.md
+      - id: evolve-skill
+        path: evolve-skill/SKILL.md
         complexity: intermediate
         language: multi
         description: Evolve an existing skill by refining content or creating an advanced variant
+      - id: create-agent
+        path: create-agent/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create a new agent definition file with persona design, tool selection, and registry integration
+      - id: create-team
+        path: create-team/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Create a new team composition file with coordination pattern, member selection, and CONFIG block
       - id: fail-early-pattern
         path: fail-early-pattern/SKILL.md
         complexity: intermediate

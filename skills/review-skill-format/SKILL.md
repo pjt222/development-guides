@@ -11,7 +11,7 @@ license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:
   author: Philipp Thoss
-  version: "1.0"
+  version: "1.1"
   domain: review
   complexity: intermediate
   language: multi
@@ -27,7 +27,7 @@ Validate a SKILL.md file against the agentskills.io open standard. This skill ch
 - A new skill has been authored and needs format validation before merge
 - An existing skill has been modified and needs re-validation
 - Performing a batch audit of all skills in a domain
-- Verifying a skill created by the `skill-creation` meta-skill
+- Verifying a skill created by the `create-skill` meta-skill
 - Reviewing a contributor's skill submission in a pull request
 
 ## Inputs
@@ -44,15 +44,15 @@ Confirm the SKILL.md file exists at the expected path and read its full content.
 
 ```bash
 # Verify file exists
-test -f skills/<domain>/<skill-name>/SKILL.md && echo "EXISTS" || echo "MISSING"
+test -f skills/<skill-name>/SKILL.md && echo "EXISTS" || echo "MISSING"
 
 # Count lines
-wc -l < skills/<domain>/<skill-name>/SKILL.md
+wc -l < skills/<skill-name>/SKILL.md
 ```
 
 **Expected:** File exists and content is readable. Line count is displayed.
 
-**On failure:** If the file does not exist, check the path for typos. Verify the domain directory exists with `ls skills/<domain>/`. If the directory is missing, the skill has not been created yet — use `skill-creation` first.
+**On failure:** If the file does not exist, check the path for typos. Verify the skill directory exists with `ls skills/<skill-name>/`. If the directory is missing, the skill has not been created yet — use `create-skill` first.
 
 ### Step 2: Check YAML Frontmatter Fields
 
@@ -67,17 +67,17 @@ Required fields:
 Recommended metadata fields:
 - `metadata.author` — author name
 - `metadata.version` — semantic version string
-- `metadata.domain` — matches parent directory name
+- `metadata.domain` — one of the domains listed in `skills/_registry.yml`
 - `metadata.complexity` — one of: `basic`, `intermediate`, `advanced`
 - `metadata.language` — primary language or `multi`
 - `metadata.tags` — comma-separated, 3-6 tags, includes domain name
 
 ```bash
 # Check required frontmatter fields exist
-head -30 skills/<domain>/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK" || echo "name: MISSING"
-head -30 skills/<domain>/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK" || echo "description: MISSING"
-head -30 skills/<domain>/<skill-name>/SKILL.md | grep -q '^license:' && echo "license: OK" || echo "license: MISSING"
-head -30 skills/<domain>/<skill-name>/SKILL.md | grep -q '^allowed-tools:' && echo "allowed-tools: OK" || echo "allowed-tools: MISSING"
+head -30 skills/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK" || echo "name: MISSING"
+head -30 skills/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK" || echo "description: MISSING"
+head -30 skills/<skill-name>/SKILL.md | grep -q '^license:' && echo "license: OK" || echo "license: MISSING"
+head -30 skills/<skill-name>/SKILL.md | grep -q '^allowed-tools:' && echo "allowed-tools: OK" || echo "allowed-tools: MISSING"
 ```
 
 **Expected:** All four required fields present. All six metadata fields present. `name` matches directory name. `description` is under 1024 characters.
@@ -99,16 +99,16 @@ Required sections:
 ```bash
 # Check each required section
 for section in "## When to Use" "## Inputs" "## Procedure" "## Common Pitfalls" "## Related Skills"; do
-  grep -q "$section" skills/<domain>/<skill-name>/SKILL.md && echo "$section: OK" || echo "$section: MISSING"
+  grep -q "$section" skills/<skill-name>/SKILL.md && echo "$section: OK" || echo "$section: MISSING"
 done
 
 # Validation section may use either heading
-grep -qE "## Validation( Checklist)?" skills/<domain>/<skill-name>/SKILL.md && echo "Validation: OK" || echo "Validation: MISSING"
+grep -qE "## Validation( Checklist)?" skills/<skill-name>/SKILL.md && echo "Validation: OK" || echo "Validation: MISSING"
 ```
 
 **Expected:** All six sections present. Procedure section contains at least one `### Step` sub-heading.
 
-**On failure:** Report each missing section as BLOCKING. A skill without all six sections is non-compliant with the agentskills.io standard. Provide the section template from the `skill-creation` meta-skill.
+**On failure:** Report each missing section as BLOCKING. A skill without all six sections is non-compliant with the agentskills.io standard. Provide the section template from the `create-skill` meta-skill.
 
 ### Step 4: Check Procedure Step Format
 
@@ -129,7 +129,7 @@ For each `### Step N:` sub-section, check:
 Check that the SKILL.md is within the 500-line limit.
 
 ```bash
-lines=$(wc -l < skills/<domain>/<skill-name>/SKILL.md)
+lines=$(wc -l < skills/<skill-name>/SKILL.md)
 [ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "OVER LIMIT ($lines lines > 500)"
 ```
 
@@ -143,7 +143,7 @@ Verify the skill is listed in `skills/_registry.yml` under the correct domain wi
 
 Check:
 1. Skill `id` exists under the correct domain section
-2. `path` matches `<domain>/<skill-name>/SKILL.md`
+2. `path` matches `<skill-name>/SKILL.md`
 3. `complexity` matches frontmatter
 4. `description` is present (may be abbreviated)
 5. `total_skills` count at the top of the registry matches actual skill count
@@ -153,7 +153,7 @@ Check:
 grep -q "id: <skill-name>" skills/_registry.yml && echo "Registry: FOUND" || echo "Registry: NOT FOUND"
 
 # Check path
-grep -A1 "id: <skill-name>" skills/_registry.yml | grep -q "path: <domain>/<skill-name>/SKILL.md" && echo "Path: OK" || echo "Path: MISMATCH"
+grep -A1 "id: <skill-name>" skills/_registry.yml | grep -q "path: <skill-name>/SKILL.md" && echo "Path: OK" || echo "Path: MISMATCH"
 ```
 
 **Expected:** Skill is listed in the registry under the correct domain with matching path and metadata. Total count is accurate.
@@ -161,7 +161,7 @@ grep -A1 "id: <skill-name>" skills/_registry.yml | grep -q "path: <domain>/<skil
 **On failure:** If not found in registry, report as BLOCKING. Provide the registry entry template:
 ```yaml
 - id: skill-name
-  path: domain/skill-name/SKILL.md
+  path: skill-name/SKILL.md
   complexity: intermediate
   language: multi
   description: One-line description
@@ -191,7 +191,7 @@ grep -A1 "id: <skill-name>" skills/_registry.yml | grep -q "path: <domain>/<skil
 
 ## Related Skills
 
-- `skill-creation` — The canonical format specification; use as the authoritative reference for what a valid SKILL.md looks like
+- `create-skill` — The canonical format specification; use as the authoritative reference for what a valid SKILL.md looks like
 - `update-skill-content` — After format validation passes, use this to improve content quality
 - `refactor-skill-structure` — When a skill fails the line count check, use this to extract and reorganize
 - `review-pull-request` — When reviewing a PR that adds or modifies skills, combine PR review with format validation

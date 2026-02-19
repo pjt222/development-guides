@@ -994,8 +994,8 @@ export const COMPLEXITY_BADGE_COLORS = {
 
 // ── Featured hub nodes (viz-layer config, not skill metadata) ────────
 export const FEATURED_NODES = {
-  'skill-creation':      { radius: 9, tier: 'primary' },
-  'skill-evolution':     { radius: 7, tier: 'secondary' },
+  'create-skill':        { radius: 9, tier: 'primary' },
+  'evolve-skill':        { radius: 7, tier: 'secondary' },
   'create-skill-glyph':  { radius: 7, tier: 'secondary' },
 };
 

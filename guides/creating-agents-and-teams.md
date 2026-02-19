@@ -4,7 +4,7 @@ description: "Designing agent personas, composing teams, and choosing coordinati
 category: workflow
 agents: [skill-reviewer]
 teams: []
-skills: [skill-creation]
+skills: [create-skill]
 ---
 
 # Creating Agents and Teams
@@ -29,7 +29,7 @@ Agents define *who* handles a task. Teams define *who works together*. This guid
 - **Choosing between agent types** (model, priority, tool set) for a particular use case
 - **Understanding coordination patterns** to decide how team members interact
 
-To create a new skill (the procedure an agent follows), see `skills/skill-creation/SKILL.md`.
+To create a new skill (the procedure an agent follows), see `skills/create-skill/SKILL.md`.
 
 ## Prerequisites
 
@@ -326,7 +326,7 @@ The lead does not need to be the highest-priority agent. It needs to be the agen
 - **Agent template**: [agents/_template.md](../agents/_template.md)
 - **Team template**: [teams/_template.md](../teams/_template.md)
 - **Agent best practices**: [agents/best-practices.md](../agents/best-practices.md)
-- **Skill creation**: [skills/skill-creation/SKILL.md](../skills/skill-creation/SKILL.md)
+- **Skill creation**: [skills/create-skill/SKILL.md](../skills/create-skill/SKILL.md)
 - **Agent registry**: [agents/_registry.yml](../agents/_registry.yml)
 - **Team registry**: [teams/_registry.yml](../teams/_registry.yml)
 - **Skills registry**: [skills/_registry.yml](../skills/_registry.yml)

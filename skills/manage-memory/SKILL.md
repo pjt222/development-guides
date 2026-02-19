@@ -188,6 +188,6 @@ ls <memory-dir>/*.md | grep -v MEMORY.md
 ## Related Skills
 
 - `write-claude-md` — CLAUDE.md captures project instructions; memory captures cross-session learning
-- `skill-creation` — new skills may produce memory-worthy patterns
+- `create-skill` — new skills may produce memory-worthy patterns
 - `heal` — self-healing may update memory as part of integration step
 - `meditate` — meditation sessions may surface insights worth persisting
