@@ -15,7 +15,7 @@ metadata:
   domain: maintenance
   complexity: intermediate
   language: multi
-  tags: [maintenance, links, imports, references, orphans]
+  tags: maintenance, links, imports, references, orphans
 ---
 
 # repair-broken-references

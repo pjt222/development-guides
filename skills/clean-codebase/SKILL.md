@@ -14,7 +14,7 @@ metadata:
   domain: maintenance
   complexity: intermediate
   language: multi
-  tags: [maintenance, cleanup, lint, dead-code, formatting]
+  tags: maintenance, cleanup, lint, dead-code, formatting
 ---
 
 # clean-codebase

@@ -15,7 +15,7 @@ metadata:
   domain: maintenance
   complexity: basic
   language: multi
-  tags: [maintenance, triage, escalation, routing, issue-reporting]
+  tags: maintenance, triage, escalation, routing, issue-reporting
 ---
 
 # escalate-issues

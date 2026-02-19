@@ -15,7 +15,7 @@ metadata:
   domain: maintenance
   complexity: intermediate
   language: multi
-  tags: [maintenance, organization, structure, readme, config]
+  tags: maintenance, organization, structure, readme, config
 ---
 
 # tidy-project-structure
