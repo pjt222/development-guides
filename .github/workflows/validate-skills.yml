@@ -1,9 +1,11 @@
 name: Validate Skills
 on:
   push:
+    branches: [main]
     paths: ['skills/**']
   pull_request:
     paths: ['skills/**']
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -14,9 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Pinned to commit SHA for reproducibility — update periodically
       - name: Install skills-ref
         run: |
-          pip install "git+https://github.com/agentskills/agentskills.git#subdirectory=skills-ref"
+          pip install "git+https://github.com/agentskills/agentskills.git@752b29a0a1a1#subdirectory=skills-ref"
           skills-ref --version
 
       - name: Validate all skills
