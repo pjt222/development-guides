@@ -23,6 +23,7 @@ let hoveredNodeId = null;
 let onNodeClick = null;
 let onNodeHover = null;
 
+let spriteScale = 1.0;
 let visibleAgentIds = null;
 let visibleTeamIds = null;
 let nodeById = new Map();
@@ -46,6 +47,7 @@ export function preload3DIcons(nodes, palette) {
   const pal = palette || getCurrentThemeName();
   if (cachedPaletteTextures.has(pal)) {
     activeTextureMap = cachedPaletteTextures.get(pal);
+    _scheduleTexRefresh();
     return;
   }
   const palMap = new Map();
@@ -214,13 +216,13 @@ function createIconSprite(node) {
   const texture = activeTextureMap.get(node.id);
   let size;
   if (node.type === 'agent') {
-    size = (AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal).radius * 2.0;
+    size = (AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal).radius * 7.0 * spriteScale;
   } else if (node.type === 'team') {
-    size = TEAM_CONFIG.radius * 2.0;
+    size = TEAM_CONFIG.radius * 7.0 * spriteScale;
   } else {
     const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
     const featured = FEATURED_NODES[node.id];
-    size = (featured ? featured.radius : cfg.radius) * 1.5;
+    size = (featured ? featured.radius : cfg.radius) * 5.0 * spriteScale;
   }
   const material = new THREE.SpriteMaterial({
     map: texture, transparent: true, opacity: 0.9,
@@ -524,6 +526,13 @@ export function getVisibleAgentIds3D() {
 
 export function refreshGraph3D() {
   if (graph3d) graph3d.nodeThreeObject(createNodeObject);
+}
+
+export function setSpriteScale3D(factor) {
+  spriteScale = factor;
+  if (graph3d && getIconMode() && activeTextureMap.size > 0) {
+    graph3d.nodeThreeObject(createNodeObject);
+  }
 }
 
 export function getGraph3D() { return graph3d; }

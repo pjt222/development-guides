@@ -392,7 +392,7 @@ function drawAgentNode(node, ctx, globalScale) {
   if (useIcon) {
     // ── Icon mode: draw agent icon with glow ──
     const img = activeIconMap.get(node.id);
-    const iconSize = r * 3.5;
+    const iconSize = r * 5.0;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
     drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
@@ -469,7 +469,7 @@ function drawTeamNode(node, ctx, globalScale) {
 
   if (useIcon) {
     const img = activeIconMap.get(node.id);
-    const iconSize = r * 3.5;
+    const iconSize = r * 5.0;
 
     drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
 
@@ -566,7 +566,7 @@ function drawNode(node, ctx, globalScale) {
   if (useIcon) {
     // ── Icon mode: draw image with domain-colored glow ──
     const img = activeIconMap.get(node.id);
-    const iconSize = r * 3.5;
+    const iconSize = r * 5.0;
     const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
 
     // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)

@@ -143,6 +143,16 @@ async function switchTo3D() {
     const hiveSpreadLabel3d = document.getElementById('hive-spread-label');
     if (hiveSpreadLabel3d) hiveSpreadLabel3d.style.display = 'none';
 
+    // Show and restore 3D sprite scale slider
+    const spriteLabel = document.getElementById('3d-sprite-label');
+    const spriteSlider = document.getElementById('3d-sprite-scale');
+    if (spriteLabel && spriteSlider) {
+      spriteLabel.style.display = '';
+      const savedScale = parseFloat(localStorage.getItem('skillnet-3d-sprite-scale')) || 1.0;
+      spriteSlider.value = savedScale;
+      graph3dMod.setSpriteScale3D(savedScale);
+    }
+
     // Auto zoom-to-fit after layout settles
     setTimeout(() => {
       const g = graph3dMod.getGraph3D();
@@ -191,11 +201,13 @@ function switchTo2D() {
   logEvent('app', { event: 'modeSwitch', mode: '2d' });
   setActiveMode('2d');
 
-  // Hide hive controls
+  // Hide hive controls and 3D sprite slider
   const hiveSortBtn2d = document.getElementById('btn-hive-sort');
   if (hiveSortBtn2d) hiveSortBtn2d.style.display = 'none';
   const hiveSpreadLabel2d = document.getElementById('hive-spread-label');
   if (hiveSpreadLabel2d) hiveSpreadLabel2d.style.display = 'none';
+  const spriteLabel2d = document.getElementById('3d-sprite-label');
+  if (spriteLabel2d) spriteLabel2d.style.display = 'none';
 
   // Auto zoom-to-fit
   setTimeout(() => {
@@ -260,6 +272,10 @@ async function switchToHive() {
       spreadSlider.value = savedSpread;
       hiveMod.setHiveSpread(savedSpread);
     }
+
+    // Hide 3D sprite slider
+    const spriteLabelHive = document.getElementById('3d-sprite-label');
+    if (spriteLabelHive) spriteLabelHive.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
     switchTo2D();
@@ -414,6 +430,16 @@ async function main() {
     hiveMod.setHiveSpread(val);
     localStorage.setItem('skillnet-hive-spread', val);
     logEvent('app', { event: 'hiveSpreadChange', value: val });
+  });
+
+  // ── 3D sprite scale slider ──
+  const spriteScaleSlider = document.getElementById('3d-sprite-scale');
+  if (spriteScaleSlider) spriteScaleSlider.addEventListener('input', function () {
+    if (!graph3dMod) return;
+    const val = parseFloat(this.value);
+    graph3dMod.setSpriteScale3D(val);
+    localStorage.setItem('skillnet-3d-sprite-scale', val);
+    logEvent('app', { event: 'spriteScaleChange', value: val });
   });
 
   // ── Theme dropdown ──

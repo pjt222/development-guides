@@ -820,6 +820,55 @@ body::after {
   border-radius: 2px;
 }
 
+/* ── 3D Sprite Scale Slider ───────────────────────────────── */
+#3d-sprite-scale {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 80px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0;
+}
+
+#3d-sprite-scale::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  cursor: pointer;
+  margin-top: -4px;
+}
+
+#3d-sprite-scale::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text-accent);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 240, 255, 0.4);
+  cursor: pointer;
+}
+
+#3d-sprite-scale::-webkit-slider-runnable-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
+#3d-sprite-scale::-moz-range-track {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
+}
+
 /* ── Hive Plot ───────────────────────────────────────────────── */
 .hive-axis {
   stroke: rgba(255, 255, 255, 0.12);
