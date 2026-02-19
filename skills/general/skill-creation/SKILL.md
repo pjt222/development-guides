@@ -194,7 +194,46 @@ Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
 
 Update the `total_skills` count at the top of the registry.
 
-### Step 11: Validate Skill
+### Step 11: Add Citations (Optional)
+
+If the skill is based on established methodologies, research papers, software packages, or standards, add citation subfiles to the `references/` directory:
+
+```bash
+mkdir -p skills/<domain>/<skill-name>/references/
+```
+
+Create two files:
+
+- **`references/CITATIONS.bib`** — Machine-readable BibTeX (source of truth)
+- **`references/CITATIONS.md`** — Human-readable rendered references for GitHub browsing
+
+```bibtex
+% references/CITATIONS.bib
+@article{author2024title,
+  author  = {Author, First and Other, Second},
+  title   = {Paper Title},
+  journal = {Journal Name},
+  year    = {2024},
+  doi     = {10.xxxx/xxxxx}
+}
+```
+
+```markdown
+<!-- references/CITATIONS.md -->
+# Citations
+
+References underpinning the **skill-name** skill.
+
+1. Author, F., & Other, S. (2024). *Paper Title*. Journal Name. https://doi.org/10.xxxx/xxxxx
+```
+
+Citations are optional — add them when provenance tracking matters (academic methods, published standards, regulatory frameworks).
+
+**Expected**: Both files exist and `.bib` parses as valid BibTeX.
+
+**On failure**: Validate BibTeX syntax with `bibtool -d references/CITATIONS.bib` or an online validator.
+
+### Step 12: Validate Skill
 
 Run local validation checks before committing:
 
@@ -218,7 +257,7 @@ mkdir -p skills/<domain>/<skill-name>/references/
 
 Move extended code examples, full configuration files, and multi-variant examples to `references/EXAMPLES.md`. Add cross-reference in SKILL.md: `See [EXAMPLES.md](references/EXAMPLES.md) for complete configuration examples.` Keep brief inline snippets (3-10 lines) in the main SKILL.md. The CI workflow at `.github/workflows/validate-skills.yml` enforces these limits on all PRs.
 
-### Step 12: Create Slash Command Symlinks
+### Step 13: Create Slash Command Symlinks
 
 Create symlinks so Claude Code discovers the skill as a `/slash-command`:
 
@@ -246,6 +285,7 @@ ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name> ~/.claude/ski
 - [ ] Skill is listed in `_registry.yml` with correct path
 - [ ] `total_skills` count in registry is updated
 - [ ] SKILL.md is ≤500 lines (extract to `references/EXAMPLES.md` if over)
+- [ ] Citations added to `references/CITATIONS.bib` + `CITATIONS.md` if skill is based on published methods
 - [ ] Symlink exists at `.claude/skills/<skill-name>` pointing to skill directory
 - [ ] Global symlink exists at `~/.claude/skills/<skill-name>` (if globally available)
 

@@ -213,6 +213,19 @@ Agents should work with reduced functionality if MCP servers are unavailable:
 | Code Execution | None | Limited | Full |
 ```
 
+## Citations (Optional)
+
+When an agent's approach is grounded in published research, standards, or methodologies, add citations using a shared file:
+
+```
+agents/references/CITATIONS.bib   # all agent citations (BibTeX, source of truth)
+agents/references/CITATIONS.md    # human-readable rendered references
+```
+
+Each agent's entries in the `.bib` file should use a consistent key prefix matching the agent name (e.g., `apa-specialist:apa7manual`). In `CITATIONS.md`, group entries under agent name headings.
+
+Citations are optional — add them when the agent implements a specific published methodology or standard.
+
 ## Quality Assurance
 
 ### Testing Your Agents

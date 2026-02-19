@@ -97,6 +97,17 @@ Description of another common use case.
 - Known limitation 2
 - Situations where a single agent might be more appropriate
 
+## Citations (Optional)
+
+If the team's coordination pattern or methodology is based on published research, add entries to the shared team citations file:
+
+```
+teams/references/CITATIONS.bib   # all team citations (BibTeX, source of truth)
+teams/references/CITATIONS.md    # human-readable rendered references
+```
+
+Key entries with the team name prefix (e.g., `scrum-team:schwaber2020scrum`). Group entries by team in `CITATIONS.md`.
+
 ## See Also
 
 - Related agents that participate in this team
