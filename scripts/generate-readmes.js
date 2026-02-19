@@ -114,7 +114,7 @@ function generateStats() {
     `- **${totalAgents} agents** — specialized Claude Code personas covering development, review, compliance, and more`,
     `- **${totalTeams} teams** — predefined multi-agent compositions for complex workflows`,
     `- **6 guides** — human-readable reference documentation`,
-    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 6 color themes`,
+    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 9 color themes`,
   ];
   return lines.join('\n');
 }
@@ -380,17 +380,11 @@ function run(label, changed) {
   }
 }
 
-// README.md
+// README.md (abbreviated — full tables live in sub-READMEs)
 run(
   'README.md',
   processFile(resolve(ROOT, 'README.md'), {
     stats: generateStats,
-    'skills-intro': () => generateSkillsIntro('skills/'),
-    'skills-table': () => generateSkillsTable('skills/'),
-    'agents-intro': () => generateAgentsIntro('agents/'),
-    'agents-table': () => generateAgentsTable('agents/'),
-    'teams-intro': () => generateTeamsIntro('teams/'),
-    'teams-table': () => generateTeamsTable('teams/'),
   })
 );
 
