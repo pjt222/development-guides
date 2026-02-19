@@ -5,20 +5,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 <!-- AUTO:START:overview -->
-A documentation-only repository containing 6 long-form markdown guides, a skills library of 267 agentic skills, 53 agent definitions, and 8 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 11 guides, a skills library of 267 agentic skills, 53 agent definitions, and 8 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
-The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.
+The guides serve as the human entry point to the agentic system: practical workflows explaining when, why, and how to interact with agents, teams, and skills through Claude Code.
 <!-- AUTO:END:overview -->
 
 ## Architecture
 
 ### Four Content Types
 
-1. **Guides** (`guides/` directory): Human-readable reference documentation covering WSL setup, R package development, MCP troubleshooting, etc.
+1. **Guides** (`guides/` directory): Human-readable documentation organized into four categories (workflow, infrastructure, reference, design). Each guide has YAML frontmatter (`title`, `description`, `category`, `agents`, `teams`, `skills`) and follows a standard template (`guides/_template.md`). Guides serve as the human entry point to the agentic system.
 
 2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
 
-3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Currently 29 agents across development, compliance, review, project management, DevOps, MLOps, workflow visualization, swarm/morphic, alchemy, TCG, IP analysis, gardening, documentation, Shiny, and specialty domains.
+3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Agents span development, compliance, review, project management, DevOps, MLOps, workflow visualization, esoteric, and specialty domains.
 
 4. **Teams** (`teams/` directory): Predefined multi-agent compositions for complex workflows. Each team is a markdown file with YAML frontmatter (`name`, `description`, `lead`, `members[]`, `coordination`) and an embedded machine-readable configuration block. Teams define *who works together* — coordinated groups of agents with assigned roles and a defined coordination pattern.
 
@@ -30,8 +30,9 @@ These four types complement each other: skills define *how* (procedure, validati
 - `skills/_registry.yml` is the machine-readable catalog of all 267 skills across 48 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (5), web-dev (3), git (6), general (8), citations (3), data-serialization (2), review (9), bushcraft (4), esoteric (24), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (6), alchemy (3), tcg (3), intellectual-property (2), gardening (5), shiny (7), animal-training (2), mycology (2), prospecting (2), crafting (1), library-science (3), travel (6), relocation (3), a2a-protocol (3), geometry (3), number-theory (3), stochastic-processes (3), theoretical-science (3), diffusion (3), hildegard (5), maintenance (4), blender (3), visualization (2), 3d-printing (3), lapidary (4), versioning (4).
 - `agents/_registry.yml` is the machine-readable catalog of all 53 agents.
 - `teams/_registry.yml` is the machine-readable catalog of all 8 teams.
+- `guides/_registry.yml` is the machine-readable catalog of all 11 guides across 4 categories.
 
-When adding or removing skills, agents, or teams, the corresponding registry must be updated to stay in sync.
+When adding or removing skills, agents, teams, or guides, the corresponding registry must be updated to stay in sync.
 <!-- AUTO:END:registries -->
 
 ### Cross-References
@@ -90,6 +91,14 @@ Guides, skills, agents, and teams are cross-referenced. The parent project `CLAU
 4. Include a `<!-- CONFIG:START -->` / `<!-- CONFIG:END -->` block with machine-readable YAML for tooling
 5. Add the entry to `teams/_registry.yml` and update `total_teams` count
 6. Run `npm run update-readmes` (or let CI auto-commit on push to main)
+
+## Adding a New Guide
+
+1. Copy `guides/_template.md` to `guides/<guide-name>.md`
+2. Fill in YAML frontmatter (required: `title`, `description`, `category`, `agents`, `teams`, `skills`)
+3. Write sections following the template: When to Use, Prerequisites, Workflow Overview, core sections, Troubleshooting, Related Resources
+4. Add the entry to `guides/_registry.yml` and update `total_guides` count
+5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
 
 ## README Automation
 

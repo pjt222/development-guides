@@ -1,0 +1,121 @@
+# Guides Registry
+# Machine-readable catalog of all guide documents in this library.
+# Keep in sync with the actual guide files on disk.
+
+total_guides: 11
+version: "1.0"
+last_updated: "2026-02-19"
+
+categories:
+  workflow:
+    description: End-to-end workflows for using agents, teams, and skills
+  infrastructure:
+    description: Environment setup and toolchain configuration
+  reference:
+    description: Quick-lookup command and invocation references
+  design:
+    description: System design documents and architecture specs
+
+guides:
+  # ── Workflow guides ──────────────────────────────────────────────
+  - id: understanding-the-system
+    path: guides/understanding-the-system.md
+    title: "Understanding the System"
+    description: "Entry point: what skills, agents, and teams are, how they compose, and how to invoke them"
+    category: workflow
+    agents: []
+    teams: []
+    skills: [skill-creation]
+
+  - id: creating-skills
+    path: guides/creating-skills.md
+    title: "Creating Skills"
+    description: "Authoring, evolving, and reviewing skills following the agentskills.io standard"
+    category: workflow
+    agents: [skill-reviewer]
+    teams: []
+    skills: [skill-creation, skill-evolution, review-skill-format, refactor-skill-structure, update-skill-content]
+
+  - id: creating-agents-and-teams
+    path: guides/creating-agents-and-teams.md
+    title: "Creating Agents and Teams"
+    description: "Designing agent personas, composing teams, and choosing coordination patterns"
+    category: workflow
+    agents: [skill-reviewer]
+    teams: []
+    skills: [skill-creation]
+
+  - id: running-a-code-review
+    path: guides/running-a-code-review.md
+    title: "Running a Code Review"
+    description: "Multi-agent code review using review teams for R packages and web projects"
+    category: workflow
+    agents: [r-developer, code-reviewer, senior-software-developer, security-analyst, web-developer]
+    teams: [r-package-review, fullstack-web-dev]
+    skills: [review-software-architecture, review-data-analysis, security-audit-codebase]
+
+  - id: managing-a-scrum-sprint
+    path: guides/managing-a-scrum-sprint.md
+    title: "Managing a Scrum Sprint"
+    description: "Running Scrum sprints with the scrum-team: planning, dailies, review, and retro"
+    category: workflow
+    agents: [project-manager, senior-software-developer, code-reviewer]
+    teams: [scrum-team]
+    skills: [plan-sprint, manage-backlog, conduct-retrospective, generate-status-report]
+
+  - id: visualizing-workflows-with-putior
+    path: guides/visualizing-workflows-with-putior.md
+    title: "Visualizing Workflows with putior"
+    description: "End-to-end putior workflow visualization from annotation to themed Mermaid diagrams"
+    category: workflow
+    agents: [putior-integrator]
+    teams: []
+    skills: [install-putior, annotate-source-files, generate-workflow-diagram, analyze-codebase-workflow, configure-putior-mcp, setup-putior-ci]
+
+  - id: running-ai-self-care
+    path: guides/running-ai-self-care.md
+    title: "Running AI Self-Care"
+    description: "AI meta-cognitive wellness sessions with the self-care team"
+    category: workflow
+    agents: [mystic, alchemist, gardener, shaman]
+    teams: [ai-self-care]
+    skills: [meditate, heal, center, intrinsic, observe, listen, learn, teach, shine]
+
+  # ── Infrastructure guides ────────────────────────────────────────
+  - id: setting-up-your-environment
+    path: guides/setting-up-your-environment.md
+    title: "Setting Up Your Environment"
+    description: "WSL2 setup, shell config, MCP server integration, and Claude Code configuration"
+    category: infrastructure
+    agents: [r-developer, mcp-developer]
+    teams: []
+    skills: [setup-wsl-dev-environment, configure-mcp-server, troubleshoot-mcp-connection]
+
+  - id: r-package-development
+    path: guides/r-package-development.md
+    title: "R Package Development"
+    description: "Package structure, testing, CRAN submission, pkgdown deployment, and renv management"
+    category: infrastructure
+    agents: [r-developer, code-reviewer]
+    teams: [r-package-review]
+    skills: [create-r-package, write-roxygen-docs, write-testthat-tests, submit-to-cran, build-pkgdown-site, manage-renv-dependencies, setup-github-actions-ci]
+
+  # ── Reference guides ─────────────────────────────────────────────
+  - id: quick-reference
+    path: guides/quick-reference.md
+    title: "Quick Reference"
+    description: "Command cheat sheet for agents, skills, teams, Git, R, and shell operations"
+    category: reference
+    agents: []
+    teams: []
+    skills: []
+
+  # ── Design guides ────────────────────────────────────────────────
+  - id: epigenetics-activation-control
+    path: guides/epigenetics-activation-control.md
+    title: "Epigenetics-Inspired Activation Control"
+    description: "Runtime activation profiles controlling which agents, skills, and teams are expressed"
+    category: design
+    agents: []
+    teams: []
+    skills: []

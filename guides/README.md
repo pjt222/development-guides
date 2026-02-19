@@ -1,23 +1,52 @@
 # Guides
 
-Human-readable reference documentation for development environments, R packages, and AI-assisted workflows.
+11 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
 
-## Available Guides
+## Workflow
 
-### [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
-Claude Code + R + MCP server setup: mcptools configuration, Claude Desktop and Claude Code as independent MCP clients, Hugging Face MCP server, environment variables, path management.
+*End-to-end workflows for using agents, teams, and skills*
 
-### [General Development Setup](general-development-setup.md)
-WSL2 configuration, shell environment, Git and SSH, essential tools (tmux, fzf), directory structure, language-specific setups (Node.js, Python, R).
+### [Understanding the System](understanding-the-system.md)
+Entry point: what skills, agents, and teams are, how they compose, and how to invoke them.
 
-### [R Package Development Best Practices](r-package-development-best-practices.md)
-Package structure, documentation standards (roxygen2, vignettes), testing with testthat, CRAN submission workflow, CI/CD with GitHub Actions.
+### [Creating Skills](creating-skills.md)
+Authoring, evolving, and reviewing skills following the agentskills.io standard.
 
-### [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
-Branch-based vs GitHub Actions deployment, `_pkgdown.yml` configuration, troubleshooting 404 errors, migration between methods.
+### [Creating Agents and Teams](creating-agents-and-teams.md)
+Designing agent personas, composing teams, and choosing coordination patterns.
 
-### [renv Setup Troubleshooting](renv-setup-troubleshooting.md)
-Common renv initialization and restore issues, platform-specific dependency resolution, reproducible environments.
+### [Running a Code Review](running-a-code-review.md)
+Multi-agent code review using review teams for R packages and web projects.
+
+### [Managing a Scrum Sprint](managing-a-scrum-sprint.md)
+Running Scrum sprints with the scrum-team: planning, dailies, review, and retro.
+
+### [Visualizing Workflows with putior](visualizing-workflows-with-putior.md)
+End-to-end putior workflow visualization from annotation to themed Mermaid diagrams.
+
+### [Running AI Self-Care](running-ai-self-care.md)
+AI meta-cognitive wellness sessions with the self-care team.
+
+## Infrastructure
+
+*Environment setup and toolchain configuration*
+
+### [Setting Up Your Environment](setting-up-your-environment.md)
+WSL2 setup, shell config, MCP server integration, and Claude Code configuration.
+
+### [R Package Development](r-package-development.md)
+Package structure, testing, CRAN submission, pkgdown deployment, and renv management.
+
+## Reference
+
+*Quick-lookup command and invocation references*
 
 ### [Quick Reference](quick-reference.md)
-WSL-Windows path conversions, R package development commands, Git operations, shell commands, keyboard shortcuts.
+Command cheat sheet for agents, skills, teams, Git, R, and shell operations.
+
+## Design
+
+*System design documents and architecture specs*
+
+### [Epigenetics-Inspired Activation Control](epigenetics-activation-control.md)
+Runtime activation profiles controlling which agents, skills, and teams are expressed.

@@ -6,6 +6,7 @@ on:
       - 'skills/_registry.yml'
       - 'agents/_registry.yml'
       - 'teams/_registry.yml'
+      - 'guides/_registry.yml'
 
 jobs:
   update:

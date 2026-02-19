@@ -1,3 +1,12 @@
+---
+title: "Epigenetics-Inspired Activation Control"
+description: "Runtime activation profiles controlling which agents, skills, and teams are expressed"
+category: design
+agents: []
+teams: []
+skills: []
+---
+
 # Epigenetics-Inspired Activation Control
 
 A runtime activation profile system that controls which agents, skills, and teams are "expressed" (available) in a given context, without modifying their definition files.

@@ -2,10 +2,10 @@
 /**
  * generate-readmes.js
  *
- * Reads skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
- * to auto-generate dynamic sections in README.md, skills/README.md,
- * agents/README.md, CLAUDE.md, guides/README.md, viz/README.md, and
- * teams/README.md.
+ * Reads skills/_registry.yml, agents/_registry.yml, teams/_registry.yml,
+ * and guides/_registry.yml to auto-generate dynamic sections in README.md,
+ * skills/README.md, agents/README.md, CLAUDE.md, guides/README.md,
+ * viz/README.md, and teams/README.md.
  *
  * Usage:
  *   node scripts/generate-readmes.js          # update files in-place
@@ -32,14 +32,21 @@ const teamsRegistryPath = resolve(ROOT, 'teams/_registry.yml');
 const teamsRegistry = existsSync(teamsRegistryPath)
   ? yaml.load(readFileSync(teamsRegistryPath, 'utf8'))
   : { total_teams: 0, teams: [] };
+const guidesRegistryPath = resolve(ROOT, 'guides/_registry.yml');
+const guidesRegistry = existsSync(guidesRegistryPath)
+  ? yaml.load(readFileSync(guidesRegistryPath, 'utf8'))
+  : { total_guides: 0, categories: {}, guides: [] };
 
 const domains = skillsRegistry.domains;
 const agents = agentsRegistry.agents;
 const defaultSkills = agentsRegistry.default_skills || [];
 const teams = teamsRegistry.teams || [];
+const guides = guidesRegistry.guides || [];
+const guideCategories = guidesRegistry.categories || {};
 const totalSkills = skillsRegistry.total_skills;
 const totalAgents = agentsRegistry.total_agents;
 const totalTeams = teamsRegistry.total_teams || 0;
+const totalGuides = guidesRegistry.total_guides || 0;
 const totalDomains = Object.keys(domains).length;
 
 // ── Helpers ──────────────────────────────────────────────────────
@@ -113,7 +120,7 @@ function generateStats() {
     `- **${totalSkills} skills** across ${totalDomains} domains — structured, executable procedures`,
     `- **${totalAgents} agents** — specialized Claude Code personas covering development, review, compliance, and more`,
     `- **${totalTeams} teams** — predefined multi-agent compositions for complex workflows`,
-    `- **6 guides** — human-readable reference documentation`,
+    `- **${totalGuides} guides** — human-readable workflow, infrastructure, and reference documentation`,
     `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 9 color themes`,
   ];
   return lines.join('\n');
@@ -202,9 +209,9 @@ function generateTeamsTable(linkPrefix) {
 }
 
 function generateOverview() {
-  return `A documentation-only repository containing 6 long-form markdown guides, a skills library of ${totalSkills} agentic skills, ${totalAgents} agent definitions, and ${totalTeams} team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+  return `A documentation-only repository containing ${totalGuides} guides, a skills library of ${totalSkills} agentic skills, ${totalAgents} agent definitions, and ${totalTeams} team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
-The primary audience is developers working in WSL-Windows hybrid environments, particularly for R package development, MCP server integration, and AI-assisted workflows.`;
+The guides serve as the human entry point to the agentic system: practical workflows explaining when, why, and how to interact with agents, teams, and skills through Claude Code.`;
 }
 
 function generateRegistries() {
@@ -215,37 +222,51 @@ function generateRegistries() {
   return `- \`skills/_registry.yml\` is the machine-readable catalog of all ${totalSkills} skills across ${totalDomains} domains: ${domainList}.
 - \`agents/_registry.yml\` is the machine-readable catalog of all ${totalAgents} agents.
 - \`teams/_registry.yml\` is the machine-readable catalog of all ${totalTeams} teams.
+- \`guides/_registry.yml\` is the machine-readable catalog of all ${totalGuides} guides across ${Object.keys(guideCategories).length} categories.
 
-When adding or removing skills, agents, or teams, the corresponding registry must be updated to stay in sync.`;
+When adding or removing skills, agents, teams, or guides, the corresponding registry must be updated to stay in sync.`;
 }
 
 // ── Fully generated files ────────────────────────────────────────
 
+function generateGuidesSection() {
+  const lines = [];
+  for (const guide of guides) {
+    lines.push(
+      `- **[${guide.title}](guides/${guide.id}.md)** — ${guide.description}`
+    );
+  }
+  return lines.join('\n');
+}
+
 function generateGuidesReadme() {
-  return `# Guides
+  const categoryOrder = ['workflow', 'infrastructure', 'reference', 'design'];
+  const lines = [
+    '# Guides',
+    '',
+    `${totalGuides} guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.`,
+    '',
+  ];
 
-Human-readable reference documentation for development environments, R packages, and AI-assisted workflows.
+  for (const catId of categoryOrder) {
+    const catGuides = guides.filter((g) => g.category === catId);
+    if (catGuides.length === 0) continue;
+    const catDesc = guideCategories[catId]
+      ? guideCategories[catId].description
+      : catId;
+    const catName = catId[0].toUpperCase() + catId.slice(1);
+    lines.push(`## ${catName}`);
+    lines.push('');
+    lines.push(`*${catDesc}*`);
+    lines.push('');
+    for (const guide of catGuides) {
+      lines.push(`### [${guide.title}](${guide.id}.md)`);
+      lines.push(`${guide.description}.`);
+      lines.push('');
+    }
+  }
 
-## Available Guides
-
-### [WSL-RStudio-Claude Code Integration](wsl-rstudio-claude-integration.md)
-Claude Code + R + MCP server setup: mcptools configuration, Claude Desktop and Claude Code as independent MCP clients, Hugging Face MCP server, environment variables, path management.
-
-### [General Development Setup](general-development-setup.md)
-WSL2 configuration, shell environment, Git and SSH, essential tools (tmux, fzf), directory structure, language-specific setups (Node.js, Python, R).
-
-### [R Package Development Best Practices](r-package-development-best-practices.md)
-Package structure, documentation standards (roxygen2, vignettes), testing with testthat, CRAN submission workflow, CI/CD with GitHub Actions.
-
-### [pkgdown GitHub Pages Deployment](pkgdown-github-pages-deployment.md)
-Branch-based vs GitHub Actions deployment, \`_pkgdown.yml\` configuration, troubleshooting 404 errors, migration between methods.
-
-### [renv Setup Troubleshooting](renv-setup-troubleshooting.md)
-Common renv initialization and restore issues, platform-specific dependency resolution, reproducible environments.
-
-### [Quick Reference](quick-reference.md)
-WSL-Windows path conversions, R package development commands, Git operations, shell commands, keyboard shortcuts.
-`;
+  return lines.join('\n');
 }
 
 function generateVizReadme() {
@@ -385,6 +406,7 @@ run(
   'README.md',
   processFile(resolve(ROOT, 'README.md'), {
     stats: generateStats,
+    guides: generateGuidesSection,
   })
 );
 
@@ -435,7 +457,7 @@ run(
 
 // Summary
 console.log(
-  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents, ${totalTeams} teams`
+  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents, ${totalTeams} teams, ${totalGuides} guides`
 );
 
 if (CHECK_MODE && staleCount > 0) {

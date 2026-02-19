@@ -8,7 +8,7 @@ An agentic development platform providing structured skills, specialized agents,
 - **267 skills** across 48 domains — structured, executable procedures
 - **53 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **8 teams** — predefined multi-agent compositions for complex workflows
-- **6 guides** — human-readable reference documentation
+- **11 guides** — human-readable workflow, infrastructure, and reference documentation
 - **Interactive visualization** — force-graph explorer with 267 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
@@ -42,12 +42,19 @@ The `viz/` directory contains a force-graph explorer with 2D, 3D (WebGL), and hi
 
 ## Guides
 
-- **[WSL-RStudio-Claude Code Integration](guides/wsl-rstudio-claude-integration.md)** — Claude Code + R + MCP server setup
-- **[General Development Setup](guides/general-development-setup.md)** — WSL2, shell, Git, language-specific setups
-- **[R Package Development Best Practices](guides/r-package-development-best-practices.md)** — Structure, testing, CRAN submission, CI/CD
-- **[pkgdown GitHub Pages Deployment](guides/pkgdown-github-pages-deployment.md)** — Deployment and `_pkgdown.yml` configuration
-- **[renv Setup Troubleshooting](guides/renv-setup-troubleshooting.md)** — Common renv initialization and restore issues
-- **[Quick Reference](guides/quick-reference.md)** — Path conversions, commands, keyboard shortcuts
+<!-- AUTO:START:guides -->
+- **[Understanding the System](guides/understanding-the-system.md)** — Entry point: what skills, agents, and teams are, how they compose, and how to invoke them
+- **[Creating Skills](guides/creating-skills.md)** — Authoring, evolving, and reviewing skills following the agentskills.io standard
+- **[Creating Agents and Teams](guides/creating-agents-and-teams.md)** — Designing agent personas, composing teams, and choosing coordination patterns
+- **[Running a Code Review](guides/running-a-code-review.md)** — Multi-agent code review using review teams for R packages and web projects
+- **[Managing a Scrum Sprint](guides/managing-a-scrum-sprint.md)** — Running Scrum sprints with the scrum-team: planning, dailies, review, and retro
+- **[Visualizing Workflows with putior](guides/visualizing-workflows-with-putior.md)** — End-to-end putior workflow visualization from annotation to themed Mermaid diagrams
+- **[Running AI Self-Care](guides/running-ai-self-care.md)** — AI meta-cognitive wellness sessions with the self-care team
+- **[Setting Up Your Environment](guides/setting-up-your-environment.md)** — WSL2 setup, shell config, MCP server integration, and Claude Code configuration
+- **[R Package Development](guides/r-package-development.md)** — Package structure, testing, CRAN submission, pkgdown deployment, and renv management
+- **[Quick Reference](guides/quick-reference.md)** — Command cheat sheet for agents, skills, teams, Git, R, and shell operations
+- **[Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md)** — Runtime activation profiles controlling which agents, skills, and teams are expressed
+<!-- AUTO:END:guides -->
 
 ## Contributing
 
