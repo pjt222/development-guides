@@ -167,7 +167,7 @@ Agent:
 - [putior package documentation](https://pjt222.github.io/putior/) — full API reference and vignettes
 - [r-developer](r-developer.md) — R development agent that complements putior integration
 - [devops-engineer](devops-engineer.md) — broader CI/CD and infrastructure setup
-- [configure-mcp-server skill](../skills/mcp-integration/configure-mcp-server/SKILL.md) — general MCP server configuration
+- [configure-mcp-server skill](../skills/configure-mcp-server/SKILL.md) — general MCP server configuration
 
 ---
 

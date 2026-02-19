@@ -189,7 +189,7 @@ Use the code-reviewer agent to review PR #15.
 Focus on test coverage and error handling.
 ```
 
-The [code-reviewer](../agents/code-reviewer.md) agent applies the [review-pull-request](../skills/review/review-pull-request/SKILL.md) skill to examine the changes, providing feedback on style, tests, and general quality without the overhead of team coordination.
+The [code-reviewer](../agents/code-reviewer.md) agent applies the [review-pull-request](../skills/review-pull-request/SKILL.md) skill to examine the changes, providing feedback on style, tests, and general quality without the overhead of team coordination.
 
 ### Architecture-Only Review
 
@@ -205,7 +205,7 @@ Use the security-analyst agent to audit this codebase for security issues.
 Apply the security-audit-codebase skill.
 ```
 
-This invokes the [security-audit-codebase](../skills/general/security-audit-codebase/SKILL.md) skill directly, producing a focused security report without involving other reviewers.
+This invokes the [security-audit-codebase](../skills/security-audit-codebase/SKILL.md) skill directly, producing a focused security report without involving other reviewers.
 
 ## Customizing the Review
 
@@ -287,10 +287,10 @@ After implementing fixes, re-run the review to verify: "Re-run the r-package-rev
 - [web-developer](../agents/web-developer.md) -- Web development lead
 
 ### Skills
-- [review-software-architecture](../skills/review/review-software-architecture/SKILL.md) -- Architecture review procedure
-- [review-data-analysis](../skills/review/review-data-analysis/SKILL.md) -- Data analysis review procedure
-- [review-pull-request](../skills/review/review-pull-request/SKILL.md) -- PR review procedure
-- [security-audit-codebase](../skills/general/security-audit-codebase/SKILL.md) -- Security audit procedure
+- [review-software-architecture](../skills/review-software-architecture/SKILL.md) -- Architecture review procedure
+- [review-data-analysis](../skills/review-data-analysis/SKILL.md) -- Data analysis review procedure
+- [review-pull-request](../skills/review-pull-request/SKILL.md) -- PR review procedure
+- [security-audit-codebase](../skills/security-audit-codebase/SKILL.md) -- Security audit procedure
 
 ### Guides
 - [R Package Development](r-package-development.md) -- Package development standards

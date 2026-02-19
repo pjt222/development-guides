@@ -93,7 +93,7 @@ Reference skills directly in your `CLAUDE.md`:
 
 ```markdown
 ## Skills
-@development-guides/skills/r-packages/submit-to-cran/SKILL.md
+@development-guides/skills/submit-to-cran/SKILL.md
 ```
 
 Or symlink the entire skills directory:
@@ -123,13 +123,13 @@ Map skills to rule files. In `.cursor/rules/`:
 
 ```bash
 # Symlink specific skills as .mdc files
-ln -s /path/to/skills/r-packages/submit-to-cran/SKILL.md .cursor/rules/submit-to-cran.mdc
+ln -s /path/to/skills/submit-to-cran/SKILL.md .cursor/rules/submit-to-cran.mdc
 ```
 
 Or reference the skills directory in your `.cursorrules`:
 
 ```
-When performing R package tasks, consult skills in development-guides/skills/r-packages/
+When performing R package tasks, consult skills in development-guides/skills/
 ```
 
 ### Other Tools (Gemini CLI, Aider, etc.)
@@ -157,14 +157,14 @@ Existing agents in `agents/` can reference skills:
 # In r-developer.md agent definition
 ## Available Skills
 When performing package development tasks, follow procedures from:
-- `skills/r-packages/create-r-package/SKILL.md` for new packages
-- `skills/r-packages/submit-to-cran/SKILL.md` for CRAN submission
-- `skills/r-packages/write-testthat-tests/SKILL.md` for testing patterns
+- `skills/create-r-package/SKILL.md` for new packages
+- `skills/submit-to-cran/SKILL.md` for CRAN submission
+- `skills/write-testthat-tests/SKILL.md` for testing patterns
 ```
 
 ## Contributing a New Skill
 
-1. Create a directory: `skills/<domain>/<skill-name>/`
+1. Create a directory: `skills/<skill-name>/`
 2. Write `SKILL.md` following the template (see any existing skill)
 3. Add the skill to `_registry.yml`
 4. Ensure frontmatter includes required fields: `name`, `description`, `allowed-tools`

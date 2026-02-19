@@ -465,8 +465,8 @@ curl -I "https://huggingface.co/mcp"
 
 - [r-developer](../agents/r-developer.md) -- R package development persona
 - [mcp-developer](../agents/mcp-developer.md) -- MCP integration specialist
-- [configure-mcp-server](../skills/mcp-integration/configure-mcp-server/SKILL.md) -- Step-by-step MCP server setup procedure
-- [troubleshoot-mcp-connection](../skills/mcp-integration/troubleshoot-mcp-connection/SKILL.md) -- Diagnosing MCP connectivity failures
+- [configure-mcp-server](../skills/configure-mcp-server/SKILL.md) -- Step-by-step MCP server setup procedure
+- [troubleshoot-mcp-connection](../skills/troubleshoot-mcp-connection/SKILL.md) -- Diagnosing MCP connectivity failures
 
 ### Guides
 

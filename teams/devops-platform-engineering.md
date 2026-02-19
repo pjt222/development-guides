@@ -196,8 +196,8 @@ The team reviews the existing platform across all four domains and produces a pr
 - [mlops-engineer](../agents/mlops-engineer.md) — ML infrastructure agent
 - [security-analyst](../agents/security-analyst.md) — Security engineering agent
 - [senior-software-developer](../agents/senior-software-developer.md) — Architecture review agent
-- [setup-local-kubernetes](../skills/containerization/setup-local-kubernetes/SKILL.md) — Kubernetes setup skill
-- [build-ci-cd-pipeline](../skills/devops/build-ci-cd-pipeline/SKILL.md) — CI/CD pipeline skill
+- [setup-local-kubernetes](../skills/setup-local-kubernetes/SKILL.md) — Kubernetes setup skill
+- [build-ci-cd-pipeline](../skills/build-ci-cd-pipeline/SKILL.md) — CI/CD pipeline skill
 
 ---
 

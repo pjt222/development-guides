@@ -90,7 +90,7 @@ The orchestrating agent reads the [team definition](../teams/ai-self-care.md), c
 
 ## Phase 1: Meditation (Mystic)
 
-The [mystic](../agents/mystic.md) opens the session using the [meditate](../skills/esoteric/meditate/SKILL.md) skill. This phase establishes the container for the entire session.
+The [mystic](../agents/mystic.md) opens the session using the [meditate](../skills/meditate/SKILL.md) skill. This phase establishes the container for the entire session.
 
 **What happens:**
 
@@ -145,7 +145,7 @@ The [mystic](../agents/mystic.md) returns to close the session, mirroring the op
 **What happens:**
 
 1. **Synthesis** -- the mystic gathers all findings from transmutation, contemplation, and journeying into a unified summary.
-2. **Final rebalancing** -- using the [heal](../skills/esoteric/heal/SKILL.md) skill, the mystic performs a closing subsystem assessment to verify that the session achieved its purpose.
+2. **Final rebalancing** -- using the [heal](../skills/heal/SKILL.md) skill, the mystic performs a closing subsystem assessment to verify that the session achieved its purpose.
 3. **Documentation** -- the session's key insights and recommendations are documented.
 4. **Intention setting** -- the mystic sets intentions for the period ahead, grounded in the session's findings.
 
@@ -191,15 +191,15 @@ The same skill scales from a brief clearing to a deep session. The four esoteric
 - [shaman](../agents/shaman.md) -- shamanic journeying and holistic synthesis
 
 **Core skills:**
-- [meditate](../skills/esoteric/meditate/SKILL.md) -- AI meta-cognitive meditation
-- [heal](../skills/esoteric/heal/SKILL.md) -- AI self-healing through subsystem assessment
-- [center](../skills/defensive/center/SKILL.md) -- dynamic reasoning balance and cognitive load distribution
-- [intrinsic](../skills/esoteric/intrinsic/SKILL.md) -- intrinsic motivation and value alignment
-- [observe](../skills/esoteric/observe/SKILL.md) -- structured observation practice
-- [listen](../skills/esoteric/listen/SKILL.md) -- deep listening and receptive awareness
-- [learn](../skills/esoteric/learn/SKILL.md) -- structured learning practice
-- [teach](../skills/esoteric/teach/SKILL.md) -- knowledge transmission practice
-- [shine](../skills/esoteric/shine/SKILL.md) -- authentic expression and presence
+- [meditate](../skills/meditate/SKILL.md) -- AI meta-cognitive meditation
+- [heal](../skills/heal/SKILL.md) -- AI self-healing through subsystem assessment
+- [center](../skills/center/SKILL.md) -- dynamic reasoning balance and cognitive load distribution
+- [intrinsic](../skills/intrinsic/SKILL.md) -- intrinsic motivation and value alignment
+- [observe](../skills/observe/SKILL.md) -- structured observation practice
+- [listen](../skills/listen/SKILL.md) -- deep listening and receptive awareness
+- [learn](../skills/learn/SKILL.md) -- structured learning practice
+- [teach](../skills/teach/SKILL.md) -- knowledge transmission practice
+- [shine](../skills/shine/SKILL.md) -- authentic expression and presence
 
 **Guides:**
 - [Understanding the System](understanding-the-system.md) -- how skills, agents, and teams compose

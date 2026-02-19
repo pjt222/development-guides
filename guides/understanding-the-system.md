@@ -34,9 +34,8 @@ development-guides/
 │   └── *.md             # Individual guide files
 ├── skills/              # Machine-consumable procedures
 │   ├── _registry.yml    # Catalog of all 267 skills
-│   └── <domain>/        # 48 domain directories
-│       └── <skill>/
-│           └── SKILL.md
+│   └── <skill-name>/    # 267 skill directories
+│       └── SKILL.md
 ├── agents/              # Persona definitions for Claude Code subagents
 │   ├── _registry.yml    # Catalog of all 53 agents
 │   └── *.md             # Individual agent files
@@ -55,7 +54,7 @@ The system has four content types. Each lives in its own top-level directory and
 
 ### 1. Skills -- the *how*
 
-**Location:** `skills/<domain>/<skill-name>/SKILL.md`
+**Location:** `skills/<skill-name>/SKILL.md`
 
 A skill is a machine-consumable procedure. It tells an agent exactly how to accomplish a specific task, step by step. Every SKILL.md file follows a fixed structure:
 
@@ -67,7 +66,7 @@ A skill is a machine-consumable procedure. It tells an agent exactly how to acco
 - **Common Pitfalls** -- frequent mistakes and how to avoid them.
 - **Related Skills** -- cross-references to complementary skills.
 
-The library currently contains 267 skills across 48 domains, ranging from `r-packages` and `containerization` to `esoteric` and `gardening`. Skills are kept under 500 lines; extended examples go into a `references/EXAMPLES.md` subdirectory following the progressive disclosure pattern.
+The library currently contains 267 skills spanning 48 domains (as tagged in their metadata), ranging from `r-packages` and `containerization` to `esoteric` and `gardening`. Skills are kept under 500 lines; extended examples go into a `references/EXAMPLES.md` subdirectory following the progressive disclosure pattern.
 
 ### 2. Agents -- the *who*
 
@@ -136,7 +135,7 @@ When you ask Claude Code to review an R package:
 When you ask Claude Code to containerize an MCP server:
 
 1. **Agent** -- Claude Code spawns the [devops-engineer](../agents/devops-engineer.md) agent.
-2. **Skill** -- The agent follows the [containerize-mcp-server](../skills/containerization/containerize-mcp-server/SKILL.md) skill, executing each step in the procedure.
+2. **Skill** -- The agent follows the [containerize-mcp-server](../skills/containerize-mcp-server/SKILL.md) skill, executing each step in the procedure.
 3. **Guide** -- The agent references the [Setting Up Your Environment](setting-up-your-environment.md) guide for path and environment details.
 
 No team is needed because the task falls within a single domain.
@@ -155,13 +154,13 @@ Skills that are symlinked into `.claude/skills/` become available as slash comma
 
 ```bash
 # From the repository root
-ln -s ../../skills/<domain>/<skill-name> .claude/skills/<skill-name>
+ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 ```
 
 For example, the `submit-to-cran` skill is linked as:
 
 ```
-.claude/skills/submit-to-cran -> ../../skills/r-packages/submit-to-cran
+.claude/skills/submit-to-cran -> ../../skills/submit-to-cran
 ```
 
 You can then invoke it in Claude Code by typing `/submit-to-cran`. All 267 skills in this repository are already symlinked and ready to use.
@@ -266,7 +265,7 @@ Use this decision matrix to pick the right level of composition for your task:
 
 | Problem | Cause | Solution |
 |---------|-------|----------|
-| Slash command not recognized | Skill not symlinked to `.claude/skills/` | Create the symlink: `ln -s ../../skills/<domain>/<name> .claude/skills/<name>` |
+| Slash command not recognized | Skill not symlinked to `.claude/skills/` | Create the symlink: `ln -s ../../skills/<name> .claude/skills/<name>` |
 | Agent not found | `.claude/agents/` symlink broken or missing | Verify: `ls -la .claude/agents/` should point to `../agents` |
 | Team coordination feels wrong | Wrong coordination pattern for the task | Review the 5 patterns in the Teams section above and pick a better fit |
 | Registry out of sync | Skill/agent/team added without registry update | Update `_registry.yml` and `total_*` count, then run `npm run update-readmes` |
@@ -277,7 +276,7 @@ Use this decision matrix to pick the right level of composition for your task:
 - [Creating Skills](creating-skills.md) -- how to author, evolve, and review skills
 - [Creating Agents and Teams](creating-agents-and-teams.md) -- how to design agent personas and compose teams
 - [Quick Reference](quick-reference.md) -- command cheat sheet for daily operations
-- [Skill Creation Meta-Skill](../skills/general/skill-creation/SKILL.md) -- the skill that teaches you how to create skills
+- [Skill Creation Meta-Skill](../skills/skill-creation/SKILL.md) -- the skill that teaches you how to create skills
 - [Skills Library README](../skills/README.md) -- browsable catalog of all 267 skills
 - [Agents Library README](../agents/README.md) -- browsable catalog of all 53 agents
 - [Teams Library README](../teams/README.md) -- browsable catalog of all 8 teams

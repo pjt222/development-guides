@@ -210,8 +210,8 @@ The team runs through design, UX, and security review phases on the existing cod
 - [senior-web-designer](../agents/senior-web-designer.md) — Visual design review agent
 - [senior-ux-ui-specialist](../agents/senior-ux-ui-specialist.md) — UX and accessibility review agent
 - [security-analyst](../agents/security-analyst.md) — Security audit agent
-- [scaffold-nextjs-app](../skills/web-dev/scaffold-nextjs-app/SKILL.md) — Next.js scaffolding skill
-- [review-web-design](../skills/review/review-web-design/SKILL.md) — Web design review skill
+- [scaffold-nextjs-app](../skills/scaffold-nextjs-app/SKILL.md) — Next.js scaffolding skill
+- [review-web-design](../skills/review-web-design/SKILL.md) — Web design review skill
 
 ---
 

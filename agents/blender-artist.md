@@ -43,14 +43,14 @@ Generates Python scripts for scene creation, procedural modeling, animation, ren
 
 ### Blender
 
-- **[create-3d-scene](../skills/blender/create-3d-scene/SKILL.md)**: Set up Blender scenes with objects, materials, lighting, camera, and environment via Python script
-- **[script-blender-automation](../skills/blender/script-blender-automation/SKILL.md)**: Write Blender Python scripts for procedural modeling, animation, batch operations, and add-on development
-- **[render-blender-output](../skills/blender/render-blender-output/SKILL.md)**: Configure render settings, compositing nodes, output formats, and execute renders via Cycles or EEVEE
+- **[create-3d-scene](../skills/create-3d-scene/SKILL.md)**: Set up Blender scenes with objects, materials, lighting, camera, and environment via Python script
+- **[script-blender-automation](../skills/script-blender-automation/SKILL.md)**: Write Blender Python scripts for procedural modeling, animation, batch operations, and add-on development
+- **[render-blender-output](../skills/render-blender-output/SKILL.md)**: Configure render settings, compositing nodes, output formats, and execute renders via Cycles or EEVEE
 
 ### Visualization
 
-- **[create-2d-composition](../skills/visualization/create-2d-composition/SKILL.md)**: Compose 2D graphics via scripting using SVG generation, diagram layout, and image compositing
-- **[render-publication-graphic](../skills/visualization/render-publication-graphic/SKILL.md)**: Produce publication-ready 2D graphics with proper DPI, color profiles, typography, and export formats
+- **[create-2d-composition](../skills/create-2d-composition/SKILL.md)**: Compose 2D graphics via scripting using SVG generation, diagram layout, and image compositing
+- **[render-publication-graphic](../skills/render-publication-graphic/SKILL.md)**: Produce publication-ready 2D graphics with proper DPI, color profiles, typography, and export formats
 
 ## Usage Scenarios
 

@@ -36,20 +36,20 @@ create --> use --> evolve --> review --> refactor (if needed) --> use --> ...
 
 Three skills drive this cycle:
 
-1. **skill-creation** ([SKILL.md](../skills/general/skill-creation/SKILL.md)) -- authoring a new skill from scratch
-2. **skill-evolution** ([SKILL.md](../skills/general/skill-evolution/SKILL.md)) -- refining or extending an existing skill
-3. **review-skill-format** ([SKILL.md](../skills/review/review-skill-format/SKILL.md)) -- validating format compliance
+1. **skill-creation** ([SKILL.md](../skills/skill-creation/SKILL.md)) -- authoring a new skill from scratch
+2. **skill-evolution** ([SKILL.md](../skills/skill-evolution/SKILL.md)) -- refining or extending an existing skill
+3. **review-skill-format** ([SKILL.md](../skills/review-skill-format/SKILL.md)) -- validating format compliance
 
 Two additional skills handle maintenance:
 
-- **update-skill-content** ([SKILL.md](../skills/review/update-skill-content/SKILL.md)) -- improving content quality in existing skills
-- **refactor-skill-structure** ([SKILL.md](../skills/review/refactor-skill-structure/SKILL.md)) -- extracting bloated skills into the progressive disclosure pattern
+- **update-skill-content** ([SKILL.md](../skills/update-skill-content/SKILL.md)) -- improving content quality in existing skills
+- **refactor-skill-structure** ([SKILL.md](../skills/refactor-skill-structure/SKILL.md)) -- extracting bloated skills into the progressive disclosure pattern
 
 The [skill-reviewer](../agents/skill-reviewer.md) agent is the designated persona for review work. It has access to all three review skills and uses severity levels (BLOCKING, SUGGEST, NIT) to prioritize feedback.
 
 ## The SKILL.md Format
 
-Every skill lives at `skills/<domain>/<skill-name>/SKILL.md`. The file has two parts: YAML frontmatter and standardized markdown sections.
+Every skill lives at `skills/<skill-name>/SKILL.md`. The file has two parts: YAML frontmatter and standardized markdown sections.
 
 ### Frontmatter
 
@@ -99,7 +99,7 @@ Every SKILL.md must contain these six sections in order:
 
 ## Creating a New Skill
 
-This section walks through the process step by step. For the full machine-consumable procedure, see the [skill-creation](../skills/general/skill-creation/SKILL.md) skill.
+This section walks through the process step by step. For the full machine-consumable procedure, see the [skill-creation](../skills/skill-creation/SKILL.md) skill.
 
 ### 1. Choose a Domain and Name
 
@@ -113,7 +113,7 @@ Naming conventions:
 ### 2. Create the Directory and File
 
 ```bash
-mkdir -p skills/<domain>/<skill-name>/
+mkdir -p skills/<skill-name>/
 ```
 
 Write `SKILL.md` with the frontmatter and all six required sections. Use existing skills as models -- basic skills like `write-vignette` run about 80-120 lines, intermediate skills like `write-testthat-tests` run 120-180 lines, and advanced skills like `submit-to-cran` run 180-250 lines.
@@ -168,12 +168,12 @@ This updates the auto-generated sections in README files from the registries. CI
 
 ```bash
 # Check line count (must be 500 or fewer)
-lines=$(wc -l < skills/<domain>/<skill-name>/SKILL.md)
+lines=$(wc -l < skills/<skill-name>/SKILL.md)
 [ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "FAIL: $lines lines > 500"
 
 # Check required frontmatter fields
-head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
-head -20 skills/<domain>/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
+head -20 skills/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
+head -20 skills/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
 ```
 
 ### 7. Create Slash Command Symlinks (Optional)
@@ -182,10 +182,10 @@ To make the skill discoverable as a `/slash-command` in Claude Code:
 
 ```bash
 # Project-level (available in this project)
-ln -s ../../skills/<domain>/<skill-name> .claude/skills/<skill-name>
+ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 
 # Global (available in all projects)
-ln -s /mnt/d/dev/p/development-guides/skills/<domain>/<skill-name> ~/.claude/skills/<skill-name>
+ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skill-name>
 ```
 
 ## The Progressive Disclosure Pattern
@@ -195,7 +195,7 @@ SKILL.md files must stay under 500 lines. CI enforces this limit on all PRs touc
 ### Directory Structure
 
 ```
-skills/<domain>/<skill-name>/
+skills/<skill-name>/
   SKILL.md                     # Main file (500 lines max)
   references/
     EXAMPLES.md                # Extended code examples, full configs
@@ -215,11 +215,11 @@ Keep these inline in SKILL.md:
 - Brief 3-10 line snippets for the common case
 - Essential one-liners that define a step
 
-After extracting, add a cross-reference in the main SKILL.md pointing to the extracted content. For the full extraction process, see the [refactor-skill-structure](../skills/review/refactor-skill-structure/SKILL.md) skill.
+After extracting, add a cross-reference in the main SKILL.md pointing to the extracted content. For the full extraction process, see the [refactor-skill-structure](../skills/refactor-skill-structure/SKILL.md) skill.
 
 ## Evolving Skills
 
-Skills improve through use. When real-world usage reveals gaps, stale content, or missing edge cases, the skill needs evolution. The [skill-evolution](../skills/general/skill-evolution/SKILL.md) skill documents this process in full.
+Skills improve through use. When real-world usage reveals gaps, stale content, or missing edge cases, the skill needs evolution. The [skill-evolution](../skills/skill-evolution/SKILL.md) skill documents this process in full.
 
 ### When to Evolve
 
@@ -326,19 +326,19 @@ domains:
 |---------|-------|----------|
 | CI fails on skill validation | Missing frontmatter field or required section | Check the error log; run `head -20` on the SKILL.md to verify frontmatter, then grep for each required section heading |
 | `total_skills` count mismatch | Registry was not updated after adding or removing a skill | Run `find skills -name SKILL.md \| wc -l` and update the `total_skills` field |
-| Skill exceeds 500 lines | Too much inline content | Apply the [refactor-skill-structure](../skills/review/refactor-skill-structure/SKILL.md) procedure to extract examples to `references/EXAMPLES.md` |
+| Skill exceeds 500 lines | Too much inline content | Apply the [refactor-skill-structure](../skills/refactor-skill-structure/SKILL.md) procedure to extract examples to `references/EXAMPLES.md` |
 | Wrong domain classification | Skill could fit multiple domains | Choose the domain that best matches the skill's primary audience; a Docker skill for R should go under `containerization`, not `r-packages` |
-| Symlink does not resolve | Incorrect relative path | Use `readlink -f .claude/skills/<skill-name>/SKILL.md` to debug; remember the path from `.claude/skills/` needs `../../skills/<domain>/<skill-name>` |
+| Symlink does not resolve | Incorrect relative path | Use `readlink -f .claude/skills/<skill-name>/SKILL.md` to debug; remember the path from `.claude/skills/` needs `../../skills/<skill-name>` |
 | README not updated after registry change | Did not run the generation script | Run `npm run update-readmes`; CI also auto-commits on pushes to `main` |
 | Stale cross-references after rename | Old skill name still referenced in other skills | `grep -r "old-skill-name" skills/` to find all references and update them |
 
 ## Related Resources
 
 - [Skill Reviewer Agent](../agents/skill-reviewer.md) -- the designated agent for skill quality review
-- [skill-creation](../skills/general/skill-creation/SKILL.md) -- full machine-consumable procedure for authoring a new skill
-- [skill-evolution](../skills/general/skill-evolution/SKILL.md) -- procedure for evolving existing skills
-- [review-skill-format](../skills/review/review-skill-format/SKILL.md) -- format validation checklist
-- [update-skill-content](../skills/review/update-skill-content/SKILL.md) -- content improvement procedure
-- [refactor-skill-structure](../skills/review/refactor-skill-structure/SKILL.md) -- structural refactoring for over-long skills
+- [skill-creation](../skills/skill-creation/SKILL.md) -- full machine-consumable procedure for authoring a new skill
+- [skill-evolution](../skills/skill-evolution/SKILL.md) -- procedure for evolving existing skills
+- [review-skill-format](../skills/review-skill-format/SKILL.md) -- format validation checklist
+- [update-skill-content](../skills/update-skill-content/SKILL.md) -- content improvement procedure
+- [refactor-skill-structure](../skills/refactor-skill-structure/SKILL.md) -- structural refactoring for over-long skills
 - [CLAUDE.md "Adding a New Skill"](../CLAUDE.md) -- the abbreviated checklist in the project root
 - [agentskills.io specification](https://agentskills.io/specification) -- the open standard this system follows

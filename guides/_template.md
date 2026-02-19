@@ -45,7 +45,7 @@ Common problems focused on the human-AI interaction.
 ## Related Resources
 
 - [Agent Name](../agents/agent-name.md) -- relevant agent
-- [Skill Name](../skills/domain/skill-name/SKILL.md) -- relevant skill
+- [Skill Name](../skills/skill-name/SKILL.md) -- relevant skill
 - [Team Name](../teams/team-name.md) -- relevant team
 - [Other Guide](other-guide.md) -- related guide
 

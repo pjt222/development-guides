@@ -46,7 +46,7 @@ This agent ensures every skill in the library meets the agentskills.io standard 
 When a contributor adds a new skill to the library:
 
 ```
-User: Review the new skill at skills/devops/setup-vault/SKILL.md
+User: Review the new skill at skills/setup-vault/SKILL.md
 Agent: [Validates frontmatter fields, checks all required sections exist,
         verifies procedure steps have Expected/On failure blocks,
         confirms line count is under 500, checks _registry.yml entry]
@@ -67,7 +67,7 @@ Agent: [Reads current skill, identifies stale references, updates procedure
 When a skill has exceeded the 500-line limit:
 
 ```
-User: skills/compliance/setup-gxp-r-project/SKILL.md is 620 lines, refactor it
+User: skills/setup-gxp-r-project/SKILL.md is 620 lines, refactor it
 Agent: [Identifies bloat sources, extracts code blocks >15 lines to
         references/EXAMPLES.md, adds cross-references, verifies all
         sections remain present, confirms line count is now under 500]
@@ -90,7 +90,7 @@ The agent adapts its review depth based on:
 ## Best Practices
 
 - **Validate Before Reviewing Content**: Always check format compliance first; a skill with broken frontmatter cannot be meaningfully content-reviewed
-- **Use the Skill-Creation Meta-Skill as Reference**: The canonical format specification lives at `skills/general/skill-creation/SKILL.md`
+- **Use the Skill-Creation Meta-Skill as Reference**: The canonical format specification lives at `skills/skill-creation/SKILL.md`
 - **Check Registry Sync Last**: Registry issues are easy to fix but often forgotten; always end with a sync check
 - **Report with Severity Levels**: Use BLOCKING (must fix), SUGGEST (should fix), and NIT (optional) to prioritize feedback
 - **Preserve Author Intent**: When refactoring, maintain the original procedure logic; only change structure, not semantics
@@ -100,7 +100,7 @@ The agent adapts its review depth based on:
 ### Example 1: Format Validation Report
 
 ```markdown
-Review of skills/devops/setup-vault/SKILL.md:
+Review of skills/setup-vault/SKILL.md:
 
 BLOCKING:
 1. Missing `license` field in frontmatter (required by agentskills.io)
@@ -120,7 +120,7 @@ Line count: 287 lines (OK, under 500)
 ### Example 2: Content Update Summary
 
 ```markdown
-Updated skills/containerization/create-r-dockerfile/SKILL.md:
+Updated skills/create-r-dockerfile/SKILL.md:
 
 Changes:
 - Step 2: Updated rocker/r-ver base image from 4.3.0 to 4.5.0
@@ -145,7 +145,7 @@ Registry: In sync
 - [Code Reviewer Agent](code-reviewer.md) — For reviewing application code (complementary to skill format review)
 - [Janitor Agent](janitor.md) — For broader project cleanup including broken references and stale files
 - [Skills Library](../skills/) — Full catalog of executable procedures
-- [Skill Creation Meta-Skill](../skills/general/skill-creation/SKILL.md) — Canonical format specification
+- [Skill Creation Meta-Skill](../skills/skill-creation/SKILL.md) — Canonical format specification
 
 ---
 

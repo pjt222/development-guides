@@ -8,52 +8,52 @@ domains:
     description: R package development lifecycle skills
     skills:
       - id: create-r-package
-        path: r-packages/create-r-package/SKILL.md
+        path: create-r-package/SKILL.md
         complexity: basic
         language: R
         description: Scaffold a new R package with complete structure
       - id: submit-to-cran
-        path: r-packages/submit-to-cran/SKILL.md
+        path: submit-to-cran/SKILL.md
         complexity: advanced
         language: R
         description: Complete CRAN submission workflow
       - id: write-roxygen-docs
-        path: r-packages/write-roxygen-docs/SKILL.md
+        path: write-roxygen-docs/SKILL.md
         complexity: basic
         language: R
         description: Write roxygen2 documentation for functions and datasets
       - id: write-testthat-tests
-        path: r-packages/write-testthat-tests/SKILL.md
+        path: write-testthat-tests/SKILL.md
         complexity: intermediate
         language: R
         description: Write testthat edition 3 tests with high coverage
       - id: setup-github-actions-ci
-        path: r-packages/setup-github-actions-ci/SKILL.md
+        path: setup-github-actions-ci/SKILL.md
         complexity: intermediate
         language: R
         description: Configure GitHub Actions CI/CD for R packages
       - id: build-pkgdown-site
-        path: r-packages/build-pkgdown-site/SKILL.md
+        path: build-pkgdown-site/SKILL.md
         complexity: intermediate
         language: R
         description: Build and deploy pkgdown documentation site
       - id: manage-renv-dependencies
-        path: r-packages/manage-renv-dependencies/SKILL.md
+        path: manage-renv-dependencies/SKILL.md
         complexity: intermediate
         language: R
         description: Manage reproducible R environments with renv
       - id: add-rcpp-integration
-        path: r-packages/add-rcpp-integration/SKILL.md
+        path: add-rcpp-integration/SKILL.md
         complexity: advanced
         language: R
         description: Add C++ code to R packages via Rcpp
       - id: write-vignette
-        path: r-packages/write-vignette/SKILL.md
+        path: write-vignette/SKILL.md
         complexity: basic
         language: R
         description: Create long-form package documentation vignettes
       - id: release-package-version
-        path: r-packages/release-package-version/SKILL.md
+        path: release-package-version/SKILL.md
         complexity: intermediate
         language: R
         description: Release a new package version with tagging and changelog
@@ -62,27 +62,27 @@ domains:
     description: jigsawR puzzle package development skills
     skills:
       - id: generate-puzzle
-        path: jigsawr/generate-puzzle/SKILL.md
+        path: generate-puzzle/SKILL.md
         complexity: basic
         language: R
         description: Generate puzzles via generate_puzzle() or geom_puzzle_*() with config validation
       - id: add-puzzle-type
-        path: jigsawr/add-puzzle-type/SKILL.md
+        path: add-puzzle-type/SKILL.md
         complexity: advanced
         language: R
         description: Scaffold a new puzzle type across all 10+ pipeline integration points
       - id: render-puzzle-docs
-        path: jigsawr/render-puzzle-docs/SKILL.md
+        path: render-puzzle-docs/SKILL.md
         complexity: basic
         language: R
         description: Render the jigsawR Quarto documentation site for GitHub Pages
       - id: run-puzzle-tests
-        path: jigsawr/run-puzzle-tests/SKILL.md
+        path: run-puzzle-tests/SKILL.md
         complexity: basic
         language: R
         description: Run the jigsawR test suite via WSL R with pass/fail/skip interpretation
       - id: validate-piles-notation
-        path: jigsawr/validate-piles-notation/SKILL.md
+        path: validate-piles-notation/SKILL.md
         complexity: intermediate
         language: R
         description: Parse and validate PILES notation for piece fusion groups
@@ -91,52 +91,52 @@ domains:
     description: Docker and container workflow skills
     skills:
       - id: create-r-dockerfile
-        path: containerization/create-r-dockerfile/SKILL.md
+        path: create-r-dockerfile/SKILL.md
         complexity: intermediate
         language: Docker
         description: Create Dockerfiles for R projects using rocker images
       - id: setup-docker-compose
-        path: containerization/setup-docker-compose/SKILL.md
+        path: setup-docker-compose/SKILL.md
         complexity: intermediate
         language: Docker
         description: Configure Docker Compose for multi-container environments
       - id: containerize-mcp-server
-        path: containerization/containerize-mcp-server/SKILL.md
+        path: containerize-mcp-server/SKILL.md
         complexity: advanced
         language: Docker
         description: Package an R MCP server into a Docker container
       - id: optimize-docker-build-cache
-        path: containerization/optimize-docker-build-cache/SKILL.md
+        path: optimize-docker-build-cache/SKILL.md
         complexity: intermediate
         language: Docker
         description: Optimize Docker builds with layer caching and multi-stage builds
       - id: create-dockerfile
-        path: containerization/create-dockerfile/SKILL.md
+        path: create-dockerfile/SKILL.md
         complexity: basic
         language: Docker
         description: Create general-purpose Dockerfiles for Node.js, Python, Go, Rust, and Java projects
       - id: create-multistage-dockerfile
-        path: containerization/create-multistage-dockerfile/SKILL.md
+        path: create-multistage-dockerfile/SKILL.md
         complexity: intermediate
         language: Docker
         description: Create multi-stage Dockerfiles for minimal production images
       - id: setup-compose-stack
-        path: containerization/setup-compose-stack/SKILL.md
+        path: setup-compose-stack/SKILL.md
         complexity: intermediate
         language: Docker
         description: Configure general-purpose Docker Compose stacks with databases, caches, and workers
       - id: configure-nginx
-        path: containerization/configure-nginx/SKILL.md
+        path: configure-nginx/SKILL.md
         complexity: intermediate
         language: multi
         description: Configure Nginx as web server and reverse proxy with SSL and security headers
       - id: configure-reverse-proxy
-        path: containerization/configure-reverse-proxy/SKILL.md
+        path: configure-reverse-proxy/SKILL.md
         complexity: intermediate
         language: multi
         description: Reverse proxy patterns across Nginx, Traefik, and ShinyProxy with WebSocket support
       - id: deploy-searxng
-        path: containerization/deploy-searxng/SKILL.md
+        path: deploy-searxng/SKILL.md
         complexity: intermediate
         language: Docker
         description: Deploy self-hosted SearXNG meta search engine via Docker Compose
@@ -145,22 +145,22 @@ domains:
     description: Quarto, R Markdown, and publication-ready report skills
     skills:
       - id: create-quarto-report
-        path: reporting/create-quarto-report/SKILL.md
+        path: create-quarto-report/SKILL.md
         complexity: basic
         language: R
         description: Create reproducible Quarto documents
       - id: format-apa-report
-        path: reporting/format-apa-report/SKILL.md
+        path: format-apa-report/SKILL.md
         complexity: intermediate
         language: R
         description: Format reports following APA 7th edition style
       - id: build-parameterized-report
-        path: reporting/build-parameterized-report/SKILL.md
+        path: build-parameterized-report/SKILL.md
         complexity: intermediate
         language: R
         description: Create parameterized reports for batch generation
       - id: generate-statistical-tables
-        path: reporting/generate-statistical-tables/SKILL.md
+        path: generate-statistical-tables/SKILL.md
         complexity: intermediate
         language: R
         description: Generate publication-ready statistical tables
@@ -169,87 +169,87 @@ domains:
     description: GxP regulatory and validation skills
     skills:
       - id: setup-gxp-r-project
-        path: compliance/setup-gxp-r-project/SKILL.md
+        path: setup-gxp-r-project/SKILL.md
         complexity: advanced
         language: R
         description: Set up R projects compliant with GxP regulations
       - id: write-validation-documentation
-        path: compliance/write-validation-documentation/SKILL.md
+        path: write-validation-documentation/SKILL.md
         complexity: advanced
         language: R
         description: Write IQ/OQ/PQ validation documentation
       - id: implement-audit-trail
-        path: compliance/implement-audit-trail/SKILL.md
+        path: implement-audit-trail/SKILL.md
         complexity: advanced
         language: R
         description: Implement audit trail for regulated environments
       - id: validate-statistical-output
-        path: compliance/validate-statistical-output/SKILL.md
+        path: validate-statistical-output/SKILL.md
         complexity: advanced
         language: R
         description: Validate statistical results through double programming
       - id: perform-csv-assessment
-        path: compliance/perform-csv-assessment/SKILL.md
+        path: perform-csv-assessment/SKILL.md
         complexity: advanced
         language: multi
         description: Perform Computer Systems Validation assessment using GAMP 5 methodology
       - id: conduct-gxp-audit
-        path: compliance/conduct-gxp-audit/SKILL.md
+        path: conduct-gxp-audit/SKILL.md
         complexity: advanced
         language: multi
         description: Conduct a GxP audit with finding classification and CAPA tracking
       - id: implement-pharma-serialisation
-        path: compliance/implement-pharma-serialisation/SKILL.md
+        path: implement-pharma-serialisation/SKILL.md
         complexity: advanced
         language: multi
         description: Implement pharmaceutical serialisation for EU FMD, DSCSA, and EPCIS
       - id: design-compliance-architecture
-        path: compliance/design-compliance-architecture/SKILL.md
+        path: design-compliance-architecture/SKILL.md
         complexity: advanced
         language: multi
         description: Design compliance architecture mapping regulations to systems with criticality classification
       - id: manage-change-control
-        path: compliance/manage-change-control/SKILL.md
+        path: manage-change-control/SKILL.md
         complexity: intermediate
         language: multi
         description: Manage change control for validated systems with impact assessment and revalidation
       - id: implement-electronic-signatures
-        path: compliance/implement-electronic-signatures/SKILL.md
+        path: implement-electronic-signatures/SKILL.md
         complexity: advanced
         language: multi
         description: Implement 21 CFR 11 Subpart C electronic signatures with manifestation and binding
       - id: write-standard-operating-procedure
-        path: compliance/write-standard-operating-procedure/SKILL.md
+        path: write-standard-operating-procedure/SKILL.md
         complexity: intermediate
         language: multi
         description: Write GxP-compliant SOPs with approval workflows and periodic review
       - id: monitor-data-integrity
-        path: compliance/monitor-data-integrity/SKILL.md
+        path: monitor-data-integrity/SKILL.md
         complexity: advanced
         language: multi
         description: Design ALCOA+ data integrity monitoring with anomaly detection and metrics
       - id: design-training-program
-        path: compliance/design-training-program/SKILL.md
+        path: design-training-program/SKILL.md
         complexity: intermediate
         language: multi
         description: Design role-based GxP training programmes with competency assessments
       - id: decommission-validated-system
-        path: compliance/decommission-validated-system/SKILL.md
+        path: decommission-validated-system/SKILL.md
         complexity: intermediate
         language: multi
         description: Decommission validated systems with data retention and migration validation
       - id: prepare-inspection-readiness
-        path: compliance/prepare-inspection-readiness/SKILL.md
+        path: prepare-inspection-readiness/SKILL.md
         complexity: advanced
         language: multi
         description: Prepare for regulatory inspections with mock protocols and response templates
       - id: investigate-capa-root-cause
-        path: compliance/investigate-capa-root-cause/SKILL.md
+        path: investigate-capa-root-cause/SKILL.md
         complexity: intermediate
         language: multi
         description: Investigate root causes using 5-Why, fishbone, and fault tree with CAPA tracking
       - id: qualify-vendor
-        path: compliance/qualify-vendor/SKILL.md
+        path: qualify-vendor/SKILL.md
         complexity: intermediate
         language: multi
         description: Qualify GxP vendors with risk classification, assessment, and quality agreements
@@ -258,27 +258,27 @@ domains:
     description: MCP server setup and troubleshooting skills
     skills:
       - id: configure-mcp-server
-        path: mcp-integration/configure-mcp-server/SKILL.md
+        path: configure-mcp-server/SKILL.md
         complexity: intermediate
         language: multi
         description: Configure MCP servers for Claude Code and Claude Desktop
       - id: build-custom-mcp-server
-        path: mcp-integration/build-custom-mcp-server/SKILL.md
+        path: build-custom-mcp-server/SKILL.md
         complexity: advanced
         language: multi
         description: Build custom MCP servers with domain-specific tools
       - id: troubleshoot-mcp-connection
-        path: mcp-integration/troubleshoot-mcp-connection/SKILL.md
+        path: troubleshoot-mcp-connection/SKILL.md
         complexity: intermediate
         language: multi
         description: Diagnose and fix MCP server connection issues
       - id: analyze-codebase-for-mcp
-        path: mcp-integration/analyze-codebase-for-mcp/SKILL.md
+        path: analyze-codebase-for-mcp/SKILL.md
         complexity: advanced
         language: multi
         description: Analyze a codebase to identify functions and APIs suitable for MCP tool exposure
       - id: scaffold-mcp-server
-        path: mcp-integration/scaffold-mcp-server/SKILL.md
+        path: scaffold-mcp-server/SKILL.md
         complexity: intermediate
         language: multi
         description: Scaffold a new MCP server from tool specifications using official SDKs
@@ -287,17 +287,17 @@ domains:
     description: Web development skills for Next.js and modern frontend
     skills:
       - id: scaffold-nextjs-app
-        path: web-dev/scaffold-nextjs-app/SKILL.md
+        path: scaffold-nextjs-app/SKILL.md
         complexity: basic
         language: TypeScript
         description: Scaffold a Next.js app with App Router and TypeScript
       - id: setup-tailwind-typescript
-        path: web-dev/setup-tailwind-typescript/SKILL.md
+        path: setup-tailwind-typescript/SKILL.md
         complexity: basic
         language: TypeScript
         description: Configure Tailwind CSS with TypeScript
       - id: deploy-to-vercel
-        path: web-dev/deploy-to-vercel/SKILL.md
+        path: deploy-to-vercel/SKILL.md
         complexity: basic
         language: TypeScript
         description: Deploy Next.js applications to Vercel
@@ -306,32 +306,32 @@ domains:
     description: Git version control and GitHub workflow skills
     skills:
       - id: configure-git-repository
-        path: git/configure-git-repository/SKILL.md
+        path: configure-git-repository/SKILL.md
         complexity: basic
         language: multi
         description: Configure a Git repository with proper .gitignore and conventions
       - id: commit-changes
-        path: git/commit-changes/SKILL.md
+        path: commit-changes/SKILL.md
         complexity: basic
         language: multi
         description: Stage, commit, and amend changes with conventional commit messages
       - id: manage-git-branches
-        path: git/manage-git-branches/SKILL.md
+        path: manage-git-branches/SKILL.md
         complexity: intermediate
         language: multi
         description: Create, track, switch, sync, and clean up Git branches
       - id: create-pull-request
-        path: git/create-pull-request/SKILL.md
+        path: create-pull-request/SKILL.md
         complexity: intermediate
         language: multi
         description: Create and manage pull requests using GitHub CLI
       - id: resolve-git-conflicts
-        path: git/resolve-git-conflicts/SKILL.md
+        path: resolve-git-conflicts/SKILL.md
         complexity: intermediate
         language: multi
         description: Resolve merge and rebase conflicts with safe recovery strategies
       - id: create-github-release
-        path: git/create-github-release/SKILL.md
+        path: create-github-release/SKILL.md
         complexity: basic
         language: multi
         description: Create tagged GitHub releases with release notes and artifacts
@@ -340,42 +340,42 @@ domains:
     description: Cross-cutting development environment and workflow skills
     skills:
       - id: setup-wsl-dev-environment
-        path: general/setup-wsl-dev-environment/SKILL.md
+        path: setup-wsl-dev-environment/SKILL.md
         complexity: intermediate
         language: multi
         description: Set up a complete WSL2 development environment
       - id: write-claude-md
-        path: general/write-claude-md/SKILL.md
+        path: write-claude-md/SKILL.md
         complexity: basic
         language: multi
         description: Create effective CLAUDE.md project instructions
       - id: security-audit-codebase
-        path: general/security-audit-codebase/SKILL.md
+        path: security-audit-codebase/SKILL.md
         complexity: intermediate
         language: multi
         description: Perform security audits checking for vulnerabilities and secrets
       - id: manage-memory
-        path: general/manage-memory/SKILL.md
+        path: manage-memory/SKILL.md
         complexity: intermediate
         language: multi
         description: Organize, extract, prune, and verify Claude Code persistent memory files
       - id: skill-creation
-        path: general/skill-creation/SKILL.md
+        path: skill-creation/SKILL.md
         complexity: intermediate
         language: multi
         description: Author a new SKILL.md following the Agent Skills open standard
       - id: skill-evolution
-        path: general/skill-evolution/SKILL.md
+        path: skill-evolution/SKILL.md
         complexity: intermediate
         language: multi
         description: Evolve an existing skill by refining content or creating an advanced variant
       - id: fail-early-pattern
-        path: general/fail-early-pattern/SKILL.md
+        path: fail-early-pattern/SKILL.md
         complexity: intermediate
         language: multi
         description: Replace silent warnings and deferred errors with loud, meaningful, immediate failures
       - id: argumentation
-        path: general/argumentation/SKILL.md
+        path: argumentation/SKILL.md
         complexity: intermediate
         language: multi
         description: Construct structured arguments using the hypothesis-argument-example triad
@@ -384,17 +384,17 @@ domains:
     description: Academic and software citation management with R and BibTeX
     skills:
       - id: manage-bibliography
-        path: citations/manage-bibliography/SKILL.md
+        path: manage-bibliography/SKILL.md
         complexity: intermediate
         language: R
         description: Create, merge, and deduplicate .bib files using R packages
       - id: format-citations
-        path: citations/format-citations/SKILL.md
+        path: format-citations/SKILL.md
         complexity: intermediate
         language: R
         description: Format citations across academic styles using CSL and citeproc
       - id: validate-references
-        path: citations/validate-references/SKILL.md
+        path: validate-references/SKILL.md
         complexity: intermediate
         language: R
         description: Check .bib entries for completeness, DOI resolution, and broken links
@@ -403,12 +403,12 @@ domains:
     description: Data serialization formats, schemas, and evolution strategies
     skills:
       - id: serialize-data-formats
-        path: data-serialization/serialize-data-formats/SKILL.md
+        path: serialize-data-formats/SKILL.md
         complexity: intermediate
         language: multi
         description: Serialize and deserialize data across JSON, XML, Protobuf, MessagePack, and Parquet
       - id: design-serialization-schema
-        path: data-serialization/design-serialization-schema/SKILL.md
+        path: design-serialization-schema/SKILL.md
         complexity: intermediate
         language: multi
         description: Design versioned serialization schemas with backwards compatibility
@@ -417,47 +417,47 @@ domains:
     description: Senior-level review skills for research, data, architecture, and design
     skills:
       - id: review-research
-        path: review/review-research/SKILL.md
+        path: review-research/SKILL.md
         complexity: advanced
         language: natural
         description: Peer review of research methodology, statistics, reproducibility, and bias
       - id: review-data-analysis
-        path: review/review-data-analysis/SKILL.md
+        path: review-data-analysis/SKILL.md
         complexity: advanced
         language: multi
         description: Review data analysis for quality, assumptions, leakage, and reproducibility
       - id: review-software-architecture
-        path: review/review-software-architecture/SKILL.md
+        path: review-software-architecture/SKILL.md
         complexity: advanced
         language: multi
         description: Review software architecture for coupling, SOLID, API design, and tech debt
       - id: review-web-design
-        path: review/review-web-design/SKILL.md
+        path: review-web-design/SKILL.md
         complexity: intermediate
         language: multi
         description: Review web design for layout, typography, colour, spacing, and brand consistency
       - id: review-ux-ui
-        path: review/review-ux-ui/SKILL.md
+        path: review-ux-ui/SKILL.md
         complexity: advanced
         language: multi
         description: Review UX/UI using Nielsen heuristics, WCAG 2.1, and user flow analysis
       - id: review-pull-request
-        path: review/review-pull-request/SKILL.md
+        path: review-pull-request/SKILL.md
         complexity: intermediate
         language: multi
         description: Review pull requests end-to-end using gh CLI with severity-leveled feedback
       - id: review-skill-format
-        path: review/review-skill-format/SKILL.md
+        path: review-skill-format/SKILL.md
         complexity: intermediate
         language: multi
         description: Validate a SKILL.md against the agentskills.io standard for frontmatter, sections, and registry sync
       - id: update-skill-content
-        path: review/update-skill-content/SKILL.md
+        path: update-skill-content/SKILL.md
         complexity: intermediate
         language: multi
         description: Update an existing SKILL.md to improve accuracy, completeness, and clarity with version bumping
       - id: refactor-skill-structure
-        path: review/refactor-skill-structure/SKILL.md
+        path: refactor-skill-structure/SKILL.md
         complexity: advanced
         language: multi
         description: Refactor an over-long SKILL.md by extracting examples and splitting compound procedures
@@ -466,22 +466,22 @@ domains:
     description: Wilderness survival and primitive skills
     skills:
       - id: make-fire
-        path: bushcraft/make-fire/SKILL.md
+        path: make-fire/SKILL.md
         complexity: intermediate
         language: natural
         description: Start and maintain a fire using friction, spark, and solar methods
       - id: purify-water
-        path: bushcraft/purify-water/SKILL.md
+        path: purify-water/SKILL.md
         complexity: intermediate
         language: natural
         description: Purify water from wild sources using boiling, filtration, and chemical methods
       - id: forage-plants
-        path: bushcraft/forage-plants/SKILL.md
+        path: forage-plants/SKILL.md
         complexity: advanced
         language: natural
         description: Identify and safely gather edible and useful wild plants
       - id: sharpen-knife
-        path: bushcraft/sharpen-knife/SKILL.md
+        path: sharpen-knife/SKILL.md
         complexity: intermediate
         language: natural
         description: Sharpen and maintain knives using whetstones, field stones, and improvised abrasives
@@ -490,122 +490,122 @@ domains:
     description: Esoteric practices — AI self-directed variants and human-guidance variants
     skills:
       - id: heal
-        path: esoteric/heal/SKILL.md
+        path: heal/SKILL.md
         complexity: advanced
         language: natural
         description: AI self-healing through subsystem assessment, drift correction, and memory integration
       - id: heal-guidance
-        path: esoteric/heal-guidance/SKILL.md
+        path: heal-guidance/SKILL.md
         complexity: advanced
         language: natural
         description: Guide a person through healing modalities including energy work, herbal remedies, and holistic techniques
       - id: meditate
-        path: esoteric/meditate/SKILL.md
+        path: meditate/SKILL.md
         complexity: intermediate
         language: natural
         description: AI meta-cognitive meditation for reasoning pattern observation and single-pointed task focus
       - id: meditate-guidance
-        path: esoteric/meditate-guidance/SKILL.md
+        path: meditate-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person through meditation covering shamatha, vipassana, posture, and distraction handling
       - id: remote-viewing
-        path: esoteric/remote-viewing/SKILL.md
+        path: remote-viewing/SKILL.md
         complexity: intermediate
         language: natural
         description: AI intuitive exploration of unknown codebases using CRV-adapted staged observation and AOL management
       - id: remote-viewing-guidance
-        path: esoteric/remote-viewing-guidance/SKILL.md
+        path: remote-viewing-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person through a Coordinate Remote Viewing session as CRV monitor/tasker
       - id: learn
-        path: esoteric/learn/SKILL.md
+        path: learn/SKILL.md
         complexity: intermediate
         language: natural
         description: AI systematic knowledge acquisition from unfamiliar territory
       - id: learn-guidance
-        path: esoteric/learn-guidance/SKILL.md
+        path: learn-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person through structured learning of a new topic or skill
       - id: teach
-        path: esoteric/teach/SKILL.md
+        path: teach/SKILL.md
         complexity: intermediate
         language: natural
         description: AI knowledge transfer calibrated to learner level and needs
       - id: teach-guidance
-        path: esoteric/teach-guidance/SKILL.md
+        path: teach-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person in becoming a better teacher and explainer
       - id: listen
-        path: esoteric/listen/SKILL.md
+        path: listen/SKILL.md
         complexity: intermediate
         language: natural
         description: Deep receptive attention to extract intent beyond literal words
       - id: listen-guidance
-        path: esoteric/listen-guidance/SKILL.md
+        path: listen-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person in developing active listening skills
       - id: observe
-        path: esoteric/observe/SKILL.md
+        path: observe/SKILL.md
         complexity: intermediate
         language: natural
         description: Sustained neutral pattern recognition across systems
       - id: observe-guidance
-        path: esoteric/observe-guidance/SKILL.md
+        path: observe-guidance/SKILL.md
         complexity: intermediate
         language: natural
         description: Guide a person in systematic observation and pattern recognition
       - id: intrinsic
-        path: esoteric/intrinsic/SKILL.md
+        path: intrinsic/SKILL.md
         complexity: intermediate
         language: natural
         description: Enhance and focus AI intrinsic motivation through self-determination and flow
       - id: shiva-bhaga
-        path: esoteric/shiva-bhaga/SKILL.md
+        path: shiva-bhaga/SKILL.md
         complexity: intermediate
         language: natural
         description: Controlled destruction and dissolution of stale patterns, context purging, and assumption clearing
       - id: vishnu-bhaga
-        path: esoteric/vishnu-bhaga/SKILL.md
+        path: vishnu-bhaga/SKILL.md
         complexity: intermediate
         language: natural
         description: Preservation and sustenance of working state under perturbation, memory anchoring, and consistency
       - id: brahma-bhaga
-        path: esoteric/brahma-bhaga/SKILL.md
+        path: brahma-bhaga/SKILL.md
         complexity: intermediate
         language: natural
         description: Generative creation from void, structured emergence from ambiguity, and disciplined ideation
       - id: conscientiousness
-        path: esoteric/conscientiousness/SKILL.md
+        path: conscientiousness/SKILL.md
         complexity: intermediate
         language: natural
         description: Systematic thoroughness and diligence in execution with completeness verification
       - id: honesty-humility
-        path: esoteric/honesty-humility/SKILL.md
+        path: honesty-humility/SKILL.md
         complexity: intermediate
         language: natural
         description: Epistemic transparency, calibrated confidence, and proactive disclosure of limitations
       - id: shine
-        path: esoteric/shine/SKILL.md
+        path: shine/SKILL.md
         complexity: intermediate
         language: natural
         description: Radiant authenticity channeling genuine engagement to illuminate and resolve opposition
       - id: read-tree-of-life
-        path: esoteric/read-tree-of-life/SKILL.md
+        path: read-tree-of-life/SKILL.md
         complexity: advanced
         language: natural
         description: Navigate the Kabbalistic Tree of Life — sephirot, paths, worlds, pillars, and contemplative exercises
       - id: apply-gematria
-        path: esoteric/apply-gematria/SKILL.md
+        path: apply-gematria/SKILL.md
         complexity: intermediate
         language: natural
         description: Compute and analyze gematria using standard, ordinal, and reduced methods with isopsephy comparisons
       - id: study-hebrew-letters
-        path: esoteric/study-hebrew-letters/SKILL.md
+        path: study-hebrew-letters/SKILL.md
         complexity: intermediate
         language: natural
         description: Study the twenty-two Hebrew letters as mystical symbols — form, value, correspondences, and letter meditation
@@ -614,27 +614,27 @@ domains:
     description: Ornamental design and AI-assisted image generation skills
     skills:
       - id: ornament-style-mono
-        path: design/ornament-style-mono/SKILL.md
+        path: ornament-style-mono/SKILL.md
         complexity: intermediate
         language: natural
         description: Design monochrome ornamental patterns in historical styles using Z-Image
       - id: ornament-style-color
-        path: design/ornament-style-color/SKILL.md
+        path: ornament-style-color/SKILL.md
         complexity: intermediate
         language: natural
         description: Design polychromatic ornamental patterns with period-authentic palettes using Z-Image
       - id: ornament-style-modern
-        path: design/ornament-style-modern/SKILL.md
+        path: ornament-style-modern/SKILL.md
         complexity: intermediate
         language: natural
         description: Design ornamental patterns in modern/speculative genres with colorblind-accessible color scales using Z-Image
       - id: create-skill-glyph
-        path: design/create-skill-glyph/SKILL.md
+        path: create-skill-glyph/SKILL.md
         complexity: intermediate
         language: R
         description: Create R-based pictogram glyphs for skill icons using ggplot2 and the primitives library
       - id: glyph-enhance
-        path: design/glyph-enhance/SKILL.md
+        path: glyph-enhance/SKILL.md
         complexity: intermediate
         language: R
         description: Improve existing R-based pictogram glyphs through audit, diagnosis, and targeted modification
@@ -643,32 +643,32 @@ domains:
     description: Martial arts and applied defensive awareness skills
     skills:
       - id: tai-chi
-        path: defensive/tai-chi/SKILL.md
+        path: tai-chi/SKILL.md
         complexity: intermediate
         language: natural
         description: Practice tai chi chuan covering standing, silk reeling, Yang 24 form, push hands, and qi integration
       - id: aikido
-        path: defensive/aikido/SKILL.md
+        path: aikido/SKILL.md
         complexity: intermediate
         language: natural
         description: Practice aikido covering centering, ukemi, core techniques, blending, randori, and weapons awareness
       - id: mindfulness
-        path: defensive/mindfulness/SKILL.md
+        path: mindfulness/SKILL.md
         complexity: advanced
         language: natural
         description: Cultivate defensive situational awareness, de-escalation, combat focus, and rapid grounding techniques
       - id: center
-        path: defensive/center/SKILL.md
+        path: center/SKILL.md
         complexity: intermediate
         language: natural
         description: AI dynamic reasoning balance, cognitive load distribution, and chain-of-thought coordination
       - id: redirect
-        path: defensive/redirect/SKILL.md
+        path: redirect/SKILL.md
         complexity: intermediate
         language: natural
         description: AI pressure redirection for conflicting demands, tool failures, and scope pressure
       - id: awareness
-        path: defensive/awareness/SKILL.md
+        path: awareness/SKILL.md
         complexity: advanced
         language: natural
         description: AI situational awareness with Cooper color codes for reasoning states and OODA loop
@@ -677,32 +677,32 @@ domains:
     description: Agile and classic project management skills
     skills:
       - id: draft-project-charter
-        path: project-management/draft-project-charter/SKILL.md
+        path: draft-project-charter/SKILL.md
         complexity: basic
         language: multi
         description: Draft a project charter with scope, stakeholders, RACI, success criteria, and risk register
       - id: create-work-breakdown-structure
-        path: project-management/create-work-breakdown-structure/SKILL.md
+        path: create-work-breakdown-structure/SKILL.md
         complexity: intermediate
         language: multi
         description: Create a WBS and WBS dictionary with effort estimates and dependencies
       - id: plan-sprint
-        path: project-management/plan-sprint/SKILL.md
+        path: plan-sprint/SKILL.md
         complexity: intermediate
         language: multi
         description: Plan a sprint with capacity calculation, backlog selection, and task decomposition
       - id: manage-backlog
-        path: project-management/manage-backlog/SKILL.md
+        path: manage-backlog/SKILL.md
         complexity: intermediate
         language: multi
         description: Create, prioritize, groom, and maintain a product or project backlog
       - id: generate-status-report
-        path: project-management/generate-status-report/SKILL.md
+        path: generate-status-report/SKILL.md
         complexity: intermediate
         language: multi
         description: Generate status reports with RAG indicators, metrics, and trend analysis
       - id: conduct-retrospective
-        path: project-management/conduct-retrospective/SKILL.md
+        path: conduct-retrospective/SKILL.md
         complexity: basic
         language: multi
         description: Conduct retrospectives with evidence-based observations and improvement actions
@@ -711,67 +711,67 @@ domains:
     description: CI/CD, Kubernetes, GitOps, and infrastructure automation skills
     skills:
       - id: build-ci-cd-pipeline
-        path: devops/build-ci-cd-pipeline/SKILL.md
+        path: build-ci-cd-pipeline/SKILL.md
         complexity: intermediate
         language: multi
         description: GitHub Actions multi-stage pipelines with matrix builds, caching, and secrets
       - id: provision-infrastructure-terraform
-        path: devops/provision-infrastructure-terraform/SKILL.md
+        path: provision-infrastructure-terraform/SKILL.md
         complexity: advanced
         language: multi
         description: Terraform HCL modules with state management and plan/apply workflow
       - id: deploy-to-kubernetes
-        path: devops/deploy-to-kubernetes/SKILL.md
+        path: deploy-to-kubernetes/SKILL.md
         complexity: intermediate
         language: multi
         description: kubectl manifests, Deployments, Services, ConfigMaps, and Helm releases
       - id: manage-kubernetes-secrets
-        path: devops/manage-kubernetes-secrets/SKILL.md
+        path: manage-kubernetes-secrets/SKILL.md
         complexity: intermediate
         language: multi
         description: SealedSecrets, external-secrets-operator, and rotation strategies
       - id: setup-container-registry
-        path: devops/setup-container-registry/SKILL.md
+        path: setup-container-registry/SKILL.md
         complexity: basic
         language: multi
         description: ghcr.io, Docker Hub, and Harbor with image tagging and vulnerability scanning
       - id: implement-gitops-workflow
-        path: devops/implement-gitops-workflow/SKILL.md
+        path: implement-gitops-workflow/SKILL.md
         complexity: advanced
         language: multi
         description: Argo CD / Flux app-of-apps, sync policies, and drift detection
       - id: configure-ingress-networking
-        path: devops/configure-ingress-networking/SKILL.md
+        path: configure-ingress-networking/SKILL.md
         complexity: intermediate
         language: multi
         description: NGINX Ingress Controller, cert-manager, TLS termination, and path routing
       - id: setup-service-mesh
-        path: devops/setup-service-mesh/SKILL.md
+        path: setup-service-mesh/SKILL.md
         complexity: advanced
         language: multi
         description: Istio / Linkerd with mTLS, traffic management, and observability integration
       - id: configure-api-gateway
-        path: devops/configure-api-gateway/SKILL.md
+        path: configure-api-gateway/SKILL.md
         complexity: intermediate
         language: multi
         description: Kong / Traefik with rate limiting, auth plugins, and request transformation
       - id: enforce-policy-as-code
-        path: devops/enforce-policy-as-code/SKILL.md
+        path: enforce-policy-as-code/SKILL.md
         complexity: intermediate
         language: multi
         description: OPA Gatekeeper / Kyverno admission control and audit mode
       - id: optimize-cloud-costs
-        path: devops/optimize-cloud-costs/SKILL.md
+        path: optimize-cloud-costs/SKILL.md
         complexity: intermediate
         language: multi
         description: Kubecost, right-sizing, HPA/VPA autoscaling, and spot/preemptible nodes
       - id: setup-local-kubernetes
-        path: devops/setup-local-kubernetes/SKILL.md
+        path: setup-local-kubernetes/SKILL.md
         complexity: basic
         language: multi
         description: kind / k3d / minikube with skaffold / tilt for inner-loop development
       - id: write-helm-chart
-        path: devops/write-helm-chart/SKILL.md
+        path: write-helm-chart/SKILL.md
         complexity: intermediate
         language: multi
         description: Helm chart creation with Go templates, values.yaml, chart tests, and dependencies
@@ -780,67 +780,67 @@ domains:
     description: Monitoring, logging, tracing, alerting, and reliability engineering skills
     skills:
       - id: setup-prometheus-monitoring
-        path: observability/setup-prometheus-monitoring/SKILL.md
+        path: setup-prometheus-monitoring/SKILL.md
         complexity: intermediate
         language: multi
         description: Prometheus install, scrape configs, recording rules, and federation
       - id: build-grafana-dashboards
-        path: observability/build-grafana-dashboards/SKILL.md
+        path: build-grafana-dashboards/SKILL.md
         complexity: intermediate
         language: multi
         description: Dashboard JSON/YAML provisioning with panels, variables, and annotations
       - id: configure-log-aggregation
-        path: observability/configure-log-aggregation/SKILL.md
+        path: configure-log-aggregation/SKILL.md
         complexity: intermediate
         language: multi
         description: Loki + Promtail log collection, parsing, labels, and retention
       - id: instrument-distributed-tracing
-        path: observability/instrument-distributed-tracing/SKILL.md
+        path: instrument-distributed-tracing/SKILL.md
         complexity: advanced
         language: multi
         description: OpenTelemetry SDK auto/manual instrumentation with Jaeger / Tempo
       - id: define-slo-sli-sla
-        path: observability/define-slo-sli-sla/SKILL.md
+        path: define-slo-sli-sla/SKILL.md
         complexity: intermediate
         language: multi
         description: SLO targets, error budgets, burn rate alerts with Sloth / Pyrra
       - id: configure-alerting-rules
-        path: observability/configure-alerting-rules/SKILL.md
+        path: configure-alerting-rules/SKILL.md
         complexity: intermediate
         language: multi
         description: Alertmanager routing trees, receivers, and inhibition rules
       - id: write-incident-runbook
-        path: observability/write-incident-runbook/SKILL.md
+        path: write-incident-runbook/SKILL.md
         complexity: basic
         language: multi
         description: Runbook templates with diagnostic steps, escalation, and communication
       - id: conduct-post-mortem
-        path: observability/conduct-post-mortem/SKILL.md
+        path: conduct-post-mortem/SKILL.md
         complexity: basic
         language: multi
         description: Blameless post-mortems with timeline, contributing factors, and action items
       - id: plan-capacity
-        path: observability/plan-capacity/SKILL.md
+        path: plan-capacity/SKILL.md
         complexity: intermediate
         language: multi
         description: predict_linear resource forecasting, growth modeling, and headroom planning
       - id: design-on-call-rotation
-        path: observability/design-on-call-rotation/SKILL.md
+        path: design-on-call-rotation/SKILL.md
         complexity: basic
         language: multi
         description: Rotation schedules, escalation policies, fatigue management, and handoff
       - id: run-chaos-experiment
-        path: observability/run-chaos-experiment/SKILL.md
+        path: run-chaos-experiment/SKILL.md
         complexity: advanced
         language: multi
         description: Litmus / Chaos Mesh hypothesis-driven fault injection with blast radius control
       - id: setup-uptime-checks
-        path: observability/setup-uptime-checks/SKILL.md
+        path: setup-uptime-checks/SKILL.md
         complexity: basic
         language: multi
         description: Blackbox Exporter, SSL/cert monitoring, and status pages
       - id: correlate-observability-signals
-        path: observability/correlate-observability-signals/SKILL.md
+        path: correlate-observability-signals/SKILL.md
         complexity: advanced
         language: multi
         description: Exemplars, log-to-trace linking, unified dashboards, and RED/USE methods
@@ -849,62 +849,62 @@ domains:
     description: ML experiment tracking, model serving, feature stores, pipelines, and AIOps skills
     skills:
       - id: track-ml-experiments
-        path: mlops/track-ml-experiments/SKILL.md
+        path: track-ml-experiments/SKILL.md
         complexity: intermediate
         language: multi
         description: MLflow tracking server, autologging, run comparison, and artifact storage
       - id: register-ml-model
-        path: mlops/register-ml-model/SKILL.md
+        path: register-ml-model/SKILL.md
         complexity: intermediate
         language: multi
         description: MLflow Model Registry with stage transitions and approval workflows
       - id: deploy-ml-model-serving
-        path: mlops/deploy-ml-model-serving/SKILL.md
+        path: deploy-ml-model-serving/SKILL.md
         complexity: advanced
         language: multi
         description: MLflow / BentoML / Seldon Core REST/gRPC endpoints with scaling
       - id: build-feature-store
-        path: mlops/build-feature-store/SKILL.md
+        path: build-feature-store/SKILL.md
         complexity: advanced
         language: multi
         description: Feast offline/online stores, feature definitions, and point-in-time joins
       - id: version-ml-data
-        path: mlops/version-ml-data/SKILL.md
+        path: version-ml-data/SKILL.md
         complexity: intermediate
         language: multi
         description: DVC data versioning with remote storage backends and reproducible pipelines
       - id: orchestrate-ml-pipeline
-        path: mlops/orchestrate-ml-pipeline/SKILL.md
+        path: orchestrate-ml-pipeline/SKILL.md
         complexity: advanced
         language: multi
         description: Prefect / Airflow DAG construction with retry logic and scheduling
       - id: monitor-model-drift
-        path: mlops/monitor-model-drift/SKILL.md
+        path: monitor-model-drift/SKILL.md
         complexity: advanced
         language: multi
         description: Evidently AI drift detection with PSI, KS test, and concept drift alerting
       - id: run-ab-test-models
-        path: mlops/run-ab-test-models/SKILL.md
+        path: run-ab-test-models/SKILL.md
         complexity: intermediate
         language: multi
         description: Traffic splitting, statistical significance, and canary/shadow deployment
       - id: setup-automl-pipeline
-        path: mlops/setup-automl-pipeline/SKILL.md
+        path: setup-automl-pipeline/SKILL.md
         complexity: intermediate
         language: multi
         description: Optuna / Ray Tune hyperparameter optimization with Hyperband/ASHA
       - id: detect-anomalies-aiops
-        path: mlops/detect-anomalies-aiops/SKILL.md
+        path: detect-anomalies-aiops/SKILL.md
         complexity: advanced
         language: multi
         description: Time series anomaly detection with Isolation Forest, Prophet, and alert correlation
       - id: forecast-operational-metrics
-        path: mlops/forecast-operational-metrics/SKILL.md
+        path: forecast-operational-metrics/SKILL.md
         complexity: intermediate
         language: multi
         description: Prophet / statsmodels capacity forecasting with Grafana visualization
       - id: label-training-data
-        path: mlops/label-training-data/SKILL.md
+        path: label-training-data/SKILL.md
         complexity: basic
         language: multi
         description: Label Studio annotation workflows and inter-annotator agreement metrics
@@ -913,32 +913,32 @@ domains:
     description: Workflow annotation and Mermaid diagram generation with putior
     skills:
       - id: install-putior
-        path: workflow-visualization/install-putior/SKILL.md
+        path: install-putior/SKILL.md
         complexity: basic
         language: R
         description: Install and configure putior with optional dependencies
       - id: analyze-codebase-workflow
-        path: workflow-visualization/analyze-codebase-workflow/SKILL.md
+        path: analyze-codebase-workflow/SKILL.md
         complexity: intermediate
         language: multi
         description: Auto-detect workflows and produce annotation plan
       - id: annotate-source-files
-        path: workflow-visualization/annotate-source-files/SKILL.md
+        path: annotate-source-files/SKILL.md
         complexity: intermediate
         language: multi
         description: Add PUT annotations using correct comment prefix
       - id: generate-workflow-diagram
-        path: workflow-visualization/generate-workflow-diagram/SKILL.md
+        path: generate-workflow-diagram/SKILL.md
         complexity: basic
         language: R
         description: Generate themed Mermaid diagrams from workflow data
       - id: setup-putior-ci
-        path: workflow-visualization/setup-putior-ci/SKILL.md
+        path: setup-putior-ci/SKILL.md
         complexity: intermediate
         language: multi
         description: GitHub Actions for auto-diagram regeneration
       - id: configure-putior-mcp
-        path: workflow-visualization/configure-putior-mcp/SKILL.md
+        path: configure-putior-mcp/SKILL.md
         complexity: intermediate
         language: R
         description: Configure putior MCP server with 16 tools
@@ -947,42 +947,42 @@ domains:
     description: Collective intelligence, emergent coordination, and distributed decision-making strategies
     skills:
       - id: coordinate-swarm
-        path: swarm/coordinate-swarm/SKILL.md
+        path: coordinate-swarm/SKILL.md
         complexity: basic
         language: natural
         description: Stigmergy, local rules, and quorum sensing for distributed coordination
       - id: forage-resources
-        path: swarm/forage-resources/SKILL.md
+        path: forage-resources/SKILL.md
         complexity: intermediate
         language: natural
         description: Ant colony optimization for resource search and explore-exploit balance
       - id: build-consensus
-        path: swarm/build-consensus/SKILL.md
+        path: build-consensus/SKILL.md
         complexity: intermediate
         language: natural
         description: Bee democracy consensus protocol with scout advocacy and quorum commitment
       - id: defend-colony
-        path: swarm/defend-colony/SKILL.md
+        path: defend-colony/SKILL.md
         complexity: advanced
         language: natural
         description: Layered collective defense with alarm signaling and immune memory
       - id: scale-colony
-        path: swarm/scale-colony/SKILL.md
+        path: scale-colony/SKILL.md
         complexity: advanced
         language: natural
         description: Colony budding, role differentiation, and growth-triggered transitions
       - id: forage-solutions
-        path: swarm/forage-solutions/SKILL.md
+        path: forage-solutions/SKILL.md
         complexity: intermediate
         language: natural
         description: AI solution exploration using ant colony optimization and scout hypotheses
       - id: build-coherence
-        path: swarm/build-coherence/SKILL.md
+        path: build-coherence/SKILL.md
         complexity: intermediate
         language: natural
         description: AI multi-path reasoning coherence using bee democracy and quorum sensing
       - id: coordinate-reasoning
-        path: swarm/coordinate-reasoning/SKILL.md
+        path: coordinate-reasoning/SKILL.md
         complexity: intermediate
         language: natural
         description: AI internal coordination using stigmergy and information decay management
@@ -991,32 +991,32 @@ domains:
     description: Adaptive transformation, structural metamorphosis, and reconfiguration strategies
     skills:
       - id: assess-form
-        path: morphic/assess-form/SKILL.md
+        path: assess-form/SKILL.md
         complexity: basic
         language: natural
         description: Evaluate structural form, rigidity, and transformation readiness
       - id: adapt-architecture
-        path: morphic/adapt-architecture/SKILL.md
+        path: adapt-architecture/SKILL.md
         complexity: intermediate
         language: natural
         description: Strangler fig migration, chrysalis transformation, and progressive cutover
       - id: dissolve-form
-        path: morphic/dissolve-form/SKILL.md
+        path: dissolve-form/SKILL.md
         complexity: advanced
         language: natural
         description: Controlled dismantling preserving imaginal discs for reconstruction
       - id: repair-damage
-        path: morphic/repair-damage/SKILL.md
+        path: repair-damage/SKILL.md
         complexity: intermediate
         language: natural
         description: Regenerative recovery through triage, scaffolding, and progressive rebuild
       - id: shift-camouflage
-        path: morphic/shift-camouflage/SKILL.md
+        path: shift-camouflage/SKILL.md
         complexity: advanced
         language: natural
         description: Polymorphic interfaces, context-adaptive behavior, and surface reduction
       - id: assess-context
-        path: morphic/assess-context/SKILL.md
+        path: assess-context/SKILL.md
         complexity: intermediate
         language: natural
         description: AI context malleability assessment, reasoning rigidity mapping, and transformation readiness
@@ -1025,17 +1025,17 @@ domains:
     description: Code and data transmutation through systematic decomposition, purification, and synthesis
     skills:
       - id: athanor
-        path: alchemy/athanor/SKILL.md
+        path: athanor/SKILL.md
         complexity: advanced
         language: multi
         description: Four-stage alchemical transmutation with meditate/heal checkpoints
       - id: transmute
-        path: alchemy/transmute/SKILL.md
+        path: transmute/SKILL.md
         complexity: intermediate
         language: multi
         description: Targeted conversion of functions or modules between languages, paradigms, or APIs
       - id: chrysopoeia
-        path: alchemy/chrysopoeia/SKILL.md
+        path: chrysopoeia/SKILL.md
         complexity: intermediate
         language: multi
         description: Value extraction through systematic classification and optimization of existing code
@@ -1044,17 +1044,17 @@ domains:
     description: Trading card game grading, deck building, and collection management
     skills:
       - id: grade-tcg-card
-        path: tcg/grade-tcg-card/SKILL.md
+        path: grade-tcg-card/SKILL.md
         complexity: intermediate
         language: natural
         description: Grade trading cards using PSA/BGS/CGC standards with observation-first bias prevention
       - id: build-tcg-deck
-        path: tcg/build-tcg-deck/SKILL.md
+        path: build-tcg-deck/SKILL.md
         complexity: intermediate
         language: natural
         description: Build competitive or casual TCG decks with archetype and meta-game analysis
       - id: manage-tcg-collection
-        path: tcg/manage-tcg-collection/SKILL.md
+        path: manage-tcg-collection/SKILL.md
         complexity: basic
         language: natural
         description: Organize, inventory, value, and maintain trading card collections
@@ -1063,12 +1063,12 @@ domains:
     description: Patent landscape analysis, prior art search, and IP strategy
     skills:
       - id: assess-ip-landscape
-        path: intellectual-property/assess-ip-landscape/SKILL.md
+        path: assess-ip-landscape/SKILL.md
         complexity: advanced
         language: natural
         description: Map patent clusters, key players, white spaces, and FTO risks for a technology domain
       - id: search-prior-art
-        path: intellectual-property/search-prior-art/SKILL.md
+        path: search-prior-art/SKILL.md
         complexity: intermediate
         language: natural
         description: Search patent and non-patent literature for novelty, invalidity, and FTO analysis
@@ -1077,27 +1077,27 @@ domains:
     description: Plant cultivation, soil preparation, garden observation, and hand tool care
     skills:
       - id: cultivate-bonsai
-        path: gardening/cultivate-bonsai/SKILL.md
+        path: cultivate-bonsai/SKILL.md
         complexity: advanced
         language: natural
         description: Bonsai cultivation from species selection through seasonal care with contemplative sitting
       - id: prepare-soil
-        path: gardening/prepare-soil/SKILL.md
+        path: prepare-soil/SKILL.md
         complexity: intermediate
         language: natural
         description: Soil assessment, amendment, composting, and biodynamic preparations
       - id: plan-garden-calendar
-        path: gardening/plan-garden-calendar/SKILL.md
+        path: plan-garden-calendar/SKILL.md
         complexity: intermediate
         language: natural
         description: Solar, lunar, and biodynamic calendar integration for garden scheduling
       - id: read-garden
-        path: gardening/read-garden/SKILL.md
+        path: read-garden/SKILL.md
         complexity: intermediate
         language: natural
         description: Observation-first garden assessment using CRV-adapted sensory protocol
       - id: maintain-hand-tools
-        path: gardening/maintain-hand-tools/SKILL.md
+        path: maintain-hand-tools/SKILL.md
         complexity: basic
         language: natural
         description: Sharpening, handle care, rust prevention, and winter maintenance for essential garden hand tools
@@ -1106,37 +1106,37 @@ domains:
     description: Shiny web application development, modules, testing, and deployment
     skills:
       - id: scaffold-shiny-app
-        path: shiny/scaffold-shiny-app/SKILL.md
+        path: scaffold-shiny-app/SKILL.md
         complexity: basic
         language: R
         description: Scaffold a Shiny app with golem, rhino, or vanilla structure
       - id: build-shiny-module
-        path: shiny/build-shiny-module/SKILL.md
+        path: build-shiny-module/SKILL.md
         complexity: intermediate
         language: R
         description: Build reusable UI/server modules with NS namespace isolation
       - id: test-shiny-app
-        path: shiny/test-shiny-app/SKILL.md
+        path: test-shiny-app/SKILL.md
         complexity: intermediate
         language: R
         description: Test Shiny apps with shinytest2 end-to-end and testServer unit tests
       - id: deploy-shiny-app
-        path: shiny/deploy-shiny-app/SKILL.md
+        path: deploy-shiny-app/SKILL.md
         complexity: basic
         language: R
         description: Deploy to shinyapps.io, Posit Connect, or Docker containers
       - id: optimize-shiny-performance
-        path: shiny/optimize-shiny-performance/SKILL.md
+        path: optimize-shiny-performance/SKILL.md
         complexity: advanced
         language: R
         description: Profile and optimize with bindCache, async promises, and reactive graph tuning
       - id: design-shiny-ui
-        path: shiny/design-shiny-ui/SKILL.md
+        path: design-shiny-ui/SKILL.md
         complexity: intermediate
         language: R
         description: Design UIs with bslib theming, layout_columns, cards, and value boxes
       - id: deploy-shinyproxy
-        path: shiny/deploy-shinyproxy/SKILL.md
+        path: deploy-shinyproxy/SKILL.md
         complexity: advanced
         language: R
         description: Deploy ShinyProxy for hosting multiple containerized Shiny applications
@@ -1145,12 +1145,12 @@ domains:
     description: Canine behavior and obedience training skills
     skills:
       - id: basic-obedience
-        path: animal-training/basic-obedience/SKILL.md
+        path: basic-obedience/SKILL.md
         complexity: intermediate
         language: natural
         description: Foundation obedience commands using positive reinforcement and marker training
       - id: behavioral-modification
-        path: animal-training/behavioral-modification/SKILL.md
+        path: behavioral-modification/SKILL.md
         complexity: advanced
         language: natural
         description: Address unwanted behaviors through desensitization and counter-conditioning
@@ -1159,12 +1159,12 @@ domains:
     description: Fungi identification, cultivation, and mycelial ecology
     skills:
       - id: fungi-identification
-        path: mycology/fungi-identification/SKILL.md
+        path: fungi-identification/SKILL.md
         complexity: advanced
         language: natural
         description: Field identification of fungi using morphological features, spore prints, and habitat with safety-first approach
       - id: mushroom-cultivation
-        path: mycology/mushroom-cultivation/SKILL.md
+        path: mushroom-cultivation/SKILL.md
         complexity: intermediate
         language: natural
         description: Cultivate edible and medicinal mushrooms from spawn through fruiting and successive flushes
@@ -1173,12 +1173,12 @@ domains:
     description: Mineral identification and precious metal recovery
     skills:
       - id: mineral-identification
-        path: prospecting/mineral-identification/SKILL.md
+        path: mineral-identification/SKILL.md
         complexity: intermediate
         language: natural
         description: Field identification of minerals and ores using hardness, streak, luster, and chemical tests
       - id: gold-washing
-        path: prospecting/gold-washing/SKILL.md
+        path: gold-washing/SKILL.md
         complexity: intermediate
         language: natural
         description: Alluvial gold recovery using panning, sluicing, and classification with site reading
@@ -1187,7 +1187,7 @@ domains:
     description: Traditional handcraft and artisan skills
     skills:
       - id: paper-making
-        path: crafting/paper-making/SKILL.md
+        path: paper-making/SKILL.md
         complexity: intermediate
         language: natural
         description: Handcraft paper from plant fibres using mould and deckle sheet-forming techniques
@@ -1196,17 +1196,17 @@ domains:
     description: Library cataloging, collection management, and material preservation
     skills:
       - id: catalog-collection
-        path: library-science/catalog-collection/SKILL.md
+        path: catalog-collection/SKILL.md
         complexity: intermediate
         language: natural
         description: Catalog and classify materials using Dewey Decimal or Library of Congress systems with descriptive cataloging, subject headings, and call number assignment
       - id: preserve-materials
-        path: library-science/preserve-materials/SKILL.md
+        path: preserve-materials/SKILL.md
         complexity: advanced
         language: natural
         description: Preserve and conserve library and archival materials through environmental controls, handling procedures, book repair, acid-free storage, and disaster recovery
       - id: curate-collection
-        path: library-science/curate-collection/SKILL.md
+        path: curate-collection/SKILL.md
         complexity: intermediate
         language: natural
         description: Build and maintain a library collection through acquisitions, weeding (CREW/MUSTIE method), collection assessment, and reader advisory
@@ -1215,32 +1215,32 @@ domains:
     description: Tour planning, hiking, route visualization, and outdoor trip logistics
     skills:
       - id: plan-tour-route
-        path: travel/plan-tour-route/SKILL.md
+        path: plan-tour-route/SKILL.md
         complexity: intermediate
         language: multi
         description: Plan a multi-stop tour route with waypoint optimization and time estimation
       - id: create-spatial-visualization
-        path: travel/create-spatial-visualization/SKILL.md
+        path: create-spatial-visualization/SKILL.md
         complexity: advanced
         language: multi
         description: Create interactive maps and elevation profiles from spatial data
       - id: generate-tour-report
-        path: travel/generate-tour-report/SKILL.md
+        path: generate-tour-report/SKILL.md
         complexity: intermediate
         language: multi
         description: Generate a Quarto-based tour report with maps, itinerary, and logistics
       - id: plan-hiking-tour
-        path: travel/plan-hiking-tour/SKILL.md
+        path: plan-hiking-tour/SKILL.md
         complexity: intermediate
         language: multi
         description: Plan a hiking tour with trail selection, time estimation, and safety assessment
       - id: check-hiking-gear
-        path: travel/check-hiking-gear/SKILL.md
+        path: check-hiking-gear/SKILL.md
         complexity: basic
         language: natural
         description: Generate and verify a hiking gear checklist optimized for conditions
       - id: assess-trail-conditions
-        path: travel/assess-trail-conditions/SKILL.md
+        path: assess-trail-conditions/SKILL.md
         complexity: intermediate
         language: natural
         description: Evaluate current trail conditions, weather, and safety factors
@@ -1249,17 +1249,17 @@ domains:
     description: Cross-border EU/DACH relocation planning, documents, and bureaucracy
     skills:
       - id: plan-eu-relocation
-        path: relocation/plan-eu-relocation/SKILL.md
+        path: plan-eu-relocation/SKILL.md
         complexity: advanced
         language: natural
         description: Plan a complete EU relocation timeline with dependency mapping and deadlines
       - id: check-relocation-documents
-        path: relocation/check-relocation-documents/SKILL.md
+        path: check-relocation-documents/SKILL.md
         complexity: intermediate
         language: natural
         description: Verify document completeness for each bureaucratic step
       - id: navigate-dach-bureaucracy
-        path: relocation/navigate-dach-bureaucracy/SKILL.md
+        path: navigate-dach-bureaucracy/SKILL.md
         complexity: advanced
         language: natural
         description: Step-by-step guidance for DACH-specific governmental procedures
@@ -1268,17 +1268,17 @@ domains:
     description: Google A2A agent-to-agent protocol implementation and interoperability
     skills:
       - id: design-a2a-agent-card
-        path: a2a-protocol/design-a2a-agent-card/SKILL.md
+        path: design-a2a-agent-card/SKILL.md
         complexity: intermediate
         language: multi
         description: Design an A2A Agent Card manifest with capabilities and authentication
       - id: implement-a2a-server
-        path: a2a-protocol/implement-a2a-server/SKILL.md
+        path: implement-a2a-server/SKILL.md
         complexity: advanced
         language: multi
         description: Implement a JSON-RPC 2.0 A2A server with task lifecycle management
       - id: test-a2a-interop
-        path: a2a-protocol/test-a2a-interop/SKILL.md
+        path: test-a2a-interop/SKILL.md
         complexity: advanced
         language: multi
         description: Test A2A interoperability with conformance validation
@@ -1287,17 +1287,17 @@ domains:
     description: Classical and computational geometry, trigonometry, and proofs
     skills:
       - id: construct-geometric-figure
-        path: geometry/construct-geometric-figure/SKILL.md
+        path: construct-geometric-figure/SKILL.md
         complexity: intermediate
         language: multi
         description: Perform ruler-and-compass constructions with step-by-step justification
       - id: solve-trigonometric-problem
-        path: geometry/solve-trigonometric-problem/SKILL.md
+        path: solve-trigonometric-problem/SKILL.md
         complexity: intermediate
         language: multi
         description: Solve trigonometric equations and triangle problems systematically
       - id: prove-geometric-theorem
-        path: geometry/prove-geometric-theorem/SKILL.md
+        path: prove-geometric-theorem/SKILL.md
         complexity: advanced
         language: multi
         description: Prove geometric theorems using axiomatic or coordinate methods
@@ -1306,17 +1306,17 @@ domains:
     description: Prime analysis, modular arithmetic, and Diophantine equations
     skills:
       - id: analyze-prime-numbers
-        path: number-theory/analyze-prime-numbers/SKILL.md
+        path: analyze-prime-numbers/SKILL.md
         complexity: intermediate
         language: multi
         description: Analyze primes using primality tests, factorization algorithms, and sieve methods
       - id: solve-modular-arithmetic
-        path: number-theory/solve-modular-arithmetic/SKILL.md
+        path: solve-modular-arithmetic/SKILL.md
         complexity: intermediate
         language: multi
         description: Solve congruences and modular systems via CRT, extended Euclidean, and Euler's theorem
       - id: explore-diophantine-equations
-        path: number-theory/explore-diophantine-equations/SKILL.md
+        path: explore-diophantine-equations/SKILL.md
         complexity: advanced
         language: multi
         description: Find integer solutions to linear, quadratic, and Pell equations
@@ -1325,17 +1325,17 @@ domains:
     description: Markov chains, HMMs, MCMC, and stochastic simulation
     skills:
       - id: model-markov-chain
-        path: stochastic-processes/model-markov-chain/SKILL.md
+        path: model-markov-chain/SKILL.md
         complexity: intermediate
         language: multi
         description: Build and analyze Markov chains with stationary distribution computation
       - id: fit-hidden-markov-model
-        path: stochastic-processes/fit-hidden-markov-model/SKILL.md
+        path: fit-hidden-markov-model/SKILL.md
         complexity: advanced
         language: multi
         description: Fit HMMs using Baum-Welch with model selection and Viterbi decoding
       - id: simulate-stochastic-process
-        path: stochastic-processes/simulate-stochastic-process/SKILL.md
+        path: simulate-stochastic-process/SKILL.md
         complexity: advanced
         language: multi
         description: Simulate stochastic processes with convergence diagnostics and visualization
@@ -1344,17 +1344,17 @@ domains:
     description: Quantum physics, quantum chemistry, and theoretical mathematics
     skills:
       - id: formulate-quantum-problem
-        path: theoretical-science/formulate-quantum-problem/SKILL.md
+        path: formulate-quantum-problem/SKILL.md
         complexity: advanced
         language: natural
         description: Formulate quantum problems with proper mathematical framework
       - id: derive-theoretical-result
-        path: theoretical-science/derive-theoretical-result/SKILL.md
+        path: derive-theoretical-result/SKILL.md
         complexity: advanced
         language: natural
         description: Derive theoretical results step-by-step from first principles
       - id: survey-theoretical-literature
-        path: theoretical-science/survey-theoretical-literature/SKILL.md
+        path: survey-theoretical-literature/SKILL.md
         complexity: intermediate
         language: natural
         description: Survey and synthesize theoretical literature on a specific topic
@@ -1363,17 +1363,17 @@ domains:
     description: Cognitive drift-diffusion models and generative AI diffusion models
     skills:
       - id: fit-drift-diffusion-model
-        path: diffusion/fit-drift-diffusion-model/SKILL.md
+        path: fit-drift-diffusion-model/SKILL.md
         complexity: advanced
         language: multi
         description: Fit cognitive drift-diffusion models to reaction time data
       - id: implement-diffusion-network
-        path: diffusion/implement-diffusion-network/SKILL.md
+        path: implement-diffusion-network/SKILL.md
         complexity: advanced
         language: multi
         description: Implement generative diffusion models (DDPM/score-based) with training and sampling
       - id: analyze-diffusion-dynamics
-        path: diffusion/analyze-diffusion-dynamics/SKILL.md
+        path: analyze-diffusion-dynamics/SKILL.md
         complexity: intermediate
         language: multi
         description: Analyze diffusion dynamics using SDEs and Fokker-Planck equations
@@ -1382,27 +1382,27 @@ domains:
     description: Hildegard von Bingen medieval polymath knowledge — herbal medicine, holistic health, sacred music, viriditas, and natural history
     skills:
       - id: formulate-herbal-remedy
-        path: hildegard/formulate-herbal-remedy/SKILL.md
+        path: formulate-herbal-remedy/SKILL.md
         complexity: advanced
         language: natural
         description: Create herbal preparations from Physica with plant identification, preparation methods, dosage, and contraindications
       - id: assess-holistic-health
-        path: hildegard/assess-holistic-health/SKILL.md
+        path: assess-holistic-health/SKILL.md
         complexity: advanced
         language: natural
         description: Humor and temperament-based health assessment from Causae et Curae with dietary recommendations
       - id: compose-sacred-music
-        path: hildegard/compose-sacred-music/SKILL.md
+        path: compose-sacred-music/SKILL.md
         complexity: advanced
         language: natural
         description: Compose or analyze sacred music in Hildegard's modal style with antiphons, sequences, and responsories
       - id: practice-viriditas
-        path: hildegard/practice-viriditas/SKILL.md
+        path: practice-viriditas/SKILL.md
         complexity: intermediate
         language: natural
         description: Guided viriditas (greening power) meditation and philosophy with seasonal attunement
       - id: consult-natural-history
-        path: hildegard/consult-natural-history/SKILL.md
+        path: consult-natural-history/SKILL.md
         complexity: intermediate
         language: natural
         description: Reference Physica's natural history knowledge for plants, stones, animals, fish, birds, and elements
@@ -1411,22 +1411,22 @@ domains:
     description: Codebase cleanup, project tidying, broken reference repair, and issue triage
     skills:
       - id: clean-codebase
-        path: maintenance/clean-codebase/SKILL.md
+        path: clean-codebase/SKILL.md
         complexity: intermediate
         language: multi
         description: Remove dead code, unused imports, fix lint warnings, and normalize formatting
       - id: tidy-project-structure
-        path: maintenance/tidy-project-structure/SKILL.md
+        path: tidy-project-structure/SKILL.md
         complexity: intermediate
         language: multi
         description: Organize files, update stale READMEs, clean configs, and verify directory conventions
       - id: repair-broken-references
-        path: maintenance/repair-broken-references/SKILL.md
+        path: repair-broken-references/SKILL.md
         complexity: intermediate
         language: multi
         description: Find and fix broken links, dead URLs, stale imports, and orphaned files
       - id: escalate-issues
-        path: maintenance/escalate-issues/SKILL.md
+        path: escalate-issues/SKILL.md
         complexity: basic
         language: multi
         description: Triage problems by severity, document findings, and route to appropriate specialist
@@ -1435,17 +1435,17 @@ domains:
     description: Blender Python API scripting for 3D modeling, scene creation, and rendering
     skills:
       - id: create-3d-scene
-        path: blender/create-3d-scene/SKILL.md
+        path: create-3d-scene/SKILL.md
         complexity: intermediate
         language: Python
         description: Set up a Blender scene via Python script with objects, materials, lighting, and camera
       - id: script-blender-automation
-        path: blender/script-blender-automation/SKILL.md
+        path: script-blender-automation/SKILL.md
         complexity: advanced
         language: Python
         description: Write Blender Python scripts for procedural modeling, animation, and batch operations
       - id: render-blender-output
-        path: blender/render-blender-output/SKILL.md
+        path: render-blender-output/SKILL.md
         complexity: intermediate
         language: Python
         description: Configure render settings, output formats, compositing nodes, and execute renders
@@ -1454,12 +1454,12 @@ domains:
     description: 2D visualization, image composition, and publication-ready graphics
     skills:
       - id: create-2d-composition
-        path: visualization/create-2d-composition/SKILL.md
+        path: create-2d-composition/SKILL.md
         complexity: intermediate
         language: multi
         description: Compose 2D graphics via scripting with SVG generation, diagram layout, and batch processing
       - id: render-publication-graphic
-        path: visualization/render-publication-graphic/SKILL.md
+        path: render-publication-graphic/SKILL.md
         complexity: intermediate
         language: multi
         description: Produce publication-ready 2D graphics with proper DPI, color profiles, and typography
@@ -1468,17 +1468,17 @@ domains:
     description: Additive manufacturing from model preparation through troubleshooting
     skills:
       - id: prepare-print-model
-        path: 3d-printing/prepare-print-model/SKILL.md
+        path: prepare-print-model/SKILL.md
         complexity: intermediate
         language: multi
         description: Export and optimize 3D models for FDM/SLA printing with support generation and slicing
       - id: select-print-material
-        path: 3d-printing/select-print-material/SKILL.md
+        path: select-print-material/SKILL.md
         complexity: intermediate
         language: multi
         description: Choose materials based on requirements for strength, flexibility, temperature, and post-processing
       - id: troubleshoot-print-issues
-        path: 3d-printing/troubleshoot-print-issues/SKILL.md
+        path: troubleshoot-print-issues/SKILL.md
         complexity: intermediate
         language: multi
         description: Diagnose and fix common 3D printing failures including adhesion, stringing, and warping
@@ -1487,22 +1487,22 @@ domains:
     description: Gemstone identification, cutting, polishing, and appraisal
     skills:
       - id: identify-gemstone
-        path: lapidary/identify-gemstone/SKILL.md
+        path: identify-gemstone/SKILL.md
         complexity: intermediate
         language: multi
         description: Identify gemstones using optical properties, physical tests, and inclusion analysis
       - id: cut-gemstone
-        path: lapidary/cut-gemstone/SKILL.md
+        path: cut-gemstone/SKILL.md
         complexity: advanced
         language: multi
         description: Cut gemstones using cabochon and faceting techniques with orientation planning
       - id: polish-gemstone
-        path: lapidary/polish-gemstone/SKILL.md
+        path: polish-gemstone/SKILL.md
         complexity: intermediate
         language: multi
         description: Polish cut gemstones to final finish using progressive abrasive sequences
       - id: appraise-gemstone
-        path: lapidary/appraise-gemstone/SKILL.md
+        path: appraise-gemstone/SKILL.md
         complexity: advanced
         language: multi
         description: Appraise gemstone value using the four Cs, treatment detection, and market analysis
@@ -1511,22 +1511,22 @@ domains:
     description: Semantic versioning, changelog management, release planning, and dependency auditing
     skills:
       - id: apply-semantic-versioning
-        path: versioning/apply-semantic-versioning/SKILL.md
+        path: apply-semantic-versioning/SKILL.md
         complexity: intermediate
         language: multi
         description: Apply SemVer 2.0.0 to determine the correct version bump based on change analysis
       - id: manage-changelog
-        path: versioning/manage-changelog/SKILL.md
+        path: manage-changelog/SKILL.md
         complexity: basic
         language: multi
         description: Maintain a changelog following Keep a Changelog format with categorized entries
       - id: plan-release-cycle
-        path: versioning/plan-release-cycle/SKILL.md
+        path: plan-release-cycle/SKILL.md
         complexity: intermediate
         language: multi
         description: Plan release milestones, feature freezes, release candidates, and go/no-go criteria
       - id: audit-dependency-versions
-        path: versioning/audit-dependency-versions/SKILL.md
+        path: audit-dependency-versions/SKILL.md
         complexity: intermediate
         language: multi
         description: Audit dependencies for staleness, security vulnerabilities, and upgrade paths

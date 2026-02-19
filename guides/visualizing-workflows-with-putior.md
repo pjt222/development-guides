@@ -43,7 +43,7 @@ If the codebase already has PUT annotations, skip directly to [Step 4](#step-4-g
 
 ## Step 1: Install putior
 
-**Skill**: [install-putior](../skills/workflow-visualization/install-putior/SKILL.md)
+**Skill**: [install-putior](../skills/install-putior/SKILL.md)
 
 ```r
 install.packages("putior")   # CRAN stable
@@ -72,7 +72,7 @@ If the project uses renv, install with `renv::install("putior")` instead.
 
 ## Step 2: Analyze the Codebase
 
-**Skill**: [analyze-codebase-workflow](../skills/workflow-visualization/analyze-codebase-workflow/SKILL.md)
+**Skill**: [analyze-codebase-workflow](../skills/analyze-codebase-workflow/SKILL.md)
 
 Before writing annotations by hand, let putior survey the repository. `put_auto()` uses 862 detection patterns across 15 languages to find file I/O, library calls, and script dependencies.
 
@@ -114,7 +114,7 @@ Disconnected nodes at this stage are normal. They indicate files where auto-dete
 
 ## Step 3: Annotate Source Files
 
-**Skill**: [annotate-source-files](../skills/workflow-visualization/annotate-source-files/SKILL.md)
+**Skill**: [annotate-source-files](../skills/annotate-source-files/SKILL.md)
 
 PUT annotations are standard source comments with a specific syntax:
 
@@ -184,7 +184,7 @@ The `"supplement"` strategy lets auto-detection fill I/O fields that manual anno
 
 ## Step 4: Generate Diagrams
 
-**Skill**: [generate-workflow-diagram](../skills/workflow-visualization/generate-workflow-diagram/SKILL.md)
+**Skill**: [generate-workflow-diagram](../skills/generate-workflow-diagram/SKILL.md)
 
 ### 9 available themes
 
@@ -219,7 +219,7 @@ Clickable nodes (`enable_clicks = TRUE`) work in local renderers but not in GitH
 
 ## Optional: CI/CD Integration
 
-**Skill**: [setup-putior-ci](../skills/workflow-visualization/setup-putior-ci/SKILL.md)
+**Skill**: [setup-putior-ci](../skills/setup-putior-ci/SKILL.md)
 
 Automate diagram regeneration so documentation never drifts from code.
 
@@ -230,7 +230,7 @@ Automate diagram regeneration so documentation never drifts from code.
 <!-- PUTIOR-WORKFLOW-END -->
 ```
 
-**2. Create `scripts/generate-workflow-diagram.R`** that reads annotations, generates Mermaid code, and replaces content between the sentinels. See the [setup-putior-ci skill](../skills/workflow-visualization/setup-putior-ci/SKILL.md) for the complete script.
+**2. Create `scripts/generate-workflow-diagram.R`** that reads annotations, generates Mermaid code, and replaces content between the sentinels. See the [setup-putior-ci skill](../skills/setup-putior-ci/SKILL.md) for the complete script.
 
 **3. Create `.github/workflows/update-workflow-diagram.yml`**:
 
@@ -269,7 +269,7 @@ Key safeguards: the `if:` guard prevents infinite loops from bot commits, `git d
 
 ## Optional: MCP Integration
 
-**Skill**: [configure-putior-mcp](../skills/workflow-visualization/configure-putior-mcp/SKILL.md)
+**Skill**: [configure-putior-mcp](../skills/configure-putior-mcp/SKILL.md)
 
 The putior MCP server exposes 16 tools organized into four categories: core workflow (5), reference/discovery (7), utilities (3), and configuration (1).
 
@@ -328,7 +328,7 @@ Once configured, you can ask Claude to scan a directory, suggest annotations, va
 ## Related Resources
 
 - [putior-integrator agent](../agents/putior-integrator.md) -- capabilities, configuration, and usage scenarios.
-- [workflow-visualization skills](../skills/workflow-visualization/) -- the six skills referenced in this guide.
+- [Skills Library](../skills/) -- browse all skills, including the six workflow-visualization skills referenced in this guide.
 - [Understanding the System](understanding-the-system.md) -- how skills, agents, and teams compose.
 - [Setting Up Your Environment](setting-up-your-environment.md) -- WSL, MCP, and Claude Code configuration.
 - [putior package documentation](https://pjt222.github.io/putior/) -- full API reference and vignettes.

@@ -67,7 +67,7 @@ usethis::use_github_action_check_standard()
 renv::init()
 ```
 
-See the [create-r-package](../skills/r-packages/create-r-package/SKILL.md) skill for the full procedure.
+See the [create-r-package](../skills/create-r-package/SKILL.md) skill for the full procedure.
 
 ### Daily Development Cycle
 
@@ -114,7 +114,7 @@ function_name <- function(x, y) {
 }
 ```
 
-See the [write-roxygen-docs](../skills/r-packages/write-roxygen-docs/SKILL.md) skill for detailed patterns.
+See the [write-roxygen-docs](../skills/write-roxygen-docs/SKILL.md) skill for detailed patterns.
 
 ### Package-Level Documentation
 
@@ -170,7 +170,7 @@ test_that("function handles API calls", {
 
 Coverage goals: >80% code coverage, all exported functions tested, error conditions and edge cases covered. Use `testthat::skip_on_cran()` for tests requiring network or long runtimes.
 
-See the [write-testthat-tests](../skills/r-packages/write-testthat-tests/SKILL.md) skill for the full procedure.
+See the [write-testthat-tests](../skills/write-testthat-tests/SKILL.md) skill for the full procedure.
 
 ## renv Dependency Management
 
@@ -184,7 +184,7 @@ renv::restore()           # Restore from lockfile
 renv::status()            # Check sync between lockfile and library
 ```
 
-See the [manage-renv-dependencies](../skills/r-packages/manage-renv-dependencies/SKILL.md) skill for detailed procedures.
+See the [manage-renv-dependencies](../skills/manage-renv-dependencies/SKILL.md) skill for detailed procedures.
 
 ### Installing GitHub Packages
 
@@ -242,7 +242,7 @@ pkgdown::build_site()     # Build locally
 pkgdown::preview_site()   # Preview at localhost
 ```
 
-See the [build-pkgdown-site](../skills/r-packages/build-pkgdown-site/SKILL.md) skill for the full procedure.
+See the [build-pkgdown-site](../skills/build-pkgdown-site/SKILL.md) skill for the full procedure.
 
 ### _pkgdown.yml Configuration
 
@@ -326,7 +326,7 @@ BugReports: https://github.com/username/packagename/issues
 
 Always use `::` for package-qualified calls. Never use `library()` or `require()` in package code.
 
-See the [submit-to-cran](../skills/r-packages/submit-to-cran/SKILL.md) skill for the full procedure.
+See the [submit-to-cran](../skills/submit-to-cran/SKILL.md) skill for the full procedure.
 
 ## CI/CD Setup
 
@@ -354,7 +354,7 @@ jobs:
           - {os: ubuntu-latest, r: 'devel'}
 ```
 
-For renv in CI, add `r-lib/actions/setup-renv@v2`. See the [setup-github-actions-ci](../skills/r-packages/setup-github-actions-ci/SKILL.md) skill for complete configuration.
+For renv in CI, add `r-lib/actions/setup-renv@v2`. See the [setup-github-actions-ci](../skills/setup-github-actions-ci/SKILL.md) skill for complete configuration.
 
 ## Common Patterns
 
@@ -476,13 +476,13 @@ gitcreds::gitcreds_set()
 
 ### Skills
 
-- [create-r-package](../skills/r-packages/create-r-package/SKILL.md)
-- [write-roxygen-docs](../skills/r-packages/write-roxygen-docs/SKILL.md)
-- [write-testthat-tests](../skills/r-packages/write-testthat-tests/SKILL.md)
-- [submit-to-cran](../skills/r-packages/submit-to-cran/SKILL.md)
-- [build-pkgdown-site](../skills/r-packages/build-pkgdown-site/SKILL.md)
-- [manage-renv-dependencies](../skills/r-packages/manage-renv-dependencies/SKILL.md)
-- [setup-github-actions-ci](../skills/r-packages/setup-github-actions-ci/SKILL.md)
+- [create-r-package](../skills/create-r-package/SKILL.md)
+- [write-roxygen-docs](../skills/write-roxygen-docs/SKILL.md)
+- [write-testthat-tests](../skills/write-testthat-tests/SKILL.md)
+- [submit-to-cran](../skills/submit-to-cran/SKILL.md)
+- [build-pkgdown-site](../skills/build-pkgdown-site/SKILL.md)
+- [manage-renv-dependencies](../skills/manage-renv-dependencies/SKILL.md)
+- [setup-github-actions-ci](../skills/setup-github-actions-ci/SKILL.md)
 
 ### External References
 

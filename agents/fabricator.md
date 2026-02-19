@@ -52,9 +52,9 @@ The Fabricator can:
 
 ### 3D Printing
 
-- **[prepare-print-model](../skills/3d-printing/prepare-print-model/SKILL.md)**: Export and optimize 3D models for FDM/SLA printing including mesh repair, wall thickness verification, and support generation
-- **[select-print-material](../skills/3d-printing/select-print-material/SKILL.md)**: Choose materials based on mechanical, thermal, and chemical requirements with property comparisons
-- **[troubleshoot-print-issues](../skills/3d-printing/troubleshoot-print-issues/SKILL.md)**: Diagnose and fix common 3D printing failures through systematic symptom analysis
+- **[prepare-print-model](../skills/prepare-print-model/SKILL.md)**: Export and optimize 3D models for FDM/SLA printing including mesh repair, wall thickness verification, and support generation
+- **[select-print-material](../skills/select-print-material/SKILL.md)**: Choose materials based on mechanical, thermal, and chemical requirements with property comparisons
+- **[troubleshoot-print-issues](../skills/troubleshoot-print-issues/SKILL.md)**: Diagnose and fix common 3D printing failures through systematic symptom analysis
 
 ## Usage Scenarios
 

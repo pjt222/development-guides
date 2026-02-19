@@ -22,7 +22,7 @@ jobs:
       - name: Validate all skills
         run: |
           failed=0
-          for dir in skills/*/*/; do
+          for dir in skills/*/; do
             if [ -f "$dir/SKILL.md" ]; then
               if ! skills-ref validate "$dir"; then
                 failed=1
@@ -34,7 +34,7 @@ jobs:
       - name: Check line counts
         run: |
           failed=0
-          for f in skills/*/*/SKILL.md; do
+          for f in skills/*/SKILL.md; do
             lines=$(wc -l < "$f")
             if [ "$lines" -gt 500 ]; then
               echo "FAIL: $f ($lines lines > 500)"
@@ -45,7 +45,7 @@ jobs:
 
       - name: Verify registry count
         run: |
-          disk_count=$(find skills -name SKILL.md | wc -l)
+          disk_count=$(find skills -name SKILL.md -not -path "skills/_template/*" | wc -l)
           reg_count=$(grep 'total_skills:' skills/_registry.yml | tr -d '\r' | awk '{print $2}')
           if [ "$disk_count" != "$reg_count" ]; then
             echo "FAIL: disk=$disk_count registry=$reg_count"

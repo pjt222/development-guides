@@ -191,8 +191,8 @@ The team evaluates the statistical integrity during migration, methodology prese
 - [senior-researcher](../agents/senior-researcher.md) — Research methodology reviewer
 - [mlops-engineer](../agents/mlops-engineer.md) — MLOps infrastructure agent
 - [senior-software-developer](../agents/senior-software-developer.md) — Architecture review agent
-- [review-data-analysis](../skills/review/review-data-analysis/SKILL.md) — Data analysis review skill
-- [track-ml-experiments](../skills/mlops/track-ml-experiments/SKILL.md) — Experiment tracking skill
+- [review-data-analysis](../skills/review-data-analysis/SKILL.md) — Data analysis review skill
+- [track-ml-experiments](../skills/track-ml-experiments/SKILL.md) — Experiment tracking skill
 
 ---
 

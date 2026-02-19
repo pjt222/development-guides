@@ -1,1 +1,0 @@
-../../../skills/lapidary/identify-gemstone/SKILL.md

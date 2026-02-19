@@ -1,1 +1,0 @@
-../../../skills/lapidary/polish-gemstone/SKILL.md

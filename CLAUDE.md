@@ -16,7 +16,7 @@ The guides serve as the human entry point to the agentic system: practical workf
 
 1. **Guides** (`guides/` directory): Human-readable documentation organized into four categories (workflow, infrastructure, reference, design). Each guide has YAML frontmatter (`title`, `description`, `category`, `agents`, `teams`, `skills`) and follows a standard template (`guides/_template.md`). Guides serve as the human entry point to the agentic system.
 
-2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<domain>/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills).
+2. **Skills** (`skills/` directory): Machine-consumable structured procedures that agentic systems execute. Each skill lives at `skills/<skill-name>/SKILL.md` with YAML frontmatter (`name`, `description`, `allowed-tools`, `metadata`) and standardized sections (When to Use, Inputs, Procedure, Validation, Common Pitfalls, Related Skills). Skills are organized into 48 logical domains via metadata tags, but the directory structure is flat.
 
 3. **Agents** (`agents/` directory): Persona definitions for Claude Code subagents. Each agent is a markdown file with YAML frontmatter (`name`, `description`, `tools`, `model`, `priority`) defining *who* handles a task. Agents span development, compliance, review, project management, DevOps, MLOps, workflow visualization, esoteric, and specialty domains.
 
@@ -55,11 +55,11 @@ Guides, skills, agents, and teams are cross-referenced. The parent project `CLAU
 - To validate locally before committing:
   ```bash
   # Check a single skill
-  lines=$(wc -l < skills/<domain>/<skill>/SKILL.md)
+  lines=$(wc -l < skills/<skill-name>/SKILL.md)
   [ "$lines" -le 500 ] && echo "OK ($lines lines)" || echo "FAIL ($lines lines > 500)"
 
   # Check all skills
-  for f in skills/*/*/SKILL.md; do
+  for f in skills/*/SKILL.md; do
     lines=$(wc -l < "$f")
     [ "$lines" -gt 500 ] && echo "OVER: $f ($lines lines)"
   done
@@ -67,12 +67,13 @@ Guides, skills, agents, and teams are cross-referenced. The parent project `CLAU
 
 ## Adding a New Skill
 
-1. Create `skills/<domain>/<skill-name>/SKILL.md` following the format of existing skills
+1. Create `skills/<skill-name>/SKILL.md` following the format of existing skills
 2. Add the entry to `skills/_registry.yml` under the appropriate domain
 3. Update `total_skills` count in `_registry.yml`
-4. Reference related skills in the new skill's "Related Skills" section
-5. Run `npm run update-readmes` (or let CI auto-commit on push to main)
-6. The meta-skill at `skills/general/skill-creation/SKILL.md` documents this process in detail
+4. Symlink into `.claude/skills/`: `ln -s ../../skills/<skill-name> .claude/skills/<skill-name>`
+5. Reference related skills in the new skill's "Related Skills" section
+6. Run `npm run update-readmes` (or let CI auto-commit on push to main)
+7. The meta-skill at `skills/skill-creation/SKILL.md` documents this process in detail
 
 ## Adding a New Agent
 

@@ -189,8 +189,8 @@ The team provides a comprehensive assessment covering code health, architectural
 - [code-reviewer](../agents/code-reviewer.md) — Quality review agent
 - [senior-software-developer](../agents/senior-software-developer.md) — Architecture review agent
 - [security-analyst](../agents/security-analyst.md) — Security audit agent
-- [submit-to-cran](../skills/r-packages/submit-to-cran/SKILL.md) — CRAN submission skill
-- [review-software-architecture](../skills/review/review-software-architecture/SKILL.md) — Architecture review skill
+- [submit-to-cran](../skills/submit-to-cran/SKILL.md) — CRAN submission skill
+- [review-software-architecture](../skills/review-software-architecture/SKILL.md) — Architecture review skill
 
 ---
 

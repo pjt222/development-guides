@@ -19,7 +19,7 @@ Skills are invoked as slash commands in Claude Code when symlinked into `.claude
 
 ```bash
 # Make a skill available as a slash command
-ln -s ../../skills/r-packages/submit-to-cran .claude/skills/submit-to-cran
+ln -s ../../skills/submit-to-cran .claude/skills/submit-to-cran
 
 # In Claude Code, invoke with:
 /submit-to-cran

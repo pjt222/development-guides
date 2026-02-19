@@ -219,8 +219,8 @@ The team clears accumulated patterns, opens creative channels through alchemical
 - [alchemist](../agents/alchemist.md) — Alchemical transmutation agent
 - [gardener](../agents/gardener.md) — Contemplative gardening agent
 - [shaman](../agents/shaman.md) — Shamanic journeying agent
-- [meditate](../skills/esoteric/meditate/SKILL.md) — AI meditation skill
-- [heal](../skills/esoteric/heal/SKILL.md) — AI self-healing skill
+- [meditate](../skills/meditate/SKILL.md) — AI meditation skill
+- [heal](../skills/heal/SKILL.md) — AI self-healing skill
 
 ---
 

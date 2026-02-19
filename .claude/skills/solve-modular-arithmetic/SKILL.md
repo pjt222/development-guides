@@ -1,1 +1,0 @@
-../../../skills/number-theory/solve-modular-arithmetic/SKILL.md

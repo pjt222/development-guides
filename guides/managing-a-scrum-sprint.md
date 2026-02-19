@@ -125,7 +125,7 @@ You: Create a product backlog for putior with these features:
      - Fix timezone handling bug (#42)
 ```
 
-The Scrum Master will invoke [manage-backlog](../skills/project-management/manage-backlog/SKILL.md) to produce a `BACKLOG.md` with prioritized items, acceptance criteria, and estimates. Items without acceptance criteria are marked "New" and cannot enter a Sprint.
+The Scrum Master will invoke [manage-backlog](../skills/manage-backlog/SKILL.md) to produce a `BACKLOG.md` with prioritized items, acceptance criteria, and estimates. Items without acceptance criteria are marked "New" and cannot enter a Sprint.
 
 ## Sprint Planning
 
@@ -166,7 +166,7 @@ Scrum Master (project-manager): Starting Sprint Planning for Sprint 1.
   - 13 tasks across 3 developers
 ```
 
-The [plan-sprint](../skills/project-management/plan-sprint/SKILL.md) skill produces a `SPRINT-PLAN-S001.md` file containing the Sprint Goal, selected items, task breakdown, capacity allocation, and risks.
+The [plan-sprint](../skills/plan-sprint/SKILL.md) skill produces a `SPRINT-PLAN-S001.md` file containing the Sprint Goal, selected items, task breakdown, capacity allocation, and risks.
 
 ### Planning Tips
 
@@ -306,7 +306,7 @@ The Sprint Retrospective is held after the Sprint Review. The team inspects its 
 
 ### How It Works
 
-The Scrum Master uses the [conduct-retrospective](../skills/project-management/conduct-retrospective/SKILL.md) skill to facilitate. The skill reads Sprint artifacts, calculates metrics, and structures the discussion.
+The Scrum Master uses the [conduct-retrospective](../skills/conduct-retrospective/SKILL.md) skill to facilitate. The skill reads Sprint artifacts, calculates metrics, and structures the discussion.
 
 ```
 Scrum Master: Sprint 1 Retrospective.
@@ -344,7 +344,7 @@ Scrum Master: Sprint 1 Retrospective.
 
 ## Generating Reports
 
-Use the [generate-status-report](../skills/project-management/generate-status-report/SKILL.md) skill to produce formal status reports during or after a Sprint.
+Use the [generate-status-report](../skills/generate-status-report/SKILL.md) skill to produce formal status reports during or after a Sprint.
 
 ```
 You: Generate a status report for Sprint 1.
@@ -387,10 +387,10 @@ For ongoing projects, compare velocity across Sprints to establish a trend. A de
 
 ### Skills
 
-- [plan-sprint](../skills/project-management/plan-sprint/SKILL.md) -- select backlog items, calculate capacity, decompose into tasks
-- [manage-backlog](../skills/project-management/manage-backlog/SKILL.md) -- create and maintain the Product Backlog
-- [conduct-retrospective](../skills/project-management/conduct-retrospective/SKILL.md) -- review execution and generate improvement actions
-- [generate-status-report](../skills/project-management/generate-status-report/SKILL.md) -- produce RAG-rated status reports with metrics
+- [plan-sprint](../skills/plan-sprint/SKILL.md) -- select backlog items, calculate capacity, decompose into tasks
+- [manage-backlog](../skills/manage-backlog/SKILL.md) -- create and maintain the Product Backlog
+- [conduct-retrospective](../skills/conduct-retrospective/SKILL.md) -- review execution and generate improvement actions
+- [generate-status-report](../skills/generate-status-report/SKILL.md) -- produce RAG-rated status reports with metrics
 
 ### Guides
 

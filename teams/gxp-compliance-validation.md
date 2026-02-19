@@ -191,8 +191,8 @@ The team performs a mock inspection across all four domains and identifies gaps 
 - [auditor](../agents/auditor.md) — GxP audit specialist agent
 - [security-analyst](../agents/security-analyst.md) — Security review agent
 - [senior-researcher](../agents/senior-researcher.md) — Research methodology reviewer
-- [perform-csv-assessment](../skills/compliance/perform-csv-assessment/SKILL.md) — CSV assessment skill
-- [conduct-gxp-audit](../skills/compliance/conduct-gxp-audit/SKILL.md) — GxP audit skill
+- [perform-csv-assessment](../skills/perform-csv-assessment/SKILL.md) — CSV assessment skill
+- [conduct-gxp-audit](../skills/conduct-gxp-audit/SKILL.md) — GxP audit skill
 
 ---
 

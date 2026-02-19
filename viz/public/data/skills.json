@@ -1,6 +1,6 @@
 {
   "meta": {
-    "generated": "2026-02-19T11:42:15.457Z",
+    "generated": "2026-02-19T16:49:46.429Z",
     "totalSkills": 267,
     "totalAgents": 53,
     "totalTeams": 8,
@@ -227,7 +227,7 @@
         "manage-renv-dependencies",
         "write-claude-md"
       ],
-      "path": "r-packages/create-r-package/SKILL.md"
+      "path": "create-r-package/SKILL.md"
     },
     {
       "id": "submit-to-cran",
@@ -250,7 +250,7 @@
         "setup-github-actions-ci",
         "build-pkgdown-site"
       ],
-      "path": "r-packages/submit-to-cran/SKILL.md"
+      "path": "submit-to-cran/SKILL.md"
     },
     {
       "id": "write-roxygen-docs",
@@ -272,7 +272,7 @@
         "write-vignette",
         "submit-to-cran"
       ],
-      "path": "r-packages/write-roxygen-docs/SKILL.md"
+      "path": "write-roxygen-docs/SKILL.md"
     },
     {
       "id": "write-testthat-tests",
@@ -295,7 +295,7 @@
         "setup-github-actions-ci",
         "submit-to-cran"
       ],
-      "path": "r-packages/write-testthat-tests/SKILL.md"
+      "path": "write-testthat-tests/SKILL.md"
     },
     {
       "id": "setup-github-actions-ci",
@@ -318,7 +318,7 @@
         "submit-to-cran",
         "release-package-version"
       ],
-      "path": "r-packages/setup-github-actions-ci/SKILL.md"
+      "path": "setup-github-actions-ci/SKILL.md"
     },
     {
       "id": "build-pkgdown-site",
@@ -341,7 +341,7 @@
         "write-vignette",
         "release-package-version"
       ],
-      "path": "r-packages/build-pkgdown-site/SKILL.md"
+      "path": "build-pkgdown-site/SKILL.md"
     },
     {
       "id": "manage-renv-dependencies",
@@ -363,7 +363,7 @@
         "setup-github-actions-ci",
         "submit-to-cran"
       ],
-      "path": "r-packages/manage-renv-dependencies/SKILL.md"
+      "path": "manage-renv-dependencies/SKILL.md"
     },
     {
       "id": "add-rcpp-integration",
@@ -386,7 +386,7 @@
         "setup-github-actions-ci",
         "submit-to-cran"
       ],
-      "path": "r-packages/add-rcpp-integration/SKILL.md"
+      "path": "add-rcpp-integration/SKILL.md"
     },
     {
       "id": "write-vignette",
@@ -409,7 +409,7 @@
         "submit-to-cran",
         "create-quarto-report"
       ],
-      "path": "r-packages/write-vignette/SKILL.md"
+      "path": "write-vignette/SKILL.md"
     },
     {
       "id": "release-package-version",
@@ -432,7 +432,7 @@
         "setup-github-actions-ci",
         "build-pkgdown-site"
       ],
-      "path": "r-packages/release-package-version/SKILL.md"
+      "path": "release-package-version/SKILL.md"
     },
     {
       "id": "generate-puzzle",
@@ -455,7 +455,7 @@
         "run-puzzle-tests",
         "write-testthat-tests"
       ],
-      "path": "jigsawr/generate-puzzle/SKILL.md"
+      "path": "generate-puzzle/SKILL.md"
     },
     {
       "id": "add-puzzle-type",
@@ -479,7 +479,7 @@
         "write-testthat-tests",
         "write-roxygen-docs"
       ],
-      "path": "jigsawr/add-puzzle-type/SKILL.md"
+      "path": "add-puzzle-type/SKILL.md"
     },
     {
       "id": "render-puzzle-docs",
@@ -501,7 +501,7 @@
         "run-puzzle-tests",
         "create-quarto-report"
       ],
-      "path": "jigsawr/render-puzzle-docs/SKILL.md"
+      "path": "render-puzzle-docs/SKILL.md"
     },
     {
       "id": "run-puzzle-tests",
@@ -524,7 +524,7 @@
         "write-testthat-tests",
         "validate-piles-notation"
       ],
-      "path": "jigsawr/run-puzzle-tests/SKILL.md"
+      "path": "run-puzzle-tests/SKILL.md"
     },
     {
       "id": "validate-piles-notation",
@@ -547,7 +547,7 @@
         "add-puzzle-type",
         "run-puzzle-tests"
       ],
-      "path": "jigsawr/validate-piles-notation/SKILL.md"
+      "path": "validate-piles-notation/SKILL.md"
     },
     {
       "id": "create-r-dockerfile",
@@ -570,7 +570,7 @@
         "optimize-docker-build-cache",
         "manage-renv-dependencies"
       ],
-      "path": "containerization/create-r-dockerfile/SKILL.md"
+      "path": "create-r-dockerfile/SKILL.md"
     },
     {
       "id": "setup-docker-compose",
@@ -591,7 +591,7 @@
         "containerize-mcp-server",
         "optimize-docker-build-cache"
       ],
-      "path": "containerization/setup-docker-compose/SKILL.md"
+      "path": "setup-docker-compose/SKILL.md"
     },
     {
       "id": "containerize-mcp-server",
@@ -614,7 +614,7 @@
         "configure-mcp-server",
         "troubleshoot-mcp-connection"
       ],
-      "path": "containerization/containerize-mcp-server/SKILL.md"
+      "path": "containerize-mcp-server/SKILL.md"
     },
     {
       "id": "optimize-docker-build-cache",
@@ -636,7 +636,7 @@
         "setup-docker-compose",
         "containerize-mcp-server"
       ],
-      "path": "containerization/optimize-docker-build-cache/SKILL.md"
+      "path": "optimize-docker-build-cache/SKILL.md"
     },
     {
       "id": "create-dockerfile",
@@ -662,7 +662,7 @@
         "optimize-docker-build-cache",
         "setup-compose-stack"
       ],
-      "path": "containerization/create-dockerfile/SKILL.md"
+      "path": "create-dockerfile/SKILL.md"
     },
     {
       "id": "create-multistage-dockerfile",
@@ -686,7 +686,7 @@
         "optimize-docker-build-cache",
         "setup-compose-stack"
       ],
-      "path": "containerization/create-multistage-dockerfile/SKILL.md"
+      "path": "create-multistage-dockerfile/SKILL.md"
     },
     {
       "id": "setup-compose-stack",
@@ -710,7 +710,7 @@
         "create-multistage-dockerfile",
         "configure-nginx"
       ],
-      "path": "containerization/setup-compose-stack/SKILL.md"
+      "path": "setup-compose-stack/SKILL.md"
     },
     {
       "id": "configure-nginx",
@@ -735,7 +735,7 @@
         "deploy-searxng",
         "configure-ingress-networking"
       ],
-      "path": "containerization/configure-nginx/SKILL.md"
+      "path": "configure-nginx/SKILL.md"
     },
     {
       "id": "configure-reverse-proxy",
@@ -760,7 +760,7 @@
         "setup-compose-stack",
         "configure-api-gateway"
       ],
-      "path": "containerization/configure-reverse-proxy/SKILL.md"
+      "path": "configure-reverse-proxy/SKILL.md"
     },
     {
       "id": "deploy-searxng",
@@ -783,7 +783,7 @@
         "configure-nginx",
         "configure-reverse-proxy"
       ],
-      "path": "containerization/deploy-searxng/SKILL.md"
+      "path": "deploy-searxng/SKILL.md"
     },
     {
       "id": "create-quarto-report",
@@ -806,7 +806,7 @@
         "generate-statistical-tables",
         "write-vignette"
       ],
-      "path": "reporting/create-quarto-report/SKILL.md"
+      "path": "create-quarto-report/SKILL.md"
     },
     {
       "id": "format-apa-report",
@@ -828,7 +828,7 @@
         "generate-statistical-tables",
         "build-parameterized-report"
       ],
-      "path": "reporting/format-apa-report/SKILL.md"
+      "path": "format-apa-report/SKILL.md"
     },
     {
       "id": "build-parameterized-report",
@@ -850,7 +850,7 @@
         "generate-statistical-tables",
         "format-apa-report"
       ],
-      "path": "reporting/build-parameterized-report/SKILL.md"
+      "path": "build-parameterized-report/SKILL.md"
     },
     {
       "id": "generate-statistical-tables",
@@ -872,7 +872,7 @@
         "create-quarto-report",
         "build-parameterized-report"
       ],
-      "path": "reporting/generate-statistical-tables/SKILL.md"
+      "path": "generate-statistical-tables/SKILL.md"
     },
     {
       "id": "setup-gxp-r-project",
@@ -895,7 +895,7 @@
         "validate-statistical-output",
         "manage-renv-dependencies"
       ],
-      "path": "compliance/setup-gxp-r-project/SKILL.md"
+      "path": "setup-gxp-r-project/SKILL.md"
     },
     {
       "id": "write-validation-documentation",
@@ -917,7 +917,7 @@
         "implement-audit-trail",
         "validate-statistical-output"
       ],
-      "path": "compliance/write-validation-documentation/SKILL.md"
+      "path": "write-validation-documentation/SKILL.md"
     },
     {
       "id": "implement-audit-trail",
@@ -940,7 +940,7 @@
         "validate-statistical-output",
         "configure-git-repository"
       ],
-      "path": "compliance/implement-audit-trail/SKILL.md"
+      "path": "implement-audit-trail/SKILL.md"
     },
     {
       "id": "validate-statistical-output",
@@ -963,7 +963,7 @@
         "implement-audit-trail",
         "write-testthat-tests"
       ],
-      "path": "compliance/validate-statistical-output/SKILL.md"
+      "path": "validate-statistical-output/SKILL.md"
     },
     {
       "id": "perform-csv-assessment",
@@ -988,7 +988,7 @@
         "validate-statistical-output",
         "conduct-gxp-audit"
       ],
-      "path": "compliance/perform-csv-assessment/SKILL.md"
+      "path": "perform-csv-assessment/SKILL.md"
     },
     {
       "id": "conduct-gxp-audit",
@@ -1013,7 +1013,7 @@
         "write-validation-documentation",
         "security-audit-codebase"
       ],
-      "path": "compliance/conduct-gxp-audit/SKILL.md"
+      "path": "conduct-gxp-audit/SKILL.md"
     },
     {
       "id": "implement-pharma-serialisation",
@@ -1038,7 +1038,7 @@
         "serialize-data-formats",
         "design-serialization-schema"
       ],
-      "path": "compliance/implement-pharma-serialisation/SKILL.md"
+      "path": "implement-pharma-serialisation/SKILL.md"
     },
     {
       "id": "design-compliance-architecture",
@@ -1063,7 +1063,7 @@
         "prepare-inspection-readiness",
         "conduct-gxp-audit"
       ],
-      "path": "compliance/design-compliance-architecture/SKILL.md"
+      "path": "design-compliance-architecture/SKILL.md"
     },
     {
       "id": "manage-change-control",
@@ -1087,7 +1087,7 @@
         "write-standard-operating-procedure",
         "investigate-capa-root-cause"
       ],
-      "path": "compliance/manage-change-control/SKILL.md"
+      "path": "manage-change-control/SKILL.md"
     },
     {
       "id": "implement-electronic-signatures",
@@ -1112,7 +1112,7 @@
         "write-standard-operating-procedure",
         "manage-change-control"
       ],
-      "path": "compliance/implement-electronic-signatures/SKILL.md"
+      "path": "implement-electronic-signatures/SKILL.md"
     },
     {
       "id": "write-standard-operating-procedure",
@@ -1137,7 +1137,7 @@
         "conduct-gxp-audit",
         "write-validation-documentation"
       ],
-      "path": "compliance/write-standard-operating-procedure/SKILL.md"
+      "path": "write-standard-operating-procedure/SKILL.md"
     },
     {
       "id": "monitor-data-integrity",
@@ -1162,7 +1162,7 @@
         "conduct-gxp-audit",
         "prepare-inspection-readiness"
       ],
-      "path": "compliance/monitor-data-integrity/SKILL.md"
+      "path": "monitor-data-integrity/SKILL.md"
     },
     {
       "id": "design-training-program",
@@ -1187,7 +1187,7 @@
         "manage-change-control",
         "prepare-inspection-readiness"
       ],
-      "path": "compliance/design-training-program/SKILL.md"
+      "path": "design-training-program/SKILL.md"
     },
     {
       "id": "decommission-validated-system",
@@ -1212,7 +1212,7 @@
         "write-standard-operating-procedure",
         "prepare-inspection-readiness"
       ],
-      "path": "compliance/decommission-validated-system/SKILL.md"
+      "path": "decommission-validated-system/SKILL.md"
     },
     {
       "id": "prepare-inspection-readiness",
@@ -1239,7 +1239,7 @@
         "investigate-capa-root-cause",
         "qualify-vendor"
       ],
-      "path": "compliance/prepare-inspection-readiness/SKILL.md"
+      "path": "prepare-inspection-readiness/SKILL.md"
     },
     {
       "id": "investigate-capa-root-cause",
@@ -1265,7 +1265,7 @@
         "prepare-inspection-readiness",
         "design-training-program"
       ],
-      "path": "compliance/investigate-capa-root-cause/SKILL.md"
+      "path": "investigate-capa-root-cause/SKILL.md"
     },
     {
       "id": "qualify-vendor",
@@ -1290,7 +1290,7 @@
         "manage-change-control",
         "perform-csv-assessment"
       ],
-      "path": "compliance/qualify-vendor/SKILL.md"
+      "path": "qualify-vendor/SKILL.md"
     },
     {
       "id": "configure-mcp-server",
@@ -1312,7 +1312,7 @@
         "troubleshoot-mcp-connection",
         "setup-wsl-dev-environment"
       ],
-      "path": "mcp-integration/configure-mcp-server/SKILL.md"
+      "path": "configure-mcp-server/SKILL.md"
     },
     {
       "id": "build-custom-mcp-server",
@@ -1334,7 +1334,7 @@
         "troubleshoot-mcp-connection",
         "containerize-mcp-server"
       ],
-      "path": "mcp-integration/build-custom-mcp-server/SKILL.md"
+      "path": "build-custom-mcp-server/SKILL.md"
     },
     {
       "id": "troubleshoot-mcp-connection",
@@ -1356,7 +1356,7 @@
         "build-custom-mcp-server",
         "setup-wsl-dev-environment"
       ],
-      "path": "mcp-integration/troubleshoot-mcp-connection/SKILL.md"
+      "path": "troubleshoot-mcp-connection/SKILL.md"
     },
     {
       "id": "analyze-codebase-for-mcp",
@@ -1380,7 +1380,7 @@
         "review-software-architecture",
         "security-audit-codebase"
       ],
-      "path": "mcp-integration/analyze-codebase-for-mcp/SKILL.md"
+      "path": "analyze-codebase-for-mcp/SKILL.md"
     },
     {
       "id": "scaffold-mcp-server",
@@ -1405,7 +1405,7 @@
         "troubleshoot-mcp-connection",
         "containerize-mcp-server"
       ],
-      "path": "mcp-integration/scaffold-mcp-server/SKILL.md"
+      "path": "scaffold-mcp-server/SKILL.md"
     },
     {
       "id": "scaffold-nextjs-app",
@@ -1427,7 +1427,7 @@
         "deploy-to-vercel",
         "configure-git-repository"
       ],
-      "path": "web-dev/scaffold-nextjs-app/SKILL.md"
+      "path": "scaffold-nextjs-app/SKILL.md"
     },
     {
       "id": "setup-tailwind-typescript",
@@ -1448,7 +1448,7 @@
         "scaffold-nextjs-app",
         "deploy-to-vercel"
       ],
-      "path": "web-dev/setup-tailwind-typescript/SKILL.md"
+      "path": "setup-tailwind-typescript/SKILL.md"
     },
     {
       "id": "deploy-to-vercel",
@@ -1470,7 +1470,7 @@
         "setup-tailwind-typescript",
         "configure-git-repository"
       ],
-      "path": "web-dev/deploy-to-vercel/SKILL.md"
+      "path": "deploy-to-vercel/SKILL.md"
     },
     {
       "id": "configure-git-repository",
@@ -1495,7 +1495,7 @@
         "create-github-release",
         "security-audit-codebase"
       ],
-      "path": "git/configure-git-repository/SKILL.md"
+      "path": "configure-git-repository/SKILL.md"
     },
     {
       "id": "commit-changes",
@@ -1518,7 +1518,7 @@
         "resolve-git-conflicts",
         "configure-git-repository"
       ],
-      "path": "git/commit-changes/SKILL.md"
+      "path": "commit-changes/SKILL.md"
     },
     {
       "id": "manage-git-branches",
@@ -1541,7 +1541,7 @@
         "resolve-git-conflicts",
         "configure-git-repository"
       ],
-      "path": "git/manage-git-branches/SKILL.md"
+      "path": "manage-git-branches/SKILL.md"
     },
     {
       "id": "create-pull-request",
@@ -1564,7 +1564,7 @@
         "resolve-git-conflicts",
         "create-github-release"
       ],
-      "path": "git/create-pull-request/SKILL.md"
+      "path": "create-pull-request/SKILL.md"
     },
     {
       "id": "resolve-git-conflicts",
@@ -1586,7 +1586,7 @@
         "manage-git-branches",
         "configure-git-repository"
       ],
-      "path": "git/resolve-git-conflicts/SKILL.md"
+      "path": "resolve-git-conflicts/SKILL.md"
     },
     {
       "id": "create-github-release",
@@ -1610,7 +1610,7 @@
         "configure-git-repository",
         "setup-github-actions-ci"
       ],
-      "path": "git/create-github-release/SKILL.md"
+      "path": "create-github-release/SKILL.md"
     },
     {
       "id": "setup-wsl-dev-environment",
@@ -1632,7 +1632,7 @@
         "configure-mcp-server",
         "write-claude-md"
       ],
-      "path": "general/setup-wsl-dev-environment/SKILL.md"
+      "path": "setup-wsl-dev-environment/SKILL.md"
     },
     {
       "id": "write-claude-md",
@@ -1653,7 +1653,7 @@
         "configure-mcp-server",
         "security-audit-codebase"
       ],
-      "path": "general/write-claude-md/SKILL.md"
+      "path": "write-claude-md/SKILL.md"
     },
     {
       "id": "security-audit-codebase",
@@ -1675,7 +1675,7 @@
         "write-claude-md",
         "setup-gxp-r-project"
       ],
-      "path": "general/security-audit-codebase/SKILL.md"
+      "path": "security-audit-codebase/SKILL.md"
     },
     {
       "id": "manage-memory",
@@ -1698,7 +1698,7 @@
         "heal",
         "meditate"
       ],
-      "path": "general/manage-memory/SKILL.md"
+      "path": "manage-memory/SKILL.md"
     },
     {
       "id": "skill-creation",
@@ -1722,7 +1722,7 @@
         "commit-changes",
         "security-audit-codebase"
       ],
-      "path": "general/skill-creation/SKILL.md"
+      "path": "skill-creation/SKILL.md"
     },
     {
       "id": "skill-evolution",
@@ -1746,7 +1746,7 @@
         "configure-git-repository",
         "security-audit-codebase"
       ],
-      "path": "general/skill-evolution/SKILL.md"
+      "path": "skill-evolution/SKILL.md"
     },
     {
       "id": "fail-early-pattern",
@@ -1770,7 +1770,7 @@
         "skill-creation",
         "security-audit-codebase"
       ],
-      "path": "general/fail-early-pattern/SKILL.md"
+      "path": "fail-early-pattern/SKILL.md"
     },
     {
       "id": "argumentation",
@@ -1795,7 +1795,7 @@
         "skill-creation",
         "write-claude-md"
       ],
-      "path": "general/argumentation/SKILL.md"
+      "path": "argumentation/SKILL.md"
     },
     {
       "id": "manage-bibliography",
@@ -1816,7 +1816,7 @@
         "format-citations",
         "validate-references"
       ],
-      "path": "citations/manage-bibliography/SKILL.md"
+      "path": "manage-bibliography/SKILL.md"
     },
     {
       "id": "format-citations",
@@ -1837,7 +1837,7 @@
         "manage-bibliography",
         "validate-references"
       ],
-      "path": "citations/format-citations/SKILL.md"
+      "path": "format-citations/SKILL.md"
     },
     {
       "id": "validate-references",
@@ -1858,7 +1858,7 @@
         "manage-bibliography",
         "format-citations"
       ],
-      "path": "citations/validate-references/SKILL.md"
+      "path": "validate-references/SKILL.md"
     },
     {
       "id": "serialize-data-formats",
@@ -1883,7 +1883,7 @@
         "implement-pharma-serialisation",
         "create-quarto-report"
       ],
-      "path": "data-serialization/serialize-data-formats/SKILL.md"
+      "path": "serialize-data-formats/SKILL.md"
     },
     {
       "id": "design-serialization-schema",
@@ -1906,7 +1906,7 @@
         "implement-pharma-serialisation",
         "write-validation-documentation"
       ],
-      "path": "data-serialization/design-serialization-schema/SKILL.md"
+      "path": "design-serialization-schema/SKILL.md"
     },
     {
       "id": "review-research",
@@ -1930,7 +1930,7 @@
         "generate-statistical-tables",
         "validate-statistical-output"
       ],
-      "path": "review/review-research/SKILL.md"
+      "path": "review-research/SKILL.md"
     },
     {
       "id": "review-data-analysis",
@@ -1954,7 +1954,7 @@
         "generate-statistical-tables",
         "review-software-architecture"
       ],
-      "path": "review/review-data-analysis/SKILL.md"
+      "path": "review-data-analysis/SKILL.md"
     },
     {
       "id": "review-software-architecture",
@@ -1980,7 +1980,7 @@
         "design-serialization-schema",
         "review-data-analysis"
       ],
-      "path": "review/review-software-architecture/SKILL.md"
+      "path": "review-software-architecture/SKILL.md"
     },
     {
       "id": "review-web-design",
@@ -2004,7 +2004,7 @@
         "setup-tailwind-typescript",
         "scaffold-nextjs-app"
       ],
-      "path": "review/review-web-design/SKILL.md"
+      "path": "review-web-design/SKILL.md"
     },
     {
       "id": "review-ux-ui",
@@ -2029,7 +2029,7 @@
         "scaffold-nextjs-app",
         "setup-tailwind-typescript"
       ],
-      "path": "review/review-ux-ui/SKILL.md"
+      "path": "review-ux-ui/SKILL.md"
     },
     {
       "id": "review-pull-request",
@@ -2054,7 +2054,7 @@
         "create-pull-request",
         "commit-changes"
       ],
-      "path": "review/review-pull-request/SKILL.md"
+      "path": "review-pull-request/SKILL.md"
     },
     {
       "id": "review-skill-format",
@@ -2078,7 +2078,7 @@
         "refactor-skill-structure",
         "review-pull-request"
       ],
-      "path": "review/review-skill-format/SKILL.md"
+      "path": "review-skill-format/SKILL.md"
     },
     {
       "id": "update-skill-content",
@@ -2103,7 +2103,7 @@
         "skill-creation",
         "repair-broken-references"
       ],
-      "path": "review/update-skill-content/SKILL.md"
+      "path": "update-skill-content/SKILL.md"
     },
     {
       "id": "refactor-skill-structure",
@@ -2126,7 +2126,7 @@
         "skill-creation",
         "skill-evolution"
       ],
-      "path": "review/refactor-skill-structure/SKILL.md"
+      "path": "refactor-skill-structure/SKILL.md"
     },
     {
       "id": "make-fire",
@@ -2147,7 +2147,7 @@
         "purify-water",
         "forage-plants"
       ],
-      "path": "bushcraft/make-fire/SKILL.md"
+      "path": "make-fire/SKILL.md"
     },
     {
       "id": "purify-water",
@@ -2169,7 +2169,7 @@
         "make-fire",
         "forage-plants"
       ],
-      "path": "bushcraft/purify-water/SKILL.md"
+      "path": "purify-water/SKILL.md"
     },
     {
       "id": "forage-plants",
@@ -2192,7 +2192,7 @@
         "make-fire",
         "purify-water"
       ],
-      "path": "bushcraft/forage-plants/SKILL.md"
+      "path": "forage-plants/SKILL.md"
     },
     {
       "id": "sharpen-knife",
@@ -2217,7 +2217,7 @@
         "forage-plants",
         "maintain-hand-tools"
       ],
-      "path": "bushcraft/sharpen-knife/SKILL.md"
+      "path": "sharpen-knife/SKILL.md"
     },
     {
       "id": "heal",
@@ -2239,7 +2239,7 @@
         "meditate",
         "remote-viewing"
       ],
-      "path": "esoteric/heal/SKILL.md"
+      "path": "heal/SKILL.md"
     },
     {
       "id": "heal-guidance",
@@ -2268,7 +2268,7 @@
         "purify-water",
         "make-fire"
       ],
-      "path": "esoteric/heal-guidance/SKILL.md"
+      "path": "heal-guidance/SKILL.md"
     },
     {
       "id": "meditate",
@@ -2291,7 +2291,7 @@
         "heal",
         "remote-viewing"
       ],
-      "path": "esoteric/meditate/SKILL.md"
+      "path": "meditate/SKILL.md"
     },
     {
       "id": "meditate-guidance",
@@ -2319,7 +2319,7 @@
         "forage-plants",
         "make-fire"
       ],
-      "path": "esoteric/meditate-guidance/SKILL.md"
+      "path": "meditate-guidance/SKILL.md"
     },
     {
       "id": "remote-viewing",
@@ -2341,7 +2341,7 @@
         "meditate",
         "heal"
       ],
-      "path": "esoteric/remote-viewing/SKILL.md"
+      "path": "remote-viewing/SKILL.md"
     },
     {
       "id": "remote-viewing-guidance",
@@ -2366,7 +2366,7 @@
         "heal-guidance",
         "forage-plants"
       ],
-      "path": "esoteric/remote-viewing-guidance/SKILL.md"
+      "path": "remote-viewing-guidance/SKILL.md"
     },
     {
       "id": "learn",
@@ -2390,7 +2390,7 @@
         "meditate",
         "observe"
       ],
-      "path": "esoteric/learn/SKILL.md"
+      "path": "learn/SKILL.md"
     },
     {
       "id": "learn-guidance",
@@ -2414,7 +2414,7 @@
         "meditate-guidance",
         "remote-viewing-guidance"
       ],
-      "path": "esoteric/learn-guidance/SKILL.md"
+      "path": "learn-guidance/SKILL.md"
     },
     {
       "id": "teach",
@@ -2438,7 +2438,7 @@
         "listen",
         "meditate"
       ],
-      "path": "esoteric/teach/SKILL.md"
+      "path": "teach/SKILL.md"
     },
     {
       "id": "teach-guidance",
@@ -2463,7 +2463,7 @@
         "listen-guidance",
         "meditate-guidance"
       ],
-      "path": "esoteric/teach-guidance/SKILL.md"
+      "path": "teach-guidance/SKILL.md"
     },
     {
       "id": "listen",
@@ -2488,7 +2488,7 @@
         "meditate",
         "heal"
       ],
-      "path": "esoteric/listen/SKILL.md"
+      "path": "listen/SKILL.md"
     },
     {
       "id": "listen-guidance",
@@ -2513,7 +2513,7 @@
         "meditate-guidance",
         "heal-guidance"
       ],
-      "path": "esoteric/listen-guidance/SKILL.md"
+      "path": "listen-guidance/SKILL.md"
     },
     {
       "id": "observe",
@@ -2539,7 +2539,7 @@
         "meditate",
         "awareness"
       ],
-      "path": "esoteric/observe/SKILL.md"
+      "path": "observe/SKILL.md"
     },
     {
       "id": "observe-guidance",
@@ -2564,7 +2564,7 @@
         "remote-viewing-guidance",
         "read-garden"
       ],
-      "path": "esoteric/observe-guidance/SKILL.md"
+      "path": "observe-guidance/SKILL.md"
     },
     {
       "id": "intrinsic",
@@ -2589,7 +2589,7 @@
         "listen",
         "learn"
       ],
-      "path": "esoteric/intrinsic/SKILL.md"
+      "path": "intrinsic/SKILL.md"
     },
     {
       "id": "shiva-bhaga",
@@ -2615,7 +2615,7 @@
         "meditate",
         "dissolve-form"
       ],
-      "path": "esoteric/shiva-bhaga/SKILL.md"
+      "path": "shiva-bhaga/SKILL.md"
     },
     {
       "id": "vishnu-bhaga",
@@ -2641,7 +2641,7 @@
         "observe",
         "awareness"
       ],
-      "path": "esoteric/vishnu-bhaga/SKILL.md"
+      "path": "vishnu-bhaga/SKILL.md"
     },
     {
       "id": "brahma-bhaga",
@@ -2667,7 +2667,7 @@
         "learn",
         "adapt-architecture"
       ],
-      "path": "esoteric/brahma-bhaga/SKILL.md"
+      "path": "brahma-bhaga/SKILL.md"
     },
     {
       "id": "conscientiousness",
@@ -2692,7 +2692,7 @@
         "observe",
         "intrinsic"
       ],
-      "path": "esoteric/conscientiousness/SKILL.md"
+      "path": "conscientiousness/SKILL.md"
     },
     {
       "id": "honesty-humility",
@@ -2718,7 +2718,7 @@
         "listen",
         "awareness"
       ],
-      "path": "esoteric/honesty-humility/SKILL.md"
+      "path": "honesty-humility/SKILL.md"
     },
     {
       "id": "shine",
@@ -2744,7 +2744,7 @@
         "honesty-humility",
         "conscientiousness"
       ],
-      "path": "esoteric/shine/SKILL.md"
+      "path": "shine/SKILL.md"
     },
     {
       "id": "read-tree-of-life",
@@ -2768,7 +2768,7 @@
         "meditate",
         "practice-viriditas"
       ],
-      "path": "esoteric/read-tree-of-life/SKILL.md"
+      "path": "read-tree-of-life/SKILL.md"
     },
     {
       "id": "apply-gematria",
@@ -2791,7 +2791,7 @@
         "study-hebrew-letters",
         "observe"
       ],
-      "path": "esoteric/apply-gematria/SKILL.md"
+      "path": "apply-gematria/SKILL.md"
     },
     {
       "id": "study-hebrew-letters",
@@ -2814,7 +2814,7 @@
         "meditate",
         "meditate-guidance"
       ],
-      "path": "esoteric/study-hebrew-letters/SKILL.md"
+      "path": "study-hebrew-letters/SKILL.md"
     },
     {
       "id": "ornament-style-mono",
@@ -2838,7 +2838,7 @@
         "meditate",
         "review-web-design"
       ],
-      "path": "design/ornament-style-mono/SKILL.md"
+      "path": "ornament-style-mono/SKILL.md"
     },
     {
       "id": "ornament-style-color",
@@ -2863,7 +2863,7 @@
         "review-web-design",
         "meditate"
       ],
-      "path": "design/ornament-style-color/SKILL.md"
+      "path": "ornament-style-color/SKILL.md"
     },
     {
       "id": "ornament-style-modern",
@@ -2891,7 +2891,7 @@
         "review-ux-ui",
         "meditate"
       ],
-      "path": "design/ornament-style-modern/SKILL.md"
+      "path": "ornament-style-modern/SKILL.md"
     },
     {
       "id": "create-skill-glyph",
@@ -2915,7 +2915,7 @@
         "ornament-style-color",
         "skill-creation"
       ],
-      "path": "design/create-skill-glyph/SKILL.md"
+      "path": "create-skill-glyph/SKILL.md"
     },
     {
       "id": "glyph-enhance",
@@ -2939,7 +2939,7 @@
         "ornament-style-mono",
         "chrysopoeia"
       ],
-      "path": "design/glyph-enhance/SKILL.md"
+      "path": "glyph-enhance/SKILL.md"
     },
     {
       "id": "tai-chi",
@@ -2964,7 +2964,7 @@
         "heal",
         "center"
       ],
-      "path": "defensive/tai-chi/SKILL.md"
+      "path": "tai-chi/SKILL.md"
     },
     {
       "id": "aikido",
@@ -2989,7 +2989,7 @@
         "heal",
         "redirect"
       ],
-      "path": "defensive/aikido/SKILL.md"
+      "path": "aikido/SKILL.md"
     },
     {
       "id": "mindfulness",
@@ -3015,7 +3015,7 @@
         "remote-viewing",
         "awareness"
       ],
-      "path": "defensive/mindfulness/SKILL.md"
+      "path": "mindfulness/SKILL.md"
     },
     {
       "id": "center",
@@ -3040,7 +3040,7 @@
         "redirect",
         "awareness"
       ],
-      "path": "defensive/center/SKILL.md"
+      "path": "center/SKILL.md"
     },
     {
       "id": "redirect",
@@ -3065,7 +3065,7 @@
         "heal",
         "meditate"
       ],
-      "path": "defensive/redirect/SKILL.md"
+      "path": "redirect/SKILL.md"
     },
     {
       "id": "awareness",
@@ -3091,7 +3091,7 @@
         "heal",
         "meditate"
       ],
-      "path": "defensive/awareness/SKILL.md"
+      "path": "awareness/SKILL.md"
     },
     {
       "id": "draft-project-charter",
@@ -3116,7 +3116,7 @@
         "generate-status-report",
         "conduct-retrospective"
       ],
-      "path": "project-management/draft-project-charter/SKILL.md"
+      "path": "draft-project-charter/SKILL.md"
     },
     {
       "id": "create-work-breakdown-structure",
@@ -3141,7 +3141,7 @@
         "plan-sprint",
         "conduct-retrospective"
       ],
-      "path": "project-management/create-work-breakdown-structure/SKILL.md"
+      "path": "create-work-breakdown-structure/SKILL.md"
     },
     {
       "id": "plan-sprint",
@@ -3166,7 +3166,7 @@
         "conduct-retrospective",
         "create-work-breakdown-structure"
       ],
-      "path": "project-management/plan-sprint/SKILL.md"
+      "path": "plan-sprint/SKILL.md"
     },
     {
       "id": "manage-backlog",
@@ -3191,7 +3191,7 @@
         "generate-status-report",
         "conduct-retrospective"
       ],
-      "path": "project-management/manage-backlog/SKILL.md"
+      "path": "manage-backlog/SKILL.md"
     },
     {
       "id": "generate-status-report",
@@ -3216,7 +3216,7 @@
         "create-work-breakdown-structure",
         "conduct-retrospective"
       ],
-      "path": "project-management/generate-status-report/SKILL.md"
+      "path": "generate-status-report/SKILL.md"
     },
     {
       "id": "conduct-retrospective",
@@ -3240,7 +3240,7 @@
         "draft-project-charter",
         "create-work-breakdown-structure"
       ],
-      "path": "project-management/conduct-retrospective/SKILL.md"
+      "path": "conduct-retrospective/SKILL.md"
     },
     {
       "id": "build-ci-cd-pipeline",
@@ -3264,7 +3264,7 @@
         "setup-container-registry",
         "implement-gitops-workflow"
       ],
-      "path": "devops/build-ci-cd-pipeline/SKILL.md"
+      "path": "build-ci-cd-pipeline/SKILL.md"
     },
     {
       "id": "provision-infrastructure-terraform",
@@ -3288,7 +3288,7 @@
         "manage-kubernetes-secrets",
         "deploy-to-kubernetes"
       ],
-      "path": "devops/provision-infrastructure-terraform/SKILL.md"
+      "path": "provision-infrastructure-terraform/SKILL.md"
     },
     {
       "id": "deploy-to-kubernetes",
@@ -3314,7 +3314,7 @@
         "implement-gitops-workflow",
         "setup-container-registry"
       ],
-      "path": "devops/deploy-to-kubernetes/SKILL.md"
+      "path": "deploy-to-kubernetes/SKILL.md"
     },
     {
       "id": "manage-kubernetes-secrets",
@@ -3338,7 +3338,7 @@
         "configure-ingress-networking",
         "implement-gitops-workflow"
       ],
-      "path": "devops/manage-kubernetes-secrets/SKILL.md"
+      "path": "manage-kubernetes-secrets/SKILL.md"
     },
     {
       "id": "setup-container-registry",
@@ -3362,7 +3362,7 @@
         "deploy-to-kubernetes",
         "implement-gitops-workflow"
       ],
-      "path": "devops/setup-container-registry/SKILL.md"
+      "path": "setup-container-registry/SKILL.md"
     },
     {
       "id": "implement-gitops-workflow",
@@ -3387,7 +3387,7 @@
         "build-ci-cd-pipeline",
         "setup-container-registry"
       ],
-      "path": "devops/implement-gitops-workflow/SKILL.md"
+      "path": "implement-gitops-workflow/SKILL.md"
     },
     {
       "id": "configure-ingress-networking",
@@ -3411,7 +3411,7 @@
         "setup-service-mesh",
         "build-ci-cd-pipeline"
       ],
-      "path": "devops/configure-ingress-networking/SKILL.md"
+      "path": "configure-ingress-networking/SKILL.md"
     },
     {
       "id": "setup-service-mesh",
@@ -3437,7 +3437,7 @@
         "manage-kubernetes-secrets",
         "enforce-policy-as-code"
       ],
-      "path": "devops/setup-service-mesh/SKILL.md"
+      "path": "setup-service-mesh/SKILL.md"
     },
     {
       "id": "configure-api-gateway",
@@ -3463,7 +3463,7 @@
         "setup-prometheus-monitoring",
         "enforce-policy-as-code"
       ],
-      "path": "devops/configure-api-gateway/SKILL.md"
+      "path": "configure-api-gateway/SKILL.md"
     },
     {
       "id": "enforce-policy-as-code",
@@ -3490,7 +3490,7 @@
         "configure-api-gateway",
         "implement-gitops-workflow"
       ],
-      "path": "devops/enforce-policy-as-code/SKILL.md"
+      "path": "enforce-policy-as-code/SKILL.md"
     },
     {
       "id": "optimize-cloud-costs",
@@ -3517,7 +3517,7 @@
         "write-helm-chart",
         "implement-gitops-workflow"
       ],
-      "path": "devops/optimize-cloud-costs/SKILL.md"
+      "path": "optimize-cloud-costs/SKILL.md"
     },
     {
       "id": "setup-local-kubernetes",
@@ -3545,7 +3545,7 @@
         "implement-gitops-workflow",
         "optimize-cloud-costs"
       ],
-      "path": "devops/setup-local-kubernetes/SKILL.md"
+      "path": "setup-local-kubernetes/SKILL.md"
     },
     {
       "id": "write-helm-chart",
@@ -3565,7 +3565,7 @@
         "templating"
       ],
       "related": [],
-      "path": "devops/write-helm-chart/SKILL.md"
+      "path": "write-helm-chart/SKILL.md"
     },
     {
       "id": "setup-prometheus-monitoring",
@@ -3588,7 +3588,7 @@
         "define-slo-sli-sla",
         "instrument-distributed-tracing"
       ],
-      "path": "observability/setup-prometheus-monitoring/SKILL.md"
+      "path": "setup-prometheus-monitoring/SKILL.md"
     },
     {
       "id": "build-grafana-dashboards",
@@ -3611,7 +3611,7 @@
         "define-slo-sli-sla",
         "instrument-distributed-tracing"
       ],
-      "path": "observability/build-grafana-dashboards/SKILL.md"
+      "path": "build-grafana-dashboards/SKILL.md"
     },
     {
       "id": "configure-log-aggregation",
@@ -3634,7 +3634,7 @@
         "setup-prometheus-monitoring",
         "instrument-distributed-tracing"
       ],
-      "path": "observability/configure-log-aggregation/SKILL.md"
+      "path": "configure-log-aggregation/SKILL.md"
     },
     {
       "id": "instrument-distributed-tracing",
@@ -3657,7 +3657,7 @@
         "configure-log-aggregation",
         "build-grafana-dashboards"
       ],
-      "path": "observability/instrument-distributed-tracing/SKILL.md"
+      "path": "instrument-distributed-tracing/SKILL.md"
     },
     {
       "id": "define-slo-sli-sla",
@@ -3680,7 +3680,7 @@
         "build-grafana-dashboards",
         "write-incident-runbook"
       ],
-      "path": "observability/define-slo-sli-sla/SKILL.md"
+      "path": "define-slo-sli-sla/SKILL.md"
     },
     {
       "id": "configure-alerting-rules",
@@ -3703,7 +3703,7 @@
         "write-incident-runbook",
         "build-grafana-dashboards"
       ],
-      "path": "observability/configure-alerting-rules/SKILL.md"
+      "path": "configure-alerting-rules/SKILL.md"
     },
     {
       "id": "write-incident-runbook",
@@ -3726,7 +3726,7 @@
         "setup-prometheus-monitoring",
         "define-slo-sli-sla"
       ],
-      "path": "observability/write-incident-runbook/SKILL.md"
+      "path": "write-incident-runbook/SKILL.md"
     },
     {
       "id": "conduct-post-mortem",
@@ -3747,7 +3747,7 @@
         "write-incident-runbook",
         "configure-alerting-rules"
       ],
-      "path": "observability/conduct-post-mortem/SKILL.md"
+      "path": "conduct-post-mortem/SKILL.md"
     },
     {
       "id": "plan-capacity",
@@ -3769,7 +3769,7 @@
         "build-grafana-dashboards",
         "optimize-cloud-costs"
       ],
-      "path": "observability/plan-capacity/SKILL.md"
+      "path": "plan-capacity/SKILL.md"
     },
     {
       "id": "design-on-call-rotation",
@@ -3790,7 +3790,7 @@
         "configure-alerting-rules",
         "write-incident-runbook"
       ],
-      "path": "observability/design-on-call-rotation/SKILL.md"
+      "path": "design-on-call-rotation/SKILL.md"
     },
     {
       "id": "run-chaos-experiment",
@@ -3812,7 +3812,7 @@
         "configure-alerting-rules",
         "define-slo-sli-sla"
       ],
-      "path": "observability/run-chaos-experiment/SKILL.md"
+      "path": "run-chaos-experiment/SKILL.md"
     },
     {
       "id": "setup-uptime-checks",
@@ -3833,7 +3833,7 @@
         "configure-alerting-rules",
         "setup-prometheus-monitoring"
       ],
-      "path": "observability/setup-uptime-checks/SKILL.md"
+      "path": "setup-uptime-checks/SKILL.md"
     },
     {
       "id": "correlate-observability-signals",
@@ -3856,7 +3856,7 @@
         "instrument-distributed-tracing",
         "build-grafana-dashboards"
       ],
-      "path": "observability/correlate-observability-signals/SKILL.md"
+      "path": "correlate-observability-signals/SKILL.md"
     },
     {
       "id": "track-ml-experiments",
@@ -3880,7 +3880,7 @@
         "deploy-ml-model-serving",
         "orchestrate-ml-pipeline"
       ],
-      "path": "mlops/track-ml-experiments/SKILL.md"
+      "path": "track-ml-experiments/SKILL.md"
     },
     {
       "id": "register-ml-model",
@@ -3904,7 +3904,7 @@
         "orchestrate-ml-pipeline",
         "version-ml-data"
       ],
-      "path": "mlops/register-ml-model/SKILL.md"
+      "path": "register-ml-model/SKILL.md"
     },
     {
       "id": "deploy-ml-model-serving",
@@ -3927,7 +3927,7 @@
         "deploy-to-kubernetes",
         "orchestrate-ml-pipeline"
       ],
-      "path": "mlops/deploy-ml-model-serving/SKILL.md"
+      "path": "deploy-ml-model-serving/SKILL.md"
     },
     {
       "id": "build-feature-store",
@@ -3952,7 +3952,7 @@
         "serialize-data-formats",
         "design-serialization-schema"
       ],
-      "path": "mlops/build-feature-store/SKILL.md"
+      "path": "build-feature-store/SKILL.md"
     },
     {
       "id": "version-ml-data",
@@ -3976,7 +3976,7 @@
         "serialize-data-formats",
         "design-serialization-schema"
       ],
-      "path": "mlops/version-ml-data/SKILL.md"
+      "path": "version-ml-data/SKILL.md"
     },
     {
       "id": "orchestrate-ml-pipeline",
@@ -4000,7 +4000,7 @@
         "deploy-ml-model-serving",
         "deploy-to-kubernetes"
       ],
-      "path": "mlops/orchestrate-ml-pipeline/SKILL.md"
+      "path": "orchestrate-ml-pipeline/SKILL.md"
     },
     {
       "id": "monitor-model-drift",
@@ -4025,7 +4025,7 @@
         "setup-prometheus-monitoring",
         "review-data-analysis"
       ],
-      "path": "mlops/monitor-model-drift/SKILL.md"
+      "path": "monitor-model-drift/SKILL.md"
     },
     {
       "id": "run-ab-test-models",
@@ -4047,7 +4047,7 @@
         "deploy-ml-model-serving",
         "monitor-model-drift"
       ],
-      "path": "mlops/run-ab-test-models/SKILL.md"
+      "path": "run-ab-test-models/SKILL.md"
     },
     {
       "id": "setup-automl-pipeline",
@@ -4070,7 +4070,7 @@
         "track-ml-experiments",
         "orchestrate-ml-pipeline"
       ],
-      "path": "mlops/setup-automl-pipeline/SKILL.md"
+      "path": "setup-automl-pipeline/SKILL.md"
     },
     {
       "id": "detect-anomalies-aiops",
@@ -4094,7 +4094,7 @@
         "setup-prometheus-monitoring",
         "forecast-operational-metrics"
       ],
-      "path": "mlops/detect-anomalies-aiops/SKILL.md"
+      "path": "detect-anomalies-aiops/SKILL.md"
     },
     {
       "id": "forecast-operational-metrics",
@@ -4117,7 +4117,7 @@
         "plan-capacity",
         "build-grafana-dashboards"
       ],
-      "path": "mlops/forecast-operational-metrics/SKILL.md"
+      "path": "forecast-operational-metrics/SKILL.md"
     },
     {
       "id": "label-training-data",
@@ -4139,7 +4139,7 @@
         "version-ml-data",
         "track-ml-experiments"
       ],
-      "path": "mlops/label-training-data/SKILL.md"
+      "path": "label-training-data/SKILL.md"
     },
     {
       "id": "install-putior",
@@ -4163,7 +4163,7 @@
         "manage-renv-dependencies",
         "configure-mcp-server"
       ],
-      "path": "workflow-visualization/install-putior/SKILL.md"
+      "path": "install-putior/SKILL.md"
     },
     {
       "id": "analyze-codebase-workflow",
@@ -4187,7 +4187,7 @@
         "generate-workflow-diagram",
         "configure-putior-mcp"
       ],
-      "path": "workflow-visualization/analyze-codebase-workflow/SKILL.md"
+      "path": "analyze-codebase-workflow/SKILL.md"
     },
     {
       "id": "annotate-source-files",
@@ -4211,7 +4211,7 @@
         "install-putior",
         "configure-putior-mcp"
       ],
-      "path": "workflow-visualization/annotate-source-files/SKILL.md"
+      "path": "annotate-source-files/SKILL.md"
     },
     {
       "id": "generate-workflow-diagram",
@@ -4236,7 +4236,7 @@
         "create-quarto-report",
         "build-pkgdown-site"
       ],
-      "path": "workflow-visualization/generate-workflow-diagram/SKILL.md"
+      "path": "generate-workflow-diagram/SKILL.md"
     },
     {
       "id": "setup-putior-ci",
@@ -4261,7 +4261,7 @@
         "annotate-source-files",
         "commit-changes"
       ],
-      "path": "workflow-visualization/setup-putior-ci/SKILL.md"
+      "path": "setup-putior-ci/SKILL.md"
     },
     {
       "id": "configure-putior-mcp",
@@ -4287,7 +4287,7 @@
         "build-custom-mcp-server",
         "analyze-codebase-workflow"
       ],
-      "path": "workflow-visualization/configure-putior-mcp/SKILL.md"
+      "path": "configure-putior-mcp/SKILL.md"
     },
     {
       "id": "coordinate-swarm",
@@ -4313,7 +4313,7 @@
         "plan-capacity",
         "coordinate-reasoning"
       ],
-      "path": "swarm/coordinate-swarm/SKILL.md"
+      "path": "coordinate-swarm/SKILL.md"
     },
     {
       "id": "forage-resources",
@@ -4338,7 +4338,7 @@
         "plan-capacity",
         "forage-solutions"
       ],
-      "path": "swarm/forage-resources/SKILL.md"
+      "path": "forage-resources/SKILL.md"
     },
     {
       "id": "build-consensus",
@@ -4363,7 +4363,7 @@
         "conduct-retrospective",
         "build-coherence"
       ],
-      "path": "swarm/build-consensus/SKILL.md"
+      "path": "build-consensus/SKILL.md"
     },
     {
       "id": "defend-colony",
@@ -4387,7 +4387,7 @@
         "configure-alerting-rules",
         "conduct-post-mortem"
       ],
-      "path": "swarm/defend-colony/SKILL.md"
+      "path": "defend-colony/SKILL.md"
     },
     {
       "id": "scale-colony",
@@ -4412,7 +4412,7 @@
         "plan-capacity",
         "conduct-retrospective"
       ],
-      "path": "swarm/scale-colony/SKILL.md"
+      "path": "scale-colony/SKILL.md"
     },
     {
       "id": "forage-solutions",
@@ -4436,7 +4436,7 @@
         "coordinate-reasoning",
         "awareness"
       ],
-      "path": "swarm/forage-solutions/SKILL.md"
+      "path": "forage-solutions/SKILL.md"
     },
     {
       "id": "build-coherence",
@@ -4461,7 +4461,7 @@
         "center",
         "meditate"
       ],
-      "path": "swarm/build-coherence/SKILL.md"
+      "path": "build-coherence/SKILL.md"
     },
     {
       "id": "coordinate-reasoning",
@@ -4486,7 +4486,7 @@
         "heal",
         "awareness"
       ],
-      "path": "swarm/coordinate-reasoning/SKILL.md"
+      "path": "coordinate-reasoning/SKILL.md"
     },
     {
       "id": "assess-form",
@@ -4511,7 +4511,7 @@
         "review-software-architecture",
         "assess-context"
       ],
-      "path": "morphic/assess-form/SKILL.md"
+      "path": "assess-form/SKILL.md"
     },
     {
       "id": "adapt-architecture",
@@ -4538,7 +4538,7 @@
         "implement-gitops-workflow",
         "review-software-architecture"
       ],
-      "path": "morphic/adapt-architecture/SKILL.md"
+      "path": "adapt-architecture/SKILL.md"
     },
     {
       "id": "dissolve-form",
@@ -4562,7 +4562,7 @@
         "decommission-validated-system",
         "conduct-post-mortem"
       ],
-      "path": "morphic/dissolve-form/SKILL.md"
+      "path": "dissolve-form/SKILL.md"
     },
     {
       "id": "repair-damage",
@@ -4588,7 +4588,7 @@
         "conduct-post-mortem",
         "write-incident-runbook"
       ],
-      "path": "morphic/repair-damage/SKILL.md"
+      "path": "repair-damage/SKILL.md"
     },
     {
       "id": "shift-camouflage",
@@ -4613,7 +4613,7 @@
         "configure-api-gateway",
         "deploy-to-kubernetes"
       ],
-      "path": "morphic/shift-camouflage/SKILL.md"
+      "path": "shift-camouflage/SKILL.md"
     },
     {
       "id": "assess-context",
@@ -4638,7 +4638,7 @@
         "center",
         "coordinate-reasoning"
       ],
-      "path": "morphic/assess-context/SKILL.md"
+      "path": "assess-context/SKILL.md"
     },
     {
       "id": "athanor",
@@ -4668,7 +4668,7 @@
         "adapt-architecture",
         "review-software-architecture"
       ],
-      "path": "alchemy/athanor/SKILL.md"
+      "path": "athanor/SKILL.md"
     },
     {
       "id": "transmute",
@@ -4692,7 +4692,7 @@
         "review-software-architecture",
         "serialize-data-formats"
       ],
-      "path": "alchemy/transmute/SKILL.md"
+      "path": "transmute/SKILL.md"
     },
     {
       "id": "chrysopoeia",
@@ -4716,7 +4716,7 @@
         "review-software-architecture",
         "review-data-analysis"
       ],
-      "path": "alchemy/chrysopoeia/SKILL.md"
+      "path": "chrysopoeia/SKILL.md"
     },
     {
       "id": "grade-tcg-card",
@@ -4744,7 +4744,7 @@
         "manage-tcg-collection",
         "meditate"
       ],
-      "path": "tcg/grade-tcg-card/SKILL.md"
+      "path": "grade-tcg-card/SKILL.md"
     },
     {
       "id": "build-tcg-deck",
@@ -4768,7 +4768,7 @@
         "grade-tcg-card",
         "manage-tcg-collection"
       ],
-      "path": "tcg/build-tcg-deck/SKILL.md"
+      "path": "build-tcg-deck/SKILL.md"
     },
     {
       "id": "manage-tcg-collection",
@@ -4793,7 +4793,7 @@
         "grade-tcg-card",
         "build-tcg-deck"
       ],
-      "path": "tcg/manage-tcg-collection/SKILL.md"
+      "path": "manage-tcg-collection/SKILL.md"
     },
     {
       "id": "assess-ip-landscape",
@@ -4818,7 +4818,7 @@
         "review-research",
         "conduct-gxp-audit"
       ],
-      "path": "intellectual-property/assess-ip-landscape/SKILL.md"
+      "path": "assess-ip-landscape/SKILL.md"
     },
     {
       "id": "search-prior-art",
@@ -4842,7 +4842,7 @@
         "review-research",
         "security-audit-codebase"
       ],
-      "path": "intellectual-property/search-prior-art/SKILL.md"
+      "path": "search-prior-art/SKILL.md"
     },
     {
       "id": "cultivate-bonsai",
@@ -4868,7 +4868,7 @@
         "heal",
         "plan-garden-calendar"
       ],
-      "path": "gardening/cultivate-bonsai/SKILL.md"
+      "path": "cultivate-bonsai/SKILL.md"
     },
     {
       "id": "prepare-soil",
@@ -4895,7 +4895,7 @@
         "forage-plants",
         "make-fire"
       ],
-      "path": "gardening/prepare-soil/SKILL.md"
+      "path": "prepare-soil/SKILL.md"
     },
     {
       "id": "plan-garden-calendar",
@@ -4921,7 +4921,7 @@
         "meditate",
         "maintain-hand-tools"
       ],
-      "path": "gardening/plan-garden-calendar/SKILL.md"
+      "path": "plan-garden-calendar/SKILL.md"
     },
     {
       "id": "read-garden",
@@ -4947,7 +4947,7 @@
         "plan-garden-calendar",
         "remote-viewing"
       ],
-      "path": "gardening/read-garden/SKILL.md"
+      "path": "read-garden/SKILL.md"
     },
     {
       "id": "maintain-hand-tools",
@@ -4972,7 +4972,7 @@
         "plan-garden-calendar",
         "meditate"
       ],
-      "path": "gardening/maintain-hand-tools/SKILL.md"
+      "path": "maintain-hand-tools/SKILL.md"
     },
     {
       "id": "scaffold-shiny-app",
@@ -4998,7 +4998,7 @@
         "create-r-package",
         "manage-renv-dependencies"
       ],
-      "path": "shiny/scaffold-shiny-app/SKILL.md"
+      "path": "scaffold-shiny-app/SKILL.md"
     },
     {
       "id": "build-shiny-module",
@@ -5021,7 +5021,7 @@
         "design-shiny-ui",
         "optimize-shiny-performance"
       ],
-      "path": "shiny/build-shiny-module/SKILL.md"
+      "path": "build-shiny-module/SKILL.md"
     },
     {
       "id": "test-shiny-app",
@@ -5045,7 +5045,7 @@
         "write-testthat-tests",
         "setup-github-actions-ci"
       ],
-      "path": "shiny/test-shiny-app/SKILL.md"
+      "path": "test-shiny-app/SKILL.md"
     },
     {
       "id": "deploy-shiny-app",
@@ -5070,7 +5070,7 @@
         "setup-github-actions-ci",
         "optimize-shiny-performance"
       ],
-      "path": "shiny/deploy-shiny-app/SKILL.md"
+      "path": "deploy-shiny-app/SKILL.md"
     },
     {
       "id": "optimize-shiny-performance",
@@ -5095,7 +5095,7 @@
         "deploy-shiny-app",
         "test-shiny-app"
       ],
-      "path": "shiny/optimize-shiny-performance/SKILL.md"
+      "path": "optimize-shiny-performance/SKILL.md"
     },
     {
       "id": "design-shiny-ui",
@@ -5122,7 +5122,7 @@
         "review-web-design",
         "review-ux-ui"
       ],
-      "path": "shiny/design-shiny-ui/SKILL.md"
+      "path": "design-shiny-ui/SKILL.md"
     },
     {
       "id": "deploy-shinyproxy",
@@ -5147,7 +5147,7 @@
         "create-dockerfile",
         "create-r-dockerfile"
       ],
-      "path": "shiny/deploy-shinyproxy/SKILL.md"
+      "path": "deploy-shinyproxy/SKILL.md"
     },
     {
       "id": "basic-obedience",
@@ -5168,7 +5168,7 @@
       "related": [
         "behavioral-modification"
       ],
-      "path": "animal-training/basic-obedience/SKILL.md"
+      "path": "basic-obedience/SKILL.md"
     },
     {
       "id": "behavioral-modification",
@@ -5190,7 +5190,7 @@
       "related": [
         "basic-obedience"
       ],
-      "path": "animal-training/behavioral-modification/SKILL.md"
+      "path": "behavioral-modification/SKILL.md"
     },
     {
       "id": "fungi-identification",
@@ -5213,7 +5213,7 @@
         "mushroom-cultivation",
         "forage-plants"
       ],
-      "path": "mycology/fungi-identification/SKILL.md"
+      "path": "fungi-identification/SKILL.md"
     },
     {
       "id": "mushroom-cultivation",
@@ -5236,7 +5236,7 @@
         "fungi-identification",
         "prepare-soil"
       ],
-      "path": "mycology/mushroom-cultivation/SKILL.md"
+      "path": "mushroom-cultivation/SKILL.md"
     },
     {
       "id": "mineral-identification",
@@ -5258,7 +5258,7 @@
       "related": [
         "gold-washing"
       ],
-      "path": "prospecting/mineral-identification/SKILL.md"
+      "path": "mineral-identification/SKILL.md"
     },
     {
       "id": "gold-washing",
@@ -5280,7 +5280,7 @@
       "related": [
         "mineral-identification"
       ],
-      "path": "prospecting/gold-washing/SKILL.md"
+      "path": "gold-washing/SKILL.md"
     },
     {
       "id": "paper-making",
@@ -5302,7 +5302,7 @@
       "related": [
         "forage-plants"
       ],
-      "path": "crafting/paper-making/SKILL.md"
+      "path": "paper-making/SKILL.md"
     },
     {
       "id": "catalog-collection",
@@ -5327,7 +5327,7 @@
         "curate-collection",
         "manage-memory"
       ],
-      "path": "library-science/catalog-collection/SKILL.md"
+      "path": "catalog-collection/SKILL.md"
     },
     {
       "id": "preserve-materials",
@@ -5351,7 +5351,7 @@
         "curate-collection",
         "maintain-hand-tools"
       ],
-      "path": "library-science/preserve-materials/SKILL.md"
+      "path": "preserve-materials/SKILL.md"
     },
     {
       "id": "curate-collection",
@@ -5374,7 +5374,7 @@
         "preserve-materials",
         "review-research"
       ],
-      "path": "library-science/curate-collection/SKILL.md"
+      "path": "curate-collection/SKILL.md"
     },
     {
       "id": "plan-tour-route",
@@ -5397,7 +5397,7 @@
         "plan-hiking-tour",
         "assess-trail-conditions"
       ],
-      "path": "travel/plan-tour-route/SKILL.md"
+      "path": "plan-tour-route/SKILL.md"
     },
     {
       "id": "create-spatial-visualization",
@@ -5421,7 +5421,7 @@
         "plan-hiking-tour",
         "create-quarto-report"
       ],
-      "path": "travel/create-spatial-visualization/SKILL.md"
+      "path": "create-spatial-visualization/SKILL.md"
     },
     {
       "id": "generate-tour-report",
@@ -5445,7 +5445,7 @@
         "plan-hiking-tour",
         "check-hiking-gear"
       ],
-      "path": "travel/generate-tour-report/SKILL.md"
+      "path": "generate-tour-report/SKILL.md"
     },
     {
       "id": "plan-hiking-tour",
@@ -5470,7 +5470,7 @@
         "create-spatial-visualization",
         "generate-tour-report"
       ],
-      "path": "travel/plan-hiking-tour/SKILL.md"
+      "path": "plan-hiking-tour/SKILL.md"
     },
     {
       "id": "check-hiking-gear",
@@ -5494,7 +5494,7 @@
         "make-fire",
         "purify-water"
       ],
-      "path": "travel/check-hiking-gear/SKILL.md"
+      "path": "check-hiking-gear/SKILL.md"
     },
     {
       "id": "assess-trail-conditions",
@@ -5518,7 +5518,7 @@
         "plan-tour-route",
         "create-spatial-visualization"
       ],
-      "path": "travel/assess-trail-conditions/SKILL.md"
+      "path": "assess-trail-conditions/SKILL.md"
     },
     {
       "id": "plan-eu-relocation",
@@ -5540,7 +5540,7 @@
         "check-relocation-documents",
         "navigate-dach-bureaucracy"
       ],
-      "path": "relocation/plan-eu-relocation/SKILL.md"
+      "path": "plan-eu-relocation/SKILL.md"
     },
     {
       "id": "check-relocation-documents",
@@ -5561,7 +5561,7 @@
         "plan-eu-relocation",
         "navigate-dach-bureaucracy"
       ],
-      "path": "relocation/check-relocation-documents/SKILL.md"
+      "path": "check-relocation-documents/SKILL.md"
     },
     {
       "id": "navigate-dach-bureaucracy",
@@ -5584,7 +5584,7 @@
         "plan-eu-relocation",
         "check-relocation-documents"
       ],
-      "path": "relocation/navigate-dach-bureaucracy/SKILL.md"
+      "path": "navigate-dach-bureaucracy/SKILL.md"
     },
     {
       "id": "design-a2a-agent-card",
@@ -5607,7 +5607,7 @@
         "build-custom-mcp-server",
         "configure-mcp-server"
       ],
-      "path": "a2a-protocol/design-a2a-agent-card/SKILL.md"
+      "path": "design-a2a-agent-card/SKILL.md"
     },
     {
       "id": "implement-a2a-server",
@@ -5632,7 +5632,7 @@
         "scaffold-mcp-server",
         "configure-ingress-networking"
       ],
-      "path": "a2a-protocol/implement-a2a-server/SKILL.md"
+      "path": "implement-a2a-server/SKILL.md"
     },
     {
       "id": "test-a2a-interop",
@@ -5656,7 +5656,7 @@
         "troubleshoot-mcp-connection",
         "review-software-architecture"
       ],
-      "path": "a2a-protocol/test-a2a-interop/SKILL.md"
+      "path": "test-a2a-interop/SKILL.md"
     },
     {
       "id": "construct-geometric-figure",
@@ -5678,7 +5678,7 @@
         "prove-geometric-theorem",
         "skill-creation"
       ],
-      "path": "geometry/construct-geometric-figure/SKILL.md"
+      "path": "construct-geometric-figure/SKILL.md"
     },
     {
       "id": "solve-trigonometric-problem",
@@ -5701,7 +5701,7 @@
         "prove-geometric-theorem",
         "skill-creation"
       ],
-      "path": "geometry/solve-trigonometric-problem/SKILL.md"
+      "path": "solve-trigonometric-problem/SKILL.md"
     },
     {
       "id": "prove-geometric-theorem",
@@ -5724,7 +5724,7 @@
         "solve-trigonometric-problem",
         "skill-creation"
       ],
-      "path": "geometry/prove-geometric-theorem/SKILL.md"
+      "path": "prove-geometric-theorem/SKILL.md"
     },
     {
       "id": "analyze-prime-numbers",
@@ -5746,7 +5746,7 @@
         "explore-diophantine-equations",
         "formulate-quantum-problem"
       ],
-      "path": "number-theory/analyze-prime-numbers/SKILL.md"
+      "path": "analyze-prime-numbers/SKILL.md"
     },
     {
       "id": "solve-modular-arithmetic",
@@ -5768,7 +5768,7 @@
         "explore-diophantine-equations",
         "prove-geometric-theorem"
       ],
-      "path": "number-theory/solve-modular-arithmetic/SKILL.md"
+      "path": "solve-modular-arithmetic/SKILL.md"
     },
     {
       "id": "explore-diophantine-equations",
@@ -5790,7 +5790,7 @@
         "solve-modular-arithmetic",
         "derive-theoretical-result"
       ],
-      "path": "number-theory/explore-diophantine-equations/SKILL.md"
+      "path": "explore-diophantine-equations/SKILL.md"
     },
     {
       "id": "model-markov-chain",
@@ -5807,7 +5807,7 @@
         "stationary-distribution"
       ],
       "related": [],
-      "path": "stochastic-processes/model-markov-chain/SKILL.md"
+      "path": "model-markov-chain/SKILL.md"
     },
     {
       "id": "fit-hidden-markov-model",
@@ -5825,7 +5825,7 @@
         "em-algorithm"
       ],
       "related": [],
-      "path": "stochastic-processes/fit-hidden-markov-model/SKILL.md"
+      "path": "fit-hidden-markov-model/SKILL.md"
     },
     {
       "id": "simulate-stochastic-process",
@@ -5843,7 +5843,7 @@
         "monte-carlo"
       ],
       "related": [],
-      "path": "stochastic-processes/simulate-stochastic-process/SKILL.md"
+      "path": "simulate-stochastic-process/SKILL.md"
     },
     {
       "id": "formulate-quantum-problem",
@@ -5864,7 +5864,7 @@
         "derive-theoretical-result",
         "survey-theoretical-literature"
       ],
-      "path": "theoretical-science/formulate-quantum-problem/SKILL.md"
+      "path": "formulate-quantum-problem/SKILL.md"
     },
     {
       "id": "derive-theoretical-result",
@@ -5886,7 +5886,7 @@
         "formulate-quantum-problem",
         "survey-theoretical-literature"
       ],
-      "path": "theoretical-science/derive-theoretical-result/SKILL.md"
+      "path": "derive-theoretical-result/SKILL.md"
     },
     {
       "id": "survey-theoretical-literature",
@@ -5909,7 +5909,7 @@
         "derive-theoretical-result",
         "review-research"
       ],
-      "path": "theoretical-science/survey-theoretical-literature/SKILL.md"
+      "path": "survey-theoretical-literature/SKILL.md"
     },
     {
       "id": "fit-drift-diffusion-model",
@@ -5932,7 +5932,7 @@
         "implement-diffusion-network",
         "write-testthat-tests"
       ],
-      "path": "diffusion/fit-drift-diffusion-model/SKILL.md"
+      "path": "fit-drift-diffusion-model/SKILL.md"
     },
     {
       "id": "implement-diffusion-network",
@@ -5954,7 +5954,7 @@
         "analyze-diffusion-dynamics",
         "fit-drift-diffusion-model"
       ],
-      "path": "diffusion/implement-diffusion-network/SKILL.md"
+      "path": "implement-diffusion-network/SKILL.md"
     },
     {
       "id": "analyze-diffusion-dynamics",
@@ -5977,7 +5977,7 @@
         "implement-diffusion-network",
         "write-testthat-tests"
       ],
-      "path": "diffusion/analyze-diffusion-dynamics/SKILL.md"
+      "path": "analyze-diffusion-dynamics/SKILL.md"
     },
     {
       "id": "formulate-herbal-remedy",
@@ -6005,7 +6005,7 @@
         "prepare-soil",
         "maintain-hand-tools"
       ],
-      "path": "hildegard/formulate-herbal-remedy/SKILL.md"
+      "path": "formulate-herbal-remedy/SKILL.md"
     },
     {
       "id": "assess-holistic-health",
@@ -6031,7 +6031,7 @@
         "heal",
         "plan-garden-calendar"
       ],
-      "path": "hildegard/assess-holistic-health/SKILL.md"
+      "path": "assess-holistic-health/SKILL.md"
     },
     {
       "id": "compose-sacred-music",
@@ -6058,7 +6058,7 @@
         "meditate",
         "formulate-herbal-remedy"
       ],
-      "path": "hildegard/compose-sacred-music/SKILL.md"
+      "path": "compose-sacred-music/SKILL.md"
     },
     {
       "id": "practice-viriditas",
@@ -6087,7 +6087,7 @@
         "cultivate-bonsai",
         "plan-garden-calendar"
       ],
-      "path": "hildegard/practice-viriditas/SKILL.md"
+      "path": "practice-viriditas/SKILL.md"
     },
     {
       "id": "consult-natural-history",
@@ -6114,7 +6114,7 @@
         "heal",
         "prepare-soil"
       ],
-      "path": "hildegard/consult-natural-history/SKILL.md"
+      "path": "consult-natural-history/SKILL.md"
     },
     {
       "id": "clean-codebase",
@@ -6130,7 +6130,7 @@
         "repair-broken-references",
         "escalate-issues"
       ],
-      "path": "maintenance/clean-codebase/SKILL.md"
+      "path": "clean-codebase/SKILL.md"
     },
     {
       "id": "tidy-project-structure",
@@ -6146,7 +6146,7 @@
         "repair-broken-references",
         "escalate-issues"
       ],
-      "path": "maintenance/tidy-project-structure/SKILL.md"
+      "path": "tidy-project-structure/SKILL.md"
     },
     {
       "id": "repair-broken-references",
@@ -6162,7 +6162,7 @@
         "tidy-project-structure",
         "escalate-issues"
       ],
-      "path": "maintenance/repair-broken-references/SKILL.md"
+      "path": "repair-broken-references/SKILL.md"
     },
     {
       "id": "escalate-issues",
@@ -6178,7 +6178,7 @@
         "tidy-project-structure",
         "repair-broken-references"
       ],
-      "path": "maintenance/escalate-issues/SKILL.md"
+      "path": "escalate-issues/SKILL.md"
     },
     {
       "id": "create-3d-scene",
@@ -6198,7 +6198,7 @@
         "camera"
       ],
       "related": [],
-      "path": "blender/create-3d-scene/SKILL.md"
+      "path": "create-3d-scene/SKILL.md"
     },
     {
       "id": "script-blender-automation",
@@ -6218,7 +6218,7 @@
         "add-on"
       ],
       "related": [],
-      "path": "blender/script-blender-automation/SKILL.md"
+      "path": "script-blender-automation/SKILL.md"
     },
     {
       "id": "render-blender-output",
@@ -6238,7 +6238,7 @@
         "output"
       ],
       "related": [],
-      "path": "blender/render-blender-output/SKILL.md"
+      "path": "render-blender-output/SKILL.md"
     },
     {
       "id": "create-2d-composition",
@@ -6258,7 +6258,7 @@
         "batch-processing"
       ],
       "related": [],
-      "path": "visualization/create-2d-composition/SKILL.md"
+      "path": "create-2d-composition/SKILL.md"
     },
     {
       "id": "render-publication-graphic",
@@ -6278,7 +6278,7 @@
         "digital"
       ],
       "related": [],
-      "path": "visualization/render-publication-graphic/SKILL.md"
+      "path": "render-publication-graphic/SKILL.md"
     },
     {
       "id": "prepare-print-model",
@@ -6297,7 +6297,7 @@
         "supports"
       ],
       "related": [],
-      "path": "3d-printing/prepare-print-model/SKILL.md"
+      "path": "prepare-print-model/SKILL.md"
     },
     {
       "id": "select-print-material",
@@ -6316,7 +6316,7 @@
         "properties"
       ],
       "related": [],
-      "path": "3d-printing/select-print-material/SKILL.md"
+      "path": "select-print-material/SKILL.md"
     },
     {
       "id": "troubleshoot-print-issues",
@@ -6335,7 +6335,7 @@
         "failures"
       ],
       "related": [],
-      "path": "3d-printing/troubleshoot-print-issues/SKILL.md"
+      "path": "troubleshoot-print-issues/SKILL.md"
     },
     {
       "id": "identify-gemstone",
@@ -6357,7 +6357,7 @@
         "appraise-gemstone",
         "mineral-identification"
       ],
-      "path": "lapidary/identify-gemstone/SKILL.md"
+      "path": "identify-gemstone/SKILL.md"
     },
     {
       "id": "cut-gemstone",
@@ -6378,7 +6378,7 @@
         "identify-gemstone",
         "polish-gemstone"
       ],
-      "path": "lapidary/cut-gemstone/SKILL.md"
+      "path": "cut-gemstone/SKILL.md"
     },
     {
       "id": "polish-gemstone",
@@ -6399,7 +6399,7 @@
         "cut-gemstone",
         "appraise-gemstone"
       ],
-      "path": "lapidary/polish-gemstone/SKILL.md"
+      "path": "polish-gemstone/SKILL.md"
     },
     {
       "id": "appraise-gemstone",
@@ -6420,7 +6420,7 @@
         "identify-gemstone",
         "grade-tcg-card"
       ],
-      "path": "lapidary/appraise-gemstone/SKILL.md"
+      "path": "appraise-gemstone/SKILL.md"
     },
     {
       "id": "apply-semantic-versioning",
@@ -6443,7 +6443,7 @@
         "commit-changes",
         "create-github-release"
       ],
-      "path": "versioning/apply-semantic-versioning/SKILL.md"
+      "path": "apply-semantic-versioning/SKILL.md"
     },
     {
       "id": "manage-changelog",
@@ -6466,7 +6466,7 @@
         "release-package-version",
         "create-github-release"
       ],
-      "path": "versioning/manage-changelog/SKILL.md"
+      "path": "manage-changelog/SKILL.md"
     },
     {
       "id": "plan-release-cycle",
@@ -6489,7 +6489,7 @@
         "draft-project-charter",
         "generate-status-report"
       ],
-      "path": "versioning/plan-release-cycle/SKILL.md"
+      "path": "plan-release-cycle/SKILL.md"
     },
     {
       "id": "audit-dependency-versions",
@@ -6513,7 +6513,7 @@
         "manage-changelog",
         "plan-release-cycle"
       ],
-      "path": "versioning/audit-dependency-versions/SKILL.md"
+      "path": "audit-dependency-versions/SKILL.md"
     },
     {
       "id": "agent:r-developer",

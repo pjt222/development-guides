@@ -1,1 +1,0 @@
-../../../skills/number-theory/analyze-prime-numbers/SKILL.md

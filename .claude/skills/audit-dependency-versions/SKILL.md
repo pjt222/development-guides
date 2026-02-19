@@ -1,1 +1,0 @@
-../../../skills/versioning/audit-dependency-versions/SKILL.md
