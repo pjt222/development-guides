@@ -4,6 +4,9 @@ description: >
   Draft a project charter that defines scope, stakeholders, success criteria,
   and initial risk register. Covers problem statement, RACI matrix, milestone
   planning, and scope boundaries for both agile and classic methodologies.
+  Use when kicking off a new project or initiative, formalizing scope after
+  an informal start, aligning stakeholders before detailed planning begins,
+  or transitioning from discovery to active project work.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

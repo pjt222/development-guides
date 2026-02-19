@@ -5,7 +5,10 @@ description: >
   language-specific comment prefix. Covers annotation syntax, skeleton
   generation via put_generate(), multiline annotations, .internal
   variables, and validation. Supports 30+ languages with automatic
-  comment prefix detection.
+  comment prefix detection. Use after analyzing a codebase and having an
+  annotation plan, when adding workflow documentation to new or existing
+  source files, or when documenting data pipelines, ETL processes, or
+  multi-step computations.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

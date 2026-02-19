@@ -3,7 +3,11 @@ name: forage-solutions
 description: >
   AI solution exploration using ant colony optimization — deploying scout
   hypotheses, reinforcing promising approaches, detecting diminishing returns,
-  and knowing when to abandon a strategy.
+  and knowing when to abandon a strategy. Use when facing a problem with
+  multiple plausible approaches and no clear winner, when the first approach
+  is not working but alternatives are unclear, when debugging with no obvious
+  root cause requiring parallel hypothesis investigation, or when previous
+  attempts have converged prematurely on a suboptimal approach.
 license: MIT
 allowed-tools: Read, Glob, Grep
 metadata:

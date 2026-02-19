@@ -3,7 +3,10 @@ name: manage-git-branches
 description: >
   Create, track, switch, sync, and clean up Git branches. Covers
   naming conventions, safe branch switching with stash, upstream
-  synchronization, and pruning merged branches.
+  synchronization, and pruning merged branches. Use when starting work
+  on a new feature or bug fix, switching between tasks on different
+  branches, keeping a feature branch up to date with main, or cleaning
+  up branches after merging pull requests.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

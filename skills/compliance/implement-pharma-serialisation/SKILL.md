@@ -4,7 +4,10 @@ description: >
   Implement pharmaceutical serialisation and track-and-trace systems compliant
   with EU FMD, US DSCSA, and other global regulations. Covers unique identifier
   generation, aggregation hierarchy, EPCIS data exchange, and verification
-  endpoint integration.
+  endpoint integration. Use when implementing serialisation for a new product
+  launch, integrating with the EMVS/NMVS, designing DSCSA-compliant transaction
+  exchange, building an EPCIS event repository, or extending serialisation to
+  additional markets (China, Brazil, Russia).
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

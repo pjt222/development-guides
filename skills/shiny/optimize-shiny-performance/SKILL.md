@@ -3,7 +3,10 @@ name: optimize-shiny-performance
 description: >
   Profile and optimize Shiny application performance using profvis,
   bindCache, memoise, async/promises, debounce/throttle, and
-  ExtendedTask for long-running computations.
+  ExtendedTask for long-running computations. Use when the app feels slow
+  or unresponsive during user interaction, when server resources are exhausted
+  under concurrent load, when specific operations create bottlenecks, or when
+  preparing an app for production deployment with many concurrent users.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

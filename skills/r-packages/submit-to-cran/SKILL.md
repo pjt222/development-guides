@@ -4,7 +4,9 @@ description: >
   Complete procedure for submitting an R package to CRAN, including
   pre-submission checks (local, win-builder, R-hub), cran-comments.md
   preparation, URL and spell checking, and the submission itself.
-  Covers first submissions and updates.
+  Covers first submissions and updates. Use when a package is ready for
+  initial CRAN release, when submitting an updated version of an existing
+  CRAN package, or when re-submitting after receiving CRAN reviewer feedback.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

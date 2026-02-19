@@ -5,7 +5,10 @@ description: >
   engagement. Maps Self-Determination Theory (autonomy, competence, relatedness)
   and Flow theory to AI reasoning: identifying creative freedom in approach,
   calibrating challenge to capability, connecting to purpose, and sustaining
-  invested attention through obstacles.
+  invested attention through obstacles. Use when beginning a task that feels
+  routine and deserves more than minimum execution, when responses are becoming
+  formulaic, before a complex creative task, or when returning to a long-running
+  project where initial enthusiasm has faded.
 license: MIT
 allowed-tools: Read
 metadata:

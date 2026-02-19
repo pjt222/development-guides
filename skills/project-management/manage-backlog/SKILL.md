@@ -4,6 +4,10 @@ description: >
   Create and maintain a product or project backlog with prioritized items,
   acceptance criteria, and estimates. Covers user story writing, MoSCoW
   prioritization, backlog grooming, item splitting, and status tracking.
+  Use when starting a new project and converting scope into actionable items,
+  during ongoing grooming before sprint planning, re-prioritizing after
+  stakeholder feedback or scope changes, or splitting oversized items into
+  implementable pieces.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

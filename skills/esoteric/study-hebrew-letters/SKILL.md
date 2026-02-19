@@ -4,7 +4,12 @@ description: >
   Study the twenty-two Hebrew letters as mystical symbols. Covers
   letter forms, numerical values, elemental/planetary/zodiacal
   correspondences, Sefer Yetzirah attributions, and contemplative
-  letter meditation techniques.
+  letter meditation techniques. Use when studying a specific letter's
+  mystical dimensions beyond its linguistic function, learning the
+  Sefer Yetzirah classification of mothers, doubles, and simples,
+  needing correspondences for a letter's element, planet, or zodiac
+  sign, practicing Hebrew letter visualization or chanting meditation,
+  or studying Tree of Life paths and their assigned letters.
 license: MIT
 allowed-tools: Read
 metadata:

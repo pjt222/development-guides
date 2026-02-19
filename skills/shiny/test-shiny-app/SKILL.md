@@ -3,7 +3,10 @@ name: test-shiny-app
 description: >
   Test Shiny applications using shinytest2 for end-to-end browser tests
   and testServer() for unit-testing module server logic. Covers snapshot
-  testing, CI integration, and mocking external services.
+  testing, CI integration, and mocking external services. Use when adding
+  tests to an existing Shiny application, setting up a testing strategy for
+  a new Shiny project, writing regression tests before refactoring Shiny
+  code, or integrating Shiny app tests into CI/CD pipelines.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

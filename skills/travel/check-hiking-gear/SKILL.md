@@ -4,6 +4,10 @@ description: >
   Generate and verify a hiking gear checklist optimized for season, duration,
   difficulty, and group size with weight management. Covers the ten essentials,
   layering systems, navigation tools, emergency kit, and group gear distribution.
+  Use when preparing for a day hike or multi-day trekking tour, packing for a
+  group and distributing shared gear, adapting a standard gear list to specific
+  conditions, reviewing gear before departure, or managing pack weight for long
+  or technical routes.
 license: MIT
 allowed-tools: Read Grep Glob
 metadata:

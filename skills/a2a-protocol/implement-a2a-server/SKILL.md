@@ -3,7 +3,10 @@ name: implement-a2a-server
 description: >
   Implement a JSON-RPC 2.0 A2A server with full task lifecycle management
   (submitted/working/completed/failed/canceled/input-required), SSE streaming,
-  and push notifications.
+  and push notifications. Use when implementing an agent that participates in
+  multi-agent A2A workflows, building a backend for an Agent Card, adding A2A
+  protocol support to an existing agent or service, or deploying an agent that
+  must interoperate with other A2A-compliant agents.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob WebFetch
 metadata:

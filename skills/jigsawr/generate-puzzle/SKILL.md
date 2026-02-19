@@ -4,7 +4,10 @@ description: >
   Generate jigsaw puzzles via generate_puzzle() or geom_puzzle_*() with
   parameter validation against inst/config.yml. Supports rectangular,
   hexagonal, concentric, voronoi, and snic puzzle types with configurable
-  grid, size, seed, offset, and layout parameters.
+  grid, size, seed, offset, and layout parameters. Use when creating puzzle
+  SVG files for a specific type and configuration, testing generation with
+  different parameters, generating sample output for documentation or demos,
+  or creating ggplot2 puzzle visualizations.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

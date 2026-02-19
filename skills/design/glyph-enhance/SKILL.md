@@ -4,7 +4,10 @@ description: >
   Improve an existing R-based pictogram glyph for the visualization layer.
   Covers visual audit of the current glyph, diagnosis of specific issues
   (proportions, readability, glow balance), targeted modifications to the
-  glyph function, re-rendering, and before/after comparison.
+  glyph function, re-rendering, and before/after comparison. Use when a glyph
+  renders poorly at small sizes, its visual metaphor is unclear, it has
+  proportion issues, the neon glow effect is unbalanced, or after adding new
+  palettes or changing the rendering pipeline.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

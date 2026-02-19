@@ -3,7 +3,11 @@ name: plan-release-cycle
 description: >
   Plan a software release cycle with milestones, feature freezes,
   release candidates, and go/no-go criteria. Covers calendar-based
-  and feature-based release strategies.
+  and feature-based release strategies. Use when starting planning for a
+  major or minor version release, transitioning from ad-hoc to structured
+  release cadence, coordinating a release across multiple teams or components,
+  defining quality gates for a regulated project, or planning the first
+  public release (v1.0.0) of a project.
 license: MIT
 allowed-tools: Read, Write, Grep, Glob
 metadata:

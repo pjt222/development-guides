@@ -4,7 +4,10 @@ description: >
   Implement cloud cost optimization strategies for Kubernetes workloads using tools like
   Kubecost for visibility, right-sizing recommendations, horizontal and vertical pod
   autoscaling, spot/preemptible instances, and resource quotas. Covers cost allocation,
-  showback reporting, and continuous optimization practices.
+  showback reporting, and continuous optimization practices. Use when cloud costs are
+  growing without proportional business value, when resource requests are misaligned with
+  actual usage, when manual scaling leads to over-provisioning, or when implementing
+  showback and chargeback for internal cost accountability.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

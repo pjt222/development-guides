@@ -3,7 +3,10 @@ name: configure-mcp-server
 description: >
   Configure MCP (Model Context Protocol) servers for Claude Code and
   Claude Desktop. Covers mcptools setup, Hugging Face integration,
-  WSL path handling, and multi-client configuration.
+  WSL path handling, and multi-client configuration. Use when setting up
+  Claude Code to connect to R via mcptools, configuring Claude Desktop
+  with MCP servers, adding Hugging Face or other remote MCP servers, or
+  troubleshooting MCP connectivity between clients and servers.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

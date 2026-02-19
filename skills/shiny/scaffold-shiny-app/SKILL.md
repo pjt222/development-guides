@@ -4,6 +4,10 @@ description: >
   Scaffold a new Shiny application using golem (production R package),
   rhino (enterprise), or vanilla (quick prototype) structure. Covers
   framework selection, project initialization, and first module creation.
+  Use when starting a new interactive web application in R, creating a
+  dashboard or data explorer prototype, setting up a production Shiny app as
+  an R package with golem, or bootstrapping an enterprise Shiny project with
+  rhino.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

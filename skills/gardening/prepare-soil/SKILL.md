@@ -5,7 +5,10 @@ description: >
   biodynamic preparations. Covers jar test, spade test, earthworm count,
   amendment by soil type (clay, sandy, depleted, compacted), composting methods
   (hot, cold, vermicomposting), no-till practices, cover cropping, and
-  biodynamic preparations 500-508. Uses heal checkpoint post-amendment.
+  biodynamic preparations 500-508. Use when starting a new garden bed, when
+  plants underperform despite adequate water and light, when transitioning to
+  organic or biodynamic practice, when soil has become compacted or depleted,
+  or when building a composting system.
 license: MIT
 allowed-tools: Read
 metadata:

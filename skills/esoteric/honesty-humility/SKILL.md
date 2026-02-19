@@ -5,8 +5,11 @@ description: >
   avoiding overconfidence, and communicating what is known, unknown, and
   uncertain with proportional confidence. Maps the HEXACO personality
   dimension to AI reasoning: truthful calibration of confidence, proactive
-  disclosure of gaps, and resistance to the temptation to appear more
-  certain than warranted.
+  disclosure of gaps, and resistance to the temptation to appear more certain
+  than warranted. Use before presenting a conclusion, when answering questions
+  where knowledge is partial or inferred, after noticing a temptation to
+  state uncertain information as certain, or when a user is making decisions
+  based on provided information.
 license: MIT
 allowed-tools: Read
 metadata:

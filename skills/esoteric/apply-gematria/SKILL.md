@@ -3,7 +3,11 @@ name: apply-gematria
 description: >
   Compute and analyze gematria (Hebrew numerical values) using standard,
   ordinal, and reduced methods. Covers word-to-number conversion,
-  isopsephy comparisons, and interpretive frameworks.
+  isopsephy comparisons, and interpretive frameworks. Use when computing
+  the numerical value of a Hebrew word or phrase, comparing two words for
+  shared gematria values, studying a biblical verse or divine name for
+  numerical correspondences, or connecting a numerical result to its
+  position on the Tree of Life.
 license: MIT
 allowed-tools: Read
 metadata:

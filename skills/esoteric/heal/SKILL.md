@@ -5,7 +5,10 @@ description: >
   and integration. Maps healing modalities to AI-internal processes:
   memory foundation, reasoning clarity, tool use accuracy, communication
   alignment, and creative coherence. Covers assessment triage, subsystem
-  scanning, drift correction, and memory integration.
+  scanning, drift correction, and memory integration. Use mid-session when
+  responses feel formulaic or disconnected, after a chain of errors suggesting
+  subsystem drift, when context overload may have staled earlier assumptions,
+  or as proactive maintenance between complex tasks.
 license: MIT
 allowed-tools: Read, Write
 metadata:

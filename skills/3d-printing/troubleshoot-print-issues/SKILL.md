@@ -1,8 +1,13 @@
 ---
 name: troubleshoot-print-issues
 description: >
-  Diagnose and fix common 3D printing failures through systematic symptom analysis.
-  Covers adhesion, stringing, layer shifts, warping, and under/over-extrusion issues.
+  Diagnose and fix common 3D printing failures through systematic symptom
+  analysis. Covers adhesion, stringing, layer shifts, warping, and
+  under/over-extrusion issues. Use when a print fails during the first layer
+  or partway through, finished prints have quality defects (stringing, blobs,
+  gaps), dimensional accuracy issues occur (warping, elephant foot), layer
+  adhesion fails, or new material or hardware changes are causing inconsistent
+  results.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
 metadata:

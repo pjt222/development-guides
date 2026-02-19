@@ -3,7 +3,10 @@ name: implement-gitops-workflow
 description: >
   Implement GitOps continuous delivery using Argo CD or Flux with app-of-apps pattern,
   automated sync policies, drift detection, and multi-environment promotion. Manage
-  Kubernetes deployments declaratively from Git with automated reconciliation.
+  Kubernetes deployments declaratively from Git with automated reconciliation. Use when
+  implementing declarative infrastructure management, migrating from imperative kubectl
+  commands to Git-driven deployments, setting up multi-environment promotion workflows,
+  enforcing code review gates for production, or meeting audit and compliance requirements.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

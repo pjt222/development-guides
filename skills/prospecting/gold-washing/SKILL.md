@@ -2,10 +2,12 @@
 name: gold-washing
 description: >
   Alluvial gold recovery using panning, sluicing, and classification.
-  Covers site reading (geological indicators, stream dynamics, pay
-  streak location), panning technique, sluice box operation, and
-  responsible extraction practices. Applicable to recreational and
-  small-scale prospecting in alluvial deposits.
+  Covers site reading (geological indicators, stream dynamics, pay streak
+  location), panning technique, sluice box operation, and responsible
+  extraction practices. Use when prospecting in an area with known or
+  suspected alluvial gold deposits, sampling a stream to test for gold
+  presence, maximizing recovery during recreational panning, or assessing a
+  site's gold potential before investing more effort.
 license: MIT
 allowed-tools: Read
 metadata:

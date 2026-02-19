@@ -4,7 +4,10 @@ description: >
   Configure Nginx as a web server and reverse proxy. Covers static file
   serving, reverse proxy to upstream services, SSL/TLS termination with
   Let's Encrypt, location blocks, load balancing, rate limiting, and
-  security headers.
+  security headers. Use when serving static files in production, reverse
+  proxying to backend services (Node.js, Python, R/Shiny), terminating
+  SSL/TLS, load balancing across instances, or adding rate limiting and
+  security headers to harden an endpoint.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

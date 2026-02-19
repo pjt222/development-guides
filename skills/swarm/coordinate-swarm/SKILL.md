@@ -4,7 +4,11 @@ description: >
   Apply collective intelligence coordination patterns — stigmergy, local rules,
   and quorum sensing — to organize distributed systems, teams, or workflows
   without centralized control. Covers signal design, agent autonomy boundaries,
-  emergent behavior cultivation, and feedback loop tuning.
+  emergent behavior cultivation, and feedback loop tuning. Use when designing
+  distributed systems without a coordination bottleneck, organizing teams that
+  must self-coordinate, building event-driven architectures with shared state
+  communication, or replacing fragile centralized orchestration with resilient
+  emergent coordination.
 license: MIT
 allowed-tools: Read
 metadata:

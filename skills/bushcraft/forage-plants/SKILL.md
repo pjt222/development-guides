@@ -5,7 +5,10 @@ description: >
   and deadly plant recognition, habitat reading, multi-feature identification
   methodology, the universal edibility test, sustainable harvesting practices,
   preparation methods, reaction monitoring, and building knowledge with
-  beginner-friendly universal species.
+  beginner-friendly universal species. Use when supplementing food supply in a
+  wilderness or survival setting, needing medicinal or utility plants, identifying
+  plants around camp for safety, or in long-term scenarios where foraging extends
+  available rations.
 license: MIT
 allowed-tools: Read
 metadata:

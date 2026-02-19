@@ -3,6 +3,9 @@ name: instrument-distributed-tracing
 description: >
   Instrument applications with OpenTelemetry for distributed tracing, including auto and manual
   instrumentation, context propagation, sampling strategies, and integration with Jaeger or Tempo.
+  Use when debugging latency issues in distributed systems, understanding request flow across
+  microservices, correlating traces with logs and metrics for root cause analysis, measuring
+  end-to-end latency, or migrating from legacy tracing systems to OpenTelemetry.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

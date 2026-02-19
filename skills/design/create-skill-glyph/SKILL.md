@@ -4,7 +4,10 @@ description: >
   Create R-based pictogram glyphs for skill icons in the visualization layer.
   Covers concept sketching, ggplot2 layer composition using the primitives library,
   color strategy, registration in glyphs.R and icon-manifest.json, rendering via
-  build-icons.R, and visual verification of the neon-glow output.
+  build-icons.R, and visual verification of the neon-glow output. Use when a new
+  skill has been added and needs a visual icon for the force-graph visualization,
+  an existing glyph needs replacement, or when batch-creating glyphs for a new
+  domain of skills.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

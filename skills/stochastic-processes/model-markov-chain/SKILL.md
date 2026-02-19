@@ -3,7 +3,11 @@ name: model-markov-chain
 description: >
   Build and analyze discrete or continuous Markov chains including transition
   matrix construction, state classification, stationary distribution computation,
-  and mean first passage times.
+  and mean first passage times. Use when modeling a memoryless system with
+  observed transition counts or rates, computing long-run steady-state
+  probabilities, determining expected hitting times or absorption probabilities,
+  classifying states as transient or recurrent, or building a foundation for
+  hidden Markov models or reinforcement learning MDPs.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

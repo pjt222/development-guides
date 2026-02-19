@@ -4,7 +4,9 @@ description: >
   Generate a project status report by reading existing artifacts (charter,
   backlog, sprint plan, WBS), calculating metrics, identifying blockers,
   and summarizing progress with RAG indicators for schedule, scope, budget,
-  and quality.
+  and quality. Use at the end of a sprint or reporting period, when stakeholders
+  request a health update, before steering committee or governance meetings,
+  or when a new blocker or risk materializes mid-project.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

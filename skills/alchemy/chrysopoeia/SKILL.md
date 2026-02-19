@@ -4,7 +4,10 @@ description: >
   Extract maximum value from existing code — performance optimization, API
   surface refinement, and dead weight elimination. The art of turning base code
   into gold through systematic identification and amplification of value-bearing
-  patterns.
+  patterns. Use when optimizing a working but sluggish codebase, refining an
+  API surface that has accumulated cruft, reducing bundle size or memory
+  footprint, or preparing code for open-source release — when code works
+  correctly but doesn't shine and needs polish rather than a full rewrite.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

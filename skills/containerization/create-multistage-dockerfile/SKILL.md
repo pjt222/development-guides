@@ -4,6 +4,10 @@ description: >
   Create multi-stage Dockerfiles that separate build and runtime environments
   for minimal production images. Covers builder/runtime stage separation,
   artifact copying, scratch/distroless/alpine targets, and size comparison.
+  Use when production images are too large, when build tools are included in
+  the final image, when you need separate dev and prod images from one
+  Dockerfile, or when deploying to constrained environments like edge or
+  serverless.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

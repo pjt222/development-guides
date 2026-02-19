@@ -3,7 +3,11 @@ name: analyze-diffusion-dynamics
 description: >
   Analyze the dynamics of diffusion processes using stochastic differential
   equations, Fokker-Planck equations, first-passage time distributions, and
-  parameter sensitivity analysis.
+  parameter sensitivity analysis. Use when deriving probability density
+  evolution for a continuous-time diffusion process, computing mean
+  first-passage times for bounded diffusion, analyzing how drift and diffusion
+  parameters affect process behavior, or validating closed-form solutions
+  against stochastic simulation.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

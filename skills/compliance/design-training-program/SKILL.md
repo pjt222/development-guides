@@ -4,7 +4,11 @@ description: >
   Design a GxP training programme covering training needs analysis by role,
   curriculum design (regulatory awareness, system-specific, data integrity),
   competency assessment criteria, training record retention, and retraining
-  triggers for SOP revisions and incidents.
+  triggers for SOP revisions and incidents. Use when a new validated system
+  requires user training before go-live, an audit finding cites inadequate
+  training, organisational changes introduce new roles, a periodic programme
+  review is due, or inspection preparation requires demonstrating training
+  adequacy.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

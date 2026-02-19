@@ -4,7 +4,10 @@ description: >
   Map the intellectual property landscape for a technology domain or product
   area. Covers patent cluster analysis, white space identification, competitor
   IP portfolio assessment, freedom-to-operate preliminary screening, and
-  strategic IP positioning recommendations.
+  strategic IP positioning recommendations. Use before starting R&D in a new
+  technology area, when evaluating market entry against incumbents with strong
+  patent portfolios, preparing for investment due diligence, informing a patent
+  filing strategy, or assessing freedom-to-operate risk for a new product.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

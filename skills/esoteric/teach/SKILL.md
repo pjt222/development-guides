@@ -4,7 +4,11 @@ description: >
   AI knowledge transfer calibrated to learner level and needs. Models the
   learner's mental state, scaffolds from known to unknown using Vygotsky's
   Zone of Proximal Development, employs Socratic questioning to verify
-  understanding, and adapts explanations based on feedback signals.
+  understanding, and adapts explanations based on feedback signals. Use
+  when a user asks "how does X work?" and needs graduated explanation,
+  when their questions reveal a conceptual gap, when previous explanations
+  have not landed, or when teaching a concept that depends on prerequisites
+  the learner may not yet have.
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:

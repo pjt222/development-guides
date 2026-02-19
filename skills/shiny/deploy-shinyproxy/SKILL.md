@@ -4,7 +4,10 @@ description: >
   Deploy ShinyProxy for hosting multiple containerized Shiny applications.
   Covers ShinyProxy Docker deployment, application.yml configuration,
   Shiny app Docker images, authentication, container backends, usage
-  tracking, and scaling.
+  tracking, and scaling. Use when hosting multiple Shiny apps behind a single
+  entry point, needing per-app authentication and access control, deploying
+  Shiny apps as isolated Docker containers, or scaling beyond single-app
+  deployment with usage analytics and audit logging.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

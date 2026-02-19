@@ -2,7 +2,11 @@
 name: simulate-stochastic-process
 description: >
   Simulate stochastic processes (Markov chains, random walks, SDEs, MCMC) with
-  convergence diagnostics, variance reduction, and visualization.
+  convergence diagnostics, variance reduction, and visualization. Use when
+  generating sample paths for estimation, prediction, or visualization;
+  when analytical solutions are intractable; running Monte Carlo estimation
+  needing convergence guarantees; validating analytical results against
+  empirical simulation; or sampling from complex posteriors via MCMC.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

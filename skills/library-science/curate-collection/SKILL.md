@@ -4,8 +4,11 @@ description: >
   Build and maintain a library collection through acquisitions, weeding
   (deaccessioning), collection assessment, reader advisory, and interlibrary
   loan coordination. Covers selection criteria, collection development policies,
-  the CREW/MUSTIE method for weeding, usage analysis, and responsive
-  collection management.
+  the CREW/MUSTIE method for weeding, usage analysis, and responsive collection
+  management. Use when building a new collection with a defined scope and budget,
+  assessing an existing collection for gaps or outdated materials, when shelves
+  are overcrowded and systematic weeding is needed, or when establishing a formal
+  collection development policy.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

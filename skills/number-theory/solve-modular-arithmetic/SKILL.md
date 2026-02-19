@@ -4,7 +4,10 @@ description: >
   Solve modular arithmetic problems including congruences, systems
   via the Chinese Remainder Theorem, modular inverses, and
   Euler's theorem applications. Covers both manual and computational
-  approaches.
+  approaches. Use when solving linear congruences, computing modular
+  inverses, evaluating large modular exponentiations, working with
+  simultaneous congruences (CRT), or operating in cyclic groups and
+  discrete logarithm contexts.
 license: MIT
 allowed-tools: Read, Bash
 metadata:

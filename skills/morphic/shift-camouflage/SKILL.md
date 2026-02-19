@@ -5,7 +5,11 @@ description: >
   context-aware behavior, feature flags, and attack surface reduction.
   Covers environmental assessment, chromatophore mapping, dynamic interface
   generation, behavioral polymorphism, and pattern disruption for systems
-  that must present different faces to different observers.
+  that must present different faces to different observers. Use when a system
+  must present different interfaces to different consumers, when reducing attack
+  surface by exposing only what each observer needs, when implementing feature
+  flags or progressive rollouts at the interface level, or when adapting behavior
+  to environmental context without core changes.
 license: MIT
 allowed-tools: Read
 metadata:

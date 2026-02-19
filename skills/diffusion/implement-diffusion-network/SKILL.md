@@ -3,7 +3,11 @@ name: implement-diffusion-network
 description: >
   Implement a generative diffusion model (DDPM or score-based) with noise
   scheduling, U-Net architecture, training loop, and sampling procedures
-  including DDIM acceleration.
+  including DDIM acceleration. Use when building a generative model for
+  image, audio, or molecular synthesis; implementing DDPM from a research
+  paper; adding a custom noise schedule or conditioning mechanism; replacing
+  a GAN-based generator with a diffusion alternative; or prototyping before
+  scaling with production frameworks like diffusers.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

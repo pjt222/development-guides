@@ -4,6 +4,9 @@ description: >
   Write roxygen2 documentation for R package functions, datasets, and
   classes. Covers all standard tags, cross-references, examples,
   and generating NAMESPACE entries. Follows tidyverse documentation style.
+  Use when adding documentation to new exported functions, documenting
+  internal helpers or datasets, documenting S3/S4/R6 classes and methods,
+  or fixing documentation-related R CMD check notes.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

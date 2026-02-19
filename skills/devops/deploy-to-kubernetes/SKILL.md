@@ -3,7 +3,10 @@ name: deploy-to-kubernetes
 description: >
   Deploy applications to Kubernetes clusters using kubectl manifests for Deployments,
   Services, ConfigMaps, Secrets, and Ingress resources. Implement health checks, resource
-  limits, rolling updates, and Helm chart packaging for production deployments.
+  limits, rolling updates, and Helm chart packaging for production deployments. Use when
+  deploying new applications to EKS, GKE, AKS, or self-hosted clusters, migrating from
+  Docker Compose to container orchestration, implementing zero-downtime rolling updates,
+  or setting up multi-environment deployments across dev, staging, and production.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -4,7 +4,10 @@ description: >
   Qualify a vendor or supplier of GxP-relevant software or services. Covers
   vendor risk classification, assessment questionnaire design, desk and
   on-site audit approaches, quality agreement evaluation, SLA review, and
-  ongoing monitoring cadence definition.
+  ongoing monitoring cadence definition. Use when selecting a new vendor for
+  a GxP-critical system, onboarding a cloud provider for regulated data,
+  performing a periodic re-qualification, when a vendor audit finding requires
+  re-assessment, or when EU Annex 11 or ICH Q10 requires supplier qualification.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

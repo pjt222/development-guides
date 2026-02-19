@@ -5,6 +5,9 @@ description: >
   geometry, or vector methods with rigorous step-by-step logical structure.
   Covers direct proof, proof by contradiction, coordinate proofs, vector
   proofs, and handling of special cases and degenerate configurations.
+  Use when given a geometric statement to prove, verifying a conjecture,
+  establishing a lemma, converting geometric intuition into a rigorous proof,
+  or comparing the effectiveness of different proof methods.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

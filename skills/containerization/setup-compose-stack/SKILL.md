@@ -4,7 +4,10 @@ description: >
   Configure general-purpose Docker Compose stacks for common application
   patterns. Covers web app + database + cache + worker services, named
   volumes, networks, health checks, depends_on, environment management,
-  and profiles.
+  and profiles. Use when running a web app with a database or cache,
+  setting up a development environment with multiple services,
+  orchestrating background workers alongside an API, or creating
+  reproducible multi-service environments across teams.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

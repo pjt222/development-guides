@@ -5,6 +5,10 @@ description: >
   using CSL processors and R tooling. Convert between citation styles, generate
   in-text citations and reference lists, and validate formatting against style
   guides using citeproc, knitcitations, and Quarto's built-in citation engine.
+  Use when rendering a Quarto or R Markdown document with formatted citations,
+  converting a bibliography between citation styles, generating a standalone
+  reference list, or setting up citation infrastructure for a multi-document
+  project.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

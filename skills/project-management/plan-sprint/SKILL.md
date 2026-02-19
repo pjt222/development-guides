@@ -3,7 +3,11 @@ name: plan-sprint
 description: >
   Plan a sprint by refining backlog items, defining a sprint goal, calculating
   team capacity, selecting items, and decomposing them into tasks. Produces
-  a SPRINT-PLAN.md with goal, selected items, task breakdown, and capacity allocation.
+  a SPRINT-PLAN.md with goal, selected items, task breakdown, and capacity
+  allocation. Use when starting a new sprint in a Scrum or agile project,
+  re-planning after significant scope change, transitioning from ad-hoc work
+  to structured sprint cadence, or after backlog grooming when items are ready
+  for inclusion.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

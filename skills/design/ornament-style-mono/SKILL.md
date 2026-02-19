@@ -4,8 +4,10 @@ description: >
   Design monochrome ornamental patterns grounded in Alexander Speltz's classical
   ornament taxonomy. Covers historical period selection, motif structural analysis,
   prompt construction for line art and silhouette rendering, and AI-assisted image
-  generation via Z-Image. Produces single-color ornamental designs suitable for
-  borders, medallions, friezes, and decorative panels.
+  generation via Z-Image. Use when creating decorative borders, medallions, or
+  friezes in a single color, exploring historical ornament styles through generative
+  AI, producing line art or pen-and-ink renderings of classical motifs, or generating
+  reference imagery for design or educational materials.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

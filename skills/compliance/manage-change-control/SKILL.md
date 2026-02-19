@@ -4,7 +4,11 @@ description: >
   Manage change control for validated computerized systems. Covers change
   request triage (emergency, standard, minor), impact assessment on validated
   state, revalidation scope determination, approval workflows, implementation
-  tracking, and post-change verification.
+  tracking, and post-change verification. Use when a validated system requires
+  a software upgrade, patch, or configuration change; when infrastructure
+  changes affect validated systems; when a CAPA requires system modification;
+  or when emergency changes need expedited approval and retrospective
+  documentation.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

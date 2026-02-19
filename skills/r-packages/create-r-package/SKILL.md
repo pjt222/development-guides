@@ -4,7 +4,9 @@ description: >
   Scaffold a new R package with complete structure including DESCRIPTION,
   NAMESPACE, testthat, roxygen2, renv, Git, GitHub Actions CI, and
   development configuration files (.Rprofile, .Renviron.example, CLAUDE.md).
-  Follows usethis conventions and tidyverse style.
+  Follows usethis conventions and tidyverse style. Use when starting a new R
+  package from scratch, converting loose R scripts into a structured package,
+  or setting up a package skeleton for collaborative development.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

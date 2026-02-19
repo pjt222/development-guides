@@ -4,7 +4,11 @@ description: >
   Perform controlled dismantling of rigid system structures while preserving
   essential capabilities (imaginal discs). Covers rigidity mapping, dissolution
   sequencing, knowledge extraction, interface archaeology, and safe decomposition
-  of technical debt and organizational calcification.
+  of technical debt and organizational calcification. Use when assess-form
+  classified the system as PREPARE or CRITICAL, when a system is so calcified
+  that incremental change is impossible, when technical debt blocks all forward
+  progress, or before adapt-architecture when the current form must be softened
+  before it can be reshaped.
 license: MIT
 allowed-tools: Read
 metadata:

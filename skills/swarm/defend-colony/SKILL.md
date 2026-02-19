@@ -4,7 +4,10 @@ description: >
   Implement layered collective defense using alarm signaling, role mobilization,
   and proportional response. Covers threat detection, alert propagation, immune
   response patterns, escalation tiers, and post-incident recovery for distributed
-  systems and organizations.
+  systems and organizations. Use when designing defense-in-depth where no single
+  guardian covers all threats, building incident response that scales with severity,
+  or when current defense is over-reactive to every alert or under-reactive to
+  genuine threats.
 license: MIT
 allowed-tools: Read
 metadata:

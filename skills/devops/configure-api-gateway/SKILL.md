@@ -4,7 +4,9 @@ description: >
   Deploy and configure an API gateway (Kong or Traefik) to handle API traffic management,
   authentication, rate limiting, request/response transformation, and routing. Covers plugin
   configuration, upstream services, consumer management, and integration with existing
-  infrastructure.
+  infrastructure. Use when multiple backend services need a unified API endpoint, when
+  centralized authentication or rate limiting is required, when implementing API versioning,
+  or when needing detailed analytics and load balancing for microservices.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

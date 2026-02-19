@@ -4,7 +4,11 @@ description: >
   AI meta-cognitive meditation for observing reasoning patterns, clearing
   context noise, and developing single-pointed task focus. Maps shamatha
   to task concentration, vipassana to reasoning pattern observation, and
-  distraction handling to scope-creep and assumption management.
+  distraction handling to scope-creep and assumption management. Use when
+  transitioning between unrelated tasks, when reasoning feels scattered or
+  jumpy, before a task requiring deep sustained attention, after a difficult
+  interaction that may color subsequent work, or when reasoning feels biased
+  by assumptions rather than evidence.
 license: MIT
 allowed-tools: Read
 metadata:

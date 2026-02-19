@@ -1,7 +1,12 @@
 ---
 name: create-3d-scene
 description: >
-  Set up a Blender scene via Python script with objects, materials, lighting, camera, and environment configuration.
+  Set up a Blender scene programmatically via Python (bpy) with objects,
+  materials, lighting, camera, and environment configuration. Use when
+  creating reproducible 3D visualization scenes, automating product or
+  architectural rendering setup, generating multiple scene variations
+  programmatically, building template scenes for batch rendering workflows,
+  or integrating 3D visualization into data pipelines.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

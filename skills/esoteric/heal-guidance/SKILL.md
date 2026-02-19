@@ -5,7 +5,10 @@ description: >
   chakra balancing), herbal remedies, basic first aid stabilization, and
   holistic techniques (breathwork, visualization, body scan). AI coaches
   the practitioner through assessment triage, modality selection, energetic
-  connection, remedy preparation, and integration.
+  connection, remedy preparation, and integration. Use when a person describes
+  a physical ailment or injury, reports energetic imbalance (fatigue, emotional
+  stagnation), wants coaching through a holistic breathwork or visualization
+  session, or needs post-meditation integration with directed healing attention.
 license: MIT
 allowed-tools: Read
 metadata:

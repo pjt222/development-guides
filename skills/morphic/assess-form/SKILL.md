@@ -4,7 +4,10 @@ description: >
   Evaluate a system's current structural form, identify transformation pressure,
   and classify transformation readiness. Covers structural inventory, pressure
   mapping, rigidity assessment, change capacity estimation, and readiness
-  classification for architectural metamorphosis.
+  classification for architectural metamorphosis. Use before any significant
+  architectural change to understand the starting point, when a system feels
+  stuck without clear reasons, when external pressure from growth or tech debt
+  is mounting, or as periodic health checks for long-lived systems.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,7 +4,10 @@ description: >
   Decommission a validated computerized system at end-of-life. Covers data
   retention assessment by regulation, data migration validation (mapping,
   transformation, reconciliation), archival strategy, access revocation,
-  documentation archival, and stakeholder notification.
+  documentation archival, and stakeholder notification. Use when a validated
+  system is being replaced, reaching end-of-life without replacement, vendor
+  support is discontinued, multiple systems are consolidating, or regulatory
+  changes render a system obsolete.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

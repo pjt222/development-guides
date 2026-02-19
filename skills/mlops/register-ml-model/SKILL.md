@@ -3,7 +3,10 @@ name: register-ml-model
 description: >
   Register trained models in MLflow Model Registry with version control, implement
   stage transitions (Staging, Production, Archived) with approval workflows, and
-  manage model lineage with comprehensive metadata and deployment tracking.
+  manage model lineage with comprehensive metadata and deployment tracking. Use when
+  promoting a trained model from experimentation to production, managing multiple model
+  versions across development stages, implementing approval workflows for governance,
+  rolling back to previous versions, or auditing model changes for compliance.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

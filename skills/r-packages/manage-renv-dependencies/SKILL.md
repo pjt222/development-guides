@@ -3,7 +3,10 @@ name: manage-renv-dependencies
 description: >
   Manage R package dependencies using renv for reproducible environments.
   Covers initialization, snapshot/restore workflow, troubleshooting
-  common issues, and CI/CD integration.
+  common issues, and CI/CD integration. Use when initializing dependency
+  management for a new R project, adding or updating packages, restoring
+  an environment on a new machine, troubleshooting restore failures, or
+  integrating renv with CI/CD pipelines.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -3,7 +3,11 @@ name: build-coherence
 description: >
   AI multi-path reasoning coherence using bee democracy — independent evaluation
   of competing approaches, waggle dance as reasoning-out-loud, quorum sensing
-  for confidence thresholds, and deadlock resolution.
+  for confidence thresholds, and deadlock resolution. Use when forage-solutions
+  has identified multiple valid approaches and a selection must be made, when
+  oscillating between options without committing, when justifying an architecture
+  or tool choice with structured reasoning, or before an irreversible action where
+  the cost of the wrong choice is high.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,7 +4,11 @@ description: >
   Conduct temperament-based health assessment from Hildegard von Bingen's
   Causae et Curae. Evaluates the four temperaments (sanguine, choleric,
   melancholic, phlegmatic), elemental correspondences (air, fire, earth, water),
-  and provides dietary and lifestyle recommendations for rebalancing.
+  and provides dietary and lifestyle recommendations for rebalancing. Use when
+  understanding constitutional type in Hildegardian terms, experiencing
+  imbalance (fatigue, digestive issues, mental fog) needing holistic guidance,
+  seeking dietary recommendations by temperament, or researching medieval
+  humoral medicine.
 license: MIT
 allowed-tools: Read
 metadata:

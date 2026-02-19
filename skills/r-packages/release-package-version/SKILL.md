@@ -3,7 +3,10 @@ name: release-package-version
 description: >
   Release a new version of an R package including version bumping,
   NEWS.md updates, git tagging, GitHub release creation, and
-  post-release development version setup.
+  post-release development version setup. Use when a package is ready
+  for a new patch, minor, or major release, after CRAN acceptance to
+  create the corresponding GitHub release, or when setting up the
+  development version bump immediately after a release.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

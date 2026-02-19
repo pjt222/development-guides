@@ -3,8 +3,11 @@ name: conduct-retrospective
 description: >
   Conduct a project or sprint retrospective by gathering data from status
   reports and velocity metrics, structuring what went well and what needs
-  improvement, and generating actionable improvement items with owners
-  and due dates.
+  improvement, and generating actionable improvement items with owners and
+  due dates. Use at the end of a sprint, after a project phase or milestone,
+  following a significant incident or success, at a quarterly review of
+  ongoing processes, or before starting a similar project to capture lessons
+  learned.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

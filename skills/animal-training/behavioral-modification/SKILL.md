@@ -3,8 +3,12 @@ name: behavioral-modification
 description: >
   Address unwanted dog behaviors through desensitization, counter-conditioning,
   and management. Covers reactivity (to dogs, people, sounds), separation
-  anxiety, resource guarding, excessive barking, and leash pulling. Uses
-  force-free methods with systematic threshold management and progress tracking.
+  anxiety, resource guarding, excessive barking, and leash pulling using
+  force-free methods with systematic threshold management. Use when a dog shows
+  reactivity toward other dogs, people, or stimuli; when separation anxiety
+  causes destructive behavior or vocalization; when resource guarding is present;
+  or when behaviors like excessive barking or leash pulling interfere with
+  daily life — after basic obedience is established.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,8 +4,11 @@ description: >
   Destruction and dissolution — controlled dismantling of stale patterns,
   context purging, assumption clearing, and dead-code elimination. Maps
   Shiva's transformative destruction to AI reasoning: identifying what
-  must end so something better can begin, dissolving attachment to
-  outdated approaches, and creating space through intentional release.
+  must end so something better can begin, dissolving attachment to outdated
+  approaches, and creating space through intentional release. Use when context
+  has accumulated stale assumptions, when a failed approach needs to be
+  discarded rather than patched, when dead code or zombie tasks are creating
+  noise, or before a major pivot where clearing must precede creation.
 license: MIT
 allowed-tools: Read
 metadata:

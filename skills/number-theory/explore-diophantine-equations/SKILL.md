@@ -3,7 +3,10 @@ name: explore-diophantine-equations
 description: >
   Solve Diophantine equations (integer-only solutions) including linear,
   quadratic, and Pell equations. Covers the extended Euclidean algorithm,
-  descent methods, and existence proofs.
+  descent methods, and existence proofs. Use when finding all integer
+  solutions to ax + by = c, solving Pell's equation, generating Pythagorean
+  triples, proving no integer solutions exist via modular constraints, or
+  finding the fundamental solution from which all others are generated.
 license: MIT
 allowed-tools: Read, Bash
 metadata:

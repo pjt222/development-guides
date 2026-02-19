@@ -4,6 +4,10 @@ description: >
   Organize, track, and value a trading card game collection. Covers inventory
   methods, storage best practices, grade-based valuation, want-list management,
   and collection analytics for Pokemon, MTG, Flesh and Blood, and Kayou cards.
+  Use when starting a new collection and setting up inventory tracking, cataloging
+  an existing collection that has grown beyond casual knowledge, valuing a
+  collection for insurance or sale, or deciding which cards to submit for
+  professional grading based on value potential.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

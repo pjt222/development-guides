@@ -3,7 +3,11 @@ name: perform-csv-assessment
 description: >
   Perform a Computer Systems Validation (CSV) assessment following GAMP 5
   methodology. Covers user requirements, risk assessment, IQ/OQ/PQ planning,
-  traceability matrix creation, and validation summary reporting.
+  traceability matrix creation, and validation summary reporting. Use when a
+  new computerized system is being introduced in a GxP environment, when an
+  existing validated system is undergoing significant change, when periodic
+  revalidation is required, or when a regulatory inspection demands a
+  validation gap analysis.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

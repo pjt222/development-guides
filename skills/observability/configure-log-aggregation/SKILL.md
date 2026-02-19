@@ -2,7 +2,11 @@
 name: configure-log-aggregation
 description: >
   Set up centralized log aggregation with Loki and Promtail (or ELK stack), including
-  log parsing, label extraction, retention policies, and integration with metrics for correlation.
+  log parsing, label extraction, retention policies, and integration with metrics for
+  correlation. Use when consolidating logs from multiple services into a searchable
+  system, replacing local log files with centralized queryable storage, correlating logs
+  with metrics and traces, implementing structured logging with label extraction, or
+  troubleshooting production incidents requiring cross-service log analysis.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

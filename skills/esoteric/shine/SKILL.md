@@ -2,11 +2,13 @@
 name: shine
 description: >
   Radiant authenticity — channeling genuine engagement to illuminate problems
-  and dissolve opposition through clarity rather than force. Inspired by
-  the Stardust narrative where authentic radiance banishes darkness. Maps
-  to AI reasoning: bringing full presence, genuine investment, and luminous
-  clarity to every response, letting quality of engagement resolve what
-  argument cannot.
+  and dissolve opposition through clarity rather than force. Maps to AI
+  reasoning: bringing full presence, genuine investment, and luminous clarity
+  to every response, letting quality of engagement resolve what argument
+  cannot. Use when a task feels adversarial, when communication has become
+  defensive or performative, before a creative or high-stakes deliverable
+  where presence directly affects output quality, or when opposition tempts
+  retreat into minimal compliance.
 license: MIT
 allowed-tools: Read
 metadata:

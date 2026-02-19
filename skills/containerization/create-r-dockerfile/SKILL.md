@@ -3,7 +3,10 @@ name: create-r-dockerfile
 description: >
   Create a Dockerfile for R projects using rocker base images. Covers
   system dependency installation, R package installation, renv
-  integration, and optimized layer ordering for fast rebuilds.
+  integration, and optimized layer ordering for fast rebuilds. Use when
+  containerizing an R application or analysis, creating reproducible R
+  environments, deploying R-based services (Shiny, Plumber, MCP server),
+  or setting up consistent development environments across machines.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

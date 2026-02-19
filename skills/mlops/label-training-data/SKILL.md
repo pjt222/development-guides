@@ -3,7 +3,10 @@ name: label-training-data
 description: >
   Set up systematic data labeling workflows using Label Studio or similar tools. Implement
   quality controls, measure inter-annotator agreement, manage labeler teams, and integrate
-  labeled data into ML training pipelines.
+  labeled data into ML training pipelines. Use when starting a supervised ML project that
+  requires labeled training data, when model performance is limited by insufficient labeled
+  examples, when labeling text, images, audio, or video, or when implementing active learning
+  to prioritize the most valuable examples.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

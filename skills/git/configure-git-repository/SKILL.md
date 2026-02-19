@@ -3,7 +3,10 @@ name: configure-git-repository
 description: >
   Configure a Git repository with proper .gitignore, branch strategy,
   commit conventions, hooks, and remote setup. Covers initial setup
-  and common patterns for R, Node.js, and Python projects.
+  and common patterns for R, Node.js, and Python projects. Use when
+  initializing version control for a new project, adding a .gitignore
+  for a specific language or framework, setting up branch protection and
+  conventions, or configuring commit hooks.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

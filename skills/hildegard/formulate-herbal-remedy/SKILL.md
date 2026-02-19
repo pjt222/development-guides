@@ -4,7 +4,10 @@ description: >
   Prepare herbal remedies from Hildegard von Bingen's Physica. Covers plant
   identification, preparation methods (tinctures, poultices, infusions, decoctions),
   dosage guidance, contraindications, and safety review based on 12th-century
-  medieval pharmacopeia.
+  medieval pharmacopeia. Use when needing an herbal remedy for a specific
+  ailment using Hildegardian pharmacopeia, seeking guidance on preparation
+  methods and dosage, researching medieval herbal medicine, or integrating
+  Hildegard's plant wisdom into holistic health practice.
 license: MIT
 allowed-tools: Read
 metadata:

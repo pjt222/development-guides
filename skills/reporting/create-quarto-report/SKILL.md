@@ -3,7 +3,10 @@ name: create-quarto-report
 description: >
   Create a Quarto document for reproducible reports, presentations, or
   websites. Covers YAML configuration, code chunk options, output
-  formats, cross-references, and rendering.
+  formats, cross-references, and rendering. Use when creating a
+  reproducible analysis report, building a presentation with embedded
+  code, generating HTML, PDF, or Word documents from code, or migrating
+  an existing R Markdown document to Quarto.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

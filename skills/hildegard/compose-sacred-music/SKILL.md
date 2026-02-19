@@ -4,7 +4,10 @@ description: >
   Compose or analyze sacred music in Hildegard von Bingen's distinctive modal
   style. Covers modal selection, melodic contour (wide-range melodies),
   text-setting (syllabic and melismatic), neumatic notation, and liturgical
-  context for antiphons, sequences, and responsories.
+  context for antiphons, sequences, and responsories. Use when composing a
+  new piece in Hildegardian style, analyzing an existing chant for structure
+  and mode, researching medieval modal music, preparing to perform or teach
+  Hildegard's music, or setting Latin sacred texts.
 license: MIT
 allowed-tools: Read
 metadata:

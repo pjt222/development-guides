@@ -4,7 +4,10 @@ description: >
   Create production-ready Helm charts for Kubernetes application deployment with templating,
   values management, chart dependencies, hooks, and testing. Covers chart structure, Go
   template syntax, values.yaml design, chart repositories, versioning, and best practices
-  for maintainable and reusable charts.
+  for maintainable and reusable charts. Use when packaging a Kubernetes application for
+  repeatable deployments, parameterizing manifests for multiple environments, managing
+  complex multi-component applications with dependencies, or standardizing deployment
+  practices with versioned rollback capability across teams.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

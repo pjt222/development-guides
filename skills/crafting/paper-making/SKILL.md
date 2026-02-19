@@ -4,8 +4,10 @@ description: >
   Handcraft paper from plant fibres — fibre harvesting, pulping, sheet
   forming with a mould and deckle, pressing, and drying. Covers fibre
   sources (cotton, kozo, abaca, recycled paper), beating methods, sizing,
-  and decorative techniques. Applicable to art paper, stationery, and
-  bookbinding sheets.
+  and decorative techniques. Use when making handmade paper for art,
+  stationery, or bookbinding, when creating unique textured or embedded paper
+  for special projects, or when learning traditional paper making as a craft
+  practice.
 license: MIT
 allowed-tools: Read
 metadata:

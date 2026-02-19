@@ -3,7 +3,11 @@ name: assess-context
 description: >
   AI context assessment — evaluating problem malleability, mapping structural
   rigidity versus flexibility, analyzing transformation pressure, and estimating
-  capacity to adapt.
+  capacity to adapt. Use when a complex task feels stuck and it is unclear
+  whether to push through or pivot, before a significant approach change to
+  assess whether the current reasoning structure can support it, when accumulated
+  workarounds suggest the underlying approach may be wrong, or as a periodic
+  structural health check during extended multi-step tasks.
 license: MIT
 allowed-tools: Read
 metadata:

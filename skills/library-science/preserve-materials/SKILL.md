@@ -4,7 +4,11 @@ description: >
   Preserve and conserve library and archival materials. Covers environmental
   controls (temperature, humidity, light), handling procedures, book repair
   techniques (torn pages, loose spines, foxing), acid-free storage, digitization
-  for preservation, and disaster recovery planning for collections.
+  for preservation, and disaster recovery planning. Use when establishing
+  preservation practices for a new or existing collection, when materials show
+  signs of deterioration, when setting up environmental controls for storage,
+  when planning digitization to preserve fragile originals, or when creating a
+  disaster recovery plan for a library or archive.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

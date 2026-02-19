@@ -4,7 +4,11 @@ description: >
   Scale distributed systems and organizations through colony budding, role
   differentiation, and growth-triggered architectural transitions. Covers
   growth phase recognition, age polyethism, fission protocols, inter-colony
-  coordination, and scaling limit detection.
+  coordination, and scaling limit detection. Use when a team or system that
+  worked at 10 agents breaks down at 50, when communication overhead grows
+  faster than productive output, when planning a growth phase proactively, or
+  when coordination failures correlate with size such as lost messages, duplicated
+  work, or unclear ownership.
 license: MIT
 allowed-tools: Read
 metadata:

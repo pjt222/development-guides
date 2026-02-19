@@ -1,8 +1,12 @@
 ---
 name: tidy-project-structure
 description: >
-  Organize project files into conventional directories, update stale READMEs, clean configuration drift,
-  and archive deprecated items. Focuses on structural hygiene without changing code logic.
+  Organize project files into conventional directories, update stale READMEs,
+  clean configuration drift, and archive deprecated items without changing
+  code logic. Use when files are scattered without clear organization, READMEs
+  are outdated or contain broken examples, configuration files have multiplied
+  across dev/staging/prod, deprecated files remain in the project root, or
+  naming conventions are inconsistent across directories.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

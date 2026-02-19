@@ -4,7 +4,10 @@ description: >
   Diagnose and fix MCP server connection issues between Claude Code,
   Claude Desktop, and MCP servers. Covers Windows argument parsing,
   authentication failures, transport issues, and platform-specific
-  debugging.
+  debugging. Use when Claude Code or Claude Desktop fails to connect to
+  an MCP server, when MCP tools don't appear in sessions, on "cannot
+  attach the server" errors, when a working connection has stopped, or
+  when setting up MCP on a new machine.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

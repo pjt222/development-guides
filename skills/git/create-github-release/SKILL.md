@@ -3,7 +3,10 @@ name: create-github-release
 description: >
   Create a GitHub release with proper tagging, release notes,
   and optional build artifacts. Covers semantic versioning,
-  changelog generation, and GitHub CLI usage.
+  changelog generation, and GitHub CLI usage. Use when marking a stable
+  version of software for distribution, publishing a new library or
+  application version, creating release notes for stakeholders, or
+  distributing build artifacts (binaries, tarballs).
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -3,7 +3,10 @@ name: deploy-searxng
 description: >
   Deploy a self-hosted SearXNG meta search engine via Docker Compose.
   Covers settings.yml configuration, engine selection, result proxying,
-  Nginx frontend, persistence, and updates.
+  Nginx frontend, persistence, and updates. Use when setting up a private
+  search engine without tracking, aggregating results from multiple providers,
+  running a shared search instance for a team or organisation, or replacing
+  reliance on a single search provider.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

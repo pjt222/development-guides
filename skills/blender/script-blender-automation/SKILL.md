@@ -1,7 +1,12 @@
 ---
 name: script-blender-automation
 description: >
-  Write Blender Python scripts for procedural modeling, animation, batch operations, and add-on development using advanced bpy API patterns.
+  Write Blender Python scripts for procedural modeling, animation, batch
+  operations, and add-on development using advanced bpy API patterns. Use
+  when automating repetitive modeling or animation tasks, generating procedural
+  geometry from algorithms or data, creating batch rendering pipelines with
+  parameter variations, building custom operators or add-ons, or integrating
+  Blender with external data pipelines and APIs.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

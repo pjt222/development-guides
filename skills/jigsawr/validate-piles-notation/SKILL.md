@@ -4,7 +4,10 @@ description: >
   Parse and validate PILES (Puzzle Input Line Entry System) notation for
   specifying piece fusion groups in jigsawR. Covers syntax validation,
   parsing into group lists, plain-language explanation, adjacency
-  verification against puzzle results, and round-trip serialization.
+  verification against puzzle results, and round-trip serialization. Use
+  when validating user-supplied PILES strings before passing to
+  generate_puzzle(), debugging fusion group issues, explaining the notation
+  to users, or testing round-trip parse/serialize fidelity.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

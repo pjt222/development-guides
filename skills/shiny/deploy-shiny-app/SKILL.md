@@ -3,7 +3,10 @@ name: deploy-shiny-app
 description: >
   Deploy Shiny applications to shinyapps.io, Posit Connect, or Docker
   containers. Covers rsconnect configuration, manifest generation,
-  Dockerfile creation, and deployment verification.
+  Dockerfile creation, and deployment verification. Use when publishing a
+  Shiny app for external or internal users, moving from local development to
+  a hosted environment, containerizing a Shiny app for Kubernetes or Docker
+  deployment, or setting up automated deployment pipelines.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

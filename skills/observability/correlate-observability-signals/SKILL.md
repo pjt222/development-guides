@@ -3,7 +3,10 @@ name: correlate-observability-signals
 description: >
   Unify metrics, logs, and traces for cohesive debugging. Implement exemplars
   for log-to-trace linking, build unified dashboards using RED/USE methods,
-  and enable rapid root cause analysis across observability signals.
+  and enable rapid root cause analysis across observability signals. Use when
+  investigating complex incidents spanning multiple systems, reducing mean time
+  to resolution, implementing distributed tracing, or moving from siloed tools
+  to a unified observability platform.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

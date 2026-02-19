@@ -3,8 +3,10 @@ name: build-custom-mcp-server
 description: >
   Build a custom MCP (Model Context Protocol) server that exposes
   domain-specific tools to AI assistants. Covers server implementation
-  in Node.js or R, tool definitions, transport configuration, and
-  testing with Claude Code.
+  in Node.js or R, tool definitions, transport configuration, and testing
+  with Claude Code. Use when you need to expose custom functionality beyond
+  what mcptools provides, when building specialized domain-specific AI
+  integrations, or when wrapping existing APIs or services as MCP tools.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

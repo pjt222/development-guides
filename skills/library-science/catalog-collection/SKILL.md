@@ -4,7 +4,11 @@ description: >
   Catalog and classify materials using standard library systems. Covers
   descriptive cataloging, subject headings, call number assignment using Dewey
   Decimal and Library of Congress Classification, MARC record basics, shelf
-  organization, and authority control for consistent access points.
+  organization, and authority control for consistent access points. Use when
+  organizing a personal, institutional, or community library from scratch,
+  assigning call numbers and subject headings to new acquisitions, reclassifying
+  a collection that has outgrown its original system, or establishing authority
+  control for authors, series, or subjects.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

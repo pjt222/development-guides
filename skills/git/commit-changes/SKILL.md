@@ -3,7 +3,10 @@ name: commit-changes
 description: >
   Stage, commit, and amend changes with conventional commit messages.
   Covers reviewing changes, selective staging, writing descriptive
-  commit messages using HEREDOC format, and verifying commit history.
+  commit messages using HEREDOC format, and verifying commit history. Use
+  when saving a logical unit of work to version control, creating a commit
+  with a conventional message, amending the most recent commit, or
+  reviewing staged changes before committing.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -3,7 +3,10 @@ name: deploy-to-vercel
 description: >
   Deploy a Next.js application to Vercel. Covers project linking,
   environment variables, preview deployments, custom domains,
-  and production deployment configuration.
+  and production deployment configuration. Use when deploying a Next.js
+  app for the first time, setting up preview deployments for pull requests,
+  configuring custom domains, or managing environment variables in
+  a production Vercel deployment.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

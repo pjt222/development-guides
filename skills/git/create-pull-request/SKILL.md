@@ -3,7 +3,11 @@ name: create-pull-request
 description: >
   Create and manage pull requests using GitHub CLI. Covers branch
   preparation, writing PR titles and descriptions, creating PRs,
-  handling review feedback, and merge/cleanup workflows.
+  handling review feedback, and merge/cleanup workflows. Use when
+  proposing changes from a feature or fix branch for review, merging
+  completed work into the main branch, requesting code review from
+  collaborators, or documenting the purpose and scope of a set of
+  changes.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

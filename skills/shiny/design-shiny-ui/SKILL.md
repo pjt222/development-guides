@@ -3,7 +3,10 @@ name: design-shiny-ui
 description: >
   Design Shiny application UIs using bslib for theming, layout_columns
   for responsive grids, value boxes, cards, and custom CSS/SCSS.
-  Covers page layouts, accessibility, and brand consistency.
+  Covers page layouts, accessibility, and brand consistency. Use when
+  building a new Shiny app UI from scratch, modernizing an existing app from
+  fluidPage to bslib, applying brand theming, making a Shiny app responsive
+  across screen sizes, or improving accessibility of a Shiny application.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

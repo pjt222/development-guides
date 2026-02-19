@@ -3,7 +3,10 @@ name: plan-capacity
 description: >
   Perform capacity planning using historical metrics and growth models. Use
   predict_linear for forecasting, identify resource constraints, calculate
-  headroom, and recommend scaling actions before saturation.
+  headroom, and recommend scaling actions before saturation. Use before
+  seasonal traffic spikes or product launches, during quarterly capacity
+  reviews, when resource utilization trends upward, or before budget planning
+  cycles.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

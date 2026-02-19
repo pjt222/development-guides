@@ -3,7 +3,10 @@ name: forecast-operational-metrics
 description: >
   Forecast infrastructure and application metrics using Prophet or statsmodels for capacity
   planning, cost optimization, and proactive scaling. Visualize predictions in Grafana and
-  set up alerts for projected resource exhaustion.
+  set up alerts for projected resource exhaustion. Use when forecasting infrastructure
+  capacity needs for CPU, memory, or disk, planning hardware procurement for next quarter,
+  predicting cost trends to optimize cloud spending, or setting up proactive scaling policies
+  based on predicted load.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

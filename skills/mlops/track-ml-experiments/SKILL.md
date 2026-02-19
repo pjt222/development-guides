@@ -4,6 +4,9 @@ description: >
   Set up MLflow tracking server for experiment management, configure autologging
   for popular ML frameworks, compare runs with metrics and visualizations, and
   manage artifacts in remote storage backends for reproducible machine learning workflows.
+  Use when starting a new ML project that requires experiment tracking, migrating from
+  manual logs to automated tracking, comparing multiple training runs systematically, or
+  building reproducible ML workflows with full lineage tracking.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

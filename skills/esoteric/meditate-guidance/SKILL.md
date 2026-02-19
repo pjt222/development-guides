@@ -4,8 +4,10 @@ description: >
   Guide a person through a meditation session from preparation through
   closing. AI coaches posture selection, breath anchoring, working with
   distractions, shamatha (calm abiding), vipassana (insight), and session
-  integration. Assesses the person's needs and suggests real-time
-  modifications.
+  integration. Use when a person wants to begin or deepen a meditation
+  practice, when someone needs to prepare their mind for focused work,
+  when grounding is needed before or after energy healing work, when
+  managing stress or anxiety, or for integration after intense experiences.
 license: MIT
 allowed-tools: Read
 metadata:

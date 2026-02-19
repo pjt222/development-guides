@@ -4,7 +4,11 @@ description: >
   Guide a person through a Coordinate Remote Viewing (CRV) session
   following the Stargate/SRI protocol. AI acts as the monitor/tasker role,
   managing protocol progression, catching Analytical Overlay (AOL), and
-  redirecting the viewer through stages I-VI.
+  redirecting the viewer through stages I-VI. Use when a person wants to
+  practice CRV and needs a monitor to manage the session protocol, when
+  training a viewer through the staged CRV process, facilitating a structured
+  intuitive perception exercise, or developing non-local awareness skills that
+  complement healing work.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -3,6 +3,11 @@ name: design-a2a-agent-card
 description: >
   Design an A2A Agent Card (.well-known/agent.json) manifest describing agent
   capabilities, skills, authentication requirements, and supported content types.
+  Use when building an agent that must be discoverable by other A2A-compliant
+  agents, exposing capabilities for multi-agent orchestration, migrating an
+  existing agent to the A2A protocol, defining the public contract for an agent
+  before implementation, or integrating with agent registries that consume Agent
+  Cards.
 license: MIT
 allowed-tools: Read Write Edit Grep Glob
 metadata:

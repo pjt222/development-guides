@@ -3,6 +3,10 @@ name: analyze-codebase-for-mcp
 description: >
   Analyze an arbitrary codebase to identify functions, APIs, and data sources
   suitable for exposure as MCP tools, producing a tool specification document.
+  Use when planning an MCP server for an existing project, auditing a codebase
+  before wrapping it as an AI-accessible tool surface, comparing what a codebase
+  can do versus what is already exposed via MCP, or generating a tool spec to
+  hand off to scaffold-mcp-server.
 license: MIT
 allowed-tools: Read Grep Glob Bash
 metadata:

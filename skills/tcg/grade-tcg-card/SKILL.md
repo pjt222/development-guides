@@ -5,6 +5,9 @@ description: >
   assessment (adapted from meditate's unbiased observation), centering measurement,
   surface analysis, edge and corner evaluation, and final grade assignment with
   confidence interval. Supports Pokemon, MTG, Flesh and Blood, and Kayou cards.
+  Use when evaluating a card before professional grading submission, pre-screening
+  a collection for high-grade candidates, settling condition disputes between
+  buyers and sellers, or estimating the grade-dependent value spread for a card.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

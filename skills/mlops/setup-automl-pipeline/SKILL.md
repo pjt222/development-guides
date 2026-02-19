@@ -4,6 +4,9 @@ description: >
   Configure automated machine learning pipelines using Optuna or Ray Tune for hyperparameter
   optimization. Implement efficient search strategies (Hyperband, ASHA), define search spaces,
   and set up early stopping to find optimal model configurations with minimal manual tuning.
+  Use when starting a new ML project and needing to quickly find good configurations, retraining
+  with new data and re-optimizing hyperparameters, comparing multiple algorithms, or when the
+  team lacks deep expertise in specific algorithm hyperparameters.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

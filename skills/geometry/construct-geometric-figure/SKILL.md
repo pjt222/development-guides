@@ -5,7 +5,10 @@ description: >
   for each operation, producing a constructible geometric figure from given
   elements. Covers classical Euclidean constructions including perpendicular
   bisectors, angle bisectors, parallel lines, regular polygons, and
-  tangent lines.
+  tangent lines. Use when given geometric elements (points, segments, angles)
+  and asked to produce a Euclidean construction, verify constructibility,
+  or generate ordered construction steps for educational or documentation
+  purposes.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

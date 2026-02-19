@@ -3,9 +3,11 @@ name: mushroom-cultivation
 description: >
   Cultivate edible and medicinal mushrooms from spawn through fruiting.
   Covers substrate preparation, inoculation methods, incubation conditions,
-  fruiting chamber management, harvest timing, and successive flushes.
-  Applicable to oyster, shiitake, lion's mane, and other commonly
-  cultivated species at home scale.
+  fruiting chamber management, harvest timing, and successive flushes for
+  oyster, shiitake, lion's mane, and other commonly cultivated species. Use
+  when growing edible mushrooms without the risks of wild foraging, when a
+  reliable supply of fresh culinary or medicinal mushrooms is needed, or when
+  exploring mycelial ecology through hands-on cultivation practice.
 license: MIT
 allowed-tools: Read
 metadata:

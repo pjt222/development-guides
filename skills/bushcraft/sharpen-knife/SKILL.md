@@ -4,8 +4,11 @@ description: >
   Sharpen and maintain knives using whetstones, field stones, and improvised
   abrasives. Covers blade anatomy, bevel assessment, whetstone technique
   (coarse to fine progression), stropping, sharpness testing, field sharpening
-  methods, and ongoing edge maintenance. Applicable to bushcraft fixed blades,
-  folding knives, and garden cutting tools.
+  methods, and ongoing edge maintenance. Use when a knife fails the fingernail
+  test, when cutting tasks require excessive pressure, before a trip where a
+  sharp blade is essential, after heavy use, or when a blade has visible nicks
+  or a rolled edge. Applicable to bushcraft blades, folding knives, and garden
+  cutting tools.
 license: MIT
 allowed-tools: Read
 metadata:

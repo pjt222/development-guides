@@ -4,7 +4,11 @@ description: >
   Apply ant colony optimization and foraging theory to resource search,
   exploration-exploitation tradeoffs, and distributed discovery. Covers
   scout deployment, trail reinforcement, diminishing returns detection,
-  and adaptive foraging strategy selection.
+  and adaptive foraging strategy selection. Use when searching a large
+  solution space where brute-force enumeration is impractical, balancing
+  investment between exploring new approaches and deepening known good ones,
+  optimizing resource allocation across uncertain opportunities, or diagnosing
+  premature convergence on local optima.
 license: MIT
 allowed-tools: Read
 metadata:

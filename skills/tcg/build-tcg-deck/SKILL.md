@@ -4,7 +4,10 @@ description: >
   Build a competitive or casual trading card game deck. Covers archetype
   selection, mana/energy curve analysis, win condition identification,
   meta-game positioning, and sideboard construction for Pokemon TCG, Magic:
-  The Gathering, Flesh and Blood, and other TCGs.
+  The Gathering, Flesh and Blood, and other TCGs. Use when building a new deck
+  for a tournament format or casual play, adapting an existing deck to a changed
+  meta-game, evaluating whether a new set warrants a deck change, or converting
+  a deck concept into a tournament-ready list.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

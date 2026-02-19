@@ -5,8 +5,11 @@ description: >
   USDA hardiness zones, frost date calculation, equinox/solstice anchoring,
   synodic lunar cycle (waxing/waning), ascending/descending moon, Maria Thun
   biodynamic calendar (root/leaf/flower/fruit days), succession planting
-  schedules, and seasonal task planning. Uses meditate checkpoint for
-  end-of-season reflection.
+  schedules, and seasonal task planning. Use when planning a new growing season
+  and needing a planting schedule, integrating lunar or biodynamic timing into
+  garden practice, calculating frost dates and planting windows for a specific
+  zone, setting up succession planting for continuous harvest, or conducting
+  end-of-season review.
 license: MIT
 allowed-tools: Read
 metadata:

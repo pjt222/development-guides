@@ -1,9 +1,12 @@
 ---
 name: plan-eu-relocation
 description: >
-  Plan a complete EU/DACH relocation timeline with dependency mapping
-  between bureaucratic steps, deadline tracking, and country-specific
-  procedure identification.
+  Plan a complete EU/DACH relocation timeline with dependency mapping between
+  bureaucratic steps, deadline tracking, and country-specific procedure
+  identification. Use when planning a move between EU/DACH countries, relocating
+  from a non-EU country to an EU/DACH destination, coordinating employment-based
+  relocation with employer HR, managing a relocation with tight deadlines, or
+  when needing a single document that maps the entire relocation process end-to-end.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

@@ -3,6 +3,10 @@ name: derive-theoretical-result
 description: >
   Derive a theoretical result step-by-step from first principles or established
   theorems, with every step explicitly justified and special cases checked.
+  Use when deriving a formula or theorem from first principles, proving a
+  mathematical statement by logical deduction, re-deriving a textbook result
+  for verification or adaptation, extending a known result to a more general
+  setting, or producing a self-contained derivation for a paper or thesis.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

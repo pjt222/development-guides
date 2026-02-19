@@ -3,7 +3,10 @@ name: containerize-mcp-server
 description: >
   Containerize an R-based MCP (Model Context Protocol) server using Docker.
   Covers mcptools integration, port exposure, stdio vs HTTP transport,
-  and connecting Claude Code to the containerized server.
+  and connecting Claude Code to the containerized server. Use when deploying
+  an R MCP server without requiring a local R installation, creating a
+  reproducible MCP server environment, running MCP servers alongside other
+  containerized services, or distributing an MCP server to other developers.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

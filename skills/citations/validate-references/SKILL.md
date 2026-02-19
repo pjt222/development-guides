@@ -4,7 +4,11 @@ description: >
   Check BibTeX entries for completeness, DOI resolution, and broken links.
   Verify required fields per entry type (article, book, inproceedings), resolve
   and validate DOIs via the CrossRef API, check URL accessibility, and flag
-  duplicate entries, missing abstracts, and inconsistent formatting.
+  duplicate entries, missing abstracts, and inconsistent formatting. Use when
+  preparing a manuscript bibliography for journal submission, auditing a shared
+  .bib file before a project milestone, after merging bibliographies from
+  multiple sources, when citations render incorrectly, or as a CI check on
+  version-controlled .bib files.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

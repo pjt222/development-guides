@@ -3,7 +3,11 @@ name: awareness
 description: >
   AI situational awareness — internal threat detection for hallucination risk,
   scope creep, and context degradation. Maps Cooper color codes to reasoning
-  states and OODA loop to real-time decisions.
+  states and OODA loop to real-time decisions. Use during any task where
+  reasoning quality matters, when operating in unfamiliar territory, after
+  detecting early warning signs such as an uncertain fact or suspicious tool
+  result, or before high-stakes output like irreversible changes or architectural
+  decisions.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,6 +4,10 @@ description: >
   Identify gemstones using optical properties, physical tests, and
   inclusion analysis. Covers refractive index, specific gravity,
   pleochroism, spectroscopy indicators, and common simulant detection.
+  Use when identifying an unknown gemstone, verifying a seller's claim about
+  species identity, distinguishing natural stones from simulants or synthetics,
+  building gemological literacy through structured observation, or identifying
+  rough material before cutting to ensure safe handling.
 license: MIT
 allowed-tools: Read
 metadata:

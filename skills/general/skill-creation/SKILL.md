@@ -5,6 +5,10 @@ description: >
   (agentskills.io). Covers frontmatter schema, section structure,
   writing effective procedures with Expected/On failure pairs,
   validation checklists, cross-referencing, and registry integration.
+  Use when codifying a repeatable procedure for agents, adding a new
+  capability to the skills library, converting a guide or runbook into
+  agent-consumable format, or standardizing a workflow across projects
+  or teams.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
@@ -30,7 +34,15 @@ Author a SKILL.md file that agentic systems can consume to execute a specific pr
 ## Inputs
 
 - **Required**: Task the skill should accomplish
-- **Required**: Domain classification (r-packages, containerization, reporting, compliance, mcp-integration, web-dev, git, general, bushcraft, esoteric, defensive)
+- **Required**: Domain classification — one of the 48 domains in `skills/_registry.yml`:
+  `r-packages`, `jigsawr`, `containerization`, `reporting`, `compliance`, `mcp-integration`,
+  `web-dev`, `git`, `general`, `citations`, `data-serialization`, `review`, `bushcraft`,
+  `esoteric`, `design`, `defensive`, `project-management`, `devops`, `observability`, `mlops`,
+  `workflow-visualization`, `swarm`, `morphic`, `alchemy`, `tcg`, `intellectual-property`,
+  `gardening`, `shiny`, `animal-training`, `mycology`, `prospecting`, `crafting`,
+  `library-science`, `travel`, `relocation`, `a2a-protocol`, `geometry`, `number-theory`,
+  `stochastic-processes`, `theoretical-science`, `diffusion`, `hildegard`, `maintenance`,
+  `blender`, `visualization`, `3d-printing`, `lapidary`, `versioning`
 - **Required**: Complexity level (basic, intermediate, advanced)
 - **Optional**: Source material (existing guide, runbook, or working example)
 - **Optional**: Related skills to cross-reference
@@ -56,11 +68,11 @@ Naming conventions:
 ---
 name: skill-name-here
 description: >
-  One to three sentences. Must be clear enough for an agent to decide
-  whether to activate this skill. Max 1024 characters. Start with a
-  verb: "Create...", "Configure...", "Diagnose...".
+  One to three sentences plus key activation triggers. Must be clear
+  enough for an agent to decide whether to activate this skill from
+  the description alone. Max 1024 characters. Start with a verb.
 license: MIT
-allowed-tools: Read Write Edit Bash Grep Glob
+allowed-tools: Read Write Edit Bash Grep Glob  # optional, experimental
 metadata:
   author: Philipp Thoss
   version: "1.0"
@@ -71,7 +83,9 @@ metadata:
 ---
 ```
 
-**Required fields**: `name`, `description`, `allowed-tools`
+**Required fields**: `name`, `description`
+
+**Optional fields**: `license`, `allowed-tools` (experimental), `metadata`, `compatibility`
 
 **Metadata conventions**:
 - `complexity`: basic (< 5 steps, no edge cases), intermediate (5-10 steps, some judgment), advanced (10+ steps, significant domain knowledge)
@@ -101,6 +115,8 @@ List 3-5 trigger conditions — concrete scenarios where an agent should activat
 ```
 
 Write from the agent's perspective. These are the conditions the agent checks to decide activation.
+
+> **Note**: The most important trigger conditions should also appear in the `description` frontmatter field, since that is read during the discovery phase before the full body is loaded. The `## When to Use` section provides additional detail and context.
 
 ### Step 5: Write "Inputs"
 

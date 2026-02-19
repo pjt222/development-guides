@@ -4,6 +4,9 @@ description: >
   Build a feature store using Feast for centralized feature management, configure
   offline and online stores for batch and real-time serving, define feature views
   with transformations, and implement point-in-time correct joins for ML pipelines.
+  Use when managing features for multiple ML models, ensuring training-serving consistency,
+  serving low-latency features for real-time inference, reusing feature definitions
+  across projects, or building a feature catalog for discovery and governance.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

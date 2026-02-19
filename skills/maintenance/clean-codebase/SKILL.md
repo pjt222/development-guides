@@ -1,8 +1,11 @@
 ---
 name: clean-codebase
 description: >
-  Remove dead code, unused imports, fix lint warnings, and normalize formatting across a codebase.
-  Focuses on automated cleanup without changing business logic or architecture.
+  Remove dead code, unused imports, fix lint warnings, and normalize formatting
+  across a codebase without changing business logic or architecture. Use when
+  lint warnings have piled up during rapid development, unused imports and
+  variables clutter files, dead code paths were never removed, formatting is
+  inconsistent, or static analysis tools report fixable hygiene issues.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

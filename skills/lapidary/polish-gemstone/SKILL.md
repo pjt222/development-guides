@@ -4,6 +4,10 @@ description: >
   Polish cut gemstones to final finish using progressive abrasive
   sequences. Covers pre-polish sanding, polishing compounds, lap
   selection, and quality assessment for both cabochons and faceted stones.
+  Use when a cabochon or faceted stone has completed cutting and is ready
+  for polishing, selecting the correct compound and lap for a specific
+  species, troubleshooting a polish that will not reach full lustre
+  (orange peel, haze, scratches), or re-polishing a stone with surface wear.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -2,7 +2,11 @@
 name: build-grafana-dashboards
 description: >
   Create production-ready Grafana dashboards with reusable panels, template variables,
-  annotations, and provisioning for version-controlled dashboard deployment.
+  annotations, and provisioning for version-controlled dashboard deployment. Use when
+  creating visual representations of Prometheus, Loki, or other data source metrics,
+  building operational dashboards for SRE teams, migrating from manual dashboard creation
+  to version-controlled provisioning, or establishing executive-level SLO compliance
+  reporting.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

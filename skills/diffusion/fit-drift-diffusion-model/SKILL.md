@@ -4,6 +4,10 @@ description: >
   Fit cognitive drift-diffusion models (Ratcliff DDM) to reaction time and
   accuracy data with parameter estimation (drift rate, boundary separation,
   non-decision time), model comparison, and parameter recovery validation.
+  Use when modeling binary decision-making with reaction time data, estimating
+  cognitive parameters from experimental data, comparing sequential sampling
+  model variants, or decomposing speed-accuracy tradeoff effects into
+  latent cognitive components.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -3,9 +3,11 @@ name: ornament-style-modern
 description: >
   Design ornamental patterns using modern and speculative aesthetics with colorblind-accessible
   color scales. Breaks free from historical period constraints to explore cyberpunk, solarpunk,
-  biopunk, brutalist, vaporwave, and other contemporary genres. Uses perceptually uniform color
-  scales (viridis, cividis, inferno, etc.) as first-class palette options and includes CVD
-  (Color Vision Deficiency) awareness throughout. Uses Z-Image for AI-assisted generation.
+  biopunk, brutalist, vaporwave, and other contemporary genres. Includes CVD (Color Vision
+  Deficiency) awareness and perceptually uniform scales (viridis, cividis, inferno). Use when
+  creating ornamental designs in modern or genre-specific aesthetics, designing patterns that
+  must be colorblind-accessible, or exploring hybrid motifs combining historical ornament with
+  contemporary visual language.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

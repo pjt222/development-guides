@@ -4,7 +4,10 @@ description: >
   Plan a multi-stop tour route with waypoint optimization, drive/walk time
   estimation, and POI discovery along the route using OSM data. Covers
   geocoding, nearest-neighbor and TSP-based ordering, time/distance matrix
-  calculation, and itinerary generation with points of interest.
+  calculation, and itinerary generation with points of interest. Use when
+  planning a road trip or walking tour with multiple destinations, optimizing
+  visit order to minimize travel time, discovering sites along a route, or
+  comparing driving versus walking versus public transport options.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob WebFetch WebSearch
 metadata:

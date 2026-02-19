@@ -4,7 +4,10 @@ description: >
   Maintain the 8 essential garden hand tools through sharpening, handle care,
   rust prevention, and seasonal storage. Covers bypass secateurs, hori-hori,
   hand fork, trowel, pruning saw, sharpening stone, watering can, and soil
-  rake. Includes meditate checkpoint during winter tool care ritual.
+  rake. Use after each garden session for quick cleaning, monthly during the
+  growing season for sharpening and oiling, at end of season for winter storage
+  preparation, before spring for pre-season readiness checks, or whenever a
+  tool feels dull, stiff, or shows rust.
 license: MIT
 allowed-tools: Read
 metadata:

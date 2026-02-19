@@ -2,9 +2,12 @@
 name: validate-statistical-output
 description: >
   Validate statistical analysis output through double programming,
-  independent verification, and reference comparison. Covers
-  comparison methodology, tolerance definitions, and deviation
-  handling for regulated environments.
+  independent verification, and reference comparison. Covers comparison
+  methodology, tolerance definitions, and deviation handling for regulated
+  environments. Use when validating primary or secondary endpoint analyses
+  for regulatory submissions, performing double programming (R vs SAS or
+  independent R implementations), verifying that analysis code produces
+  correct results, or re-validating after code or environment changes.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

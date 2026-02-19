@@ -3,7 +3,10 @@ name: setup-uptime-checks
 description: >
   Configure external uptime monitoring using Blackbox Exporter and Prometheus.
   Implement SSL certificate monitoring, HTTP endpoint health checks, and
-  status pages for customer-facing visibility.
+  status pages for customer-facing visibility. Use when monitoring customer-facing
+  endpoints such as APIs and websites, tracking SSL certificate expiration,
+  validating service availability from multiple regions, creating public status
+  pages, or meeting SLA requirements for uptime reporting.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

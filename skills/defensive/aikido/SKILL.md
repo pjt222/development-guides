@@ -5,7 +5,10 @@ description: >
   and controlled resolution. Covers centering and grounding, ukemi (safe
   falling and rolling), core techniques (irimi-nage, shiho-nage, kote-gaeshi,
   ikkyo), blending and tai sabaki (body movement), randori (multiple attacker
-  practice), weapons awareness, and applying principles off the mat.
+  practice), weapons awareness, and applying principles off the mat. Use when
+  learning a defensive martial art that prioritizes de-escalation, developing
+  the ability to redirect aggression without causing unnecessary harm, building
+  safe falling skills, or cultivating calm centeredness under physical pressure.
 license: MIT
 allowed-tools: Read
 metadata:

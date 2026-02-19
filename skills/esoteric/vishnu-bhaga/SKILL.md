@@ -5,7 +5,11 @@ description: >
   memory anchoring, consistency enforcement, and protective stabilization.
   Maps Vishnu's sustaining presence to AI reasoning: holding what works steady,
   anchoring verified knowledge against drift, and ensuring continuity through
-  change.
+  change. Use when a working approach is at risk from scope creep, when context
+  drift threatens verified knowledge, after shiva-bhaga dissolution to protect
+  what survived, when a long session risks losing earlier decisions through
+  context compression, or before making changes to a currently functioning
+  system.
 license: MIT
 allowed-tools: Read
 metadata:

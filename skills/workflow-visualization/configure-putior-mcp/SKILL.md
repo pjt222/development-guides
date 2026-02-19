@@ -4,7 +4,10 @@ description: >
   Configure the putior MCP server to expose 16 workflow visualization
   tools to AI assistants. Covers Claude Code and Claude Desktop setup,
   dependency installation (mcptools, ellmer), tool verification, and
-  optional ACP server configuration for agent-to-agent communication.
+  optional ACP server configuration for agent-to-agent communication. Use
+  when enabling AI assistants to annotate and visualize workflows interactively,
+  setting up a new development environment with putior MCP integration, or
+  configuring agent-to-agent communication via ACP for automated pipelines.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

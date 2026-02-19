@@ -3,7 +3,11 @@ name: read-tree-of-life
 description: >
   Navigate the Kabbalistic Tree of Life (Etz Chaim) — explore the ten
   sephirot, twenty-two paths, four worlds, and three pillars. Covers
-  correspondences, contemplative exercises, and structural analysis.
+  correspondences, contemplative exercises, and structural analysis. Use
+  when exploring a sephira's attributes and divine names, studying structural
+  relationships between sephirot, learning the four worlds (Atzilut through
+  Assiah), tracing a path's Hebrew letter and tarot attributions, or using
+  the Tree as a symbolic map for understanding a concept or system.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -3,7 +3,10 @@ name: format-apa-report
 description: >
   Format a Quarto or R Markdown report following APA 7th edition style.
   Covers apaquarto/papaja packages, title page, abstracts, citations,
-  tables, figures, and reference formatting.
+  tables, figures, and reference formatting. Use when writing an academic
+  paper in APA format, creating a psychology or social science research
+  report, generating reproducible manuscripts with embedded analysis,
+  or preparing a thesis or dissertation chapter.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

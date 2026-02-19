@@ -3,7 +3,11 @@ name: appraise-gemstone
 description: >
   Appraise gemstone value using the four Cs (color, clarity, cut, carat),
   origin assessment, treatment detection, and market factor analysis.
-  Advisory educational guidance only — not a certified appraisal.
+  Advisory educational guidance only — not a certified appraisal. Use when
+  understanding factors that determine a gemstone's value, pre-screening
+  stones before a professional appraisal, evaluating whether a seller's asking
+  price is reasonable, learning gemstone grading methodology, or understanding
+  how treatment status affects value.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,8 +4,10 @@ description: >
   Construct well-structured arguments using the hypothesis-argument-example
   triad. Covers formulating falsifiable hypotheses, building logical arguments
   (deductive, inductive, analogical, evidential), providing concrete examples,
-  and steelmanning counterarguments. Applicable to code reviews, PR descriptions,
-  design decisions, research writing, and technical documentation.
+  and steelmanning counterarguments. Use when writing or reviewing PR descriptions
+  that propose technical changes, justifying design decisions in ADRs, constructing
+  substantive code review feedback, or building a research argument or technical
+  proposal.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

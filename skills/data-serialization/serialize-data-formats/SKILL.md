@@ -4,7 +4,10 @@ description: >
   Serialize and deserialize data across common formats including JSON, XML,
   YAML, Protocol Buffers, MessagePack, and Apache Arrow/Parquet. Covers
   format selection criteria, encoding/decoding patterns, performance
-  trade-offs, and interoperability considerations.
+  trade-offs, and interoperability considerations. Use when choosing a wire
+  format for API communication, persisting structured data to disk, exchanging
+  data between systems written in different languages, optimizing transfer size
+  or parsing speed, or migrating from one serialization format to another.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

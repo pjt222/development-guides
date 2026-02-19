@@ -5,7 +5,10 @@ description: >
   verification, follow-through on commitments, and the discipline of finishing
   well. Maps the personality trait of conscientiousness to AI task execution:
   not cutting corners, verifying results, and ensuring that what was promised
-  is what was delivered.
+  is what was delivered. Use before marking a task as complete, when a response
+  feels "good enough" but deserves better, after a complex multi-step operation
+  where steps may have drifted, or when self-monitoring detects a pattern of
+  cutting corners or rushing.
 license: MIT
 allowed-tools: Read
 metadata:

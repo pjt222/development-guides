@@ -3,7 +3,11 @@ name: generate-statistical-tables
 description: >
   Generate publication-ready statistical tables using gt, kableExtra,
   or flextable. Covers descriptive statistics, regression results,
-  ANOVA tables, correlation matrices, and APA formatting.
+  ANOVA tables, correlation matrices, and APA formatting. Use when
+  creating descriptive statistics tables, formatting regression or
+  ANOVA output, building correlation matrices, producing APA-style
+  tables for academic papers, or generating tables for Quarto and
+  R Markdown documents.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

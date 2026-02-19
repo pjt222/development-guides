@@ -1,7 +1,12 @@
 ---
 name: render-publication-graphic
 description: >
-  Produce publication-ready 2D graphics with proper DPI, color profiles, typography, and export formats for print and digital media.
+  Produce publication-ready 2D graphics with proper DPI, color profiles,
+  typography, and export formats for print and digital media. Use when
+  preparing figures for academic journal submission, creating graphics for
+  print publications, ensuring graphics meet publisher technical specifications,
+  exporting visualizations for web with proper optimization, or creating
+  multi-format exports from a single source.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

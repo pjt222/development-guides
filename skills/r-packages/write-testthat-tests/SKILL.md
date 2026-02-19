@@ -3,7 +3,10 @@ name: write-testthat-tests
 description: >
   Write comprehensive testthat (edition 3) tests for R package functions.
   Covers test organization, expectations, fixtures, mocking, snapshot
-  tests, parameterized tests, and achieving high coverage.
+  tests, parameterized tests, and achieving high coverage. Use when adding
+  tests for new package functions, increasing test coverage for existing
+  code, writing regression tests for bug fixes, or setting up test
+  infrastructure for a package that lacks it.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

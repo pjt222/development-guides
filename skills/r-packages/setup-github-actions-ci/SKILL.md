@@ -3,7 +3,10 @@ name: setup-github-actions-ci
 description: >
   Configure GitHub Actions CI/CD for R packages including R CMD check
   on multiple platforms, test coverage reporting, and pkgdown site
-  deployment. Uses r-lib/actions for standard workflows.
+  deployment. Uses r-lib/actions for standard workflows. Use when setting
+  up CI/CD for a new R package, adding multi-platform testing to an
+  existing package, configuring automated pkgdown site deployment,
+  or adding code coverage reporting to a repository.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -3,8 +3,11 @@ name: plan-hiking-tour
 description: >
   Plan a hiking tour with trail selection by difficulty (SAC/UIAA), time
   estimation using Munter's formula, elevation analysis, and safety
-  assessment. Covers multi-day hut-to-hut tours, day hikes, and alpine
-  routes with terrain classification and group fitness considerations.
+  assessment. Covers multi-day hut-to-hut tours, day hikes, and alpine routes
+  with terrain classification and group fitness considerations. Use when
+  planning a day hike or multi-day trekking tour, selecting trails appropriate
+  for a group's fitness and experience, estimating realistic hiking times, or
+  planning hut-to-hut tours with overnight logistics.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

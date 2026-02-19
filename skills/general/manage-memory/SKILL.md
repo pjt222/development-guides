@@ -4,7 +4,10 @@ description: >
   Organize, extract, prune, and verify Claude Code persistent memory files.
   Covers MEMORY.md as a concise index, topic extraction to dedicated files,
   staleness detection, accuracy verification against project state, and
-  the 200-line truncation constraint.
+  the 200-line truncation constraint. Use when MEMORY.md is approaching the
+  200-line limit, after a session produces durable insights worth preserving,
+  when a topic section has grown beyond 10-15 lines and should be extracted,
+  or when project state has changed and memory entries may be stale.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

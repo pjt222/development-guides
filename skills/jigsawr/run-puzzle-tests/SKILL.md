@@ -4,7 +4,9 @@ description: >
   Run the jigsawR test suite via WSL R execution. Supports full suite,
   filtered by pattern, or single file. Interprets pass/fail/skip counts
   and identifies failing tests. Never uses --vanilla flag (renv needs
-  .Rprofile for activation).
+  .Rprofile for activation). Use after modifying any R source code, after
+  adding a new puzzle type or feature, before committing changes to verify
+  nothing is broken, or when debugging a specific test failure.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

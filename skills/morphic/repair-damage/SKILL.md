@@ -4,7 +4,11 @@ description: >
   Implement regenerative recovery using triage, scaffolding, and progressive
   rebuild. Covers damage assessment, wound classification, emergency
   stabilization, scar tissue management, and resilience strengthening for
-  systems that have sustained structural damage.
+  systems that have sustained structural damage. Use when a system has suffered
+  an incident needing structured recovery, when a failed transformation left the
+  system in a damaged intermediate state, when accumulated technical debt has
+  caused partial failure, or when a system is functional but degraded and the
+  degradation is worsening.
 license: MIT
 allowed-tools: Read
 metadata:

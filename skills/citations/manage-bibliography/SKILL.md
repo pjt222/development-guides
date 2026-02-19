@@ -5,6 +5,10 @@ description: >
   (RefManageR, bibtex). Parse .bib files into structured R objects, merge
   multiple bibliographies with deduplication by DOI or title similarity,
   generate entries from DOI/ISBN/arXiv ID, and export clean sorted .bib files.
+  Use when creating a new .bib file for an R Markdown or Quarto project,
+  merging bibliographies from multiple collaborators, deduplicating a .bib
+  that has grown through copy-paste accumulation, or generating BibTeX entries
+  programmatically from DOIs or other identifiers.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

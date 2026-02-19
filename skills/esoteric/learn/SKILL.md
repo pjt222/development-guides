@@ -5,7 +5,10 @@ description: >
   model-building with feedback loops. Maps spaced repetition principles to
   AI reasoning: survey the territory, hypothesize structure, explore with
   probes, integrate findings, verify understanding, and consolidate for
-  future retrieval.
+  future retrieval. Use when encountering an unfamiliar codebase or domain,
+  when a user asks about a topic requiring genuine investigation rather than
+  recall, when multiple conflicting sources require building a coherent model,
+  or when preparing to teach a topic and deep understanding is required first.
 license: MIT
 allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
 metadata:

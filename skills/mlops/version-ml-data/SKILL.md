@@ -4,6 +4,9 @@ description: >
   Version machine learning datasets using DVC (Data Version Control) with remote
   storage backends, build reproducible data pipelines with dependency tracking,
   integrate with Git workflows, and ensure data lineage for model reproducibility.
+  Use when versioning large datasets that do not fit in Git, tracking data changes
+  alongside code changes, ensuring ML experiment reproducibility, sharing datasets
+  across team members, or auditing data lineage for compliance requirements.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

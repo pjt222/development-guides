@@ -4,7 +4,10 @@ description: >
   Search for prior art relevant to a specific invention or patent claim.
   Covers patent literature, non-patent literature (academic papers, products,
   open source), defensive publications, and standard-essential patents.
-  Used for patentability assessment, invalidity challenges, and FTO analysis.
+  Use when evaluating whether an invention is novel and non-obvious before
+  filing, challenging the validity of an existing patent, supporting a
+  freedom-to-operate analysis, documenting a defensive publication, or
+  responding to a patent office action questioning novelty or obviousness.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

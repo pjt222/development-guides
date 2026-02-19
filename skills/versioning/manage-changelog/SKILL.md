@@ -3,7 +3,11 @@ name: manage-changelog
 description: >
   Maintain a changelog following Keep a Changelog format. Covers
   entry categorization (Added, Changed, Deprecated, Removed, Fixed,
-  Security), version section management, and unreleased tracking.
+  Security), version section management, and unreleased tracking. Use when
+  starting a new project that needs a changelog, adding entries after
+  completing features or fixes, preparing a release by promoting Unreleased
+  entries to a versioned section, or converting a free-form changelog to
+  Keep a Changelog format.
 license: MIT
 allowed-tools: Read, Write, Edit, Grep
 metadata:

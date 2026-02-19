@@ -3,6 +3,10 @@ name: test-a2a-interop
 description: >
   Test A2A interoperability between agents by validating Agent Card conformance,
   exercising all task lifecycle states, and verifying streaming and error handling.
+  Use when verifying a new A2A server implementation before deployment, validating
+  interoperability between two or more A2A agents, running conformance tests in
+  CI/CD for A2A services, debugging failures in multi-agent A2A workflows, or
+  certifying that an agent meets A2A protocol requirements for a registry.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob WebFetch
 metadata:

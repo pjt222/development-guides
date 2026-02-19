@@ -3,7 +3,10 @@ name: orchestrate-ml-pipeline
 description: >
   Orchestrate end-to-end machine learning pipelines using Prefect or Airflow with
   DAG construction, task dependencies, retry logic, scheduling, monitoring, and
-  integration with MLflow, DVC, and feature stores for production ML workflows.
+  integration with MLflow, DVC, and feature stores for production ML workflows. Use
+  when automating multi-step ML workflows from data ingestion to deployment, scheduling
+  periodic model retraining, coordinating distributed training tasks, or managing retry
+  logic and failure recovery across pipeline stages.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

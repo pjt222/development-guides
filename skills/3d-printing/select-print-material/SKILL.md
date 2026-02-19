@@ -1,8 +1,13 @@
 ---
 name: select-print-material
 description: >
-  Choose 3D printing materials based on mechanical, thermal, and chemical requirements.
-  Covers PLA, PETG, ABS, ASA, TPU, Nylon, and resin variants with property comparisons.
+  Choose 3D printing materials based on mechanical, thermal, and chemical
+  requirements. Covers PLA, PETG, ABS, ASA, TPU, Nylon, and resin variants
+  with property comparisons. Use when selecting material for parts with
+  specific mechanical or thermal requirements, choosing for outdoor or chemical
+  exposure, evaluating food-safe or biocompatible applications, balancing
+  printability vs. performance, or troubleshooting material-related print
+  failures.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
 metadata:

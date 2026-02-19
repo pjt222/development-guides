@@ -4,6 +4,9 @@ description: >
   Build and deploy a pkgdown documentation site for an R package to
   GitHub Pages. Covers _pkgdown.yml configuration, theming, article
   organization, reference index customization, and deployment methods.
+  Use when creating a documentation site for a new or existing package,
+  customizing layout or navigation, fixing 404 errors on a deployed site,
+  or migrating between branch-based and GitHub Actions deployment methods.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

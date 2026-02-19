@@ -4,7 +4,9 @@ description: >
   Deploy and configure a service mesh (Istio or Linkerd) to enable secure service-to-service
   communication, traffic management, observability, and policy enforcement in Kubernetes clusters.
   Covers installation, mTLS configuration, traffic routing, circuit breaking, and integration
-  with monitoring tools.
+  with monitoring tools. Use when microservices need encrypted service-to-service communication,
+  fine-grained traffic control for canary or A/B deployments, observability across all service
+  interactions without application changes, or consistent circuit breaking and retry policies.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -4,8 +4,11 @@ description: >
   Practice tai chi chuan as a martial art and internal cultivation system.
   Covers standing meditation (zhan zhuang), silk reeling energy exercises,
   Yang-style 24-movement form, martial application of postures, push hands
-  (tui shou) partner drills, breath and qi integration, and building a
-  daily practice.
+  (tui shou) partner drills, breath and qi integration, and building a daily
+  practice. Use when beginning or deepening a tai chi practice for health or
+  martial skill, developing whole-body coordination and relaxed structural
+  alignment, complementing a meditation practice with moving mindfulness, or
+  building a low-impact daily movement practice suitable for any age.
 license: MIT
 allowed-tools: Read
 metadata:

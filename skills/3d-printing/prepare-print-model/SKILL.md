@@ -2,7 +2,12 @@
 name: prepare-print-model
 description: >
   Export and optimize 3D models for FDM/SLA printing including STL/3MF export,
-  mesh integrity verification, wall thickness checking, support generation, and slicing.
+  mesh integrity verification, wall thickness checking, support generation, and
+  slicing. Use when exporting from CAD or modeling software for 3D printing,
+  verifying STL/3MF files are printable before slicing, troubleshooting models
+  that fail to slice correctly, optimizing part orientation for strength or
+  surface finish, or converting between model formats while preserving
+  printability.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
 metadata:

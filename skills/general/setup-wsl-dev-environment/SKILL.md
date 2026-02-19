@@ -3,7 +3,10 @@ name: setup-wsl-dev-environment
 description: >
   Set up a WSL2 development environment on Windows including shell
   configuration, essential tools, Git, SSH keys, Node.js, Python,
-  and cross-platform path management.
+  and cross-platform path management. Use when setting up a new Windows
+  machine for development, configuring WSL2 for the first time, adding
+  development tools to an existing WSL installation, or setting up
+  cross-platform workflows that combine WSL and Windows tools.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

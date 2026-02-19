@@ -3,7 +3,11 @@ name: formulate-quantum-problem
 description: >
   Formulate a quantum mechanics or quantum chemistry problem with proper
   mathematical framework including Hilbert space, operators, boundary conditions,
-  and approximation method selection.
+  and approximation method selection. Use when setting up a quantum mechanics
+  problem for analytic or numerical solution, formulating a quantum chemistry
+  calculation, translating a physical scenario into the Schrodinger or Dirac
+  formalism, or choosing between perturbation theory, variational methods,
+  DFT, and exact diagonalization.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

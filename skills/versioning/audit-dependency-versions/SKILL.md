@@ -1,9 +1,13 @@
 ---
 name: audit-dependency-versions
 description: >
-  Audit project dependencies for version staleness, security
-  vulnerabilities, and compatibility issues. Covers lock file
-  analysis, upgrade path planning, and breaking change assessment.
+  Audit project dependencies for version staleness, security vulnerabilities,
+  and compatibility issues. Covers lock file analysis, upgrade path planning,
+  and breaking change assessment. Use before a release to ensure dependencies
+  are current and secure, during periodic maintenance reviews, after receiving
+  a security advisory, when upgrading to a new language version, before
+  submitting to CRAN or npm, or when inheriting a project to assess its
+  dependency health.
 license: MIT
 allowed-tools: Read, Bash, Grep, Glob
 metadata:

@@ -1,7 +1,12 @@
 ---
 name: render-blender-output
 description: >
-  Configure render settings, compositing nodes, output formats, and execute renders via Cycles or EEVEE engines.
+  Configure render settings, compositing nodes, output formats, and execute
+  renders via Cycles or EEVEE engines using Python API or command-line
+  interface. Use when automating render execution for batch processing,
+  configuring quality and performance trade-offs, setting up compositing
+  pipelines for post-processing, generating multiple output formats from a
+  single render, or producing final output for publication or presentation.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

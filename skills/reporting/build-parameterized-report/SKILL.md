@@ -3,7 +3,11 @@ name: build-parameterized-report
 description: >
   Create parameterized Quarto or R Markdown reports that can be rendered
   with different inputs to generate multiple variations. Covers parameter
-  definitions, programmatic rendering, and batch generation.
+  definitions, programmatic rendering, and batch generation. Use when
+  generating the same report for different departments, regions, or time
+  periods; creating client-specific reports from a single template;
+  building dashboards that filter to specific subsets; or automating
+  recurring reports with varying inputs.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

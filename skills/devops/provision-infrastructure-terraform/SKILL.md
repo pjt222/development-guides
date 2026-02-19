@@ -3,7 +3,10 @@ name: provision-infrastructure-terraform
 description: >
   Provision and manage cloud infrastructure using Terraform with HCL modules, remote state
   backends, workspaces, and plan/apply workflow. Implement infrastructure as code patterns
-  with variable management, output values, and state locking for team collaboration.
+  with variable management, output values, and state locking for team collaboration. Use
+  when provisioning new cloud infrastructure, migrating from ClickOps or CloudFormation to
+  declarative IaC, managing multi-environment infrastructure, versioning infrastructure
+  changes alongside application code, or enforcing standards through reusable modules.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

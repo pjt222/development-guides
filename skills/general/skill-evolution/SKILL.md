@@ -5,6 +5,9 @@ description: >
   advanced variant. Covers assessing the current skill, gathering evolution
   requirements, choosing scope (refinement vs. variant), applying changes,
   updating version metadata, and synchronizing the registry and cross-references.
+  Use when a skill's procedure steps are outdated, user feedback reveals gaps,
+  a skill needs a complexity upgrade, an advanced variant is needed alongside
+  the original, or related skills are added and cross-references are stale.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

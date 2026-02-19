@@ -5,7 +5,10 @@ description: >
   the earliest possible point. Covers input validation with guard clauses,
   meaningful error messages, assertion functions, and anti-patterns that
   silently swallow failures. Primary examples in R with general/polyglot
-  guidance.
+  guidance. Use when writing functions that accept external input, adding
+  input validation before CRAN submission, refactoring code that silently
+  produces wrong results, reviewing PRs for error-handling quality, or
+  hardening internal APIs against invalid arguments.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

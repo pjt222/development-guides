@@ -3,6 +3,10 @@ name: configure-alerting-rules
 description: >
   Configure Prometheus Alertmanager with routing trees, receivers (Slack, PagerDuty, email),
   inhibition rules, silences, and notification templates for actionable incident alerting.
+  Use when implementing proactive monitoring with automated incident detection, routing alerts
+  to the appropriate team by severity, reducing alert fatigue through grouping and deduplication,
+  integrating with on-call systems like PagerDuty, or migrating from legacy alerting to
+  Prometheus-based alerting.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

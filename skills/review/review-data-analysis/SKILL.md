@@ -3,7 +3,10 @@ name: review-data-analysis
 description: >
   Review a data analysis for quality, correctness, and reproducibility. Covers
   data quality assessment, assumption checking, model validation, data leakage
-  detection, and reproducibility verification.
+  detection, and reproducibility verification. Use when reviewing a colleague's
+  analysis before publication, validating an ML pipeline before production
+  deployment, auditing a report for regulatory or business decision-making, or
+  performing a second-analyst review in a regulated environment.
 license: MIT
 allowed-tools: Read Grep Glob Bash WebFetch
 metadata:

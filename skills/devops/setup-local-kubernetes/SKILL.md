@@ -4,7 +4,9 @@ description: >
   Set up a local Kubernetes development environment using kind, k3d, or minikube for fast
   inner-loop development. Covers cluster creation, ingress configuration, local registry
   setup, and integration with development tools like Skaffold and Tilt for automatic
-  rebuild and redeploy workflows.
+  rebuild and redeploy workflows. Use when needing a local Kubernetes environment for
+  development, testing manifests or Helm charts before production deployment, wanting fast
+  automatic rebuild-and-redeploy cycles, or learning Kubernetes without cloud costs.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

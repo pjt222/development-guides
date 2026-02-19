@@ -5,7 +5,10 @@ description: >
   principles. Covers detective controls, audit trail review schedules,
   anomaly detection patterns (off-hours activity, sequential modifications,
   bulk changes), metrics dashboards, investigation triggers, and escalation
-  matrix definition.
+  matrix definition. Use when establishing a data integrity monitoring
+  programme for GxP systems, preparing for inspections where data integrity
+  is a focus area, after a data integrity incident requiring enhanced
+  monitoring, or when implementing MHRA, WHO, or PIC/S guidance.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

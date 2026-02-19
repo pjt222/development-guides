@@ -4,7 +4,11 @@ description: >
   Transform a single function, module, or data structure from one form to
   another while preserving its essential behavior. Lighter-weight than the full
   athanor cycle, suitable for targeted conversions where the input and output
-  forms are well-understood.
+  forms are well-understood. Use when converting a function between languages,
+  shifting a module between paradigms, migrating an API consumer to a new
+  version, converting data formats, or replacing a dependency — when the
+  transformation scope is a single function, class, or module rather than a
+  full system.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

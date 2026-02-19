@@ -2,7 +2,10 @@
 name: write-incident-runbook
 description: >
   Create structured incident runbooks with diagnostic steps, resolution procedures, escalation
-  paths, and communication templates for effective incident response.
+  paths, and communication templates for effective incident response. Use when documenting
+  response procedures for recurring alerts, standardizing incident response across an on-call
+  rotation, reducing MTTR with clear diagnostic steps, creating training materials for new
+  team members, or linking alert annotations directly to resolution procedures.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -5,6 +5,10 @@ description: >
   for compliance deviations. Covers investigation method selection (5-Why,
   fishbone, fault tree), structured root cause analysis, corrective vs
   preventive action design, effectiveness verification, and trend analysis.
+  Use when an audit finding requires a CAPA, when a deviation or incident
+  occurs in a validated system, when a regulatory observation needs a formal
+  response, when a data integrity anomaly requires investigation, or when
+  recurring issues suggest a systemic root cause.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

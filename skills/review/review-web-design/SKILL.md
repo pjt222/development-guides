@@ -3,7 +3,10 @@ name: review-web-design
 description: >
   Review web design for layout quality, typography, colour usage, spacing,
   responsive behaviour, brand consistency, and visual hierarchy. Covers
-  design principles evaluation and improvement recommendations.
+  design principles evaluation and improvement recommendations. Use when
+  reviewing a design mockup before development, assessing an implemented
+  site for design quality, providing feedback during a design review session,
+  evaluating brand consistency, or checking responsive behaviour across breakpoints.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch
 metadata:

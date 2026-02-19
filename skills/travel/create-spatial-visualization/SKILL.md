@@ -4,7 +4,10 @@ description: >
   Create interactive maps, elevation profiles, and spatial visualizations
   from GPX tracks, waypoints, or route data using R (sf, leaflet, tmap)
   or Observable (D3, deck.gl). Covers data import, coordinate system
-  handling, map styling, and export to HTML or image formats.
+  handling, map styling, and export to HTML or image formats. Use when
+  visualizing a planned or completed tour route on an interactive map,
+  creating elevation profiles for hiking or cycling routes, overlaying
+  waypoints and POIs on a basemap, or building a web-based trip dashboard.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

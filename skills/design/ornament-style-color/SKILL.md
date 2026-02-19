@@ -4,7 +4,10 @@ description: >
   Design polychromatic ornamental patterns grounded in Alexander Speltz's classical
   ornament taxonomy. Builds on monochrome structural analysis by adding period-authentic
   color palettes, color-to-motif mapping, and rendering styles suited to painted,
-  illuminated, and glazed ornament. Uses Z-Image for AI-assisted generation.
+  illuminated, and glazed ornament. Use when creating decorative designs where color
+  is integral to the tradition (Islamic tilework, illuminated manuscripts, Art Nouveau),
+  exploring how historical periods used color in ornament, or producing colored reference
+  imagery for design, illustration, or educational materials.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

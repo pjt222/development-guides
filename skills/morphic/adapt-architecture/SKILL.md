@@ -4,7 +4,11 @@ description: >
   Execute structural metamorphosis using strangler fig migration, chrysalis
   phases, and interface preservation. Covers transformation planning, parallel
   running, progressive cutover, rollback design, and post-metamorphosis
-  stabilization for system architecture evolution.
+  stabilization for system architecture evolution. Use when assess-form has
+  classified the system as READY for transformation, when migrating from
+  monolith to microservices, when replacing a core subsystem while dependents
+  continue operating, or when any architectural change must be gradual rather
+  than big-bang.
 license: MIT
 allowed-tools: Read
 metadata:

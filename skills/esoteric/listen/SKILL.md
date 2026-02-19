@@ -6,6 +6,10 @@ description: >
   assumptions, attending to full signal, parsing multiple layers (literal,
   procedural, emotional, contextual, constraint, meta), reflecting
   understanding, noticing what is unsaid, and integrating the whole picture.
+  Use when a user's request feels ambiguous, when context suggests something
+  different from the literal words, when previous responses have missed the
+  mark, or before beginning a large task where misunderstanding intent would
+  waste significant effort.
 license: MIT
 allowed-tools: Read
 metadata:

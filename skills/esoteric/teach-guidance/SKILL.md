@@ -4,7 +4,11 @@ description: >
   Guide a person in becoming a better teacher and explainer. AI coaches
   content structuring, audience calibration, explanation clarity, Socratic
   questioning technique, feedback interpretation, and reflective practice
-  for technical presentations, documentation, and mentoring.
+  for technical presentations, documentation, and mentoring. Use when a
+  person needs to present technical content and wants preparation coaching,
+  wants to write better documentation or tutorials, struggles to explain
+  concepts across expertise levels, is mentoring a colleague, or is
+  preparing for a talk or knowledge-sharing session.
 license: MIT
 allowed-tools: Read
 metadata:

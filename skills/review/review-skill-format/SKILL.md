@@ -3,7 +3,10 @@ name: review-skill-format
 description: >
   Review a SKILL.md file for compliance with the agentskills.io standard.
   Checks YAML frontmatter fields, required sections, line count limits,
-  procedure step format, and registry synchronization.
+  procedure step format, and registry synchronization. Use when a new skill
+  needs format validation before merge, an existing skill has been modified and
+  requires re-validation, performing a batch audit of all skills in a domain,
+  or reviewing a contributor's skill submission in a pull request.
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:

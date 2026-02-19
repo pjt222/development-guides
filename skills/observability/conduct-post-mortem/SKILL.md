@@ -3,7 +3,10 @@ name: conduct-post-mortem
 description: >
   Conduct a blameless post-mortem analysis after an incident. Build timeline
   reconstruction, identify contributing factors, and generate actionable
-  improvements. Focus on systemic issues rather than individual blame.
+  improvements. Focus on systemic issues rather than individual blame. Use
+  after any production incident or service degradation, following a near-miss,
+  when investigating recurring issues, or to share systemic learnings across
+  teams.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

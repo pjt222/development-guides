@@ -3,7 +3,10 @@ name: security-audit-codebase
 description: >
   Perform a security audit of a codebase checking for exposed secrets,
   vulnerable dependencies, injection vulnerabilities, insecure
-  configurations, and OWASP Top 10 issues.
+  configurations, and OWASP Top 10 issues. Use before publishing or
+  deploying a project, for periodic security reviews, after adding
+  authentication or API integration, before open-sourcing a private
+  repository, or when preparing for a security compliance audit.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

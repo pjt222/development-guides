@@ -4,7 +4,11 @@ description: >
   Guide a person through structured learning of a new topic, technology,
   or skill. AI acts as learning coach — assessing current knowledge,
   designing a learning path, walking through material, testing understanding,
-  adapting difficulty, and planning review sessions for retention.
+  adapting difficulty, and planning review sessions for retention. Use when
+  a person wants to learn a new technology and does not know where to start,
+  when someone feels overwhelmed by documentation, when a person keeps
+  forgetting material and needs spaced repetition, or when transitioning
+  between domains and needing a gap analysis.
 license: MIT
 allowed-tools: Read, WebFetch, WebSearch
 metadata:

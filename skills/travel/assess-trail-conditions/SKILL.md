@@ -2,9 +2,12 @@
 name: assess-trail-conditions
 description: >
   Evaluate current trail conditions including weather, snow line, river
-  crossings, exposure, and trail maintenance status for safety
-  decision-making. Produces a GREEN/YELLOW/RED safety rating with
-  actionable recommendations for go/no-go decisions.
+  crossings, exposure, and trail maintenance status for safety decision-making.
+  Produces a GREEN/YELLOW/RED safety rating with actionable go/no-go
+  recommendations. Use the day before or morning of a planned hike, during tour
+  planning to assess seasonal viability, after unexpected weather changes on a
+  multi-day tour, when reports suggest trail damage or closures, or before
+  committing to an alpine or exposed route.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

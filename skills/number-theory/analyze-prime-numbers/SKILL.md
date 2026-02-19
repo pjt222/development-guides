@@ -4,6 +4,10 @@ description: >
   Analyze prime numbers using primality tests, factorization algorithms,
   prime distribution analysis, and sieve methods. Covers trial division,
   Miller-Rabin, Sieve of Eratosthenes, and the Prime Number Theorem.
+  Use when determining whether an integer is prime or composite, finding
+  prime factorizations, counting or listing primes up to a bound, or
+  investigating prime properties within a number-theoretic proof or
+  computation.
 license: MIT
 allowed-tools: Read, Bash
 metadata:

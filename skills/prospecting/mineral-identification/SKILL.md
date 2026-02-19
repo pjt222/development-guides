@@ -4,7 +4,11 @@ description: >
   Field identification of minerals and ores using hardness, streak, luster,
   cleavage, crystal habit, and simple chemical tests. Covers the systematic
   elimination methodology, Mohs scale application, and common ore indicators
-  for precious metals, gemstones, and industrial minerals.
+  for precious metals, gemstones, and industrial minerals. Use when encountering
+  an unknown rock or mineral specimen, when prospecting and assessing whether a
+  site shows valuable mineral indicators, when distinguishing ore-bearing rock
+  from barren rock in the field, or when building geological literacy through
+  systematic observation.
 license: MIT
 allowed-tools: Read
 metadata:

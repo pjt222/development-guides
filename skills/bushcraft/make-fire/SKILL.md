@@ -5,6 +5,9 @@ description: >
   Covers site selection, material grading (tinder/kindling/fuel), fire lay
   construction (teepee, log cabin, platform), ignition techniques (ferro rod,
   flint & steel, bow drill), flame nurturing, and Leave No Trace extinguishing.
+  Use when needing warmth, light, or a signal in a wilderness setting, when
+  boiling water for purification, when cooking foraged food, or in an emergency
+  survival situation requiring heat or morale support.
 license: MIT
 allowed-tools: Read
 metadata:

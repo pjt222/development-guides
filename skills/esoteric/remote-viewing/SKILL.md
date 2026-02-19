@@ -6,6 +6,10 @@ description: >
   protocol to AI investigation: cooldown (clear assumptions), staged data
   gathering (raw signals → dimensional → analytical), AOL management
   (separating observations from premature labels), and structured review.
+  Use when investigating an unfamiliar codebase with unknown architecture,
+  debugging a problem where premature hypotheses could mislead, exploring a
+  domain with limited context, or when previous attempts have been led astray
+  by assumptions and "beginner's mind" would be more productive.
 license: MIT
 allowed-tools: Read, Glob, Grep
 metadata:

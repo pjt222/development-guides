@@ -5,7 +5,9 @@ description: >
   in jigsawR. Creates the core puzzle module, wires it into the unified
   pipeline (generation, positioning, rendering, adjacency), adds ggpuzzle
   geom/stat layers, updates DESCRIPTION and config.yml, extends the Shiny
-  app, and creates a comprehensive test suite.
+  app, and creates a comprehensive test suite. Use when adding a completely
+  new puzzle type to the package or following the 10-point integration
+  checklist to ensure nothing is missed end-to-end.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

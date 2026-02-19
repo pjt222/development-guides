@@ -4,6 +4,9 @@ description: >
   Implement AI-powered anomaly detection for operational metrics using time series analysis
   (Isolation Forest, Prophet, LSTM), alert correlation, and root cause analysis. Reduce
   alert fatigue by intelligently identifying true anomalies in system metrics, logs, and traces.
+  Use when operations teams are overwhelmed by alert volume, when detecting complex multi-metric
+  anomalies beyond static thresholds, when seasonal patterns make thresholds ineffective, or
+  when needing to predict issues proactively before they impact users.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

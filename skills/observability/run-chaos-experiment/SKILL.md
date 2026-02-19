@@ -3,7 +3,10 @@ name: run-chaos-experiment
 description: >
   Design and execute chaos engineering experiments using Litmus or Chaos Mesh.
   Test system resilience through controlled fault injection, validate
-  hypothesis-driven tests, and improve failure recovery.
+  hypothesis-driven tests, and improve failure recovery. Use before major
+  product launches, after architecture changes to validate resilience, during
+  GameDays or disaster recovery drills, to validate assumptions about failure
+  modes, or as part of an SRE maturity program.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

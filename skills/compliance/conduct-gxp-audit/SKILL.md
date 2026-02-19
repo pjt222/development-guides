@@ -4,7 +4,10 @@ description: >
   Conduct a GxP audit of computerized systems and processes. Covers audit
   planning, opening meetings, evidence collection, finding classification
   (critical/major/minor), CAPA generation, closing meetings, report writing,
-  and follow-up verification.
+  and follow-up verification. Use for scheduled internal audits, supplier
+  qualification audits, pre-inspection readiness assessments, for-cause
+  audits triggered by deviations or data integrity concerns, or periodic
+  compliance posture reviews of validated systems.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

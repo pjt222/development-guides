@@ -4,7 +4,10 @@ description: >
   Implement policy-as-code enforcement using OPA Gatekeeper or Kyverno to validate and mutate
   Kubernetes resources according to organizational policies. Covers constraint templates,
   admission control, audit mode, reporting violations, and integrating with CI/CD pipelines
-  for shift-left policy validation.
+  for shift-left policy validation. Use when enforcing resource configuration standards,
+  preventing security misconfigurations such as privileged containers, ensuring compliance
+  before deployment, standardizing naming conventions, or auditing existing cluster resources
+  against policies.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

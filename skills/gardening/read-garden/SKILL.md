@@ -5,8 +5,10 @@ description: >
   Coordinate Remote Viewing. Covers pre-entry clearing (meditate checkpoint),
   Stage I gestalt impression, Stage II sensory layer (leaf, stem, root, soil),
   Stage III pattern recognition with AOL management, and garden health triage
-  matrix (heal checkpoint). Produces an observation record for diagnosis and
-  seasonal tracking.
+  matrix (heal checkpoint). Use before any intervention, when plants show stress
+  symptoms, at seasonal transitions, when evaluating a new garden site, during
+  regular health monitoring, or after extreme weather events such as frost or
+  heat waves.
 license: MIT
 allowed-tools: Read
 metadata:

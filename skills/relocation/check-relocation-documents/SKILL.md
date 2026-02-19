@@ -2,7 +2,12 @@
 name: check-relocation-documents
 description: >
   Verify document completeness for each bureaucratic step of an EU/DACH
-  relocation, flagging missing items and translation requirements.
+  relocation, flagging missing items and translation requirements. Use after
+  creating a relocation plan and before beginning bureaucratic procedures, when
+  preparing for a specific appointment (Buergeramt, Finanzamt), when unsure
+  which documents need certified translation or apostille, after receiving a
+  rejection or request for additional documents, or as a periodic check during
+  the relocation process to ensure nothing has been overlooked.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

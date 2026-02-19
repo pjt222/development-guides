@@ -3,7 +3,11 @@ name: design-serialization-schema
 description: >
   Design serialization schemas using JSON Schema, Protocol Buffer definitions,
   or Apache Avro. Covers schema versioning, backwards compatibility, validation
-  rules, and evolution strategies for long-lived data formats.
+  rules, and evolution strategies for long-lived data formats. Use when defining
+  a new API contract or data interchange format, adding fields to an existing
+  schema without breaking consumers, migrating between schema versions, choosing
+  between schema systems, or documenting data validation rules for automated
+  enforcement.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

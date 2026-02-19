@@ -3,7 +3,10 @@ name: update-skill-content
 description: >
   Update the content of an existing SKILL.md to improve accuracy,
   completeness, and clarity. Covers version bumping, procedure
-  refinement, pitfall expansion, and related skills synchronization.
+  refinement, pitfall expansion, and related skills synchronization. Use
+  when a skill's procedures reference outdated tools or APIs, the Common
+  Pitfalls section is thin, Related Skills has broken cross-references, or
+  after receiving feedback that a skill's procedures are unclear or incomplete.
 license: MIT
 allowed-tools: Read, Write, Edit, Grep, Glob
 metadata:

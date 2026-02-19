@@ -3,7 +3,10 @@ name: refactor-skill-structure
 description: >
   Refactor an over-long or poorly structured SKILL.md by extracting
   examples to references/EXAMPLES.md, splitting compound procedures,
-  and reorganizing sections for progressive disclosure.
+  and reorganizing sections for progressive disclosure. Use when a skill
+  exceeds the 500-line CI limit, when code blocks dominate the skill body,
+  when a procedure step contains multiple unrelated operations, or after a
+  content update pushed the skill over the line limit.
 license: MIT
 allowed-tools: Read, Write, Edit, Grep, Glob
 metadata:

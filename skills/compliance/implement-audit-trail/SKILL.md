@@ -3,7 +3,11 @@ name: implement-audit-trail
 description: >
   Implement audit trail functionality for R projects in regulated
   environments. Covers logging, provenance tracking, electronic
-  signatures, data integrity checks, and 21 CFR Part 11 compliance.
+  signatures, data integrity checks, and 21 CFR Part 11 compliance. Use
+  when an R analysis requires electronic records compliance (21 CFR Part 11),
+  when you need to track who did what and when in an analysis, when
+  implementing data provenance tracking, or when creating tamper-evident
+  analysis logs for regulatory submissions.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -4,7 +4,10 @@ description: >
   Solve trigonometric equations and triangle problems systematically using
   identities, law of sines/cosines, inverse functions, and unit circle
   analysis. Covers equation solving, triangle resolution, identity
-  verification, and applied trigonometric modeling.
+  verification, and applied trigonometric modeling. Use when solving
+  trigonometric equations for unknown angles, resolving triangles from
+  partial information (SSS, SAS, ASA), verifying identities, or applying
+  trigonometry to real-world problems in surveying, physics, or engineering.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

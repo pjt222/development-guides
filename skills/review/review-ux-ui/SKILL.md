@@ -4,6 +4,9 @@ description: >
   Review user experience and interface design using Nielsen's heuristics,
   WCAG 2.1 accessibility guidelines, keyboard and screen reader audit, user
   flow analysis, cognitive load assessment, and form usability evaluation.
+  Use when conducting a usability review before release, assessing WCAG 2.1
+  accessibility compliance, evaluating user flows for efficiency, reviewing
+  form design, or performing a heuristic evaluation of an existing interface.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch
 metadata:

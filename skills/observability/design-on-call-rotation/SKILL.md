@@ -3,7 +3,10 @@ name: design-on-call-rotation
 description: >
   Design sustainable on-call rotations with balanced schedules, clear
   escalation policies, fatigue management, and handoff procedures. Minimize
-  burnout while maintaining incident response coverage.
+  burnout while maintaining incident response coverage. Use when setting up
+  on-call for the first time, scaling a team from 2-3 to 5+ engineers,
+  addressing on-call burnout or alert fatigue, improving incident response
+  times, or after a post-mortem identifies handoff issues.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

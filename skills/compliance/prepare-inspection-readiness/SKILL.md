@@ -4,7 +4,11 @@ description: >
   Prepare an organisation for regulatory inspection by assessing readiness
   against agency-specific focus areas (FDA, EMA, MHRA). Covers warning letter
   and 483 theme analysis, mock inspection protocols, document bundle
-  preparation, inspection logistics, and response template creation.
+  preparation, inspection logistics, and response template creation. Use when
+  a regulatory inspection has been announced or is anticipated, when a periodic
+  self-assessment is due, when new systems have been implemented since the last
+  inspection, or after a significant audit finding that may attract regulatory
+  attention.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

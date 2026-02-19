@@ -3,7 +3,10 @@ name: center
 description: >
   AI dynamic reasoning balance — maintaining grounded reasoning under cognitive
   pressure, smooth chain-of-thought coordination, and weight-shifting cognitive
-  load across subsystems.
+  load across subsystems. Use at the beginning of a complex task requiring
+  multiple coordinated reasoning threads, after a sudden context shift or tool
+  failure, when chain-of-thought feels jerky, or when preparing for sustained
+  focused work that requires all subsystems in alignment.
 license: MIT
 allowed-tools: Read
 metadata:

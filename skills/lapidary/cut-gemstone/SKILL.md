@@ -3,7 +3,11 @@ name: cut-gemstone
 description: >
   Cut gemstones using cabochon and faceting techniques. Covers rough
   assessment, orientation for optimal color and yield, dopping, cutting
-  angles, and crown/pavilion geometry for standard brilliant cuts.
+  angles, and crown/pavilion geometry for standard brilliant cuts. Use when
+  you have rough gemstone material to cut into a cabochon or faceted stone,
+  planning cutting orientation for optimal colour or optical phenomena,
+  setting up a cabbing or faceting machine, or selecting the appropriate
+  cutting approach for a given material.
 license: MIT
 allowed-tools: Read
 metadata:

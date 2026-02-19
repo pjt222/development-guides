@@ -4,8 +4,10 @@ description: >
   Cultivate bonsai trees from species selection through long-term seasonal care.
   Covers species suitability, structural and maintenance pruning, wiring technique,
   repotting protocol, soil mix preparation, seasonal care schedules, and
-  contemplative sitting practice. Uses meditate checkpoint before structural
-  pruning and heal checkpoint post-repot.
+  contemplative sitting practice. Use when selecting a species for a first or next
+  bonsai, performing structural or maintenance pruning, repotting when roots are
+  circling or growth has stalled, wiring branches for shaping, developing a
+  seasonal care calendar, or building a contemplative practice with a living tree.
 license: MIT
 allowed-tools: Read
 metadata:

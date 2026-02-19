@@ -3,7 +3,10 @@ name: run-ab-test-models
 description: >
   Design and execute A/B tests for ML models in production using traffic splitting,
   statistical significance testing, and canary/shadow deployment strategies. Measure
-  performance differences and make data-driven decisions about model rollout.
+  performance differences and make data-driven decisions about model rollout. Use when
+  validating a new model version before full rollout, comparing candidate models trained
+  with different algorithms, measuring business metric impact of model changes, or when
+  regulatory requirements mandate gradual rollout.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

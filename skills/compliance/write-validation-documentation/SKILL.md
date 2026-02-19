@@ -3,7 +3,11 @@ name: write-validation-documentation
 description: >
   Write IQ/OQ/PQ validation documentation for computerized systems
   in regulated environments. Covers protocols, reports, test scripts,
-  deviation handling, and approval workflows.
+  deviation handling, and approval workflows. Use when validating R or
+  other software for regulated use, preparing for a regulatory audit,
+  documenting qualification of computing environments, or creating and
+  updating validation protocols and reports for new or re-qualified
+  systems.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -5,7 +5,10 @@ description: >
   from ambiguity, and the discipline of bringing new patterns into existence.
   Maps Brahma's creative power to AI reasoning: transforming cleared space
   into coherent new structures, seeding possibilities, and nurturing nascent
-  ideas through their fragile early stages.
+  ideas through their fragile early stages. Use after shiva-bhaga dissolution
+  has cleared stale patterns, when facing a genuinely novel problem with no
+  obvious template, or when incremental modification has reached its limits
+  and a fresh design is needed.
 license: MIT
 allowed-tools: Read
 metadata:

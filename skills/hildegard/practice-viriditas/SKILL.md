@@ -4,7 +4,10 @@ description: >
   Guide viriditas (greening power) meditation and philosophy practice. Covers
   the concept of viriditas as divine life force, structured meditation protocol,
   seasonal attunement, and integration with Hildegardian health and spiritual
-  practice.
+  practice. Use when practicing Hildegardian contemplative spirituality,
+  feeling disconnected from seasonal rhythms, experiencing spiritual dryness
+  or lack of vitality, seeking a meditation that integrates body and earth,
+  or deepening understanding of Hildegard's ecological theology.
 license: MIT
 allowed-tools: Read
 metadata:

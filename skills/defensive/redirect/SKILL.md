@@ -2,7 +2,11 @@
 name: redirect
 description: >
   AI pressure redirection — handling conflicting demands, tool failures, and
-  competing constraints by blending with incoming force then reframing.
+  competing constraints by blending with incoming force then reframing. Use
+  when receiving contradictory instructions from different sources, during tool
+  failure cascades where the planned approach becomes unviable, when scope
+  pressure threatens to expand the task beyond what was asked, or when user
+  frustration or correction needs to be absorbed rather than deflected.
 license: MIT
 allowed-tools: Read
 metadata:

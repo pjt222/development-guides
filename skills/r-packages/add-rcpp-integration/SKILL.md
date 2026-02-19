@@ -3,7 +3,10 @@ name: add-rcpp-integration
 description: >
   Add Rcpp or RcppArmadillo integration to an R package for
   high-performance C++ code. Covers setup, writing C++ functions,
-  RcppExports generation, testing compiled code, and debugging.
+  RcppExports generation, testing compiled code, and debugging. Use when
+  an R function is too slow and profiling confirms a bottleneck, when you
+  need to interface with existing C/C++ libraries, or when implementing
+  algorithms (loops, recursion, linear algebra) that benefit from compiled code.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

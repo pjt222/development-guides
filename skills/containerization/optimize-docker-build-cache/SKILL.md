@@ -2,8 +2,11 @@
 name: optimize-docker-build-cache
 description: >
   Optimize Docker build times using layer caching, multi-stage builds,
-  BuildKit features, and dependency-first copy patterns. Applicable
-  to R, Node.js, and Python projects.
+  BuildKit features, and dependency-first copy patterns. Applicable to R,
+  Node.js, and Python projects. Use when Docker builds are slow due to
+  repeated package installations, when rebuilds reinstall all dependencies
+  on every code change, when image sizes are unnecessarily large, or when
+  CI/CD pipeline builds are a bottleneck.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -1,9 +1,11 @@
 ---
 name: skill-name-here
 description: >
-  One to three sentences describing what this skill accomplishes.
-  Must be clear enough for an agent to decide whether to activate it.
-  Start with a verb: "Create...", "Configure...", "Diagnose...".
+  One to three sentences describing what this skill accomplishes, followed
+  by key activation triggers. This field is the primary mechanism agents use
+  to decide whether to activate the skill — it is read during discovery
+  before the full body is loaded. Start with a verb. Include the most
+  important "when to use" conditions inline. Max 1024 characters.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
@@ -24,6 +26,10 @@ One paragraph: what this skill accomplishes and the value it provides.
 - Concrete scenario where an agent should activate this skill
 - Another trigger condition
 - A third use case
+
+<!-- Note: The most important triggers should also appear in the description
+     field above, since description is read during discovery (frontmatter only)
+     before the full body is loaded. This section provides additional detail. -->
 
 ## Inputs
 

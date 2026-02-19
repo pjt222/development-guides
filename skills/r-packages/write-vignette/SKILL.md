@@ -3,7 +3,10 @@ name: write-vignette
 description: >
   Create R package vignettes using R Markdown or Quarto. Covers
   vignette setup, YAML configuration, code chunk options, building
-  and testing, and CRAN requirements for vignettes.
+  and testing, and CRAN requirements for vignettes. Use when adding a
+  Getting Started tutorial, documenting complex workflows spanning multiple
+  functions, creating domain-specific guides, or when CRAN submission
+  requires user-facing documentation beyond function help pages.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

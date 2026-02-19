@@ -4,7 +4,11 @@ description: >
   Foundation obedience training for dogs — sit, stay, come, heel, and down
   using positive reinforcement and marker training. Covers timing, reward
   hierarchy, session structure, distraction proofing, and common handler
-  errors. Applicable to puppies (8+ weeks) and adult dogs of any breed.
+  errors. Use when a new puppy (8+ weeks) is ready for foundation training, an
+  adult dog lacks reliable basic commands, a rescue dog needs to learn the
+  household's command vocabulary, before advancing to complex behaviors or
+  off-leash work, or when existing commands have degraded and need
+  re-establishing.
 license: MIT
 allowed-tools: Read
 metadata:

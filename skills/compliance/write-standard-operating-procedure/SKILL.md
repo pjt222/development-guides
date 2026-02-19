@@ -4,7 +4,11 @@ description: >
   Write a GxP-compliant Standard Operating Procedure (SOP). Covers regulatory
   SOP template structure (purpose, scope, definitions, responsibilities,
   procedure, references, revision history), approval workflow design,
-  periodic review scheduling, and operational procedures for system use.
+  periodic review scheduling, and operational procedures for system use. Use
+  when a new validated system requires operational procedures, when existing
+  informal procedures need formalisation, when an audit finding cites missing
+  procedures, when a change control triggers SOP updates, or when periodic
+  review identifies outdated procedural content.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

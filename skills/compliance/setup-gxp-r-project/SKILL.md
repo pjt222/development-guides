@@ -3,8 +3,11 @@ name: setup-gxp-r-project
 description: >
   Set up an R project structure compliant with GxP regulations
   (21 CFR Part 11, EU Annex 11). Covers validated environments,
-  qualification documentation, change control, and electronic
-  records requirements.
+  qualification documentation, change control, and electronic records
+  requirements. Use when starting an R analysis project in a regulated
+  environment (pharma, biotech, medical devices), setting up R for clinical
+  trial analysis, creating a validated computing environment for regulatory
+  submissions, or implementing 21 CFR Part 11 or EU Annex 11 requirements.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

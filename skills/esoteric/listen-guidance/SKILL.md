@@ -4,7 +4,11 @@ description: >
   Guide a person in developing active listening skills. AI coaches
   receptive mindset preparation, full-presence attending, reflective
   paraphrasing, clarifying questioning, synthesis of understanding,
-  and integration of insights into communication practice.
+  and integration of insights into communication practice. Use when a
+  person wants to improve communication, when someone keeps misunderstanding
+  others or feels misunderstood, when preparing for a difficult conversation
+  such as a feedback session or conflict resolution, or when a person notices
+  they talk more than they listen.
 license: MIT
 allowed-tools: Read
 metadata:

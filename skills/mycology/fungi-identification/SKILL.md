@@ -4,8 +4,11 @@ description: >
   Field identification of fungi using morphological features, spore prints,
   habitat analysis, and seasonal context with a safety-first approach. Covers
   cap, gill, stem, and spore characteristics, look-alike differentiation,
-  toxicity risk assessment, and the critical rule of absolute certainty
-  before consumption. Applicable to temperate and boreal ecosystems.
+  toxicity risk assessment, and the critical rule of absolute certainty before
+  consumption. Use when encountering an unknown fungus, foraging for edible
+  mushrooms and needing to confirm species before consumption, assessing whether
+  fungi in a garden or property are harmful, or differentiating an edible
+  species from a dangerous look-alike.
 license: MIT
 allowed-tools: Read
 metadata:

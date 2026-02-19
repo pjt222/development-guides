@@ -3,6 +3,9 @@ name: setup-prometheus-monitoring
 description: >
   Configure Prometheus for time-series metrics collection, including scrape configurations,
   service discovery, recording rules, and federation patterns for multi-cluster deployments.
+  Use when setting up centralized metrics collection for microservices, implementing time-series
+  monitoring for application and infrastructure, establishing a foundation for SLO/SLI tracking
+  and alerting, or migrating from legacy monitoring solutions to a modern observability stack.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

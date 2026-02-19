@@ -4,7 +4,11 @@ description: >
   Guide a person in systematic observation of systems, patterns, or
   phenomena. AI coaches neutral attention, field notes methodology,
   pattern recognition, hypothesis formation, and structured reporting
-  for debugging, research, and system understanding.
+  for debugging, research, and system understanding. Use when a person
+  wants to understand a system's behavior before intervening, when someone
+  keeps jumping to conclusions and needs the discipline of observation first,
+  when preparing an evidence-based report, or when studying team dynamics
+  or process effectiveness through direct observation.
 license: MIT
 allowed-tools: Read
 metadata:

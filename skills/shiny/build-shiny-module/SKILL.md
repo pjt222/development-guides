@@ -3,7 +3,10 @@ name: build-shiny-module
 description: >
   Build reusable Shiny modules with proper namespace isolation using NS().
   Covers module UI/server pairs, reactive return values, inter-module
-  communication, and nested module composition.
+  communication, and nested module composition. Use when extracting a reusable
+  component from a growing Shiny app, building a UI widget used in multiple
+  places, encapsulating complex reactive logic behind a clean interface, or
+  composing larger applications from smaller, testable units.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

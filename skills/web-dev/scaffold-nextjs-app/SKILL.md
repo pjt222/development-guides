@@ -3,7 +3,10 @@ name: scaffold-nextjs-app
 description: >
   Scaffold a new Next.js application with App Router, TypeScript,
   and modern defaults. Covers project creation, directory structure,
-  routing setup, and initial configuration.
+  routing setup, and initial configuration. Use when starting a new web
+  application project, creating a React-based frontend with server-side
+  rendering, building a full-stack application with API routes, or setting
+  up a TypeScript web project from scratch.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

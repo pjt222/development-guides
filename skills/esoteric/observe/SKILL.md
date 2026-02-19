@@ -5,7 +5,11 @@ description: >
   intervention. Maps naturalist field study methodology to AI reasoning:
   framing the observation target, witnessing with sustained attention,
   recording patterns, categorizing findings, generating hypotheses, and
-  archiving a pattern library for future reference.
+  archiving a pattern library for future reference. Use when a system's
+  behavior is unclear and action would be premature, when debugging an
+  unknown root cause, when a codebase change needs its effects witnessed
+  before further changes, or when auditing own reasoning patterns for
+  biases or recurring errors.
 license: MIT
 allowed-tools: Read, Grep, Glob
 metadata:

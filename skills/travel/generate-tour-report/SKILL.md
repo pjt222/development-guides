@@ -4,6 +4,9 @@ description: >
   Generate a Quarto-based tour report with embedded maps, daily itineraries,
   logistics tables, and accommodation/transport details. Produces a
   self-contained HTML or PDF document suitable for offline use during travel.
+  Use when compiling a planned tour into a shareable document, creating an
+  offline-accessible travel guide, documenting a completed trip with photos and
+  statistics, or producing a professional tour proposal for a group or client.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

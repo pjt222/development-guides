@@ -4,7 +4,11 @@ description: >
   Reference Hildegard von Bingen's Physica natural history knowledge. Covers
   classification of plants, stones, animals, fish, birds, elements, and trees
   with their medicinal, symbolic, and practical properties. Enables cross-
-  referencing between categories and application guidance.
+  referencing between categories and application guidance. Use when exploring
+  a specific plant, stone, or animal from Hildegard's perspective, researching
+  medieval natural history and cosmology, cross-referencing properties across
+  categories, or integrating Physica knowledge into health, spiritual, or
+  creative practice.
 license: MIT
 allowed-tools: Read
 metadata:

@@ -4,7 +4,10 @@ description: >
   Purify water from wild sources using boiling, filtration, and chemical
   methods. Covers source assessment and priority ranking, sediment pre-filtering,
   method selection (boiling, chemical, UV, filter), altitude-adjusted boiling
-  procedure, chemical treatment dosages, and safe storage practices.
+  procedure, chemical treatment dosages, and safe storage practices. Use when
+  needing drinking water in a wilderness setting, when available water sources
+  are of unknown quality, in an emergency survival situation where dehydration
+  is a risk, or when making water safe for cooking or wound cleaning.
 license: MIT
 allowed-tools: Read
 metadata:

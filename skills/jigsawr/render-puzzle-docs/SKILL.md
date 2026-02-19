@@ -3,8 +3,11 @@ name: render-puzzle-docs
 description: >
   Render the jigsawR Quarto documentation site for GitHub Pages.
   Supports fresh renders (clearing cache), cached renders (faster),
-  and single-page renders. Uses the bundled render script or
-  direct quarto.exe invocation from WSL.
+  and single-page renders. Uses the bundled render script or direct
+  quarto.exe invocation from WSL. Use when building the full site after
+  content changes, rendering a single page during iterative editing,
+  preparing documentation for a release or PR, or debugging render
+  errors in Quarto .qmd files.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

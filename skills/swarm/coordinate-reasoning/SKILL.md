@@ -3,7 +3,11 @@ name: coordinate-reasoning
 description: >
   AI internal coordination using stigmergic signals — managing information
   freshness in context and memory, decay rates for assumption staleness,
-  and emergent coherent behavior from simple local protocols.
+  and emergent coherent behavior from simple local protocols. Use during
+  complex tasks where multiple sub-tasks must coordinate, when context has
+  grown long and information freshness is uncertain, after context compression
+  when information may have been lost, or when sub-task outputs need to feed
+  into each other cleanly without degradation.
 license: MIT
 allowed-tools: Read, Write
 metadata:

@@ -3,6 +3,10 @@ name: survey-theoretical-literature
 description: >
   Survey and synthesize theoretical literature on a specific topic, identifying
   seminal papers, key results, open problems, and cross-domain connections.
+  Use when starting research on an unfamiliar theoretical topic, writing a
+  literature review for a paper or thesis, identifying open problems and
+  research gaps, finding cross-domain connections, or evaluating the novelty
+  of a proposed theoretical contribution against existing work.
 license: MIT
 allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:

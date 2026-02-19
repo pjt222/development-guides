@@ -4,7 +4,11 @@ description: >
   Implement electronic signatures compliant with 21 CFR Part 11 Subpart C
   and EU Annex 11. Covers signature manifestation (signer, date/time, meaning),
   signature-to-record binding, biometric vs non-biometric controls, policy
-  creation, and user certification requirements.
+  creation, and user certification requirements. Use when a computerized system
+  requires legally binding electronic signatures for GxP records, when replacing
+  wet-ink signatures in regulated workflows, when implementing batch release or
+  document approval workflows, or when a regulatory gap reveals missing
+  signature controls.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

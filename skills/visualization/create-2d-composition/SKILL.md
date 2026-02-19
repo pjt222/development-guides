@@ -1,7 +1,12 @@
 ---
 name: create-2d-composition
 description: >
-  Compose 2D graphics via scripting using SVG generation, diagram layout, image compositing, and batch processing.
+  Compose 2D graphics programmatically using SVG generation, diagram layout
+  algorithms, image compositing, and batch processing workflows. Use when
+  generating diagrams, flowcharts, or infographics programmatically, creating
+  reproducible scientific figures, automating production of badges or visual
+  assets, building custom chart types not in standard libraries, or batch
+  generating graphics with parameter variations.
 license: MIT
 allowed-tools: [Read, Write, Edit, Bash, Grep, Glob]
 metadata:

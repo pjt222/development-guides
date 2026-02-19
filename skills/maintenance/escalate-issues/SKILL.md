@@ -2,7 +2,11 @@
 name: escalate-issues
 description: >
   Triage maintenance problems by severity, document findings with context,
-  route to appropriate specialist agent or human, and create actionable issue reports.
+  route to appropriate specialist agent or human, and create actionable issue
+  reports. Use when a maintenance task encounters problems beyond automated
+  cleanup: code that is unsafe to delete, configuration changes requiring domain
+  expertise, breaking changes detected during cleanup, complex refactoring needed,
+  or security-sensitive findings such as hardcoded secrets or vulnerabilities.
 license: MIT
 allowed-tools: [Read, Write, Edit, Grep, Glob]
 metadata:

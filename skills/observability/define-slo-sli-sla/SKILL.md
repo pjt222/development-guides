@@ -3,7 +3,10 @@ name: define-slo-sli-sla
 description: >
   Establish Service Level Objectives (SLO), Service Level Indicators (SLI), and Service Level
   Agreements (SLA) with error budget tracking, burn rate alerts, and automated reporting using
-  Prometheus and tools like Sloth or Pyrra.
+  Prometheus and tools like Sloth or Pyrra. Use when defining reliability targets for
+  customer-facing services, balancing feature velocity against system reliability through error
+  budgets, migrating from arbitrary uptime goals to data-driven metrics, or implementing Site
+  Reliability Engineering practices.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

@@ -4,7 +4,11 @@ description: >
   Four-stage alchemical code transmutation — nigredo (decomposition), albedo
   (purification), citrinitas (illumination), rubedo (synthesis) — with meditate
   and heal checkpoints between stages. Transforms tangled or legacy code into
-  optimized, well-structured output through systematic material analysis.
+  optimized, well-structured output through systematic material analysis. Use
+  when transforming legacy code into modern equivalents, refactoring deeply
+  tangled modules where incremental fixes keep failing, converting a codebase
+  between paradigms, or when simpler refactoring approaches have stalled and a
+  full-cycle transformation is needed.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

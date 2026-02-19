@@ -4,7 +4,10 @@ description: >
   Install and configure the putior R package for workflow visualization.
   Covers CRAN and GitHub installation, optional dependencies (mcptools,
   ellmer, shiny, shinyAce, logger, plumber2), and verification of the
-  complete annotation-to-diagram pipeline.
+  complete annotation-to-diagram pipeline. Use when setting up putior for
+  the first time, preparing a machine for workflow visualization tasks, when
+  a downstream skill requires putior to be installed, or restoring an
+  environment after an R version upgrade or renv wipe.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:

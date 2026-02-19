@@ -3,8 +3,10 @@ name: resolve-git-conflicts
 description: >
   Resolve merge and rebase conflicts with safe recovery strategies.
   Covers identifying conflict sources, reading conflict markers,
-  choosing resolution strategies, and continuing or aborting
-  operations safely.
+  choosing resolution strategies, and continuing or aborting operations
+  safely. Use when a git merge, rebase, cherry-pick, or stash pop reports
+  conflicts, when a git pull results in conflicting changes, or when you
+  need to safely abort and restart a failed merge or rebase operation.
 license: MIT
 allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
