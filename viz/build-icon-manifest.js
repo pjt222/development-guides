@@ -57,6 +57,7 @@ const DOMAIN_STYLES = {
   'blender':             { basePrompt: '3D wireframe cube, Blender viewport, rendering light',        glow: 'blender-orange' },
   'visualization':       { basePrompt: 'Data chart, plot grid, color palette, graph axis',            glow: 'chart-green' },
   '3d-printing':         { basePrompt: 'Layer-by-layer print, FDM nozzle, 3D model',                 glow: 'filament-blue' },
+  'entomology':          { basePrompt: 'Insect specimen, magnifying lens, field notebook, entomological pin', glow: 'leaf-green' },
 };
 
 // ── Per-skill keyword extraction ────────────────────────────────────
@@ -239,6 +240,12 @@ function skillKeywords(id, title) {
     // visualization (2)
     'create-2d-composition':         'SVG canvas, 2D layers, diagram layout',
     'render-publication-graphic':    'publication chart, DPI, typography',
+    // entomology (5)
+    'document-insect-sighting':      'field notebook, camera, insect silhouette',
+    'identify-insect':               'magnifying lens, dichotomous key, body plan',
+    'observe-insect-behavior':       'ethogram chart, stopwatch, behavior tally',
+    'collect-preserve-specimens':    'entomological pin, specimen box, label',
+    'survey-insect-population':      'transect line, diversity index, population graph',
     // 3d-printing (3)
     'prepare-print-model':           'sliced model layers, support generation',
     'select-print-material':         'filament spool, material properties',

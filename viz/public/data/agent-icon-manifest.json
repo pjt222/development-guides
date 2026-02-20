@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 56,
+    "total_agents": 59,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -298,6 +298,21 @@
       "description": "Natural language processing and text analysis",
       "glow": "language-violet",
       "concept": "Text tokens flowing through transformer architecture"
+    },
+    "citizen-entomologist": {
+      "description": "Curiosity-driven insect guide for citizen science",
+      "glow": "leaf-green",
+      "concept": "Magnifying glass over insect with iNaturalist notebook"
+    },
+    "conservation-entomologist": {
+      "description": "Conservation-focused insect specialist for ecosystem roles",
+      "glow": "forest-green",
+      "concept": "Insect silhouette within ecosystem web and habitat circle"
+    },
+    "taxonomic-entomologist": {
+      "description": "Methodical insect taxonomist with dichotomous keys",
+      "glow": "specimen-green",
+      "concept": "Pinned insect specimen with classification labels"
     }
   },
   "icons": [
@@ -579,6 +594,21 @@
     {
       "agentId": "nlp-specialist",
       "path": "public/icons/cyberpunk/agents/nlp-specialist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "citizen-entomologist",
+      "path": "public/icons/cyberpunk/agents/citizen-entomologist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "conservation-entomologist",
+      "path": "public/icons/cyberpunk/agents/conservation-entomologist.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "taxonomic-entomologist",
+      "path": "public/icons/cyberpunk/agents/taxonomic-entomologist.webp",
       "status": "done"
     }
   ]

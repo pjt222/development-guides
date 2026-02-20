@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-19T21:18:33.035Z",
-    "totalSkills": 273,
-    "totalAgents": 56,
-    "totalTeams": 9,
-    "totalNodes": 338,
-    "totalLinks": 1445,
-    "totalAgentLinks": 342,
-    "totalTeamLinks": 32,
-    "totalDomains": 49
+    "generated": "2026-02-20T11:15:17.577Z",
+    "totalSkills": 278,
+    "totalAgents": 59,
+    "totalTeams": 10,
+    "totalNodes": 347,
+    "totalLinks": 1477,
+    "totalAgentLinks": 351,
+    "totalTeamLinks": 35,
+    "totalDomains": 50
   },
   "domains": {
     "r-packages": {
@@ -202,6 +202,10 @@
     "lapidary": {
       "description": "Gemstone identification, cutting, polishing, and appraisal",
       "count": 4
+    },
+    "entomology": {
+      "description": "Insect identification, behavior observation, population surveys, specimen preservation, and citizen science",
+      "count": 5
     },
     "versioning": {
       "description": "Semantic versioning, changelog management, release planning, and dependency auditing",
@@ -6586,6 +6590,129 @@
       "path": "appraise-gemstone/SKILL.md"
     },
     {
+      "id": "document-insect-sighting",
+      "type": "skill",
+      "title": "Document Insect Sighting",
+      "domain": "entomology",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "Record insect sightings with location, habitat, photography, behavior notes, and citizen science submission",
+      "tags": [
+        "entomology",
+        "insects",
+        "documentation",
+        "citizen-science",
+        "iNaturalist",
+        "photography"
+      ],
+      "related": [
+        "identify-insect",
+        "observe-insect-behavior",
+        "collect-preserve-specimens",
+        "survey-insect-population"
+      ],
+      "path": "document-insect-sighting/SKILL.md"
+    },
+    {
+      "id": "identify-insect",
+      "type": "skill",
+      "title": "Identify Insect",
+      "domain": "entomology",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Identify insects using body plan analysis, dichotomous keys, wing venation, mouthparts, antennae, and confidence levels",
+      "tags": [
+        "entomology",
+        "insects",
+        "identification",
+        "taxonomy",
+        "dichotomous-key",
+        "morphology"
+      ],
+      "related": [
+        "document-insect-sighting",
+        "observe-insect-behavior",
+        "collect-preserve-specimens",
+        "survey-insect-population"
+      ],
+      "path": "identify-insect/SKILL.md"
+    },
+    {
+      "id": "observe-insect-behavior",
+      "type": "skill",
+      "title": "Observe Insect Behavior",
+      "domain": "entomology",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Conduct structured insect behavior observations using sampling protocols, ethograms, and interaction logging",
+      "tags": [
+        "entomology",
+        "insects",
+        "behavior",
+        "ethology",
+        "observation",
+        "ecology"
+      ],
+      "related": [
+        "document-insect-sighting",
+        "identify-insect",
+        "collect-preserve-specimens",
+        "survey-insect-population"
+      ],
+      "path": "observe-insect-behavior/SKILL.md"
+    },
+    {
+      "id": "collect-preserve-specimens",
+      "type": "skill",
+      "title": "Collect and Preserve Specimens",
+      "domain": "entomology",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Collect and preserve insect specimens following museum-grade standards with legal compliance and proper labeling",
+      "tags": [
+        "entomology",
+        "insects",
+        "collection",
+        "preservation",
+        "pinning",
+        "taxonomy",
+        "museum"
+      ],
+      "related": [
+        "identify-insect",
+        "document-insect-sighting",
+        "observe-insect-behavior",
+        "survey-insect-population"
+      ],
+      "path": "collect-preserve-specimens/SKILL.md"
+    },
+    {
+      "id": "survey-insect-population",
+      "type": "skill",
+      "title": "Survey Insect Population",
+      "domain": "entomology",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Design and execute insect population surveys with diversity indices, statistical analysis, and conservation reporting",
+      "tags": [
+        "entomology",
+        "insects",
+        "population",
+        "survey",
+        "ecology",
+        "biodiversity",
+        "Shannon",
+        "Simpson"
+      ],
+      "related": [
+        "collect-preserve-specimens",
+        "identify-insect",
+        "document-insect-sighting",
+        "observe-insect-behavior"
+      ],
+      "path": "survey-insect-population/SKILL.md"
+    },
+    {
       "id": "apply-semantic-versioning",
       "type": "skill",
       "title": "Apply Semantic Versioning",
@@ -8551,6 +8678,94 @@
       "path": "agents/nlp-specialist.md"
     },
     {
+      "id": "agent:conservation-entomologist",
+      "type": "agent",
+      "title": "Conservation Entomologist",
+      "priority": "normal",
+      "description": "Conservation-first entomologist for ecological assessment, pollinator surveys, habitat preservation, and non-destructive insect observation",
+      "tags": [
+        "entomology",
+        "conservation",
+        "ecology",
+        "pollinators",
+        "biodiversity",
+        "habitat",
+        "insects"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "observe-insect-behavior",
+        "survey-insect-population",
+        "document-insect-sighting",
+        "identify-insect"
+      ],
+      "path": "agents/conservation-entomologist.md"
+    },
+    {
+      "id": "agent:taxonomic-entomologist",
+      "type": "agent",
+      "title": "Taxonomic Entomologist",
+      "priority": "normal",
+      "description": "Scientific systematist for insect identification using dichotomous keys, morphological analysis, museum-grade specimen preservation, and formal taxonomic nomenclature",
+      "tags": [
+        "entomology",
+        "taxonomy",
+        "morphology",
+        "identification",
+        "specimens",
+        "museum",
+        "classification",
+        "insects"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "identify-insect",
+        "collect-preserve-specimens"
+      ],
+      "path": "agents/taxonomic-entomologist.md"
+    },
+    {
+      "id": "agent:citizen-entomologist",
+      "type": "agent",
+      "title": "Citizen Entomologist",
+      "priority": "normal",
+      "description": "Curiosity-driven entomologist for accessible insect identification, citizen science participation, nature education, and community engagement",
+      "tags": [
+        "entomology",
+        "citizen-science",
+        "identification",
+        "education",
+        "iNaturalist",
+        "observation",
+        "insects"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "identify-insect",
+        "observe-insect-behavior",
+        "document-insect-sighting"
+      ],
+      "path": "agents/citizen-entomologist.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -8748,6 +8963,28 @@
         "alignment"
       ],
       "path": "teams/agentskills-alignment.md"
+    },
+    {
+      "id": "team:entomology",
+      "type": "team",
+      "title": "Entomology",
+      "lead": "conservation-entomologist",
+      "members": [
+        "conservation-entomologist",
+        "taxonomic-entomologist",
+        "citizen-entomologist"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "Multi-agent entomology team combining conservation ecology, systematic taxonomy, and citizen science for comprehensive insect study",
+      "tags": [
+        "entomology",
+        "conservation",
+        "taxonomy",
+        "citizen-science",
+        "ecology",
+        "insects"
+      ],
+      "path": "teams/entomology.md"
     }
   ],
   "links": [
@@ -14007,6 +14244,106 @@
       "type": "skill"
     },
     {
+      "source": "document-insect-sighting",
+      "target": "identify-insect",
+      "type": "skill"
+    },
+    {
+      "source": "document-insect-sighting",
+      "target": "observe-insect-behavior",
+      "type": "skill"
+    },
+    {
+      "source": "document-insect-sighting",
+      "target": "collect-preserve-specimens",
+      "type": "skill"
+    },
+    {
+      "source": "document-insect-sighting",
+      "target": "survey-insect-population",
+      "type": "skill"
+    },
+    {
+      "source": "identify-insect",
+      "target": "document-insect-sighting",
+      "type": "skill"
+    },
+    {
+      "source": "identify-insect",
+      "target": "observe-insect-behavior",
+      "type": "skill"
+    },
+    {
+      "source": "identify-insect",
+      "target": "collect-preserve-specimens",
+      "type": "skill"
+    },
+    {
+      "source": "identify-insect",
+      "target": "survey-insect-population",
+      "type": "skill"
+    },
+    {
+      "source": "observe-insect-behavior",
+      "target": "document-insect-sighting",
+      "type": "skill"
+    },
+    {
+      "source": "observe-insect-behavior",
+      "target": "identify-insect",
+      "type": "skill"
+    },
+    {
+      "source": "observe-insect-behavior",
+      "target": "collect-preserve-specimens",
+      "type": "skill"
+    },
+    {
+      "source": "observe-insect-behavior",
+      "target": "survey-insect-population",
+      "type": "skill"
+    },
+    {
+      "source": "collect-preserve-specimens",
+      "target": "identify-insect",
+      "type": "skill"
+    },
+    {
+      "source": "collect-preserve-specimens",
+      "target": "document-insect-sighting",
+      "type": "skill"
+    },
+    {
+      "source": "collect-preserve-specimens",
+      "target": "observe-insect-behavior",
+      "type": "skill"
+    },
+    {
+      "source": "collect-preserve-specimens",
+      "target": "survey-insect-population",
+      "type": "skill"
+    },
+    {
+      "source": "survey-insect-population",
+      "target": "collect-preserve-specimens",
+      "type": "skill"
+    },
+    {
+      "source": "survey-insect-population",
+      "target": "identify-insect",
+      "type": "skill"
+    },
+    {
+      "source": "survey-insect-population",
+      "target": "document-insect-sighting",
+      "type": "skill"
+    },
+    {
+      "source": "survey-insect-population",
+      "target": "observe-insect-behavior",
+      "type": "skill"
+    },
+    {
       "source": "apply-semantic-versioning",
       "target": "manage-changelog",
       "type": "skill"
@@ -15817,6 +16154,51 @@
       "type": "agent"
     },
     {
+      "source": "agent:conservation-entomologist",
+      "target": "observe-insect-behavior",
+      "type": "agent"
+    },
+    {
+      "source": "agent:conservation-entomologist",
+      "target": "survey-insect-population",
+      "type": "agent"
+    },
+    {
+      "source": "agent:conservation-entomologist",
+      "target": "document-insect-sighting",
+      "type": "agent"
+    },
+    {
+      "source": "agent:conservation-entomologist",
+      "target": "identify-insect",
+      "type": "agent"
+    },
+    {
+      "source": "agent:taxonomic-entomologist",
+      "target": "identify-insect",
+      "type": "agent"
+    },
+    {
+      "source": "agent:taxonomic-entomologist",
+      "target": "collect-preserve-specimens",
+      "type": "agent"
+    },
+    {
+      "source": "agent:citizen-entomologist",
+      "target": "identify-insect",
+      "type": "agent"
+    },
+    {
+      "source": "agent:citizen-entomologist",
+      "target": "observe-insect-behavior",
+      "type": "agent"
+    },
+    {
+      "source": "agent:citizen-entomologist",
+      "target": "document-insect-sighting",
+      "type": "agent"
+    },
+    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -15974,6 +16356,21 @@
     {
       "source": "team:agentskills-alignment",
       "target": "agent:librarian",
+      "type": "team"
+    },
+    {
+      "source": "team:entomology",
+      "target": "agent:conservation-entomologist",
+      "type": "team"
+    },
+    {
+      "source": "team:entomology",
+      "target": "agent:taxonomic-entomologist",
+      "type": "team"
+    },
+    {
+      "source": "team:entomology",
+      "target": "agent:citizen-entomologist",
       "type": "team"
     }
   ]

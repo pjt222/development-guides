@@ -8,12 +8,12 @@ PALETTE_NAMES <- c(
   "plasma", "cividis", "mako", "rocket", "turbo"
 )
 
-# ── Domain order (alphabetical, 49 domains) ──────────────────────────────
+# ── Domain order (alphabetical, 50 domains) ──────────────────────────────
 PALETTE_DOMAIN_ORDER <- c(
   "3d-printing", "a2a-protocol", "alchemy", "animal-training", "blender",
   "bushcraft", "citations", "compliance", "containerization", "crafting",
-  "data-serialization", "defensive", "design", "devops", "diffusion", "esoteric",
-  "gardening", "general", "geometry", "git", "hildegard", "intellectual-property",
+  "data-serialization", "defensive", "design", "devops", "diffusion", "entomology",
+  "esoteric", "gardening", "general", "geometry", "git", "hildegard", "intellectual-property",
   "jigsawr", "lapidary", "library-science", "linguistics", "maintenance",
   "mcp-integration", "mlops", "morphic", "mycology", "number-theory",
   "observability", "project-management", "prospecting", "r-packages", "relocation",
@@ -22,10 +22,11 @@ PALETTE_DOMAIN_ORDER <- c(
   "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 56 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 59 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
   "acp-developer", "advocatus-diaboli", "alchemist", "apa-specialist",
-  "auditor", "blender-artist", "code-reviewer", "designer", "devops-engineer",
+  "auditor", "blender-artist", "citizen-entomologist", "code-reviewer",
+  "conservation-entomologist", "designer", "devops-engineer",
   "diffusion-specialist", "dog-trainer", "etymologist", "fabricator",
   "gardener", "geometrist", "gxp-validator", "hiking-guide", "hildegard",
   "ip-analyst", "janitor", "jigsawr-developer", "kabalist", "lapidary",
@@ -36,15 +37,15 @@ PALETTE_AGENT_ORDER <- c(
   "senior-data-scientist", "senior-researcher", "senior-software-developer",
   "senior-ux-ui-specialist", "senior-web-designer", "shaman", "shapeshifter",
   "shiny-developer", "skill-reviewer", "survivalist", "swarm-strategist",
-  "tcg-specialist", "theoretical-researcher", "tour-planner",
-  "version-manager", "web-developer"
+  "taxonomic-entomologist", "tcg-specialist", "theoretical-researcher",
+  "tour-planner", "version-manager", "web-developer"
 )
 
-# ── Team order (alphabetical, 9 teams) ────────────────────────────────────
+# ── Team order (alphabetical, 10 teams) ───────────────────────────────────
 PALETTE_TEAM_ORDER <- c(
   "agentskills-alignment", "ai-self-care", "devops-platform-engineering",
-  "fullstack-web-dev", "gxp-compliance-validation", "ml-data-science-review",
-  "opaque-team", "r-package-review", "scrum-team"
+  "entomology", "fullstack-web-dev", "gxp-compliance-validation",
+  "ml-data-science-review", "opaque-team", "r-package-review", "scrum-team"
 )
 
 # ── viridisLite option mapping ────────────────────────────────────────────
@@ -94,6 +95,7 @@ get_cyberpunk_colors <- function() {
     "design"                 = "#ff88dd",
     "devops"                 = "#00ff88",
     "diffusion"              = "#cc77ff",
+    "entomology"             = "#77dd44",
     "esoteric"               = "#dd44ff",
     "gardening"              = "#44bb66",
     "general"                = "#ccccff",
@@ -137,7 +139,9 @@ get_cyberpunk_colors <- function() {
     "apa-specialist"            = "#77aadd",
     "auditor"                   = "#ff7744",
     "blender-artist"            = "#ff8833",
+    "citizen-entomologist"      = "#88dd55",
     "code-reviewer"             = "#ff66aa",
+    "conservation-entomologist"  = "#66cc33",
     "designer"                  = "#ff88dd",
     "devops-engineer"           = "#00ff88",
     "diffusion-specialist"      = "#cc77ff",
@@ -182,6 +186,7 @@ get_cyberpunk_colors <- function() {
     "skill-reviewer"            = "#ff66bb",
     "survivalist"               = "#88cc44",
     "swarm-strategist"          = "#aadd44",
+    "taxonomic-entomologist"    = "#55bb22",
     "tcg-specialist"            = "#ff5577",
     "theoretical-researcher"    = "#aabbff",
     "tour-planner"              = "#ffaa55",
@@ -193,6 +198,7 @@ get_cyberpunk_colors <- function() {
     "agentskills-alignment"       = "#ff66bb",   # review pink
     "ai-self-care"                = "#da70d6",   # orchid purple
     "devops-platform-engineering" = "#ff4500",   # orange-red
+    "entomology"                  = "#77dd44",   # leaf green
     "fullstack-web-dev"           = "#ffcc00",   # golden yellow
     "gxp-compliance-validation"   = "#ff6ec7",   # hot pink
     "ml-data-science-review"      = "#7b68ee",   # medium slate blue

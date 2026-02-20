@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 9,
+    "total_teams": 10,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -63,6 +63,11 @@
       "description": "Adaptive shapeshifter collective with emergent structure",
       "glow": "obsidian-silver",
       "concept": "Amorphous cluster of N identical nodes with shifting connections"
+    },
+    "entomology": {
+      "description": "Entomology team with hub-spoke insect research coordination",
+      "glow": "leaf-green",
+      "concept": "Hub-spoke insect icon with 3 specialist nodes at vertices"
     }
   },
   "icons": [
@@ -109,6 +114,11 @@
     {
       "teamId": "opaque-team",
       "path": "public/icons/cyberpunk/teams/opaque-team.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "entomology",
+      "path": "public/icons/cyberpunk/teams/entomology.webp",
       "status": "done"
     }
   ]
