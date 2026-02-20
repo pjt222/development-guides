@@ -121,7 +121,7 @@ function generateStats() {
     `- **${totalAgents} agents** — specialized Claude Code personas covering development, review, compliance, and more`,
     `- **${totalTeams} teams** — predefined multi-agent compositions for complex workflows`,
     `- **${totalGuides} guides** — human-readable workflow, infrastructure, and reference documentation`,
-    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 9 color themes`,
+    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 6 color themes`,
   ];
   return lines.join('\n');
 }
@@ -230,12 +230,32 @@ When adding or removing skills, agents, teams, or guides, the corresponding regi
 // ── Fully generated files ────────────────────────────────────────
 
 function generateGuidesSection() {
+  const categoryOrder = ['workflow', 'infrastructure', 'reference', 'design'];
+  const categoryLabels = {
+    workflow: 'Workflow',
+    infrastructure: 'Infrastructure',
+    reference: 'Reference',
+    design: 'Design',
+  };
   const lines = [];
-  for (const guide of guides) {
-    lines.push(
-      `- **[${guide.title}](guides/${guide.id}.md)** — ${guide.description}`
-    );
+
+  for (const catId of categoryOrder) {
+    const catGuides = guides.filter((g) => g.category === catId);
+    if (catGuides.length === 0) continue;
+
+    lines.push(`**${categoryLabels[catId]}**`);
+    lines.push('');
+    for (const guide of catGuides) {
+      lines.push(
+        `- [${guide.title}](guides/${guide.id}.md) — ${guide.description}`
+      );
+    }
+    lines.push('');
   }
+
+  // Remove trailing blank line
+  if (lines.length > 0 && lines[lines.length - 1] === '') lines.pop();
+
   return lines.join('\n');
 }
 
