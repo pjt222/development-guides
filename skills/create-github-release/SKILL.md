@@ -48,12 +48,20 @@ Follow semantic versioning (`MAJOR.MINOR.PATCH`):
 | MINOR | 1.0.0 -> 1.1.0 | New features, backward compatible |
 | PATCH | 1.0.0 -> 1.0.1 | Bug fixes only |
 
+**Expected:** A version number is chosen that accurately reflects the scope of changes since the last release.
+
+**On failure:** If unsure whether changes are breaking, review the public API diff. Any removal or signature change of an exported function is a breaking change requiring a MAJOR bump.
+
 ### Step 2: Update Version in Project Files
 
 - `DESCRIPTION` (R packages)
 - `package.json` (Node.js)
 - `Cargo.toml` (Rust)
 - `pyproject.toml` (Python)
+
+**Expected:** The version number is updated in the appropriate project file and committed to version control.
+
+**On failure:** If the version was already updated in a previous step (e.g., via `usethis::use_version()` in R), verify it matches the intended release version.
 
 ### Step 3: Write Release Notes
 
@@ -80,12 +88,20 @@ Create or update changelog. Organize by category:
 **Full Changelog**: https://github.com/user/repo/compare/v1.0.0...v1.1.0
 ```
 
+**Expected:** Release notes are organized by category (features, fixes, breaking changes) with issue/PR references for traceability.
+
+**On failure:** If changes are hard to categorize, review `git log v1.0.0..HEAD --oneline` to reconstruct the list of changes since the last release.
+
 ### Step 4: Create Git Tag
 
 ```bash
 git tag -a v1.1.0 -m "Release v1.1.0"
 git push origin v1.1.0
 ```
+
+**Expected:** An annotated tag `v1.1.0` exists locally and on the remote. `git tag -l` shows the tag.
+
+**On failure:** If the tag already exists, delete it with `git tag -d v1.1.0 && git push origin :refs/tags/v1.1.0` and recreate it. If push is rejected, ensure you have write access to the remote.
 
 ### Step 5: Create GitHub Release
 
@@ -116,7 +132,9 @@ gh release create v2.0.0-beta.1 \
   --notes "Beta release for testing"
 ```
 
-**Expected**: Release visible on GitHub with tag, notes, and artifacts.
+**Expected:** Release visible on GitHub with tag, notes, and attached artifacts (if any).
+
+**On failure:** If `gh` is not authenticated, run `gh auth login`. If the tag does not exist on the remote, push it first with `git push origin v1.1.0`.
 
 ### Step 6: Auto-Generate Release Notes
 
@@ -147,6 +165,10 @@ changelog:
         - "*"
 ```
 
+**Expected:** Release notes are auto-generated from merged PR titles, categorized by label. `.github/release.yml` controls the categories.
+
+**On failure:** If auto-generated notes are empty, ensure PRs were merged (not closed) and had labels assigned. Manually write notes as a fallback.
+
 ### Step 7: Verify Release
 
 ```bash
@@ -156,6 +178,10 @@ gh release list
 # View specific release
 gh release view v1.1.0
 ```
+
+**Expected:** `gh release list` shows the new release. `gh release view` displays the correct title, tag, notes, and assets.
+
+**On failure:** If the release is missing, check the Actions tab for any release workflows that may have failed. Verify the tag exists with `git tag -l`.
 
 ## Validation
 

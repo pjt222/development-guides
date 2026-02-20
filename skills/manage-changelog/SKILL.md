@@ -9,7 +9,7 @@ description: >
   entries to a versioned section, or converting a free-form changelog to
   Keep a Changelog format.
 license: MIT
-allowed-tools: Read, Write, Edit, Grep
+allowed-tools: Read Write Edit Grep
 metadata:
   author: Philipp Thoss
   version: "1.0"

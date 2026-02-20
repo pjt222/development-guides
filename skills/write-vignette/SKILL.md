@@ -44,7 +44,9 @@ Create long-form documentation vignettes for R packages.
 usethis::use_vignette("getting-started", title = "Getting Started with packagename")
 ```
 
-**Expected**: `vignettes/getting-started.Rmd` created. `knitr` and `rmarkdown` added to Suggests.
+**Expected:** `vignettes/getting-started.Rmd` created with YAML frontmatter. `knitr` and `rmarkdown` added to DESCRIPTION Suggests field. The `vignettes/` directory exists.
+
+**On failure:** If `usethis::use_vignette()` fails, verify the working directory is the package root (contains `DESCRIPTION`). If `knitr` is not installed, run `install.packages("knitr")` first. For manual creation, create the `vignettes/` directory and file by hand, ensuring the YAML frontmatter includes all three `%\Vignette*` entries.
 
 ### Step 2: Write Vignette Content
 
@@ -93,6 +95,10 @@ Cover optional or advanced functionality.
 Summarize and point to other vignettes or resources.
 ```
 
+**Expected:** The vignette Rmd file contains Introduction, Installation, Basic Usage, Advanced Features, and Conclusion sections. Code examples use the package's exported functions and produce visible output.
+
+**On failure:** If examples fail to run, verify the package is installed with `devtools::install()`. Ensure examples use the package name in `library()` calls (not `devtools::load_all()`). For functions requiring external resources, use `eval=FALSE` to show code without execution.
+
 ### Step 3: Configure Code Chunks
 
 Use chunk options for different purposes:
@@ -121,6 +127,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+**Expected:** A setup chunk with `include=FALSE` sets global options (`collapse`, `comment`, `fig.width`, `fig.height`). Chunks are configured appropriately: `eval=FALSE` for illustrative code, `echo=FALSE` for hidden setup, and standard chunks for interactive examples.
+
+**On failure:** If chunk options are not taking effect, verify the syntax uses `{r chunk-name, option=value}` format (comma-separated, no quotes around logical values). Check that the setup chunk runs first by placing it at the top of the document.
+
 ### Step 4: Handle External Dependencies
 
 For vignettes that need network access or optional packages:
@@ -144,6 +154,10 @@ saveRDS(expensive_result, "vignettes/precomputed.rds")
 result <- readRDS("precomputed.rds")
 ```
 
+**Expected:** External dependencies are handled gracefully: optional packages are conditionally loaded with `requireNamespace()`, network-dependent code uses `eval=FALSE` or `tryCatch()`, and expensive computations use pre-computed `.rds` files.
+
+**On failure:** If the vignette fails on CRAN due to unavailable optional packages, wrap those sections with a conditional variable (e.g., `eval=has_suggested`). For pre-computed results, ensure the `.rds` file is included in the `vignettes/` directory and referenced with a relative path.
+
 ### Step 5: Build and Test Vignette
 
 ```r
@@ -154,9 +168,9 @@ devtools::build_vignettes()
 devtools::check()
 ```
 
-**Expected**: Vignette builds without errors. HTML output is readable.
+**Expected:** Vignette builds without errors. HTML output is readable.
 
-**On failure**:
+**On failure:**
 - Missing pandoc: Set `RSTUDIO_PANDOC` in `.Renviron`
 - Package not installed: Run `devtools::install()` first
 - Missing Suggests: Install packages listed in DESCRIPTION Suggests
@@ -168,6 +182,10 @@ devtools::check()
 ```
 
 Vignette-related checks: builds correctly, doesn't take too long, no errors.
+
+**Expected:** `devtools::check()` passes with no vignette-related errors or warnings. The vignette builds within CRAN time limits (typically under 60 seconds).
+
+**On failure:** If the vignette causes check failures, common fixes include: adding missing Suggests packages to DESCRIPTION, reducing build time with `eval=FALSE` on slow chunks, and ensuring `VignetteIndexEntry` matches the title. Run `devtools::build_vignettes()` separately to isolate vignette-specific errors.
 
 ## Validation
 

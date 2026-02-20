@@ -11,7 +11,7 @@ description: >
   advanced variant is needed alongside the original, or the agent's scope
   needs sharpening after real-world use.
 license: MIT
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

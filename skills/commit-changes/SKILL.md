@@ -53,9 +53,9 @@ git diff
 git diff --staged
 ```
 
-**Expected**: Clear picture of all modified, staged, and untracked files.
+**Expected:** Clear picture of all modified, staged, and untracked files.
 
-**On failure**: If `git status` fails, verify you are inside a git repository (`git rev-parse --is-inside-work-tree`).
+**On failure:** If `git status` fails, verify you are inside a git repository (`git rev-parse --is-inside-work-tree`).
 
 ### Step 2: Stage Files Selectively
 
@@ -78,9 +78,9 @@ Review what is staged before committing:
 git diff --staged
 ```
 
-**Expected**: Only the intended files and changes are staged. No `.env`, credentials, or large binaries.
+**Expected:** Only the intended files and changes are staged. No `.env`, credentials, or large binaries.
 
-**On failure**: Unstage accidentally added files with `git reset HEAD <file>`. If sensitive data was staged, unstage immediately before committing.
+**On failure:** Unstage accidentally added files with `git reset HEAD <file>`. If sensitive data was staged, unstage immediately before committing.
 
 ### Step 3: Write a Commit Message
 
@@ -111,9 +111,9 @@ Conventional commit types:
 | `chore` | Build, CI, dependency updates |
 | `style` | Formatting, whitespace (no logic change) |
 
-**Expected**: Commit created with a descriptive message that explains *why*, not just *what*.
+**Expected:** Commit created with a descriptive message that explains *why*, not just *what*.
 
-**On failure**: If a pre-commit hook fails, fix the issue, re-stage with `git add`, and create a **new** commit (do not use `--amend` since the failed commit was never created).
+**On failure:** If a pre-commit hook fails, fix the issue, re-stage with `git add`, and create a **new** commit (do not use `--amend` since the failed commit was never created).
 
 ### Step 4: Amend the Last Commit (Optional)
 
@@ -132,9 +132,9 @@ git add forgotten-file.R
 git commit --amend --no-edit
 ```
 
-**Expected**: The previous commit is updated in-place. `git log -1` shows the amended content.
+**Expected:** The previous commit is updated in-place. `git log -1` shows the amended content.
 
-**On failure**: If the commit was already pushed, do not amend. Create a new commit instead. Force-pushing amended commits to shared branches causes history divergence.
+**On failure:** If the commit was already pushed, do not amend. Create a new commit instead. Force-pushing amended commits to shared branches causes history divergence.
 
 ### Step 5: Verify the Commit
 
@@ -149,9 +149,9 @@ git log --oneline -5
 git show HEAD
 ```
 
-**Expected**: The commit appears in history with the correct message, author, and file changes.
+**Expected:** The commit appears in history with the correct message, author, and file changes.
 
-**On failure**: If the commit contains wrong files, use `git reset --soft HEAD~1` to undo the commit while keeping changes staged, then re-commit correctly.
+**On failure:** If the commit contains wrong files, use `git reset --soft HEAD~1` to undo the commit while keeping changes staged, then re-commit correctly.
 
 ## Validation
 

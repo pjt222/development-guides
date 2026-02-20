@@ -75,6 +75,10 @@ Key architectural decisions and patterns used in this project.
 - Write tests for all new functionality
 ```
 
+**Expected:** A `CLAUDE.md` file exists in the project root with at minimum a project description, quick start commands, architecture overview, and conventions section.
+
+**On failure:** If unsure what to include, start with just the Quick Start section containing the three most important commands (install, test, build). The file can be expanded incrementally as the project evolves.
+
 ### Step 2: Add Technology-Specific Sections
 
 **For R packages**:
@@ -120,6 +124,10 @@ devtools::check()       # Full package check
 - API routes in `src/app/api/`
 ```
 
+**Expected:** Technology-specific sections are added that match the project's actual stack — R package structure for R projects, Node.js stack details for web projects, etc. Commands and paths reference the real project layout.
+
+**On failure:** If the project uses an unfamiliar stack, inspect `package.json`, `DESCRIPTION`, `Cargo.toml`, or equivalent to identify the technology and add the corresponding section.
+
 ### Step 3: Add MCP Server Information
 
 ```markdown
@@ -136,6 +144,10 @@ devtools::check()       # Full package check
 - **Configuration**: `claude mcp add hf-mcp-server -e HF_TOKEN=token -- mcp-remote https://huggingface.co/mcp`
 ```
 
+**Expected:** Each configured MCP server has a subsection documenting its purpose, status (configured/available/not configured), and the command used to add it. No actual tokens or secrets are included.
+
+**On failure:** If MCP servers are not yet configured, document them as "Available" with setup instructions rather than "Configured." Use placeholder values like `your_token_here` for any credentials.
+
 ### Step 4: Add Author Information
 
 ```markdown
@@ -148,6 +160,10 @@ devtools::check()       # Full package check
 - **GitHub**: username
 ```
 
+**Expected:** Author information section includes name, email, ORCID (for academic/research projects), and GitHub username. For R packages, the format matches DESCRIPTION file requirements.
+
+**On failure:** If author information is sensitive or should not be public, use the organization name instead of personal details, or omit the section entirely for internal-only projects.
+
 ### Step 5: Add Security Guidelines
 
 ```markdown
@@ -159,6 +175,10 @@ devtools::check()       # Full package check
 - Git-ignored: `.Renviron`, `.env`, `credentials.json`
 ```
 
+**Expected:** Security section lists files that must never be committed, placeholder conventions for documentation, and confirms that `.gitignore` covers all sensitive files.
+
+**On failure:** If unsure which files are sensitive, run `grep -rn "sk-\|ghp_\|password" .` to scan for exposed secrets. Any file containing real credentials should be added to `.gitignore` and mentioned in this section.
+
 ### Step 6: Reference Skills and Guides
 
 ```markdown
@@ -166,6 +186,10 @@ devtools::check()       # Full package check
 @development-guides/skills/write-testthat-tests/SKILL.md
 @development-guides/skills/submit-to-cran/SKILL.md
 ```
+
+**Expected:** Relevant skills and guides are referenced using `@` paths, giving AI assistants access to detailed procedures for common tasks in the project.
+
+**On failure:** If the referenced skills or guides do not exist at the specified paths, verify the paths or remove the references. Broken `@` references provide no value and may confuse the assistant.
 
 ### Step 7: Add Quality and Status Information
 
@@ -177,6 +201,10 @@ devtools::check()       # Full package check
 - Tests: 200+ passing
 - Vignettes: 3 (rated 9/10)
 ```
+
+**Expected:** Quality metrics section reflects the current state of the project with accurate numbers for check results, test coverage, test count, and documentation status.
+
+**On failure:** If metrics are not yet available (new project), add placeholder entries with "TBD" and update them as the project matures. Do not fabricate numbers.
 
 ## Validation
 

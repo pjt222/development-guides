@@ -53,6 +53,10 @@ remotes::install_github("wjschne/apaquarto")
 remotes::install_github("crsh/papaja")
 ```
 
+**Expected:** The chosen framework package installs successfully and is loadable with `library(apaquarto)` or `library(papaja)`.
+
+**On failure:** If installation fails due to missing system dependencies (e.g., LaTeX for PDF output), install TinyTeX first with `quarto install tinytex`. For GitHub installation failures, check that the `remotes` package is installed and that GitHub is accessible.
+
 ### Step 2: Create Document (apaquarto)
 
 Create `manuscript.qmd`:
@@ -84,6 +88,10 @@ format:
     documentmode: man
 ---
 ```
+
+**Expected:** File `manuscript.qmd` exists with valid YAML frontmatter containing title, shorttitle, author affiliations, abstract, keywords, bibliography reference, and APA-specific format options.
+
+**On failure:** Verify YAML indentation is consistent (2 spaces) and that `author:` entries use the list format with `name:`, `affiliations:`, and `corresponding:` fields. Check that `bibliography:` points to an existing `.bib` file.
 
 ### Step 3: Write APA Content
 
@@ -133,6 +141,10 @@ The findings support the hypothesis that...
 # References
 ````
 
+**Expected:** Content follows APA section structure (Introduction, Method, Results, Discussion, References) with inline R code for statistics and proper cross-references using `@fig-` and `@tbl-` prefixes.
+
+**On failure:** If inline R code does not render, verify backtick-r syntax is correct (`` `r expression` ``). If cross-references show as literal text, check that the referenced chunk labels use the correct prefix and that the chunk has a corresponding caption option.
+
 ### Step 4: Format Tables in APA Style
 
 ```r
@@ -159,6 +171,10 @@ gt(descriptive_table) |>
   )
 ```
 
+**Expected:** Tables render with APA formatting: italicized column headers for statistical symbols, proper decimal alignment, and a descriptive caption above the table.
+
+**On failure:** If `gt` table does not render in APA style, ensure `gt` package is installed and that `cols_label()` uses markdown-style italics (`*M*`, `*SD*`). For papaja users, use `apa_table()` instead of `gt()`.
+
 ### Step 5: Manage Citations
 
 Create `references.bib`:
@@ -180,6 +196,10 @@ APA citation styles:
 - Narrative: `@smith2023` -> Smith and Jones (2023)
 - Multiple: `[@smith2023; @jones2022]` -> (Jones, 2022; Smith & Jones, 2023)
 
+**Expected:** `references.bib` contains valid BibTeX entries with all required fields (author, title, year, journal) and citation keys match those used in the manuscript text.
+
+**On failure:** Validate BibTeX syntax with an online validator or `bibtool -d references.bib`. Ensure citation keys in the text exactly match `.bib` keys (case-sensitive).
+
 ### Step 6: Render
 
 ```bash
@@ -190,7 +210,9 @@ quarto render manuscript.qmd --to apaquarto-docx
 quarto render manuscript.qmd --to apaquarto-pdf
 ```
 
-**Expected**: Properly formatted APA document with title page, running head, references.
+**Expected:** Properly formatted APA document with title page, running head, and correctly formatted references section.
+
+**On failure:** For PDF rendering failures, verify TinyTeX is installed (`quarto install tinytex`). For DOCX output issues, check that apaquarto's Word template is accessible. If references do not appear, ensure the `# References` heading is present at the end of the document.
 
 ## Validation
 

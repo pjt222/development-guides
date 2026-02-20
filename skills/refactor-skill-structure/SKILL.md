@@ -8,7 +8,7 @@ description: >
   when a procedure step contains multiple unrelated operations, or after a
   content update pushed the skill over the line limit.
 license: MIT
-allowed-tools: Read, Write, Edit, Grep, Glob
+allowed-tools: Read Write Edit Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.1"

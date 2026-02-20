@@ -80,9 +80,9 @@ Does it impact code quality? → MEDIUM
 Is it purely cosmetic? → LOW
 ```
 
-**Expected**: Issue classified with clear severity label
+**Expected:** Issue classified with clear severity label
 
-**On failure**: If uncertain, default to HIGH and escalate to human for re-triage
+**On failure:** If uncertain, default to HIGH and escalate to human for re-triage
 
 ### Step 2: Document Finding
 
@@ -135,9 +135,9 @@ Clear description of the problem in 2-3 sentences.
 - [Link to similar past issues]
 ```
 
-**Expected**: Issue documented with full context in `ESCALATION_REPORTS/issue_YYYYMMDD_HHMM.md`
+**Expected:** Issue documented with full context in `ESCALATION_REPORTS/issue_YYYYMMDD_HHMM.md`
 
-**On failure**: (N/A — always document, even if incomplete)
+**On failure:** (N/A — always document, even if incomplete)
 
 ### Step 3: Determine Routing
 
@@ -182,9 +182,9 @@ def route_issue(severity, issue_type):
     return "code-reviewer"
 ```
 
-**Expected**: Issue routed to appropriate specialist with justification
+**Expected:** Issue routed to appropriate specialist with justification
 
-**On failure**: If no clear specialist, escalate to human for manual routing
+**On failure:** If no clear specialist, escalate to human for manual routing
 
 ### Step 4: Create Actionable Issue Report
 
@@ -249,9 +249,9 @@ Request human review before deletion. If confirmed dead:
 Awaiting human confirmation before proceeding with cleanup.
 ```
 
-**Expected**: Report formatted appropriately for target audience
+**Expected:** Report formatted appropriately for target audience
 
-**On failure**: (N/A — generate report in generic markdown if uncertain)
+**On failure:** (N/A — generate report in generic markdown if uncertain)
 
 ### Step 5: Track Escalation Status
 
@@ -267,9 +267,9 @@ Maintain a log of all escalations to prevent duplicate reports.
 | ESC-003 | 2026-02-16 | MEDIUM | Config drift | devops-engineer | In Progress |
 ```
 
-**Expected**: `ESCALATION_LOG.md` updated with new entry
+**Expected:** `ESCALATION_LOG.md` updated with new entry
 
-**On failure**: If log doesn't exist, create it
+**On failure:** If log doesn't exist, create it
 
 ### Step 6: Notify and Block (If Required)
 
@@ -294,9 +294,9 @@ Issue ESC-002 (HIGH severity) requires human review before proceeding.
 Once resolved, re-run maintenance from Step 5.
 ```
 
-**Expected**: Maintenance paused; clear notification generated
+**Expected:** Maintenance paused; clear notification generated
 
-**On failure**: If notification mechanism unavailable, document in report
+**On failure:** If notification mechanism unavailable, document in report
 
 ## Validation Checklist
 

@@ -86,6 +86,10 @@ Verify that R and required packages are correctly installed per specifications.
 [ ] IQ tests FAILED - see deviation section
 ```
 
+**Expected:** `validation/iq/iq_protocol.md` is complete with a unique document ID, objective, prerequisites checklist, test cases for R installation and every required package, deviation section, and approval fields.
+
+**On failure:** If the organization requires a different document format, adapt the template to match the existing SOP. The key fields (requirement, procedure, expected result, actual result, pass/fail) must be preserved regardless of format.
+
 ### Step 2: Write Operational Qualification (OQ) Protocol
 
 ```markdown
@@ -126,6 +130,10 @@ Verify that the system operates correctly under normal conditions.
 | Actual Result | ______________________ |
 ```
 
+**Expected:** `validation/oq/oq_protocol.md` contains test cases for data import, statistical calculations, and error handling, each with specific test data, expected results (with tolerances where applicable), and evidence requirements.
+
+**On failure:** If test data is not yet available, create synthetic test datasets with known properties. Document the data generation method so results can be independently verified.
+
 ### Step 3: Write Performance Qualification (PQ) Protocol
 
 ```markdown
@@ -160,6 +168,10 @@ Verify the system performs as intended with real-world data and workflows.
 | | [ ] Appendix with session info |
 ```
 
+**Expected:** `validation/pq/pq_protocol.md` contains end-to-end test cases using real-world (or representative) data, with results compared against an independent reference calculation (e.g., SAS output). Tolerances are explicitly defined.
+
+**On failure:** If independent reference results are not available, document the gap and use dual-programming (two independent R implementations) as an alternative verification method. Flag the PQ as provisional until independent verification is complete.
+
 ### Step 4: Write Qualification Reports
 
 After executing protocols, document results:
@@ -193,6 +205,10 @@ and meets all specified requirements.
 | Approver | | | |
 ```
 
+**Expected:** Qualification reports (IQ, OQ, PQ) are complete with all test results filled in, deviations documented (or "None observed"), conclusions stated, and approval signature fields ready for sign-off.
+
+**On failure:** If test failures occurred during execution, document each failure as a deviation with root cause analysis and resolution. Do not leave deviation sections blank when failures were observed.
+
 ### Step 5: Automate Where Possible
 
 Create automated test scripts that generate evidence:
@@ -213,6 +229,10 @@ installed <- installed.packages()
 # ... comparison logic
 sink()
 ```
+
+**Expected:** Automated scripts in `validation/scripts/` generate evidence files (e.g., `iq_evidence.txt`) with timestamped results for each test case, reducing manual data entry and ensuring reproducibility.
+
+**On failure:** If automated scripts fail due to environment differences, run them manually and capture output with `sink()`. Document any differences between automated and manual execution in the qualification report.
 
 ## Validation
 

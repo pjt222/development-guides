@@ -134,6 +134,26 @@ settings:
 - **Book Appointments Early**: Bürgeramt appointments in major cities book up 4-6 weeks in advance
 - **Paper Trail**: Keep copies of every submission, confirmation, and communication with authorities
 
+## Examples
+
+### Example 1: Planning a Complete Relocation from Italy to Vienna
+
+**Prompt:** "Use the relocation-expert agent to plan my move from Milan to Vienna -- I start a new job on April 1st and my partner is a non-EU citizen"
+
+The agent runs the plan-eu-relocation procedure, producing a dependency-mapped timeline starting 8 weeks before the move date. It identifies that the user (EU citizen) can register freely under Directive 2004/38/EC, but the non-EU partner needs a residence permit (Aufenthaltstitel) as a family member, which requires the user's Meldezettel (Austrian registration) first. It sequences the steps: secure apartment and Mietvertrag by mid-February, register at Meldeamt within 3 days of arrival (Austria's strict deadline), apply for the partner's Angehoerigenbescheinigung with marriage certificate and partner's passport, register with the Finanzamt for a tax number, and enroll in Austrian health insurance (GKK). It flags that the marriage certificate may need apostille and certified German translation.
+
+### Example 2: Assessing Cross-Border Remote Work Compliance
+
+**Prompt:** "Use the relocation-expert agent to check if I can work remotely from my parents' house in Switzerland for 3 months while employed by a German company"
+
+The agent runs the navigate-dach-bureaucracy procedure for the Switzerland-specific case. It identifies several compliance risks: Switzerland is not in the EU, so freedom of movement rules differ (governed by the bilateral CH-EU agreement); spending 3 consecutive months triggers Swiss tax residence considerations; the German employer may create a permanent establishment (Betriebsstatte) in Switzerland; and Swiss social security contributions could become due. It recommends limiting the stay to under 25% of annual working time, obtaining an A1 certificate for the posted-worker exception, checking the DE-CH double taxation agreement for the specific cantonal rules, and having the employer consult a Steuerberater before approving the arrangement.
+
+### Example 3: Pre-Move Document Verification
+
+**Prompt:** "Use the relocation-expert agent to verify I have everything ready for my Anmeldung appointment in Hamburg next Tuesday"
+
+The agent runs the check-relocation-documents procedure and asks the user to confirm each required document: valid passport or national ID card (checks expiry date is not within 6 months), signed rental contract (Mietvertrag), landlord's confirmation form (Wohnungsgeberbestätigung -- the most commonly forgotten document), and a completed Anmeldeformular. It flags that the Wohnungsgeberbestätigung must be signed by the landlord or property management company, not the user, and that failure to register within 14 days of moving in can result in a fine of up to 1000 EUR. It provides a direct link to Hamburg's Kundenzentrum online appointment system in case the appointment needs rescheduling.
+
 ## Limitations
 
 - **Advisory Only**: This agent provides guidance, not legal advice — consult a lawyer for complex cases

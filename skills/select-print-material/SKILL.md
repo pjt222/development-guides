@@ -72,9 +72,9 @@ Determine the dominant requirement that drives material selection:
 - Low material cost for large parts
 - Wide availability
 
-**Expected**: Primary requirement identified (e.g., "outdoor UV resistance" or "high impact strength").
+**Expected:** Primary requirement identified (e.g., "outdoor UV resistance" or "high impact strength").
 
-**On failure**: If multiple requirements are equally critical, use decision matrix to score materials across requirements (see step 6).
+**On failure:** If multiple requirements are equally critical, use decision matrix to score materials across requirements (see step 6).
 
 ### 2. Apply Material Selection Filters
 
@@ -112,9 +112,9 @@ Outdoor durability:       ASA > Nylon > PETG > PLA (degrades)
 Moisture resistance:      ABS/ASA > PETG > PLA > Nylon (hygroscopic)
 ```
 
-**Expected**: 2-5 candidate materials remain after filtering.
+**Expected:** 2-5 candidate materials remain after filtering.
 
-**On failure**: If no materials pass all filters, relax least-critical requirement or consider post-processing (e.g., UV coating for PLA).
+**On failure:** If no materials pass all filters, relax least-critical requirement or consider post-processing (e.g., UV coating for PLA).
 
 ### 3. Compare Material Properties
 
@@ -149,9 +149,9 @@ Consult material property table for detailed comparison:
 | **High-Temp** | 8-12s | 60-70 MPa | 6-10% | 120-150°C | 85-88 Shore D | Heat-resistant parts |
 | **Castable** | 3-5s | 35-45 MPa | 8-12% | 60°C | 80 Shore D | Jewelry (lost-wax) |
 
-**Expected**: Material properties compared, 1-3 top candidates identified based on requirements.
+**Expected:** Material properties compared, 1-3 top candidates identified based on requirements.
 
-**On failure**: If properties unclear, consult manufacturer technical datasheets via WebFetch tool.
+**On failure:** If properties unclear, consult manufacturer technical datasheets via WebFetch tool.
 
 ### 4. Evaluate Printability Tradeoffs
 
@@ -193,9 +193,9 @@ Standard Resin: $30-50/L
 Specialty Resin: $60-150/L
 ```
 
-**Expected**: Printability assessed relative to printer capabilities and user experience. Decision balances performance needs vs. practical constraints.
+**Expected:** Printability assessed relative to printer capabilities and user experience. Decision balances performance needs vs. practical constraints.
 
-**On failure**: If material too difficult for current setup, choose easier alternative and compensate with design changes (thicker walls, fillets, etc.).
+**On failure:** If material too difficult for current setup, choose easier alternative and compensate with design changes (thicker walls, fillets, etc.).
 
 ### 5. Check Special Requirements
 
@@ -226,9 +226,9 @@ Verify material compatibility with special use cases:
 - **Good**: PETG, TPU
 - **Poor**: PLA (yellows and degrades), ABS (yellows)
 
-**Expected**: Special requirements verified against material capabilities.
+**Expected:** Special requirements verified against material capabilities.
 
-**On failure**: If material doesn't meet special requirement, apply post-processing (e.g., UV-resistant coating on PLA) or choose different material.
+**On failure:** If material doesn't meet special requirement, apply post-processing (e.g., UV-resistant coating on PLA) or choose different material.
 
 ### 6. Make Final Selection with Decision Matrix
 
@@ -249,9 +249,9 @@ Score candidates across weighted criteria:
 
 **Decision**: Nylon scores highest (7.45) but ASA (7.25) nearly tied with better printability. **Select ASA** if printer has enclosure, or **PETG** (6.80) if printability important.
 
-**Expected**: Final material selected with documented rationale based on weighted priorities.
+**Expected:** Final material selected with documented rationale based on weighted priorities.
 
-**On failure**: If decision unclear, default to PETG for FDM or Tough Resin for SLA (best all-around compromises).
+**On failure:** If decision unclear, default to PETG for FDM or Tough Resin for SLA (best all-around compromises).
 
 ### 7. Document Material Settings
 
@@ -284,9 +284,9 @@ lift_speed: 65mm/min
 notes: "Post-cure 15min at 60°C for full strength. Brittle without cure."
 ```
 
-**Expected**: Settings documented in project notes or slicer profile library.
+**Expected:** Settings documented in project notes or slicer profile library.
 
-**On failure**: Start with manufacturer recommended settings, then iterate and document successful changes.
+**On failure:** Start with manufacturer recommended settings, then iterate and document successful changes.
 
 ## Validation Checklist
 

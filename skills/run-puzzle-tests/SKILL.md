@@ -45,6 +45,10 @@ Run the jigsawR test suite and interpret results.
 | Filtered | Working on one puzzle type | ~30s |
 | Single | Debugging a specific test file | ~10s |
 
+**Expected:** Test scope selected based on current workflow: full suite before commits, filtered when working on a specific puzzle type, single file when debugging one test.
+
+**On failure:** If unsure which scope to use, default to full suite. It takes longer but catches cross-type regressions.
+
 ### Step 2: Create and Execute Test Script
 
 **Full suite**:
@@ -72,9 +76,9 @@ cd /mnt/d/dev/p/jigsawR && "$R_EXE" -e "devtools::test()"
 "$R_EXE" -e "testthat::test_file('tests/testthat/test-snic-puzzles.R')"
 ```
 
-**Expected**: Test output with pass/fail/skip counts.
+**Expected:** Test output with pass/fail/skip counts.
 
-**On failure**:
+**On failure:**
 - Do NOT use `--vanilla` flag; renv needs `.Rprofile` to activate
 - If renv errors, run `renv::restore()` first
 - For complex commands that fail with Exit code 5, write to a script file instead
@@ -92,6 +96,10 @@ Look for the summary line:
 - **SKIP**: Tests skipped (usually due to missing optional packages like `snic`)
 - **WARN**: Warnings during tests (review but not blocking)
 
+**Expected:** The summary line parsed to identify PASS, FAIL, SKIP, and WARN counts. FAIL = 0 for a clean test run.
+
+**On failure:** If the summary line is not visible, the test runner may have crashed before completing. Check for R-level errors above the summary. If output is truncated, redirect to a file: `"$R_EXE" -e "devtools::test()" > test_results.txt 2>&1`.
+
 ### Step 4: Investigate Failures
 
 If tests fail:
@@ -106,6 +114,10 @@ If tests fail:
 "$R_EXE" -e "testthat::test_file('tests/testthat/test-failing.R', reporter = 'summary')"
 ```
 
+**Expected:** Root cause of each failing test identified. The failure is either a genuine regression (code needs fixing) or a test environment issue (missing dependency, path problem).
+
+**On failure:** If the failure message is unclear, add `browser()` or `print()` statements to the test and re-run with `testthat::test_file()` for interactive debugging.
+
 ### Step 5: Verify Skip Reasons
 
 Skipped tests are normal when optional dependencies are missing:
@@ -115,6 +127,10 @@ Skipped tests are normal when optional dependencies are missing:
 - CRAN-only skips with `skip_on_cran()`
 
 Confirm skip reasons are legitimate, not masking real failures.
+
+**Expected:** All skips are accounted for by legitimate reasons (optional dependency not installed, platform-specific skip, CRAN-only skip). No skips are masking actual test failures.
+
+**On failure:** If a skip seems suspicious, temporarily remove the `skip_if_*()` call and run the test to see if it passes or reveals a hidden failure.
 
 ## Validation
 

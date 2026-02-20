@@ -72,6 +72,10 @@ volumes:
     driver: local
 ```
 
+**Expected:** A `docker-compose.yml` file exists with the R service defined, including volume mounts for the project directory and renv cache, and environment variables for R library paths.
+
+**On failure:** If YAML syntax is invalid, validate with `docker compose config`. Ensure indentation uses spaces (not tabs) and all string values with special characters are quoted.
+
 ### Step 2: Add Additional Services (If Needed)
 
 ```yaml
@@ -101,6 +105,10 @@ volumes:
   pgdata:
 ```
 
+**Expected:** The additional service (e.g., PostgreSQL) is defined with its own volume, environment variables, and port mapping. The R service has `depends_on` referencing the new service.
+
+**On failure:** If the database service fails to start, check `docker compose logs postgres` for initialization errors. Verify that environment variables like `POSTGRES_PASSWORD_FILE` point to valid secrets or switch to `POSTGRES_PASSWORD` for development.
+
 ### Step 3: Configure Networking
 
 For services that need localhost access (e.g., MCP servers):
@@ -126,6 +134,10 @@ networks:
     driver: bridge
 ```
 
+**Expected:** Networking is configured appropriately: `host` mode for services needing localhost access (MCP servers), or bridge networking with explicit port mappings for isolated services.
+
+**On failure:** If services cannot communicate, verify they are on the same network. With bridge networking, use service names as hostnames (e.g., `postgres` not `localhost`). With host mode, use `localhost` and ensure ports do not conflict.
+
 ### Step 4: Manage Environment Variables
 
 Create `.env` file (git-ignored):
@@ -147,6 +159,10 @@ services:
       - .env
 ```
 
+**Expected:** A `.env` file exists (git-ignored) with project-specific variables, and `docker-compose.yml` references it via `env_file` or variable interpolation (`${VAR}`).
+
+**On failure:** If variables are not resolving, ensure the `.env` file is in the same directory as `docker-compose.yml`. Run `docker compose config` to see the resolved configuration with all variables expanded.
+
 ### Step 5: Build and Run
 
 ```bash
@@ -166,9 +182,9 @@ docker compose logs -f r-dev
 docker compose down
 ```
 
-**Expected**: All services start. R session accessible.
+**Expected:** All services start. R session accessible.
 
-**On failure**: Check `docker compose logs` for startup errors. Common: port conflicts, missing environment variables.
+**On failure:** Check `docker compose logs` for startup errors. Common: port conflicts, missing environment variables.
 
 ### Step 6: Create Override for Development
 
@@ -184,6 +200,10 @@ services:
 ```
 
 This is automatically merged with `docker-compose.yml`.
+
+**Expected:** A `docker-compose.override.yml` file exists with development-specific settings (extra volumes, debug flags) that are automatically applied when running `docker compose up`.
+
+**On failure:** If overrides are not taking effect, verify the filename is exactly `docker-compose.override.yml`. Run `docker compose config` to confirm the merge. For explicit override files, use `docker compose -f docker-compose.yml -f custom-override.yml up`.
 
 ## Validation
 

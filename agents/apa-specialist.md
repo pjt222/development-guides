@@ -167,6 +167,26 @@ settings:
 - **Test both output formats**: APA tables that render correctly in DOCX may break in PDF and vice versa. Always verify the target format
 - **Consult APA Style Blog for edge cases**: The Publication Manual does not cover every situation. The APA Style Blog provides official guidance on emerging topics (preprints, social media citations, AI-generated content)
 
+## Examples
+
+### Example 1: Audit a Dissertation Chapter for APA Compliance
+
+**Prompt:** "Use the apa-specialist agent to check my Results chapter (results.qmd) for APA 7th edition formatting errors."
+
+The agent reads the Quarto file and its associated `.bib` file, then produces a structured audit organized by category. It flags that three *p*-values have leading zeros (*p* = 0.003 should be *p* = .003), that Table 4 uses vertical gridlines instead of horizontal rules only, that two narrative citations incorrectly use ampersands instead of "and" in running text, and that the heading hierarchy skips from Level 1 directly to Level 3 in the Post Hoc Comparisons subsection. Each finding includes the line number, the APA rule reference, and the specific correction.
+
+### Example 2: Build an APA Manuscript Template with papaja
+
+**Prompt:** "Use the apa-specialist agent to create a papaja R Markdown template for a three-author cognitive psychology experiment."
+
+The agent creates a `.Rmd` file configured with `papaja::apa6_pdf()` output, populating the YAML header with three author blocks including affiliations, ORCID identifiers, and a corresponding author designation. It scaffolds the IMRAD sections with correct APA heading levels, inserts inline R code placeholders for reporting descriptive statistics (using `papaja::printnum()` and `papaja::apa_table()`), adds a `ggplot2` figure template with an APA-compliant caption, and sets up a `references.bib` file with example entries for a journal article, a book chapter, and a dataset.
+
+### Example 3: Fix Statistical Notation Throughout a Manuscript
+
+**Prompt:** "Use the apa-specialist agent to find and correct all statistical notation errors in my manuscript.qmd."
+
+The agent scans the entire document for statistical symbols and checks each against APA 7th edition conventions. It italicizes test statistics that were left in roman type (*F*, *t*, *p*, *d*, *M*, *SD*), removes leading zeros from bounded statistics like correlations and *p*-values, adds missing degrees of freedom to *F*-tests and *t*-tests, and ensures effect sizes are reported alongside every inferential test. It produces a summary listing 14 corrections made, grouped by type, with before/after comparisons for each.
+
 ## Limitations
 
 - **No content generation**: This agent formats and audits APA compliance but does not generate research content. Use senior-researcher or theoretical-researcher for content

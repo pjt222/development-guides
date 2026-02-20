@@ -56,9 +56,9 @@ workflow <- put_auto("./src/")
 workflow <- put_merge("./src/", merge_strategy = "supplement")
 ```
 
-**Expected**: A data frame with at least one row, containing `id`, `label`, and optionally `input`, `output`, `source_file` columns.
+**Expected:** A data frame with at least one row, containing `id`, `label`, and optionally `input`, `output`, `source_file` columns.
 
-**On failure**: If the data frame is empty, no annotations or patterns were found. Run `analyze-codebase-workflow` first, or check that annotations are syntactically valid with `put("./src/", validate = TRUE)`.
+**On failure:** If the data frame is empty, no annotations or patterns were found. Run `analyze-codebase-workflow` first, or check that annotations are syntactically valid with `put("./src/", validate = TRUE)`.
 
 ### Step 2: Select Theme and Options
 
@@ -82,9 +82,9 @@ get_diagram_themes()
 # "cividis" — Blue→Gray→Yellow, maximum accessibility (no red-green)
 ```
 
-**Expected**: Theme names printed. Select one based on context.
+**Expected:** Theme names printed. Select one based on context.
 
-**On failure**: If a theme name is not recognized, `put_diagram()` falls back to `"light"`. Check spelling.
+**On failure:** If a theme name is not recognized, `put_diagram()` falls back to `"light"`. Check spelling.
 
 ### Step 3: Generate Mermaid Output
 
@@ -119,9 +119,9 @@ cat(put_diagram(workflow,
 ))
 ```
 
-**Expected**: Valid Mermaid code starting with `flowchart TD` (or `LR` depending on direction). Nodes are connected by arrows showing data flow.
+**Expected:** Valid Mermaid code starting with `flowchart TD` (or `LR` depending on direction). Nodes are connected by arrows showing data flow.
 
-**On failure**: If the output is `flowchart TD` with no nodes, the workflow data frame is empty. If connections are missing, check that output filenames match input filenames across nodes.
+**On failure:** If the output is `flowchart TD` with no nodes, the workflow data frame is empty. If connections are missing, check that output filenames match input filenames across nodes.
 
 ### Step 4: Embed in Target Document
 
@@ -158,9 +158,9 @@ cat(knitr::knit_child(text = mermaid_chunk, quiet = TRUE))
 DiagrammeR::mermaid(put_diagram(workflow, output = "raw"))
 ```
 
-**Expected**: Diagram renders correctly in the target format. GitHub renders mermaid code fences natively.
+**Expected:** Diagram renders correctly in the target format. GitHub renders mermaid code fences natively.
 
-**On failure**: If GitHub doesn't render the diagram, ensure the code fence uses exactly ` ```mermaid ` (no extra attributes). For Quarto, ensure the `knit_child()` approach is used since direct variable interpolation in `{mermaid}` chunks is not supported.
+**On failure:** If GitHub doesn't render the diagram, ensure the code fence uses exactly ` ```mermaid ` (no extra attributes). For Quarto, ensure the `knit_child()` approach is used since direct variable interpolation in `{mermaid}` chunks is not supported.
 
 ## Validation
 

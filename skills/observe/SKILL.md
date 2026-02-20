@@ -11,7 +11,7 @@ description: >
   before further changes, or when auditing own reasoning patterns for
   biases or recurring errors.
 license: MIT
-allowed-tools: Read, Grep, Glob
+allowed-tools: Read Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

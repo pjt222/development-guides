@@ -9,7 +9,7 @@ description: >
   simultaneous congruences (CRT), or operating in cyclic groups and
   discrete logarithm contexts.
 license: MIT
-allowed-tools: Read, Bash
+allowed-tools: Read Bash
 metadata:
   author: Philipp Thoss
   version: "1.0"

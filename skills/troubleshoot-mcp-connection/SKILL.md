@@ -60,6 +60,10 @@ cat ~/.claude.json | python3 -m json.tool
 cat "/mnt/c/Users/$USER/AppData/Roaming/Claude/claude_desktop_config.json"
 ```
 
+**Expected:** Configuration file is located and readable, showing the MCP server entries with command, args, and env fields.
+
+**On failure:** If the config file does not exist or is empty, the server was never configured. Follow the `configure-mcp-server` skill to set it up from scratch.
+
 ### Step 2: Test Server Independently
 
 **R mcptools**:
@@ -84,6 +88,10 @@ mcp-remote https://huggingface.co/mcp
 which mcp-remote
 npm list -g mcp-remote
 ```
+
+**Expected:** The server process starts and produces initialization output (JSON-RPC handshake or "listening" message) without errors.
+
+**On failure:** If R mcptools fails, check that the R version path is correct and that mcptools is installed in the R library. If mcp-remote fails, reinstall globally with `npm install -g mcp-remote` and verify it is on the PATH.
 
 ### Step 3: Diagnose Common Error Patterns
 
@@ -123,6 +131,10 @@ Also ensure `mcp-remote` is globally installed (`npm install -g mcp-remote`), no
 - Check server stdout for initialization messages
 - Verify the server uses the correct MCP protocol version
 
+**Expected:** Error pattern matched to one of the documented categories (cannot attach, connection refused, command not found, or silent failure).
+
+**On failure:** If the error does not match any known pattern, capture the full error output and check server-side logs. Search for the exact error message in the MCP server's GitHub issues.
+
 ### Step 4: Check Network and Authentication
 
 ```bash
@@ -133,12 +145,20 @@ curl -I "https://huggingface.co/mcp"
 curl -H "Authorization: Bearer $HF_TOKEN" https://huggingface.co/api/whoami
 ```
 
+**Expected:** HTTP endpoint returns 200 status and the whoami call returns your Hugging Face username, confirming network connectivity and valid authentication.
+
+**On failure:** If curl returns a connection error, check DNS resolution and proxy settings. If the token is rejected (401), regenerate the token at huggingface.co/settings/tokens and update the configuration.
+
 ### Step 5: Verify JSON Configuration Syntax
 
 ```bash
 # Validate JSON (common issue: trailing commas, missing quotes)
 python3 -m json.tool /path/to/config.json
 ```
+
+**Expected:** JSON parses without errors, confirming the configuration file has valid syntax.
+
+**On failure:** The most common JSON issues are trailing commas after the last entry in an object or array, missing quotes around string values, and mismatched braces. Fix the syntax error reported by the parser and re-validate.
 
 ### Step 6: Platform-Specific Debugging
 
@@ -153,6 +173,10 @@ python3 -m json.tool /path/to/config.json
 - Can use full paths with spaces (quoted)
 - npm/npx via NVM: ensure NVM is loaded in the execution context
 
+**Expected:** Platform-specific issue identified (e.g., Windows argument parsing, WSL path resolution, or NVM context loading).
+
+**On failure:** If the issue is Windows-specific, switch from command-line arguments to environment variables for authentication. If WSL-specific, verify that the Windows executable path is accessible from WSL using the full `/mnt/c/...` path.
+
 ### Step 7: Reset and Reconfigure
 
 If all else fails:
@@ -166,6 +190,10 @@ claude mcp add server-name stdio "/full/path/to/executable" -- args
 # (close and reopen the application)
 ```
 
+**Expected:** After removing and re-adding the server, `claude mcp list` shows the server with the correct configuration and a fresh connection attempt succeeds.
+
+**On failure:** If re-adding fails, check that the executable path is correct and the command works when run directly in the terminal. For Claude Desktop, ensure the application is fully closed (check system tray) before restarting.
+
 ### Step 8: Check Logs
 
 **Claude Code**: Look for MCP errors in the terminal output when starting a session.
@@ -173,6 +201,10 @@ claude mcp add server-name stdio "/full/path/to/executable" -- args
 **Claude Desktop**: Check application logs (location varies by OS).
 
 **Server-side**: Add logging to the MCP server to capture incoming requests and errors.
+
+**Expected:** Log entries reveal the specific point of failure (server startup, handshake, authentication, or tool registration).
+
+**On failure:** If no logs are available, add `stderr` capture to the server command (e.g., redirect to a log file) and reproduce the failure. For Claude Desktop, check `%APPDATA%\Claude\logs\` for application-level logs.
 
 ## Validation
 

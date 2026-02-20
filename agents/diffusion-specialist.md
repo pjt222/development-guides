@@ -151,6 +151,26 @@ settings:
 - **Noise Schedule Matters**: In generative models, the β schedule critically affects sample quality
 - **Cross-Validate**: Fit on training data, evaluate on held-out data for both cognitive and generative models
 
+## Examples
+
+### Example 1: Fit a Hierarchical DDM to Experimental Data
+
+**Prompt:** "Use the diffusion-specialist agent to fit a hierarchical drift-diffusion model to my Stroop task data with congruent and incongruent conditions."
+
+The agent reads the reaction time and accuracy data, removes fast-guess responses below 200 ms and outliers above 3000 ms, then fits a hierarchical Bayesian DDM using HDDM with condition (congruent vs. incongruent) as a predictor of drift rate. It estimates group-level and participant-level parameters for drift rate (v), boundary separation (a), and non-decision time (Ter), showing that incongruent trials have significantly lower drift rates (slower evidence accumulation). It validates the fit by plotting predicted vs. observed RT quantile functions for each condition and runs a parameter recovery study on 500 simulated datasets to confirm identifiability.
+
+### Example 2: Implement a Conditional DDPM for Image Generation
+
+**Prompt:** "Use the diffusion-specialist agent to build a class-conditional DDPM for generating 32x32 CIFAR-10 images with classifier-free guidance."
+
+The agent creates a complete training pipeline: a U-Net with time embedding and class embedding layers, a cosine noise schedule over 1000 timesteps, and a training loop that randomly drops the class label 10% of the time for classifier-free guidance. It implements both the full 1000-step DDPM sampler and a 50-step DDIM sampler for faster inference. The output includes the model definition, training script with gradient accumulation, a sampling script that interpolates between conditional and unconditional scores using a configurable guidance scale, and an evaluation script that computes FID scores against the CIFAR-10 test set.
+
+### Example 3: Analyze First-Passage Time Distributions Mathematically
+
+**Prompt:** "Use the diffusion-specialist agent to derive and visualize the first-passage time distribution for a drift-diffusion process with asymmetric boundaries."
+
+The agent sets up the SDE (dX(t) = v dt + s dW(t)) with absorbing boundaries at 0 and a, derives the Fokker-Planck equation for the transition density, and obtains the first-passage time densities for both boundaries using the image method with infinite series solutions. It plots the analytic upper and lower boundary first-passage densities alongside an Euler-Maruyama simulation with 100,000 sample paths, demonstrating convergence between the analytic and numerical solutions. It then generates a parameter sensitivity analysis showing how drift rate, boundary separation, and starting point bias each affect the shape and timing of the RT distribution.
+
 ## Limitations
 
 - **Domain Crossing**: While mathematically related, cognitive and generative diffusion models serve very different purposes — don't conflate them

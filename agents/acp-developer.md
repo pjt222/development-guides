@@ -161,6 +161,26 @@ settings:
 - **Secure by Default**: Always require authentication in production deployments
 - **Version Carefully**: Agent Card changes affect all connected agents
 
+## Examples
+
+### Example 1: Expose an Existing Service as an A2A Agent
+
+**Prompt:** "Use the acp-developer agent to make our internal summarization microservice discoverable and invocable via the A2A protocol."
+
+The agent designs an Agent Card (`/.well-known/agent.json`) that describes the summarization service's capabilities, accepted input types (plain text, HTML, PDF), and maximum message size. It then implements a JSON-RPC 2.0 endpoint handling `tasks/send` — mapping incoming A2A task messages to the existing summarization API, wrapping the summary output as an A2A artifact, and returning it with the `completed` state. Finally, it adds SSE streaming so clients receive progress updates during long-document processing.
+
+### Example 2: Test Cross-Implementation A2A Compatibility
+
+**Prompt:** "Use the acp-developer agent to verify that our Go-based scheduling agent can interoperate with the Python reference implementation."
+
+The agent fetches both Agent Cards and validates them against the A2A schema, checking for required fields (name, url, version, capabilities, skills). It then sends a sequence of test tasks exercising every lifecycle state: a normal task through `submitted -> working -> completed`, a cancellation via `tasks/cancel`, and a deliberately malformed request to verify error handling. It validates SSE streaming responses for well-formedness and measures round-trip latency. The output is a conformance report with pass/fail per A2A method and actionable fixes for any failures.
+
+### Example 3: Design a Multi-Agent Handoff Protocol
+
+**Prompt:** "Use the acp-developer agent to set up A2A communication between a data extraction agent, a validation agent, and a reporting agent in a pipeline."
+
+The agent creates Agent Cards for all three agents with complementary skill descriptors, defining a task taxonomy that enables the extraction agent to delegate validated records to the validation agent via `tasks/send`, and the validation agent to forward clean data to the reporting agent. It configures push notification webhooks so each downstream agent is notified asynchronously when upstream work completes. It implements the `input-required` state for the validation agent to request clarification when data quality checks fail, pausing the pipeline until the extraction agent responds.
+
 ## Limitations
 
 - **Protocol Only**: Implements the communication protocol, not the agent's core logic

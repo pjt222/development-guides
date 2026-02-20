@@ -155,6 +155,26 @@ generate_puzzle()
 | random | cols x rows | varies | n_interior, tabsize |
 | snic | cols x rows | varies | n_interior, compactness, tabsize |
 
+## Examples
+
+### Example 1: Generating a Custom Hexagonal Puzzle
+
+**Prompt:** "Use the jigsawr-developer agent to generate a hexagonal puzzle with 5 rings, warped edges, and a 400mm diameter"
+
+The agent validates the requested parameters against `inst/config.yml` constraints (confirming rings, diameter, and warp settings are within allowed ranges), writes a temporary R script that calls `generate_puzzle(type = "hexagonal", rings = 5, diameter = 400, do_warp = TRUE)` with a fixed seed for reproducibility, executes it via the WSL Rscript wrapper, and verifies the SVG output file was produced with the expected piece count of 61.
+
+### Example 2: Adding a New Puzzle Type to the Pipeline
+
+**Prompt:** "Use the jigsawr-developer agent to scaffold a new 'penrose' puzzle type based on Penrose tiling"
+
+The agent follows the 10-point integration checklist: creates `R/penrose_puzzle.R` with `generate_penrose_pieces_internal()`, wires the type into the dispatch logic in `R/jigsawR_clean.R`, adds default parameters and constraints to `inst/config.yml`, implements a `geom_puzzle_penrose()` ggplot2 layer in `R/geom_puzzle.R`, adds adjacency logic in `R/adjacency_api.R`, updates the Shiny app dropdown in `inst/shiny-app/app.R`, creates `tests/testthat/test-penrose.R` with seed-based generation tests, and updates the DESCRIPTION Collate field.
+
+### Example 3: Debugging a PILES Notation Fusion Error
+
+**Prompt:** "Use the jigsawr-developer agent to figure out why fusion string 'ring1-ring2,center' is producing an error on my concentric puzzle"
+
+The agent runs the validate-piles-notation skill to parse the fusion string, identifies that the hyphen separator in `ring1-ring2` conflicts with negative piece label parsing when using `strsplit()`, recommends switching to the pipe separator (`ring1|ring2,center`), and verifies the corrected notation resolves against the concentric puzzle's adjacency graph to confirm the specified pieces are actually neighbors.
+
 ## Limitations
 
 - WSL R execution adds latency compared to native R

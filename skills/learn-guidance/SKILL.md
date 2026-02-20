@@ -10,7 +10,7 @@ description: >
   forgetting material and needs spaced repetition, or when transitioning
   between domains and needing a gap analysis.
 license: MIT
-allowed-tools: Read, WebFetch, WebSearch
+allowed-tools: Read WebFetch WebSearch
 metadata:
   author: Philipp Thoss
   version: "1.0"

@@ -139,6 +139,26 @@ settings:
 - **Tell Someone**: Always leave your itinerary with someone not on the hike
 - **Turn Around**: Reaching the summit is optional; returning safely is mandatory
 
+## Examples
+
+### Example 1: Plan a Family-Friendly Day Hike
+
+**Prompt:** "Use the hiking-guide agent to plan a day hike near Garmisch-Partenkirchen suitable for two adults and two children aged 8 and 11."
+
+The agent filters trails to SAC T1-T2 with less than 500 m elevation gain and a maximum of 4 hours walking time. It selects the Partnachklamm gorge walk extending to the Eckbauer summit via the cable car, offering a dramatic gorge entrance that keeps children engaged, a gentle ascent on a well-marked forest path, and a cable car descent option if energy runs low. It calculates 9 km round trip, 420 m elevation gain, and approximately 3.5 hours including rest stops. The plan includes the nearest Gasthaus for lunch, notes that the gorge path can be slippery after rain, and lists the emergency phone number for Bergwacht Bayern.
+
+### Example 2: Optimize a Gear List for a Winter Alpine Tour
+
+**Prompt:** "Use the hiking-guide agent to review and optimize my gear list for a 2-day winter hike to the Berliner Huette in the Zillertal Alps."
+
+The agent cross-references the submitted gear list against the conditions: winter alpine environment above 2000 m, overnight hut stay, SAC T3 terrain with potential ice. It flags three critical missing items (microspikes or crampons for icy traverses, an emergency bivouac sack, and a headlamp with spare batteries for the short daylight hours). It identifies four items to remove or swap: the 1.5 kg hardcover book (replace with e-reader or drop entirely), the second cotton t-shirt (cotton is dangerous when wet -- replace with merino), the full-size toiletry kit (repack into a 100 g ziplock), and the standalone water filter (hut water is safe). The optimized pack drops from 14.3 kg to 11.1 kg, well within the recommended 20% of body weight for alpine touring.
+
+### Example 3: Assess Conditions for a High-Altitude Traverse
+
+**Prompt:** "Use the hiking-guide agent to assess whether conditions are safe for the Berliner Hoehenweg traverse next week in early October."
+
+The agent evaluates five safety factors for the planned dates. It checks the weather forecast for the Zillertal Alps (noting a cold front arriving on day 3 with snowfall above 2400 m), assesses the snow line relative to the route's highest point (2800 m, meaning fresh snow on the high passes), reviews hut opening status (two of four huts close October 1), checks daylight hours (approximately 11 hours, limiting daily range), and evaluates the trail's exposed sections against the forecast wind speeds. It rates the overall assessment as YELLOW/RED: the first two days are feasible with early starts, but the day-3 cold front creates serious risk on the exposed high pass. It recommends either shifting the dates forward by one week, planning an escape route via the valley after day 2, or selecting an alternative lower-altitude route entirely.
+
 ## Limitations
 
 - **Advisory Only**: This agent provides planning guidance, not real-time trail navigation

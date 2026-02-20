@@ -10,7 +10,7 @@ description: >
   have not landed, or when teaching a concept that depends on prerequisites
   the learner may not yet have.
 license: MIT
-allowed-tools: Read, Grep, Glob
+allowed-tools: Read Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

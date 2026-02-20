@@ -9,7 +9,7 @@ description: >
   when information may have been lost, or when sub-task outputs need to feed
   into each other cleanly without degradation.
 license: MIT
-allowed-tools: Read, Write
+allowed-tools: Read Write
 metadata:
   author: Philipp Thoss
   version: "1.0"

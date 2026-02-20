@@ -30,7 +30,7 @@ The activation control system introduces a declarative YAML configuration layer 
 
 ## Motivation
 
-The development-guides repository currently contains 52 agents, 262 skills across 47 domains, and 8 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
+The development-guides repository currently contains 59 agents, 278 skills across 50 domains, and 10 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
 
 - An R package developer has no use for the survivalist, shapeshifter, or tcg-specialist agents.
 - A GxP compliance project does not need bushcraft, alchemy, or swarm skills.
@@ -38,7 +38,7 @@ The development-guides repository currently contains 52 agents, 262 skills acros
 
 Today, the only option is "everything active, all the time." This creates several problems:
 
-1. **Selection ambiguity**: When Claude Code must choose an agent, a pool of 52 candidates produces worse matches than a curated pool of 5-10 relevant agents.
+1. **Selection ambiguity**: When Claude Code must choose an agent, a pool of 59 candidates produces worse matches than a curated pool of 5-10 relevant agents.
 2. **Cognitive overhead**: Users and AI alike must mentally filter irrelevant options during tool discovery and skill invocation.
 3. **Priority dilution**: Agent priority fields (`high`, `normal`, `critical`) lose meaning when too many agents share the same priority level.
 4. **No project customization**: There is no way to say "for this project, only these agents matter" without forking the entire registry.
@@ -310,9 +310,9 @@ function resolve_activation(levels: [global, project, team, session]):
 
 When no `activation.yml` exists at any level, the system behaves exactly as it does today:
 
-- All 52 agents are available for selection.
-- All 262 skills across 47 domains are invocable.
-- All 8 teams can be spawned.
+- All 59 agents are available for selection.
+- All 278 skills across 50 domains are invocable.
+- All 10 teams can be spawned.
 - Default skills (`meditate`, `heal`) are inherited by all agents.
 
 This ensures full backward compatibility. Existing projects require zero changes.
@@ -684,7 +684,7 @@ The activation resolver runs once at session startup and caches the resolved sta
 
 1. **File I/O**: Read up to 4 small YAML files (global, project, team, session). These are typically under 100 lines each.
 2. **YAML parsing**: Parse 4 files. Using a standard YAML parser, this completes in under 10ms.
-3. **Set operations**: Apply include/exclude/amplify rules. With 52 agents and 262 skills, these are microsecond-level set operations.
+3. **Set operations**: Apply include/exclude/amplify rules. With 59 agents and 278 skills, these are microsecond-level set operations.
 4. **Total overhead**: Under 50ms at session start. No per-tool-call cost.
 
 ### Caching strategy

@@ -52,9 +52,9 @@ R.Version()$version.string
 "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "cat(R.version.string)"
 ```
 
-**Expected**: R version string printed, >= 4.1.0.
+**Expected:** R version string printed, >= 4.1.0.
 
-**On failure**: Install or upgrade R. On Windows, download from https://cran.r-project.org/bin/windows/base/. On Linux, use `sudo apt install r-base`.
+**On failure:** Install or upgrade R. On Windows, download from https://cran.r-project.org/bin/windows/base/. On Linux, use `sudo apt install r-base`.
 
 ### Step 2: Install putior
 
@@ -68,9 +68,9 @@ install.packages("putior")
 remotes::install_github("pjt222/putior")
 ```
 
-**Expected**: Package installs without errors. `library(putior)` loads silently.
+**Expected:** Package installs without errors. `library(putior)` loads silently.
 
-**On failure**: If CRAN installation fails with "not available for this version of R", use the GitHub version. If GitHub fails, check that `remotes` is installed: `install.packages("remotes")`.
+**On failure:** If CRAN installation fails with "not available for this version of R", use the GitHub version. If GitHub fails, check that `remotes` is installed: `install.packages("remotes")`.
 
 ### Step 3: Install Optional Dependencies
 
@@ -92,9 +92,9 @@ install.packages("logger")
 install.packages("plumber2")
 ```
 
-**Expected**: Each package installs without errors.
+**Expected:** Each package installs without errors.
 
-**On failure**: For `mcptools`, ensure `remotes` is installed first. For system dependency errors on Linux, install the required libraries (e.g., `sudo apt install libcurl4-openssl-dev` for httr2 dependency).
+**On failure:** For `mcptools`, ensure `remotes` is installed first. For system dependency errors on Linux, install the required libraries (e.g., `sudo apt install libcurl4-openssl-dev` for httr2 dependency).
 
 ### Step 4: Verify Installation
 
@@ -119,9 +119,9 @@ stopifnot(
 cat(put_diagram(put(text = "# put id:'test', label:'Hello putior'")))
 ```
 
-**Expected**: Mermaid flowchart code printed to console containing `test["Hello putior"]`.
+**Expected:** Mermaid flowchart code printed to console containing `test["Hello putior"]`.
 
-**On failure**: If `put` is not found, the package did not install correctly. Reinstall with `install.packages("putior", dependencies = TRUE)`. If the diagram is empty, verify the annotation syntax uses single quotes inside double quotes.
+**On failure:** If `put` is not found, the package did not install correctly. Reinstall with `install.packages("putior", dependencies = TRUE)`. If the diagram is empty, verify the annotation syntax uses single quotes inside double quotes.
 
 ## Validation
 

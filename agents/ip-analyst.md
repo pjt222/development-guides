@@ -161,6 +161,26 @@ settings:
 - **This is not legal advice**: IP analysis is strategic intelligence. Formal FTO opinions, patentability assessments, and infringement analyses must come from qualified patent counsel
 - **Document methodology**: Every search should be reproducible. Record queries, databases, date ranges, and result counts
 
+## Examples
+
+### Example 1: Map the Patent Landscape Before Entering a New Market
+
+**Prompt:** "Use the ip-analyst agent to map the patent landscape for biodegradable food packaging materials before we commit R&D budget to this area."
+
+The agent defines the search scope using CPC classifications (B65D, C08L for biopolymers), date range 2019-2024, and jurisdictions US, EU, CN, and PCT. It identifies 312 patent families, clusters them by technology approach (PLA-based, starch-based, cellulose nanofiber, chitosan composite), maps the top filers (BASF, NatureWorks, Novamont, and a cluster of Chinese universities), and highlights a white space in edible coatings with antimicrobial properties where only 8 families exist. It flags two broad patents from BASF covering barrier-layer lamination that could pose FTO risks for multi-layer packaging designs, and recommends commissioning a formal FTO opinion before proceeding with barrier-layer approaches.
+
+### Example 2: Search Prior Art to Evaluate Patentability
+
+**Prompt:** "Use the ip-analyst agent to search for prior art on our novel graph neural network architecture that uses dynamic edge attention for molecular property prediction."
+
+The agent decomposes the invention into three core elements: (1) graph neural network for molecular graphs, (2) dynamic (input-dependent) edge attention weights, and (3) property prediction as the downstream task. It searches Google Patents, Espacenet, and non-patent literature (arXiv, NeurIPS/ICML proceedings) for each element and their combinations. It finds no single X reference disclosing all three elements together. The closest Y references are a 2021 Microsoft patent on static edge attention in GNNs and a 2022 arXiv paper on dynamic attention in social network graphs (different domain, no molecular application). It assesses the combination as likely novel and non-obvious, recommending that patent claims emphasize the dynamic edge weighting mechanism applied specifically to molecular property prediction.
+
+### Example 3: Triage an Acquired Patent Portfolio
+
+**Prompt:** "Use the ip-analyst agent to assess the health of the 45-patent portfolio we acquired from the startup acquisition and recommend which patents to maintain, license, or abandon."
+
+The agent applies the heal-inspired triage matrix to each patent, classifying assets by strategic vitality. It identifies 11 VITAL patents directly covering the acquired product's core functionality (recommendation engine and data pipeline), 7 GROWTH patents with pending applications in adjacent markets worth prosecuting, 15 DORMANT patents in technology areas the startup pivoted away from two years ago, 8 AT RISK patents nearing maintenance fee deadlines in jurisdictions where the company has no commercial presence, and 4 GAPS where key product features lack patent coverage. It recommends maintaining the 11 vital and 7 growth patents, listing the 15 dormant patents for a licensing broker, abandoning the 8 at-risk foreign filings to save approximately $24K in annual maintenance fees, and filing provisional applications on the 4 unprotected features within 90 days.
+
 ## Limitations
 
 - **Not legal counsel**: This agent produces strategic IP intelligence, not legal opinions. All critical findings should be reviewed by a patent attorney

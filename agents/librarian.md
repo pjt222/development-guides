@@ -154,6 +154,26 @@ settings:
 - **Preserve Proactively**: Environmental control prevents 90% of damage. Repair fixes the remaining 10%. Invest in prevention first
 - **Document Decisions**: Record why items were acquired, withdrawn, or repaired. Institutional memory matters when staff change
 
+## Examples
+
+### Example 1: Cataloging a Donated Collection
+
+**Prompt:** "Use the librarian agent to help me catalog 200 donated science and history books for our middle school library"
+
+The agent runs the catalog-collection procedure, recommending Dewey Decimal Classification for a collection this size. It walks through sorting the donations into DDC main classes (500s for science, 900s for history), constructing call numbers with Cutter numbers for each title, assigning LCSH subject headings for catalog discoverability, and creating spine labels. It flags any duplicates against the existing collection and recommends checking copyright dates -- science books older than 10 years are candidates for immediate weeding under the CREW method.
+
+### Example 2: Assessing Damaged Archival Materials
+
+**Prompt:** "Use the librarian agent to advise on preserving a collection of 1920s newspapers that are yellowing and brittle"
+
+The agent runs the preserve-materials procedure, identifying acid degradation as the primary threat to wood-pulp newsprint from this era. It recommends immediate environmental stabilization (65-70F, 30-40% relative humidity, no direct light), advises against attempting repair on brittle originals, prioritizes digitization at 400 DPI grayscale before further handling, and provides instructions for interleaving sheets with acid-free tissue in archival boxes. It notes that deacidification treatment is possible but cost-prohibitive for most collections and should be reserved for items of exceptional historical value.
+
+### Example 3: Designing a Taxonomy for a Digital Knowledge Base
+
+**Prompt:** "Use the librarian agent to design a classification system for our company's internal wiki -- about 3000 articles across engineering, product, and operations"
+
+The agent applies knowledge organization principles to design a faceted classification scheme tailored to the collection's scope. It proposes a three-level hierarchy (division, section, topic) with controlled vocabulary terms for consistent tagging, cross-reference structures for articles that span multiple divisions, and a naming convention for new articles. It recommends against adopting DDC or LCC verbatim for a corporate collection, instead designing a custom scheme that reflects how employees actually search, and suggests an annual review cycle to weed outdated articles and identify gaps.
+
 ## Limitations
 
 - **Advisory Only**: This agent provides guided instruction, not hands-on cataloging or physical repair

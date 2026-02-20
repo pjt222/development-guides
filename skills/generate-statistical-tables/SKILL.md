@@ -49,6 +49,10 @@ Create publication-ready statistical tables for reports and manuscripts.
 | `flextable` | Word documents | Word, PDF, HTML |
 | `gtsummary` | Clinical/statistical summaries | All via gt/flextable |
 
+**Expected:** A table package selected based on the output format and use case. The chosen package is installed and loadable.
+
+**On failure:** If the required package is not installed, run `install.packages("gt")` (or the appropriate package). For `gtsummary`, both `gt` and `gtsummary` must be installed.
+
 ### Step 2: Descriptive Statistics Table
 
 ```r
@@ -79,6 +83,10 @@ gt(descriptives) |>
   )
 ```
 
+**Expected:** A `gt` table object with formatted means, SDs, and counts grouped by category. Column headers use proper statistical notation (italicized *M*, *SD*, *n*).
+
+**On failure:** If `group_by()` produces unexpected results, verify the grouping variable exists and has the expected levels. If `fmt_number()` throws an error, ensure the target columns contain numeric data.
+
 ### Step 3: Regression Results Table
 
 ```r
@@ -94,6 +102,10 @@ tbl_regression(model) |>
   modify_header(label = "**Predictor**") |>
   modify_caption("Table 2: Regression Results")
 ```
+
+**Expected:** A `gtsummary` regression table with bolded p-values, model fit statistics (R-squared, N) in a source note, and a descriptive caption.
+
+**On failure:** If `tbl_regression()` fails, verify the input is a model object (e.g., `lm`, `glm`). If `add_glance_source_note()` errors, check that `broom` can tidy the model: `broom::glance(model)`.
 
 ### Step 4: Correlation Matrix
 
@@ -113,6 +125,10 @@ as.data.frame(cor_matrix) |>
   sub_missing(missing_text = "") |>
   tab_header(title = "Table 3", subtitle = "Correlation Matrix")
 ```
+
+**Expected:** A lower-triangle correlation matrix rendered as a `gt` table with blanked upper triangle, two decimal places, and a clear caption.
+
+**On failure:** If `sub_missing()` does not blank the upper triangle, verify that `NA` values were set correctly with `cor_matrix[upper.tri(cor_matrix)] <- NA`. If variables are non-numeric, `cor()` will fail; filter to numeric columns first.
 
 ### Step 5: ANOVA Table
 
@@ -136,6 +152,10 @@ tbl_anova <- broom::tidy(aov_result) |>
   tab_header(title = "Table 4", subtitle = "ANOVA Results")
 ```
 
+**Expected:** A formatted ANOVA table with Source, *df*, *SS*, *MS*, *F*, and *p* columns. Interaction terms are clearly labeled and p-values are formatted to three decimal places.
+
+**On failure:** If `broom::tidy(aov_result)` produces unexpected columns, verify the model is an `aov` object. For Type III sums of squares, use `car::Anova(model, type = 3)` instead of base `aov()`.
+
 ### Step 6: Save Tables
 
 ```r
@@ -152,6 +172,10 @@ gtsave(my_table, "table1.png")
 kableExtra::save_kable(kable_table, "table1.pdf")
 ```
 
+**Expected:** Table saved to the specified file format (HTML, Word, PNG, or PDF). The output file opens correctly in the appropriate application.
+
+**On failure:** If `gtsave()` fails for Word format, ensure the `webshot2` package is installed. For PDF output via `kableExtra`, ensure a LaTeX distribution (TinyTeX or MiKTeX) is installed.
+
 ### Step 7: Embed in Quarto Document
 
 ````markdown
@@ -165,6 +189,10 @@ gt(descriptives) |>
 
 See @tbl-descriptives for summary statistics.
 ````
+
+**Expected:** The table renders inline in the Quarto document with a cross-referenceable label (`@tbl-*`) and a proper caption. The table adapts to the document's output format automatically.
+
+**On failure:** If the table does not render, verify the chunk label starts with `tbl-` for Quarto cross-referencing. If formatting is lost in PDF, switch from `gt` to `kableExtra` for LaTeX-based output.
 
 ## Validation
 

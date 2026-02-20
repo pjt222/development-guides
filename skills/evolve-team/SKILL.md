@@ -12,7 +12,7 @@ description: >
   is needed alongside the original, or agents have been added or removed
   from the library affecting team composition.
 license: MIT
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

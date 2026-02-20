@@ -89,9 +89,9 @@ jobs:
           git push
 ```
 
-**Expected**: File created at `.github/workflows/update-workflow-diagram.yml`.
+**Expected:** File created at `.github/workflows/update-workflow-diagram.yml`.
 
-**On failure**: Ensure the `.github/workflows/` directory exists. Adjust the `paths` filter to match where annotated source files live in the repository.
+**On failure:** Ensure the `.github/workflows/` directory exists. Adjust the `paths` filter to match where annotated source files live in the repository.
 
 ### Step 2: Write Generation Script
 
@@ -144,9 +144,9 @@ writeLines(
 cat("Updated docs/workflow.md\n")
 ```
 
-**Expected**: Script at `scripts/generate-workflow-diagram.R` that reads annotations, generates Mermaid code, and replaces content between sentinel markers.
+**Expected:** Script at `scripts/generate-workflow-diagram.R` that reads annotations, generates Mermaid code, and replaces content between sentinel markers.
 
-**On failure**: If `put_merge()` returns empty, check that source paths match the repository layout. Adjust `"./R/"` to the actual source directory.
+**On failure:** If `put_merge()` returns empty, check that source paths match the repository layout. Adjust `"./R/"` to the actual source directory.
 
 ### Step 3: Configure Auto-Commit
 
@@ -159,9 +159,9 @@ Key configuration points:
 - `[skip ci]` in the commit message is a convention some CI systems honor (not built into GitHub Actions, but useful as a signal)
 - Bot identity used for commits: `github-actions[bot]`
 
-**Expected**: The workflow only commits when diagrams actually change. No empty commits, no infinite loops.
+**Expected:** The workflow only commits when diagrams actually change. No empty commits, no infinite loops.
 
-**On failure**: If push fails with permission denied, check repository settings: Settings > Actions > General > Workflow permissions must be set to "Read and write permissions".
+**On failure:** If push fails with permission denied, check repository settings: Settings > Actions > General > Workflow permissions must be set to "Read and write permissions".
 
 ### Step 4: Add Sentinel Markers to README
 
@@ -181,9 +181,9 @@ flowchart TD
 <!-- PUTIOR-WORKFLOW-END -->
 ```
 
-**Expected**: Sentinel markers in README.md (or other target file). The content between them will be replaced on each CI run.
+**Expected:** Sentinel markers in README.md (or other target file). The content between them will be replaced on each CI run.
 
-**On failure**: Ensure markers are on their own lines with no leading/trailing whitespace. The script matches exact line content.
+**On failure:** Ensure markers are on their own lines with no leading/trailing whitespace. The script matches exact line content.
 
 ### Step 5: Test the Pipeline
 
@@ -204,9 +204,9 @@ git pull
 cat README.md | grep -A 5 "PUTIOR-WORKFLOW-START"
 ```
 
-**Expected**: GitHub Actions run completes successfully. The diagram between sentinel markers in README.md is updated with current workflow data.
+**Expected:** GitHub Actions run completes successfully. The diagram between sentinel markers in README.md is updated with current workflow data.
 
-**On failure**: Check the Actions log for errors. Common issues:
+**On failure:** Check the Actions log for errors. Common issues:
 - `putior` package not available: add to `DESCRIPTION` Suggests or install explicitly in the workflow
 - Source path wrong: the R script's `put_merge()` path must be relative to the repo root
 - No sentinel markers: the script warns but doesn't crash; add markers to README.md

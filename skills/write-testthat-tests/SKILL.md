@@ -48,7 +48,9 @@ usethis::use_testthat(edition = 3)
 
 This creates `tests/testthat.R` and `tests/testthat/` directory.
 
-**Expected**: Test infrastructure ready. Edition 3 set in DESCRIPTION.
+**Expected:** `tests/testthat.R` and `tests/testthat/` directory created. DESCRIPTION has `Config/testthat/edition: 3` set.
+
+**On failure:** If usethis is not available, manually create `tests/testthat.R` containing `library(testthat); library(packagename); test_check("packagename")` and add `tests/testthat/` directory.
 
 ### Step 2: Create Test File
 
@@ -57,6 +59,10 @@ usethis::use_test("function_name")
 ```
 
 This creates `tests/testthat/test-function_name.R` with a template.
+
+**Expected:** Test file created at `tests/testthat/test-function_name.R` with a placeholder `test_that()` block ready to fill in.
+
+**On failure:** If `usethis::use_test()` is not available, manually create the file. Follow the naming convention `test-<function_name>.R`.
 
 ### Step 3: Write Basic Tests
 
@@ -76,6 +82,10 @@ test_that("weighted_mean validates input", {
   expect_error(weighted_mean(1:3, 1:2), "length")
 })
 ```
+
+**Expected:** Basic tests cover correct output for typical inputs, NA handling behavior, and input validation error messages.
+
+**On failure:** If tests fail immediately, verify the function is loaded (`devtools::load_all()`). If error messages do not match, use a regex pattern in `expect_error()` instead of an exact string.
 
 ### Step 4: Test Edge Cases
 
@@ -97,6 +107,10 @@ test_that("weighted_mean handles edge cases", {
   expect_error(weighted_mean(1:3, c(-1, 1, 1)))
 })
 ```
+
+**Expected:** Edge cases are covered: empty input, single values, zero weights, extreme values, and invalid inputs. Each edge case has a clear expected behavior.
+
+**On failure:** If the function does not handle an edge case as expected, decide whether to fix the function or adjust the test. Document the intended behavior for ambiguous cases.
 
 ### Step 5: Use Fixtures for Complex Tests
 
@@ -122,6 +136,10 @@ test_that("process_data works with grouped data", {
 })
 ```
 
+**Expected:** Fixtures provide consistent test data across multiple test files. Helper functions in `tests/testthat/helper.R` are loaded automatically by testthat.
+
+**On failure:** If helper functions are not found, ensure the file is named `helper.R` (not `helpers.R`) and is located in `tests/testthat/`. Restart the R session if needed.
+
 ### Step 6: Mock External Dependencies
 
 ```r
@@ -141,6 +159,10 @@ test_that("fetch_data returns parsed data", {
 })
 ```
 
+**Expected:** External dependencies (APIs, databases, network calls) are mocked so tests run without real connections. Mock return values exercise the function's data processing logic.
+
+**On failure:** If `local_mocked_bindings()` fails, ensure the function being mocked is accessible in the test scope. For functions in other packages, use the `.package` argument.
+
 ### Step 7: Snapshot Tests for Complex Output
 
 ```r
@@ -155,6 +177,10 @@ test_that("plot_results creates expected plot", {
   )
 })
 ```
+
+**Expected:** Snapshot files are created in `tests/testthat/_snaps/`. First run creates the baseline; subsequent runs compare against it.
+
+**On failure:** If snapshots fail after an intentional change, update them with `testthat::snapshot_accept()`. For cross-platform differences, use the `variant` parameter to maintain platform-specific snapshots.
 
 ### Step 8: Use Skip Conditions
 
@@ -176,6 +202,10 @@ test_that("parallel computation works", {
 })
 ```
 
+**Expected:** Tests that require special environments (network, database, multiple cores) are properly guarded with skip conditions. These tests run locally but are skipped on CRAN or restricted CI environments.
+
+**On failure:** If tests fail on CRAN or CI but pass locally, add the appropriate `skip_on_cran()`, `skip_on_os()`, or `skip_if_not()` guard at the top of the `test_that()` block.
+
 ### Step 9: Run Tests and Check Coverage
 
 ```r
@@ -191,7 +221,9 @@ covr::package_coverage()
 covr::report()
 ```
 
-**Expected**: All tests pass. Coverage meets target.
+**Expected:** All tests pass with `devtools::test()`. Coverage report shows the target percentage is met (aim for >80%).
+
+**On failure:** If tests fail, read the test output for specific assertion failures. If coverage is below target, use `covr::report()` to identify untested code paths and add tests for them.
 
 ## Validation
 

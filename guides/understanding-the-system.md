@@ -9,7 +9,7 @@ skills: [create-skill]
 
 # Understanding the System
 
-This repository provides 267 skills, 53 agents, and 8 teams following the [Agent Skills open standard](https://agentskills.io). Together they form a composable system for AI-assisted development: skills define *how* to do something, agents define *who* does it, teams define *who works together*, and guides supply the background knowledge humans and agents both draw from. This guide explains each component type, how the types relate, and how you interact with them through Claude Code.
+This repository provides 278 skills, 59 agents, and 10 teams following the [Agent Skills open standard](https://agentskills.io). Together they form a composable system for AI-assisted development: skills define *how* to do something, agents define *who* does it, teams define *who works together*, and guides supply the background knowledge humans and agents both draw from. This guide explains each component type, how the types relate, and how you interact with them through Claude Code.
 
 ## When to Use This Guide
 
@@ -33,14 +33,14 @@ development-guides/
 │   ├── _registry.yml    # Catalog of all guides
 │   └── *.md             # Individual guide files
 ├── skills/              # Machine-consumable procedures
-│   ├── _registry.yml    # Catalog of all 267 skills
-│   └── <skill-name>/    # 267 skill directories
+│   ├── _registry.yml    # Catalog of all 278 skills
+│   └── <skill-name>/    # 278 skill directories
 │       └── SKILL.md
 ├── agents/              # Persona definitions for Claude Code subagents
-│   ├── _registry.yml    # Catalog of all 53 agents
+│   ├── _registry.yml    # Catalog of all 59 agents
 │   └── *.md             # Individual agent files
 ├── teams/               # Multi-agent compositions
-│   ├── _registry.yml    # Catalog of all 8 teams
+│   ├── _registry.yml    # Catalog of all 10 teams
 │   └── *.md             # Individual team files
 ├── .claude/
 │   ├── agents -> ../agents   # Symlink for Claude Code discovery
@@ -66,7 +66,7 @@ A skill is a machine-consumable procedure. It tells an agent exactly how to acco
 - **Common Pitfalls** -- frequent mistakes and how to avoid them.
 - **Related Skills** -- cross-references to complementary skills.
 
-The library currently contains 267 skills spanning 48 domains (as tagged in their metadata), ranging from `r-packages` and `containerization` to `esoteric` and `gardening`. Skills are kept under 500 lines; extended examples go into a `references/EXAMPLES.md` subdirectory following the progressive disclosure pattern.
+The library currently contains 278 skills spanning 50 domains (as tagged in their metadata), ranging from `r-packages` and `containerization` to `esoteric` and `gardening`. Skills are kept under 500 lines; extended examples go into a `references/EXAMPLES.md` subdirectory following the progressive disclosure pattern.
 
 ### 2. Agents -- the *who*
 
@@ -81,7 +81,7 @@ An agent is a persona definition for a Claude Code subagent. It specifies who ha
 - **Examples** -- sample invocations.
 - **Limitations** -- what the agent cannot or should not do.
 
-There are currently 53 agents. Examples include `r-developer` (R package development), `security-analyst` (security auditing), `mystic` (meta-cognitive meditation), and `shapeshifter` (adaptive role assumption). Two default skills -- `meditate` and `heal` -- are inherited by every agent automatically through the agents registry; individual agents do not need to list them.
+There are currently 59 agents. Examples include `r-developer` (R package development), `security-analyst` (security auditing), `mystic` (meta-cognitive meditation), and `shapeshifter` (adaptive role assumption). Two default skills -- `meditate` and `heal` -- are inherited by every agent automatically through the agents registry; individual agents do not need to list them.
 
 Claude Code discovers agents from the `.claude/agents/` directory, which in this repository is a symlink to `agents/`.
 
@@ -99,11 +99,11 @@ A team is a multi-agent composition. It defines a group of agents with assigned 
 - **Configuration** -- a machine-readable YAML block between `<!-- CONFIG:START -->` and `<!-- CONFIG:END -->` markers.
 - **Usage Scenarios** and **Limitations**.
 
-There are currently 8 teams using 5 coordination patterns:
+There are currently 10 teams using 5 coordination patterns:
 
 | Pattern | Description | Used by |
 |---------|-------------|---------|
-| hub-and-spoke | Lead distributes tasks, collects results, synthesizes | r-package-review, gxp-compliance-validation, ml-data-science-review |
+| hub-and-spoke | Lead distributes tasks, collects results, synthesizes | r-package-review, gxp-compliance-validation, ml-data-science-review, agentskills-alignment, entomology |
 | sequential | Agents work in a defined order, each building on the previous output | fullstack-web-dev, ai-self-care |
 | parallel | All agents work simultaneously on independent subtasks | devops-platform-engineering |
 | timeboxed | Work is organized into fixed-length iterations (sprints) | scrum-team |
@@ -115,7 +115,7 @@ There are currently 8 teams using 5 coordination patterns:
 
 A guide is a human-readable reference document. Guides provide the background knowledge that agents and skills draw from: environment setup, development best practices, workflow walkthroughs, and design rationale. Guides use YAML frontmatter with `title`, `description`, `category`, and cross-references to related `agents`, `teams`, and `skills`.
 
-There are currently 11 guides across 4 categories: workflow, infrastructure, reference, and design.
+There are currently 14 guides across 4 categories: workflow, infrastructure, reference, and design.
 
 ## How They Compose
 
@@ -163,7 +163,7 @@ For example, the `submit-to-cran` skill is linked as:
 .claude/skills/submit-to-cran -> ../../skills/submit-to-cran
 ```
 
-You can then invoke it in Claude Code by typing `/submit-to-cran`. All 267 skills in this repository are already symlinked and ready to use.
+You can then invoke it in Claude Code by typing `/submit-to-cran`. All 278 skills in this repository are already symlinked and ready to use.
 
 ### By asking Claude Code directly
 
@@ -223,9 +223,9 @@ Three YAML registry files serve as the machine-readable catalogs for the system:
 
 | Registry | Location | Purpose |
 |----------|----------|---------|
-| Skills | `skills/_registry.yml` | Lists all 267 skills with id, path, complexity, language, and description |
-| Agents | `agents/_registry.yml` | Lists all 53 agents with id, path, tags, tools, and skill assignments |
-| Teams | `teams/_registry.yml` | Lists all 8 teams with id, path, lead, members, and coordination pattern |
+| Skills | `skills/_registry.yml` | Lists all 278 skills with id, path, complexity, language, and description |
+| Agents | `agents/_registry.yml` | Lists all 59 agents with id, path, tags, tools, and skill assignments |
+| Teams | `teams/_registry.yml` | Lists all 10 teams with id, path, lead, members, and coordination pattern |
 
 Registries must stay in sync with files on disk. When you add or remove a skill, agent, or team, update its registry and the `total_*` count.
 
@@ -277,7 +277,7 @@ Use this decision matrix to pick the right level of composition for your task:
 - [Creating Agents and Teams](creating-agents-and-teams.md) -- how to design agent personas and compose teams
 - [Quick Reference](quick-reference.md) -- command cheat sheet for daily operations
 - [Skill Creation Meta-Skill](../skills/create-skill/SKILL.md) -- the skill that teaches you how to create skills
-- [Skills Library README](../skills/README.md) -- browsable catalog of all 267 skills
-- [Agents Library README](../agents/README.md) -- browsable catalog of all 53 agents
-- [Teams Library README](../teams/README.md) -- browsable catalog of all 8 teams
+- [Skills Library README](../skills/README.md) -- browsable catalog of all 278 skills
+- [Agents Library README](../agents/README.md) -- browsable catalog of all 59 agents
+- [Teams Library README](../teams/README.md) -- browsable catalog of all 10 teams
 - [Agent Skills Open Standard](https://agentskills.io) -- the specification this system follows

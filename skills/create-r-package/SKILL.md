@@ -45,9 +45,9 @@ usethis::create_package("packagename")
 setwd("packagename")
 ```
 
-**Expected**: Directory created with `DESCRIPTION`, `NAMESPACE`, `R/`, `man/`.
+**Expected:** Directory created with `DESCRIPTION`, `NAMESPACE`, `R/`, and `man/` subdirectories.
 
-**On failure**: Ensure usethis is installed (`install.packages("usethis")`). Check that the directory doesn't already exist.
+**On failure:** Ensure usethis is installed (`install.packages("usethis")`). Check that the directory does not already exist.
 
 ### Step 2: Configure DESCRIPTION
 
@@ -70,7 +70,9 @@ URL: https://github.com/username/packagename
 BugReports: https://github.com/username/packagename/issues
 ```
 
-**Expected**: Valid DESCRIPTION that passes `R CMD check`.
+**Expected:** Valid DESCRIPTION that passes `R CMD check` with no metadata warnings.
+
+**On failure:** If `R CMD check` warns about DESCRIPTION fields, verify that `Title` is in Title Case, `Description` is more than one sentence, and `Authors@R` uses valid `person()` syntax.
 
 ### Step 3: Set Up Infrastructure
 
@@ -83,7 +85,9 @@ usethis::use_git()
 usethis::use_github_action("check-standard")
 ```
 
-**Expected**: LICENSE, README.md, NEWS.md, tests/ directory, .git/ initialized, .github/workflows/ created.
+**Expected:** LICENSE, README.md, NEWS.md, `tests/` directory, `.git/` initialized, and `.github/workflows/` created.
+
+**On failure:** If any `usethis::use_*()` function fails, install the missing dependency and rerun. If `.git/` already exists, `use_git()` will skip initialization.
 
 ### Step 4: Create Development Configuration
 
@@ -119,15 +123,19 @@ Create `.Rbuildignore` entries:
 ^.*\.Rproj$
 ```
 
+**Expected:** `.Rprofile`, `.Renviron.example`, and `.Rbuildignore` are created. Development files are excluded from the built package.
+
+**On failure:** If `.Rprofile` causes errors on startup, check for syntax issues. Ensure `requireNamespace()` guards prevent failures when optional packages are missing.
+
 ### Step 5: Initialize renv
 
 ```r
 renv::init()
 ```
 
-**Expected**: `renv/` directory and `renv.lock` created.
+**Expected:** `renv/` directory and `renv.lock` created. Project-local library is active.
 
-**On failure**: Install renv (`install.packages("renv")`). If renv hangs, check network connectivity.
+**On failure:** Install renv with `install.packages("renv")`. If renv hangs during initialization, check network connectivity or set `options(timeout = 600)`.
 
 ### Step 6: Create Package Documentation File
 
@@ -142,9 +150,17 @@ Create `R/packagename-package.R`:
 NULL
 ```
 
+**Expected:** `R/packagename-package.R` exists with the `"_PACKAGE"` sentinel. Running `devtools::document()` generates package-level help.
+
+**On failure:** Ensure the filename matches the pattern `R/<packagename>-package.R`. The `"_PACKAGE"` string must be a standalone expression, not inside a function.
+
 ### Step 7: Create CLAUDE.md
 
 Create `CLAUDE.md` in the project root with project-specific instructions for AI assistants.
+
+**Expected:** `CLAUDE.md` exists in the project root with project-specific editing conventions, build commands, and architecture notes.
+
+**On failure:** If unsure what to include, start with the package name, a one-line description, common dev commands (`devtools::check()`, `devtools::test()`), and any non-obvious conventions.
 
 ## Validation
 

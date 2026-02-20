@@ -79,6 +79,10 @@ gxp-project/
 └── CLAUDE.md                   # AI assistant instructions
 ```
 
+**Expected:** The complete directory structure exists with `R/`, `validation/` (including `iq/`, `oq/`, `pq/` subdirectories), `tests/testthat/`, `data/raw/`, `data/derived/`, `output/`, and `docs/` directories.
+
+**On failure:** If directories are missing, create them with `mkdir -p`. Verify you are in the correct project root. For existing projects, create only the missing directories rather than overwriting existing structure.
+
 ### Step 2: Create Validation Plan
 
 Create `validation/validation_plan.md`:
@@ -118,6 +122,10 @@ Using GAMP 5 risk-based categories:
 All tests must pass with documented evidence.
 ```
 
+**Expected:** `validation/validation_plan.md` is complete with scope, GAMP 5 risk categories, validation activities matrix, roles and responsibilities, and acceptance criteria. The plan references the specific R version and regulatory framework.
+
+**On failure:** If the regulatory framework is unclear, consult the organization's QA department for applicable SOPs. Do not proceed with validation activities until the plan is reviewed and approved.
+
 ### Step 3: Lock Dependencies with renv
 
 ```r
@@ -134,6 +142,10 @@ renv::snapshot()
 
 The `renv.lock` file serves as the controlled package inventory.
 
+**Expected:** `renv.lock` exists with exact version numbers for all required packages. `renv::status()` reports no issues. Every package version is pinned (e.g., `dplyr@1.1.4`), not floating.
+
+**On failure:** If `renv::install()` fails for a specific version, check that the version exists on CRAN archives. Use `renv::install("package@version", repos = "https://packagemanager.posit.co/cran/latest")` for archived versions.
+
 ### Step 4: Implement Version Control
 
 ```bash
@@ -145,6 +157,10 @@ git commit -m "Initial validated project structure"
 git config user.signingkey YOUR_GPG_KEY
 git config commit.gpgsign true
 ```
+
+**Expected:** The project is under git version control with signed commits enabled. The initial commit contains the validated project structure and `renv.lock`.
+
+**On failure:** If GPG signing fails, verify the GPG key is configured with `gpg --list-secret-keys`. For environments without GPG, document the deviation and use unsigned commits with manual audit trail entries in `docs/change_log.md`.
 
 ### Step 5: Create IQ Protocol
 
@@ -161,20 +177,24 @@ Verify that R and required packages are correctly installed.
 ### IQ-001: R Version Verification
 - **Requirement**: R 4.5.0 installed
 - **Procedure**: Execute `R.version.string`
-- **Expected**: "R version 4.5.0 (date)"
+- **Expected:** "R version 4.5.0 (date)"
 - **Result**: [ PASS / FAIL ]
 
 ### IQ-002: Package Installation Verification
 - **Requirement**: All packages in renv.lock installed
 - **Procedure**: Execute `renv::status()`
-- **Expected**: "No issues found"
+- **Expected:** "No issues found"
 - **Result**: [ PASS / FAIL ]
 
 ### IQ-003: Package Version Verification
 - **Procedure**: Execute `installed.packages()[, c("Package", "Version")]`
-- **Expected**: Versions match renv.lock exactly
+- **Expected:** Versions match renv.lock exactly
 - **Result**: [ PASS / FAIL ]
 ```
+
+**Expected:** `validation/iq/iq_protocol.md` contains test cases for R version verification, package installation verification, and package version verification, each with clear expected results and pass/fail fields.
+
+**On failure:** If the IQ protocol template does not match organizational SOP requirements, adapt the format while retaining the required fields (requirement, procedure, expected result, actual result, pass/fail). Consult QA for approved templates.
 
 ### Step 6: Write Automated OQ/PQ Tests
 
@@ -193,6 +213,10 @@ test_that("primary analysis produces validated results", {
 })
 ```
 
+**Expected:** Automated test files exist in `tests/testthat/` covering OQ (operational verification of each function) and PQ (end-to-end validation against independently calculated reference values). Tests use explicit numeric tolerances.
+
+**On failure:** If reference values are not yet available from independent calculation (e.g., SAS), create placeholder tests with `skip("Awaiting independent reference values")` and document in the traceability matrix.
+
 ### Step 7: Create Traceability Matrix
 
 ```markdown
@@ -204,6 +228,10 @@ test_that("primary analysis produces validated results", {
 | REQ-002 | Calculate primary endpoint | PQ-001 | Compare against reference results | PASS |
 | REQ-003 | Generate report output | PQ-002 | Verify report contains all sections | PASS |
 ```
+
+**Expected:** `validation/traceability_matrix.md` links every requirement to at least one test case, and every test case is linked to a requirement. No orphaned requirements or tests.
+
+**On failure:** If requirements are untested, create test cases for them or document a risk-based justification for exclusion. If tests have no linked requirement, either link them to an existing requirement or remove them as out-of-scope.
 
 ## Validation
 

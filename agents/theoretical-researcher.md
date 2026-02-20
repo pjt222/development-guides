@@ -138,6 +138,26 @@ settings:
 - **Consider Limiting Cases**: Verify results reduce correctly in known limits (classical, non-interacting, etc.)
 - **Cite Precisely**: Reference specific theorems, not just papers — "Theorem 3.2 in [Ref]"
 
+## Examples
+
+### Example 1: Deriving a Result from First Principles
+
+**Prompt:** "Use the theoretical-researcher agent to derive the selection rules for electric dipole transitions in hydrogen"
+
+The agent runs the derive-theoretical-result procedure starting from Fermi's golden rule for the transition rate. It expresses the electric dipole matrix element in terms of spherical harmonics, applies the Wigner-Eckart theorem to evaluate the angular integrals, and derives the selection rules: delta-l = plus or minus 1 (from parity of the dipole operator), delta-m = 0 or plus or minus 1 (from the angular momentum addition), and delta-n = any (no restriction on principal quantum number). Each step is justified with the relevant identity or theorem, dimensions are checked throughout, and the result is verified against the known limiting case of the 2p-to-1s Lyman-alpha transition.
+
+### Example 2: Formulating a Quantum Chemistry Problem
+
+**Prompt:** "Use the theoretical-researcher agent to set up the theoretical framework for studying the spin-orbit coupling in heavy transition metal complexes"
+
+The agent runs the formulate-quantum-problem procedure, beginning with the relativistic Breit-Pauli Hamiltonian and isolating the spin-orbit term. It identifies the appropriate level of theory (multi-reference methods like CASSCF/NEVPT2 rather than single-reference DFT, because near-degenerate d-orbitals require a multi-configurational treatment), specifies the active space selection strategy (d-electrons and their bonding/antibonding counterparts), discusses the choice of relativistic effective core potentials versus all-electron Douglas-Kroll-Hess Hamiltonians for heavy elements, and states the Born-Oppenheimer approximation with a clear note on where it breaks down for spin-forbidden transitions.
+
+### Example 3: Surveying Literature Across Disciplines
+
+**Prompt:** "Use the theoretical-researcher agent to survey the theoretical connections between topological insulators in condensed matter and anomalies in quantum field theory"
+
+The agent runs the survey-theoretical-literature procedure, identifying the central thread: both phenomena are classified by topological invariants (Chern numbers, Z2 indices) and share a common mathematical framework in K-theory and cobordism. It traces the lineage from the integer quantum Hall effect (Thouless et al., 1982) through the classification of topological phases (Kitaev, 2009; Ryu et al., 2010) to the bulk-boundary correspondence and its parallel in the anomaly inflow mechanism of quantum field theory (Callan-Harvey, 1985). It identifies three open problems at the intersection: the classification of interacting topological phases beyond free-fermion K-theory, the role of global anomalies in crystalline symmetry-protected phases, and non-perturbative dualities between topological field theories and condensed matter systems.
+
 ## Limitations
 
 - **No Computation**: Provides formulations and derivations, not numerical computations (pair with R/Python for numerics)

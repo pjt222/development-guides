@@ -10,7 +10,7 @@ description: >
   subsystem drift, when context overload may have staled earlier assumptions,
   or as proactive maintenance between complex tasks.
 license: MIT
-allowed-tools: Read, Write
+allowed-tools: Read Write
 metadata:
   author: Philipp Thoss
   version: "2.0"

@@ -9,7 +9,7 @@ description: >
   root cause requiring parallel hypothesis investigation, or when previous
   attempts have converged prematurely on a suboptimal approach.
 license: MIT
-allowed-tools: Read, Glob, Grep
+allowed-tools: Read Glob Grep
 metadata:
   author: Philipp Thoss
   version: "1.0"

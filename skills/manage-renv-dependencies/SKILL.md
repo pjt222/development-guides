@@ -49,9 +49,9 @@ This creates:
 - `renv.lock` (dependency snapshot)
 - Updates `.Rprofile` to activate renv on load
 
-**Expected**: Project-local library created. Packages installed.
+**Expected:** Project-local library created. `renv/` directory and `renv.lock` present. `.Rprofile` updated with activation script.
 
-**On failure**: If it hangs, check network connectivity. If it fails on a specific package, install that package manually first with `install.packages()`.
+**On failure:** If it hangs, check network connectivity. If it fails on a specific package, install that package manually first with `install.packages()` and then rerun `renv::init()`.
 
 ### Step 2: Add Dependencies
 
@@ -68,7 +68,9 @@ Then snapshot to record the state:
 renv::snapshot()
 ```
 
-**Expected**: `renv.lock` updated with new packages and their versions.
+**Expected:** `renv.lock` updated with new packages and their versions. `renv::status()` shows no out-of-sync packages.
+
+**On failure:** If `renv::snapshot()` reports validation errors, run `renv::dependencies()` to check which packages are actually used, then `renv::snapshot(force = TRUE)` to bypass validation.
 
 ### Step 3: Restore on Another Machine
 
@@ -76,14 +78,9 @@ renv::snapshot()
 renv::restore()
 ```
 
-**Expected**: All packages installed at the exact versions in `renv.lock`.
+**Expected:** All packages installed at the exact versions in `renv.lock`.
 
-**On failure**: Common issues and solutions:
-
-- **GitHub packages fail**: Set `GITHUB_PAT` in `.Renviron`
-- **System dependency missing**: Install with `apt-get` (Linux) or check error message
-- **Timeout on large packages**: Set `options(timeout = 600)` before restore
-- **Binary not available**: renv will compile from source; ensure build tools are installed
+**On failure:** Common issues: GitHub packages fail (set `GITHUB_PAT` in `.Renviron`), system dependencies missing (install with `apt-get` on Linux), timeouts on large packages (set `options(timeout = 600)` before restore), or binaries not available (renv compiles from source; ensure build tools are installed).
 
 ### Step 4: Update Dependencies
 
@@ -98,13 +95,19 @@ renv::update()
 renv::snapshot()
 ```
 
+**Expected:** Target packages are updated to their latest compatible versions. `renv.lock` reflects the new versions after snapshot.
+
+**On failure:** If `renv::update()` fails for a specific package, try installing it directly with `renv::install("package@version")` and then snapshot.
+
 ### Step 5: Check Status
 
 ```r
 renv::status()
 ```
 
-**Expected**: "No issues found" or a clear list of out-of-sync packages.
+**Expected:** "No issues found" or a clear list of out-of-sync packages with actionable guidance.
+
+**On failure:** If status reports packages used but not recorded, run `renv::snapshot()`. If packages are recorded but not installed, run `renv::restore()`.
 
 ### Step 6: Configure `.Rprofile` for Conditional Activation
 
@@ -115,6 +118,10 @@ if (file.exists("renv/activate.R")) {
 ```
 
 This ensures the project works even if renv isn't installed (CI environments, collaborators).
+
+**Expected:** R sessions activate renv automatically when starting in the project directory. Sessions without renv installed still start without errors.
+
+**On failure:** If `.Rprofile` causes errors, ensure the `file.exists()` guard is present. Never call `source("renv/activate.R")` unconditionally.
 
 ### Step 7: Git Configuration
 
@@ -135,6 +142,10 @@ renv/staging/       # Temporary
 renv/cache/         # Machine-specific cache
 ```
 
+**Expected:** `renv.lock`, `renv/activate.R`, and `renv/settings.json` are tracked by Git. Machine-specific directories (`renv/library/`, `renv/cache/`) are ignored.
+
+**On failure:** If `renv/library/` accidentally gets committed, remove it with `git rm -r --cached renv/library/` and add it to `.gitignore`.
+
 ### Step 8: CI/CD Integration
 
 In GitHub Actions, use the renv cache action:
@@ -144,6 +155,10 @@ In GitHub Actions, use the renv cache action:
 ```
 
 This automatically restores from `renv.lock` with caching.
+
+**Expected:** CI pipeline restores packages from `renv.lock` with caching enabled. Subsequent runs are faster due to cached packages.
+
+**On failure:** If CI restore fails, check that `renv.lock` is committed and up to date. For private GitHub packages, ensure `GITHUB_PAT` is set as a repository secret.
 
 ## Validation
 

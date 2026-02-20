@@ -9,7 +9,7 @@ description: >
   submitting to CRAN or npm, or when inheriting a project to assess its
   dependency health.
 license: MIT
-allowed-tools: Read, Bash, Grep, Glob
+allowed-tools: Read Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

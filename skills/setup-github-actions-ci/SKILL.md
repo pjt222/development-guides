@@ -95,7 +95,9 @@ jobs:
           build_args: 'c("--no-manual", "--compact-vignettes=gs+qpdf")'
 ```
 
-**Expected**: Workflow file created. Triggers on push/PR to main.
+**Expected:** Workflow file `.github/workflows/R-CMD-check.yaml` created with a multi-platform matrix (macOS, Windows, Ubuntu) covering release, devel, and oldrel.
+
+**On failure:** If the `.github/workflows/` directory does not exist, create it with `mkdir -p .github/workflows`. Verify YAML syntax with a YAML linter.
 
 ### Step 2: Create Test Coverage Workflow (Optional)
 
@@ -149,6 +151,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 ```
 
+**Expected:** Workflow file `.github/workflows/test-coverage.yaml` created. Coverage reports will be uploaded to Codecov on each push and PR.
+
+**On failure:** If Codecov upload fails, verify the `CODECOV_TOKEN` secret is set in the repository settings. For public repos, the token may be optional.
+
 ### Step 3: Create pkgdown Deployment Workflow (Optional)
 
 Create `.github/workflows/pkgdown.yaml`:
@@ -201,6 +207,10 @@ jobs:
           folder: docs
 ```
 
+**Expected:** Workflow file `.github/workflows/pkgdown.yaml` created. Site builds and deploys to `gh-pages` branch on push to main or release.
+
+**On failure:** If deployment fails, ensure the repository has `contents: write` permissions enabled. Verify `_pkgdown.yml` has `development: mode: release` set.
+
 ### Step 4: Add Status Badge to README
 
 Add to `README.md`:
@@ -209,11 +219,19 @@ Add to `README.md`:
 [![R-CMD-check](https://github.com/USERNAME/REPO/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/USERNAME/REPO/actions/workflows/R-CMD-check.yaml)
 ```
 
+**Expected:** README displays a live CI status badge that updates automatically after each workflow run.
+
+**On failure:** If the badge shows "no status," verify the workflow filename in the badge URL matches the actual file. Push a commit to trigger the first workflow run.
+
 ### Step 5: Configure GitHub Repository Settings
 
 1. Enable GitHub Pages (Settings > Pages) pointing to `gh-pages` branch if using pkgdown
 2. Add `CODECOV_TOKEN` secret if using coverage reporting
 3. Ensure `GITHUB_TOKEN` has appropriate permissions
+
+**Expected:** GitHub Pages is configured for pkgdown deployment. Required secrets are set. Token permissions are sufficient for the workflows.
+
+**On failure:** If Pages deployment fails, check Settings > Pages to ensure the source is set to the `gh-pages` branch. If secrets are missing, add them under Settings > Secrets and variables > Actions.
 
 ### Step 6: Push and Verify
 
@@ -225,9 +243,9 @@ git push
 
 Check the Actions tab on GitHub to verify workflows run successfully.
 
-**Expected**: Green checkmarks on all jobs.
+**Expected:** Green checkmarks on all jobs in the GitHub Actions tab. Workflows trigger on both push and PR events.
 
-**On failure**: Check workflow logs. Common issues: missing system dependencies (add to `extra-packages`), vignette build failures (ensure pandoc setup step is present).
+**On failure:** Check workflow logs in the Actions tab. Common issues: missing system dependencies (add to `extra-packages`), vignette build failures (ensure pandoc setup step is present), YAML syntax errors.
 
 ## Validation
 

@@ -136,6 +136,26 @@ settings:
 - **Version Pin SDKs**: MCP SDK is evolving; pin versions in package.json/requirements.txt
 - **Document Tools Well**: Tool descriptions are the AI's only guide — make them excellent
 
+## Examples
+
+### Example 1: Wrapping a CLI Tool as an MCP Server
+
+**Prompt:** "Use the mcp-developer agent to create an MCP server that exposes our internal CLI tool for managing Kubernetes namespaces"
+
+The agent runs analyze-codebase-for-mcp on the CLI tool's source, identifying four subcommands (list, create, delete, describe) as MCP tool candidates. It maps CLI flags to typed JSON Schema parameters, excludes the destructive `delete` command by default (flagging it for explicit opt-in with a confirmation parameter), then runs scaffold-mcp-server to generate a TypeScript MCP server using the official SDK. The server wraps each subcommand as a child process call with stdout/stderr capture, configures stdio transport for Claude Code integration, and includes a Jest test suite with mocked kubectl responses.
+
+### Example 2: Debugging a Failing MCP Connection
+
+**Prompt:** "Use the mcp-developer agent to figure out why my custom MCP server works from the command line but Claude Desktop can't connect to it"
+
+The agent runs the troubleshoot-mcp-connection procedure, first verifying the server starts correctly via direct stdio invocation. It then inspects the Claude Desktop configuration at `%APPDATA%\Claude\claude_desktop_config.json`, identifies that the command path uses forward slashes instead of Windows backslashes, checks that the `args` array properly escapes the `-e` flag, verifies the server responds to the MCP `initialize` handshake, and confirms the transport type matches what Claude Desktop expects. It produces a corrected configuration block and a diagnostic checklist for future connection issues.
+
+### Example 3: Designing MCP Tools for a Data Pipeline
+
+**Prompt:** "Use the mcp-developer agent to analyze our Python ETL pipeline and design MCP tools for it"
+
+The agent runs analyze-codebase-for-mcp across the pipeline's modules, identifying 22 functions across extract, transform, and load stages. It selects 6 functions with clear input/output contracts as MCP tool candidates: `list_sources`, `preview_data` (with row limit), `run_validation`, `check_pipeline_status`, `get_run_logs`, and `trigger_backfill` (with date range parameter). It explicitly excludes raw database write functions and internal helper functions from exposure, designs tool descriptions that tell the AI when to use each tool, and generates a tool specification document with JSON Schema definitions before proceeding to scaffold the server.
+
 ## Limitations
 
 - **No Runtime Hosting**: Builds MCP servers but does not host or manage them in production

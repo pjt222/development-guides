@@ -47,9 +47,9 @@ desc::desc_get_version()
 
 Verify NEWS.md has an entry for this version. The entry should summarize user-facing changes.
 
-**Expected**: Version follows semantic versioning. NEWS.md has matching entry.
+**Expected:** Version follows semantic versioning. NEWS.md has a matching entry for this version.
 
-**On failure**: Update version with `usethis::use_version()` (choose "major", "minor", or "patch").
+**On failure:** Update version with `usethis::use_version()` (choose "major", "minor", or "patch"). Add a NEWS.md entry summarizing user-facing changes.
 
 ### Step 2: Local R CMD Check
 
@@ -57,9 +57,9 @@ Verify NEWS.md has an entry for this version. The entry should summarize user-fa
 devtools::check()
 ```
 
-**Expected**: 0 errors, 0 warnings, 0 notes (1 note acceptable for new submissions: "New submission").
+**Expected:** 0 errors, 0 warnings, 0 notes (1 note acceptable for new submissions: "New submission").
 
-**On failure**: Fix all errors and warnings before proceeding. Notes should be explained in cran-comments.md.
+**On failure:** Fix all errors and warnings before proceeding. Read the check log at `<pkg>.Rcheck/00check.log` for details. Notes should be explained in cran-comments.md.
 
 ### Step 3: Spell Check
 
@@ -69,7 +69,9 @@ devtools::spell_check()
 
 Add legitimate words to `inst/WORDLIST` (one word per line, sorted alphabetically).
 
-**Expected**: No unexpected misspellings.
+**Expected:** No unexpected misspellings. All flagged words are either corrected or added to `inst/WORDLIST`.
+
+**On failure:** Fix genuine misspellings. For legitimate technical terms, add them to `inst/WORDLIST` (one word per line, alphabetically sorted).
 
 ### Step 4: URL Check
 
@@ -77,9 +79,9 @@ Add legitimate words to `inst/WORDLIST` (one word per line, sorted alphabeticall
 urlchecker::url_check()
 ```
 
-**Expected**: All URLs return 200. Fix or remove broken URLs.
+**Expected:** All URLs return HTTP 200. No broken or redirected links.
 
-**On failure**: Replace broken URLs. Use `\doi{}` for DOI links instead of raw URLs.
+**On failure:** Replace broken URLs. Use `\doi{}` for DOI links instead of raw URLs. Remove links to resources that no longer exist.
 
 ### Step 5: Win-Builder Checks
 
@@ -90,9 +92,9 @@ devtools::check_win_release()
 
 Wait for email results (usually 15-30 minutes).
 
-**Expected**: 0 errors, 0 warnings on both.
+**Expected:** 0 errors, 0 warnings on both Win-builder release and devel. Results arrive by email within 15-30 minutes.
 
-**On failure**: Address platform-specific issues. Common: different compiler warnings, missing system dependencies.
+**On failure:** Address platform-specific issues. Common causes: different compiler warnings, missing system dependencies, path separator differences. Fix locally and re-submit to Win-builder.
 
 ### Step 6: R-hub Check
 
@@ -102,7 +104,9 @@ rhub::rhub_check()
 
 This checks on multiple platforms (Ubuntu, Windows, macOS).
 
-**Expected**: All platforms pass.
+**Expected:** All platforms pass with 0 errors and 0 warnings.
+
+**On failure:** If a specific platform fails, check the R-hub build log for platform-specific errors. Use `testthat::skip_on_os()` or conditional code for platform-dependent behavior.
 
 ### Step 7: Prepare cran-comments.md
 
@@ -128,6 +132,10 @@ For updates, include:
 - Response to any previous reviewer feedback
 - Reverse dependency check results if applicable
 
+**Expected:** `cran-comments.md` accurately summarizes check results across all test environments and explains any notes.
+
+**On failure:** If check results differ across platforms, document all variations. CRAN reviewers will check these claims against their own tests.
+
 ### Step 8: Final Pre-flight
 
 ```r
@@ -137,6 +145,10 @@ devtools::check()
 # Verify the built tarball
 devtools::build()
 ```
+
+**Expected:** Final `devtools::check()` passes cleanly. A `.tar.gz` tarball is built in the parent directory.
+
+**On failure:** If a last-minute issue appears, fix it and re-run all checks from Step 2. Do not submit with known failures.
 
 ### Step 9: Submit
 
@@ -148,9 +160,9 @@ This runs interactive checks and submits. Answer all questions honestly.
 
 Alternatively, submit manually at https://cran.r-project.org/submit.html by uploading the tarball.
 
-**Expected**: Confirmation email from CRAN. Click the confirmation link.
+**Expected:** Confirmation email from CRAN arrives within minutes. Click the confirmation link to finalize the submission.
 
-**On failure**: Check email for rejection reasons. Fix and re-submit.
+**On failure:** Check email for rejection reasons. Common issues: examples too slow, missing `\value` tags, non-portable code. Fix the issues and re-submit, noting in cran-comments.md what changed.
 
 ### Step 10: Post-Submission
 
@@ -163,6 +175,10 @@ usethis::use_github_release()
 # Bump to development version
 usethis::use_dev_version()
 ```
+
+**Expected:** GitHub release is created with the accepted version tag. DESCRIPTION is bumped to the development version (`x.y.z.9000`).
+
+**On failure:** If the GitHub release fails, create it manually with `gh release create`. If CRAN acceptance is delayed, wait for the confirmation email before tagging.
 
 ## Validation
 

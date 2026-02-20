@@ -60,9 +60,9 @@ cloc . --json > cloc_before.json
 # R: lintr unused function checks
 ```
 
-**Expected**: Baseline metrics saved to `lint_before.json` and `cloc_before.json`
+**Expected:** Baseline metrics saved to `lint_before.json` and `cloc_before.json`
 
-**On failure**: If lint tool not found, skip automated fixes and focus on manual review
+**On failure:** If lint tool not found, skip automated fixes and focus on manual review
 
 ### Step 2: Fix Automated Lint Warnings
 
@@ -92,9 +92,9 @@ cargo fmt
 cargo clippy --fix --allow-dirty
 ```
 
-**Expected**: All safe lint warnings resolved; files formatted consistently
+**Expected:** All safe lint warnings resolved; files formatted consistently
 
-**On failure**: If automated fixes introduce test failures, revert changes and escalate
+**On failure:** If automated fixes introduce test failures, revert changes and escalate
 
 ### Step 3: Identify Dead Code Paths
 
@@ -121,9 +121,9 @@ Rscript -e "lintr::lint_dir('.', linters = lintr::unused_function_linter())"
 2. Grep for function calls
 3. Report functions defined but never called
 
-**Expected**: `dead_code.txt` lists unused functions, variables, and files
+**Expected:** `dead_code.txt` lists unused functions, variables, and files
 
-**On failure**: If static analysis tool unavailable, manually review recent commit history for orphaned code
+**On failure:** If static analysis tool unavailable, manually review recent commit history for orphaned code
 
 ### Step 4: Remove Unused Imports
 
@@ -145,9 +145,9 @@ autoflake --remove-all-unused-imports --in-place --recursive .
 grep -r "library(" . | cut -d: -f2 | sort | uniq
 ```
 
-**Expected**: All unused import statements removed
+**Expected:** All unused import statements removed
 
-**On failure**: If removing imports breaks build, they were used indirectly — restore and document
+**On failure:** If removing imports breaks build, they were used indirectly — restore and document
 
 ### Step 5: Remove Dead Code (Mode-Dependent)
 
@@ -166,9 +166,9 @@ For each candidate deletion:
 2. Check git history for recent activity (skip if modified in last 30 days)
 3. Remove code and add entry to `CLEANUP_LOG.md`
 
-**Expected**: Dead code removed; `CLEANUP_LOG.md` documents all deletions
+**Expected:** Dead code removed; `CLEANUP_LOG.md` documents all deletions
 
-**On failure**: If uncertain whether code is truly dead, move to `archive/` directory instead
+**On failure:** If uncertain whether code is truly dead, move to `archive/` directory instead
 
 ### Step 6: Normalize Formatting
 
@@ -185,9 +185,9 @@ find . -type f -name "*.js" -exec sed -i 's/\r$//' {} +
 find . -type f -name "*.js" -exec sed -i 's/[[:space:]]*$//' {} +
 ```
 
-**Expected**: All files follow consistent formatting conventions
+**Expected:** All files follow consistent formatting conventions
 
-**On failure**: If sed breaks binary files, skip and document
+**On failure:** If sed breaks binary files, skip and document
 
 ### Step 7: Run Tests
 
@@ -201,9 +201,9 @@ R CMD check           # R
 cargo test            # Rust
 ```
 
-**Expected**: All tests pass (or same failures as before cleanup)
+**Expected:** All tests pass (or same failures as before cleanup)
 
-**On failure**: Revert changes incrementally to identify breaking change, then escalate
+**On failure:** Revert changes incrementally to identify breaking change, then escalate
 
 ### Step 8: Generate Cleanup Report
 
@@ -244,9 +244,9 @@ Document all changes for review.
 - [x] CLEANUP_LOG.md updated
 ```
 
-**Expected**: Report saved to `CLEANUP_REPORT.md` in project root
+**Expected:** Report saved to `CLEANUP_REPORT.md` in project root
 
-**On failure**: (N/A — generate report regardless of outcome)
+**On failure:** (N/A — generate report regardless of outcome)
 
 ## Validation Checklist
 

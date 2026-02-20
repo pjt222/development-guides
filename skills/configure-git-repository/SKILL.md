@@ -47,6 +47,10 @@ git init
 git branch -M main
 ```
 
+**Expected:** `.git/` directory created. Default branch is named `main`.
+
+**On failure:** If `git init` fails, ensure Git is installed (`git --version`). If the directory already has a `.git/`, the repository is already initialized — skip this step.
+
 ### Step 2: Create .gitignore
 
 **R Package**:
@@ -126,6 +130,10 @@ htmlcov/
 .vscode/
 ```
 
+**Expected:** `.gitignore` file created with entries appropriate for the project type. Sensitive files (`.Renviron`, `.env`) and generated artifacts are excluded.
+
+**On failure:** If unsure which entries to include, use `gitignore.io` or GitHub's `.gitignore` templates as a starting point and customize for the project.
+
 ### Step 3: Create Initial Commit
 
 ```bash
@@ -133,6 +141,10 @@ git add .gitignore
 git add .  # Review what's being added first with git status
 git commit -m "Initial project setup"
 ```
+
+**Expected:** First commit created containing `.gitignore` and initial project files. `git log` shows one commit.
+
+**On failure:** If `git commit` fails with "nothing to commit," ensure files were staged with `git add`. If it fails with an author identity error, set `git config user.name` and `git config user.email`.
 
 ### Step 4: Connect Remote
 
@@ -143,6 +155,10 @@ git remote add origin git@github.com:username/repo.git
 # Push
 git push -u origin main
 ```
+
+**Expected:** Remote `origin` is configured. `git remote -v` shows fetch and push URLs. Initial commit is pushed to the remote.
+
+**On failure:** If push fails with "Permission denied (publickey)," configure SSH keys (see `setup-wsl-dev-environment`). If the remote already exists, update it with `git remote set-url origin <url>`.
 
 ### Step 5: Set Up Branch Conventions
 
@@ -161,6 +177,10 @@ git checkout main
 git merge feature/add-authentication
 ```
 
+**Expected:** Branch naming convention is established and documented. Team members know which prefix to use for each type of work.
+
+**On failure:** If branches are already named inconsistently, rename them with `git branch -m old-name new-name` and update any open PRs.
+
 ### Step 6: Configure Commit Conventions
 
 Conventional Commits format:
@@ -175,6 +195,10 @@ test: add edge case tests for parser
 refactor: extract helper function
 chore: update dependencies
 ```
+
+**Expected:** Commit message convention is documented and agreed upon by the team. Future commits follow the `type: description` format.
+
+**On failure:** If team members are not following the convention, enforce it with a commit-msg hook that validates the format (see Step 7).
 
 ### Step 7: Set Up Pre-Commit Hooks (Optional)
 
@@ -200,6 +224,10 @@ chmod +x .githooks/pre-commit
 git config core.hooksPath .githooks
 ```
 
+**Expected:** Pre-commit hook runs automatically on each `git commit`. Linting errors block the commit until fixed.
+
+**On failure:** If the hook does not run, verify `core.hooksPath` is set (`git config core.hooksPath`) and the hook file is executable (`chmod +x`).
+
 ### Step 8: Create README
 
 ```bash
@@ -210,6 +238,10 @@ echo "Brief description of the project." >> README.md
 git add README.md
 git commit -m "Add README"
 ```
+
+**Expected:** `README.md` committed to the repository. The project has a minimal but informative landing page on GitHub.
+
+**On failure:** If `README.md` already exists, update it rather than overwriting. Use `usethis::use_readme_md()` in R projects for a template with badges.
 
 ## Validation
 

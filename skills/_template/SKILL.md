@@ -48,9 +48,9 @@ Context sentence explaining what this step accomplishes.
 example_command --flag value
 ```
 
-**Expected**: What success looks like. Be specific -- file created, output matches pattern, command exits 0.
+**Expected:** What success looks like. Be specific -- file created, output matches pattern, command exits 0.
 
-**On failure**: Recovery action. What to check, what to retry, when to abort.
+**On failure:** Recovery action. What to check, what to retry, when to abort.
 
 ### Step 2: Next Action
 
@@ -60,9 +60,9 @@ Context for this step.
 next_command
 ```
 
-**Expected**: Specific success indicator.
+**Expected:** Specific success indicator.
 
-**On failure**: Recovery action.
+**On failure:** Recovery action.
 
 ## Validation
 

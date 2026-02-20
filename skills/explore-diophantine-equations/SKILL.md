@@ -8,7 +8,7 @@ description: >
   triples, proving no integer solutions exist via modular constraints, or
   finding the fundamental solution from which all others are generated.
 license: MIT
-allowed-tools: Read, Bash
+allowed-tools: Read Bash
 metadata:
   author: Philipp Thoss
   version: "1.0"

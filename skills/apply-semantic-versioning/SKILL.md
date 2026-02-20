@@ -9,7 +9,7 @@ description: >
   whether a change constitutes a breaking change, adding pre-release identifiers,
   or resolving disagreement about what version bump is appropriate.
 license: MIT
-allowed-tools: Read, Grep, Glob
+allowed-tools: Read Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

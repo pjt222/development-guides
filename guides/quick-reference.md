@@ -54,7 +54,7 @@ Teams are created with TeamCreate and managed via task lists:
 "Launch the ai-self-care team for a meditation session"
 ```
 
-Available teams: r-package-review, gxp-compliance-validation, fullstack-web-dev, ml-data-science-review, devops-platform-engineering, ai-self-care, scrum-team, opaque-team.
+Available teams: r-package-review, gxp-compliance-validation, fullstack-web-dev, ml-data-science-review, devops-platform-engineering, ai-self-care, scrum-team, opaque-team, agentskills-alignment, entomology.
 
 ### Registry Lookups
 
@@ -331,6 +331,6 @@ git status --porcelain     # Machine-readable status
 - [Setting Up Your Environment](setting-up-your-environment.md) -- full setup guide
 - [R Package Development](r-package-development.md) -- complete R package workflow
 - [Understanding the System](understanding-the-system.md) -- how agents, skills, teams work
-- [Skills Library](../skills/) -- all 267 skills
-- [Agents Library](../agents/) -- all 53 agents
-- [Teams Library](../teams/) -- all 8 teams
+- [Skills Library](../skills/) -- all 278 skills
+- [Agents Library](../agents/) -- all 59 agents
+- [Teams Library](../teams/) -- all 10 teams

@@ -11,7 +11,7 @@ description: >
   domain with limited context, or when previous attempts have been led astray
   by assumptions and "beginner's mind" would be more productive.
 license: MIT
-allowed-tools: Read, Glob, Grep
+allowed-tools: Read Glob Grep
 metadata:
   author: Philipp Thoss
   version: "2.0"

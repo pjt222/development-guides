@@ -55,9 +55,9 @@ git fetch origin
 git rebase origin/main
 ```
 
-**Expected**: Branch is ahead of `origin/main` with no uncommitted changes and no conflicts.
+**Expected:** Branch is ahead of `origin/main` with no uncommitted changes and no conflicts.
 
-**On failure**: If rebase conflicts occur, resolve them (see `resolve-git-conflicts` skill), then `git rebase --continue`. If the branch has diverged significantly, consider `git merge origin/main` instead.
+**On failure:** If rebase conflicts occur, resolve them (see `resolve-git-conflicts` skill), then `git rebase --continue`. If the branch has diverged significantly, consider `git merge origin/main` instead.
 
 ### Step 2: Review All Changes on the Branch
 
@@ -74,9 +74,9 @@ git diff origin/main...HEAD
 git status -sb
 ```
 
-**Expected**: All commits are relevant to the PR. The diff shows only intended changes.
+**Expected:** All commits are relevant to the PR. The diff shows only intended changes.
 
-**On failure**: If unrelated commits are present, consider interactive rebase to clean up history before creating the PR.
+**On failure:** If unrelated commits are present, consider interactive rebase to clean up history before creating the PR.
 
 ### Step 3: Push the Branch
 
@@ -85,9 +85,9 @@ git status -sb
 git push -u origin HEAD
 ```
 
-**Expected**: Branch appears on GitHub remote.
+**Expected:** Branch appears on GitHub remote.
 
-**On failure**: If push is rejected, pull first with `git pull --rebase origin <branch>` and resolve any conflicts.
+**On failure:** If push is rejected, pull first with `git pull --rebase origin <branch>` and resolve any conflicts.
 
 ### Step 4: Write PR Title and Description
 
@@ -116,9 +116,9 @@ For draft PRs:
 gh pr create --title "WIP: Add authentication" --body "..." --draft
 ```
 
-**Expected**: PR created on GitHub with a URL returned. Description clearly communicates what changed and how to test.
+**Expected:** PR created on GitHub with a URL returned. Description clearly communicates what changed and how to test.
 
-**On failure**: If `gh` is not authenticated, run `gh auth login`. If the base branch is wrong, specify with `--base main`.
+**On failure:** If `gh` is not authenticated, run `gh auth login`. If the base branch is wrong, specify with `--base main`.
 
 ### Step 5: Handle Review Feedback
 
@@ -141,9 +141,9 @@ EOF
 git push
 ```
 
-**Expected**: New commits appear on the PR. Review comments are addressed.
+**Expected:** New commits appear on the PR. Review comments are addressed.
 
-**On failure**: If CI checks fail after pushing, read the check output with `gh pr checks` and fix the issues before requesting re-review.
+**On failure:** If CI checks fail after pushing, read the check output with `gh pr checks` and fix the issues before requesting re-review.
 
 ### Step 6: Merge and Clean Up
 
@@ -167,9 +167,9 @@ git checkout main
 git pull origin main
 ```
 
-**Expected**: PR is merged, remote branch is deleted, local main is updated.
+**Expected:** PR is merged, remote branch is deleted, local main is updated.
 
-**On failure**: If merge is blocked by failing checks or missing approvals, address those first. Do not force-merge without resolving blockers.
+**On failure:** If merge is blocked by failing checks or missing approvals, address those first. Do not force-merge without resolving blockers.
 
 ## Validation
 

@@ -60,9 +60,9 @@ git checkout -b feature/add-weighted-mean main
 git switch -c feature/add-weighted-mean main
 ```
 
-**Expected**: New branch created and checked out. `git branch` shows the new branch with an asterisk.
+**Expected:** New branch created and checked out. `git branch` shows the new branch with an asterisk.
 
-**On failure**: If the base branch doesn't exist locally, fetch first: `git fetch origin main && git checkout -b feature/name origin/main`.
+**On failure:** If the base branch doesn't exist locally, fetch first: `git fetch origin main && git checkout -b feature/name origin/main`.
 
 ### Step 2: Track Remote Branches
 
@@ -84,9 +84,9 @@ git checkout feature/their-branch
 # Git auto-creates a local tracking branch
 ```
 
-**Expected**: Local branch tracks the corresponding remote branch. `git branch -vv` shows the upstream.
+**Expected:** Local branch tracks the corresponding remote branch. `git branch -vv` shows the upstream.
 
-**On failure**: If auto-tracking fails, set it manually: `git branch --set-upstream-to=origin/feature/name feature/name`.
+**On failure:** If auto-tracking fails, set it manually: `git branch --set-upstream-to=origin/feature/name feature/name`.
 
 ### Step 3: Switch Branches Safely
 
@@ -128,9 +128,9 @@ git stash apply stash@{1}
 git stash drop stash@{0}
 ```
 
-**Expected**: Branch switch succeeds. Working tree reflects the target branch's state. Stashed changes are recoverable.
+**Expected:** Branch switch succeeds. Working tree reflects the target branch's state. Stashed changes are recoverable.
 
-**On failure**: If switch is blocked by uncommitted changes that would be overwritten, stash or commit first. `git stash` cannot stash untracked files unless you use `git stash push -u`.
+**On failure:** If switch is blocked by uncommitted changes that would be overwritten, stash or commit first. `git stash` cannot stash untracked files unless you use `git stash push -u`.
 
 ### Step 4: Sync with Upstream
 
@@ -147,9 +147,9 @@ git rebase origin/main
 git merge origin/main
 ```
 
-**Expected**: Branch now includes the latest changes from main. No conflicts, or conflicts resolved (see `resolve-git-conflicts`).
+**Expected:** Branch now includes the latest changes from main. No conflicts, or conflicts resolved (see `resolve-git-conflicts`).
 
-**On failure**: If rebase causes conflicts, resolve each one and `git rebase --continue`. If the conflicts are too complex, abort with `git rebase --abort` and try `git merge origin/main` instead.
+**On failure:** If rebase causes conflicts, resolve each one and `git rebase --continue`. If the conflicts are too complex, abort with `git rebase --abort` and try `git merge origin/main` instead.
 
 ### Step 5: Clean Up Merged Branches
 
@@ -169,9 +169,9 @@ git push origin --delete feature/add-weighted-mean
 git fetch --prune
 ```
 
-**Expected**: Merged branches are removed locally and remotely. `git branch` shows only active branches.
+**Expected:** Merged branches are removed locally and remotely. `git branch` shows only active branches.
 
-**On failure**: `git branch -d` refuses to delete unmerged branches. If the branch was merged via squash merge on GitHub, Git may not recognize it as merged. Use `git branch -D` if you are certain the work is preserved.
+**On failure:** `git branch -d` refuses to delete unmerged branches. If the branch was merged via squash merge on GitHub, Git may not recognize it as merged. Use `git branch -D` if you are certain the work is preserved.
 
 ### Step 6: List and Inspect Branches
 
@@ -195,9 +195,9 @@ git branch --no-merged main
 git branch -vv
 ```
 
-**Expected**: Clear view of all branches, their status, and tracking relationships.
+**Expected:** Clear view of all branches, their status, and tracking relationships.
 
-**On failure**: If remote branches appear stale, run `git fetch --prune` to clean up references to deleted remote branches.
+**On failure:** If remote branches appear stale, run `git fetch --prune` to clean up references to deleted remote branches.
 
 ## Validation
 

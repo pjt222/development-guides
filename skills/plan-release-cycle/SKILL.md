@@ -9,7 +9,7 @@ description: >
   defining quality gates for a regulated project, or planning the first
   public release (v1.0.0) of a project.
 license: MIT
-allowed-tools: Read, Write, Grep, Glob
+allowed-tools: Read Write Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

@@ -10,7 +10,7 @@ description: >
   agent-consumable format, or standardizing a workflow across projects
   or teams.
 license: MIT
-allowed-tools: Read, Write, Edit, Bash, Grep, Glob
+allowed-tools: Read Write Edit Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.1"
@@ -62,6 +62,10 @@ Naming conventions:
 - Start with a verb: `create-`, `setup-`, `write-`, `deploy-`, `configure-`
 - Be specific: `create-r-dockerfile` not `create-dockerfile`
 
+**Expected:** Directory `skills/<skill-name>/` exists, and the name follows lowercase kebab-case starting with a verb.
+
+**On failure:** If the name does not start with a verb, rename the directory. Check for naming conflicts: `ls skills/ | grep <keyword>` to ensure no existing skill has an overlapping name.
+
 ### Step 2: Write YAML Frontmatter
 
 ```yaml
@@ -92,6 +96,10 @@ metadata:
 - `language`: primary language; use `multi` for cross-language skills
 - `tags`: 3-6 tags for discovery; include the domain name
 
+**Expected:** YAML frontmatter parses without errors, `name` matches the directory name, and `description` is under 1024 characters with clear activation triggers.
+
+**On failure:** Validate YAML by checking for matching `---` delimiters, proper quoting of version strings (e.g., `"1.0"` not `1.0`), and correct `>` multi-line folding syntax for the description field.
+
 ### Step 3: Write the Title and Introduction
 
 ```markdown
@@ -101,6 +109,10 @@ One paragraph: what this skill accomplishes and the value it provides.
 ```
 
 The title should match the `name` but in human-readable form. "Submit to CRAN" not "submit-to-cran".
+
+**Expected:** A top-level `#` heading in imperative form followed by a concise paragraph stating what the skill accomplishes.
+
+**On failure:** If the title reads as a noun phrase rather than a verb phrase, rewrite it. "Package Submission" becomes "Submit to CRAN."
 
 ### Step 4: Write "When to Use"
 
@@ -118,6 +130,10 @@ Write from the agent's perspective. These are the conditions the agent checks to
 
 > **Note**: The most important trigger conditions should also appear in the `description` frontmatter field, since that is read during the discovery phase before the full body is loaded. The `## When to Use` section provides additional detail and context.
 
+**Expected:** 3-5 bullet points describing concrete, observable conditions under which an agent should activate this skill.
+
+**On failure:** If triggers feel vague ("when something needs to be done"), rewrite from the agent's perspective: what observable state or user request would trigger activation?
+
 ### Step 5: Write "Inputs"
 
 Separate required from optional. Be specific about types and defaults:
@@ -130,6 +146,10 @@ Separate required from optional. Be specific about types and defaults:
 - **Optional**: License type (default: MIT)
 - **Optional**: Whether to initialize renv (default: yes)
 ```
+
+**Expected:** Inputs section clearly separates required from optional parameters, each with a type hint and default value where applicable.
+
+**On failure:** If a parameter's type is ambiguous, add a concrete example in parentheses: "Package name (lowercase, no special characters except `.`)".
 
 ### Step 6: Write "Procedure"
 
@@ -144,9 +164,9 @@ Context sentence explaining what this step accomplishes.
 concrete_code("that the agent can execute")
 \```
 
-**Expected**: What success looks like. Be specific — file created, output matches pattern, command exits 0.
+**Expected:** What success looks like. Be specific — file created, output matches pattern, command exits 0.
 
-**On failure**: Recovery steps. Don't just say "fix it" — provide the most common failure cause and its resolution.
+**On failure:** Recovery steps. Don't just say "fix it" — provide the most common failure cause and its resolution.
 ```
 
 **Writing effective steps**:
@@ -155,6 +175,10 @@ concrete_code("that the agent can execute")
 - Put the most common path first, edge cases in "On failure"
 - 5-10 steps is the sweet spot. Under 5 may be too vague; over 12 should be split into multiple skills.
 - Reference real tools and real commands, not abstract descriptions
+
+**Expected:** Procedure section contains 5-12 numbered steps, each with concrete code, an `**Expected:**` outcome, and an `**On failure:**` recovery action.
+
+**On failure:** If a step lacks code, add the actual command or configuration. If Expected/On failure is missing, write it now — every step that can fail needs both.
 
 ### Step 7: Write "Validation"
 
@@ -170,6 +194,10 @@ A checklist the agent runs after completing the procedure:
 
 Each item must be objectively verifiable. "Code is clean" is bad. "`devtools::check()` returns 0 errors" is good.
 
+**Expected:** A markdown checklist (`- [ ]`) with 3-8 binary pass/fail criteria that an agent can verify programmatically or by inspection.
+
+**On failure:** Replace subjective criteria with measurable ones. "Well-documented" becomes "All exported functions have `@param`, `@return`, and `@examples` roxygen tags."
+
 ### Step 8: Write "Common Pitfalls"
 
 3-6 pitfalls with cause and avoidance:
@@ -181,6 +209,10 @@ Each item must be objectively verifiable. "Code is clean" is bad. "`devtools::ch
 ```
 
 Draw from real experience. The best pitfalls are ones that waste significant time and are non-obvious.
+
+**Expected:** 3-6 pitfalls, each with a bold name, a description of what goes wrong, and how to avoid it.
+
+**On failure:** If pitfalls feel generic ("be careful with X"), make them specific: name the symptom, the cause, and the fix. Draw from actual failure scenarios encountered during development or testing.
 
 ### Step 9: Write "Related Skills"
 
@@ -196,6 +228,10 @@ Cross-reference 2-5 skills that are commonly used before, after, or alongside th
 
 Use the skill `name` field (kebab-case), not the title.
 
+**Expected:** 2-5 related skills listed with kebab-case IDs and brief descriptions of the relationship (prerequisite, follow-up, alternative).
+
+**On failure:** Verify each referenced skill exists: `ls skills/<skill-name>/SKILL.md`. Remove any references to skills that have been renamed or removed.
+
 ### Step 10: Add to Registry
 
 Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
@@ -209,6 +245,10 @@ Edit `skills/_registry.yml` and add the new skill under the appropriate domain:
 ```
 
 Update the `total_skills` count at the top of the registry.
+
+**Expected:** New entry appears in `skills/_registry.yml` under the correct domain, and `total_skills` count matches the actual number of skill directories on disk.
+
+**On failure:** Count skills on disk with `find skills -name SKILL.md | wc -l` and compare against `total_skills` in the registry. Verify the `id` field matches the directory name exactly.
 
 ### Step 11: Add Citations (Optional)
 
@@ -245,9 +285,9 @@ References underpinning the **skill-name** skill.
 
 Citations are optional — add them when provenance tracking matters (academic methods, published standards, regulatory frameworks).
 
-**Expected**: Both files exist and `.bib` parses as valid BibTeX.
+**Expected:** Both files exist and `.bib` parses as valid BibTeX.
 
-**On failure**: Validate BibTeX syntax with `bibtool -d references/CITATIONS.bib` or an online validator.
+**On failure:** Validate BibTeX syntax with `bibtool -d references/CITATIONS.bib` or an online validator.
 
 ### Step 12: Validate Skill
 
@@ -263,9 +303,9 @@ head -20 skills/<skill-name>/SKILL.md | grep -q '^name:' && echo "name: OK"
 head -20 skills/<skill-name>/SKILL.md | grep -q '^description:' && echo "description: OK"
 ```
 
-**Expected**: Line count ≤500, all required fields present.
+**Expected:** Line count ≤500, all required fields present.
 
-**On failure**: If over 500 lines, apply progressive disclosure — extract large code blocks (>15 lines) to `references/EXAMPLES.md`:
+**On failure:** If over 500 lines, apply progressive disclosure — extract large code blocks (>15 lines) to `references/EXAMPLES.md`:
 
 ```bash
 mkdir -p skills/<skill-name>/references/
@@ -285,9 +325,9 @@ ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skill-name>
 ```
 
-**Expected**: `ls -la .claude/skills/<skill-name>/SKILL.md` resolves to the skill file.
+**Expected:** `ls -la .claude/skills/<skill-name>/SKILL.md` resolves to the skill file.
 
-**On failure**: Verify the relative path is correct. From `.claude/skills/`, the path `../../skills/<skill-name>` should reach the skill directory. Use `readlink -f` to debug symlink resolution. Claude Code expects a flat structure at `.claude/skills/<name>/SKILL.md`.
+**On failure:** Verify the relative path is correct. From `.claude/skills/`, the path `../../skills/<skill-name>` should reach the skill directory. Use `readlink -f` to debug symlink resolution. Claude Code expects a flat structure at `.claude/skills/<name>/SKILL.md`.
 
 ## Validation
 

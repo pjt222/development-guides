@@ -62,9 +62,9 @@ Use file listing to understand repo composition:
 find /path/to/repo -type f | sed 's/.*\.//' | sort | uniq -c | sort -rn | head -20
 ```
 
-**Expected**: A list of file extensions present in the repo, with counts. Map these against `get_supported_extensions()` to know coverage.
+**Expected:** A list of file extensions present in the repo, with counts. Map these against `get_supported_extensions()` to know coverage.
 
-**On failure**: If the repo has no files matching supported extensions, putior cannot auto-detect workflows. Consider whether the language is supported but files use non-standard extensions.
+**On failure:** If the repo has no files matching supported extensions, putior cannot auto-detect workflows. Consider whether the language is supported but files use non-standard extensions.
 
 ### Step 2: Check Language Detection Coverage
 
@@ -88,9 +88,9 @@ for (lang in c("r", "python", "javascript", "sql")) {
 }
 ```
 
-**Expected**: Pattern counts printed for each language. R has 124 patterns, Python 159, JavaScript 71, etc.
+**Expected:** Pattern counts printed for each language. R has 124 patterns, Python 159, JavaScript 71, etc.
 
-**On failure**: If a language returns no patterns, it supports manual annotations but not auto-detection. Plan to annotate those files manually.
+**On failure:** If a language returns no patterns, it supports manual annotations but not auto-detection. Plan to annotate those files manually.
 
 ### Step 3: Run Auto-Detection
 
@@ -119,9 +119,9 @@ etl_workflow <- put_auto("./src/etl/")
 api_workflow <- put_auto("./src/api/")
 ```
 
-**Expected**: A data frame with columns including `id`, `label`, `input`, `output`, `source_file`. Each row represents a detected workflow step.
+**Expected:** A data frame with columns including `id`, `label`, `input`, `output`, `source_file`. Each row represents a detected workflow step.
 
-**On failure**: If the result is empty, the source files may not contain recognizable I/O patterns. Try enabling debug logging: `workflow <- put_auto("./src/", log_level = "DEBUG")` to see which files are scanned and which patterns match.
+**On failure:** If the result is empty, the source files may not contain recognizable I/O patterns. Try enabling debug logging: `workflow <- put_auto("./src/", log_level = "DEBUG")` to see which files are scanned and which patterns match.
 
 ### Step 4: Generate Initial Diagram
 
@@ -138,9 +138,9 @@ cat(put_diagram(workflow, show_source_info = TRUE))
 writeLines(put_diagram(workflow, theme = "github"), "workflow-auto.md")
 ```
 
-**Expected**: A Mermaid flowchart showing detected nodes connected by data flow edges. Nodes should be labeled with meaningful function/file names.
+**Expected:** A Mermaid flowchart showing detected nodes connected by data flow edges. Nodes should be labeled with meaningful function/file names.
 
-**On failure**: If the diagram shows disconnected nodes, the auto-detection found I/O patterns but couldn't infer connections. This is normal — connections are derived from matching output filenames to input filenames. The annotation plan (next step) will address gaps.
+**On failure:** If the diagram shows disconnected nodes, the auto-detection found I/O patterns but couldn't infer connections. This is normal — connections are derived from matching output filenames to input filenames. The annotation plan (next step) will address gaps.
 
 ### Step 5: Produce Annotation Plan
 
@@ -178,9 +178,9 @@ Document the plan with coverage assessment:
 - transform.py output `clean.parquet` → load.R input (needs annotation)
 ```
 
-**Expected**: A clear plan separating auto-detected files from those needing manual annotation, with specific recommendations for each file.
+**Expected:** A clear plan separating auto-detected files from those needing manual annotation, with specific recommendations for each file.
 
-**On failure**: If `put_generate()` produces no output, ensure the directory path is correct and contains source files in supported languages.
+**On failure:** If `put_generate()` produces no output, ensure the directory path is correct and contains source files in supported languages.
 
 ## Validation
 

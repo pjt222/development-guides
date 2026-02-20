@@ -8,7 +8,7 @@ description: >
   Pitfalls section is thin, Related Skills has broken cross-references, or
   after receiving feedback that a skill's procedures are unclear or incomplete.
 license: MIT
-allowed-tools: Read, Write, Edit, Grep, Glob
+allowed-tools: Read Write Edit Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.1"

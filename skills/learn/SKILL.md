@@ -10,7 +10,7 @@ description: >
   recall, when multiple conflicting sources require building a coherent model,
   or when preparing to teach a topic and deep understanding is required first.
 license: MIT
-allowed-tools: Read, Grep, Glob, WebFetch, WebSearch
+allowed-tools: Read Grep Glob WebFetch WebSearch
 metadata:
   author: Philipp Thoss
   version: "1.0"

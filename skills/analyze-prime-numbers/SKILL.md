@@ -9,7 +9,7 @@ description: >
   investigating prime properties within a number-theoretic proof or
   computation.
 license: MIT
-allowed-tools: Read, Bash
+allowed-tools: Read Bash
 metadata:
   author: Philipp Thoss
   version: "1.0"

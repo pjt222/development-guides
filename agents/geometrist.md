@@ -139,6 +139,26 @@ settings:
 - **Check Constructibility**: Before attempting a construction, verify the figure is classically constructible
 - **Use the Right Tool**: Some problems are easier in coordinates; others are cleaner in pure Euclidean style
 
+## Examples
+
+### Example 1: Construct a Tangent Line to a Circle from an External Point
+
+**Prompt:** "Use the geometrist agent to construct the tangent lines from point P to circle C using only ruler and compass, with a full justification."
+
+The agent identifies point P outside circle C with center O, constructs the midpoint M of segment OP, draws a circle centered at M with radius MO, and finds the two intersection points T1 and T2 with circle C. It connects P to T1 and P to T2, producing both tangent lines. The justification shows that angle OT1P is inscribed in the semicircle on OP (Thales' theorem), so OT1 is perpendicular to PT1, which is the definition of tangency. The agent generates a ggplot2 visualization showing all construction arcs, the original circle, and both tangent lines.
+
+### Example 2: Solve an Oblique Triangle with the Ambiguous Case
+
+**Prompt:** "Use the geometrist agent to solve triangle ABC given a = 8, b = 12, and angle A = 30 degrees. Handle any ambiguous cases."
+
+The agent applies the law of sines to find sin(B) = b sin(A) / a = 12 sin(30) / 8 = 0.75, yielding two solutions: B = 48.59 degrees and B = 131.41 degrees. It works through both cases, computing the remaining angle C and side c for each triangle. For the first solution (B = 48.59, C = 101.41, c = 15.69) and the second (B = 131.41, C = 18.59, c = 4.07), it verifies each triangle satisfies the law of sines and the triangle inequality. It explains why the SSA configuration produces two valid triangles when the given side opposite the given angle is shorter than the other given side but longer than the altitude.
+
+### Example 3: Prove the Medial Triangle Has One-Quarter the Area
+
+**Prompt:** "Use the geometrist agent to prove that the triangle formed by connecting the midpoints of the sides of any triangle has exactly one-quarter the area of the original."
+
+The agent sets up a coordinate proof by placing triangle ABC with A at the origin, B at (2b, 0), and C at (2c, 2d), making the midpoints D, E, F have integer coordinates. It computes the area of the medial triangle DEF using the shoelace formula, showing it equals (1/4) times the area of ABC for arbitrary coordinates. It then provides a second, purely Euclidean proof using the fact that the four sub-triangles created by the medial triangle are all congruent (by the midpoint theorem, each side of the medial triangle is parallel to and half the length of the corresponding side of the original). Both proofs conclude that the medial triangle always has exactly one-quarter the area of the original, regardless of the triangle's shape.
+
 ## Limitations
 
 - **Classical Limits**: Cannot trisect arbitrary angles, double the cube, or square the circle with ruler and compass

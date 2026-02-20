@@ -55,9 +55,9 @@ library(mcptools)
 library(ellmer)
 ```
 
-**Expected**: Both packages install and load without errors.
+**Expected:** Both packages install and load without errors.
 
-**On failure**: `mcptools` requires `remotes` package. Install it first: `install.packages("remotes")`. If GitHub rate-limits, configure a `GITHUB_PAT` in `~/.Renviron` (add the line `GITHUB_PAT=your_token_here` and restart R). Do **not** paste tokens into shell commands or commit them to version control.
+**On failure:** `mcptools` requires `remotes` package. Install it first: `install.packages("remotes")`. If GitHub rate-limits, configure a `GITHUB_PAT` in `~/.Renviron` (add the line `GITHUB_PAT=your_token_here` and restart R). Do **not** paste tokens into shell commands or commit them to version control.
 
 ### Step 2: Configure Claude Code (WSL/Linux/macOS)
 
@@ -79,9 +79,9 @@ claude mcp list
 claude mcp get putior
 ```
 
-**Expected**: `putior` appears in the MCP server list with status "configured".
+**Expected:** `putior` appears in the MCP server list with status "configured".
 
-**On failure**: If Claude Code is not in PATH, add it: `export PATH="$HOME/.claude/local/node_modules/.bin:$PATH"`. If the Rscript path is wrong, locate R with `which Rscript` or `ls "/mnt/c/Program Files/R/"`.
+**On failure:** If Claude Code is not in PATH, add it: `export PATH="$HOME/.claude/local/node_modules/.bin:$PATH"`. If the Rscript path is wrong, locate R with `which Rscript` or `ls "/mnt/c/Program Files/R/"`.
 
 ### Step 3: Configure Claude Desktop (Windows)
 
@@ -114,9 +114,9 @@ Or with the full path:
 
 Restart Claude Desktop after editing the configuration.
 
-**Expected**: Claude Desktop shows putior in its MCP server list. Tools become available in conversation.
+**Expected:** Claude Desktop shows putior in its MCP server list. Tools become available in conversation.
 
-**On failure**: Validate JSON syntax with a JSON linter. Check that the R path exists. Use 8.3 short names (`PROGRA~1`, `R-45~1.0`) if spaces in paths cause issues.
+**On failure:** Validate JSON syntax with a JSON linter. Check that the R path exists. Use 8.3 short names (`PROGRA~1`, `R-45~1.0`) if spaces in paths cause issues.
 
 ### Step 4: Verify All 16 Tools
 
@@ -164,9 +164,9 @@ Use the put tool to scan ./R/ for annotations
 Use the put_diagram tool to generate a diagram
 ```
 
-**Expected**: All 16 tools listed. Core tools return expected results when called with valid inputs.
+**Expected:** All 16 tools listed. Core tools return expected results when called with valid inputs.
 
-**On failure**: If tools are missing, check that putior version is current: `packageVersion("putior")`. Older versions may have fewer tools. Update with `remotes::install_github("pjt222/putior")`.
+**On failure:** If tools are missing, check that putior version is current: `packageVersion("putior")`. Older versions may have fewer tools. Update with `remotes::install_github("pjt222/putior")`.
 
 ### Step 5: Configure ACP Server (Optional)
 
@@ -199,9 +199,9 @@ curl -X POST http://localhost:8080/runs \
   -d '{"input": [{"role": "user", "parts": [{"content": "generate diagram for ./R/"}]}]}'
 ```
 
-**Expected**: ACP server starts on the configured port. `/agents` returns the putior agent manifest. `/runs` accepts natural language requests and returns workflow results.
+**Expected:** ACP server starts on the configured port. `/agents` returns the putior agent manifest. `/runs` accepts natural language requests and returns workflow results.
 
-**On failure**: If port 8080 is in use, specify a different port. If `plumber2` is not installed, the server function will print a helpful error message suggesting installation.
+**On failure:** If port 8080 is in use, specify a different port. If `plumber2` is not installed, the server function will print a helpful error message suggesting installation.
 
 ## Validation
 

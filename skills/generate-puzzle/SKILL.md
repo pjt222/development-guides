@@ -51,7 +51,9 @@ R_EXE="/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe"
 
 Or read `inst/config.yml` directly to check valid ranges for the chosen type.
 
-**Expected**: Know the min/max for grid, size, tabsize, and other parameters.
+**Expected:** The min/max values for grid, size, tabsize, and other parameters are known for the chosen puzzle type.
+
+**On failure:** If `config.yml` is missing or the type key doesn't exist, check that you are in the jigsawR project root and the package has been built at least once.
 
 ### Step 2: Determine Type and Parameters
 
@@ -65,6 +67,10 @@ Map the user's request to valid `generate_puzzle()` arguments:
 | voronoi | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `tabsize` |
 | random | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `tabsize` |
 | snic | `c(cols, rows)` | `c(width, height)` mm | `n_interior`, `compactness`, `tabsize` |
+
+**Expected:** User request mapped to valid `generate_puzzle()` arguments with correct `type`, `grid` dimensions, and `size` values within the ranges from config.yml.
+
+**On failure:** If unsure which parameter format to use, refer to the table above. Rectangular and voronoi types use `c(cols, rows)` for grid; hexagonal and concentric use `c(rings)`.
 
 ### Step 3: Create R Script
 
@@ -89,6 +95,10 @@ cat("Files:", paste(result$files, collapse = ", "), "\n")
 
 Save to a temporary script file.
 
+**Expected:** An R script file saved to a temporary location containing `library(jigsawR)`, a `generate_puzzle()` call with all parameters, and diagnostic output lines.
+
+**On failure:** If the script has syntax errors, verify that all string arguments are quoted and numeric vectors use `c()`. Avoid complex shell escaping by always using script files.
+
 ### Step 4: Execute via WSL R
 
 ```bash
@@ -96,9 +106,9 @@ R_EXE="/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe"
 "$R_EXE" /path/to/script.R
 ```
 
-**Expected**: Script completes without errors. SVG file(s) written to `output/`.
+**Expected:** Script completes without errors. SVG file(s) written to `output/`.
 
-**On failure**: Check that renv is restored (`renv::restore()`). Verify package is loaded (`devtools::load_all()`). Do NOT use `--vanilla` flag (renv needs .Rprofile).
+**On failure:** Check that renv is restored (`renv::restore()`). Verify package is loaded (`devtools::load_all()`). Do NOT use `--vanilla` flag (renv needs .Rprofile).
 
 ### Step 5: Verify Output
 
@@ -107,6 +117,10 @@ R_EXE="/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe"
 - Piece count matches expected: cols * rows (rectangular), ring formula (hex/concentric)
 - For ggplot2 approach, verify the plot object renders without error
 
+**Expected:** SVG file exists in `output/`, content starts with `<?xml` or `<svg`, and piece count matches the grid specification (cols * rows for rectangular, ring formula for hex/concentric).
+
+**On failure:** If SVG file is missing, check the `output/` directory exists. If piece count is wrong, verify grid dimensions match the puzzle type's expected formula. For ggplot2 output, check that the plot renders without error by wrapping in `tryCatch()`.
+
 ### Step 6: Save Output
 
 Generated files are saved to `output/` by default. The `result` object contains:
@@ -114,6 +128,10 @@ Generated files are saved to `output/` by default. The `result` object contains:
 - `$pieces` — list of piece data
 - `$canvas_size` — dimensions
 - `$files` — paths to written files
+
+**Expected:** The `result` object contains `$svg_content`, `$pieces`, `$canvas_size`, and `$files` fields. Files listed in `$files` exist on disk.
+
+**On failure:** If `$files` is empty, the puzzle may have generated in-memory only. Explicitly save with `writeLines(result$svg_content, "output/puzzle.svg")`.
 
 ## Validation
 

@@ -8,7 +8,7 @@ description: >
   requires re-validation, performing a batch audit of all skills in a domain,
   or reviewing a contributor's skill submission in a pull request.
 license: MIT
-allowed-tools: Read, Grep, Glob
+allowed-tools: Read Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.1"

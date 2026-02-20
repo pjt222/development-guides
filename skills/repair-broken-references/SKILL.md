@@ -71,9 +71,9 @@ while read link; do
 done < all_links.txt
 ```
 
-**Expected**: `broken_internal.txt` lists all broken internal references
+**Expected:** `broken_internal.txt` lists all broken internal references
 
-**On failure**: If `realpath` unavailable, manually check each link
+**On failure:** If `realpath` unavailable, manually check each link
 
 ### Step 2: Check External URLs
 
@@ -95,9 +95,9 @@ while read url; do
 done < external_urls.txt
 ```
 
-**Expected**: `dead_urls.txt` lists URLs returning 4xx/5xx errors
+**Expected:** `dead_urls.txt` lists URLs returning 4xx/5xx errors
 
-**On failure**: If curl unavailable or blocked, use online link checker or skip
+**On failure:** If curl unavailable or blocked, use online link checker or skip
 
 **Note**: Some URLs may return 403 due to bot detection but work in browsers. Manual review required.
 
@@ -146,9 +146,9 @@ grep -rh "library(\\|source(" . --include="*.R" | \
 Rscript -e "installed.packages()[,'Package']" > installed_packages.txt
 ```
 
-**Expected**: `broken_imports.txt` lists all references to deleted/moved modules
+**Expected:** `broken_imports.txt` lists all references to deleted/moved modules
 
-**On failure**: If language-specific tool unavailable, manually review recent refactoring commits
+**On failure:** If language-specific tool unavailable, manually review recent refactoring commits
 
 ### Step 4: Find Orphaned Files
 
@@ -177,9 +177,9 @@ while read file; do
 done < all_files.txt
 ```
 
-**Expected**: `orphans.txt` lists files not referenced elsewhere
+**Expected:** `orphans.txt` lists files not referenced elsewhere
 
-**On failure**: If git log fails, use filesystem mtime instead
+**On failure:** If git log fails, use filesystem mtime instead
 
 **Note**: Some files (e.g., CLI entry points, top-level scripts) are legitimately unreferenced but not orphans. Requires manual review.
 
@@ -220,9 +220,9 @@ echo "This content moved to [new location](new_path.md)" >> "$broken_link"
 # Replace [text](broken_link) with text (plain)
 ```
 
-**Expected**: All broken internal links either fixed, redirected, or removed
+**Expected:** All broken internal links either fixed, redirected, or removed
 
-**On failure**: If automated fix breaks context, escalate for manual review
+**On failure:** If automated fix breaks context, escalate for manual review
 
 ### Step 6: Fix Broken Imports
 
@@ -242,9 +242,9 @@ For each broken import:
 2. Update import path in all files referencing it
 3. Run linter/type checker to verify fix
 
-**Expected**: All imports resolve correctly; no module-not-found errors
+**Expected:** All imports resolve correctly; no module-not-found errors
 
-**On failure**: If module was truly deleted, escalate to determine if functionality still needed
+**On failure:** If module was truly deleted, escalate to determine if functionality still needed
 
 ### Step 7: Document Orphaned Files
 
@@ -264,9 +264,9 @@ For files flagged as orphans, determine disposition:
 | bin/cli.py | 2025-12-01 | Keep | CLI entry point (unreferenced by design) |
 ```
 
-**Expected**: Orphan review document created; automated decisions flagged for human approval
+**Expected:** Orphan review document created; automated decisions flagged for human approval
 
-**On failure**: (N/A — document even if no clear disposition)
+**On failure:** (N/A — document even if no clear disposition)
 
 ### Step 8: Generate Repair Report
 
@@ -325,9 +325,9 @@ See ORPHAN_REVIEW.md for full analysis.
 - [x] Dead links documented in report
 ```
 
-**Expected**: Report saved to `REFERENCE_REPAIR_REPORT.md`
+**Expected:** Report saved to `REFERENCE_REPAIR_REPORT.md`
 
-**On failure**: (N/A — generate report regardless)
+**On failure:** (N/A — generate report regardless)
 
 ## Validation Checklist
 

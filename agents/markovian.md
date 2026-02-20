@@ -138,6 +138,26 @@ settings:
 - **Burn-In Adequacy**: Discard enough warmup samples — check trace plots visually
 - **Model Comparison**: Use BIC/AIC/WAIC for model selection, not just likelihood
 
+## Examples
+
+### Example 1: Website User Flow Analysis
+
+**Prompt:** "Use the markovian agent to model user navigation paths on our e-commerce site from clickstream data"
+
+The agent runs the model-markov-chain procedure on the clickstream logs, defining page categories as states (Home, Category, Product, Cart, Checkout, Exit). It estimates the transition matrix from observed page-to-page transitions, identifies that Exit is an absorbing state, computes absorption probabilities from each page (finding that 72% of users who reach Cart eventually complete Checkout), calculates the mean number of page views before purchase or exit, and identifies the Product-to-Exit transition (38%) as the highest-impact drop-off point for conversion optimization.
+
+### Example 2: Fitting an HMM to Financial Regime Data
+
+**Prompt:** "Use the markovian agent to fit a hidden Markov model to S&P 500 daily returns to detect market regimes"
+
+The agent runs the fit-hidden-markov-model procedure, defining hidden states as latent market regimes (Bull, Bear, High-Volatility) with daily log returns as observations. It fits a 3-state Gaussian HMM using the Baum-Welch algorithm via the depmixS4 R package, applies Viterbi decoding to label each trading day with its most likely regime, validates model selection by comparing 2-state vs. 3-state vs. 4-state models using BIC, and produces a time series plot overlaying regime assignments on the return series to visualize regime transitions.
+
+### Example 3: Diagnosing MCMC Convergence Issues
+
+**Prompt:** "Use the markovian agent to diagnose why my Stan model's MCMC chains are not converging"
+
+The agent runs the simulate-stochastic-process procedure's convergence diagnostics workflow. It reads the Stan fit object, examines trace plots for each parameter (identifying that two of four chains are stuck in different modes), computes Gelman-Rubin R-hat statistics (finding R-hat > 1.5 for three parameters, well above the 1.01 threshold), checks effective sample sizes (n_eff < 10 for problematic parameters), and identifies the root cause as a multimodal posterior from a weakly identified parameter. It recommends reparameterizing the model using a non-centered parameterization and increasing warmup iterations from 1000 to 4000.
+
 ## Limitations
 
 - **Markov Assumption**: Real-world processes often have longer memory; verify assumption validity

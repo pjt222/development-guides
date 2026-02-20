@@ -66,7 +66,9 @@ weighted_mean <- function(x, w, na.rm = FALSE) {
 }
 ```
 
-**Expected**: Complete documentation with all required tags.
+**Expected:** Complete roxygen block with title, description, `@param` for each parameter, `@return`, `@examples`, and `@export`.
+
+**On failure:** If unsure about a tag, check `?roxygen2::rd_roclet`. Common omission is `@return`, which is required by CRAN for all exported functions.
 
 ### Step 2: Essential Tags Reference
 
@@ -81,6 +83,10 @@ weighted_mean <- function(x, w, na.rm = FALSE) {
 | `@family` | Group related functions | Recommended |
 | `@seealso` | Cross-references | Optional |
 | `@keywords internal` | Mark as internal | For non-exported docs |
+
+**Expected:** All required tags for the function type are identified. Exported functions have `@param`, `@return`, `@examples`, and `@export` at minimum.
+
+**On failure:** If a tag is unfamiliar, consult the [roxygen2 documentation](https://roxygen2.r-lib.org/articles/rd.html) for usage and syntax.
 
 ### Step 3: Document Datasets
 
@@ -102,6 +108,10 @@ Create `R/data.R`:
 "city_temperatures"
 ```
 
+**Expected:** `R/data.R` contains roxygen blocks for each dataset with `@format` describing the structure and `@source` providing data provenance.
+
+**On failure:** If `R CMD check` warns about undocumented datasets, ensure the quoted string (e.g., `"city_temperatures"`) exactly matches the object name saved with `usethis::use_data()`.
+
 ### Step 4: Document the Package
 
 Create `R/packagename-package.R`:
@@ -114,6 +124,10 @@ Create `R/packagename-package.R`:
 ## usethis namespace: end
 NULL
 ```
+
+**Expected:** `R/packagename-package.R` exists with `@keywords internal` and the `"_PACKAGE"` sentinel. Running `devtools::document()` generates `man/packagename-package.Rd`.
+
+**On failure:** If `R CMD check` reports a missing package documentation page, verify the file is named `R/<packagename>-package.R` and contains the `"_PACKAGE"` string.
 
 ### Step 5: Handle Special Cases
 
@@ -146,15 +160,19 @@ my_function <- function(df) {
 }
 ```
 
+**Expected:** Special cases (S3 methods, inherited params, `.data` pronoun) are documented correctly. `@rdname` groups S3 methods together. `@inheritParams` reuses parameter docs without duplication.
+
+**On failure:** If `R CMD check` warns about "no visible binding for global variable," add `#' @importFrom rlang .data` or use `utils::globalVariables()` as a last resort.
+
 ### Step 6: Generate Documentation
 
 ```r
 devtools::document()
 ```
 
-**Expected**: `man/` directory updated, `NAMESPACE` regenerated.
+**Expected:** `man/` directory updated with `.Rd` files for each documented object. `NAMESPACE` regenerated with correct exports and imports.
 
-**On failure**: Check for roxygen syntax errors. Common: unclosed brackets in `\describe{}`, missing `#'` prefix.
+**On failure:** Check for roxygen syntax errors. Common issues: unclosed brackets in `\describe{}`, missing `#'` prefix on a line, or invalid tag names. Run `devtools::document()` again after fixing.
 
 ## Validation
 
