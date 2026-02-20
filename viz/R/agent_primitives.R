@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 56 agent persona icons
+# agent_primitives.R - Glyph library for 59 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -2471,4 +2471,127 @@ glyph_agent_nlp <- function(cx, cy, s, col, bright) {
     color = bright, linewidth = .lw(s, 2),
     arrow = ggplot2::arrow(length = ggplot2::unit(3 * s, "pt"), type = "closed"))
   layers
+}
+
+# ── Entomology agents (3) ──────────────────────────────────────────────────
+
+# ── glyph_agent_conservation_ento: leaf-shield with insect ─────────────────
+glyph_agent_conservation_ento <- function(cx, cy, s, col, bright) {
+  # Shield outline
+  t_shield <- seq(0, 2 * pi, length.out = 40)
+  shield_r <- 20 * s
+  shield <- data.frame(
+    x = cx + shield_r * 0.8 * cos(t_shield),
+    y = cy + shield_r * sin(t_shield) * ifelse(t_shield > pi, 0.7, 1)
+  )
+  # Leaf vein inside shield
+  stem_leaf <- data.frame(x = c(cx, cx), y = c(cy - 10 * s, cy + 14 * s))
+  vein_l <- data.frame(x = c(cx, cx - 10 * s), y = c(cy + 4 * s, cy + 10 * s))
+  vein_r <- data.frame(x = c(cx, cx + 10 * s), y = c(cy + 4 * s, cy + 10 * s))
+  # Small insect silhouette
+  bug <- data.frame(x0 = cx, y0 = cy - 4 * s, r = 3 * s)
+  bug_legs <- list()
+  for (a in c(pi/4, pi/2, 3*pi/4, 5*pi/4, 3*pi/2, 7*pi/4)) {
+    bug_legs[[length(bug_legs) + 1]] <- data.frame(
+      x = c(cx + 3 * s * cos(a), cx + 6 * s * cos(a)),
+      y = c(cy - 4 * s + 3 * s * sin(a), cy - 4 * s + 6 * s * sin(a))
+    )
+  }
+  layers <- list(
+    ggplot2::geom_path(data = shield, .aes(x, y),
+      color = col, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = stem_leaf, .aes(x, y),
+      color = hex_with_alpha(col, 0.5), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = vein_l, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggplot2::geom_path(data = vein_r, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = bug, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 1.5))
+  )
+  for (leg in bug_legs) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = leg, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1))
+  }
+  layers
+}
+
+# ── glyph_agent_taxonomic_ento: magnifier over segmented insect ────────────
+glyph_agent_taxonomic_ento <- function(cx, cy, s, col, bright) {
+  # Magnifying glass handle
+  handle <- data.frame(
+    x = c(cx + 10 * s, cx + 22 * s),
+    y = c(cy - 8 * s, cy - 20 * s)
+  )
+  # Lens circle
+  lens <- data.frame(x0 = cx - 2 * s, y0 = cy + 4 * s, r = 14 * s)
+  # Insect inside lens (segmented body)
+  seg1 <- data.frame(x0 = cx - 2 * s, y0 = cy + 10 * s, r = 3 * s)
+  seg2 <- data.frame(x0 = cx - 2 * s, y0 = cy + 4 * s, r = 4 * s)
+  seg3 <- data.frame(x0 = cx - 2 * s, y0 = cy - 3 * s, r = 3.5 * s)
+  # Classification brackets on right
+  brk_top <- data.frame(
+    x = cx + c(16, 20, 20, 16) * s,
+    y = cy + c(14, 14, 6, 6) * s
+  )
+  brk_bot <- data.frame(
+    x = cx + c(16, 20, 20, 16) * s,
+    y = cy + c(2, 2, -6, -6) * s
+  )
+  list(
+    ggplot2::geom_path(data = handle, .aes(x, y),
+      color = col, linewidth = .lw(s, 3)),
+    ggforce::geom_circle(data = lens, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.06), color = bright, linewidth = .lw(s, 2)),
+    ggforce::geom_circle(data = seg1, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = seg2, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.25), color = col, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = seg3, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = col, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = brk_top, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = brk_bot, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1.5))
+  )
+}
+
+# ── glyph_agent_citizen_ento: smartphone with insect + upload arrow ────────
+glyph_agent_citizen_ento <- function(cx, cy, s, col, bright) {
+  # Phone outline
+  phone <- data.frame(
+    xmin = cx - 12 * s, xmax = cx + 12 * s,
+    ymin = cy - 20 * s, ymax = cy + 20 * s
+  )
+  # Screen area
+  screen <- data.frame(
+    xmin = cx - 10 * s, xmax = cx + 10 * s,
+    ymin = cy - 16 * s, ymax = cy + 14 * s
+  )
+  # Insect on screen
+  body_c <- data.frame(x0 = cx, y0 = cy - 2 * s, r = 5 * s)
+  head_c <- data.frame(x0 = cx, y0 = cy + 5 * s, r = 3 * s)
+  # Share/upload arrow
+  arrow_shaft <- data.frame(
+    x = c(cx + 18 * s, cx + 18 * s),
+    y = c(cy + 4 * s, cy + 18 * s)
+  )
+  arrow_head <- data.frame(
+    x = cx + c(14, 18, 22) * s,
+    y = cy + c(14, 20, 14) * s
+  )
+  list(
+    ggplot2::geom_rect(data = phone, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.08), color = col, linewidth = .lw(s, 2)),
+    ggplot2::geom_rect(data = screen, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, 0.05), color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1)),
+    ggforce::geom_circle(data = body_c, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = head_c, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.2)),
+    ggplot2::geom_path(data = arrow_shaft, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+      fill = bright, color = bright, linewidth = .lw(s, 1))
+  )
 }

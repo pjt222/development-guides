@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 56
+total_agents: 59
 version: "2.1"
 last_updated: "2026-02-19"
 
@@ -808,3 +808,36 @@ agents:
     priority: normal
     tools: [Read, Write, Edit, Bash, Grep, Glob, WebFetch]
     skills: []
+
+  - id: conservation-entomologist
+    path: agents/conservation-entomologist.md
+    description: Conservation-first entomologist for ecological assessment, pollinator surveys, habitat preservation, and non-destructive insect observation
+    tags: [entomology, conservation, ecology, pollinators, biodiversity, habitat, insects]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - observe-insect-behavior
+      - survey-insect-population
+      - document-insect-sighting
+      - identify-insect
+
+  - id: taxonomic-entomologist
+    path: agents/taxonomic-entomologist.md
+    description: Scientific systematist for insect identification using dichotomous keys, morphological analysis, museum-grade specimen preservation, and formal taxonomic nomenclature
+    tags: [entomology, taxonomy, morphology, identification, specimens, museum, classification, insects]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - identify-insect
+      - collect-preserve-specimens
+
+  - id: citizen-entomologist
+    path: agents/citizen-entomologist.md
+    description: Curiosity-driven entomologist for accessible insect identification, citizen science participation, nature education, and community engagement
+    tags: [entomology, citizen-science, identification, education, iNaturalist, observation, insects]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch]
+    skills:
+      - identify-insect
+      - observe-insect-behavior
+      - document-insect-sighting

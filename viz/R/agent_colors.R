@@ -97,5 +97,10 @@ AGENT_COLORS <- list(
 
   # ── Linguistics ─────────────────────────────────────────────────────────
   "etymologist"             = "#ddbb66",   # parchment gold
-  "nlp-specialist"          = "#bb88ff"    # language violet
+  "nlp-specialist"          = "#bb88ff",   # language violet
+
+  # ── Entomology ─────────────────────────────────────────────────────────
+  "conservation-entomologist" = "#55bb44", # forest green
+  "taxonomic-entomologist"   = "#88aa33", # olive chartreuse
+  "citizen-entomologist"     = "#aacc22"  # lime yellow
 )

@@ -411,3 +411,47 @@ glyph_team_agentskills_alignment <- function(cx, cy, s, col, bright) {
 
   layers
 }
+
+# ── glyph_team_entomology: hub-and-spoke with insect identity ────────────────
+glyph_team_entomology <- function(cx, cy, s, col, bright) {
+  # Central hub (conservation)
+  hub <- data.frame(x0 = cx, y0 = cy, r = 8 * s)
+  # Spoke nodes
+  node1 <- data.frame(x0 = cx - 16 * s, y0 = cy + 14 * s, r = 6 * s)
+  node2 <- data.frame(x0 = cx + 16 * s, y0 = cy + 14 * s, r = 6 * s)
+  # Connecting lines
+  line1 <- data.frame(x = c(cx - 6 * s, cx - 12 * s), y = c(cy + 6 * s, cy + 10 * s))
+  line2 <- data.frame(x = c(cx + 6 * s, cx + 12 * s), y = c(cy + 6 * s, cy + 10 * s))
+  # Insect legs on hub (6 radiating lines)
+  hub_legs <- list()
+  for (a in c(pi/6, pi/2, 5*pi/6, 7*pi/6, 3*pi/2, 11*pi/6)) {
+    hub_legs[[length(hub_legs) + 1]] <- data.frame(
+      x = c(cx + 8 * s * cos(a), cx + 13 * s * cos(a)),
+      y = c(cy + 8 * s * sin(a), cy + 13 * s * sin(a))
+    )
+  }
+  # Base line
+  base_line <- data.frame(
+    x = c(cx - 22 * s, cx + 22 * s),
+    y = c(cy - 16 * s, cy - 16 * s)
+  )
+  layers <- list(
+    ggforce::geom_circle(data = hub, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.15), color = bright, linewidth = .lw(s, 2.5)),
+    ggforce::geom_circle(data = node1, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.8)),
+    ggforce::geom_circle(data = node2, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = line1, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = line2, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = base_line, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.5))
+  )
+  for (leg in hub_legs) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = leg, .aes(x, y),
+      color = bright, linewidth = .lw(s, 1))
+  }
+  layers
+}

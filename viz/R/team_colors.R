@@ -11,5 +11,6 @@ TEAM_COLORS <- list(
   "ml-data-science-review"      = "#7b68ee",   # medium slate blue
   "r-package-review"            = "#00ccff",   # bright cyan
   "scrum-team"                  = "#39ff14",   # sprint green
-  "opaque-team"                 = "#8f8f8f"    # obsidian silver
+  "opaque-team"                 = "#8f8f8f",   # obsidian silver
+  "entomology"                  = "#77cc33"    # insect green
 )

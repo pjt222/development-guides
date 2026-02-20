@@ -104,5 +104,10 @@ AGENT_GLYPHS <- list(
 
   # ── Linguistics ────────────────────────────────────────────────────
   "etymologist"               = "glyph_agent_etymologist",
-  "nlp-specialist"            = "glyph_agent_nlp"
+  "nlp-specialist"            = "glyph_agent_nlp",
+
+  # ── Entomology ───────────────────────────────────────────────────
+  "conservation-entomologist" = "glyph_agent_conservation_ento",
+  "taxonomic-entomologist"    = "glyph_agent_taxonomic_ento",
+  "citizen-entomologist"      = "glyph_agent_citizen_ento"
 )

@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 273
+total_skills: 278
 
 domains:
   r-packages:
@@ -1540,6 +1540,35 @@ domains:
         complexity: advanced
         language: multi
         description: Appraise gemstone value using the four Cs, treatment detection, and market analysis
+
+  entomology:
+    description: Insect identification, behavior observation, population surveys, specimen preservation, and citizen science
+    skills:
+      - id: document-insect-sighting
+        path: document-insect-sighting/SKILL.md
+        complexity: basic
+        language: natural
+        description: Record insect sightings with location, habitat, photography, behavior notes, and citizen science submission
+      - id: identify-insect
+        path: identify-insect/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Identify insects using body plan analysis, dichotomous keys, wing venation, mouthparts, antennae, and confidence levels
+      - id: observe-insect-behavior
+        path: observe-insect-behavior/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Conduct structured insect behavior observations using sampling protocols, ethograms, and interaction logging
+      - id: collect-preserve-specimens
+        path: collect-preserve-specimens/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Collect and preserve insect specimens following museum-grade standards with legal compliance and proper labeling
+      - id: survey-insect-population
+        path: survey-insect-population/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Design and execute insect population surveys with diversity indices, statistical analysis, and conservation reporting
 
   versioning:
     description: Semantic versioning, changelog management, release planning, and dependency auditing

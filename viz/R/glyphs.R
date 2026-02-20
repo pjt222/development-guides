@@ -375,5 +375,12 @@ SKILL_GLYPHS <- list(
   "validate-references"            = "glyph_ref_validate",
 
   # ── linguistics (1) ──────────────────────────────────────────
-  "research-word-etymology"        = "glyph_etymology_tree"
+  "research-word-etymology"        = "glyph_etymology_tree",
+
+  # ── entomology (5) ─────────────────────────────────────────
+  "document-insect-sighting"       = "glyph_insect_camera",
+  "identify-insect"                = "glyph_insect_key",
+  "observe-insect-behavior"        = "glyph_insect_watch",
+  "collect-preserve-specimens"     = "glyph_insect_pin",
+  "survey-insect-population"       = "glyph_insect_survey"
 )

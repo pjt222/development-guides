@@ -2,7 +2,7 @@
 # Machine-readable catalog of all team definitions in this library.
 # Keep in sync with the actual team files on disk.
 
-total_teams: 9
+total_teams: 10
 version: "1.1"
 last_updated: "2026-02-16"
 
@@ -78,3 +78,11 @@ teams:
     members: [skill-reviewer, senior-researcher, senior-software-developer, librarian]
     coordination: hub-and-spoke
     tags: [standards, compliance, agentskills, quality, alignment]
+
+  - id: entomology
+    path: teams/entomology.md
+    description: Multi-agent entomology team combining conservation ecology, systematic taxonomy, and citizen science for comprehensive insect study
+    lead: conservation-entomologist
+    members: [conservation-entomologist, taxonomic-entomologist, citizen-entomologist]
+    coordination: hub-and-spoke
+    tags: [entomology, conservation, taxonomy, citizen-science, ecology, insects]

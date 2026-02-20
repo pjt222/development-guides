@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 56 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 59 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -42,6 +42,8 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [alchemist](alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
 | [apa-specialist](apa-specialist.md) | normal | APA 7th edition specialist for academic table formatting, writing guidance, Quarto/papaja implementation, and citation auditing |
 | [blender-artist](blender-artist.md) | normal | 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition |
+| [citizen-entomologist](citizen-entomologist.md) | normal | Curiosity-driven entomologist for accessible insect identification, citizen science participation, nature education, and community engagement |
+| [conservation-entomologist](conservation-entomologist.md) | normal | Conservation-first entomologist for ecological assessment, pollinator surveys, habitat preservation, and non-destructive insect observation |
 | [designer](designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [diffusion-specialist](diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |
 | [dog-trainer](dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |
@@ -72,6 +74,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [skill-reviewer](skill-reviewer.md) | normal | Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard |
 | [survivalist](survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
+| [taxonomic-entomologist](taxonomic-entomologist.md) | normal | Scientific systematist for insect identification using dichotomous keys, morphological analysis, museum-grade specimen preservation, and formal taxonomic nomenclature |
 | [tcg-specialist](tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
 | [theoretical-researcher](theoretical-researcher.md) | normal | Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis |
 | [tour-planner](tour-planner.md) | normal | Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output |

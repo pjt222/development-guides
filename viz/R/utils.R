@@ -14,6 +14,7 @@ DOMAIN_COLORS <- list(
   "defensive"          = "#ff4444",
   "design"             = "#ff88dd",
   "devops"             = "#00ff88",
+  "entomology"         = "#77cc33",
   "esoteric"           = "#dd44ff",
   "gardening"          = "#44bb66",
   "general"            = "#ccccff",
