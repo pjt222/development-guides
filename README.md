@@ -8,7 +8,7 @@ An agentic development platform providing structured skills, specialized agents,
 - **278 skills** across 50 domains — structured, executable procedures
 - **59 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **10 teams** — predefined multi-agent compositions for complex workflows
-- **11 guides** — human-readable workflow, infrastructure, and reference documentation
+- **13 guides** — human-readable workflow, infrastructure, and reference documentation
 - **Interactive visualization** — force-graph explorer with 278 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
@@ -53,6 +53,8 @@ The `viz/` directory contains a force-graph explorer with 2D, 3D (WebGL), and hi
 - **[Setting Up Your Environment](guides/setting-up-your-environment.md)** — WSL2 setup, shell config, MCP server integration, and Claude Code configuration
 - **[R Package Development](guides/r-package-development.md)** — Package structure, testing, CRAN submission, pkgdown deployment, and renv management
 - **[Quick Reference](guides/quick-reference.md)** — Command cheat sheet for agents, skills, teams, Git, R, and shell operations
+- **[Agent Best Practices](guides/agent-best-practices.md)** — Design principles, quality assurance, and maintenance guidelines for writing effective agents
+- **[Agent Configuration Schema](guides/agent-configuration-schema.md)** — YAML frontmatter field definitions, validation rules, and JSON Schema for agent files
 - **[Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md)** — Runtime activation profiles controlling which agents, skills, and teams are expressed
 <!-- AUTO:END:guides -->
 

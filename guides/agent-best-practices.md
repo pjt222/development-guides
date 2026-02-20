@@ -1,3 +1,12 @@
+---
+title: "Agent Best Practices"
+description: "Design principles, quality assurance, and maintenance guidelines for writing effective Claude Code agents"
+category: reference
+agents: []
+teams: []
+skills: [create-agent, evolve-agent]
+---
+
 # Agent Development Best Practices
 
 This guide outlines best practices for creating, maintaining, and using Claude Code agents effectively.

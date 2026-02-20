@@ -1,6 +1,6 @@
 # Guides
 
-11 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
+13 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
 
 ## Workflow
 
@@ -43,6 +43,12 @@ Package structure, testing, CRAN submission, pkgdown deployment, and renv manage
 
 ### [Quick Reference](quick-reference.md)
 Command cheat sheet for agents, skills, teams, Git, R, and shell operations.
+
+### [Agent Best Practices](agent-best-practices.md)
+Design principles, quality assurance, and maintenance guidelines for writing effective agents.
+
+### [Agent Configuration Schema](agent-configuration-schema.md)
+YAML frontmatter field definitions, validation rules, and JSON Schema for agent files.
 
 ## Design
 

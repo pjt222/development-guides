@@ -2,7 +2,7 @@
 # Machine-readable catalog of all guide documents in this library.
 # Keep in sync with the actual guide files on disk.
 
-total_guides: 11
+total_guides: 13
 version: "1.0"
 last_updated: "2026-02-19"
 
@@ -109,6 +109,24 @@ guides:
     agents: []
     teams: []
     skills: []
+
+  - id: agent-best-practices
+    path: guides/agent-best-practices.md
+    title: "Agent Best Practices"
+    description: "Design principles, quality assurance, and maintenance guidelines for writing effective agents"
+    category: reference
+    agents: []
+    teams: []
+    skills: [create-agent, evolve-agent]
+
+  - id: agent-configuration-schema
+    path: guides/agent-configuration-schema.md
+    title: "Agent Configuration Schema"
+    description: "YAML frontmatter field definitions, validation rules, and JSON Schema for agent files"
+    category: reference
+    agents: []
+    teams: []
+    skills: [create-agent, evolve-agent]
 
   # ── Design guides ────────────────────────────────────────────────
   - id: epigenetics-activation-control

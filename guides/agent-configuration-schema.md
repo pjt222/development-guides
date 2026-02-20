@@ -1,3 +1,12 @@
+---
+title: "Agent Configuration Schema"
+description: "YAML frontmatter field definitions, validation rules, and JSON Schema for agent files"
+category: reference
+agents: []
+teams: []
+skills: [create-agent, evolve-agent]
+---
+
 # Configuration Schema
 
 This document defines the configuration schema for Claude Code agents, including YAML frontmatter structure and validation rules.

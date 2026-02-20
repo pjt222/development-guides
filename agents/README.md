@@ -155,7 +155,7 @@ skills: [skill-id, ...]    # Skills from skills/ this agent can execute
 ---
 ```
 
-See [configuration-schema.md](configuration-schema.md) for the full schema and [_template.md](_template.md) for a starter template.
+See [agent-configuration-schema.md](../guides/agent-configuration-schema.md) for the full schema and [_template.md](_template.md) for a starter template.
 
 ## Creating a New Agent
 
@@ -165,7 +165,7 @@ See [configuration-schema.md](configuration-schema.md) for the full schema and [
 4. Add the agent to `_registry.yml`
 5. Update the table in this README
 
-See [best-practices.md](best-practices.md) for detailed guidance on writing effective agents.
+See [agent-best-practices.md](../guides/agent-best-practices.md) for detailed guidance on writing effective agents.
 
 ## Registry
 

@@ -45,7 +45,7 @@ Improve, extend, or create an advanced variant of an agent that was originally a
 
 ### Step 1: Assess the Current Agent
 
-Read the existing agent file and evaluate each section against the quality checklist from `agents/best-practices.md`:
+Read the existing agent file and evaluate each section against the quality checklist from `guides/agent-best-practices.md`:
 
 | Section | What to Check | Common Issues |
 |---------|--------------|---------------|
@@ -260,7 +260,7 @@ for skill in skill-a skill-b; do
 done
 
 # Count agents on disk vs registry
-ls agents/*.md | grep -v template | grep -v best-practices | grep -v config-schema | wc -l
+ls agents/*.md | grep -v template | wc -l
 grep total_agents agents/_registry.yml
 
 # Review all changes
