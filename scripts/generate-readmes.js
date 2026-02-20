@@ -121,7 +121,7 @@ function generateStats() {
     `- **${totalAgents} agents** — specialized Claude Code personas covering development, review, compliance, and more`,
     `- **${totalTeams} teams** — predefined multi-agent compositions for complex workflows`,
     `- **${totalGuides} guides** — human-readable workflow, infrastructure, and reference documentation`,
-    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 6 color themes`,
+    `- **Interactive visualization** — force-graph explorer with ${totalSkills} R-generated skill icons and 9 color themes`,
   ];
   return lines.join('\n');
 }
@@ -292,14 +292,14 @@ function generateGuidesReadme() {
 function generateVizReadme() {
   return `# Interactive Skills Visualization
 
-Force-graph explorer for the ${totalSkills}-skill, ${totalAgents}-agent, ${totalTeams}-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 6 color themes.
+Force-graph explorer for the ${totalSkills}-skill, ${totalAgents}-agent, ${totalTeams}-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 9 color themes.
 
 ## Architecture
 
 - **Force-graph** (\`js/graph.js\`): 2D canvas rendering with zoom, pan, and click-to-inspect
 - **R icon pipeline** (\`R/\`): ggplot2 + ggfx neon glow pictograms rendered per-skill as transparent WebP icons
 - **${totalSkills} skill icons** (\`icons/<domain>/\`): one glyph per skill, domain-colored
-- **6 color themes**: cyberpunk, viridis, inferno, magma, plasma, cividis
+- **9 color themes**: cyberpunk, viridis, magma, inferno, plasma, cividis, mako, rocket, turbo
 - **Data pipeline**: \`build-data.js\` reads all three registries and generates \`data/skills.json\`
 
 ## Build Pipeline
