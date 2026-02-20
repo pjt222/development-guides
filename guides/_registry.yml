@@ -2,7 +2,7 @@
 # Machine-readable catalog of all guide documents in this library.
 # Keep in sync with the actual guide files on disk.
 
-total_guides: 13
+total_guides: 14
 version: "1.0"
 last_updated: "2026-02-19"
 
@@ -79,7 +79,16 @@ guides:
     category: workflow
     agents: [mystic, alchemist, gardener, shaman]
     teams: [ai-self-care]
-    skills: [meditate, heal, center, intrinsic, observe, listen, learn, teach, shine]
+    skills: [meditate, heal, center, shine, intrinsic, athanor, transmute, chrysopoeia, read-garden, remote-viewing-guidance, meditate-guidance, heal-guidance]
+
+  - id: agentskills-alignment
+    path: guides/agentskills-alignment.md
+    title: "AgentSkills Alignment"
+    description: "Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity"
+    category: workflow
+    agents: [skill-reviewer, senior-researcher, senior-software-developer, librarian]
+    teams: [agentskills-alignment]
+    skills: [review-skill-format, refactor-skill-structure, create-skill, evolve-skill, update-skill-content, catalog-collection, review-software-architecture, review-research]
 
   # ── Infrastructure guides ────────────────────────────────────────
   - id: setting-up-your-environment

@@ -1,6 +1,6 @@
 # Guides
 
-13 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
+14 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
 
 ## Workflow
 
@@ -26,6 +26,9 @@ End-to-end putior workflow visualization from annotation to themed Mermaid diagr
 
 ### [Running AI Self-Care](running-ai-self-care.md)
 AI meta-cognitive wellness sessions with the self-care team.
+
+### [AgentSkills Alignment](agentskills-alignment.md)
+Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity.
 
 ## Infrastructure
 

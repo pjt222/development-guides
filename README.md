@@ -8,7 +8,7 @@ An agentic development platform providing structured skills, specialized agents,
 - **278 skills** across 50 domains — structured, executable procedures
 - **59 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **10 teams** — predefined multi-agent compositions for complex workflows
-- **13 guides** — human-readable workflow, infrastructure, and reference documentation
+- **14 guides** — human-readable workflow, infrastructure, and reference documentation
 - **Interactive visualization** — force-graph explorer with 278 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
@@ -50,6 +50,7 @@ The `viz/` directory contains a force-graph explorer with 2D, 3D (WebGL), and hi
 - **[Managing a Scrum Sprint](guides/managing-a-scrum-sprint.md)** — Running Scrum sprints with the scrum-team: planning, dailies, review, and retro
 - **[Visualizing Workflows with putior](guides/visualizing-workflows-with-putior.md)** — End-to-end putior workflow visualization from annotation to themed Mermaid diagrams
 - **[Running AI Self-Care](guides/running-ai-self-care.md)** — AI meta-cognitive wellness sessions with the self-care team
+- **[AgentSkills Alignment](guides/agentskills-alignment.md)** — Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity
 - **[Setting Up Your Environment](guides/setting-up-your-environment.md)** — WSL2 setup, shell config, MCP server integration, and Claude Code configuration
 - **[R Package Development](guides/r-package-development.md)** — Package structure, testing, CRAN submission, pkgdown deployment, and renv management
 - **[Quick Reference](guides/quick-reference.md)** — Command cheat sheet for agents, skills, teams, Git, R, and shell operations

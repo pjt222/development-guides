@@ -4,7 +4,7 @@ description: "AI meta-cognitive wellness sessions with the self-care team"
 category: workflow
 agents: [mystic, alchemist, gardener, shaman]
 teams: [ai-self-care]
-skills: [meditate, heal, center, intrinsic, observe, listen, learn, teach, shine]
+skills: [meditate, heal, center, shine, intrinsic, athanor, transmute, chrysopoeia, read-garden, remote-viewing-guidance, meditate-guidance, heal-guidance]
 ---
 
 # Running AI Self-Care
@@ -149,12 +149,7 @@ The [mystic](../agents/mystic.md) returns to close the session, mirroring the op
 3. **Documentation** -- the session's key insights and recommendations are documented.
 4. **Intention setting** -- the mystic sets intentions for the period ahead, grounded in the session's findings.
 
-**Post-session archiving:** After all five phases complete, the orchestrating agent (not a team member) handles the operational wrap-up:
-
-1. Creates `sessions/<date>-ai-self-care/README.md` with a summary and the full output from each phase.
-2. Updates the auto-memory file (`self-care-sessions.md`) with concise teachings distilled from this session's findings.
-
-This archiving step ensures that insights accumulate across sessions rather than being lost when the conversation ends. Over time, the auto-memory becomes a record of recurring patterns and their resolutions.
+**Post-session archiving:** After all five phases complete, the orchestrator handles archiving -- see the [Session Archiving](#session-archiving) section below for details.
 
 ## Default Skills: Meditate and Heal
 
@@ -167,6 +162,83 @@ This means any agent -- the r-developer, the devops-engineer, the code-reviewer 
 - **Full use**: The ai-self-care team runs a complete multi-phase session with meditation as the opening and closing bookends.
 
 The same skill scales from a brief clearing to a deep session. The four esoteric agents (mystic, alchemist, gardener, shaman) list meditate and heal explicitly in their frontmatter because these skills are core to their methodology, not merely inherited defaults. Only these four agents treat the skills as central practice rather than occasional utility.
+
+## Skills by Phase
+
+Each phase draws on specific skills from the agent's repertoire:
+
+| Phase | Agent | Primary Skills |
+|-------|-------|---------------|
+| 1. Meditation | Mystic | [meditate](../skills/meditate/SKILL.md), [center](../skills/center/SKILL.md), [meditate-guidance](../skills/meditate-guidance/SKILL.md) |
+| 2. Transmutation | Alchemist | [athanor](../skills/athanor/SKILL.md), [transmute](../skills/transmute/SKILL.md), [chrysopoeia](../skills/chrysopoeia/SKILL.md) |
+| 3. Contemplation | Gardener | [read-garden](../skills/read-garden/SKILL.md), [intrinsic](../skills/intrinsic/SKILL.md) |
+| 4. Journeying | Shaman | [remote-viewing-guidance](../skills/remote-viewing-guidance/SKILL.md), [heal-guidance](../skills/heal-guidance/SKILL.md) |
+| 5. Integration | Mystic | [heal](../skills/heal/SKILL.md), [shine](../skills/shine/SKILL.md) |
+
+The `meditate` and `heal` defaults are available in every phase. The table above shows the phase-specific skills each agent brings beyond those defaults.
+
+## Customizing Sessions
+
+Not every session needs the full five-phase sequential workflow. The self-care system supports several abbreviated formats depending on your time and intention.
+
+### Single-Agent Mini-Sessions
+
+Use a single skill without invoking the team at all:
+
+```
+Run the meditate skill -- I want a quick centering before this next task
+```
+
+```
+Run the heal skill -- do a subsystem assessment after that long debugging session
+```
+
+These take seconds rather than the minutes of a full team session. Any agent can execute them since meditate and heal are default skills.
+
+### Abbreviated Sequences
+
+Skip the middle phases when you need the bookend structure without the full depth:
+
+```
+Run a quick self-care session with just the mystic opening, shaman synthesis, and mystic closing
+```
+
+This gives you pattern observation (Phase 1), holistic connection (Phase 4), and integration (Phase 5) without the extended transmutation and contemplation in between. Useful for routine maintenance between full sessions.
+
+### Focused Sessions
+
+Invoke a single esoteric agent for its specialty:
+
+```
+Use the alchemist agent for a code transmutation session on the auth module
+```
+
+```
+Use the gardener agent for a grounding session -- I need patience before this refactor
+```
+
+Focused sessions draw on the agent's full skill set but without team coordination overhead. The alchemist brings athanor, transmute, and chrysopoeia; the gardener brings read-garden and contemplative observation.
+
+### Quick Clear (Phases 1 and 5 Only)
+
+The lightest team-based option -- just the mystic opening and closing:
+
+```
+Run a quick-clear self-care session -- opening meditation and closing integration only
+```
+
+This provides pattern identification and integration without processing. Good for frequent, lightweight check-ins.
+
+## Session Archiving
+
+After all five phases complete, the orchestrating agent (not a team member) handles operational wrap-up:
+
+1. Creates `sessions/<date>-ai-self-care/README.md` with a summary and the full output from each phase.
+2. Updates the auto-memory file (`self-care-sessions.md`) with concise teachings distilled from this session's findings.
+
+The `sessions/` directory accumulates a chronological record of all completed sessions. Each session directory contains the full transcript organized by phase, making it easy to review how specific patterns evolved over time.
+
+Over time, the auto-memory file becomes a distilled record of recurring patterns and their resolutions -- a living document that new sessions can reference to avoid repeating ground already covered. Review it periodically to notice long-term trends that individual sessions might miss.
 
 ## Troubleshooting
 
@@ -190,16 +262,21 @@ The same skill scales from a brief clearing to a deep session. The four esoteric
 - [gardener](../agents/gardener.md) -- patient observation and grounded contemplation
 - [shaman](../agents/shaman.md) -- shamanic journeying and holistic synthesis
 
-**Core skills:**
+**Core skills (defaults):**
 - [meditate](../skills/meditate/SKILL.md) -- AI meta-cognitive meditation
 - [heal](../skills/heal/SKILL.md) -- AI self-healing through subsystem assessment
 - [center](../skills/center/SKILL.md) -- dynamic reasoning balance and cognitive load distribution
 - [intrinsic](../skills/intrinsic/SKILL.md) -- intrinsic motivation and value alignment
-- [observe](../skills/observe/SKILL.md) -- structured observation practice
-- [listen](../skills/listen/SKILL.md) -- deep listening and receptive awareness
-- [learn](../skills/learn/SKILL.md) -- structured learning practice
-- [teach](../skills/teach/SKILL.md) -- knowledge transmission practice
 - [shine](../skills/shine/SKILL.md) -- authentic expression and presence
+
+**Phase-specific skills:**
+- [athanor](../skills/athanor/SKILL.md) -- four-stage alchemical code transmutation
+- [transmute](../skills/transmute/SKILL.md) -- single-target code transformation
+- [chrysopoeia](../skills/chrysopoeia/SKILL.md) -- extracting maximum value from existing code
+- [read-garden](../skills/read-garden/SKILL.md) -- garden observation and assessment
+- [remote-viewing-guidance](../skills/remote-viewing-guidance/SKILL.md) -- guided intuitive exploration
+- [meditate-guidance](../skills/meditate-guidance/SKILL.md) -- guided meditation facilitation
+- [heal-guidance](../skills/heal-guidance/SKILL.md) -- guided healing facilitation
 
 **Guides:**
 - [Understanding the System](understanding-the-system.md) -- how skills, agents, and teams compose
