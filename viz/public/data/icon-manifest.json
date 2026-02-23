@@ -2309,6 +2309,14 @@
       "status": "done"
     },
     {
+      "skillId": "use-graphql-api",
+      "domain": "web-dev",
+      "prompt": "Neon browser window, HTML angle brackets, GraphQL curly braces, query fields, graph node, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 490004,
+      "path": "public/icons/cyberpunk/web-dev/use-graphql-api.webp",
+      "status": "done"
+    },
+    {
       "skillId": "install-putior",
       "domain": "workflow-visualization",
       "prompt": "Glowing icon, Install, putior, dark background, vector art, clean edges, single centered icon, no text",

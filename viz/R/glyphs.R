@@ -226,10 +226,11 @@ SKILL_GLYPHS <- list(
   "update-skill-content"           = "glyph_skill_update",
   "refactor-skill-structure"       = "glyph_skill_refactor",
 
-  # ── web-dev (3) ────────────────────────────────────────────────────────
+  # ── web-dev (4) ────────────────────────────────────────────────────────
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",
   "setup-tailwind-typescript"      = "glyph_tailwind_ts",
   "deploy-to-vercel"               = "glyph_rocket_deploy",
+  "use-graphql-api"                = "glyph_graphql_query",
 
   # ── swarm (8) ──────────────────────────────────────────────────────────
   "coordinate-swarm"               = "glyph_swarm_nodes",

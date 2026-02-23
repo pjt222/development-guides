@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 278
+total_skills: 279
 
 domains:
   r-packages:
@@ -301,6 +301,11 @@ domains:
         complexity: basic
         language: TypeScript
         description: Deploy Next.js applications to Vercel
+      - id: use-graphql-api
+        path: use-graphql-api/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Discover, construct, execute, and chain GraphQL operations from the CLI
 
   git:
     description: Git version control and GitHub workflow skills

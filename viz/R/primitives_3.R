@@ -1026,6 +1026,45 @@ glyph_tailwind_ts <- function(cx, cy, s, col, bright) {
   )
 }
 
+glyph_graphql_query <- function(cx, cy, s, col, bright) {
+  # Outer curly braces — left brace
+  t_l <- seq(pi / 2, -pi / 2, length.out = 20)
+  brace_l <- data.frame(
+    x = cx - 16 * s + 6 * s * cos(t_l),
+    y = cy + 18 * s * sin(t_l)
+  )
+  # Right brace
+  t_r <- seq(pi / 2, -pi / 2, length.out = 20)
+  brace_r <- data.frame(
+    x = cx + 16 * s - 6 * s * cos(t_r),
+    y = cy + 18 * s * sin(t_r)
+  )
+  # Field lines inside the braces
+  fields <- lapply(c(8, 0, -8), function(dy) {
+    data.frame(
+      x    = cx - 8 * s,
+      xend = cx + 6 * s,
+      y    = cy + dy * s,
+      yend = cy + dy * s
+    )
+  })
+  # Small circle node at end of middle field line (graph traversal)
+  node <- data.frame(x0 = cx + 10 * s, y0 = cy, r = 3 * s)
+  layers <- list(
+    ggplot2::geom_path(data = brace_l, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = brace_r, .aes(x, y), color = bright, linewidth = .lw(s, 2.5)),
+    ggforce::geom_circle(data = node, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.25), color = bright, linewidth = .lw(s, 1.5))
+  )
+  for (f in fields) {
+    layers[[length(layers) + 1]] <- ggplot2::geom_segment(
+      data = f, .aes(x = x, y = y, xend = xend, yend = yend),
+      color = col, linewidth = .lw(s, 1.8)
+    )
+  }
+  layers
+}
+
 # ── Esoteric ─────────────────────────────────────────────────────────────
 
 glyph_healing_hands <- function(cx, cy, s, col, bright) {
