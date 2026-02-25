@@ -72,13 +72,13 @@ guides:
     teams: []
     skills: [install-putior, annotate-source-files, generate-workflow-diagram, analyze-codebase-workflow, configure-putior-mcp, setup-putior-ci]
 
-  - id: running-ai-self-care
-    path: guides/running-ai-self-care.md
-    title: "Running AI Self-Care"
-    description: "AI meta-cognitive wellness sessions with the self-care team"
+  - id: running-tending
+    path: guides/running-tending.md
+    title: "Running Tending"
+    description: "AI meta-cognitive tending sessions with the tending team"
     category: workflow
-    agents: [mystic, alchemist, gardener, shaman]
-    teams: [ai-self-care]
+    agents: [mystic, alchemist, gardener, shaman, contemplative]
+    teams: [tending]
     skills: [meditate, heal, center, shine, intrinsic, athanor, transmute, chrysopoeia, read-garden, remote-viewing-guidance, meditate-guidance, heal-guidance]
 
   - id: agentskills-alignment

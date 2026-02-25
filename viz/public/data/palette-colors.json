@@ -8,7 +8,7 @@
     "palettes": ["cyberpunk", "viridis", "magma", "inferno", "plasma", "cividis", "mako", "rocket", "turbo"],
     "domains": ["3d-printing", "a2a-protocol", "alchemy", "animal-training", "blender", "bushcraft", "citations", "compliance", "containerization", "crafting", "data-serialization", "defensive", "design", "devops", "diffusion", "entomology", "esoteric", "gardening", "general", "geometry", "git", "hildegard", "intellectual-property", "jigsawr", "lapidary", "library-science", "linguistics", "maintenance", "mcp-integration", "mlops", "morphic", "mycology", "number-theory", "observability", "project-management", "prospecting", "r-packages", "relocation", "reporting", "review", "shiny", "stochastic-processes", "swarm", "tcg", "theoretical-science", "travel", "versioning", "visualization", "web-dev", "workflow-visualization"],
     "agents": ["acp-developer", "advocatus-diaboli", "alchemist", "apa-specialist", "auditor", "blender-artist", "citizen-entomologist", "code-reviewer", "conservation-entomologist", "designer", "devops-engineer", "diffusion-specialist", "dog-trainer", "etymologist", "fabricator", "gardener", "geometrist", "gxp-validator", "hiking-guide", "hildegard", "ip-analyst", "janitor", "jigsawr-developer", "kabalist", "lapidary", "librarian", "markovian", "martial-artist", "mcp-developer", "mlops-engineer", "mycologist", "mystic", "nlp-specialist", "number-theorist", "polymath", "project-manager", "prospector", "putior-integrator", "quarto-developer", "r-developer", "relocation-expert", "security-analyst", "senior-data-scientist", "senior-researcher", "senior-software-developer", "senior-ux-ui-specialist", "senior-web-designer", "shaman", "shapeshifter", "shiny-developer", "skill-reviewer", "survivalist", "swarm-strategist", "taxonomic-entomologist", "tcg-specialist", "theoretical-researcher", "tour-planner", "version-manager", "web-developer"],
-    "teams": ["agentskills-alignment", "ai-self-care", "devops-platform-engineering", "entomology", "fullstack-web-dev", "gxp-compliance-validation", "ml-data-science-review", "opaque-team", "r-package-review", "scrum-team"]
+    "teams": ["agentskills-alignment", "tending", "devops-platform-engineering", "entomology", "fullstack-web-dev", "gxp-compliance-validation", "ml-data-science-review", "opaque-team", "r-package-review", "scrum-team"]
   },
   "palettes": {
     "cyberpunk": {
@@ -127,7 +127,7 @@
       },
       "teams": {
         "agentskills-alignment": "#ff66bb",
-        "ai-self-care": "#da70d6",
+        "tending": "#da70d6",
         "devops-platform-engineering": "#ff4500",
         "entomology": "#77dd44",
         "fullstack-web-dev": "#ffcc00",
@@ -254,7 +254,7 @@
       },
       "teams": {
         "agentskills-alignment": "#35608D",
-        "ai-self-care": "#2F6B8E",
+        "tending": "#2F6B8E",
         "devops-platform-engineering": "#2B758E",
         "entomology": "#27808E",
         "fullstack-web-dev": "#228B8D",
@@ -381,7 +381,7 @@
       },
       "teams": {
         "agentskills-alignment": "#641A80",
-        "ai-self-care": "#762181",
+        "tending": "#762181",
         "devops-platform-engineering": "#882781",
         "entomology": "#9A2D7F",
         "fullstack-web-dev": "#AD347C",
@@ -508,7 +508,7 @@
       },
       "teams": {
         "agentskills-alignment": "#6B186E",
-        "ai-self-care": "#7D1E6D",
+        "tending": "#7D1E6D",
         "devops-platform-engineering": "#8F2469",
         "entomology": "#A12A63",
         "fullstack-web-dev": "#B3325A",
@@ -635,7 +635,7 @@
       },
       "teams": {
         "agentskills-alignment": "#900DA4",
-        "ai-self-care": "#A01A9C",
+        "tending": "#A01A9C",
         "devops-platform-engineering": "#AD2793",
         "entomology": "#BB3488",
         "fullstack-web-dev": "#C6417D",
@@ -762,7 +762,7 @@
       },
       "teams": {
         "agentskills-alignment": "#4E576C",
-        "ai-self-care": "#595F6D",
+        "tending": "#595F6D",
         "devops-platform-engineering": "#64666F",
         "entomology": "#6E6E73",
         "fullstack-web-dev": "#787777",
@@ -889,7 +889,7 @@
       },
       "teams": {
         "agentskills-alignment": "#751F58",
-        "ai-self-care": "#891E5B",
+        "tending": "#891E5B",
         "devops-platform-engineering": "#9C1B5B",
         "entomology": "#AF1759",
         "fullstack-web-dev": "#C21753",
@@ -1016,7 +1016,7 @@
       },
       "teams": {
         "agentskills-alignment": "#414081",
-        "ai-self-care": "#3F4C92",
+        "tending": "#3F4C92",
         "devops-platform-engineering": "#3A599A",
         "entomology": "#37679F",
         "fullstack-web-dev": "#3574A1",
@@ -1143,7 +1143,7 @@
       },
       "teams": {
         "agentskills-alignment": "#18D6CB",
-        "ai-self-care": "#1FE9B0",
+        "tending": "#1FE9B0",
         "devops-platform-engineering": "#3DF58D",
         "entomology": "#67FD68",
         "fullstack-web-dev": "#91FF47",

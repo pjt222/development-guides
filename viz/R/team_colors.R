@@ -4,7 +4,7 @@
 
 TEAM_COLORS <- list(
   "agentskills-alignment"       = "#ff66bb",   # review pink
-  "ai-self-care"                = "#da70d6",   # orchid purple
+  "tending"                     = "#da70d6",   # orchid purple
   "devops-platform-engineering" = "#ff4500",   # orange-red
   "fullstack-web-dev"           = "#ffcc00",   # golden yellow
   "gxp-compliance-validation"   = "#ff6ec7",   # hot pink

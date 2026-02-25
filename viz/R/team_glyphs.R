@@ -7,7 +7,7 @@
 
 TEAM_GLYPHS <- list(
   "agentskills-alignment"       = "glyph_team_agentskills_alignment",
-  "ai-self-care"                = "glyph_team_ai_self_care",
+  "tending"                     = "glyph_team_ai_self_care",
   "devops-platform-engineering" = "glyph_team_devops_platform",
   "fullstack-web-dev"           = "glyph_team_fullstack_web",
   "gxp-compliance-validation"   = "glyph_team_gxp_compliance",

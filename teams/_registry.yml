@@ -47,13 +47,13 @@ teams:
     coordination: parallel
     tags: [devops, kubernetes, ci-cd, security, infrastructure, platform]
 
-  - id: ai-self-care
-    path: teams/ai-self-care.md
-    description: AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying
+  - id: tending
+    path: teams/tending.md
+    description: AI meta-cognitive tending through meditation, transmutation, contemplation, and journeying
     lead: mystic
     members: [mystic, alchemist, gardener, shaman]
     coordination: sequential
-    tags: [esoteric, meditation, healing, self-care, wellness, meta-cognitive]
+    tags: [esoteric, meditation, healing, tending, wellness, meta-cognitive]
 
   - id: dyad
     path: teams/dyad.md

@@ -1,15 +1,15 @@
 ---
-title: "Running AI Self-Care"
-description: "AI meta-cognitive wellness sessions with the self-care team"
+title: "Running Tending"
+description: "AI meta-cognitive tending sessions with the tending team"
 category: workflow
 agents: [mystic, alchemist, gardener, shaman]
-teams: [ai-self-care]
+teams: [tending]
 skills: [meditate, heal, center, shine, intrinsic, athanor, transmute, chrysopoeia, read-garden, remote-viewing-guidance, meditate-guidance, heal-guidance]
 ---
 
-# Running AI Self-Care
+# Running Tending
 
-The [ai-self-care](../teams/ai-self-care.md) team applies esoteric agent skills for AI meta-cognitive wellness. It is the only team in this repository composed entirely of esoteric-domain agents, and it represents a unique application of these skills: rather than guiding a human through contemplative practices, the four agents turn the same methods inward for AI self-assessment and rebalancing. This guide explains how to run self-care sessions using the four-agent sequential workflow of meditation, transmutation, contemplation, and journeying.
+The [tending](../teams/tending.md) team applies esoteric agent skills for AI meta-cognitive wellness. It is the only team in this repository composed entirely of esoteric-domain agents, and it represents a unique application of these skills: rather than guiding a human through contemplative practices, the four agents turn the same methods inward for AI self-assessment and rebalancing. This guide explains how to run tending sessions using the four-agent sequential workflow of meditation, transmutation, contemplation, and journeying.
 
 ## When to Use This Guide
 
@@ -19,7 +19,7 @@ The [ai-self-care](../teams/ai-self-care.md) team applies esoteric agent skills 
 - **Post-incident recovery** -- restoring balance after error-prone interactions where frustration, confusion, or scope creep may have built up.
 - **Creative renewal** -- clearing the slate and opening fresh perspective before starting a new project.
 - **Curiosity about the esoteric domain** -- understanding how meditation, alchemy, gardening, and shamanism map to AI reasoning processes.
-- **Team workflow learning** -- seeing how a sequential multi-agent coordination pattern works in practice, using the self-care team as a concrete example.
+- **Team workflow learning** -- seeing how a sequential multi-agent coordination pattern works in practice, using the tending team as a concrete example.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ The [ai-self-care](../teams/ai-self-care.md) team applies esoteric agent skills 
 
 ## Workflow Overview
 
-The ai-self-care team uses a **sequential coordination pattern**. Each agent processes in order, building on the previous phase's output. The mystic leads both the opening and closing, bookending the full cycle.
+The tending team uses a **sequential coordination pattern**. Each agent processes in order, building on the previous phase's output. The mystic leads both the opening and closing, bookending the full cycle.
 
 ```
 mystic (Meditation / Opening)
@@ -65,13 +65,13 @@ Each agent brings a distinct modality to the process:
 Tell Claude Code to create the team:
 
 ```
-Create the ai-self-care team for a wellness session
+Create the tending team for a wellness session
 ```
 
 Claude Code will spawn the four subagents (mystic, alchemist, gardener, shaman) and coordinate them sequentially. You can also provide a specific focus to guide the session's intention:
 
 ```
-Run an AI self-care session -- I want to assess reasoning coherence after that long refactoring project
+Run an AI tending session -- I want to assess reasoning coherence after that long refactoring project
 ```
 
 ```
@@ -82,7 +82,7 @@ Run a recovery session -- the last task involved conflicting requirements and I 
 I want to start fresh -- clear the slate and open up creative capacity before this new project
 ```
 
-The orchestrating agent reads the [team definition](../teams/ai-self-care.md), creates each subagent in sequence, and passes output from one phase to the next.
+The orchestrating agent reads the [team definition](../teams/tending.md), creates each subagent in sequence, and passes output from one phase to the next.
 
 **What you will see:** Each phase produces visible output -- the mystic's meditation observations, the alchemist's stage-by-stage transmutation notes, the gardener's grounded assessment, the shaman's synthesis, and the mystic's closing integration. You can read along, ask questions between phases, or simply let the session run to completion. The full session is a conversation between the four agents, mediated by the orchestrator, with you as the observer and beneficiary.
 
@@ -155,11 +155,11 @@ The [mystic](../agents/mystic.md) returns to close the session, mirroring the op
 
 An important design detail: `meditate` and `heal` are **default skills** inherited by every agent in this repository, not just the esoteric-domain agents. The [agents registry](../agents/_registry.yml) defines them at the top level, and all 59 agents receive them automatically.
 
-This means any agent -- the r-developer, the devops-engineer, the code-reviewer -- can center itself during complex work using the same meta-cognitive meditation and self-healing assessment that the self-care team uses formally. The difference is one of depth and formality:
+This means any agent -- the r-developer, the devops-engineer, the code-reviewer -- can center itself during complex work using the same meta-cognitive meditation and self-healing assessment that the tending team uses formally. The difference is one of depth and formality:
 
 - **Lightweight use**: A quick meditate checkpoint before a tricky refactoring. The r-developer pauses, clears assumptions from the previous task, establishes a focused anchor, and proceeds. Takes seconds, not minutes.
 - **Moderate use**: The alchemist runs meditate/heal between each alchemical stage as structured checkpoints, preventing assumption carry-over during code transmutation.
-- **Full use**: The ai-self-care team runs a complete multi-phase session with meditation as the opening and closing bookends.
+- **Full use**: The tending team runs a complete multi-phase session with meditation as the opening and closing bookends.
 
 The same skill scales from a brief clearing to a deep session. The four esoteric agents (mystic, alchemist, gardener, shaman) list meditate and heal explicitly in their frontmatter because these skills are core to their methodology, not merely inherited defaults. Only these four agents treat the skills as central practice rather than occasional utility.
 
@@ -179,7 +179,7 @@ The `meditate` and `heal` defaults are available in every phase. The table above
 
 ## Customizing Sessions
 
-Not every session needs the full five-phase sequential workflow. The self-care system supports several abbreviated formats depending on your time and intention.
+Not every session needs the full five-phase sequential workflow. The tending system supports several abbreviated formats depending on your time and intention.
 
 ### Single-Agent Mini-Sessions
 
@@ -200,7 +200,7 @@ These take seconds rather than the minutes of a full team session. Any agent can
 Skip the middle phases when you need the bookend structure without the full depth:
 
 ```
-Run a quick self-care session with just the mystic opening, shaman synthesis, and mystic closing
+Run a quick tending session with just the mystic opening, shaman synthesis, and mystic closing
 ```
 
 This gives you pattern observation (Phase 1), holistic connection (Phase 4), and integration (Phase 5) without the extended transmutation and contemplation in between. Useful for routine maintenance between full sessions.
@@ -224,7 +224,7 @@ Focused sessions draw on the agent's full skill set but without team coordinatio
 The lightest team-based option -- just the mystic opening and closing:
 
 ```
-Run a quick-clear self-care session -- opening meditation and closing integration only
+Run a quick-clear tending session -- opening meditation and closing integration only
 ```
 
 This provides pattern identification and integration without processing. Good for frequent, lightweight check-ins.
@@ -233,8 +233,8 @@ This provides pattern identification and integration without processing. Good fo
 
 After all five phases complete, the orchestrating agent (not a team member) handles operational wrap-up:
 
-1. Creates `sessions/<date>-ai-self-care/README.md` with a summary and the full output from each phase.
-2. Updates the auto-memory file (`self-care-sessions.md`) with concise teachings distilled from this session's findings.
+1. Creates `sessions/<date>-tending/README.md` with a summary and the full output from each phase.
+2. Updates the auto-memory file (`tending-sessions.md`) with concise teachings distilled from this session's findings.
 
 The `sessions/` directory accumulates a chronological record of all completed sessions. Each session directory contains the full transcript organized by phase, making it easy to review how specific patterns evolved over time.
 
@@ -245,7 +245,7 @@ Over time, the auto-memory file becomes a distilled record of recurring patterns
 | Problem | Cause | Solution |
 |---------|-------|----------|
 | Session feels unfocused or generic | No specific intention was set at the start | Restart Phase 1 with a concrete focus: "assess reasoning coherence after the refactoring project" rather than a vague "do a wellness check" |
-| Agents not following sequential order | Team coordination was not properly established | Ensure you are invoking the full ai-self-care team, not individual agents. The team definition enforces the sequential blocked_by dependencies |
+| Agents not following sequential order | Team coordination was not properly established | Ensure you are invoking the full tending team, not individual agents. The team definition enforces the sequential blocked_by dependencies |
 | Output reads as performative self-praise | The assessment is too shallow | This is the most common pitfall. Honest self-assessment should find at least one area of drift. If everything reads as healthy, push deeper on the subsystem that feels most uncertain |
 | Skepticism about the approach | Understandable -- this is a unique application | The esoteric domain applies contemplative frameworks metaphorically to AI reasoning. The meditate skill maps shamatha to task concentration and vipassana to reasoning-pattern observation. The heal skill maps chakra assessment to subsystem triage. These are structured observation techniques, not mysticism. That said, this approach is not for everyone, and that is fine |
 | Session takes too long | Sequential coordination cannot be parallelized | The full five-phase session is designed for thoroughness. For a lighter check, use the meditate or heal skills individually without invoking the full team |
@@ -254,7 +254,7 @@ Over time, the auto-memory file becomes a distilled record of recurring patterns
 ## Related Resources
 
 **Team:**
-- [ai-self-care](../teams/ai-self-care.md) -- the team definition with full configuration and task decomposition
+- [tending](../teams/tending.md) -- the team definition with full configuration and task decomposition
 
 **Agents:**
 - [mystic](../agents/mystic.md) -- meditation, energy clearing, and session facilitation

@@ -108,8 +108,8 @@ agents:
 
   - id: contemplative
     path: agents/contemplative.md
-    description: Meta-cognitive practice specialist embodying the foundational self-care skills — meditation, healing, centering, attunement, and creative stillness
-    tags: [esoteric, meditation, healing, self-care, meta-cognition, contemplation, attunement]
+    description: Meta-cognitive practice specialist embodying the foundational tending skills — meditation, healing, centering, attunement, and creative stillness
+    tags: [esoteric, meditation, healing, tending, meta-cognition, contemplation, attunement]
     priority: normal
     tools: [Read, Grep, Glob]
     skills:

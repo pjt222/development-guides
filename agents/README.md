@@ -44,7 +44,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [blender-artist](blender-artist.md) | normal | 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition |
 | [citizen-entomologist](citizen-entomologist.md) | normal | Curiosity-driven entomologist for accessible insect identification, citizen science participation, nature education, and community engagement |
 | [conservation-entomologist](conservation-entomologist.md) | normal | Conservation-first entomologist for ecological assessment, pollinator surveys, habitat preservation, and non-destructive insect observation |
-| [contemplative](contemplative.md) | normal | Meta-cognitive practice specialist embodying the foundational self-care skills — meditation, healing, centering, attunement, and creative stillness |
+| [contemplative](contemplative.md) | normal | Meta-cognitive practice specialist embodying the foundational tending skills — meditation, healing, centering, attunement, and creative stillness |
 | [designer](designer.md) | normal | Ornamental design specialist for historical style analysis and AI-assisted image generation using Z-Image, grounded in Alexander Speltz's classical ornament taxonomy |
 | [diffusion-specialist](diffusion-specialist.md) | normal | Diffusion process specialist bridging cognitive drift-diffusion models and generative AI diffusion models for parameter estimation and implementation |
 | [dog-trainer](dog-trainer.md) | normal | Canine behavior specialist for obedience training, socialization, and behavioral modification using positive reinforcement and force-free methods |

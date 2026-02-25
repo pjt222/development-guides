@@ -23,7 +23,7 @@ Teams complement agents and skills:
 | [fullstack-web-dev](fullstack-web-dev.md) | web-developer | 4 | sequential | Full-stack web development pipeline from scaffolding through design, UX, and security review |
 | [ml-data-science-review](ml-data-science-review.md) | senior-data-scientist | 4 | hub-and-spoke | Comprehensive ML and data science review covering statistics, methodology, MLOps, and architecture |
 | [devops-platform-engineering](devops-platform-engineering.md) | devops-engineer | 4 | parallel | Platform engineering combining infrastructure, ML platform, security, and architecture |
-| [ai-self-care](ai-self-care.md) | mystic | 4 | sequential | AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying |
+| [tending](tending.md) | mystic | 4 | sequential | AI meta-cognitive tending through meditation, transmutation, contemplation, and journeying |
 | [dyad](dyad.md) | contemplative | 2 | reciprocal | Lightweight paired practice team with reciprocal coordination — two agents alternating between practitioner and witness roles |
 | [scrum-team](scrum-team.md) | project-manager | 3 | timeboxed | Pure Scrum team enforcing the full framework with three accountabilities, five events, and three artifacts |
 | [opaque-team](opaque-team.md) | shapeshifter | 1 | adaptive | Variable-size team of N shapeshifters that self-organize into any roles needed |

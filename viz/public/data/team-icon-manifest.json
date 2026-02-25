@@ -49,8 +49,8 @@
       "glow": "orange-red",
       "concept": "Gear/cog with central hole and 4 platform nodes at cardinal directions"
     },
-    "ai-self-care": {
-      "description": "AI self-care team with spiral mandala and modality nodes",
+    "tending": {
+      "description": "Tending team with spiral mandala and modality nodes",
       "glow": "orchid-purple",
       "concept": "Archimedean spiral with 4 sequential modality nodes"
     },
@@ -77,8 +77,8 @@
       "status": "done"
     },
     {
-      "teamId": "ai-self-care",
-      "path": "public/icons/cyberpunk/teams/ai-self-care.webp",
+      "teamId": "tending",
+      "path": "public/icons/cyberpunk/teams/tending.webp",
       "status": "done"
     },
     {

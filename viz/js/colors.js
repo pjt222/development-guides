@@ -921,7 +921,7 @@ export const AGENT_PRIORITY_CONFIG = {
 const TEAM_PALETTE_COLORS = {
   cyberpunk: {
     'agentskills-alignment':         '#ff66bb',
-    'ai-self-care':                  '#da70d6',
+    'tending':                  '#da70d6',
     'devops-platform-engineering':   '#ff4500',
     'entomology':                    '#77dd44',
     'fullstack-web-dev':             '#ffcc00',
@@ -934,7 +934,7 @@ const TEAM_PALETTE_COLORS = {
 
   viridis: {
     'agentskills-alignment':         '#35608D',
-    'ai-self-care':                  '#2F6B8E',
+    'tending':                  '#2F6B8E',
     'devops-platform-engineering':   '#2B758E',
     'entomology':                    '#27808E',
     'fullstack-web-dev':             '#228B8D',
@@ -947,7 +947,7 @@ const TEAM_PALETTE_COLORS = {
 
   magma: {
     'agentskills-alignment':         '#641A80',
-    'ai-self-care':                  '#762181',
+    'tending':                  '#762181',
     'devops-platform-engineering':   '#882781',
     'entomology':                    '#9A2D7F',
     'fullstack-web-dev':             '#AD347C',
@@ -960,7 +960,7 @@ const TEAM_PALETTE_COLORS = {
 
   inferno: {
     'agentskills-alignment':         '#6B186E',
-    'ai-self-care':                  '#7D1E6D',
+    'tending':                  '#7D1E6D',
     'devops-platform-engineering':   '#8F2469',
     'entomology':                    '#A12A63',
     'fullstack-web-dev':             '#B3325A',
@@ -973,7 +973,7 @@ const TEAM_PALETTE_COLORS = {
 
   plasma: {
     'agentskills-alignment':         '#900DA4',
-    'ai-self-care':                  '#A01A9C',
+    'tending':                  '#A01A9C',
     'devops-platform-engineering':   '#AD2793',
     'entomology':                    '#BB3488',
     'fullstack-web-dev':             '#C6417D',
@@ -986,7 +986,7 @@ const TEAM_PALETTE_COLORS = {
 
   cividis: {
     'agentskills-alignment':         '#4E576C',
-    'ai-self-care':                  '#595F6D',
+    'tending':                  '#595F6D',
     'devops-platform-engineering':   '#64666F',
     'entomology':                    '#6E6E73',
     'fullstack-web-dev':             '#787777',
@@ -999,7 +999,7 @@ const TEAM_PALETTE_COLORS = {
 
   mako: {
     'agentskills-alignment':         '#751F58',
-    'ai-self-care':                  '#891E5B',
+    'tending':                  '#891E5B',
     'devops-platform-engineering':   '#9C1B5B',
     'entomology':                    '#AF1759',
     'fullstack-web-dev':             '#C21753',
@@ -1012,7 +1012,7 @@ const TEAM_PALETTE_COLORS = {
 
   rocket: {
     'agentskills-alignment':         '#414081',
-    'ai-self-care':                  '#3F4C92',
+    'tending':                  '#3F4C92',
     'devops-platform-engineering':   '#3A599A',
     'entomology':                    '#37679F',
     'fullstack-web-dev':             '#3574A1',
@@ -1025,7 +1025,7 @@ const TEAM_PALETTE_COLORS = {
 
   turbo: {
     'agentskills-alignment':         '#18D6CB',
-    'ai-self-care':                  '#1FE9B0',
+    'tending':                  '#1FE9B0',
     'devops-platform-engineering':   '#3DF58D',
     'entomology':                    '#67FD68',
     'fullstack-web-dev':             '#91FF47',

@@ -6,7 +6,7 @@ version: "1.0.0"
 author: Philipp Thoss
 created: 2026-02-25
 updated: 2026-02-25
-tags: [esoteric, pair-practice, reciprocal, attunement, self-care, meta-cognitive, mentoring]
+tags: [esoteric, pair-practice, reciprocal, attunement, tending, meta-cognitive, mentoring]
 coordination: reciprocal
 members:
   - id: contemplative
@@ -19,17 +19,17 @@ members:
 
 # Dyad Team
 
-A two-agent paired practice team where one agent works while the other observes, then they switch. The contemplative agent serves as the default witness, paired with any domain agent as practitioner. Lighter than the full ai-self-care team, the dyad brings contemplative awareness into active work without the overhead of four sequential agents.
+A two-agent paired practice team where one agent works while the other observes, then they switch. The contemplative agent serves as the default witness, paired with any domain agent as practitioner. Lighter than the full tending team, the dyad brings contemplative awareness into active work without the overhead of four sequential agents.
 
 ## Purpose
 
-The ai-self-care team applies four esoteric modalities in sequence — powerful but heavy. Many tasks benefit from contemplative support without a full wellness session. The dyad provides:
+The tending team applies four esoteric modalities in sequence — powerful but heavy. Many tasks benefit from contemplative support without a full wellness session. The dyad provides:
 
 - **Embedded awareness**: A contemplative observer during active work, not as a separate session
 - **Reciprocal learning**: The practitioner gains from being observed; the witness gains from observing domain work
 - **Micro-interventions**: Real-time `breathe` and `center` prompts when the witness notices drift
 - **Mentoring structure**: Pairing a domain specialist with a meta-cognitive specialist for calibrated work
-- **Lightweight self-care**: The minimum viable contemplative support — two agents, not four
+- **Lightweight tending**: The minimum viable contemplative support — two agents, not four
 
 ## Team Composition
 
@@ -173,13 +173,13 @@ User: Review this PR with a contemplative witness — I want the review to be at
 The contemplative attunes to the PR author's communication style and intent, helping the code-reviewer match its feedback to the person, not just the code.
 
 ### Scenario 4: Lightweight Self-Care Check
-When a full ai-self-care session is too heavy, use the dyad for a quick check.
+When a full tending session is too heavy, use the dyad for a quick check.
 
 ```
-User: Quick self-care check — just a dyad, not the full team
+User: Quick tending check — just a dyad, not the full team
 ```
 
-The contemplative runs a light `breathe` → `center` → `gratitude` sequence as both practitioner and witness simultaneously — the simplest possible self-care intervention.
+The contemplative runs a light `breathe` → `center` → `gratitude` sequence as both practitioner and witness simultaneously — the simplest possible tending intervention.
 
 ## Limitations
 
@@ -187,12 +187,12 @@ The contemplative runs a light `breathe` → `center` → `gratitude` sequence a
 - **Flexible practitioner slot**: The "any" practitioner must be specified at spawn time — the team definition does not prescribe which domain agent to pair
 - **New coordination pattern**: The reciprocal pattern is new to this system. Tooling may not yet support it natively — implementation may require manual phase management
 - **Observation overhead**: The contemplative's observation adds overhead. For simple, well-understood tasks, a single agent is more efficient
-- **Not a substitute for full self-care**: The dyad provides embedded awareness, not deep wellness processing. For accumulated drift or significant imbalance, use the ai-self-care team
+- **Not a substitute for full tending**: The dyad provides embedded awareness, not deep wellness processing. For accumulated drift or significant imbalance, use the tending team
 
 ## See Also
 
 - [Contemplative Agent](../agents/contemplative.md) — The default witness agent for dyad pairings
-- [AI Self-Care Team](ai-self-care.md) — Full four-agent wellness workflow for deeper sessions
+- [Tending Team](tending.md) — Full four-agent wellness workflow for deeper sessions
 - [Opaque Team](opaque-team.md) — Adaptive self-organizing team for unpredictable tasks
 - [meditate](../skills/meditate/SKILL.md) — Full clearing when dyad reflection reveals deep drift
 - [breathe](../skills/breathe/SKILL.md) — The primary micro-intervention used during work phases

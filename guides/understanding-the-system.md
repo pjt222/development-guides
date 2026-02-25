@@ -104,7 +104,7 @@ There are currently 10 teams using 5 coordination patterns:
 | Pattern | Description | Used by |
 |---------|-------------|---------|
 | hub-and-spoke | Lead distributes tasks, collects results, synthesizes | r-package-review, gxp-compliance-validation, ml-data-science-review, agentskills-alignment, entomology |
-| sequential | Agents work in a defined order, each building on the previous output | fullstack-web-dev, ai-self-care |
+| sequential | Agents work in a defined order, each building on the previous output | fullstack-web-dev, tending |
 | parallel | All agents work simultaneously on independent subtasks | devops-platform-engineering |
 | timeboxed | Work is organized into fixed-length iterations (sprints) | scrum-team |
 | adaptive | Team self-organizes dynamically based on the task | opaque-team |
@@ -211,7 +211,7 @@ Teams coordinate multiple agents on a shared objective. You activate a team by a
 
 > "Activate the scrum-team for this two-week sprint. I will be the Product Owner."
 
-> "Run an ai-self-care session."
+> "Run an tending session."
 
 When a team is activated, Claude Code reads the team definition, identifies the lead and members, and follows the coordination pattern. For the `scrum-team`, the human user takes the Product Owner role, and the `project-manager` agent serves as Scrum Master.
 

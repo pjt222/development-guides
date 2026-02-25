@@ -192,7 +192,7 @@ members:
 | Pattern | Flow | When to Use | Examples |
 |---------|------|-------------|----------|
 | **Hub-and-spoke** | Lead distributes, collects, synthesizes | Review workflows needing merged perspectives | `r-package-review`, `gxp-compliance-validation` |
-| **Sequential** | A -> B -> C -> D | Pipeline where each step depends on the previous | `fullstack-web-dev`, `ai-self-care` |
+| **Sequential** | A -> B -> C -> D | Pipeline where each step depends on the previous | `fullstack-web-dev`, `tending` |
 | **Parallel** | Members work independently, lead merges | Independent subtasks that can run concurrently | `devops-platform-engineering` |
 | **Timeboxed** | Fixed-duration iterative cycles | Ongoing projects with inspect-and-adapt cadence | `scrum-team` |
 | **Adaptive** | Self-organizing, no fixed structure | Exploratory tasks where work shape is unknown | `opaque-team` |

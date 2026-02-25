@@ -43,9 +43,10 @@ PALETTE_AGENT_ORDER <- c(
 
 # ── Team order (alphabetical, 10 teams) ───────────────────────────────────
 PALETTE_TEAM_ORDER <- c(
-  "agentskills-alignment", "ai-self-care", "devops-platform-engineering",
+  "agentskills-alignment", "devops-platform-engineering", "dyad",
   "entomology", "fullstack-web-dev", "gxp-compliance-validation",
-  "ml-data-science-review", "opaque-team", "r-package-review", "scrum-team"
+  "ml-data-science-review", "opaque-team", "r-package-review", "scrum-team",
+  "tending"
 )
 
 # ── viridisLite option mapping ────────────────────────────────────────────
@@ -196,7 +197,7 @@ get_cyberpunk_colors <- function() {
 
   teams <- list(
     "agentskills-alignment"       = "#ff66bb",   # review pink
-    "ai-self-care"                = "#da70d6",   # orchid purple
+    "tending"                     = "#da70d6",   # orchid purple
     "devops-platform-engineering" = "#ff4500",   # orange-red
     "entomology"                  = "#77dd44",   # leaf green
     "fullstack-web-dev"           = "#ffcc00",   # golden yellow

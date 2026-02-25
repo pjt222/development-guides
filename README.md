@@ -74,7 +74,7 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 - [Running a Code Review](guides/running-a-code-review.md) — Multi-agent code review using review teams for R packages and web projects
 - [Managing a Scrum Sprint](guides/managing-a-scrum-sprint.md) — Running Scrum sprints with the scrum-team: planning, dailies, review, and retro
 - [Visualizing Workflows with putior](guides/visualizing-workflows-with-putior.md) — End-to-end putior workflow visualization from annotation to themed Mermaid diagrams
-- [Running AI Self-Care](guides/running-ai-self-care.md) — AI meta-cognitive wellness sessions with the self-care team
+- [Running Tending](guides/running-tending.md) — AI meta-cognitive tending sessions with the tending team
 - [AgentSkills Alignment](guides/agentskills-alignment.md) — Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity
 
 **Infrastructure**

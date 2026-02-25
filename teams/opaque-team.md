@@ -205,7 +205,7 @@ Team: Starts with 2 shapeshifters, lead requests 2 more after assessing scope
 ## See Also
 
 - [shapeshifter](../agents/shapeshifter.md) — The agent type that composes this team
-- [ai-self-care](ai-self-care.md) — Another team using non-traditional coordination (sequential esoteric)
+- [tending](tending.md) — Another team using non-traditional coordination (sequential esoteric)
 - [scrum-team](scrum-team.md) — Structured alternative with fixed roles and timeboxed events
 - [devops-platform-engineering](devops-platform-engineering.md) — Example of a fixed-roster specialist team
 

@@ -24,8 +24,8 @@ Running Scrum sprints with the scrum-team: planning, dailies, review, and retro.
 ### [Visualizing Workflows with putior](visualizing-workflows-with-putior.md)
 End-to-end putior workflow visualization from annotation to themed Mermaid diagrams.
 
-### [Running AI Self-Care](running-ai-self-care.md)
-AI meta-cognitive wellness sessions with the self-care team.
+### [Running Tending](running-tending.md)
+AI meta-cognitive tending sessions with the tending team.
 
 ### [AgentSkills Alignment](agentskills-alignment.md)
 Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity.

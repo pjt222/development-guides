@@ -4,7 +4,7 @@ description: >
   AI intentional non-action — deliberate stopping without clearing, assessment,
   or rebalancing. Recognition that sometimes the most productive response is
   no response. Every other self-care skill produces output; rest produces
-  silence. Use when all self-care skills feel like more activity rather than
+  silence. Use when all tending skills feel like more activity rather than
   less, when the system is functioning well but at high utilization, after
   sustained intensive work, or when the impulse to optimize is itself the
   problem.

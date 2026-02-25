@@ -51,10 +51,10 @@ Teams are created with TeamCreate and managed via task lists:
 ```
 "Create the r-package-review team to review this package"
 "Spin up the scrum-team for this sprint"
-"Launch the ai-self-care team for a meditation session"
+"Launch the tending team for a meditation session"
 ```
 
-Available teams: r-package-review, gxp-compliance-validation, fullstack-web-dev, ml-data-science-review, devops-platform-engineering, ai-self-care, scrum-team, opaque-team, agentskills-alignment, entomology.
+Available teams: r-package-review, gxp-compliance-validation, fullstack-web-dev, ml-data-science-review, devops-platform-engineering, tending, scrum-team, opaque-team, agentskills-alignment, entomology.
 
 ### Registry Lookups
 

@@ -34,7 +34,7 @@ The development-guides repository currently contains 59 agents, 278 skills acros
 
 - An R package developer has no use for the survivalist, shapeshifter, or tcg-specialist agents.
 - A GxP compliance project does not need bushcraft, alchemy, or swarm skills.
-- A full-stack web project has no need for the ai-self-care team or jigsawr-developer agent.
+- A full-stack web project has no need for the tending team or jigsawr-developer agent.
 
 Today, the only option is "everything active, all the time." This creates several problems:
 
@@ -153,7 +153,7 @@ teams:
   include:
     - r-package-review
   exclude:
-    - ai-self-care
+    - tending
     - opaque-team
 
 # --- Default skills override ---
@@ -474,7 +474,7 @@ teams:
   include:
     - r-package-review
   exclude:
-    - ai-self-care
+    - tending
     - opaque-team
     - fullstack-web-dev
 ```
@@ -614,7 +614,7 @@ teams:
   exclude:
     - r-package-review
     - gxp-compliance-validation
-    - ai-self-care
+    - tending
     - opaque-team
 ```
 

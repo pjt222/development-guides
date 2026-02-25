@@ -8878,9 +8878,9 @@
       "path": "teams/devops-platform-engineering.md"
     },
     {
-      "id": "team:ai-self-care",
+      "id": "team:tending",
       "type": "team",
-      "title": "AI Self Care",
+      "title": "Tending",
       "lead": "mystic",
       "members": [
         "mystic",
@@ -8898,7 +8898,7 @@
         "wellness",
         "meta-cognitive"
       ],
-      "path": "teams/ai-self-care.md"
+      "path": "teams/tending.md"
     },
     {
       "id": "team:scrum-team",
@@ -16299,22 +16299,22 @@
       "type": "team"
     },
     {
-      "source": "team:ai-self-care",
+      "source": "team:tending",
       "target": "agent:mystic",
       "type": "team"
     },
     {
-      "source": "team:ai-self-care",
+      "source": "team:tending",
       "target": "agent:alchemist",
       "type": "team"
     },
     {
-      "source": "team:ai-self-care",
+      "source": "team:tending",
       "target": "agent:gardener",
       "type": "team"
     },
     {
-      "source": "team:ai-self-care",
+      "source": "team:tending",
       "target": "agent:shaman",
       "type": "team"
     },
