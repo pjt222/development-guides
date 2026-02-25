@@ -1,6 +1,8 @@
 /**
  * chord.js - Circular chord diagram visualization (D3 SVG)
  *
+ * PUT:frontend-pipeline  [mode:chord] SVG-based circular chord diagram (D3)
+ *
  * Outer ring segments: one per domain, sized by skill count.
  * Chords: connect domains that share agents, cross-referenced skills,
  * or team composition relationships.

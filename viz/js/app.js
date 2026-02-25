@@ -1,5 +1,11 @@
 /**
  * app.js - Bootstrap: load data, init subsystems, bind controls
+ *
+ * PUT:frontend-pipeline  [entry] Fetch skills.json data
+ * PUT:frontend-pipeline  [step]  Init filter panel, detail panel, graph
+ * PUT:frontend-pipeline  [step]  Bind mode switching (2D/3D/Hive/Chord/Flow)
+ * PUT:frontend-pipeline  [step]  Lazy-load mode modules on demand
+ * PUT:frontend-pipeline  [exit]  Render active mode with current filters
  */
 
 import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
@@ -16,68 +22,78 @@ let currentMode = '2d';
 let graph3dMod = null;
 let hiveMod = null;
 let chordMod = null;
+let workflowMod = null;
 let switching = false;
 
 // ── Mode-aware wrappers ─────────────────────────────────────────────
 
 function activeFocusNode(id) {
-  if (currentMode === 'chord' && chordMod) chordMod.focusNodeChord(id);
+  if (currentMode === 'workflow' && workflowMod) workflowMod.focusNodeWorkflow(id);
+  else if (currentMode === 'chord' && chordMod) chordMod.focusNodeChord(id);
   else if (currentMode === 'hive' && hiveMod) hiveMod.focusNodeHive(id);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.focusNode3D(id);
   else focusNode(id);
 }
 
 function activeResetView() {
-  if (currentMode === 'chord' && chordMod) chordMod.resetViewChord();
+  if (currentMode === 'workflow' && workflowMod) workflowMod.resetViewWorkflow();
+  else if (currentMode === 'chord' && chordMod) chordMod.resetViewChord();
   else if (currentMode === 'hive' && hiveMod) hiveMod.resetViewHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.resetView3D();
   else resetView();
 }
 
 function activeZoomIn() {
-  if (currentMode === 'chord' && chordMod) chordMod.zoomInChord();
+  if (currentMode === 'workflow' && workflowMod) workflowMod.zoomInWorkflow();
+  else if (currentMode === 'chord' && chordMod) chordMod.zoomInChord();
   else if (currentMode === 'hive' && hiveMod) hiveMod.zoomInHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomIn3D();
   else zoomIn();
 }
 
 function activeZoomOut() {
-  if (currentMode === 'chord' && chordMod) chordMod.zoomOutChord();
+  if (currentMode === 'workflow' && workflowMod) workflowMod.zoomOutWorkflow();
+  else if (currentMode === 'chord' && chordMod) chordMod.zoomOutChord();
   else if (currentMode === 'hive' && hiveMod) hiveMod.zoomOutHive();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.zoomOut3D();
   else zoomOut();
 }
 
 function activeSetSkillVisibility(ids) {
-  if (currentMode === 'chord' && chordMod) chordMod.setSkillVisibilityChord(ids);
+  if (currentMode === 'workflow' && workflowMod) workflowMod.setSkillVisibilityWorkflow(ids);
+  else if (currentMode === 'chord' && chordMod) chordMod.setSkillVisibilityChord(ids);
   else if (currentMode === 'hive' && hiveMod) hiveMod.setSkillVisibilityHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setSkillVisibility3D(ids);
   else setSkillVisibility(ids);
 }
 
 function activeSetVisibleAgents(ids) {
-  if (currentMode === 'chord' && chordMod) chordMod.setVisibleAgentsChord(ids);
+  if (currentMode === 'workflow' && workflowMod) workflowMod.setVisibleAgentsWorkflow(ids);
+  else if (currentMode === 'chord' && chordMod) chordMod.setVisibleAgentsChord(ids);
   else if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleAgentsHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleAgents3D(ids);
   else setVisibleAgents(ids);
 }
 
 function activeSetVisibleTeams(ids) {
-  if (currentMode === 'chord' && chordMod) chordMod.setVisibleTeamsChord(ids);
+  if (currentMode === 'workflow' && workflowMod) workflowMod.setVisibleTeamsWorkflow(ids);
+  else if (currentMode === 'chord' && chordMod) chordMod.setVisibleTeamsChord(ids);
   else if (currentMode === 'hive' && hiveMod) hiveMod.setVisibleTeamsHive(ids);
   else if (currentMode === '3d' && graph3dMod) graph3dMod.setVisibleTeams3D(ids);
   else setVisibleTeams(ids);
 }
 
 function activeRefreshGraph() {
-  if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
+  if (currentMode === 'workflow' && workflowMod) workflowMod.refreshWorkflowGraph();
+  else if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
   else if (currentMode === 'hive' && hiveMod) hiveMod.refreshHiveGraph();
   else if (currentMode === '3d' && graph3dMod) graph3dMod.refreshGraph3D();
   else refreshGraph();
 }
 
 function activeGetVisibleAgentIds() {
-  if (currentMode === 'chord' && chordMod) return chordMod.getVisibleAgentIdsChord();
+  if (currentMode === 'workflow' && workflowMod) return workflowMod.getVisibleAgentIdsWorkflow();
+  else if (currentMode === 'chord' && chordMod) return chordMod.getVisibleAgentIdsChord();
   else if (currentMode === 'hive' && hiveMod) return hiveMod.getVisibleAgentIdsHive();
   else if (currentMode === '3d' && graph3dMod) return graph3dMod.getVisibleAgentIds3D();
   return getVisibleAgentIds();
@@ -90,6 +106,7 @@ function setActiveMode(mode) {
   document.getElementById('btn-3d').classList.toggle('active', mode === '3d');
   document.getElementById('btn-hive').classList.toggle('active', mode === 'hive');
   document.getElementById('btn-chord').classList.toggle('active', mode === 'chord');
+  document.getElementById('btn-flow').classList.toggle('active', mode === 'workflow');
 }
 
 function isWebGLAvailable() {
@@ -118,7 +135,9 @@ async function switchTo3D() {
     }
 
     // Destroy current mode
-    if (currentMode === 'chord' && chordMod) {
+    if (currentMode === 'workflow' && workflowMod) {
+      workflowMod.destroyWorkflowGraph();
+    } else if (currentMode === 'chord' && chordMod) {
       chordMod.destroyChordGraph();
     } else if (currentMode === 'hive' && hiveMod) {
       hiveMod.destroyHiveGraph();
@@ -184,7 +203,9 @@ function switchTo2D() {
   const container = document.getElementById('graph-container');
 
   // Destroy current non-2D mode
-  if (currentMode === 'chord' && chordMod) {
+  if (currentMode === 'workflow' && workflowMod) {
+    workflowMod.destroyWorkflowGraph();
+  } else if (currentMode === 'chord' && chordMod) {
     chordMod.destroyChordGraph();
   } else if (currentMode === 'hive' && hiveMod) {
     hiveMod.destroyHiveGraph();
@@ -246,7 +267,9 @@ async function switchToHive() {
     }
 
     // Destroy current mode
-    if (currentMode === 'chord' && chordMod) {
+    if (currentMode === 'workflow' && workflowMod) {
+      workflowMod.destroyWorkflowGraph();
+    } else if (currentMode === 'chord' && chordMod) {
       chordMod.destroyChordGraph();
     } else if (currentMode === '3d' && graph3dMod) {
       graph3dMod.destroy3DGraph();
@@ -334,7 +357,9 @@ async function switchToChord() {
     }
 
     // Destroy current mode
-    if (currentMode === 'hive' && hiveMod) {
+    if (currentMode === 'workflow' && workflowMod) {
+      workflowMod.destroyWorkflowGraph();
+    } else if (currentMode === 'hive' && hiveMod) {
       hiveMod.destroyHiveGraph();
     } else if (currentMode === '3d' && graph3dMod) {
       graph3dMod.destroy3DGraph();
@@ -368,6 +393,57 @@ async function switchToChord() {
     if (spriteLabel) spriteLabel.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Chord:', err);
+    switchTo2D();
+  }
+}
+
+// ── Workflow Mode ────────────────────────────────────────────────────
+
+async function switchToWorkflow() {
+  const container = document.getElementById('graph-container');
+
+  try {
+    if (!workflowMod) {
+      workflowMod = await import('./workflow.js');
+    }
+
+    // Destroy current mode
+    if (currentMode === 'chord' && chordMod) {
+      chordMod.destroyChordGraph();
+    } else if (currentMode === 'hive' && hiveMod) {
+      hiveMod.destroyHiveGraph();
+    } else if (currentMode === '3d' && graph3dMod) {
+      graph3dMod.destroy3DGraph();
+    } else {
+      destroyGraph();
+    }
+    container.innerHTML = '';
+
+    workflowMod.initWorkflowGraph(container, allData, {
+      onClick(node) {
+        if (node) openPanel(node);
+        else closePanel();
+      },
+      onHover(node) {
+        showTooltip(node);
+      },
+    });
+
+    currentMode = 'workflow';
+    logEvent('app', { event: 'modeSwitch', mode: 'workflow' });
+    setActiveMode('workflow');
+
+    // Hide all mode-specific controls
+    const hiveSortBtn = document.getElementById('btn-hive-sort');
+    if (hiveSortBtn) hiveSortBtn.style.display = 'none';
+    const hiveSpreadLabel = document.getElementById('hive-spread-label');
+    if (hiveSpreadLabel) hiveSpreadLabel.style.display = 'none';
+    const domainSelect = document.getElementById('hive-domain-focus');
+    if (domainSelect) domainSelect.style.display = 'none';
+    const spriteLabel = document.getElementById('3d-sprite-label');
+    if (spriteLabel) spriteLabel.style.display = 'none';
+  } catch (err) {
+    console.error('Failed to switch to Workflow:', err);
     switchTo2D();
   }
 }
@@ -505,6 +581,12 @@ async function main() {
     try { await switchToChord(); } finally { switching = false; }
   });
 
+  document.getElementById('btn-flow').addEventListener('click', async () => {
+    if (switching || currentMode === 'workflow') return;
+    switching = true;
+    try { await switchToWorkflow(); } finally { switching = false; }
+  });
+
   // ── Hive sort toggle ──
   const hiveSortBtn = document.getElementById('btn-hive-sort');
   if (hiveSortBtn) hiveSortBtn.addEventListener('click', () => {
@@ -560,6 +642,8 @@ async function main() {
       if (currentMode === 'hive' && hiveMod) hiveMod.preloadHiveIcons(data.nodes, themeSelect.value);
       // Chord: refresh to pick up new palette colors
       if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
+      // Workflow: re-render with new Mermaid theme
+      if (currentMode === 'workflow' && workflowMod) workflowMod.refreshWorkflowGraph();
       refreshSwatches();
       refreshPanelTheme();
       activeRefreshGraph();

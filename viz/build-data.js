@@ -4,6 +4,12 @@
  *
  * Parses skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
  * to produce viz/data/skills.json with nodes, links, domains, and meta.
+ *
+ * PUT:data-pipeline  [entry] Read YAML registries
+ * PUT:data-pipeline  [step]  Parse skill nodes and cross-reference links
+ * PUT:data-pipeline  [step]  Parse agent nodes and agent→skill links
+ * PUT:data-pipeline  [step]  Parse team nodes and team→agent links
+ * PUT:data-pipeline  [exit]  Write public/data/skills.json
  */
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
@@ -36,6 +42,7 @@ const TEAMS_REGISTRY_PATH = resolve(TEAMS_DIR, '_registry.yml');
 const OUTPUT_PATH = resolve(__dirname, 'public', 'data', 'skills.json');
 
 // ── Parse registry ──────────────────────────────────────────────
+// PUT:data-pipeline  [step]  Parse skills/_registry.yml into skill map
 const registry = yaml.load(readFileSync(REGISTRY_PATH, 'utf8'));
 const skillMap = new Map();          // id -> node object
 const validIds = new Set();
@@ -55,6 +62,7 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
 }
 
 // ── Parse each SKILL.md ─────────────────────────────────────────
+// PUT:data-pipeline  [step]  Extract titles, tags, and related-skill links from SKILL.md files
 const nodes = [];
 const links = [];
 
@@ -148,6 +156,7 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
 }
 
 // ── Parse agents registry ───────────────────────────────────────
+// PUT:data-pipeline  [step]  Parse agents/_registry.yml → agent nodes + agent→skill links
 const agentNodes = [];
 const agentLinks = [];
 const agentIds = new Set(); // for team -> agent link validation
@@ -187,6 +196,7 @@ if (existsSync(AGENTS_REGISTRY_PATH)) {
 }
 
 // ── Parse teams registry ────────────────────────────────────────
+// PUT:data-pipeline  [step]  Parse teams/_registry.yml → team nodes + team→agent links
 const teamNodes = [];
 const teamLinks = [];
 
@@ -225,6 +235,7 @@ if (existsSync(TEAMS_REGISTRY_PATH)) {
 }
 
 // ── Merge nodes and links ───────────────────────────────────────
+// PUT:data-pipeline  [step]  Merge skill, agent, and team nodes into unified graph
 const allNodes = [...nodes, ...agentNodes, ...teamNodes];
 const allLinks = [...links, ...agentLinks, ...teamLinks];
 
@@ -246,6 +257,7 @@ const output = {
   links: allLinks,
 };
 
+// PUT:data-pipeline  [exit]  Write merged graph to public/data/skills.json
 writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
 console.log(`Generated ${OUTPUT_PATH}`);
 console.log(`  Skills: ${nodes.length}`);

@@ -1,6 +1,12 @@
 # render.R - Shared icon rendering pipeline
 # Canvas setup -> glyph layers -> glow -> PNG -> WebP
 #
+# PUT:icon-pipeline  [entry] Resolve glyph function from SKILL_GLYPHS mapping
+# PUT:icon-pipeline  [step]  Draw glyph layers on 100x100 canvas (ggplot2)
+# PUT:icon-pipeline  [step]  Apply neon glow effect (ggfx::with_outer_glow)
+# PUT:icon-pipeline  [step]  Rasterize to temp PNG (ragg::agg_png)
+# PUT:icon-pipeline  [exit]  Convert PNG to WebP (magick::image_write)
+#
 # Optimization notes (Issue #25):
 # - Default 512px (was 1024): frontend max display is 160px (320px retina)
 # - Default glow_sigma 4 (was 8): scaled with resolution

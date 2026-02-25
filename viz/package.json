@@ -12,7 +12,8 @@
     "build-manifest": "node build-icon-manifest.js",
     "build-icons": "node build-icons.js",
     "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &",
-    "build-favicon": "Rscript build-favicon.R"
+    "build-favicon": "Rscript build-favicon.R",
+    "build-workflow": "node build-workflow.js"
   },
   "dependencies": {
     "three": "^0.182.0",

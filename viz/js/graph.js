@@ -1,5 +1,7 @@
 /**
  * graph.js - Force-graph setup, node/link rendering, interactions
+ *
+ * PUT:frontend-pipeline  [mode:2d] Canvas-based 2D force-directed layout (force-graph)
  */
 
 import ForceGraph from 'force-graph';
