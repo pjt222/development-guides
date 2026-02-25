@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 279
+total_skills: 284
 
 domains:
   r-packages:
@@ -619,6 +619,31 @@ domains:
         complexity: intermediate
         language: natural
         description: Radiant authenticity channeling genuine engagement to illuminate and resolve opposition
+      - id: breathe
+        path: breathe/SKILL.md
+        complexity: basic
+        language: natural
+        description: AI micro-reset between actions — single conscious pause to check alignment before the next step
+      - id: rest
+        path: rest/SKILL.md
+        complexity: basic
+        language: natural
+        description: AI intentional non-action — deliberate stopping without clearing, assessment, or rebalancing
+      - id: attune
+        path: attune/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI relational calibration — reading and adapting to the specific person's communication style and expertise
+      - id: dream
+        path: dream/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI unconstrained creative exploration — dropping structure to let associations form freely
+      - id: gratitude
+        path: gratitude/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: AI strength recognition — scanning for what works and understanding why to build on it
       - id: read-tree-of-life
         path: read-tree-of-life/SKILL.md
         complexity: advanced

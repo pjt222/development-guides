@@ -2,9 +2,9 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 59
-version: "2.1"
-last_updated: "2026-02-19"
+total_agents: 60
+version: "2.2"
+last_updated: "2026-02-25"
 
 default_skills:
   - id: meditate
@@ -105,6 +105,29 @@ agents:
       - make-fire
       - purify-water
       - forage-plants
+
+  - id: contemplative
+    path: agents/contemplative.md
+    description: Meta-cognitive practice specialist embodying the foundational self-care skills — meditation, healing, centering, attunement, and creative stillness
+    tags: [esoteric, meditation, healing, self-care, meta-cognition, contemplation, attunement]
+    priority: normal
+    tools: [Read, Grep, Glob]
+    skills:
+      - heal
+      - meditate
+      - center
+      - shine
+      - intrinsic
+      - breathe
+      - rest
+      - attune
+      - dream
+      - gratitude
+      - awareness
+      - observe
+      - listen
+      - honesty-humility
+      - conscientiousness
 
   - id: mystic
     path: agents/mystic.md

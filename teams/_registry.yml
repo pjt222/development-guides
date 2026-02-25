@@ -2,9 +2,9 @@
 # Machine-readable catalog of all team definitions in this library.
 # Keep in sync with the actual team files on disk.
 
-total_teams: 10
-version: "1.1"
-last_updated: "2026-02-16"
+total_teams: 11
+version: "1.2"
+last_updated: "2026-02-25"
 
 teams:
   - id: r-package-review
@@ -54,6 +54,14 @@ teams:
     members: [mystic, alchemist, gardener, shaman]
     coordination: sequential
     tags: [esoteric, meditation, healing, self-care, wellness, meta-cognitive]
+
+  - id: dyad
+    path: teams/dyad.md
+    description: Lightweight paired practice team with reciprocal coordination — two agents alternating between practitioner and witness roles
+    lead: contemplative
+    members: [contemplative, any]
+    coordination: reciprocal
+    tags: [esoteric, pair-practice, reciprocal, attunement, self-care, meta-cognitive, mentoring]
 
   - id: scrum-team
     path: teams/scrum-team.md
