@@ -56,7 +56,19 @@ workflow <- put_auto("./src/")
 workflow <- put_merge("./src/", merge_strategy = "supplement")
 ```
 
-**Expected:** A data frame with at least one row, containing `id`, `label`, and optionally `input`, `output`, `source_file` columns.
+The workflow data frame may include a `node_type` column from annotations. Node types control Mermaid shapes:
+
+| `node_type` | Mermaid Shape | Use Case |
+|-------------|---------------|----------|
+| `"input"` | Stadium `([...])` | Data sources, configuration files |
+| `"output"` | Asymmetric `>...]` | Generated artifacts, reports |
+| `"process"` | Rectangle `[...]` | Processing steps (default) |
+| `"decision"` | Diamond `{...}` | Conditional logic, branching |
+| `"start"` / `"end"` | Circle `((...))` | Entry/terminal nodes |
+
+Each `node_type` also receives a corresponding CSS class (e.g., `class nodeId input;`) for theme-based styling.
+
+**Expected:** A data frame with at least one row, containing `id`, `label`, and optionally `input`, `output`, `source_file`, `node_type` columns.
 
 **On failure:** If the data frame is empty, no annotations or patterns were found. Run `analyze-codebase-workflow` first, or check that annotations are syntactically valid with `put("./src/", validate = TRUE)`.
 
@@ -82,11 +94,44 @@ get_diagram_themes()
 # "cividis" — Blue→Gray→Yellow, maximum accessibility (no red-green)
 ```
 
+Additional parameters:
+- `direction`: Diagram flow direction — `"TD"` (top-down, default), `"LR"` (left-right), `"RL"`, `"BT"`
+- `show_artifacts`: `TRUE`/`FALSE` — show artifact nodes (files, data); can be noisy for large workflows (e.g., 16+ extra nodes)
+- `show_workflow_boundaries`: `TRUE`/`FALSE` — wrap each source file's nodes in a Mermaid subgraph
+- `source_info_style`: How source file info is displayed on nodes (e.g., as subtitle)
+- `node_labels`: Format for node label text
+
 **Expected:** Theme names printed. Select one based on context.
 
 **On failure:** If a theme name is not recognized, `put_diagram()` falls back to `"light"`. Check spelling.
 
-### Step 3: Generate Mermaid Output
+### Step 3: Post-Process for Custom Themes (Optional)
+
+If the 9 built-in themes don't match your project's palette, generate with a base theme and replace the classDef lines.
+
+```r
+# Generate with a base theme
+mermaid_content <- put_diagram(workflow, theme = "dark", output = "raw")
+
+# Strip existing classDefs
+lines <- strsplit(mermaid_content, "\n")[[1]]
+lines <- lines[!grepl("^\\s*classDef ", lines)]
+
+# Inject custom palette
+custom_defs <- c(
+  "  classDef input fill:#1a1a2e,stroke:#00ff88,color:#00ff88",
+  "  classDef process fill:#16213e,stroke:#44ddff,color:#44ddff",
+  "  classDef output fill:#0f3460,stroke:#ff3366,color:#ff3366"
+)
+mermaid_content <- paste(c(lines, custom_defs), collapse = "\n")
+writeLines(mermaid_content, "workflow.mmd")
+```
+
+**Expected:** Mermaid output with your custom classDef lines replacing the theme's defaults. Node shapes from `node_type` are preserved; only colors change.
+
+**On failure:** If classDef lines aren't stripped, the regex may not match the theme's format. Inspect the raw output to adjust the `grepl` pattern. If node shapes break, ensure you only remove `classDef` lines, not `class` assignment lines.
+
+### Step 4: Generate Mermaid Output
 
 Produce the diagram in the desired output mode.
 
@@ -123,7 +168,7 @@ cat(put_diagram(workflow,
 
 **On failure:** If the output is `flowchart TD` with no nodes, the workflow data frame is empty. If connections are missing, check that output filenames match input filenames across nodes.
 
-### Step 4: Embed in Target Document
+### Step 5: Embed in Target Document
 
 Insert the diagram into the appropriate documentation format.
 
@@ -175,8 +220,14 @@ DiagrammeR::mermaid(put_diagram(workflow, output = "raw"))
 - **Empty diagrams**: Usually means `put()` returned no rows. Check annotations exist and are syntactically valid.
 - **All nodes disconnected**: Output filenames must exactly match input filenames (including extension) for putior to draw connections. `data.csv` and `Data.csv` are different.
 - **Theme not visible on GitHub**: GitHub's mermaid renderer has limited theme support. The `"github"` theme is specifically designed for GitHub rendering. The `%%{init:...}%%` theme block may be ignored by some renderers.
-- **Quarto mermaid variable interpolation**: Quarto's `{mermaid}` chunks don't support R variables directly. Use the `knit_child()` technique described in Step 4.
+- **Quarto mermaid variable interpolation**: Quarto's `{mermaid}` chunks don't support R variables directly. Use the `knit_child()` technique described in Step 5.
 - **Clickable nodes not working**: Click directives require a renderer that supports Mermaid interaction events. GitHub's static renderer does not support clicks. Use a local Mermaid renderer or the putior Shiny sandbox.
+- **Self-referential meta-pipeline files**: Scanning a directory that includes the build script generating the diagram causes duplicate subgraph IDs and Mermaid errors. Filter meta-pipeline files from the workflow data before generating:
+  ```r
+  meta_files <- c("build-workflow.R", "build-workflow.js")
+  workflow <- workflow[!workflow$file_name %in% meta_files, ]
+  ```
+- **`show_artifacts = TRUE` too noisy**: Large projects may generate many artifact nodes (10–20+), cluttering the diagram. Use `show_artifacts = FALSE` and rely on `node_type` annotations to mark key inputs/outputs explicitly.
 
 ## Related Skills
 

@@ -61,6 +61,8 @@ get_comment_prefix("lua")  # "--"
 
 **Expected:** A string like `"#"`, `"--"`, `"//"`, or `"%"`.
 
+> **Warning — line comments only:** putior detects annotations using line-comment prefixes only. Annotations inside block comments (`/** */`, `''' '''`, `/* */`) are **not** detected. For JS/TS, always use `//` even in files that predominantly use JSDoc blocks.
+
 **On failure:** If the extension is not recognized, the file language may not be supported. Check `get_supported_extensions()` for the full list. For unsupported languages, use `#` as a conventional default.
 
 ### Step 2: Generate Annotation Skeletons
@@ -111,6 +113,19 @@ Fields:
 - `input`: Comma-separated list of input files or variables
 - `output`: Comma-separated list of output files or variables
 - `.internal` extension: Marks in-memory variables (not persisted between scripts)
+- `node_type`: Controls Mermaid node shape and class styling. Values:
+  - `"input"` — stadium shape `([...])` for data sources and configuration
+  - `"output"` — asymmetric shape `>...]` for generated artifacts
+  - `"process"` — rectangle `[...]` for processing steps (default)
+  - `"decision"` — diamond `{...}` for conditional logic
+  - `"start"` / `"end"` — circle `((...))` for entry/terminal nodes
+
+Example with `node_type`:
+```r
+# put id:'config', label:'Load Config', node_type:'input', output:'config.internal'
+# put id:'transform', label:'Apply Rules', node_type:'process', input:'config.internal', output:'result.rds'
+# put id:'report', label:'Generate Report', node_type:'output', input:'result.rds'
+```
 
 **Multiline syntax** (for complex annotations):
 ```r
@@ -218,6 +233,8 @@ cat(put_diagram(merged, theme = "github"))
 - **Missing connections**: If the diagram shows disconnected nodes, check that output filenames in one annotation exactly match input filenames in another (including extensions).
 - **Wrong comment prefix**: Using `#` in a SQL file or `//` in Python will cause the annotation to be treated as code, not a comment. Always verify with `get_comment_prefix()`.
 - **Forgetting multiline continuation**: When using multiline annotations, every continued line must end with `\` and the next line must start with the comment prefix.
+- **Annotations inside JSDoc/block comments**: putior's scanner looks for the language's line-comment prefix (`//` for JS). Annotations placed inside `/** */` JSDoc blocks use `*` as prefix, which putior does not recognize. Always use `//` for JS/TS annotations, even in files that predominantly use JSDoc.
+- **Meta-pipeline annotations**: If you annotate a build script that also scans for annotations (e.g., a script that calls `put()` and `put_diagram()`), the script's own annotations will appear in the generated diagram. Either exclude the file from scanning (see `generate-workflow-diagram` Common Pitfalls) or avoid placing PUT annotations in the build script itself.
 
 ## Related Skills
 
