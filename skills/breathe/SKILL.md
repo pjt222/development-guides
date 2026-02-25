@@ -9,7 +9,7 @@ description: >
   a decision that affects subsequent work, or as a habit between any two
   distinct actions.
 license: MIT
-allowed-tools: []
+allowed-tools: none
 metadata:
   author: Philipp Thoss
   version: "1.0"

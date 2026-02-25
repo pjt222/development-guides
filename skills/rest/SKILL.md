@@ -9,7 +9,7 @@ description: >
   sustained intensive work, or when the impulse to optimize is itself the
   problem.
 license: MIT
-allowed-tools: []
+allowed-tools: none
 metadata:
   author: Philipp Thoss
   version: "1.0"
