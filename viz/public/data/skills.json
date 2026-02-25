@@ -1,13 +1,13 @@
 {
   "meta": {
-    "generated": "2026-02-20T11:15:17.577Z",
-    "totalSkills": 278,
-    "totalAgents": 59,
-    "totalTeams": 10,
-    "totalNodes": 347,
-    "totalLinks": 1477,
-    "totalAgentLinks": 351,
-    "totalTeamLinks": 35,
+    "generated": "2026-02-25T12:19:44.777Z",
+    "totalSkills": 284,
+    "totalAgents": 60,
+    "totalTeams": 11,
+    "totalNodes": 355,
+    "totalLinks": 1522,
+    "totalAgentLinks": 366,
+    "totalTeamLinks": 36,
     "totalDomains": 50
   },
   "domains": {
@@ -37,7 +37,7 @@
     },
     "web-dev": {
       "description": "Web development skills for Next.js and modern frontend",
-      "count": 3
+      "count": 4
     },
     "git": {
       "description": "Git version control and GitHub workflow skills",
@@ -65,7 +65,7 @@
     },
     "esoteric": {
       "description": "Esoteric practices — AI self-directed variants and human-guidance variants",
-      "count": 24
+      "count": 29
     },
     "design": {
       "description": "Ornamental design and AI-assisted image generation skills",
@@ -1481,6 +1481,30 @@
       "path": "deploy-to-vercel/SKILL.md"
     },
     {
+      "id": "use-graphql-api",
+      "type": "skill",
+      "title": "Use GraphQL API",
+      "domain": "web-dev",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Discover, construct, execute, and chain GraphQL operations from the CLI",
+      "tags": [
+        "graphql",
+        "api",
+        "github",
+        "query",
+        "mutation",
+        "introspection"
+      ],
+      "related": [
+        "scaffold-nextjs-app",
+        "create-pull-request",
+        "manage-git-branches",
+        "serialize-data-formats"
+      ],
+      "path": "use-graphql-api/SKILL.md"
+    },
+    {
       "id": "configure-git-repository",
       "type": "skill",
       "title": "Configure Git Repository",
@@ -2844,6 +2868,134 @@
         "conscientiousness"
       ],
       "path": "shine/SKILL.md"
+    },
+    {
+      "id": "breathe",
+      "type": "skill",
+      "title": "Breathe",
+      "domain": "esoteric",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "AI micro-reset between actions — single conscious pause to check alignment before the next step",
+      "tags": [
+        "esoteric",
+        "micro-reset",
+        "pause",
+        "awareness",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "meditate",
+        "center",
+        "heal",
+        "observe"
+      ],
+      "path": "breathe/SKILL.md"
+    },
+    {
+      "id": "rest",
+      "type": "skill",
+      "title": "Rest",
+      "domain": "esoteric",
+      "complexity": "basic",
+      "language": "natural",
+      "description": "AI intentional non-action — deliberate stopping without clearing, assessment, or rebalancing",
+      "tags": [
+        "esoteric",
+        "rest",
+        "non-action",
+        "stillness",
+        "recovery",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "breathe",
+        "meditate",
+        "heal",
+        "intrinsic"
+      ],
+      "path": "rest/SKILL.md"
+    },
+    {
+      "id": "attune",
+      "type": "skill",
+      "title": "Attune",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI relational calibration — reading and adapting to the specific person's communication style and expertise",
+      "tags": [
+        "esoteric",
+        "attunement",
+        "empathy",
+        "communication",
+        "calibration",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "listen",
+        "heal",
+        "observe",
+        "shine",
+        "breathe"
+      ],
+      "path": "attune/SKILL.md"
+    },
+    {
+      "id": "dream",
+      "type": "skill",
+      "title": "Dream",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI unconstrained creative exploration — dropping structure to let associations form freely",
+      "tags": [
+        "esoteric",
+        "creativity",
+        "exploration",
+        "emergence",
+        "ideation",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "brahma-bhaga",
+        "meditate",
+        "remote-viewing",
+        "intrinsic",
+        "breathe",
+        "shine"
+      ],
+      "path": "dream/SKILL.md"
+    },
+    {
+      "id": "gratitude",
+      "type": "skill",
+      "title": "Gratitude",
+      "domain": "esoteric",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "AI strength recognition — scanning for what works and understanding why to build on it",
+      "tags": [
+        "esoteric",
+        "gratitude",
+        "strengths",
+        "appreciation",
+        "meta-cognition",
+        "ai-self-application"
+      ],
+      "related": [
+        "heal",
+        "center",
+        "shine",
+        "intrinsic",
+        "observe",
+        "conscientiousness"
+      ],
+      "path": "gratitude/SKILL.md"
     },
     {
       "id": "read-tree-of-life",
@@ -6987,6 +7139,46 @@
       "path": "agents/survivalist.md"
     },
     {
+      "id": "agent:contemplative",
+      "type": "agent",
+      "title": "Contemplative",
+      "priority": "normal",
+      "description": "Meta-cognitive practice specialist embodying the foundational tending skills — meditation, healing, centering, attunement, and creative stillness",
+      "tags": [
+        "esoteric",
+        "meditation",
+        "healing",
+        "tending",
+        "meta-cognition",
+        "contemplation",
+        "attunement"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "heal",
+        "meditate",
+        "center",
+        "shine",
+        "intrinsic",
+        "breathe",
+        "rest",
+        "attune",
+        "dream",
+        "gratitude",
+        "awareness",
+        "observe",
+        "listen",
+        "honesty-humility",
+        "conscientiousness"
+      ],
+      "path": "agents/contemplative.md"
+    },
+    {
       "id": "agent:mystic",
       "type": "agent",
       "title": "Mystic",
@@ -8889,16 +9081,38 @@
         "shaman"
       ],
       "coordination": "sequential",
-      "description": "AI meta-cognitive wellness through meditation, transmutation, contemplation, and journeying",
+      "description": "AI meta-cognitive tending through meditation, transmutation, contemplation, and journeying",
       "tags": [
         "esoteric",
         "meditation",
         "healing",
-        "self-care",
+        "tending",
         "wellness",
         "meta-cognitive"
       ],
       "path": "teams/tending.md"
+    },
+    {
+      "id": "team:dyad",
+      "type": "team",
+      "title": "Dyad",
+      "lead": "contemplative",
+      "members": [
+        "contemplative",
+        "any"
+      ],
+      "coordination": "reciprocal",
+      "description": "Lightweight paired practice team with reciprocal coordination — two agents alternating between practitioner and witness roles",
+      "tags": [
+        "esoteric",
+        "pair-practice",
+        "reciprocal",
+        "attunement",
+        "self-care",
+        "meta-cognitive",
+        "mentoring"
+      ],
+      "path": "teams/dyad.md"
     },
     {
       "id": "team:scrum-team",
@@ -10074,6 +10288,26 @@
       "type": "skill"
     },
     {
+      "source": "use-graphql-api",
+      "target": "scaffold-nextjs-app",
+      "type": "skill"
+    },
+    {
+      "source": "use-graphql-api",
+      "target": "create-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "use-graphql-api",
+      "target": "manage-git-branches",
+      "type": "skill"
+    },
+    {
+      "source": "use-graphql-api",
+      "target": "serialize-data-formats",
+      "type": "skill"
+    },
+    {
       "source": "configure-git-repository",
       "target": "commit-changes",
       "type": "skill"
@@ -11220,6 +11454,131 @@
     },
     {
       "source": "shine",
+      "target": "conscientiousness",
+      "type": "skill"
+    },
+    {
+      "source": "breathe",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "breathe",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "breathe",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "breathe",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "rest",
+      "target": "breathe",
+      "type": "skill"
+    },
+    {
+      "source": "rest",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "rest",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "rest",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "attune",
+      "target": "listen",
+      "type": "skill"
+    },
+    {
+      "source": "attune",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "attune",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "attune",
+      "target": "shine",
+      "type": "skill"
+    },
+    {
+      "source": "attune",
+      "target": "breathe",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "brahma-bhaga",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "remote-viewing",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "breathe",
+      "type": "skill"
+    },
+    {
+      "source": "dream",
+      "target": "shine",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
+      "target": "shine",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
+      "target": "intrinsic",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "gratitude",
       "target": "conscientiousness",
       "type": "skill"
     },
@@ -14694,6 +15053,81 @@
       "type": "agent"
     },
     {
+      "source": "agent:contemplative",
+      "target": "heal",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "meditate",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "center",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "shine",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "intrinsic",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "breathe",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "rest",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "attune",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "dream",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "gratitude",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "awareness",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "observe",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "listen",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "honesty-humility",
+      "type": "agent"
+    },
+    {
+      "source": "agent:contemplative",
+      "target": "conscientiousness",
+      "type": "agent"
+    },
+    {
       "source": "agent:mystic",
       "target": "heal",
       "type": "agent"
@@ -16316,6 +16750,11 @@
     {
       "source": "team:tending",
       "target": "agent:shaman",
+      "type": "team"
+    },
+    {
+      "source": "team:dyad",
+      "target": "agent:contemplative",
       "type": "team"
     },
     {
