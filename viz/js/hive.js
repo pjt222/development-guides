@@ -1,12 +1,8 @@
-/**
- * hive.js - Hive plot visualization (D3 SVG)
- *
- * PUT:frontend-pipeline  [mode:hive] SVG-based 3-axis radial hive plot (D3)
- *
- * 3-axis multi-track radial layout: Skills (210°), Agents (330°), Teams (90°)
- * Nodes positioned along axes by rank metric; links as Bezier curves.
- * Loaded lazily when user clicks the Hive toggle button.
- */
+// hive.js - Hive plot visualization (D3 SVG)
+// put id:"mode_hive", label:"SVG-based 3-axis radial hive plot (D3)", node_type:"process", input:"active_module"
+// 3-axis multi-track radial layout: Skills (210), Agents (330), Teams (90)
+// Nodes positioned along axes by rank metric; links as Bezier curves.
+// Loaded lazily when user clicks the Hive toggle button.
 
 import * as d3 from 'd3';
 import {

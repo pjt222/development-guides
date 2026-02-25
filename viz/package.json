@@ -13,7 +13,7 @@
     "build-icons": "node build-icons.js",
     "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &",
     "build-favicon": "Rscript build-favicon.R",
-    "build-workflow": "node build-workflow.js"
+    "build-workflow": "Rscript build-workflow.R"
   },
   "dependencies": {
     "3d-force-graph": "^1",

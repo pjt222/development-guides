@@ -1,11 +1,7 @@
-/**
- * graph3d.js - 3D force-graph setup and rendering using 3d-force-graph (WebGL/Three.js)
- *
- * PUT:frontend-pipeline  [mode:3d] WebGL-based 3D force-directed layout (Three.js)
- *
- * Parallel module to graph.js. Shares colors.js for theming.
- * Loaded lazily when user clicks the 3D toggle button.
- */
+// graph3d.js - 3D force-graph setup and rendering using 3d-force-graph (WebGL/Three.js)
+// put id:"mode_3d", label:"WebGL-based 3D force-directed layout (Three.js)", node_type:"process", input:"active_module"
+// Parallel module to graph.js. Shares colors.js for theming.
+// Loaded lazily when user clicks the 3D toggle button.
 
 import * as THREE from 'three';
 import ForceGraph3D from '3d-force-graph';

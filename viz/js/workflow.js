@@ -1,12 +1,8 @@
-/**
- * workflow.js - Mermaid workflow diagram visualization
- *
- * PUT:frontend-pipeline  [mode:flow] Mermaid-based build pipeline diagram
- *
- * Renders a pre-built Mermaid flowchart showing the viz build pipeline.
- * Loaded lazily when user clicks the Flow button.
- * Supports pan/zoom via CSS transforms and theme switching.
- */
+// workflow.js - Mermaid workflow diagram visualization
+// put id:"mode_flow", label:"Mermaid-based build pipeline diagram", node_type:"process", input:"active_module"
+// Renders a pre-built Mermaid flowchart showing the viz build pipeline.
+// Loaded lazily when user clicks the Flow button.
+// Supports pan/zoom via CSS transforms and theme switching.
 
 import { getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';

@@ -1,8 +1,5 @@
-/**
- * graph.js - Force-graph setup, node/link rendering, interactions
- *
- * PUT:frontend-pipeline  [mode:2d] Canvas-based 2D force-directed layout (force-graph)
- */
+// graph.js - Force-graph setup, node/link rendering, interactions
+// put id:"mode_2d", label:"Canvas-based 2D force-directed layout (force-graph)", node_type:"process", input:"active_module"
 
 import ForceGraph from 'force-graph';
 import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';

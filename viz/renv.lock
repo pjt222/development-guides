@@ -1011,6 +1011,37 @@
       "Author": "Angus Johnson [aut] (C++ original, http://www.angusj.com/delphi/clipper.php), Adrian Baddeley [aut, trl, cre], Kurt Hornik [ctb], Brian D. Ripley [ctb], Elliott Sales de Andrade [ctb], Paul Murrell [ctb], Ege Rubak [ctb], Mark Padgham [ctb]",
       "Repository": "CRAN"
     },
+    "putior": {
+      "Package": "putior",
+      "Version": "0.2.0.9000",
+      "Source": "GitHub",
+      "Depends": [
+        "R (>= 3.5.0)"
+      ],
+      "Imports": [
+        "tools"
+      ],
+      "Suggests": [
+        "testthat (>= 3.0.0)",
+        "knitr",
+        "rmarkdown",
+        "clipr",
+        "uuid",
+        "pkgdown",
+        "logger",
+        "shiny",
+        "shinyAce",
+        "mcptools",
+        "ellmer",
+        "plumber2"
+      ],
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "pjt222",
+      "RemoteRepo": "putior",
+      "RemoteRef": "main",
+      "RemoteSha": "087b661cf385daf2133cb8b113002bd6433c7d1a"
+    },
     "purrr": {
       "Package": "purrr",
       "Version": "1.2.1",

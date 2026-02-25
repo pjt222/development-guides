@@ -1,13 +1,9 @@
-/**
- * chord.js - Circular chord diagram visualization (D3 SVG)
- *
- * PUT:frontend-pipeline  [mode:chord] SVG-based circular chord diagram (D3)
- *
- * Outer ring segments: one per domain, sized by skill count.
- * Chords: connect domains that share agents, cross-referenced skills,
- * or team composition relationships.
- * Loaded lazily when user clicks the Chord button.
- */
+// chord.js - Circular chord diagram visualization (D3 SVG)
+// put id:"mode_chord", label:"SVG-based circular chord diagram (D3)", node_type:"process", input:"active_module"
+// Outer ring segments: one per domain, sized by skill count.
+// Chords: connect domains that share agents, cross-referenced skills,
+// or team composition relationships.
+// Loaded lazily when user clicks the Chord button.
 
 import * as d3 from 'd3';
 import { DOMAIN_COLORS, hexToRgba, getCurrentThemeName } from './colors.js';

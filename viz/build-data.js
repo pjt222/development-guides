@@ -1,16 +1,12 @@
 #!/usr/bin/env node
-/**
- * build-data.js
- *
- * Parses skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
- * to produce viz/data/skills.json with nodes, links, domains, and meta.
- *
- * PUT:data-pipeline  [entry] Read YAML registries
- * PUT:data-pipeline  [step]  Parse skill nodes and cross-reference links
- * PUT:data-pipeline  [step]  Parse agent nodes and agent→skill links
- * PUT:data-pipeline  [step]  Parse team nodes and team→agent links
- * PUT:data-pipeline  [exit]  Write public/data/skills.json
- */
+// build-data.js
+// Parses skills/_registry.yml, agents/_registry.yml, and teams/_registry.yml
+// to produce viz/data/skills.json with nodes, links, domains, and meta.
+// put id:"read_registries", label:"Read YAML registries", node_type:"input", output:"skill_map"
+// put id:"parse_skills", label:"Parse skill nodes & cross-reference links", input:"skill_map", output:"skills_with_links"
+// put id:"parse_agents", label:"Parse agent nodes & agent-skill links", input:"skills_with_links", output:"agents_linked"
+// put id:"parse_teams", label:"Parse team nodes & team-agent links", input:"agents_linked", output:"teams_linked"
+// put id:"write_json", label:"Write public/data/skills.json", node_type:"output", input:"merged_graph", output:"public/data/skills.json"
 
 import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -42,7 +38,7 @@ const TEAMS_REGISTRY_PATH = resolve(TEAMS_DIR, '_registry.yml');
 const OUTPUT_PATH = resolve(__dirname, 'public', 'data', 'skills.json');
 
 // ── Parse registry ──────────────────────────────────────────────
-// PUT:data-pipeline  [step]  Parse skills/_registry.yml into skill map
+// put id:"parse_registry", label:"Parse skills/_registry.yml into skill map", input:"skill_map", output:"skill_map_parsed"
 const registry = yaml.load(readFileSync(REGISTRY_PATH, 'utf8'));
 const skillMap = new Map();          // id -> node object
 const validIds = new Set();
@@ -62,7 +58,7 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
 }
 
 // ── Parse each SKILL.md ─────────────────────────────────────────
-// PUT:data-pipeline  [step]  Extract titles, tags, and related-skill links from SKILL.md files
+// put id:"extract_skill_details", label:"Extract titles, tags & related-skill links from SKILL.md files", input:"skill_map_parsed", output:"skills_with_links"
 const nodes = [];
 const links = [];
 
@@ -156,7 +152,7 @@ for (const [domainName, domainObj] of Object.entries(registry.domains)) {
 }
 
 // ── Parse agents registry ───────────────────────────────────────
-// PUT:data-pipeline  [step]  Parse agents/_registry.yml → agent nodes + agent→skill links
+// put id:"parse_agent_registry", label:"Parse agents/_registry.yml to agent nodes + agent-skill links", input:"skills_with_links", output:"agents_linked"
 const agentNodes = [];
 const agentLinks = [];
 const agentIds = new Set(); // for team -> agent link validation
@@ -196,7 +192,7 @@ if (existsSync(AGENTS_REGISTRY_PATH)) {
 }
 
 // ── Parse teams registry ────────────────────────────────────────
-// PUT:data-pipeline  [step]  Parse teams/_registry.yml → team nodes + team→agent links
+// put id:"parse_team_registry", label:"Parse teams/_registry.yml to team nodes + team-agent links", input:"agents_linked", output:"teams_linked"
 const teamNodes = [];
 const teamLinks = [];
 
@@ -235,7 +231,7 @@ if (existsSync(TEAMS_REGISTRY_PATH)) {
 }
 
 // ── Merge nodes and links ───────────────────────────────────────
-// PUT:data-pipeline  [step]  Merge skill, agent, and team nodes into unified graph
+// put id:"merge_graph", label:"Merge skill, agent & team nodes into unified graph", input:"teams_linked", output:"merged_graph"
 const allNodes = [...nodes, ...agentNodes, ...teamNodes];
 const allLinks = [...links, ...agentLinks, ...teamLinks];
 
@@ -257,7 +253,7 @@ const output = {
   links: allLinks,
 };
 
-// PUT:data-pipeline  [exit]  Write merged graph to public/data/skills.json
+// put id:"write_skills_json", label:"Write merged graph to public/data/skills.json", node_type:"output", input:"merged_graph", output:"public/data/skills.json"
 writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
 console.log(`Generated ${OUTPUT_PATH}`);
 console.log(`  Skills: ${nodes.length}`);

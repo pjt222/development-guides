@@ -1,12 +1,9 @@
-/**
- * app.js - Bootstrap: load data, init subsystems, bind controls
- *
- * PUT:frontend-pipeline  [entry] Fetch skills.json data
- * PUT:frontend-pipeline  [step]  Init filter panel, detail panel, graph
- * PUT:frontend-pipeline  [step]  Bind mode switching (2D/3D/Hive/Chord/Flow)
- * PUT:frontend-pipeline  [step]  Lazy-load mode modules on demand
- * PUT:frontend-pipeline  [exit]  Render active mode with current filters
- */
+// app.js - Bootstrap: load data, init subsystems, bind controls
+// put id:"fetch_data", label:"Fetch skills.json data", node_type:"input", output:"skills_data"
+// put id:"init_ui", label:"Init filter panel, detail panel, graph", input:"skills_data", output:"ui_ready"
+// put id:"bind_modes", label:"Bind mode switching (2D/3D/Hive/Chord/Flow)", input:"ui_ready", output:"mode_bindings"
+// put id:"lazy_load", label:"Lazy-load mode modules on demand", input:"mode_bindings", output:"active_module"
+// put id:"render_mode", label:"Render active mode with current filters", node_type:"output", input:"active_module"
 
 import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
 import { setIconMode, getIconMode } from './icons.js';

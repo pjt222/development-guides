@@ -1,7 +1,7 @@
 # glyphs.R - Skill-to-glyph mapping
 # Maps each of 284 skillIds to a specific glyph drawing function.
 #
-# PUT:icon-pipeline  [config] SKILL_GLYPHS lookup table (skill ID → glyph function name)
+# put id:"glyph_mapping", label:"SKILL_GLYPHS lookup table (skill ID to glyph function)", node_type:"input", output:"glyph_fn"
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
