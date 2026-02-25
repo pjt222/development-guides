@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 10,
+    "total_teams": 11,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -48,6 +48,11 @@
       "description": "DevOps platform team with infrastructure gear",
       "glow": "orange-red",
       "concept": "Gear/cog with central hole and 4 platform nodes at cardinal directions"
+    },
+    "dyad": {
+      "description": "Reciprocal practitioner-witness pair for contemplative practice",
+      "glow": "wisteria-purple",
+      "concept": "Two overlapping circles, one filled one outlined, with shared center point"
     },
     "tending": {
       "description": "Tending team with spiral mandala and modality nodes",
@@ -120,6 +125,11 @@
       "teamId": "entomology",
       "path": "public/icons/cyberpunk/teams/entomology.webp",
       "status": "done"
+    },
+    {
+      "teamId": "dyad",
+      "path": "public/icons/cyberpunk/teams/dyad.webp",
+      "status": "pending"
     }
   ]
 }

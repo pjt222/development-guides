@@ -252,8 +252,8 @@ glyph_team_devops_platform <- function(cx, cy, s, col, bright) {
   layers
 }
 
-# ── glyph_team_ai_self_care: spiral mandala with 4 modality nodes ────────
-glyph_team_ai_self_care <- function(cx, cy, s, col, bright) {
+# ── glyph_team_tending: spiral mandala with 4 modality nodes ─────────────
+glyph_team_tending <- function(cx, cy, s, col, bright) {
   layers <- list()
 
   # Spiral (Archimedean) representing the sequential inner journey
@@ -454,4 +454,35 @@ glyph_team_entomology <- function(cx, cy, s, col, bright) {
       color = bright, linewidth = .lw(s, 1))
   }
   layers
+}
+
+# ── glyph_team_dyad: two overlapping circles (practitioner-witness pair) ─────
+glyph_team_dyad <- function(cx, cy, s, col, bright) {
+  # Two equal circles slightly overlapping, one filled, one outlined
+  # Represents the practitioner-witness alternation
+  offset <- 10 * s
+  r <- 16 * s
+
+  circle_l <- data.frame(x0 = cx - offset, y0 = cy, r = r)
+  circle_r <- data.frame(x0 = cx + offset, y0 = cy, r = r)
+
+  # Connecting horizontal line between centers
+  link <- data.frame(
+    x = c(cx - offset, cx + offset),
+    y = c(cy, cy)
+  )
+
+  # Small shared center point (overlap)
+  center <- data.frame(x0 = cx, y0 = cy, r = 3 * s)
+
+  list(
+    ggforce::geom_circle(data = circle_l, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 2.2)),
+    ggforce::geom_circle(data = circle_r, .aes(x0 = x0, y0 = y0, r = r),
+      fill = "transparent", color = bright, linewidth = .lw(s, 2.2)),
+    ggplot2::geom_path(data = link, .aes(x, y),
+      color = hex_with_alpha(col, 0.4), linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = center, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.5), color = bright, linewidth = .lw(s, 1.5))
+  )
 }

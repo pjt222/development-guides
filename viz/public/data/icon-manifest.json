@@ -997,6 +997,46 @@
       "status": "done"
     },
     {
+      "skillId": "breathe",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, concentric breath circles, inhale exhale pause, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170025,
+      "path": "public/icons/cyberpunk/esoteric/breathe.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "rest",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, empty circle, stillness line, intentional pause, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170026,
+      "path": "public/icons/cyberpunk/esoteric/rest.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "attune",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, tuning fork, resonance waves, relational attunement, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170027,
+      "path": "public/icons/cyberpunk/esoteric/attune.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "dream",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, dream cloud, floating sparks, creative exploration, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170028,
+      "path": "public/icons/cyberpunk/esoteric/dream.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "gratitude",
+      "domain": "esoteric",
+      "prompt": "Glowing third eye, mandala spiral, radiating sun, warm recognition glow, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 170029,
+      "path": "public/icons/cyberpunk/esoteric/gratitude.webp",
+      "status": "pending"
+    },
+    {
       "skillId": "cultivate-bonsai",
       "domain": "gardening",
       "prompt": "Glowing icon, Cultivate, Bonsai, dark background, vector art, clean edges, single centered icon, no text",

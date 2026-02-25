@@ -22,11 +22,11 @@ PALETTE_DOMAIN_ORDER <- c(
   "workflow-visualization"
 )
 
-# ── Agent order (alphabetical, 59 agents) ─────────────────────────────────
+# ── Agent order (alphabetical, 60 agents) ─────────────────────────────────
 PALETTE_AGENT_ORDER <- c(
   "acp-developer", "advocatus-diaboli", "alchemist", "apa-specialist",
   "auditor", "blender-artist", "citizen-entomologist", "code-reviewer",
-  "conservation-entomologist", "designer", "devops-engineer",
+  "contemplative", "conservation-entomologist", "designer", "devops-engineer",
   "diffusion-specialist", "dog-trainer", "etymologist", "fabricator",
   "gardener", "geometrist", "gxp-validator", "hiking-guide", "hildegard",
   "ip-analyst", "janitor", "jigsawr-developer", "kabalist", "lapidary",
@@ -41,7 +41,7 @@ PALETTE_AGENT_ORDER <- c(
   "tour-planner", "version-manager", "web-developer"
 )
 
-# ── Team order (alphabetical, 10 teams) ───────────────────────────────────
+# ── Team order (alphabetical, 11 teams) ───────────────────────────────────
 PALETTE_TEAM_ORDER <- c(
   "agentskills-alignment", "devops-platform-engineering", "dyad",
   "entomology", "fullstack-web-dev", "gxp-compliance-validation",
@@ -142,6 +142,7 @@ get_cyberpunk_colors <- function() {
     "blender-artist"            = "#ff8833",
     "citizen-entomologist"      = "#88dd55",
     "code-reviewer"             = "#ff66aa",
+    "contemplative"              = "#c4b5fd",
     "conservation-entomologist"  = "#66cc33",
     "designer"                  = "#ff88dd",
     "devops-engineer"           = "#00ff88",
@@ -197,6 +198,7 @@ get_cyberpunk_colors <- function() {
 
   teams <- list(
     "agentskills-alignment"       = "#ff66bb",   # review pink
+    "dyad"                        = "#b794f4",   # wisteria purple
     "tending"                     = "#da70d6",   # orchid purple
     "devops-platform-engineering" = "#ff4500",   # orange-red
     "entomology"                  = "#77dd44",   # leaf green

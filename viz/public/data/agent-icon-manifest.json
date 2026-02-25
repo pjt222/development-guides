@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 59,
+    "total_agents": 60,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -33,6 +33,11 @@
       "description": "Code quality and PR review",
       "glow": "rose",
       "concept": "Magnifying glass over diff lines"
+    },
+    "contemplative": {
+      "description": "Meta-cognitive practice specialist for meditation, healing, and creative stillness",
+      "glow": "soft-violet",
+      "concept": "Still water surface with concentric ripple arcs and center point"
     },
     "security-analyst": {
       "description": "Security auditing and vulnerability assessment",
@@ -610,6 +615,11 @@
       "agentId": "taxonomic-entomologist",
       "path": "public/icons/cyberpunk/agents/taxonomic-entomologist.webp",
       "status": "done"
+    },
+    {
+      "agentId": "contemplative",
+      "path": "public/icons/cyberpunk/agents/contemplative.webp",
+      "status": "pending"
     }
   ]
 }

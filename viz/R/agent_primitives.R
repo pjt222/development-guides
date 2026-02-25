@@ -1,4 +1,4 @@
-# agent_primitives.R - Glyph library for 59 agent persona icons
+# agent_primitives.R - Glyph library for 60 agent persona icons
 # Each glyph: glyph_agent_xxx(cx, cy, s, col, bright) -> list of ggplot2 layers
 # cx, cy = center; s = scale (1.0 = fill ~70% of 100x100 canvas)
 # col = agent color; bright = brightened agent color
@@ -2594,4 +2594,35 @@ glyph_agent_citizen_ento <- function(cx, cy, s, col, bright) {
     ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
       fill = bright, color = bright, linewidth = .lw(s, 1))
   )
+}
+
+# ── glyph_agent_contemplative: still water with single ripple ────────────────
+glyph_agent_contemplative <- function(cx, cy, s, col, bright) {
+  # Horizontal line (water surface) with concentric quarter-circles
+  # radiating from center — awareness without action
+  water <- data.frame(
+    x = c(cx - 24 * s, cx + 24 * s),
+    y = c(cy, cy)
+  )
+  # Concentric ripple arcs above the water line
+  layers <- list(
+    ggplot2::geom_path(data = water, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  )
+  for (i in 1:4) {
+    r <- (6 + i * 5) * s
+    t_arc <- seq(pi, 2 * pi, length.out = 30)
+    arc <- data.frame(
+      x = cx + r * cos(t_arc),
+      y = cy + r * sin(t_arc)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arc, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6 - i * 0.1), linewidth = .lw(s, 2 - i * 0.3))
+  }
+  # Small still point at center of water surface
+  center <- data.frame(x0 = cx, y0 = cy, r = 3 * s)
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = center,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.5), color = bright, linewidth = .lw(s, 1.5))
+  layers
 }

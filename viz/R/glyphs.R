@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 278 skillIds to a specific glyph drawing function.
+# Maps each of 284 skillIds to a specific glyph drawing function.
 #
 # Each entry: skillId = "glyph_function_name"
 # The glyph function must accept (cx, cy, s, col, bright) and return
@@ -82,7 +82,7 @@ SKILL_GLYPHS <- list(
   "setup-local-kubernetes"         = "glyph_cluster_local",
   "write-helm-chart"               = "glyph_anchor",
 
-  # ── esoteric (24) ─────────────────────────────────────────────────────
+  # ── esoteric (29) ─────────────────────────────────────────────────────
   "heal"                           = "glyph_healing_hands",
   "heal-guidance"                  = "glyph_healing_hands_guide",
   "meditate"                       = "glyph_lotus_seated",
@@ -107,6 +107,11 @@ SKILL_GLYPHS <- list(
   "read-tree-of-life"              = "glyph_tree_of_life",
   "apply-gematria"                 = "glyph_gematria",
   "study-hebrew-letters"           = "glyph_hebrew_letters",
+  "breathe"                        = "glyph_breath_pause",
+  "rest"                           = "glyph_rest_stillness",
+  "attune"                         = "glyph_tuning_fork",
+  "dream"                          = "glyph_dream_cloud",
+  "gratitude"                      = "glyph_gratitude_sun",
 
   # ── gardening (5) ─────────────────────────────────────────────────────
   "cultivate-bonsai"                   = "glyph_bonsai_tree",
