@@ -429,6 +429,11 @@ async function switchToWorkflow() {
       },
     });
 
+    // Apply current filter state (stubs, but keeps visibility state in sync)
+    workflowMod.setVisibleAgentsWorkflow(getFilteredAgentIds());
+    workflowMod.setVisibleTeamsWorkflow(getFilteredTeamIds());
+    workflowMod.setSkillVisibilityWorkflow(getVisibleSkillIds());
+
     currentMode = 'workflow';
     logEvent('app', { event: 'modeSwitch', mode: 'workflow' });
     setActiveMode('workflow');
@@ -642,8 +647,6 @@ async function main() {
       if (currentMode === 'hive' && hiveMod) hiveMod.preloadHiveIcons(data.nodes, themeSelect.value);
       // Chord: refresh to pick up new palette colors
       if (currentMode === 'chord' && chordMod) chordMod.refreshChordGraph();
-      // Workflow: re-render with new Mermaid theme
-      if (currentMode === 'workflow' && workflowMod) workflowMod.refreshWorkflowGraph();
       refreshSwatches();
       refreshPanelTheme();
       activeRefreshGraph();

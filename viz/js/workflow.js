@@ -12,10 +12,8 @@ import { getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';
 
 let containerEl = null;
-let fullData = { nodes: [], links: [] };
-let onNodeClick = null;
-let onNodeHover = null;
 let mermaidReady = false;
+let lastMermaidTheme = null;
 
 // ── Pan/zoom state ──────────────────────────────────────────────
 let scale = 1;
@@ -47,9 +45,6 @@ const THEME_MAP = {
 
 export function initWorkflowGraph(container, data, callbacks = {}) {
   containerEl = container;
-  fullData = data;
-  onNodeClick = callbacks.onClick || null;
-  onNodeHover = callbacks.onHover || null;
 
   // Reset transform
   scale = 1;
@@ -157,37 +152,43 @@ function applyTransform() {
 }
 
 async function loadMermaid() {
-  if (mermaidReady) return;
-
-  const { default: mermaid } = await import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs');
   const vizTheme = getCurrentThemeName();
   const mermaidTheme = THEME_MAP[vizTheme] || 'dark';
 
-  mermaid.initialize({
-    startOnLoad: false,
-    theme: mermaidTheme,
-    themeVariables: mermaidTheme === 'dark' ? {
-      darkMode: true,
-      background: 'transparent',
-      primaryColor: '#16213e',
-      primaryTextColor: '#e0e0e0',
-      primaryBorderColor: '#44ddff',
-      lineColor: '#44ddff',
-      secondaryColor: '#1a1a2e',
-      tertiaryColor: '#0f3460',
-      fontFamily: 'Share Tech Mono, monospace',
-    } : {
-      fontFamily: 'Share Tech Mono, monospace',
-    },
-    flowchart: {
-      htmlLabels: true,
-      curve: 'basis',
-      padding: 16,
-    },
-  });
+  // Import mermaid once (Vite-compatible local dependency)
+  if (!window.__mermaid) {
+    const { default: mermaid } = await import('mermaid');
+    window.__mermaid = mermaid;
+  }
 
-  mermaidReady = true;
-  window.__mermaid = mermaid;
+  // Re-initialize when theme changes (or on first load)
+  if (!mermaidReady || mermaidTheme !== lastMermaidTheme) {
+    window.__mermaid.initialize({
+      startOnLoad: false,
+      theme: mermaidTheme,
+      themeVariables: mermaidTheme === 'dark' ? {
+        darkMode: true,
+        background: 'transparent',
+        primaryColor: '#16213e',
+        primaryTextColor: '#e0e0e0',
+        primaryBorderColor: '#44ddff',
+        lineColor: '#44ddff',
+        secondaryColor: '#1a1a2e',
+        tertiaryColor: '#0f3460',
+        fontFamily: 'Share Tech Mono, monospace',
+      } : {
+        fontFamily: 'Share Tech Mono, monospace',
+      },
+      flowchart: {
+        htmlLabels: true,
+        curve: 'basis',
+        padding: 16,
+      },
+    });
+
+    lastMermaidTheme = mermaidTheme;
+    mermaidReady = true;
+  }
 }
 
 async function render() {
@@ -223,6 +224,9 @@ async function render() {
         </div>
       </div>
     `;
+
+    // Re-apply pan/zoom state to the new wrapper element
+    applyTransform();
 
     // Bind pan/zoom events
     containerEl.addEventListener('wheel', handleWheel, { passive: false });
