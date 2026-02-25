@@ -27,7 +27,7 @@
     "r-package-review": {
       "description": "R package review team with coordinated multi-agent workflow",
       "glow": "bright-cyan",
-      "concept": "Hub-and-spoke pentagon with 4 member nodes and coordination lines"
+      "concept": "Hub-and-spoke hexagon (R hex sticker) with 4 member nodes and coordination lines"
     },
     "gxp-compliance-validation": {
       "description": "GxP compliance team with regulatory shield and audit nodes",

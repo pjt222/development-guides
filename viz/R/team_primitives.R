@@ -5,18 +5,18 @@
 #
 # Uses helpers .lw, .aes, hex_with_alpha, brighten_hex from utils.R / primitives.R
 
-# ── glyph_team_r_package_review: hub-and-spoke pentagon with 4 member nodes ──
+# ── glyph_team_r_package_review: hub-and-spoke hexagon with 4 member nodes ──
 glyph_team_r_package_review <- function(cx, cy, s, col, bright) {
   layers <- list()
 
-  # Central pentagon (echoes team node shape on graph)
-  t_pent <- seq(0, 2 * pi, length.out = 6)
-  pent_r <- 14 * s
-  pent <- data.frame(
-    x = cx + pent_r * cos(t_pent - pi / 2),
-    y = cy + pent_r * sin(t_pent - pi / 2)
+  # Central hexagon (R package hex sticker shape, pointy-top)
+  t_hex <- seq(0, 2 * pi, length.out = 7)
+  hex_r <- 14 * s
+  hex <- data.frame(
+    x = cx + hex_r * cos(t_hex - pi / 2),
+    y = cy + hex_r * sin(t_hex - pi / 2)
   )
-  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = pent, .aes(x, y),
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = hex, .aes(x, y),
     fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 2.5))
 
   # 4 member nodes arranged around the hub
@@ -52,7 +52,7 @@ glyph_team_r_package_review <- function(cx, cy, s, col, bright) {
       color = hex_with_alpha(col, 0.25), linewidth = .lw(s, 1))
   }
 
-  # Central dot inside pentagon (coordination hub)
+  # Central dot inside hexagon (coordination hub)
   center <- data.frame(x0 = cx, y0 = cy, r = 3 * s)
   layers[[length(layers) + 1]] <- ggforce::geom_circle(data = center,
     .aes(x0 = x0, y0 = y0, r = r),
