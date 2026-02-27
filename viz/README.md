@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="public/logo-transparent.png" alt="Agent Almanac" width="256">
+</p>
+
 # Interactive Skills Visualization
 
 Force-graph explorer for the 284-skill, 60-agent, 11-team development platform. Built with [force-graph](https://github.com/vasturiano/force-graph), R/ggplot2 icon rendering, and 9 color themes.

@@ -6,6 +6,173 @@
 .lw <- function(s, base = 2.5) base * s
 .aes <- ggplot2::aes
 
+# ── glyph_polychromatic_a: three-color A-shaped graph ─────────────────────
+# Favicon glyph: letter A formed by 3 colored polygon segments + 3 vertex nodes.
+# Unlike standard glyphs, takes a `colors` list(c1, c2, c3) instead of col/bright.
+# Legs use arc caps at node ends; crossbar uses mitered ends at leg crossings.
+glyph_polychromatic_a <- function(cx, cy, s, colors) {
+  c1 <- colors$c1  # left leg
+  c2 <- colors$c2  # right leg
+  c3 <- colors$c3  # crossbar
+
+  # Helper: points along a circular arc
+  arc_pts <- function(center_x, center_y, radius, from_angle, to_angle, n = 8) {
+    angles <- seq(from_angle, to_angle, length.out = n)
+    data.frame(x = center_x + radius * cos(angles),
+               y = center_y + radius * sin(angles))
+  }
+
+  # Helper: build a leg polygon with arc caps at each node end
+  # node_a → node_b direction, with arc caps fitting against node circles
+  leg_polygon <- function(ax, ay, bx, by) {
+    hw    <- lw / 2                           # half-width of the leg
+    t_em  <- sqrt(fit_r^2 - hw^2)            # emergence distance from node center
+
+    # Unit vector along the leg (a → b)
+    dx <- bx - ax; dy <- by - ay
+    leg_len <- sqrt(dx^2 + dy^2)
+    ux <- dx / leg_len; uy <- dy / leg_len
+
+    # Perpendicular (left when facing a→b)
+    px <- -uy; py <- ux
+
+    # ── Node-A end (start of leg) ──
+    e1_a <- c(ax + t_em * ux + hw * px, ay + t_em * uy + hw * py)  # left edge
+    e2_a <- c(ax + t_em * ux - hw * px, ay + t_em * uy - hw * py)  # right edge
+
+    # Arc from e2_a → e1_a (convex cap curving toward node center)
+    angle_e2_a <- atan2(e2_a[2] - ay, e2_a[1] - ax)
+    angle_e1_a <- atan2(e1_a[2] - ay, e1_a[1] - ax)
+    # Ensure arc goes the short way around (through the leg direction)
+    if (angle_e1_a - angle_e2_a > pi) angle_e1_a <- angle_e1_a - 2 * pi
+    if (angle_e2_a - angle_e1_a > pi) angle_e2_a <- angle_e2_a - 2 * pi
+    arc_a <- arc_pts(ax, ay, fit_r, angle_e2_a, angle_e1_a, n = 10)
+
+    # ── Node-B end (end of leg) ──
+    e1_b <- c(bx - t_em * ux + hw * px, by - t_em * uy + hw * py)  # left edge
+    e2_b <- c(bx - t_em * ux - hw * px, by - t_em * uy - hw * py)  # right edge
+
+    # Arc from e1_b → e2_b (convex cap curving toward node center)
+    angle_e1_b <- atan2(e1_b[2] - by, e1_b[1] - bx)
+    angle_e2_b <- atan2(e2_b[2] - by, e2_b[1] - bx)
+    if (angle_e2_b - angle_e1_b > pi) angle_e2_b <- angle_e2_b - 2 * pi
+    if (angle_e1_b - angle_e2_b > pi) angle_e1_b <- angle_e1_b - 2 * pi
+    arc_b <- arc_pts(bx, by, fit_r, angle_e1_b, angle_e2_b, n = 10)
+
+    # Polygon vertex order: left edge a→b, arc at b, right edge b→a, arc at a
+    data.frame(
+      x = c(e1_a[1], e1_b[1], arc_b$x, e2_b[1], e2_a[1], arc_a$x),
+      y = c(e1_a[2], e1_b[2], arc_b$y, e2_b[2], e2_a[2], arc_a$y)
+    )
+  }
+
+  # A-shape vertices on 100x100 canvas (scaled + translated)
+  apex_x  <- cx + 0 * s
+  apex_y  <- cy + 32 * s
+  bl_x    <- cx - 28 * s
+  bl_y    <- cy - 28 * s
+  br_x    <- cx + 28 * s
+  br_y    <- cy - 28 * s
+
+  # Crossbar at 40% height between legs
+  frac <- 0.4
+  cb_lx <- bl_x + frac * (apex_x - bl_x)
+  cb_ly <- bl_y + frac * (apex_y - bl_y)
+  cb_rx <- br_x + frac * (apex_x - br_x)
+  cb_ry <- br_y + frac * (apex_y - br_y)
+
+  node_r <- 10 * s   # data-coordinate radius for ggforce::geom_circle
+  lw <- .lw(s, 3.0)
+  hw <- lw / 2
+  fit_r <- node_r + 4 * s  # arc cap radius — legs end 4*s outside circle edge
+
+  # ── Leg polygons with arc caps ──
+  left_leg_poly  <- leg_polygon(bl_x, bl_y, apex_x, apex_y)
+  right_leg_poly <- leg_polygon(br_x, br_y, apex_x, apex_y)
+
+  # ── Crossbar polygon with mitered ends ──
+  # Crossbar direction
+  cb_dx <- cb_rx - cb_lx; cb_dy <- cb_ry - cb_ly
+  cb_len <- sqrt(cb_dx^2 + cb_dy^2)
+  cb_ux <- cb_dx / cb_len; cb_uy <- cb_dy / cb_len
+  cb_px <- -cb_uy; cb_py <- cb_ux  # crossbar perpendicular
+
+  # Left leg unit vector (for miter cut at left crossbar end)
+  ll_dx <- apex_x - bl_x; ll_dy <- apex_y - bl_y
+  ll_len <- sqrt(ll_dx^2 + ll_dy^2)
+  ll_ux <- ll_dx / ll_len; ll_uy <- ll_dy / ll_len
+
+  # Right leg unit vector (for miter cut at right crossbar end)
+  rl_dx <- apex_x - br_x; rl_dy <- apex_y - br_y
+  rl_len <- sqrt(rl_dx^2 + rl_dy^2)
+  rl_ux <- rl_dx / rl_len; rl_uy <- rl_dy / rl_len
+
+  # Unified gap: circle-to-leg radial gap = crossbar-to-leg perpendicular gap
+  element_gap <- fit_r - node_r
+
+  # Trim crossbar so perpendicular gap to each leg = element_gap
+  sin_theta <- sqrt(1 - (cb_ux * ll_ux + cb_uy * ll_uy)^2)
+  cb_trim <- (hw + element_gap) / sin_theta
+  cb_l_center <- c(cb_lx + cb_trim * cb_ux, cb_ly + cb_trim * cb_uy)
+  cb_r_center <- c(cb_rx - cb_trim * cb_ux, cb_ry - cb_trim * cb_uy)
+
+  # Miter: intersect crossbar top/bottom edges with cut lines ALONG leg direction
+  # so the crossbar end edges are parallel to the adjacent leg's long sides.
+  # Formula: t = -hw * (cb_p × leg_u) / (cb_u × leg_u)  [2D cross product]
+  cross2 <- function(ax, ay, bx, by) ax * by - ay * bx
+
+  # At left end: cut along left leg direction
+  pxv_l <- cross2(cb_px, cb_py, ll_ux, ll_uy)
+  uxv_l <- cross2(cb_ux, cb_uy, ll_ux, ll_uy)
+  t_top_l <- if (abs(uxv_l) > 0.01) -hw * pxv_l / uxv_l else 0
+  t_bot_l <- -t_top_l
+  cb_lt <- c(cb_l_center[1] + hw * cb_px + t_top_l * cb_ux,
+             cb_l_center[2] + hw * cb_py + t_top_l * cb_uy)
+  cb_lb <- c(cb_l_center[1] - hw * cb_px + t_bot_l * cb_ux,
+             cb_l_center[2] - hw * cb_py + t_bot_l * cb_uy)
+
+  # At right end: cut along right leg direction
+  pxv_r <- cross2(cb_px, cb_py, rl_ux, rl_uy)
+  uxv_r <- cross2(cb_ux, cb_uy, rl_ux, rl_uy)
+  t_top_r <- if (abs(uxv_r) > 0.01) -hw * pxv_r / uxv_r else 0
+  t_bot_r <- -t_top_r
+  cb_rt <- c(cb_r_center[1] + hw * cb_px + t_top_r * cb_ux,
+             cb_r_center[2] + hw * cb_py + t_top_r * cb_uy)
+  cb_rb <- c(cb_r_center[1] - hw * cb_px + t_bot_r * cb_ux,
+             cb_r_center[2] - hw * cb_py + t_bot_r * cb_uy)
+
+  crossbar_poly <- data.frame(
+    x = c(cb_lt[1], cb_rt[1], cb_rb[1], cb_lb[1]),
+    y = c(cb_lt[2], cb_rt[2], cb_rb[2], cb_lb[2])
+  )
+
+  # Node data (ggforce::geom_circle uses data coordinates for r)
+  node_bl   <- data.frame(x0 = bl_x, y0 = bl_y, r = node_r)
+  node_br   <- data.frame(x0 = br_x, y0 = br_y, r = node_r)
+  node_apex <- data.frame(x0 = apex_x, y0 = apex_y, r = node_r)
+
+  list(
+    # Layer 1: crossbar polygon behind
+    ggplot2::geom_polygon(data = crossbar_poly, .aes(x, y),
+      fill = c3, color = NA),
+    # Layer 2-3: leg polygons in middle
+    ggplot2::geom_polygon(data = left_leg_poly, .aes(x, y),
+      fill = c1, color = NA),
+    ggplot2::geom_polygon(data = right_leg_poly, .aes(x, y),
+      fill = c2, color = NA),
+    # Layer 4-6: nodes on top (data-coordinate circles, consistent across SVG/PNG)
+    ggforce::geom_circle(data = node_bl, .aes(x0 = x0, y0 = y0, r = r),
+      color = c1, fill = hex_with_alpha(c1, 0.85),
+      linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = node_br, .aes(x0 = x0, y0 = y0, r = r),
+      color = c2, fill = hex_with_alpha(c2, 0.85),
+      linewidth = .lw(s, 1.5)),
+    ggforce::geom_circle(data = node_apex, .aes(x0 = x0, y0 = y0, r = r),
+      color = c3, fill = hex_with_alpha(c3, 0.85),
+      linewidth = .lw(s, 1.5))
+  )
+}
+
 # ── glyph_flame: teardrop flame shape ──────────────────────────────────────
 glyph_flame <- function(cx, cy, s, col, bright) {
   t <- seq(0, 1, length.out = 40)

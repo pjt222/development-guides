@@ -70,6 +70,14 @@ dim_hex <- function(hex, factor = 0.4) {
   brighten_hex(hex, factor)
 }
 
+blend_hex <- function(hexes) {
+  rgbs <- lapply(hexes, hex_to_rgb)
+  avg_r <- round(mean(vapply(rgbs, `[`, numeric(1), "r")))
+  avg_g <- round(mean(vapply(rgbs, `[`, numeric(1), "g")))
+  avg_b <- round(mean(vapply(rgbs, `[`, numeric(1), "b")))
+  grDevices::rgb(avg_r, avg_g, avg_b, maxColorValue = 255)
+}
+
 # ── CLI argument parsing ─────────────────────────────────────────────────
 parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
   opts <- list(

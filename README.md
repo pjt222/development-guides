@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="viz/public/logo-transparent.png" alt="Agent Almanac" width="256">
+</p>
+
 # Agent Almanac
 
 [![Validate Skills](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml)

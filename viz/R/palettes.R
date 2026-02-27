@@ -244,6 +244,32 @@ get_viridis_colors <- function(name) {
   list(domains = domains, agents = agents, teams = teams)
 }
 
+#' Get favicon triad colors for a given palette
+#'
+#' Returns three distinct colors for the Polychromatic A favicon glyph.
+#' Each color maps to one stroke: c1 = left leg, c2 = right leg, c3 = crossbar.
+#'
+#' @param name Palette name (one of PALETTE_NAMES)
+#' @return Named list with c1, c2, c3 (hex strings)
+get_favicon_colors <- function(name) {
+  if (!name %in% PALETTE_NAMES) {
+    stop("Unknown palette: ", name, ". Must be one of: ",
+         paste(PALETTE_NAMES, collapse = ", "), call. = FALSE)
+  }
+
+  if (name == "cyberpunk") {
+    return(list(c1 = "#00f0ff", c2 = "#dd44ff", c3 = "#00ff88"))
+  }
+
+  opt <- VIRIDIS_OPTIONS[[name]]
+  hexes <- viridisLite::viridis(3, option = opt, begin = 0.15, end = 0.85)
+  list(
+    c1 = substr(hexes[1], 1, 7),
+    c2 = substr(hexes[2], 1, 7),
+    c3 = substr(hexes[3], 1, 7)
+  )
+}
+
 #' Export all palette colors to JSON
 #' @param out_path Output JSON file path
 export_palette_json <- function(out_path) {

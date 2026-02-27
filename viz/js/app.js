@@ -14,6 +14,19 @@ import { logEvent, isEnabled as isEventLogEnabled, downloadLog } from './eventlo
 
 const DATA_URL = 'data/skills.json';
 
+// ── Dynamic favicon switching ───────────────────────────────────────
+function switchFavicon(palette) {
+  const bustParam = `?v=${Date.now()}`;
+  const svgLink = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+  if (svgLink) {
+    svgLink.href = `favicons/${palette}/favicon.svg${bustParam}`;
+  }
+  const pngLink = document.querySelector('link[rel="icon"][sizes="32x32"]');
+  if (pngLink) {
+    pngLink.href = `favicons/${palette}/favicon-512.png${bustParam}`;
+  }
+}
+
 let allData = null;
 let currentMode = '2d';
 let graph3dMod = null;
@@ -486,6 +499,7 @@ async function main() {
   }
   const themeSelect = document.getElementById('theme-select');
   themeSelect.value = getCurrentThemeName();
+  switchFavicon(getCurrentThemeName());
 
   // ── Init detail panel ──
   initPanel(document.getElementById('detail-panel'), {
@@ -638,6 +652,7 @@ async function main() {
       logEvent('app', { event: 'themeChange', theme: themeSelect.value });
       setTheme(themeSelect.value);
       localStorage.setItem('skillnet-theme', themeSelect.value);
+      switchFavicon(themeSelect.value);
       switchIconPalette(themeSelect.value, data.nodes);  // 2D cache
       if (graph3dMod) graph3dMod.switchIconPalette3D(themeSelect.value, data.nodes);
       // Hive: preload icons for new palette so isIconLoaded() passes
