@@ -3,6 +3,7 @@
  */
 
 import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
+import { getHdMode } from './icons.js';
 
 const GITHUB_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/skills/';
 const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
@@ -97,7 +98,8 @@ function openSkillPanel(node) {
   const color = DOMAIN_COLORS[node.domain] || '#ffffff';
   const badgeColor = COMPLEXITY_BADGE_COLORS[node.complexity] || '#999';
 
-  const iconSrc = `icons/${getCurrentThemeName()}/${encodeURI(node.domain)}/${encodeURI(node.id)}.webp`;
+  const iconDir = getHdMode() ? 'icons-hd' : 'icons';
+  const iconSrc = `${iconDir}/${getCurrentThemeName()}/${encodeURI(node.domain)}/${encodeURI(node.id)}.webp`;
   let html = `
     <div class="panel-icon-wrapper">
       <img class="panel-icon" src="${iconSrc}" alt="" onerror="this.parentElement.style.display='none'">
@@ -140,7 +142,8 @@ function openTeamPanel(node) {
   const teamId = node.id.replace('team:', '');
   const color = getTeamColor(teamId);
 
-  const iconSrc = `icons/${getCurrentThemeName()}/teams/${encodeURI(teamId)}.webp`;
+  const iconDirTeam = getHdMode() ? 'icons-hd' : 'icons';
+  const iconSrc = `${iconDirTeam}/${getCurrentThemeName()}/teams/${encodeURI(teamId)}.webp`;
 
   let html = `
     <div class="panel-icon-wrapper">
@@ -192,7 +195,8 @@ function openAgentPanel(node) {
   const color = getAgentColor(agentId);
   const priorityColor = PRIORITY_BADGE_COLORS[node.priority] || '#888899';
 
-  const iconSrc = `icons/${getCurrentThemeName()}/agents/${encodeURI(agentId)}.webp`;
+  const iconDirAgent = getHdMode() ? 'icons-hd' : 'icons';
+  const iconSrc = `${iconDirAgent}/${getCurrentThemeName()}/agents/${encodeURI(agentId)}.webp`;
 
   let html = `
     <div class="panel-icon-wrapper">

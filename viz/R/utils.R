@@ -90,6 +90,7 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
     size_px       = 512,
     workers       = max(1, parallel::detectCores() - 1),
     no_cache      = FALSE,
+    hd            = FALSE,
     help          = FALSE
   )
 
@@ -119,6 +120,8 @@ parse_cli_args <- function(args = commandArgs(trailingOnly = TRUE)) {
       opts$workers <- as.integer(args[i])
     } else if (arg == "--no-cache") {
       opts$no_cache <- TRUE
+    } else if (arg == "--hd") {
+      opts$hd <- TRUE
     } else if (arg %in% c("--help", "-h")) {
       opts$help <- TRUE
     }
@@ -143,6 +146,7 @@ print_usage <- function(script_name = "build-icons.R",
   cat(sprintf("  --workers <n>       Parallel workers (default: %d = detectCores()-1)\n",
               max(1, parallel::detectCores() - 1)))
   cat("  --no-cache          Ignore content-hash cache, re-render everything\n")
+  cat("  --hd                Output to icons-hd/ directory (for high-resolution builds)\n")
   cat("  --help, -h          Show this help message\n")
 }
 

@@ -6,7 +6,7 @@
 // put id:"render_mode", label:"Render active mode with current filters", node_type:"output", input:"active_module"
 
 import { initGraph, destroyGraph, focusNode, resetView, zoomIn, zoomOut, setSkillVisibility, getGraph, refreshGraph, preloadIcons, switchIconPalette, setVisibleAgents, setVisibleTeams, getVisibleAgentIds } from './graph.js';
-import { setIconMode, getIconMode } from './icons.js';
+import { setIconMode, getIconMode, setHdMode, getHdMode } from './icons.js';
 import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js';
 import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
@@ -669,10 +669,12 @@ async function main() {
 
   // ── Icon toggle ──
   const iconBtn = document.getElementById('btn-icon-toggle');
+  const hdBtn = document.getElementById('btn-hd-toggle');
   const savedIconMode = localStorage.getItem('skillnet-icons') === 'true';
   if (savedIconMode) {
     setIconMode(true);
     iconBtn.classList.add('active');
+    hdBtn.style.display = '';
   }
   iconBtn.addEventListener('click', () => {
     const next = !getIconMode();
@@ -680,6 +682,29 @@ async function main() {
     setIconMode(next);
     iconBtn.classList.toggle('active', next);
     localStorage.setItem('skillnet-icons', next);
+    // Show/hide HD button based on icon mode
+    hdBtn.style.display = next ? '' : 'none';
+    activeRefreshGraph();
+  });
+
+  // ── HD toggle ──
+  const savedHdMode = localStorage.getItem('skillnet-hd') === 'true';
+  if (savedHdMode) {
+    setHdMode(true);
+    hdBtn.classList.add('active');
+  }
+  hdBtn.addEventListener('click', () => {
+    const next = !getHdMode();
+    logEvent('app', { event: 'hdToggle', enabled: next });
+    setHdMode(next);
+    hdBtn.classList.toggle('active', next);
+    localStorage.setItem('skillnet-hd', next);
+    // Reload icons for current palette at new resolution
+    const pal = getCurrentThemeName();
+    preloadIcons(data.nodes, pal);
+    if (graph3dMod) graph3dMod.preload3DIcons(data.nodes, pal);
+    if (currentMode === 'hive' && hiveMod) hiveMod.preloadHiveIcons(data.nodes, pal);
+    refreshPanelTheme();
     activeRefreshGraph();
   });
 

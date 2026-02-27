@@ -87,6 +87,9 @@ if (opts$palette == "all") {
   palettes_to_render <- opts$palette
 }
 
+# ── Resolve output directory (icons vs icons-hd) ─────────────────────────
+icon_output_dir <- if (opts$hd) "icons-hd" else "icons"
+
 # ── Load manifest ────────────────────────────────────────────────────────
 manifest_path <- file.path(script_dir, "public", "data", "icon-manifest.json")
 if (!file.exists(manifest_path)) {
@@ -109,7 +112,7 @@ if (opts$dry_run) {
   log_msg("DRY RUN - would generate:")
   for (pal in palettes_to_render) {
     for (ic in queue) {
-      out <- sprintf("icons/%s/%s/%s.webp", pal, ic$domain, ic$skillId)
+      out <- sprintf("%s/%s/%s/%s.webp", icon_output_dir, pal, ic$domain, ic$skillId)
       log_msg(sprintf("  [%s] %s/%s -> %s", pal, ic$domain, ic$skillId, out))
     }
   }
@@ -159,7 +162,7 @@ unique_glyphs <- list()
 for (ic in queue) {
   glyph_fn_name <- SKILL_GLYPHS[[ic$skillId]]
   if (is.null(glyph_fn_name)) glyph_fn_name <- "unknown"
-  cache_key <- paste0("skill:", ic$skillId)
+  cache_key <- paste0("skill:", ic$skillId, if (opts$hd) "@hd" else "")
 
   # Check content hash
   current_hash <- compute_render_hash(glyph_fn_name, opts$glow_sigma,
@@ -169,7 +172,7 @@ for (ic in queue) {
     # Glyph unchanged, but we still need the template for recoloring
     # Check if all palette outputs exist
     all_exist <- all(vapply(palettes_to_render, function(pal) {
-      out_path <- file.path(script_dir, "public", "icons", pal, ic$domain,
+      out_path <- file.path(script_dir, "public", icon_output_dir, pal, ic$domain,
                             paste0(ic$skillId, ".webp"))
       file.exists(out_path)
     }, logical(1)))
@@ -245,7 +248,7 @@ for (pal in palettes_to_render) {
     if (!file.exists(template_png)) next
 
     for (ic in unique_glyphs[[fn_name]]$skills) {
-      out_path <- file.path(script_dir, "public", "icons", pal, ic$domain,
+      out_path <- file.path(script_dir, "public", icon_output_dir, pal, ic$domain,
                             paste0(ic$skillId, ".webp"))
 
       if (opts$skip_existing && file.exists(out_path)) next
@@ -316,9 +319,10 @@ for (res in results) {
 total_errors <- total_errors + skipped_color
 
 # Update manifest status for cyberpunk palette (primary palette for manifest tracking)
-if ("cyberpunk" %in% palettes_to_render) {
+# Only update manifest for standard resolution builds (not HD)
+if ("cyberpunk" %in% palettes_to_render && !opts$hd) {
   for (ic in queue) {
-    out_path <- file.path(script_dir, "public", "icons", "cyberpunk", ic$domain,
+    out_path <- file.path(script_dir, "public", icon_output_dir, "cyberpunk", ic$domain,
                           paste0(ic$skillId, ".webp"))
     for (j in seq_along(manifest$icons)) {
       if (manifest$icons[[j]]$skillId == ic$skillId &&

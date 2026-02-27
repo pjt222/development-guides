@@ -41,6 +41,7 @@ if ("--help" %in% args || "-h" %in% args) {
   cat("Options:\n")
   cat("  --type <types>      Comma-separated types to build: all, skill, agent, team\n")
   cat("                      (default: all)\n")
+  cat("  --hd                Build both standard (512px) and high-res (1024px) icons\n")
   cat("  All other flags are passed through to individual build scripts.\n")
   cat("  Run Rscript build-icons.R --help for full option list.\n")
   quit(status = 0)
@@ -65,6 +66,12 @@ if (length(type_idx) > 0 && type_idx[1] < length(args)) {
   args <- args[-c(type_idx[1], type_idx[1] + 1)]
 }
 
+# Extract --hd flag (dual-pass: standard + high-res)
+hd_mode <- "--hd" %in% args
+if (hd_mode) {
+  args <- args[args != "--hd"]
+}
+
 # ── Build each type ──────────────────────────────────────────────────────
 scripts <- list(
   skill = file.path(script_dir, "build-icons.R"),
@@ -72,28 +79,44 @@ scripts <- list(
   team  = file.path(script_dir, "build-team-icons.R")
 )
 
+# Define passes: standard always runs; HD pass added when --hd is set
+passes <- list(
+  list(label = "standard", size = "512", sigma = "4", extra_args = character(0))
+)
+if (hd_mode) {
+  passes[[2]] <- list(label = "high-res", size = "1024", sigma = "8",
+                      extra_args = c("--hd"))
+}
+
 overall_start <- proc.time()
 
-for (type in build_types) {
-  script_path <- scripts[[type]]
-  if (!file.exists(script_path)) {
-    message(sprintf("[WARN] Script not found: %s, skipping %s icons", script_path, type))
-    next
+for (pass in passes) {
+  if (length(passes) > 1) {
+    message(sprintf("\n>>>>>>>>>> Pass: %s (%spx, sigma=%s) <<<<<<<<<<\n",
+                    pass$label, pass$size, pass$sigma))
   }
 
-  message(sprintf("\n========== Building %s icons ==========\n", toupper(type)))
+  for (type in build_types) {
+    script_path <- scripts[[type]]
+    if (!file.exists(script_path)) {
+      message(sprintf("[WARN] Script not found: %s, skipping %s icons", script_path, type))
+      next
+    }
 
-  # Source and run the build script in the current R session
-  # We pass args via commandArgs override
-  old_args <- commandArgs(trailingOnly = TRUE)
-  # Temporarily override commandArgs to pass our filtered args
-  # Since source() doesn't support commandArgs override, we use system()
-  arg_str <- paste(shQuote(args), collapse = " ")
-  cmd <- sprintf("Rscript %s %s", shQuote(script_path), arg_str)
-  message(sprintf("Running: %s", cmd))
-  exit_code <- system(cmd)
-  if (exit_code != 0) {
-    message(sprintf("[ERROR] %s icon build exited with code %d", type, exit_code))
+    message(sprintf("\n========== Building %s icons (%s) ==========\n",
+                    toupper(type), pass$label))
+
+    # Build args: base args + size/sigma overrides + extra args (--hd)
+    pass_args <- c(args, "--size", pass$size, "--glow-sigma", pass$sigma,
+                   pass$extra_args)
+    arg_str <- paste(shQuote(pass_args), collapse = " ")
+    cmd <- sprintf("Rscript %s %s", shQuote(script_path), arg_str)
+    message(sprintf("Running: %s", cmd))
+    exit_code <- system(cmd)
+    if (exit_code != 0) {
+      message(sprintf("[ERROR] %s icon build (%s) exited with code %d",
+                      type, pass$label, exit_code))
+    }
   }
 }
 

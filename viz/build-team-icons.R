@@ -77,6 +77,9 @@ if (opts$palette == "all") {
   palettes_to_render <- opts$palette
 }
 
+# ── Resolve output directory (icons vs icons-hd) ─────────────────────────
+icon_output_dir <- if (opts$hd) "icons-hd" else "icons"
+
 # ── Load manifest ────────────────────────────────────────────────────────
 manifest_path <- file.path(script_dir, "public", "data", "team-icon-manifest.json")
 if (!file.exists(manifest_path)) {
@@ -99,7 +102,7 @@ if (opts$dry_run) {
   log_msg("DRY RUN - would generate:")
   for (pal in palettes_to_render) {
     for (ic in queue) {
-      out <- sprintf("icons/%s/teams/%s.webp", pal, ic$teamId)
+      out <- sprintf("%s/%s/teams/%s.webp", icon_output_dir, pal, ic$teamId)
       log_msg(sprintf("  [%s] %s -> %s", pal, ic$teamId, out))
     }
   }
@@ -148,14 +151,14 @@ unique_glyphs <- list()
 for (ic in queue) {
   glyph_fn_name <- TEAM_GLYPHS[[ic$teamId]]
   if (is.null(glyph_fn_name)) glyph_fn_name <- "unknown"
-  cache_key <- paste0("team:", ic$teamId)
+  cache_key <- paste0("team:", ic$teamId, if (opts$hd) "@hd" else "")
 
   current_hash <- compute_render_hash(glyph_fn_name, opts$glow_sigma,
                                        opts$size_px)
 
   if (!opts$no_cache && identical(icon_cache[[cache_key]], current_hash)) {
     all_exist <- all(vapply(palettes_to_render, function(pal) {
-      out_path <- file.path(script_dir, "public", "icons", pal, "teams",
+      out_path <- file.path(script_dir, "public", icon_output_dir, pal, "teams",
                             paste0(ic$teamId, ".webp"))
       file.exists(out_path)
     }, logical(1)))
@@ -227,7 +230,7 @@ for (pal in palettes_to_render) {
     if (!file.exists(template_png)) next
 
     for (ic in unique_glyphs[[fn_name]]$teams) {
-      out_path <- file.path(script_dir, "public", "icons", pal, "teams",
+      out_path <- file.path(script_dir, "public", icon_output_dir, pal, "teams",
                             paste0(ic$teamId, ".webp"))
 
       if (opts$skip_existing && file.exists(out_path)) next
@@ -293,10 +296,10 @@ for (res in results) {
 }
 total_errors <- total_errors + skipped_color
 
-# Update manifest status and paths for cyberpunk palette
-if ("cyberpunk" %in% palettes_to_render) {
+# Update manifest status and paths for cyberpunk palette (standard builds only)
+if ("cyberpunk" %in% palettes_to_render && !opts$hd) {
   for (ic in queue) {
-    out_path <- file.path(script_dir, "public", "icons", "cyberpunk", "teams",
+    out_path <- file.path(script_dir, "public", icon_output_dir, "cyberpunk", "teams",
                           paste0(ic$teamId, ".webp"))
     for (j in seq_along(manifest$icons)) {
       if (manifest$icons[[j]]$teamId == ic$teamId) {

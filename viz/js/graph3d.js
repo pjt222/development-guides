@@ -10,7 +10,7 @@ import {
   hexToRgba, getAgentColor, getTeamColor,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
-import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded } from './icons.js';
+import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded, iconCacheKey } from './icons.js';
 import { logEvent } from './eventlog.js';
 
 let graph3d = null;
@@ -43,13 +43,14 @@ function _scheduleTexRefresh() {
 
 export function preload3DIcons(nodes, palette) {
   const pal = palette || getCurrentThemeName();
-  if (cachedPaletteTextures.has(pal)) {
-    activeTextureMap = cachedPaletteTextures.get(pal);
+  const cacheKey = iconCacheKey(pal);
+  if (cachedPaletteTextures.has(cacheKey)) {
+    activeTextureMap = cachedPaletteTextures.get(cacheKey);
     _scheduleTexRefresh();
     return;
   }
   const palMap = new Map();
-  cachedPaletteTextures.set(pal, palMap);
+  cachedPaletteTextures.set(cacheKey, palMap);
   for (const node of nodes) {
     textureLoader.load(getIconPath(node, pal), (texture) => {
       texture.colorSpace = THREE.SRGBColorSpace;
@@ -62,8 +63,9 @@ export function preload3DIcons(nodes, palette) {
 }
 
 export function switchIconPalette3D(palette, nodes) {
-  if (cachedPaletteTextures.has(palette)) {
-    activeTextureMap = cachedPaletteTextures.get(palette);
+  const cacheKey = iconCacheKey(palette);
+  if (cachedPaletteTextures.has(cacheKey)) {
+    activeTextureMap = cachedPaletteTextures.get(cacheKey);
   } else {
     preload3DIcons(nodes, palette);
   }

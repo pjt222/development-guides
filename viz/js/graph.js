@@ -3,7 +3,7 @@
 
 import ForceGraph from 'force-graph';
 import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
-import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded } from './icons.js';
+import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded, iconCacheKey } from './icons.js';
 import { logEvent } from './eventlog.js';
 
 export { setIconMode, getIconMode } from './icons.js';
@@ -305,12 +305,13 @@ function _scheduleIconRefresh() {
 
 export function preloadIcons(nodes, palette) {
   const pal = palette || getCurrentThemeName();
-  if (cachedPaletteIcons.has(pal)) {
-    activeIconMap = cachedPaletteIcons.get(pal);
+  const cacheKey = iconCacheKey(pal);
+  if (cachedPaletteIcons.has(cacheKey)) {
+    activeIconMap = cachedPaletteIcons.get(cacheKey);
     return;
   }
   const palMap = new Map();
-  cachedPaletteIcons.set(pal, palMap);
+  cachedPaletteIcons.set(cacheKey, palMap);
 
   for (const node of nodes) {
     const path = getIconPath(node, pal);
@@ -327,8 +328,9 @@ export function preloadIcons(nodes, palette) {
 }
 
 export function switchIconPalette(palette, nodes) {
-  if (cachedPaletteIcons.has(palette)) {
-    activeIconMap = cachedPaletteIcons.get(palette);
+  const cacheKey = iconCacheKey(palette);
+  if (cachedPaletteIcons.has(cacheKey)) {
+    activeIconMap = cachedPaletteIcons.get(cacheKey);
   } else {
     preloadIcons(nodes, palette);
   }
