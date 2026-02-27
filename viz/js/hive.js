@@ -454,7 +454,14 @@ function render(preserveZoom = false) {
           handleSelect(d);
           if (onNodeClick) onNodeClick(d);
         }
-      });
+      })
+      .on('touchstart', (event) => {
+        // Trigger hover highlight on touch
+        handleHover(d);
+      }, { passive: true })
+      .on('touchend', (event) => {
+        handleHoverEnd();
+      }, { passive: true });
     nodeElementArr.push({ el, id: d.id, type: d.type });
   }
 

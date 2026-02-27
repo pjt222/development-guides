@@ -26,6 +26,45 @@ export function initPanel(el, { onRelated } = {}) {
   if (closeBtn) {
     closeBtn.addEventListener('click', closePanel);
   }
+
+  // ── Swipe-down to dismiss on mobile ────────────
+  let touchStartY = 0;
+  let touchDeltaY = 0;
+  const SWIPE_DISMISS_THRESHOLD = 80;
+
+  panelEl.addEventListener('touchstart', e => {
+    // Only track if touching the drag handle or top bar area
+    const topBar = panelEl.querySelector('.panel-top-bar');
+    if (topBar && topBar.contains(e.target)) {
+      touchStartY = e.touches[0].clientY;
+      touchDeltaY = 0;
+    } else {
+      touchStartY = 0;
+    }
+  }, { passive: true });
+
+  panelEl.addEventListener('touchmove', e => {
+    if (!touchStartY) return;
+    touchDeltaY = e.touches[0].clientY - touchStartY;
+    // Only allow downward drag
+    if (touchDeltaY > 0) {
+      panelEl.style.transition = 'none';
+      panelEl.style.transform = `translateY(${touchDeltaY}px)`;
+    }
+  }, { passive: true });
+
+  panelEl.addEventListener('touchend', () => {
+    if (!touchStartY) return;
+    panelEl.style.transition = '';
+    if (touchDeltaY > SWIPE_DISMISS_THRESHOLD) {
+      closePanel();
+    } else {
+      // Snap back
+      panelEl.style.transform = '';
+    }
+    touchStartY = 0;
+    touchDeltaY = 0;
+  }, { passive: true });
 }
 
 export function openPanel(node) {
@@ -225,7 +264,10 @@ function setPanelContent(html) {
 }
 
 export function closePanel() {
-  if (panelEl) panelEl.classList.remove('open');
+  if (panelEl) {
+    panelEl.classList.remove('open');
+    panelEl.style.transform = '';
+  }
 }
 
 function escHtml(s) {

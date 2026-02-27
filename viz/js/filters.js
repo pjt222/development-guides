@@ -515,17 +515,94 @@ function bindPanelToggle() {
   const toggle = document.getElementById('panel-toggle');
   if (!toggle) return;
 
+  // ── Backdrop overlay ────────────────────────────
+  let backdropEl = null;
+
+  function showBackdrop() {
+    if (window.innerWidth > 768) return;
+    if (!backdropEl) {
+      backdropEl = document.createElement('div');
+      backdropEl.className = 'filter-backdrop';
+      backdropEl.addEventListener('click', () => {
+        filterEl.classList.add('collapsed');
+        filterEl.classList.remove('mobile-open');
+        toggle.classList.add('collapsed');
+        toggle.setAttribute('aria-expanded', 'false');
+        hideBackdrop();
+      });
+      document.body.appendChild(backdropEl);
+    }
+    backdropEl.classList.add('visible');
+  }
+
+  function hideBackdrop() {
+    if (backdropEl) backdropEl.classList.remove('visible');
+  }
+
   toggle.addEventListener('click', () => {
     const collapsed = filterEl.classList.toggle('collapsed');
     logEvent('filters', { event: 'panelToggle', collapsed });
     toggle.classList.toggle('collapsed', collapsed);
     toggle.setAttribute('aria-expanded', !collapsed);
 
+    // Mobile backdrop
+    if (window.innerWidth <= 768) {
+      if (collapsed) {
+        filterEl.classList.remove('mobile-open');
+        hideBackdrop();
+      } else {
+        filterEl.classList.add('mobile-open');
+        showBackdrop();
+      }
+    }
+
     // Move focus to toggle when collapsing if focus was inside the panel
     if (collapsed && filterEl.contains(document.activeElement)) {
       toggle.focus();
     }
   });
+
+  // ── Mobile swipe gestures ──────────────────────
+  let touchStartX = 0;
+  let touchStartY = 0;
+  const SWIPE_THRESHOLD = 50;
+
+  // Swipe-right from left edge to open
+  document.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, { passive: true });
+
+  document.addEventListener('touchend', e => {
+    if (window.innerWidth > 768) return;
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    const deltaX = touchEndX - touchStartX;
+    const deltaY = Math.abs(touchEndY - touchStartY);
+
+    // Only detect horizontal swipes (deltaX > threshold, deltaY small)
+    if (deltaY > Math.abs(deltaX)) return;
+
+    // Swipe right from left edge to open
+    if (deltaX > SWIPE_THRESHOLD && touchStartX < 30 && filterEl.classList.contains('collapsed')) {
+      filterEl.classList.remove('collapsed');
+      filterEl.classList.add('mobile-open');
+      toggle.classList.remove('collapsed');
+      toggle.setAttribute('aria-expanded', 'true');
+      showBackdrop();
+      logEvent('filters', { event: 'swipeOpen' });
+    }
+
+    // Swipe left to close
+    if (deltaX < -SWIPE_THRESHOLD && !filterEl.classList.contains('collapsed')) {
+      filterEl.classList.add('collapsed');
+      filterEl.classList.remove('mobile-open');
+      toggle.classList.add('collapsed');
+      toggle.setAttribute('aria-expanded', 'false');
+      hideBackdrop();
+      logEvent('filters', { event: 'swipeClose' });
+    }
+  }, { passive: true });
 }
 
 // ── Fire callbacks ───────────────────────────────────────────────

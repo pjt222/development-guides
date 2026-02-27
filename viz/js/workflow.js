@@ -19,6 +19,13 @@ let isPanning = false;
 let panStartX = 0;
 let panStartY = 0;
 
+// ── Touch state ─────────────────────────────────────────────────
+let isTouchPanning = false;
+let touchStartX = 0;
+let touchStartY = 0;
+let initialPinchDist = 0;
+let initialPinchScale = 1;
+
 // ── Visibility stubs (workflow doesn't filter graph data) ───────
 let visibleSkillSet = null;
 let visibleAgentIds = null;
@@ -60,6 +67,9 @@ export function destroyWorkflowGraph() {
     containerEl.removeEventListener('mousemove', handleMouseMove);
     containerEl.removeEventListener('mouseup', handleMouseUp);
     containerEl.removeEventListener('mouseleave', handleMouseUp);
+    containerEl.removeEventListener('touchstart', handleTouchStart);
+    containerEl.removeEventListener('touchmove', handleTouchMove);
+    containerEl.removeEventListener('touchend', handleTouchEnd);
   }
   containerEl = null;
   mermaidReady = false;
@@ -138,6 +148,44 @@ function handleMouseMove(e) {
 function handleMouseUp() {
   isPanning = false;
   if (containerEl) containerEl.style.cursor = 'grab';
+}
+
+// ── Touch handlers ──────────────────────────────────────────────
+
+function getPinchDistance(touches) {
+  const dx = touches[0].clientX - touches[1].clientX;
+  const dy = touches[0].clientY - touches[1].clientY;
+  return Math.sqrt(dx * dx + dy * dy);
+}
+
+function handleTouchStart(e) {
+  if (e.touches.length === 1) {
+    isTouchPanning = true;
+    touchStartX = e.touches[0].clientX - panX;
+    touchStartY = e.touches[0].clientY - panY;
+  } else if (e.touches.length === 2) {
+    isTouchPanning = false;
+    initialPinchDist = getPinchDistance(e.touches);
+    initialPinchScale = scale;
+  }
+}
+
+function handleTouchMove(e) {
+  e.preventDefault();
+  if (e.touches.length === 1 && isTouchPanning) {
+    panX = e.touches[0].clientX - touchStartX;
+    panY = e.touches[0].clientY - touchStartY;
+    applyTransform();
+  } else if (e.touches.length === 2) {
+    const dist = getPinchDistance(e.touches);
+    const ratio = dist / initialPinchDist;
+    scale = Math.min(Math.max(initialPinchScale * ratio, 0.3), 5);
+    applyTransform();
+  }
+}
+
+function handleTouchEnd() {
+  isTouchPanning = false;
 }
 
 function applyTransform() {
@@ -224,12 +272,15 @@ async function render() {
     // Re-apply pan/zoom state to the new wrapper element
     applyTransform();
 
-    // Bind pan/zoom events
+    // Bind pan/zoom events (mouse + touch)
     containerEl.addEventListener('wheel', handleWheel, { passive: false });
     containerEl.addEventListener('mousedown', handleMouseDown);
     containerEl.addEventListener('mousemove', handleMouseMove);
     containerEl.addEventListener('mouseup', handleMouseUp);
     containerEl.addEventListener('mouseleave', handleMouseUp);
+    containerEl.addEventListener('touchstart', handleTouchStart, { passive: true });
+    containerEl.addEventListener('touchmove', handleTouchMove, { passive: false });
+    containerEl.addEventListener('touchend', handleTouchEnd, { passive: true });
     containerEl.style.cursor = 'grab';
 
     logEvent('workflow', { event: 'rendered', theme: getCurrentThemeName() });

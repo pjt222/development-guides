@@ -25,6 +25,12 @@
   <header class="header">
     <span class="header-title">Skillnet</span>
 
+    <button id="hamburger-toggle" class="hamburger-toggle" aria-label="Menu" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+
     <div class="header-stats">
       <span><span class="stat-value" id="stat-skills">0</span> skills</span>
       <span><span class="stat-value" id="stat-edges">0</span> edges</span>
@@ -33,6 +39,7 @@
       <span><span class="stat-value" id="stat-teams">0</span> teams</span>
     </div>
 
+    <div class="header-drawer" id="header-drawer">
     <div class="header-controls">
       <select id="theme-select" title="Color Theme">
         <option value="cyberpunk">Cyberpunk</option>
@@ -65,6 +72,7 @@
         <input type="range" id="3d-sprite-scale" min="0.5" max="3" step="0.1" value="1">
       </label>
       <button id="btn-event-log" title="Download Event Log" style="display:none">Log</button>
+    </div>
     </div>
   </header>
 
@@ -150,6 +158,7 @@
   <!-- ── Detail Panel (Right) ──────────────────────────────────── -->
   <aside id="detail-panel" class="detail-panel">
     <div class="panel-top-bar">
+      <div class="drag-handle"><span></span></div>
       <button class="panel-close">&times;</button>
     </div>
     <div class="panel-content"></div>

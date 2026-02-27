@@ -247,7 +247,17 @@ function render() {
       hoveredIndex = null;
       updateHighlight();
       if (onNodeHover) onNodeHover(null);
-    });
+    })
+    .on('touchstart', function (event, d) {
+      hoveredIndex = d.source.index;
+      updateHighlight();
+      showChordTooltip(event, d);
+    }, { passive: true })
+    .on('touchend', function () {
+      hoveredIndex = null;
+      updateHighlight();
+      if (onNodeHover) onNodeHover(null);
+    }, { passive: true });
 
   // ── Draw outer arcs (domain segments) ──
   const groupG = rootG.append('g')
@@ -266,6 +276,16 @@ function render() {
       updateHighlight();
       if (onNodeHover) onNodeHover(null);
     })
+    .on('touchstart', function (event, d) {
+      hoveredIndex = d.index;
+      updateHighlight();
+      showGroupTooltip(event, d);
+    }, { passive: true })
+    .on('touchend', function () {
+      hoveredIndex = null;
+      updateHighlight();
+      if (onNodeHover) onNodeHover(null);
+    }, { passive: true })
     .on('click', function (event, d) {
       logEvent('chord', { event: 'domainClick', domain: domainList[d.index] });
     });

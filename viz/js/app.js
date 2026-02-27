@@ -709,13 +709,20 @@ function showTooltip(node) {
   tooltip.style.display = 'block';
 }
 
-// Track mouse for tooltip position
+// Track mouse/touch for tooltip position
 document.addEventListener('mousemove', e => {
   if (tooltip && tooltip.style.display === 'block') {
     tooltip.style.left = (e.clientX + 14) + 'px';
     tooltip.style.top = (e.clientY + 14) + 'px';
   }
 });
+
+document.addEventListener('touchmove', e => {
+  if (tooltip && tooltip.style.display === 'block' && e.touches.length === 1) {
+    tooltip.style.left = (e.touches[0].clientX + 14) + 'px';
+    tooltip.style.top = (e.touches[0].clientY - 40) + 'px';
+  }
+}, { passive: true });
 
 function updateFilteredStats(visibleSkillIds) {
   if (!allData) return;
@@ -741,6 +748,62 @@ function updateFilteredStats(visibleSkillIds) {
   document.getElementById('stat-agents').textContent = visAgents.length;
   document.getElementById('stat-teams').textContent = visTeams.length;
 }
+
+// ── Hamburger Menu ──────────────────────────────
+const hamburgerToggle = document.getElementById('hamburger-toggle');
+const headerDrawer = document.getElementById('header-drawer');
+
+if (hamburgerToggle && headerDrawer) {
+  // Create backdrop
+  const backdrop = document.createElement('div');
+  backdrop.className = 'header-drawer-backdrop';
+  document.body.appendChild(backdrop);
+
+  function toggleDrawer() {
+    const isOpen = headerDrawer.classList.toggle('open');
+    hamburgerToggle.setAttribute('aria-expanded', isOpen);
+    backdrop.classList.toggle('visible', isOpen);
+  }
+
+  function closeDrawer() {
+    headerDrawer.classList.remove('open');
+    hamburgerToggle.setAttribute('aria-expanded', 'false');
+    backdrop.classList.remove('visible');
+  }
+
+  hamburgerToggle.addEventListener('click', toggleDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+
+  // Close drawer when a layout button is clicked
+  headerDrawer.querySelectorAll('button').forEach(btn => {
+    if (btn !== hamburgerToggle) {
+      btn.addEventListener('click', () => {
+        if (window.innerWidth <= 768) closeDrawer();
+      });
+    }
+  });
+}
+
+// ── Orientation change ──────────────────────────
+window.addEventListener('orientationchange', () => {
+  // Small delay to let browser settle orientation
+  setTimeout(() => {
+    window.dispatchEvent(new Event('resize'));
+  }, 100);
+});
+
+// Also handle resize for orientation changes on devices that don't fire orientationchange
+window.addEventListener('resize', () => {
+  // Close open mobile panels on significant size changes
+  if (window.innerWidth > 768) {
+    const drawer = document.getElementById('header-drawer');
+    const hamburger = document.getElementById('hamburger-toggle');
+    if (drawer) drawer.classList.remove('open');
+    if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    const backdrop = document.querySelector('.header-drawer-backdrop');
+    if (backdrop) backdrop.classList.remove('visible');
+  }
+});
 
 main().catch(err => {
   console.error(err);
