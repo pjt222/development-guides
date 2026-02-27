@@ -30,7 +30,7 @@ The activation control system introduces a declarative YAML configuration layer 
 
 ## Motivation
 
-The development-guides repository currently contains 59 agents, 278 skills across 50 domains, and 10 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
+The agent-almanac repository currently contains 59 agents, 278 skills across 50 domains, and 10 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
 
 - An R package developer has no use for the survivalist, shapeshifter, or tcg-specialist agents.
 - A GxP compliance project does not need bushcraft, alchemy, or swarm skills.

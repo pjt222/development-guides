@@ -1,4 +1,4 @@
-# Docker build context: repo root (development-guides/)
+# Docker build context: repo root (agent-almanac/)
 # Paths are relative to the build context
 
 .git

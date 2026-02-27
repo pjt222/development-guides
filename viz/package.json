@@ -2,7 +2,7 @@
   "name": "skillnet-viz",
   "version": "1.0.0",
   "private": true,
-  "description": "Cyberpunk Skillnet Visualization for development-guides",
+  "description": "Cyberpunk Skillnet Visualization for agent-almanac",
   "type": "module",
   "scripts": {
     "dev": "vite",

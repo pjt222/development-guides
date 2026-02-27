@@ -1,7 +1,7 @@
 ---
 name: create-team
 description: >
-  Create a new team composition file following the development-guides
+  Create a new team composition file following the agent-almanac
   team template and registry conventions. Covers team purpose definition,
   member selection, coordination pattern choice, task decomposition
   design, machine-readable configuration block, registry integration,

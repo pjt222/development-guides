@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/development-guides/',
+  base: '/agent-almanac/',
   publicDir: 'public',
   resolve: {
     dedupe: ['three'],

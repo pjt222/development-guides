@@ -138,7 +138,7 @@ Render the modified glyph and verify the fix.
 
 1. Re-render the specific glyph using the build pipeline:
    ```bash
-   cd /mnt/d/dev/p/development-guides/viz
+   cd /mnt/d/dev/p/agent-almanac/viz
    Rscript build-icons.R --skills <skill-id> --palette all
    ```
    For agent glyphs:

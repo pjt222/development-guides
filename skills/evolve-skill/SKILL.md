@@ -207,7 +207,7 @@ Then:
 ln -s ../../skills/<skill-name>-advanced .claude/skills/<skill-name>-advanced
 
 # Global
-ln -s /mnt/d/dev/p/development-guides/skills/<skill-name>-advanced ~/.claude/skills/<skill-name>-advanced
+ln -s /mnt/d/dev/p/agent-almanac/skills/<skill-name>-advanced ~/.claude/skills/<skill-name>-advanced
 ```
 
 **Expected:** Registry `total_skills` matches `find skills -name SKILL.md | wc -l`. Cross-references are bidirectional.

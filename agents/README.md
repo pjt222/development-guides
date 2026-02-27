@@ -91,7 +91,7 @@ Each agent lists the skills it can execute in its `skills` frontmatter field and
 
 Place agent files in `.claude/agents/` (project-level) or `~/.claude/agents/` (global). Claude Code discovers them automatically and makes them available as subagent types via the `Task` tool.
 
-This repository's `.claude/agents/` symlinks to this directory, so agents are available when working in the development-guides project.
+This repository's `.claude/agents/` symlinks to this directory, so agents are available when working in the agent-almanac project.
 
 ### Manual Reference
 
@@ -99,9 +99,9 @@ Reference agents in your `CLAUDE.md`:
 
 ```markdown
 ## Agents
-@development-guides/agents/r-developer.md
-@development-guides/agents/code-reviewer.md
-@development-guides/agents/security-analyst.md
+@agent-almanac/agents/r-developer.md
+@agent-almanac/agents/code-reviewer.md
+@agent-almanac/agents/security-analyst.md
 ```
 
 ### Spawning an Agent

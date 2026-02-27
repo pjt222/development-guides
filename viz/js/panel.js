@@ -4,9 +4,9 @@
 
 import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
 
-const GITHUB_BASE = 'https://github.com/pjt222/development-guides/blob/main/skills/';
-const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
-const GITHUB_TEAMS_BASE = 'https://github.com/pjt222/development-guides/blob/main/';
+const GITHUB_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/skills/';
+const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
+const GITHUB_TEAMS_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
 
 const PRIORITY_BADGE_COLORS = {
   critical: '#ff4444',

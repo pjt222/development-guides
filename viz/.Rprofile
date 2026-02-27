@@ -1,6 +1,6 @@
 # renv activation via source("renv/activate.R") hangs on this project —
 # both WSL-native R (p9_client_rpc deadlock on drvfs) and Windows R/Rscript.
-# See: https://github.com/pjt222/development-guides/issues/52
+# See: https://github.com/pjt222/agent-almanac/issues/52
 #
 # Workaround: set library paths directly instead of activating renv.
 if (file.exists("renv/activate.R")) {

@@ -322,7 +322,7 @@ Create symlinks so Claude Code discovers the skill as a `/slash-command`:
 ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 
 # Global (available in all projects)
-ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skill-name>
+ln -s /mnt/d/dev/p/agent-almanac/skills/<skill-name> ~/.claude/skills/<skill-name>
 ```
 
 **Expected:** `ls -la .claude/skills/<skill-name>/SKILL.md` resolves to the skill file.

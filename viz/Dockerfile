@@ -1,6 +1,6 @@
 # viz/Dockerfile — Containerised skillnet-viz pipeline (R + Node.js)
 #
-# Build context: repo root (development-guides/)
+# Build context: repo root (agent-almanac/)
 #   docker compose build        (from viz/)
 #   docker build -f viz/Dockerfile .  (from repo root)
 

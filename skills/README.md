@@ -95,13 +95,13 @@ Reference skills directly in your `CLAUDE.md`:
 
 ```markdown
 ## Skills
-@development-guides/skills/submit-to-cran/SKILL.md
+@agent-almanac/skills/submit-to-cran/SKILL.md
 ```
 
 Or symlink the entire skills directory:
 
 ```bash
-ln -s /path/to/development-guides/skills ~/.claude/skills
+ln -s /path/to/agent-almanac/skills ~/.claude/skills
 ```
 
 ### Codex (OpenAI)
@@ -109,7 +109,7 @@ ln -s /path/to/development-guides/skills ~/.claude/skills
 Symlink into the agents directory:
 
 ```bash
-ln -s /path/to/development-guides/skills .agents/skills
+ln -s /path/to/agent-almanac/skills .agents/skills
 ```
 
 Reference in your `AGENTS.md`:
@@ -131,7 +131,7 @@ ln -s /path/to/skills/submit-to-cran/SKILL.md .cursor/rules/submit-to-cran.mdc
 Or reference the skills directory in your `.cursorrules`:
 
 ```
-When performing R package tasks, consult skills in development-guides/skills/
+When performing R package tasks, consult skills in agent-almanac/skills/
 ```
 
 ### Other Tools (Gemini CLI, Aider, etc.)

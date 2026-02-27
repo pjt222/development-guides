@@ -183,8 +183,8 @@ devtools::check()       # Full package check
 
 ```markdown
 ## Development Best Practices References
-@development-guides/skills/write-testthat-tests/SKILL.md
-@development-guides/skills/submit-to-cran/SKILL.md
+@agent-almanac/skills/write-testthat-tests/SKILL.md
+@agent-almanac/skills/submit-to-cran/SKILL.md
 ```
 
 **Expected:** Relevant skills and guides are referenced using `@` paths, giving AI assistants access to detailed procedures for common tasks in the project.

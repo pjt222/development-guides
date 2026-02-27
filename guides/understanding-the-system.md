@@ -28,7 +28,7 @@ This repository provides 278 skills, 59 agents, and 10 teams following the [Agen
 ## Directory Layout at a Glance
 
 ```
-development-guides/
+agent-almanac/
 ├── guides/              # Human-readable reference docs (you are here)
 │   ├── _registry.yml    # Catalog of all guides
 │   └── *.md             # Individual guide files

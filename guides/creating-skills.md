@@ -185,7 +185,7 @@ To make the skill discoverable as a `/slash-command` in Claude Code:
 ln -s ../../skills/<skill-name> .claude/skills/<skill-name>
 
 # Global (available in all projects)
-ln -s /mnt/d/dev/p/development-guides/skills/<skill-name> ~/.claude/skills/<skill-name>
+ln -s /mnt/d/dev/p/agent-almanac/skills/<skill-name> ~/.claude/skills/<skill-name>
 ```
 
 ## The Progressive Disclosure Pattern

@@ -1,7 +1,7 @@
-# Development Guides
+# Agent Almanac
 
-[![Validate Skills](https://github.com/pjt222/development-guides/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/pjt222/development-guides/actions/workflows/validate-skills.yml)
-[![Update READMEs](https://github.com/pjt222/development-guides/actions/workflows/update-readmes.yml/badge.svg)](https://github.com/pjt222/development-guides/actions/workflows/update-readmes.yml)
+[![Validate Skills](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml)
+[![Update READMEs](https://github.com/pjt222/agent-almanac/actions/workflows/update-readmes.yml/badge.svg)](https://github.com/pjt222/agent-almanac/actions/workflows/update-readmes.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A library of executable skills, specialist agents, and pre-built teams for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and compatible AI tools. Define repeatable engineering procedures once and have AI agents execute them with built-in validation and error recovery. Compose specialists into review teams that catch issues a single reviewer would miss. Built on the [Agent Skills open standard](https://agentskills.io).
@@ -32,7 +32,7 @@ Ask Claude Code to review your R package, and the [r-package-review](teams/r-pac
 ### Prerequisites
 
 - [Claude Code](https://docs.anthropic.com/en/docs/claude-code) CLI installed
-- This repository cloned: `git clone https://github.com/pjt222/development-guides.git`
+- This repository cloned: `git clone https://github.com/pjt222/agent-almanac.git`
 - Node.js (for README generation and the visualization)
 
 ### Try it

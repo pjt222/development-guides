@@ -1,7 +1,7 @@
 ---
 name: create-agent
 description: >
-  Create a new agent definition file following the development-guides
+  Create a new agent definition file following the agent-almanac
   agent template and registry conventions. Covers persona design,
   tool selection, skill assignment, model choice, frontmatter schema,
   required sections, registry integration, and discovery symlink
