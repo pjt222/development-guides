@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 284
+total_skills: 295
 
 domains:
   r-packages:
@@ -1623,3 +1623,66 @@ domains:
         complexity: intermediate
         language: multi
         description: Audit dependencies for staleness, security vulnerabilities, and upgrade paths
+
+  spectroscopy:
+    description: Spectroscopic technique interpretation and analytical planning for NMR, IR, MS, UV-Vis, and Raman
+    skills:
+      - id: interpret-nmr-spectrum
+        path: interpret-nmr-spectrum/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Interpret 1D and 2D NMR spectra including chemical shifts, coupling patterns, and structure elucidation
+      - id: interpret-ir-spectrum
+        path: interpret-ir-spectrum/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Interpret infrared spectra for functional group identification using diagnostic and fingerprint regions
+      - id: interpret-mass-spectrum
+        path: interpret-mass-spectrum/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Interpret mass spectra including molecular ion, isotope patterns, and fragmentation pathways
+      - id: interpret-uv-vis-spectrum
+        path: interpret-uv-vis-spectrum/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Interpret UV-Vis spectra for chromophore identification, electronic transitions, and quantitative analysis
+      - id: interpret-raman-spectrum
+        path: interpret-raman-spectrum/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Interpret Raman spectra using polarizability selection rules and complementary IR comparison
+      - id: plan-spectroscopic-analysis
+        path: plan-spectroscopic-analysis/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Plan multi-technique spectroscopic analysis with technique selection, sample preparation, and sequencing
+
+  chromatography:
+    description: Chromatographic method development, interpretation, troubleshooting, and ICH Q2 validation
+    skills:
+      - id: develop-gc-method
+        path: develop-gc-method/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Develop gas chromatography methods with column selection, temperature programming, and detector choice
+      - id: develop-hplc-method
+        path: develop-hplc-method/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Develop HPLC methods with mobile phase design, gradient optimization, and column chemistry selection
+      - id: interpret-chromatogram
+        path: interpret-chromatogram/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Interpret chromatograms for peak identification, integration, resolution, and system suitability
+      - id: troubleshoot-separation
+        path: troubleshoot-separation/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Diagnose and fix chromatographic separation problems including peak shape and retention issues
+      - id: validate-analytical-method
+        path: validate-analytical-method/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Validate analytical methods per ICH Q2 covering specificity, linearity, accuracy, precision, and robustness
