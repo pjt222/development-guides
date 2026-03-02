@@ -49,9 +49,12 @@ COPY agents/ /app/agents/
 COPY viz/R/ R/
 
 # Copy top-level build scripts
-COPY viz/generate-palette-colors.R viz/build-icons.R viz/build-agent-icons.R ./
+COPY viz/generate-palette-colors.R viz/build-icons.R viz/build-agent-icons.R \
+     viz/build-all-icons.R viz/build-team-icons.R ./
 COPY viz/build-data.js viz/build-icons.js viz/build-icon-manifest.js ./
-COPY viz/sync-palette-colors.cjs ./
+
+# Data files (manifests consumed by agent/team build scripts)
+COPY viz/public/data/ public/data/
 
 # Copy frontend
 COPY viz/index.html ./
@@ -63,7 +66,7 @@ COPY viz/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Create output directories (will be overlaid by volume mounts)
-RUN mkdir -p icons data logs
+RUN mkdir -p public/icons public/icons-hd public/data logs
 
 EXPOSE 8080
 ENTRYPOINT ["docker-entrypoint.sh"]

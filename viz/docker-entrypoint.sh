@@ -34,28 +34,19 @@ fi
 
 # ── Pipeline ────────────────────────────────────────────────────────────
 step=0
-total=7
+total=5
 
 step=$((step + 1))
-echo "[$step/$total] Generating palette colors..."
+echo "[$step/$total] Generating palette colors (JSON + JS)..."
 Rscript generate-palette-colors.R
-
-step=$((step + 1))
-echo "[$step/$total] Syncing palette colors to JS..."
-node sync-palette-colors.cjs
 
 if [[ "${SKIP_ICONS:-0}" != "1" ]]; then
   step=$((step + 1))
-  echo "[$step/$total] Building skill icons (flags: ${build_flags[*]:-none})..."
-  Rscript build-icons.R "${build_flags[@]}"
-
-  step=$((step + 1))
-  echo "[$step/$total] Building agent icons (flags: ${build_flags[*]:-none})..."
-  Rscript build-agent-icons.R "${build_flags[@]}"
+  echo "[$step/$total] Building all icons — standard + HD (flags: ${build_flags[*]:-none})..."
+  Rscript build-all-icons.R --hd "${build_flags[@]}"
 else
-  step=$((step + 2))
-  echo "[$((step - 1))/$total] Skipping skill icons (SKIP_ICONS=1)"
-  echo "[$step/$total] Skipping agent icons (SKIP_ICONS=1)"
+  step=$((step + 1))
+  echo "[$step/$total] Skipping icon generation (SKIP_ICONS=1)"
 fi
 
 step=$((step + 1))
