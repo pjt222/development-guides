@@ -2,7 +2,7 @@
  * panel.js - Right-side detail panel (open/close/populate)
  */
 
-import { DOMAIN_COLORS, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
+import { getColor, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
 import { getHdMode } from './icons.js';
 
 const GITHUB_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/skills/';
@@ -95,7 +95,7 @@ export function refreshPanelTheme() {
 }
 
 function openSkillPanel(node) {
-  const color = DOMAIN_COLORS[node.domain] || '#ffffff';
+  const color = getColor(node.domain);
   const badgeColor = COMPLEXITY_BADGE_COLORS[node.complexity] || '#999';
 
   const iconDir = getHdMode() ? 'icons-hd' : 'icons';

@@ -6,7 +6,7 @@
 // Loaded lazily when user clicks the Chord button.
 
 import * as d3 from 'd3';
-import { DOMAIN_COLORS, hexToRgba, getCurrentThemeName } from './colors.js';
+import { getColor, hexToRgba, getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';
 
 let svg = null;
@@ -230,11 +230,11 @@ function render() {
     .attr('d', ribbon)
     .attr('fill', d => {
       const srcDomain = domainList[d.source.index];
-      return hexToRgba(DOMAIN_COLORS[srcDomain] || '#ffffff', 0.55);
+      return hexToRgba(getColor(srcDomain), 0.55);
     })
     .attr('stroke', d => {
       const srcDomain = domainList[d.source.index];
-      return hexToRgba(DOMAIN_COLORS[srcDomain] || '#ffffff', 0.2);
+      return hexToRgba(getColor(srcDomain), 0.2);
     })
     .attr('stroke-width', 0.5)
     .style('cursor', 'pointer')
@@ -292,8 +292,8 @@ function render() {
 
   groupG.append('path')
     .attr('d', arc)
-    .attr('fill', d => DOMAIN_COLORS[domainList[d.index]] || '#ffffff')
-    .attr('stroke', d => hexToRgba(DOMAIN_COLORS[domainList[d.index]] || '#ffffff', 0.8))
+    .attr('fill', d => getColor(domainList[d.index]))
+    .attr('stroke', d => hexToRgba(getColor(domainList[d.index]), 0.8))
     .attr('stroke-width', 1);
 
   // ── Domain labels ──
@@ -306,7 +306,7 @@ function render() {
       return `rotate(${angle}) translate(${outerRadius + 8})${flip ? ' rotate(180)' : ''}`;
     })
     .attr('text-anchor', d => d.angle > Math.PI ? 'end' : 'start')
-    .attr('fill', d => DOMAIN_COLORS[domainList[d.index]] || '#ffffff')
+    .attr('fill', d => getColor(domainList[d.index]))
     .attr('font-size', '10px')
     .attr('font-family', 'Share Tech Mono, monospace')
     .text(d => {
@@ -332,11 +332,11 @@ function updateHighlight() {
     svg._chordPaths
       .attr('fill', d => {
         const srcDomain = domainList[d.source.index];
-        return hexToRgba(DOMAIN_COLORS[srcDomain] || '#ffffff', 0.55);
+        return hexToRgba(getColor(srcDomain), 0.55);
       })
       .attr('stroke', d => {
         const srcDomain = domainList[d.source.index];
-        return hexToRgba(DOMAIN_COLORS[srcDomain] || '#ffffff', 0.2);
+        return hexToRgba(getColor(srcDomain), 0.2);
       });
     svg._groupG.select('path')
       .attr('opacity', 1);
@@ -358,13 +358,13 @@ function updateHighlight() {
     .attr('fill', function (d) {
       const connected = d.source.index === hoveredIndex || d.target.index === hoveredIndex;
       const srcDomain = domainList[d.source.index];
-      const color = DOMAIN_COLORS[srcDomain] || '#ffffff';
+      const color = getColor(srcDomain);
       return hexToRgba(color, connected ? 0.85 : 0.08);
     })
     .attr('stroke', function (d) {
       const connected = d.source.index === hoveredIndex || d.target.index === hoveredIndex;
       const srcDomain = domainList[d.source.index];
-      return hexToRgba(DOMAIN_COLORS[srcDomain] || '#ffffff', connected ? 0.6 : 0.02);
+      return hexToRgba(getColor(srcDomain), connected ? 0.6 : 0.02);
     });
 
   svg._groupG.select('path')

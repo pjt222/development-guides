@@ -6,7 +6,7 @@
 
 import * as d3 from 'd3';
 import {
-  DOMAIN_COLORS, getAgentColor, getTeamColor, hexToRgba,
+  getColor, getAgentColor, getTeamColor, hexToRgba,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
 import { getIconMode, getIconPath, isIconLoaded, markIconLoaded } from './icons.js';
@@ -101,7 +101,7 @@ function polar(angle, radius) {
 function getNodeColor(node) {
   if (node.type === 'agent') return getAgentColor(node.id.replace('agent:', ''));
   if (node.type === 'team') return getTeamColor(node.id.replace('team:', ''));
-  return DOMAIN_COLORS[node.domain] || '#ffffff';
+  return getColor(node.domain);
 }
 
 function linkColor(link, nodeById) {
@@ -116,7 +116,7 @@ function linkColor(link, nodeById) {
     return getAgentColor((agentNode?.id || '').replace('agent:', ''));
   }
   // skill↔skill: use source domain color
-  return DOMAIN_COLORS[src?.domain] || '#ffffff';
+  return getColor(src?.domain);
 }
 
 function computeLayout(nodes, links) {

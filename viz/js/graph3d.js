@@ -6,7 +6,7 @@
 import * as THREE from 'three';
 import ForceGraph3D from '3d-force-graph';
 import {
-  DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES,
+  getColor, COMPLEXITY_CONFIG, FEATURED_NODES,
   hexToRgba, getAgentColor, getTeamColor,
   AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName
 } from './colors.js';
@@ -267,7 +267,7 @@ function createNodeObject(node) {
       opacity: 0.9,
     });
   } else {
-    const color = DOMAIN_COLORS[node.domain] || '#ffffff';
+    const color = getColor(node.domain);
     const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
     const featured = FEATURED_NODES[node.id];
     size = (featured ? featured.radius : cfg.radius) * 0.6;

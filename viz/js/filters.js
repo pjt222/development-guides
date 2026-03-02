@@ -6,7 +6,7 @@
  * A search box filters visible skills and auto-expands matching domains.
  */
 
-import { DOMAIN_COLORS, getAgentColor, getTeamColor } from './colors.js';
+import { getColor, getAgentColor, getTeamColor } from './colors.js';
 import { logEvent } from './eventlog.js';
 
 let filterEl = null;
@@ -159,7 +159,7 @@ function renderSkills() {
   const sorted = Object.entries(skillsByDomain).sort((a, b) => b[1].length - a[1].length);
 
   for (const [domain, skills] of sorted) {
-    const color = DOMAIN_COLORS[domain] || '#888';
+    const color = getColor(domain);
     const group = document.createElement('div');
     group.className = 'filter-domain-group';
     group.dataset.domain = domain;
@@ -671,7 +671,7 @@ export function refreshSwatches() {
     const cb = header.querySelector('input[data-domain]');
     if (cb) {
       const swatch = header.querySelector('.filter-swatch');
-      if (swatch) swatch.style.background = DOMAIN_COLORS[cb.dataset.domain] || '#888';
+      if (swatch) swatch.style.background = getColor(cb.dataset.domain);
     }
   });
 

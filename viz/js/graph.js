@@ -2,7 +2,7 @@
 // put id:"mode_2d", label:"Canvas-based 2D force-directed layout (force-graph)", node_type:"process", input:"active_module"
 
 import ForceGraph from 'force-graph';
-import { DOMAIN_COLORS, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
+import { getColor, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, getTeamColor, AGENT_PRIORITY_CONFIG, TEAM_CONFIG, getCurrentThemeName } from './colors.js';
 import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded, iconCacheKey } from './icons.js';
 import { logEvent } from './eventlog.js';
 
@@ -237,7 +237,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
         if (isAgentLink) return getAgentLinkColor(0.3);
         const activeId = selectedNodeId || hoveredNodeId;
         const connectedNode = nodeById.get(src === activeId ? tgt : src);
-        const color = connectedNode ? (DOMAIN_COLORS[connectedNode.domain] || '#ffffff') : '#ffffff';
+        const color = connectedNode ? getColor(connectedNode.domain) : '#ffffff';
         return hexToRgba(color, 0.35);
       }
       if (isTeamLink) return getTeamLinkColor(0.01);
@@ -553,7 +553,7 @@ function drawNode(node, ctx, globalScale) {
     return;
   }
 
-  const color = DOMAIN_COLORS[node.domain] || '#ffffff';
+  const color = getColor(node.domain);
   const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
   const featured = FEATURED_NODES[node.id];
   const r = featured ? featured.radius : cfg.radius;

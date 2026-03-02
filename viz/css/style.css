@@ -863,7 +863,7 @@ body::after {
 }
 
 /* ── 3D Sprite Scale Slider ───────────────────────────────── */
-#3d-sprite-scale {
+#sprite-scale-3d {
   -webkit-appearance: none;
   appearance: none;
   width: 80px;
@@ -876,7 +876,7 @@ body::after {
   margin: 0;
 }
 
-#3d-sprite-scale::-webkit-slider-thumb {
+#sprite-scale-3d::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 12px;
@@ -889,7 +889,7 @@ body::after {
   margin-top: -4px;
 }
 
-#3d-sprite-scale::-moz-range-thumb {
+#sprite-scale-3d::-moz-range-thumb {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -899,13 +899,13 @@ body::after {
   cursor: pointer;
 }
 
-#3d-sprite-scale::-webkit-slider-runnable-track {
+#sprite-scale-3d::-webkit-slider-runnable-track {
   height: 4px;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 2px;
 }
 
-#3d-sprite-scale::-moz-range-track {
+#sprite-scale-3d::-moz-range-track {
   height: 4px;
   background: rgba(255, 255, 255, 0.12);
   border-radius: 2px;

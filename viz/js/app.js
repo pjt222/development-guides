@@ -189,11 +189,11 @@ async function switchTo3D() {
     if (domainSelect3d) domainSelect3d.style.display = 'none';
 
     // Show and restore 3D sprite scale slider
-    const spriteLabel = document.getElementById('3d-sprite-label');
-    const spriteSlider = document.getElementById('3d-sprite-scale');
+    const spriteLabel = document.getElementById('sprite-label-3d');
+    const spriteSlider = document.getElementById('sprite-scale-3d');
     if (spriteLabel && spriteSlider) {
       spriteLabel.style.display = '';
-      const savedScale = parseFloat(localStorage.getItem('skillnet-3d-sprite-scale')) || 1.0;
+      const savedScale = parseFloat(localStorage.getItem('skillnet-sprite-scale-3d')) || 1.0;
       spriteSlider.value = savedScale;
       graph3dMod.setSpriteScale3D(savedScale);
     }
@@ -257,7 +257,7 @@ function switchTo2D() {
   if (hiveSpreadLabel2d) hiveSpreadLabel2d.style.display = 'none';
   const domainSelect2d = document.getElementById('hive-domain-focus');
   if (domainSelect2d) domainSelect2d.style.display = 'none';
-  const spriteLabel2d = document.getElementById('3d-sprite-label');
+  const spriteLabel2d = document.getElementById('sprite-label-3d');
   if (spriteLabel2d) spriteLabel2d.style.display = 'none';
 
   // Auto zoom-to-fit
@@ -349,7 +349,7 @@ async function switchToHive() {
     }
 
     // Hide 3D sprite slider
-    const spriteLabelHive = document.getElementById('3d-sprite-label');
+    const spriteLabelHive = document.getElementById('sprite-label-3d');
     if (spriteLabelHive) spriteLabelHive.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Hive:', err);
@@ -400,7 +400,7 @@ async function switchToChord() {
     if (hiveSpreadLabel) hiveSpreadLabel.style.display = 'none';
     const domainSelectChord = document.getElementById('hive-domain-focus');
     if (domainSelectChord) domainSelectChord.style.display = 'none';
-    const spriteLabel = document.getElementById('3d-sprite-label');
+    const spriteLabel = document.getElementById('sprite-label-3d');
     if (spriteLabel) spriteLabel.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Chord:', err);
@@ -456,7 +456,7 @@ async function switchToWorkflow() {
     if (hiveSpreadLabel) hiveSpreadLabel.style.display = 'none';
     const domainSelect = document.getElementById('hive-domain-focus');
     if (domainSelect) domainSelect.style.display = 'none';
-    const spriteLabel = document.getElementById('3d-sprite-label');
+    const spriteLabel = document.getElementById('sprite-label-3d');
     if (spriteLabel) spriteLabel.style.display = 'none';
   } catch (err) {
     console.error('Failed to switch to Workflow:', err);
@@ -638,12 +638,12 @@ async function main() {
   });
 
   // ── 3D sprite scale slider ──
-  const spriteScaleSlider = document.getElementById('3d-sprite-scale');
+  const spriteScaleSlider = document.getElementById('sprite-scale-3d');
   if (spriteScaleSlider) spriteScaleSlider.addEventListener('input', function () {
     if (!graph3dMod) return;
     const val = parseFloat(this.value);
     graph3dMod.setSpriteScale3D(val);
-    localStorage.setItem('skillnet-3d-sprite-scale', val);
+    localStorage.setItem('skillnet-sprite-scale-3d', val);
     logEvent('app', { event: 'spriteScaleChange', value: val });
   });
 
