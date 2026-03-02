@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-02-25T12:19:44.777Z",
-    "totalSkills": 284,
-    "totalAgents": 60,
-    "totalTeams": 11,
-    "totalNodes": 355,
-    "totalLinks": 1522,
-    "totalAgentLinks": 366,
-    "totalTeamLinks": 36,
-    "totalDomains": 50
+    "generated": "2026-03-02T11:13:21.841Z",
+    "totalSkills": 295,
+    "totalAgents": 62,
+    "totalTeams": 12,
+    "totalNodes": 369,
+    "totalLinks": 1591,
+    "totalAgentLinks": 377,
+    "totalTeamLinks": 39,
+    "totalDomains": 52
   },
   "domains": {
     "r-packages": {
@@ -210,6 +210,14 @@
     "versioning": {
       "description": "Semantic versioning, changelog management, release planning, and dependency auditing",
       "count": 4
+    },
+    "spectroscopy": {
+      "description": "Spectroscopic technique interpretation and analytical planning for NMR, IR, MS, UV-Vis, and Raman",
+      "count": 6
+    },
+    "chromatography": {
+      "description": "Chromatographic method development, interpretation, troubleshooting, and ICH Q2 validation",
+      "count": 5
     }
   },
   "nodes": [
@@ -6958,6 +6966,271 @@
       "path": "audit-dependency-versions/SKILL.md"
     },
     {
+      "id": "interpret-nmr-spectrum",
+      "type": "skill",
+      "title": "Interpret NMR Spectrum",
+      "domain": "spectroscopy",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Interpret 1D and 2D NMR spectra including chemical shifts, coupling patterns, and structure elucidation",
+      "tags": [
+        "spectroscopy",
+        "nmr",
+        "chemical-shift",
+        "coupling",
+        "structure-elucidation"
+      ],
+      "related": [
+        "interpret-ir-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-uv-vis-spectrum",
+        "interpret-raman-spectrum",
+        "plan-spectroscopic-analysis"
+      ],
+      "path": "interpret-nmr-spectrum/SKILL.md"
+    },
+    {
+      "id": "interpret-ir-spectrum",
+      "type": "skill",
+      "title": "Interpret IR Spectrum",
+      "domain": "spectroscopy",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Interpret infrared spectra for functional group identification using diagnostic and fingerprint regions",
+      "tags": [
+        "spectroscopy",
+        "ir",
+        "infrared",
+        "functional-groups",
+        "absorption"
+      ],
+      "related": [
+        "interpret-nmr-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-uv-vis-spectrum",
+        "interpret-raman-spectrum",
+        "plan-spectroscopic-analysis"
+      ],
+      "path": "interpret-ir-spectrum/SKILL.md"
+    },
+    {
+      "id": "interpret-mass-spectrum",
+      "type": "skill",
+      "title": "Interpret Mass Spectrum",
+      "domain": "spectroscopy",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Interpret mass spectra including molecular ion, isotope patterns, and fragmentation pathways",
+      "tags": [
+        "spectroscopy",
+        "mass-spectrometry",
+        "fragmentation",
+        "molecular-ion",
+        "isotope"
+      ],
+      "related": [
+        "interpret-nmr-spectrum",
+        "interpret-ir-spectrum",
+        "interpret-uv-vis-spectrum",
+        "interpret-raman-spectrum",
+        "plan-spectroscopic-analysis",
+        "interpret-chromatogram"
+      ],
+      "path": "interpret-mass-spectrum/SKILL.md"
+    },
+    {
+      "id": "interpret-uv-vis-spectrum",
+      "type": "skill",
+      "title": "Interpret UV-Vis Spectrum",
+      "domain": "spectroscopy",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Interpret UV-Vis spectra for chromophore identification, electronic transitions, and quantitative analysis",
+      "tags": [
+        "spectroscopy",
+        "uv-vis",
+        "chromophore",
+        "beer-lambert",
+        "electronic-transitions"
+      ],
+      "related": [
+        "interpret-nmr-spectrum",
+        "interpret-ir-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-raman-spectrum",
+        "plan-spectroscopic-analysis"
+      ],
+      "path": "interpret-uv-vis-spectrum/SKILL.md"
+    },
+    {
+      "id": "interpret-raman-spectrum",
+      "type": "skill",
+      "title": "Interpret Raman Spectrum",
+      "domain": "spectroscopy",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Interpret Raman spectra using polarizability selection rules and complementary IR comparison",
+      "tags": [
+        "spectroscopy",
+        "raman",
+        "polarizability",
+        "vibrational",
+        "complementary-ir"
+      ],
+      "related": [
+        "interpret-ir-spectrum",
+        "interpret-nmr-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-uv-vis-spectrum",
+        "plan-spectroscopic-analysis"
+      ],
+      "path": "interpret-raman-spectrum/SKILL.md"
+    },
+    {
+      "id": "plan-spectroscopic-analysis",
+      "type": "skill",
+      "title": "Plan Spectroscopic Analysis",
+      "domain": "spectroscopy",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Plan multi-technique spectroscopic analysis with technique selection, sample preparation, and sequencing",
+      "tags": [
+        "spectroscopy",
+        "analytical-planning",
+        "technique-selection",
+        "sample-preparation"
+      ],
+      "related": [
+        "interpret-nmr-spectrum",
+        "interpret-ir-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-uv-vis-spectrum",
+        "interpret-raman-spectrum",
+        "validate-analytical-method"
+      ],
+      "path": "plan-spectroscopic-analysis/SKILL.md"
+    },
+    {
+      "id": "develop-gc-method",
+      "type": "skill",
+      "title": "Develop a GC Method",
+      "domain": "chromatography",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Develop gas chromatography methods with column selection, temperature programming, and detector choice",
+      "tags": [
+        "chromatography",
+        "gc",
+        "gas-chromatography",
+        "method-development",
+        "separation"
+      ],
+      "related": [
+        "develop-hplc-method",
+        "interpret-chromatogram",
+        "troubleshoot-separation",
+        "validate-analytical-method"
+      ],
+      "path": "develop-gc-method/SKILL.md"
+    },
+    {
+      "id": "develop-hplc-method",
+      "type": "skill",
+      "title": "Develop an HPLC Method",
+      "domain": "chromatography",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Develop HPLC methods with mobile phase design, gradient optimization, and column chemistry selection",
+      "tags": [
+        "chromatography",
+        "hplc",
+        "liquid-chromatography",
+        "method-development",
+        "separation"
+      ],
+      "related": [
+        "develop-gc-method",
+        "interpret-chromatogram",
+        "troubleshoot-separation",
+        "validate-analytical-method"
+      ],
+      "path": "develop-hplc-method/SKILL.md"
+    },
+    {
+      "id": "interpret-chromatogram",
+      "type": "skill",
+      "title": "Interpret a Chromatogram",
+      "domain": "chromatography",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Interpret chromatograms for peak identification, integration, resolution, and system suitability",
+      "tags": [
+        "chromatography",
+        "peak-analysis",
+        "resolution",
+        "integration",
+        "system-suitability"
+      ],
+      "related": [
+        "develop-gc-method",
+        "develop-hplc-method",
+        "troubleshoot-separation",
+        "validate-analytical-method",
+        "interpret-mass-spectrum"
+      ],
+      "path": "interpret-chromatogram/SKILL.md"
+    },
+    {
+      "id": "troubleshoot-separation",
+      "type": "skill",
+      "title": "Troubleshoot a Chromatographic Separation",
+      "domain": "chromatography",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Diagnose and fix chromatographic separation problems including peak shape and retention issues",
+      "tags": [
+        "chromatography",
+        "troubleshooting",
+        "peak-shape",
+        "resolution",
+        "matrix-effects"
+      ],
+      "related": [
+        "interpret-chromatogram",
+        "develop-gc-method",
+        "develop-hplc-method",
+        "validate-analytical-method"
+      ],
+      "path": "troubleshoot-separation/SKILL.md"
+    },
+    {
+      "id": "validate-analytical-method",
+      "type": "skill",
+      "title": "Validate an Analytical Method",
+      "domain": "chromatography",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Validate analytical methods per ICH Q2 covering specificity, linearity, accuracy, precision, and robustness",
+      "tags": [
+        "chromatography",
+        "validation",
+        "ich-q2",
+        "accuracy",
+        "precision",
+        "linearity",
+        "regulatory"
+      ],
+      "related": [
+        "develop-gc-method",
+        "develop-hplc-method",
+        "interpret-chromatogram",
+        "troubleshoot-separation",
+        "conduct-gxp-audit",
+        "write-standard-operating-procedure"
+      ],
+      "path": "validate-analytical-method/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -8958,6 +9231,71 @@
       "path": "agents/citizen-entomologist.md"
     },
     {
+      "id": "agent:spectroscopist",
+      "type": "agent",
+      "title": "Spectroscopist",
+      "priority": "normal",
+      "description": "Spectroscopic analysis specialist for NMR, IR, MS, UV-Vis, and Raman interpretation with multi-technique structure elucidation",
+      "tags": [
+        "spectroscopy",
+        "nmr",
+        "ir",
+        "mass-spectrometry",
+        "uv-vis",
+        "raman",
+        "analytical-chemistry"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "interpret-nmr-spectrum",
+        "interpret-ir-spectrum",
+        "interpret-mass-spectrum",
+        "interpret-uv-vis-spectrum",
+        "interpret-raman-spectrum",
+        "plan-spectroscopic-analysis"
+      ],
+      "path": "agents/spectroscopist.md"
+    },
+    {
+      "id": "agent:chromatographer",
+      "type": "agent",
+      "title": "Chromatographer",
+      "priority": "normal",
+      "description": "Chromatographic method development and validation specialist for GC and HPLC with ICH Q2 compliance",
+      "tags": [
+        "chromatography",
+        "gc",
+        "hplc",
+        "method-development",
+        "validation",
+        "separation-science",
+        "analytical-chemistry"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "develop-gc-method",
+        "develop-hplc-method",
+        "interpret-chromatogram",
+        "troubleshoot-separation",
+        "validate-analytical-method"
+      ],
+      "path": "agents/chromatographer.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -9199,6 +9537,27 @@
         "insects"
       ],
       "path": "teams/entomology.md"
+    },
+    {
+      "id": "team:analytical-chemistry",
+      "type": "team",
+      "title": "Analytical Chemistry",
+      "lead": "spectroscopist",
+      "members": [
+        "spectroscopist",
+        "chromatographer",
+        "senior-researcher"
+      ],
+      "coordination": "hub-and-spoke",
+      "description": "Multi-agent analytical chemistry team for spectroscopic and chromatographic analysis with research synthesis",
+      "tags": [
+        "analytical-chemistry",
+        "spectroscopy",
+        "chromatography",
+        "method-development",
+        "structure-elucidation"
+      ],
+      "path": "teams/analytical-chemistry.md"
     }
   ],
   "links": [
@@ -14803,6 +15162,281 @@
       "type": "skill"
     },
     {
+      "source": "interpret-nmr-spectrum",
+      "target": "interpret-ir-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-nmr-spectrum",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-nmr-spectrum",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-nmr-spectrum",
+      "target": "interpret-raman-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-nmr-spectrum",
+      "target": "plan-spectroscopic-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-ir-spectrum",
+      "target": "interpret-nmr-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-ir-spectrum",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-ir-spectrum",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-ir-spectrum",
+      "target": "interpret-raman-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-ir-spectrum",
+      "target": "plan-spectroscopic-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "interpret-nmr-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "interpret-ir-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "interpret-raman-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "plan-spectroscopic-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-mass-spectrum",
+      "target": "interpret-chromatogram",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-uv-vis-spectrum",
+      "target": "interpret-nmr-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-uv-vis-spectrum",
+      "target": "interpret-ir-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-uv-vis-spectrum",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-uv-vis-spectrum",
+      "target": "interpret-raman-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-uv-vis-spectrum",
+      "target": "plan-spectroscopic-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-raman-spectrum",
+      "target": "interpret-ir-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-raman-spectrum",
+      "target": "interpret-nmr-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-raman-spectrum",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-raman-spectrum",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-raman-spectrum",
+      "target": "plan-spectroscopic-analysis",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "interpret-nmr-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "interpret-ir-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "interpret-raman-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "plan-spectroscopic-analysis",
+      "target": "validate-analytical-method",
+      "type": "skill"
+    },
+    {
+      "source": "develop-gc-method",
+      "target": "develop-hplc-method",
+      "type": "skill"
+    },
+    {
+      "source": "develop-gc-method",
+      "target": "interpret-chromatogram",
+      "type": "skill"
+    },
+    {
+      "source": "develop-gc-method",
+      "target": "troubleshoot-separation",
+      "type": "skill"
+    },
+    {
+      "source": "develop-gc-method",
+      "target": "validate-analytical-method",
+      "type": "skill"
+    },
+    {
+      "source": "develop-hplc-method",
+      "target": "develop-gc-method",
+      "type": "skill"
+    },
+    {
+      "source": "develop-hplc-method",
+      "target": "interpret-chromatogram",
+      "type": "skill"
+    },
+    {
+      "source": "develop-hplc-method",
+      "target": "troubleshoot-separation",
+      "type": "skill"
+    },
+    {
+      "source": "develop-hplc-method",
+      "target": "validate-analytical-method",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-chromatogram",
+      "target": "develop-gc-method",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-chromatogram",
+      "target": "develop-hplc-method",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-chromatogram",
+      "target": "troubleshoot-separation",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-chromatogram",
+      "target": "validate-analytical-method",
+      "type": "skill"
+    },
+    {
+      "source": "interpret-chromatogram",
+      "target": "interpret-mass-spectrum",
+      "type": "skill"
+    },
+    {
+      "source": "troubleshoot-separation",
+      "target": "interpret-chromatogram",
+      "type": "skill"
+    },
+    {
+      "source": "troubleshoot-separation",
+      "target": "develop-gc-method",
+      "type": "skill"
+    },
+    {
+      "source": "troubleshoot-separation",
+      "target": "develop-hplc-method",
+      "type": "skill"
+    },
+    {
+      "source": "troubleshoot-separation",
+      "target": "validate-analytical-method",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "develop-gc-method",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "develop-hplc-method",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "interpret-chromatogram",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "troubleshoot-separation",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "conduct-gxp-audit",
+      "type": "skill"
+    },
+    {
+      "source": "validate-analytical-method",
+      "target": "write-standard-operating-procedure",
+      "type": "skill"
+    },
+    {
       "source": "agent:r-developer",
       "target": "create-r-package",
       "type": "agent"
@@ -16633,6 +17267,61 @@
       "type": "agent"
     },
     {
+      "source": "agent:spectroscopist",
+      "target": "interpret-nmr-spectrum",
+      "type": "agent"
+    },
+    {
+      "source": "agent:spectroscopist",
+      "target": "interpret-ir-spectrum",
+      "type": "agent"
+    },
+    {
+      "source": "agent:spectroscopist",
+      "target": "interpret-mass-spectrum",
+      "type": "agent"
+    },
+    {
+      "source": "agent:spectroscopist",
+      "target": "interpret-uv-vis-spectrum",
+      "type": "agent"
+    },
+    {
+      "source": "agent:spectroscopist",
+      "target": "interpret-raman-spectrum",
+      "type": "agent"
+    },
+    {
+      "source": "agent:spectroscopist",
+      "target": "plan-spectroscopic-analysis",
+      "type": "agent"
+    },
+    {
+      "source": "agent:chromatographer",
+      "target": "develop-gc-method",
+      "type": "agent"
+    },
+    {
+      "source": "agent:chromatographer",
+      "target": "develop-hplc-method",
+      "type": "agent"
+    },
+    {
+      "source": "agent:chromatographer",
+      "target": "interpret-chromatogram",
+      "type": "agent"
+    },
+    {
+      "source": "agent:chromatographer",
+      "target": "troubleshoot-separation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:chromatographer",
+      "target": "validate-analytical-method",
+      "type": "agent"
+    },
+    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -16810,6 +17499,21 @@
     {
       "source": "team:entomology",
       "target": "agent:citizen-entomologist",
+      "type": "team"
+    },
+    {
+      "source": "team:analytical-chemistry",
+      "target": "agent:spectroscopist",
+      "type": "team"
+    },
+    {
+      "source": "team:analytical-chemistry",
+      "target": "agent:chromatographer",
+      "type": "team"
+    },
+    {
+      "source": "team:analytical-chemistry",
+      "target": "agent:senior-researcher",
       "type": "team"
     }
   ]
