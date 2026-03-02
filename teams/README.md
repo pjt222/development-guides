@@ -5,7 +5,7 @@ Predefined multi-agent team compositions for coordinated workflows in [Claude Co
 ## Overview
 
 <!-- AUTO:START:teams-intro -->
-A collection of 11 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
+A collection of 12 predefined multi-agent team compositions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each team defines a coordinated group of agents with assigned roles, a lead, and a defined coordination pattern for complex workflows.
 <!-- AUTO:END:teams-intro -->
 
 Teams complement agents and skills:
@@ -29,6 +29,7 @@ Teams complement agents and skills:
 | [opaque-team](opaque-team.md) | shapeshifter | 1 | adaptive | Variable-size team of N shapeshifters that self-organize into any roles needed |
 | [agentskills-alignment](agentskills-alignment.md) | skill-reviewer | 4 | hub-and-spoke | Standards compliance team for maintaining alignment with the agentskills.io open standard |
 | [entomology](entomology.md) | conservation-entomologist | 3 | hub-and-spoke | Multi-agent entomology team combining conservation ecology, systematic taxonomy, and citizen science for comprehensive insect study |
+| [analytical-chemistry](analytical-chemistry.md) | spectroscopist | 3 | hub-and-spoke | Multi-agent analytical chemistry team for spectroscopic and chromatographic analysis with research synthesis |
 <!-- AUTO:END:teams-table -->
 
 ## Creating a New Team

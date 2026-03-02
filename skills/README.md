@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 284 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 295 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -71,6 +71,8 @@ Browse by domain:
 | [Lapidary](lapidary/) | 4 | Gemstone identification, cutting, polishing, and appraisal |
 | [Entomology](entomology/) | 5 | Insect identification, behavior observation, population surveys, specimen preservation, and citizen science |
 | [Versioning](versioning/) | 4 | Semantic versioning, changelog management, release planning, and dependency auditing |
+| [Spectroscopy](spectroscopy/) | 6 | Spectroscopic technique interpretation and analytical planning for NMR, IR, MS, UV-Vis, and Raman |
+| [Chromatography](chromatography/) | 5 | Chromatographic method development, interpretation, troubleshooting, and ICH Q2 validation |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

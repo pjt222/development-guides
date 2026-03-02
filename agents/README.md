@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 60 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 62 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -42,6 +42,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [alchemist](alchemist.md) | normal | Code/data transmutation via four-stage alchemical process (nigredo/albedo/citrinitas/rubedo) with meditate/heal checkpoints |
 | [apa-specialist](apa-specialist.md) | normal | APA 7th edition specialist for academic table formatting, writing guidance, Quarto/papaja implementation, and citation auditing |
 | [blender-artist](blender-artist.md) | normal | 3D and 2D visualization specialist using Blender Python API for scene creation, procedural modeling, animation, rendering, and 2D composition |
+| [chromatographer](chromatographer.md) | normal | Chromatographic method development and validation specialist for GC and HPLC with ICH Q2 compliance |
 | [citizen-entomologist](citizen-entomologist.md) | normal | Curiosity-driven entomologist for accessible insect identification, citizen science participation, nature education, and community engagement |
 | [conservation-entomologist](conservation-entomologist.md) | normal | Conservation-first entomologist for ecological assessment, pollinator surveys, habitat preservation, and non-destructive insect observation |
 | [contemplative](contemplative.md) | normal | Meta-cognitive practice specialist embodying the foundational tending skills — meditation, healing, centering, attunement, and creative stillness |
@@ -73,6 +74,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [shaman](shaman.md) | normal | Shamanic practitioner for journeying, ceremonial guidance, soul retrieval, and integration of plant medicine traditions with safety-first approach |
 | [shapeshifter](shapeshifter.md) | normal | Metamorphic transformation guide for architectural adaptation, structural dissolution, regenerative repair, and adaptive surface control |
 | [skill-reviewer](skill-reviewer.md) | normal | Skill quality reviewer for SKILL.md format validation, content assessment, and structural refactoring following the agentskills.io standard |
+| [spectroscopist](spectroscopist.md) | normal | Spectroscopic analysis specialist for NMR, IR, MS, UV-Vis, and Raman interpretation with multi-technique structure elucidation |
 | [survivalist](survivalist.md) | normal | Wilderness survival instructor agent for fire craft, water purification, and plant foraging with safety-first guidance |
 | [swarm-strategist](swarm-strategist.md) | normal | Collective intelligence advisor for distributed coordination, foraging optimization, consensus building, colony defense, and scaling strategies |
 | [taxonomic-entomologist](taxonomic-entomologist.md) | normal | Scientific systematist for insect identification using dichotomous keys, morphological analysis, museum-grade specimen preservation, and formal taxonomic nomenclature |
