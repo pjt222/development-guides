@@ -2,7 +2,7 @@
 # Machine-readable catalog of all team definitions in this library.
 # Keep in sync with the actual team files on disk.
 
-total_teams: 11
+total_teams: 12
 version: "1.2"
 last_updated: "2026-02-25"
 
@@ -94,3 +94,11 @@ teams:
     members: [conservation-entomologist, taxonomic-entomologist, citizen-entomologist]
     coordination: hub-and-spoke
     tags: [entomology, conservation, taxonomy, citizen-science, ecology, insects]
+
+  - id: analytical-chemistry
+    path: teams/analytical-chemistry.md
+    description: Multi-agent analytical chemistry team for spectroscopic and chromatographic analysis with research synthesis
+    lead: spectroscopist
+    members: [spectroscopist, chromatographer, senior-researcher]
+    coordination: hub-and-spoke
+    tags: [analytical-chemistry, spectroscopy, chromatography, method-development, structure-elucidation]
