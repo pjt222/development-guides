@@ -66,7 +66,7 @@ sigma_for_size <- function(sz) if (sz <= 512) 4 else 8
 
 # ── Per-step profiling function ──────────────────────────────────────────
 profile_one <- function(glyph_info, size_px) {
-  color <- DOMAIN_COLORS[[glyph_info$domain]]
+  color <- get_palette_colors("cyberpunk")$domains[[glyph_info$domain]]
   bright_color <- brighten_hex(color, 1.4)
   glyph_fn <- match.fun(glyph_info$fn)
   glow_sigma <- sigma_for_size(size_px)

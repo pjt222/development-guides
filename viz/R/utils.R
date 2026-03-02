@@ -1,47 +1,5 @@
-# utils.R - Colors, CLI parsing, manifest I/O
+# utils.R - CLI parsing, manifest I/O, color utilities
 # Part of the R-based icon generation pipeline
-
-# ── Cyberpunk domain color palette ────────────────────────────────────────
-DOMAIN_COLORS <- list(
-  "alchemy"            = "#ffaa33",
-  "animal-training"    = "#ff9944",
-  "bushcraft"          = "#88cc44",
-  "citations"          = "#66bbff",
-  "compliance"         = "#ff3366",
-  "containerization"   = "#44ddff",
-  "crafting"           = "#cc8855",
-  "data-serialization" = "#44aaff",
-  "defensive"          = "#ff4444",
-  "design"             = "#ff88dd",
-  "devops"             = "#00ff88",
-  "entomology"         = "#77cc33",
-  "esoteric"           = "#dd44ff",
-  "gardening"          = "#44bb66",
-  "general"            = "#ccccff",
-  "git"                = "#66ffcc",
-  "intellectual-property" = "#33ccff",
-  "jigsawr"            = "#22ddaa",
-  "lapidary"           = "#88ccee",
-  "library-science"    = "#8B7355",
-  "linguistics"        = "#cc99ff",
-  "mcp-integration"    = "#00ccaa",
-  "mlops"              = "#aa66ff",
-  "observability"      = "#ffaa00",
-  "project-management" = "#ff8844",
-  "r-packages"         = "#00f0ff",
-  "reporting"          = "#ffdd00",
-  "shiny"              = "#3399ff",
-  "review"             = "#ff66aa",
-  "morphic"            = "#bb88ff",
-  "mycology"           = "#aa77cc",
-  "number-theory"      = "#bbaaff",
-  "prospecting"        = "#ddaa33",
-  "swarm"              = "#aadd44",
-  "tcg"                = "#ff5577",
-  "versioning"         = "#44ddaa",
-  "web-dev"            = "#ff6633",
-  "workflow-visualization" = "#66dd88"
-)
 
 # ── Hex color utilities ──────────────────────────────────────────────────
 hex_to_rgb <- function(hex) {

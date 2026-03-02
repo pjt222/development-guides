@@ -200,7 +200,7 @@ render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
                         glow_sigma = 4, size_px = 512, color = NULL,
                         glyph_fn = NULL) {
   if (is.null(color)) {
-    color <- DOMAIN_COLORS[[domain]]
+    color <- get_palette_colors("cyberpunk")$domains[[domain]]
     if (is.null(color)) {
       stop("Unknown domain: ", domain, call. = FALSE)
     }

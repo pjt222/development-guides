@@ -34,7 +34,12 @@ if (!requireNamespace("jsonlite", quietly = TRUE)) {
        call. = FALSE)
 }
 
-# ── Generate ─────────────────────────────────────────────────────────────
+# ── Generate JSON ────────────────────────────────────────────────────────
 out_path <- file.path(script_dir, "public", "data", "palette-colors.json")
 export_palette_json(out_path)
+
+# ── Generate JS module ───────────────────────────────────────────────────
+js_path <- file.path(script_dir, "js", "colors-generated.js")
+export_palette_js(js_path)
+
 log_msg("Done.")

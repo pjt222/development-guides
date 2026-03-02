@@ -1,5 +1,5 @@
 # team_render.R - Team icon rendering (thin wrapper over render_glyph)
-# Uses TEAM_COLORS and TEAM_GLYPHS; delegates to shared render_glyph()
+# Uses palettes.R colors and TEAM_GLYPHS; delegates to shared render_glyph()
 # in render.R for canvas setup, glow, and PNG-to-WebP conversion.
 
 #' Render a single team icon to WebP
@@ -8,13 +8,13 @@
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 4)
 #' @param size_px Output dimension in pixels (default 512)
-#' @param color Optional explicit hex color (overrides TEAM_COLORS lookup)
+#' @param color Optional explicit hex color (overrides palette lookup)
 #' @return Invisible TRUE on success
 render_team_icon <- function(team_id, out_path, glow_sigma = 4,
                               size_px = 512, color = NULL,
                               glyph_fn = NULL) {
   if (is.null(color)) {
-    color <- TEAM_COLORS[[team_id]]
+    color <- get_palette_colors("cyberpunk")$teams[[team_id]]
     if (is.null(color)) {
       stop("Unknown team: ", team_id, call. = FALSE)
     }

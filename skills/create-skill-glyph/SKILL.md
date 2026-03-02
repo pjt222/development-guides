@@ -35,7 +35,7 @@ Create R-based pictogram glyphs for skill icons in the `viz/` visualization laye
 - **Required**: Skill ID (e.g., `create-skill-glyph`) and domain (e.g., `design`)
 - **Required**: Visual concept — what the glyph should depict
 - **Optional**: Reference glyph to study for complexity level
-- **Optional**: Custom `--glow-sigma` value (default: 8)
+- **Optional**: Custom `--glow-sigma` value (default: 4)
 
 ## Procedure
 
@@ -193,7 +193,7 @@ Register the icon in `viz/data/icon-manifest.json`.
      "domain": "domain-name",
      "prompt": "<domain basePrompt>, <skill-specific descriptors>, dark background, vector art, clean edges, single centered icon, no text",
      "seed": <next_seed>,
-     "path": "icons/<domain>/<skill-id>.webp",
+     "path": "public/icons/cyberpunk/<domain>/<skill-id>.webp",
      "status": "pending"
    }
    ```
@@ -219,13 +219,13 @@ Run the build pipeline to render the WebP.
    ```bash
    Rscript build-icons.R --only <domain> --dry-run
    ```
-5. Output location: `viz/icons/<domain>/<skill-id>.webp`
+5. Output location: `viz/public/icons/<palette>/<domain>/<skill-id>.webp`
 
 **Expected:** The log shows `OK: <domain>/<skill-id> (seed=XXXXX, XX.XKB)` and the WebP file exists.
 
 **On failure:**
 - `"No glyph mapped for skill"` — Step 3 mapping is missing or has a typo
-- `"Unknown domain"` — Domain not in `DOMAIN_COLORS` in `utils.R`
+- `"Unknown domain"` — Domain not in `get_palette_colors()` in `palettes.R`
 - R package errors — Run `install.packages(c("ggplot2", "ggforce", "ggfx", "ragg", "magick"))` first
 - If rendering crashes, test the glyph function interactively (see Step 2 fallback)
 
@@ -235,7 +235,7 @@ Check the rendered output meets quality standards.
 
 1. Verify file exists and has reasonable size:
    ```bash
-   ls -la viz/icons/<domain>/<skill-id>.webp
+   ls -la viz/public/icons/cyberpunk/<domain>/<skill-id>.webp
    # Expected: 15-80 KB typical range
    ```
 
@@ -253,8 +253,8 @@ Check the rendered output meets quality standards.
 **Expected:** A clear, recognizable pictogram with even neon glow on transparent background.
 
 **On failure:**
-- Glow too strong: re-render with `--glow-sigma 6` (default is 8)
-- Glow too weak: re-render with `--glow-sigma 10`
+- Glow too strong: re-render with `--glow-sigma 2` (default is 4)
+- Glow too weak: re-render with `--glow-sigma 8`
 - Shape unreadable at small sizes: simplify the glyph (fewer layers, bolder strokes, increase `.lw(s, base)` base value)
 - Clipping at edges: reduce shape dimensions or shift center
 
@@ -271,7 +271,7 @@ Make adjustments and re-render.
 2. To re-render after changes:
    ```bash
    # Delete the existing icon first
-   rm viz/icons/<domain>/<skill-id>.webp
+   rm viz/public/icons/cyberpunk/<domain>/<skill-id>.webp
    # Re-render
    Rscript build-icons.R --only <domain> --skip-existing
    ```
@@ -286,33 +286,21 @@ Make adjustments and re-render.
 
 ### Domain Color Palette
 
-All 19 domain colors from `viz/R/utils.R`:
+All 52 domain colors are defined in `viz/R/palettes.R` (the single source of truth).
+The cyberpunk palette (hand-tuned neon colors) is in `get_cyberpunk_colors()`.
+Viridis-family palettes are auto-generated via `viridisLite`.
 
+To look up a domain color:
+```r
+source("viz/R/palettes.R")
+get_palette_colors("cyberpunk")$domains[["design"]]
+# [1] "#ff88dd"
 ```
-┌──────────────────────┬───────────┬──────────────────────┐
-│ Domain               │ Hex       │ Visual               │
-├──────────────────────┼───────────┼──────────────────────┤
-│ bushcraft            │ #88cc44   │ Olive green           │
-│ compliance           │ #ff3366   │ Hot pink              │
-│ containerization     │ #44ddff   │ Sky blue              │
-│ data-serialization   │ #44aaff   │ Royal blue            │
-│ defensive            │ #ff4444   │ Red                   │
-│ design               │ #ff88dd   │ Rose pink             │
-│ devops               │ #00ff88   │ Neon green            │
-│ esoteric             │ #dd44ff   │ Purple                │
-│ general              │ #ccccff   │ Lavender              │
-│ git                  │ #66ffcc   │ Mint                  │
-│ mcp-integration      │ #00ccaa   │ Teal                  │
-│ mlops                │ #aa66ff   │ Violet                │
-│ observability        │ #ffaa00   │ Amber                 │
-│ project-management   │ #ff8844   │ Orange                │
-│ r-packages           │ #00f0ff   │ Cyan                  │
-│ reporting            │ #ffdd00   │ Yellow                │
-│ review               │ #ff66aa   │ Rose                  │
-│ web-dev              │ #ff6633   │ Coral                 │
-│ workflow-visualization│ (unset)  │ —                     │
-└──────────────────────┴───────────┴──────────────────────┘
-```
+
+When adding a new domain, add it to three places in `palettes.R`:
+1. `PALETTE_DOMAIN_ORDER` (alphabetical)
+2. `get_cyberpunk_colors()` domains list
+3. Run `Rscript generate-palette-colors.R` to regenerate JSON + JS
 
 ### Glyph Function Catalog
 
@@ -458,7 +446,7 @@ All glyph functions across the three primitives files, grouped by source file:
 - [ ] `SKILL_GLYPHS` entry added in `viz/R/glyphs.R` with correct skill ID
 - [ ] `icon-manifest.json` entry added with correct domain, seed, path, and `"status": "pending"`
 - [ ] `build-icons.R --dry-run` runs without error
-- [ ] Rendered WebP exists at `viz/icons/<domain>/<skill-id>.webp`
+- [ ] Rendered WebP exists at `viz/public/icons/cyberpunk/<domain>/<skill-id>.webp`
 - [ ] File size in expected range (15-80 KB)
 - [ ] Icon reads clearly at both 1024px and ~40px display sizes
 - [ ] Transparent background (no solid rectangle behind the glyph)
@@ -472,7 +460,7 @@ All glyph functions across the three primitives files, grouped by source file:
 - **Too many layers**: Each layer gets individual glow wrapping. More than 8 layers makes rendering slow and visually noisy.
 - **Mismatched IDs**: The skill ID in `SKILL_GLYPHS`, `icon-manifest.json`, and `_registry.yml` must all match exactly.
 - **JSON trailing commas**: The manifest is strict JSON. No trailing comma after the last array element.
-- **Missing domain color**: If the domain isn't in `DOMAIN_COLORS` (utils.R), rendering will error. Add the color first.
+- **Missing domain color**: If the domain isn't in `get_cyberpunk_colors()` in `palettes.R`, rendering will error. Add the color to `palettes.R` first, then run `Rscript generate-palette-colors.R` to regenerate the JS module.
 
 ## Related Skills
 

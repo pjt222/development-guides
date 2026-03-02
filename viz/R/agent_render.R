@@ -1,5 +1,5 @@
 # agent_render.R - Agent icon rendering (thin wrapper over render_glyph)
-# Uses AGENT_COLORS and AGENT_GLYPHS; delegates to shared render_glyph()
+# Uses palettes.R colors and AGENT_GLYPHS; delegates to shared render_glyph()
 # in render.R for canvas setup, glow, and PNG-to-WebP conversion.
 
 #' Render a single agent icon to WebP
@@ -8,13 +8,13 @@
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 4)
 #' @param size_px Output dimension in pixels (default 512)
-#' @param color Optional explicit hex color (overrides AGENT_COLORS lookup)
+#' @param color Optional explicit hex color (overrides palette lookup)
 #' @return Invisible TRUE on success
 render_agent_icon <- function(agent_id, out_path, glow_sigma = 4,
                                size_px = 512, color = NULL,
                                glyph_fn = NULL) {
   if (is.null(color)) {
-    color <- AGENT_COLORS[[agent_id]]
+    color <- get_palette_colors("cyberpunk")$agents[[agent_id]]
     if (is.null(color)) {
       stop("Unknown agent: ", agent_id, call. = FALSE)
     }

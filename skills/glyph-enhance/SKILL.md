@@ -53,7 +53,7 @@ Examine the current glyph and identify specific issues.
    - What primitives does it call (from `primitives.R`, `primitives_2.R`, etc.)?
    - What are the scale factors and positioning?
 3. View the rendered output:
-   - Check `viz/icons/cyberpunk/<domain>/<skillId>.webp` as the reference palette
+   - Check `viz/public/icons/cyberpunk/<domain>/<skillId>.webp` as the reference palette
    - If available, check 2-3 other palettes for cross-palette rendering
    - View at both icon size (~48px in the graph) and panel size (~160px in the detail panel)
 4. Score the glyph on the **quality dimensions**:
@@ -139,14 +139,14 @@ Render the modified glyph and verify the fix.
 1. Re-render the specific glyph using the build pipeline:
    ```bash
    cd /mnt/d/dev/p/agent-almanac/viz
-   Rscript build-icons.R --skills <skill-id> --palette all
+   Rscript build-icons.R --only <domain> --no-cache
    ```
    For agent glyphs:
    ```bash
-   Rscript build-agent-icons.R --agents <agent-id> --palette all
+   Rscript build-agent-icons.R --only <agent-id> --no-cache
    ```
 2. Verify the output files exist:
-   - `viz/icons/<palette>/<domain>/<skillId>.webp` for each palette
+   - `viz/public/icons/<palette>/<domain>/<skillId>.webp` for each palette
 3. Check file sizes — icons should be 2-15 KB (WebP):
    - Under 2 KB: glyph may be too simple or rendering failed
    - Over 15 KB: glyph may be too complex (too many layers)
