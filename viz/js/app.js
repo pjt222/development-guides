@@ -16,6 +16,7 @@ const DATA_URL = 'data/skills.json';
 
 // ── Dynamic favicon switching ───────────────────────────────────────
 function switchFavicon(palette) {
+  if (!getThemeNames().includes(palette)) return;
   const bustParam = `?v=${Date.now()}`;
   const svgLink = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
   if (svgLink) {
