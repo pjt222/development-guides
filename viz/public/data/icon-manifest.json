@@ -129,6 +129,14 @@
     "entomology": {
       "basePrompt": "Insect specimen, magnifying lens, field notebook, entomological pin",
       "glow": "leaf-green"
+    },
+    "spectroscopy": {
+      "basePrompt": "Glowing spectrum peaks, electromagnetic wavelength bands",
+      "glow": "violet"
+    },
+    "chromatography": {
+      "basePrompt": "Neon chromatography column, separated peaks baseline",
+      "glow": "teal"
     }
   },
   "icons": [
@@ -2403,6 +2411,94 @@
       "seed": 500006,
       "path": "public/icons/cyberpunk/workflow-visualization/configure-putior-mcp.webp",
       "status": "done"
+    },
+    {
+      "skillId": "interpret-nmr-spectrum",
+      "domain": "spectroscopy",
+      "prompt": "Glowing NMR splitting pattern, doublet triplet peaks, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600001,
+      "path": "public/icons/cyberpunk/spectroscopy/interpret-nmr-spectrum.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "interpret-ir-spectrum",
+      "domain": "spectroscopy",
+      "prompt": "Glowing IR absorption dips, fingerprint region, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600002,
+      "path": "public/icons/cyberpunk/spectroscopy/interpret-ir-spectrum.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "interpret-mass-spectrum",
+      "domain": "spectroscopy",
+      "prompt": "Glowing mass spectrum fragmentation bars, molecular ion peak, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600003,
+      "path": "public/icons/cyberpunk/spectroscopy/interpret-mass-spectrum.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "interpret-uv-vis-spectrum",
+      "domain": "spectroscopy",
+      "prompt": "Glowing UV-Vis absorption curve, lambda max, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600004,
+      "path": "public/icons/cyberpunk/spectroscopy/interpret-uv-vis-spectrum.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "interpret-raman-spectrum",
+      "domain": "spectroscopy",
+      "prompt": "Glowing Raman scattered light rays, sample point, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600005,
+      "path": "public/icons/cyberpunk/spectroscopy/interpret-raman-spectrum.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "plan-spectroscopic-analysis",
+      "domain": "spectroscopy",
+      "prompt": "Glowing clipboard with technique checklist, spectroscopy plan, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600006,
+      "path": "public/icons/cyberpunk/spectroscopy/plan-spectroscopic-analysis.webp",
+      "status": "done"
+    },
+    {
+      "skillId": "develop-gc-method",
+      "domain": "chromatography",
+      "prompt": "Glowing GC coiled column, carrier gas flow, FID flame, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600007,
+      "path": "public/icons/cyberpunk/chromatography/develop-gc-method.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "develop-hplc-method",
+      "domain": "chromatography",
+      "prompt": "Glowing HPLC system, pump column detector flow path, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600008,
+      "path": "public/icons/cyberpunk/chromatography/develop-hplc-method.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "interpret-chromatogram",
+      "domain": "chromatography",
+      "prompt": "Glowing resolved chromatogram peaks on baseline, separated peaks, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600009,
+      "path": "public/icons/cyberpunk/chromatography/interpret-chromatogram.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "troubleshoot-separation",
+      "domain": "chromatography",
+      "prompt": "Glowing overlapping peaks with wrench tool, separation fix, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600010,
+      "path": "public/icons/cyberpunk/chromatography/troubleshoot-separation.webp",
+      "status": "pending"
+    },
+    {
+      "skillId": "validate-analytical-method",
+      "domain": "chromatography",
+      "prompt": "Glowing shield checkmark, ICH validation badge, analytical method, dark background, vector art, clean edges, single centered icon, no text",
+      "seed": 600011,
+      "path": "public/icons/cyberpunk/chromatography/validate-analytical-method.webp",
+      "status": "pending"
     }
   ]
 }

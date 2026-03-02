@@ -486,3 +486,66 @@ glyph_team_dyad <- function(cx, cy, s, col, bright) {
       fill = hex_with_alpha(bright, 0.5), color = bright, linewidth = .lw(s, 1.5))
   )
 }
+
+# ── glyph_team_analytical_chemistry: three-part analytical hub ────────────────
+glyph_team_analytical_chemistry <- function(cx, cy, s, col, bright) {
+  # Central hub point
+  hub <- data.frame(x0 = cx, y0 = cy, r = 4 * s)
+
+  # Node positions (triangle arrangement)
+  # Top: spectroscopist (prism)
+  top_x <- cx; top_y <- cy + 18 * s
+  # Bottom-left: chromatographer (column)
+  bl_x <- cx - 16 * s; bl_y <- cy - 12 * s
+  # Bottom-right: senior-researcher (magnifier)
+  br_x <- cx + 16 * s; br_y <- cy - 12 * s
+
+  # Connecting lines from hub to each node
+  line_top <- data.frame(x = c(cx, top_x), y = c(cy, top_y))
+  line_bl <- data.frame(x = c(cx, bl_x), y = c(cy, bl_y))
+  line_br <- data.frame(x = c(cx, br_x), y = c(cy, br_y))
+
+  # Top node: small triangle (prism)
+  prism <- data.frame(
+    x = top_x + c(-6, 6, 0, -6) * s,
+    y = top_y + c(-5, -5, 7, -5) * s
+  )
+
+  # Bottom-left node: small rectangle (column)
+  column <- data.frame(
+    xmin = bl_x - 4 * s, xmax = bl_x + 4 * s,
+    ymin = bl_y - 7 * s, ymax = bl_y + 7 * s
+  )
+
+  # Bottom-right node: circle (magnifier lens)
+  lens <- data.frame(x0 = br_x, y0 = br_y + 2 * s, r = 6 * s)
+  # Magnifier handle
+  handle <- data.frame(
+    x = c(br_x + 4 * s, br_x + 9 * s),
+    y = c(br_y - 3 * s, br_y - 8 * s)
+  )
+
+  list(
+    # Connection lines first (behind nodes)
+    ggplot2::geom_path(data = line_top, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = line_bl, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = line_br, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.5)),
+    # Central hub
+    ggforce::geom_circle(data = hub, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.3), color = bright, linewidth = .lw(s, 2)),
+    # Top: prism
+    ggplot2::geom_polygon(data = prism, .aes(x, y),
+      fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8)),
+    # Bottom-left: column
+    ggplot2::geom_rect(data = column, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 1.8)),
+    # Bottom-right: magnifier
+    ggforce::geom_circle(data = lens, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 1.8)),
+    ggplot2::geom_path(data = handle, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2))
+  )
+}

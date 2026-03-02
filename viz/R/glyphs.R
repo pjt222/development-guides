@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 284 skillIds to a specific glyph drawing function.
+# Maps each of 295 skillIds to a specific glyph drawing function.
 #
 # put id:"glyph_mapping", label:"SKILL_GLYPHS lookup table (skill ID to glyph function)", node_type:"input", output:"glyph_fn"
 #
@@ -390,5 +390,20 @@ SKILL_GLYPHS <- list(
   "identify-insect"                = "glyph_insect_key",
   "observe-insect-behavior"        = "glyph_insect_watch",
   "collect-preserve-specimens"     = "glyph_insect_pin",
-  "survey-insect-population"       = "glyph_insect_survey"
+  "survey-insect-population"       = "glyph_insect_survey",
+
+  # ── spectroscopy (6) ────────────────────────────────────────
+  "interpret-nmr-spectrum"          = "glyph_nmr_spectrum",
+  "interpret-ir-spectrum"           = "glyph_ir_spectrum",
+  "interpret-mass-spectrum"         = "glyph_mass_spectrum",
+  "interpret-uv-vis-spectrum"       = "glyph_uv_vis_spectrum",
+  "interpret-raman-spectrum"        = "glyph_raman_spectrum",
+  "plan-spectroscopic-analysis"     = "glyph_spectroscopic_plan",
+
+  # ── chromatography (5) ─────────────────────────────────────
+  "develop-gc-method"               = "glyph_gc_column",
+  "develop-hplc-method"             = "glyph_hplc_system",
+  "interpret-chromatogram"          = "glyph_chromatogram",
+  "troubleshoot-separation"         = "glyph_separation_fix",
+  "validate-analytical-method"      = "glyph_method_validation"
 )

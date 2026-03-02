@@ -16,5 +16,6 @@ TEAM_GLYPHS <- list(
   "r-package-review"            = "glyph_team_r_package_review",
   "scrum-team"                  = "glyph_team_scrum",
   "opaque-team"                 = "glyph_team_opaque",
-  "entomology"                  = "glyph_team_entomology"
+  "entomology"                  = "glyph_team_entomology",
+  "analytical-chemistry"        = "glyph_team_analytical_chemistry"
 )

@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 60,
+    "total_agents": 62,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -318,6 +318,16 @@
       "description": "Methodical insect taxonomist with dichotomous keys",
       "glow": "specimen-green",
       "concept": "Pinned insect specimen with classification labels"
+    },
+    "spectroscopist": {
+      "description": "Spectroscopy interpretation and analysis planning",
+      "glow": "violet",
+      "concept": "Prism dispersing light beam into spectrum bands"
+    },
+    "chromatographer": {
+      "description": "Chromatographic method development and troubleshooting",
+      "glow": "teal",
+      "concept": "Column with gradient flow and separated bands"
     }
   },
   "icons": [
@@ -619,6 +629,16 @@
     {
       "agentId": "contemplative",
       "path": "public/icons/cyberpunk/agents/contemplative.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "spectroscopist",
+      "path": "public/icons/cyberpunk/agents/spectroscopist.webp",
+      "status": "pending"
+    },
+    {
+      "agentId": "chromatographer",
+      "path": "public/icons/cyberpunk/agents/chromatographer.webp",
       "status": "done"
     }
   ]

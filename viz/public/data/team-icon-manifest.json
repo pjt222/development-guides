@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 11,
+    "total_teams": 12,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -73,6 +73,11 @@
       "description": "Entomology team with hub-spoke insect research coordination",
       "glow": "leaf-green",
       "concept": "Hub-spoke insect icon with 3 specialist nodes at vertices"
+    },
+    "analytical-chemistry": {
+      "description": "Analytical chemistry team with spectroscopy and chromatography specialists",
+      "glow": "analytical-teal",
+      "concept": "Three-part hub: prism (spectroscopist) + column (chromatographer) + magnifier (researcher)"
     }
   },
   "icons": [
@@ -129,6 +134,11 @@
     {
       "teamId": "dyad",
       "path": "public/icons/cyberpunk/teams/dyad.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "analytical-chemistry",
+      "path": "public/icons/cyberpunk/teams/analytical-chemistry.webp",
       "status": "done"
     }
   ]

@@ -2626,3 +2626,80 @@ glyph_agent_contemplative <- function(cx, cy, s, col, bright) {
     fill = hex_with_alpha(bright, 0.5), color = bright, linewidth = .lw(s, 1.5))
   layers
 }
+
+# ── glyph_agent_spectroscopist: prism dispersing light ────────────────────────
+glyph_agent_spectroscopist <- function(cx, cy, s, col, bright) {
+  # Triangular prism with light beam entering left, rainbow bands exiting right
+  # Prism triangle
+  prism <- data.frame(
+    x = cx + c(-8, 8, 0, -8) * s,
+    y = cy + c(-14, -14, 14, -14) * s
+  )
+  # Incoming light beam (single line from left)
+  beam_in <- data.frame(
+    x = c(cx - 24 * s, cx - 4 * s),
+    y = c(cy + 2 * s, cy + 2 * s)
+  )
+  # Dispersed spectrum bands (5 lines fanning out from right side of prism)
+  layers <- list(
+    ggplot2::geom_polygon(data = prism, .aes(x, y),
+      fill = hex_with_alpha(col, 0.1), color = bright, linewidth = .lw(s, 2.2)),
+    ggplot2::geom_path(data = beam_in, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  )
+  # 5 dispersed spectrum lines
+  angles <- seq(-0.35, 0.35, length.out = 5)
+  alphas <- c(0.5, 0.65, 0.8, 0.65, 0.5)
+  for (i in seq_along(angles)) {
+    band <- data.frame(
+      x = c(cx + 4 * s, cx + 24 * s * cos(angles[i]) + 4 * s),
+      y = c(cy - 2 * s, cy + 20 * s * sin(angles[i]) - 2 * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = band, .aes(x, y),
+      color = hex_with_alpha(bright, alphas[i]), linewidth = .lw(s, 1.5 + 0.3 * (3 - abs(i - 3))))
+  }
+  layers
+}
+
+# ── glyph_agent_chromatographer: column with separated bands ──────────────────
+glyph_agent_chromatographer <- function(cx, cy, s, col, bright) {
+  # Vertical column rectangle with colored horizontal bands inside showing separation
+  # Column outline
+  col_rect <- data.frame(
+    xmin = cx - 8 * s, xmax = cx + 8 * s,
+    ymin = cy - 22 * s, ymax = cy + 22 * s
+  )
+  # Flow arrow at top
+  arrow_shaft <- data.frame(
+    x = c(cx, cx),
+    y = c(cy + 28 * s, cy + 22 * s)
+  )
+  arrow_head <- data.frame(
+    x = cx + c(-3, 0, 3) * s,
+    y = cy + c(24, 22, 24) * s
+  )
+  # Separated bands inside column (3 bands at different heights)
+  layers <- list(
+    ggplot2::geom_rect(data = col_rect, .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.06), color = bright, linewidth = .lw(s, 2)),
+    ggplot2::geom_path(data = arrow_shaft, .aes(x, y),
+      color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 1.8)),
+    ggplot2::geom_polygon(data = arrow_head, .aes(x, y),
+      fill = hex_with_alpha(col, 0.6), color = hex_with_alpha(col, 0.6), linewidth = .lw(s, 0.5))
+  )
+  # 3 separated bands
+  band_ys <- c(10, 0, -12)
+  band_alphas <- c(0.35, 0.55, 0.25)
+  band_heights <- c(4, 3, 5)
+  for (i in seq_along(band_ys)) {
+    band <- data.frame(
+      xmin = cx - 7 * s, xmax = cx + 7 * s,
+      ymin = cy + (band_ys[i] - band_heights[i]) * s,
+      ymax = cy + (band_ys[i] + band_heights[i]) * s
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_rect(data = band,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(bright, band_alphas[i]), color = "transparent", linewidth = 0)
+  }
+  layers
+}
