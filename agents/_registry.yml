@@ -2,7 +2,7 @@
 # Machine-readable catalog of all agent definitions in this library.
 # Keep in sync with the actual agent files on disk.
 
-total_agents: 60
+total_agents: 62
 version: "2.2"
 last_updated: "2026-02-25"
 
@@ -864,3 +864,30 @@ agents:
       - identify-insect
       - observe-insect-behavior
       - document-insect-sighting
+
+  - id: spectroscopist
+    path: agents/spectroscopist.md
+    description: Spectroscopic analysis specialist for NMR, IR, MS, UV-Vis, and Raman interpretation with multi-technique structure elucidation
+    tags: [spectroscopy, nmr, ir, mass-spectrometry, uv-vis, raman, analytical-chemistry]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - interpret-nmr-spectrum
+      - interpret-ir-spectrum
+      - interpret-mass-spectrum
+      - interpret-uv-vis-spectrum
+      - interpret-raman-spectrum
+      - plan-spectroscopic-analysis
+
+  - id: chromatographer
+    path: agents/chromatographer.md
+    description: Chromatographic method development and validation specialist for GC and HPLC with ICH Q2 compliance
+    tags: [chromatography, gc, hplc, method-development, validation, separation-science, analytical-chemistry]
+    priority: normal
+    tools: [Read, Grep, Glob, WebFetch, WebSearch]
+    skills:
+      - develop-gc-method
+      - develop-hplc-method
+      - interpret-chromatogram
+      - troubleshoot-separation
+      - validate-analytical-method
