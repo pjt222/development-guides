@@ -7,6 +7,7 @@
 [![Validate Skills](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml/badge.svg)](https://github.com/pjt222/agent-almanac/actions/workflows/validate-skills.yml)
 [![Update READMEs](https://github.com/pjt222/agent-almanac/actions/workflows/update-readmes.yml/badge.svg)](https://github.com/pjt222/agent-almanac/actions/workflows/update-readmes.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Sponsor](https://img.shields.io/github/sponsors/pjt222?style=flat&logo=GitHub-Sponsors&logoColor=%23EA4AAA&label=Sponsor)](https://github.com/sponsors/pjt222)
 
 A library of executable skills, specialist agents, and pre-built teams for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and compatible AI tools. Define repeatable engineering procedures once and have AI agents execute them with built-in validation and error recovery. Compose specialists into review teams that catch issues a single reviewer would miss. Built on the [Agent Skills open standard](https://agentskills.io).
 
@@ -107,6 +108,12 @@ Contributions welcome! Each content type has its own guide:
 - **Guides** — [guides/README.md](guides/README.md) for categories and template
 
 Update the relevant `_registry.yml` when adding content, then run `npm run update-readmes`.
+
+## Support
+
+If Agent Almanac makes your AI tools more capable, consider [sponsoring its development](https://github.com/sponsors/pjt222).
+
+Reliable AI assistance requires structured knowledge — and maintaining that structure is work that the models themselves cannot do.
 
 ## License
 
