@@ -134,11 +134,11 @@ sapply(tools, function(t) t$name)
 The 16 tools organized by category:
 
 **Core Workflow (5):**
-- `put` — Scan files for PUT annotations
+- `put` — Scan files for PUT annotations (supports `exclude` parameter for regex-based file filtering)
 - `put_diagram` — Generate Mermaid diagrams
-- `put_auto` — Auto-detect workflow from code
+- `put_auto` — Auto-detect workflow from code (supports `exclude` parameter)
 - `put_generate` — Generate annotation suggestions
-- `put_merge` — Merge manual + auto annotations
+- `put_merge` — Merge manual + auto annotations (supports `exclude` parameter)
 
 **Reference/Discovery (7):**
 - `get_comment_prefix` — Get comment prefix for extension
@@ -220,6 +220,7 @@ curl -X POST http://localhost:8080/runs \
 - **renv isolation**: If putior is installed in an renv library but Claude Code/Desktop launches R without renv, the packages won't be found. Ensure `mcptools` and `ellmer` are installed in the global library or configure renv activation in the MCP server command.
 - **Port conflicts for ACP**: The default ACP port (8080) is commonly used. Check with `lsof -i :8080` or `netstat -tlnp | grep 8080` before starting.
 - **Including only specific tools**: To expose a subset of tools, use `putior_mcp_tools(include = c("put", "put_diagram"))` when building custom MCP server wrappers.
+- **Custom palettes via MCP**: The `palette` parameter on `put_diagram` requires a `putior_theme` R object (created by `put_theme()`), which cannot be serialized through MCP's JSON interface. Use the built-in `theme` parameter string for MCP calls. For custom palettes, use R directly.
 
 ## Related Skills
 

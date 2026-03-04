@@ -3,10 +3,10 @@ name: putior-integrator
 description: Workflow visualization specialist that integrates the putior R package into arbitrary codebases for annotation-driven Mermaid diagram generation across 30+ languages
 tools: [Read, Write, Edit, Bash, Grep, Glob]
 model: sonnet
-version: "1.0.0"
+version: "1.1.0"
 author: Philipp Thoss
 created: 2026-02-10
-updated: 2026-02-10
+updated: 2026-03-04
 tags: [putior, workflow, mermaid, diagram, annotation, visualization, polyglot]
 priority: normal
 max_context_tokens: 200000
@@ -27,14 +27,15 @@ A workflow visualization specialist that integrates the putior R package into ar
 
 putior turns source code comments into visual workflow diagrams. This agent handles the full integration lifecycle: installing putior, surveying a repository to detect data flows, annotating source files with PUT comments in the correct language-specific syntax, generating themed Mermaid diagrams, and optionally wiring up CI/CD for automatic regeneration and MCP tools for AI-assisted interaction.
 
-The agent works with any codebase in any of putior's 30+ supported languages (R, Python, SQL, JavaScript, TypeScript, Go, Rust, Java, C, C++, Ruby, Lua, MATLAB, Julia, Shell, and more), using 862 auto-detection patterns across 15 languages to find file I/O, library calls, and script dependencies automatically.
+The agent works with any codebase in any of putior's 30+ supported languages (R, Python, SQL, JavaScript, TypeScript, Go, Rust, Java, C, C++, Ruby, Lua, MATLAB, Julia, Shell, Dockerfile, Makefile, and more), using 862 auto-detection patterns across 15 languages to find file I/O, library calls, and script dependencies automatically.
 
 ## Capabilities
 
 - **Installation and Setup**: Install putior from CRAN or GitHub with all optional dependencies (mcptools, ellmer, shiny, logger, plumber2)
 - **Codebase Analysis**: Auto-detect workflows using `put_auto()` across multi-language repos; produce coverage reports and annotation plans
-- **Source Annotation**: Add PUT annotations using the correct comment prefix for each language (`#`, `--`, `//`, `%`); generate skeletons via `put_generate()`
-- **Diagram Generation**: Produce themed Mermaid diagrams (9 themes including 4 colorblind-safe viridis variants) with optional clickable nodes and source info
+- **Source Annotation**: Add PUT annotations using line comments (`#`, `--`, `//`, `%`) or block comments (`/* */`, `/** */`); generate skeletons via `put_generate()`
+- **File Exclusion**: Use the `exclude` parameter on `put()`, `put_auto()`, and `put_merge()` to skip files by regex pattern, avoiding circular scan issues and filtering build artifacts
+- **Diagram Generation**: Produce themed Mermaid diagrams (9 themes including 4 colorblind-safe viridis variants) with optional clickable nodes and source info; create fully custom palettes with `put_theme()`
 - **CI/CD Integration**: Create GitHub Actions workflows with sentinel markers for automatic diagram regeneration on push
 - **MCP/ACP Integration**: Configure the putior MCP server (16 tools) for Claude Code and Claude Desktop; optionally set up the ACP REST server
 
@@ -172,5 +173,5 @@ Agent:
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0.0
-**Last Updated**: 2026-02-10
+**Version**: 1.1.0
+**Last Updated**: 2026-03-04

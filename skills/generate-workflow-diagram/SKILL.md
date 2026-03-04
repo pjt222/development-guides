@@ -49,6 +49,9 @@ library(putior)
 # From manual annotations
 workflow <- put("./src/")
 
+# From manual annotations, excluding specific files
+workflow <- put("./src/", exclude = c("build-workflow\\.R$", "test_"))
+
 # From auto-detection only
 workflow <- put_auto("./src/")
 
@@ -105,31 +108,40 @@ Additional parameters:
 
 **On failure:** If a theme name is not recognized, `put_diagram()` falls back to `"light"`. Check spelling.
 
-### Step 3: Post-Process for Custom Themes (Optional)
+### Step 3: Custom Palette with `put_theme()` (Optional)
 
-If the 9 built-in themes don't match your project's palette, generate with a base theme and replace the classDef lines.
+If the 9 built-in themes don't match your project's palette, create a custom theme with `put_theme()`.
 
 ```r
-# Generate with a base theme
-mermaid_content <- put_diagram(workflow, theme = "dark", output = "raw")
-
-# Strip existing classDefs
-lines <- strsplit(mermaid_content, "\n")[[1]]
-lines <- lines[!grepl("^\\s*classDef ", lines)]
-
-# Inject custom palette
-custom_defs <- c(
-  "  classDef input fill:#1a1a2e,stroke:#00ff88,color:#00ff88",
-  "  classDef process fill:#16213e,stroke:#44ddff,color:#44ddff",
-  "  classDef output fill:#0f3460,stroke:#ff3366,color:#ff3366"
+# Create custom palette — unspecified types inherit from base theme
+cyberpunk <- put_theme(
+  base = "dark",
+  input    = c(fill = "#1a1a2e", stroke = "#00ff88", color = "#00ff88"),
+  process  = c(fill = "#16213e", stroke = "#44ddff", color = "#44ddff"),
+  output   = c(fill = "#0f3460", stroke = "#ff3366", color = "#ff3366"),
+  decision = c(fill = "#1a1a2e", stroke = "#ffaa33", color = "#ffaa33")
 )
-mermaid_content <- paste(c(lines, custom_defs), collapse = "\n")
+
+# Use the palette parameter (overrides theme when provided)
+mermaid_content <- put_diagram(workflow, palette = cyberpunk, output = "raw")
 writeLines(mermaid_content, "workflow.mmd")
 ```
 
-**Expected:** Mermaid output with your custom classDef lines replacing the theme's defaults. Node shapes from `node_type` are preserved; only colors change.
+`put_theme()` accepts `input`, `process`, `output`, `decision`, `artifact`, `start`, and `end` node types. Each takes a named vector `c(fill = "#hex", stroke = "#hex", color = "#hex")`. Unset types inherit from the `base` theme.
 
-**On failure:** If classDef lines aren't stripped, the regex may not match the theme's format. Inspect the raw output to adjust the `grepl` pattern. If node shapes break, ensure you only remove `classDef` lines, not `class` assignment lines.
+**Expected:** Mermaid output with your custom classDef lines. Node shapes from `node_type` are preserved; only colors change. All node types use `stroke-width:2px` — override not currently supported via `put_theme()`.
+
+**On failure:** If the palette object is not a `putior_theme` class, `put_diagram()` raises a descriptive error. Ensure you pass the return value of `put_theme()`, not a raw list.
+
+**Fallback — manual classDef replacement:** For fine-grained control beyond what `put_theme()` offers (e.g., per-type stroke widths), generate with a base theme and replace classDef lines manually:
+
+```r
+mermaid_content <- put_diagram(workflow, theme = "dark", output = "raw")
+lines <- strsplit(mermaid_content, "\n")[[1]]
+lines <- lines[!grepl("^\\s*classDef ", lines)]
+custom_defs <- c("  classDef input fill:#1a1a2e,stroke:#00ff88,stroke-width:3px,color:#00ff88")
+mermaid_content <- paste(c(lines, custom_defs), collapse = "\n")
+```
 
 ### Step 4: Generate Mermaid Output
 
@@ -222,10 +234,9 @@ DiagrammeR::mermaid(put_diagram(workflow, output = "raw"))
 - **Theme not visible on GitHub**: GitHub's mermaid renderer has limited theme support. The `"github"` theme is specifically designed for GitHub rendering. The `%%{init:...}%%` theme block may be ignored by some renderers.
 - **Quarto mermaid variable interpolation**: Quarto's `{mermaid}` chunks don't support R variables directly. Use the `knit_child()` technique described in Step 5.
 - **Clickable nodes not working**: Click directives require a renderer that supports Mermaid interaction events. GitHub's static renderer does not support clicks. Use a local Mermaid renderer or the putior Shiny sandbox.
-- **Self-referential meta-pipeline files**: Scanning a directory that includes the build script generating the diagram causes duplicate subgraph IDs and Mermaid errors. Filter meta-pipeline files from the workflow data before generating:
+- **Self-referential meta-pipeline files**: Scanning a directory that includes the build script generating the diagram causes duplicate subgraph IDs and Mermaid errors. Use the `exclude` parameter to skip them at scan time:
   ```r
-  meta_files <- c("build-workflow.R", "build-workflow.js")
-  workflow <- workflow[!workflow$file_name %in% meta_files, ]
+  workflow <- put("./src/", exclude = c("build-workflow\\.R$", "build-workflow\\.js$"))
   ```
 - **`show_artifacts = TRUE` too noisy**: Large projects may generate many artifact nodes (10–20+), cluttering the diagram. Use `show_artifacts = FALSE` and rely on `node_type` annotations to mark key inputs/outputs explicitly.
 

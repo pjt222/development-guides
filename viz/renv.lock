@@ -1040,7 +1040,7 @@
       "RemoteUsername": "pjt222",
       "RemoteRepo": "putior",
       "RemoteRef": "main",
-      "RemoteSha": "087b661cf385daf2133cb8b113002bd6433c7d1a"
+      "RemoteSha": "52847685103a602377150888fd2cdb457acfd324"
     },
     "purrr": {
       "Package": "purrr",

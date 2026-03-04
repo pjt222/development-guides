@@ -101,8 +101,9 @@ Create the R script that generates the diagram and updates target files using se
 # scripts/generate-workflow-diagram.R
 library(putior)
 
-# Scan source files for annotations
-workflow <- put_merge("./R/", merge_strategy = "supplement")
+# Scan source files for annotations (exclude build scripts to avoid circular refs)
+workflow <- put_merge("./R/", merge_strategy = "supplement",
+  exclude = c("generate-workflow-diagram\\.R$"))
 
 # Generate Mermaid code
 mermaid_code <- put_diagram(workflow, output = "raw", theme = "github")

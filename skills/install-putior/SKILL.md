@@ -112,7 +112,8 @@ stopifnot(
   is.function(put_auto),
   is.function(put_diagram),
   is.function(put_generate),
-  is.function(put_merge)
+  is.function(put_merge),
+  is.function(put_theme)
 )
 
 # Test with inline annotation

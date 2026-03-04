@@ -80,6 +80,11 @@ Before writing annotations by hand, let putior survey the repository. `put_auto(
 workflow <- put_auto("./src/",
   detect_inputs = TRUE, detect_outputs = TRUE, detect_dependencies = TRUE)
 print(workflow)   # Data frame: id, label, input, output, source_file
+
+# Exclude build scripts or test helpers from scanning
+workflow <- put_auto("./src/",
+  detect_inputs = TRUE, detect_outputs = TRUE, detect_dependencies = TRUE,
+  exclude = c("build-", "test_helper"))
 ```
 
 Check which languages have auto-detection and generate skeleton annotations:
@@ -209,6 +214,23 @@ writeLines(put_diagram(workflow, theme = "github"), "docs/workflow.md") # File
 cat(put_diagram(workflow, theme = "viridis", show_source_info = TRUE))  # Traceability
 ```
 
+### Custom palettes with `put_theme()`
+
+For project-specific color schemes beyond the 9 built-in themes, use `put_theme()`:
+
+```r
+cyberpunk <- put_theme(
+  base = "dark",
+  input    = c(fill = "#1a1a2e", stroke = "#00ff88", color = "#00ff88"),
+  process  = c(fill = "#16213e", stroke = "#44ddff", color = "#44ddff"),
+  output   = c(fill = "#0f3460", stroke = "#ff3366", color = "#ff3366"),
+  decision = c(fill = "#1a1a2e", stroke = "#ffaa33", color = "#ffaa33")
+)
+cat(put_diagram(workflow, palette = cyberpunk))
+```
+
+Unspecified node types inherit from the `base` theme. The `palette` parameter overrides `theme` when both are provided.
+
 **GitHub README**: wrap the output in a ` ```mermaid ` code fence. GitHub renders it natively.
 
 **Quarto**: use `knit_child()` to inject the Mermaid block dynamically, since `{mermaid}` chunks do not support R variables directly.
@@ -309,7 +331,7 @@ Once configured, you can ask Claude to scan a directory, suggest annotations, va
 
 ## Troubleshooting
 
-**Annotations not detected**: Verify the comment prefix matches the language (`get_comment_prefix("ext")`). Annotations must use single quotes internally (`id:'name'`, not `id:"name"`) and the `put` keyword is case-sensitive.
+**Annotations not detected**: Verify the comment prefix matches the language (`get_comment_prefix("ext")`). Annotations must use single quotes internally (`id:'name'`, not `id:"name"`) and the `put` keyword is case-sensitive. Both line comments (`//`, `#`, `--`) and block comments (`/* */`, `/** */`) are supported. Python triple-quote strings are not scanned.
 
 **Disconnected nodes**: Connections require exact filename matches between outputs and inputs, including extension. `.internal` variables only connect within the same script. Use `put_merge(merge_strategy = "supplement")` to fill gaps.
 
@@ -321,7 +343,7 @@ Once configured, you can ask Claude to scan a directory, suggest annotations, va
 
 **Wrong quote nesting**: PUT annotations require single quotes inside: `id:'name'`. Using double quotes (`id:"name"`) causes parsing failures because the annotation string itself may be delimited by double quotes in some contexts. If annotations silently produce no output, check quote style first.
 
-**Scanning too broadly**: Running `put_auto(".")` on a repository root may scan `node_modules/`, `.git/`, `venv/`, and other directories full of third-party code. Always target specific source directories like `./R/`, `./src/`, or `./scripts/`.
+**Scanning too broadly**: Running `put_auto(".")` on a repository root may scan `node_modules/`, `.git/`, `venv/`, and other directories full of third-party code. Target specific source directories like `./R/`, `./src/`, or `./scripts/`, or use the `exclude` parameter: `put_auto(".", exclude = c("node_modules/", "\\.git/", "venv/"))`.
 
 **Package not found in CI**: If the project uses renv, the CI workflow needs `renv::restore()` before putior is available. Alternatively, install putior explicitly in the workflow step (as shown in the CI YAML above) to bypass renv entirely.
 

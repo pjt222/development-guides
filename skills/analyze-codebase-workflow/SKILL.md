@@ -104,6 +104,14 @@ workflow <- put_auto("./src/",
   detect_dependencies = TRUE
 )
 
+# Exclude build scripts and test helpers from scanning
+workflow <- put_auto("./src/",
+  detect_inputs = TRUE,
+  detect_outputs = TRUE,
+  detect_dependencies = TRUE,
+  exclude = c("build-", "test_helper")
+)
+
 # View detected workflow nodes
 print(workflow)
 
@@ -195,7 +203,7 @@ Document the plan with coverage assessment:
 - **Scanning too broadly**: Running `put_auto(".")` on a repo root may include `node_modules/`, `.git/`, `venv/`, etc. Target specific source directories.
 - **Expecting full coverage**: Auto-detection finds file I/O and library calls, not business logic. A 40-60% coverage rate is typical; the rest needs manual annotation.
 - **Ignoring dependencies**: The `detect_dependencies = TRUE` flag catches `source()`, `import`, `require()` calls that link scripts together. Disabling it loses cross-file connections.
-- **Language mismatch**: Files with non-standard extensions (e.g., `.R` vs `.r`, `.jsx` vs `.js`) may not be detected. Use `get_comment_prefix()` to check if an extension is recognized.
+- **Language mismatch**: Files with non-standard extensions (e.g., `.R` vs `.r`, `.jsx` vs `.js`) may not be detected. Use `get_comment_prefix()` to check if an extension is recognized. Note that extensionless files like `Dockerfile` and `Makefile` are supported via exact filename matching.
 - **Large repos**: For repos with 100+ source files, analyze by module/directory to keep diagrams readable.
 
 ## Related Skills

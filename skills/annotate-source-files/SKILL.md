@@ -61,7 +61,7 @@ get_comment_prefix("lua")  # "--"
 
 **Expected:** A string like `"#"`, `"--"`, `"//"`, or `"%"`.
 
-> **Warning — line comments only:** putior detects annotations using line-comment prefixes only. Annotations inside block comments (`/** */`, `''' '''`, `/* */`) are **not** detected. For JS/TS, always use `//` even in files that predominantly use JSDoc blocks.
+> **Line and block comments:** putior detects annotations in both line comments (`//`, `#`, `--`) and C-style block comments (`/* */`, `/** */`). For JS/TS, both `//` and `/* */` blocks are scanned. Python triple-quote strings (`''' '''`) are **not** detected — use `#` for Python annotations.
 
 **On failure:** If the extension is not recognized, the file language may not be supported. Check `get_supported_extensions()` for the full list. For unsupported languages, use `#` as a conventional default.
 
@@ -233,7 +233,7 @@ cat(put_diagram(merged, theme = "github"))
 - **Missing connections**: If the diagram shows disconnected nodes, check that output filenames in one annotation exactly match input filenames in another (including extensions).
 - **Wrong comment prefix**: Using `#` in a SQL file or `//` in Python will cause the annotation to be treated as code, not a comment. Always verify with `get_comment_prefix()`.
 - **Forgetting multiline continuation**: When using multiline annotations, every continued line must end with `\` and the next line must start with the comment prefix.
-- **Annotations inside JSDoc/block comments**: putior's scanner looks for the language's line-comment prefix (`//` for JS). Annotations placed inside `/** */` JSDoc blocks use `*` as prefix, which putior does not recognize. Always use `//` for JS/TS annotations, even in files that predominantly use JSDoc.
+- **Python triple-quote strings**: putior does not scan Python triple-quote strings (`''' '''`, `""" """`). Always use `#` for Python PUT annotations.
 - **Meta-pipeline annotations**: If you annotate a build script that also scans for annotations (e.g., a script that calls `put()` and `put_diagram()`), the script's own annotations will appear in the generated diagram. Either exclude the file from scanning (see `generate-workflow-diagram` Common Pitfalls) or avoid placing PUT annotations in the build script itself.
 
 ## Related Skills
