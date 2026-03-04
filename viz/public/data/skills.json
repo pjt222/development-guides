@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated": "2026-03-04T20:24:12.528Z",
-    "totalSkills": 295,
+    "generated": "2026-03-04T21:22:44.631Z",
+    "totalSkills": 297,
     "totalAgents": 62,
     "totalTeams": 12,
-    "totalNodes": 369,
-    "totalLinks": 1591,
+    "totalNodes": 371,
+    "totalLinks": 1602,
     "totalAgentLinks": 377,
     "totalTeamLinks": 39,
     "totalDomains": 52
@@ -41,7 +41,7 @@
     },
     "git": {
       "description": "Git version control and GitHub workflow skills",
-      "count": 6
+      "count": 7
     },
     "general": {
       "description": "Cross-cutting development environment and workflow skills",
@@ -57,7 +57,7 @@
     },
     "review": {
       "description": "Senior-level review skills for research, data, architecture, and design",
-      "count": 9
+      "count": 10
     },
     "bushcraft": {
       "description": "Wilderness survival and primitive skills",
@@ -1653,6 +1653,31 @@
       "path": "create-github-release/SKILL.md"
     },
     {
+      "id": "create-github-issues",
+      "type": "skill",
+      "title": "Create GitHub Issues",
+      "domain": "git",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Structured GitHub issue creation from review findings or task breakdowns",
+      "tags": [
+        "git",
+        "github",
+        "project-management",
+        "issues",
+        "review",
+        "automation"
+      ],
+      "related": [
+        "review-codebase",
+        "review-pull-request",
+        "manage-backlog",
+        "create-pull-request",
+        "commit-changes"
+      ],
+      "path": "create-github-issues/SKILL.md"
+    },
+    {
       "id": "setup-wsl-dev-environment",
       "type": "skill",
       "title": "Set Up WSL Development Environment",
@@ -2258,6 +2283,32 @@
         "evolve-skill"
       ],
       "path": "refactor-skill-structure/SKILL.md"
+    },
+    {
+      "id": "review-codebase",
+      "type": "skill",
+      "title": "Review Codebase",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Multi-phase deep codebase review with severity ratings and structured findings output",
+      "tags": [
+        "review",
+        "code-quality",
+        "architecture",
+        "security",
+        "accessibility",
+        "codebase"
+      ],
+      "related": [
+        "security-audit-codebase",
+        "review-software-architecture",
+        "review-ux-ui",
+        "review-pull-request",
+        "clean-codebase",
+        "create-github-issues"
+      ],
+      "path": "review-codebase/SKILL.md"
     },
     {
       "id": "make-fire",
@@ -10797,6 +10848,31 @@
       "type": "skill"
     },
     {
+      "source": "create-github-issues",
+      "target": "review-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "create-github-issues",
+      "target": "review-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "create-github-issues",
+      "target": "manage-backlog",
+      "type": "skill"
+    },
+    {
+      "source": "create-github-issues",
+      "target": "create-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "create-github-issues",
+      "target": "commit-changes",
+      "type": "skill"
+    },
+    {
       "source": "setup-wsl-dev-environment",
       "target": "configure-git-repository",
       "type": "skill"
@@ -11264,6 +11340,36 @@
     {
       "source": "refactor-skill-structure",
       "target": "evolve-skill",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "review-software-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "review-ux-ui",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "review-pull-request",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "clean-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "review-codebase",
+      "target": "create-github-issues",
       "type": "skill"
     },
     {

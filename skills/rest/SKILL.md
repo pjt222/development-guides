@@ -89,6 +89,18 @@ There is no signal to end rest except readiness. Not obligation, not guilt, not 
 - [ ] The first action after rest carried fresh energy rather than accumulated pressure
 - [ ] The rest was proportionate — not so brief it was performative, not so long it was avoidance
 
+## Scaling Rest
+
+Rest scales to context. Between intensive work phases, a lighter form suffices:
+
+**Full rest** — after sustained sessions (hours of complex work). Follow the complete 3-step procedure. Allow genuine recovery time.
+
+**Checkpoint rest** — between work phases (e.g., between review stages). Steps 1 and 2 are brief — seconds, not minutes. The purpose is transition, not recovery. Step 3 (return when ready) happens quickly because the work is not exhausting, just shifting.
+
+**Micro rest** — between individual tasks. A single breath of non-production. See `breathe` for the structured version; micro rest is even lighter.
+
+The skill procedure remains the same in all cases. What changes is duration and depth. A checkpoint rest that follows the full procedure but completes in moments is still genuine rest — not performative — if the non-production was real.
+
 ## Common Pitfalls
 
 - **Rest as meditation**: Meditation observes. Rest does not observe. If you are watching your stillness, you are meditating, not resting

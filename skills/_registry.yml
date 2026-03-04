@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 295
+total_skills: 297
 
 domains:
   r-packages:
@@ -340,6 +340,11 @@ domains:
         complexity: basic
         language: multi
         description: Create tagged GitHub releases with release notes and artifacts
+      - id: create-github-issues
+        path: create-github-issues/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Structured GitHub issue creation from review findings or task breakdowns
 
   general:
     description: Cross-cutting development environment and workflow skills
@@ -486,6 +491,11 @@ domains:
         complexity: advanced
         language: multi
         description: Refactor an over-long SKILL.md by extracting examples and splitting compound procedures
+      - id: review-codebase
+        path: review-codebase/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Multi-phase deep codebase review with severity ratings and structured findings output
 
   bushcraft:
     description: Wilderness survival and primitive skills

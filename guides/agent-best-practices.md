@@ -235,6 +235,41 @@ Each agent's entries in the `.bib` file should use a consistent key prefix match
 
 Citations are optional — add them when the agent implements a specific published methodology or standard.
 
+## Review Agents in Implementation Teams
+
+Review agents (security-analyst, code-reviewer, senior-ux-ui-specialist, etc.) are intentionally read-only. Their tools exclude Write and Edit to reinforce the separation between reviewing and changing code.
+
+When a team needs domain expertise WITH implementation capability, use one of these patterns:
+
+### Pattern 1: Expert Brief + General Implementer (Recommended)
+
+The review agent produces findings. A general-purpose agent implements them. The lead encodes the domain expertise into the task description.
+
+```
+1. security-analyst reviews → produces findings list
+2. Lead creates task: "Fix innerHTML injection in panel.js — use DOM API instead"
+3. general-purpose agent implements the fix with full write access
+```
+
+This is what the viz-review-swarm used successfully with 8 parallel agents: review perspectives informed the plan, general-purpose agents executed it.
+
+### Pattern 2: Spawn with Domain Context
+
+A general-purpose agent can be given a review agent's skill list in its prompt to carry domain context while retaining write access:
+
+```
+"You are implementing security fixes. Follow the security-audit-codebase skill's
+standards. Fix these specific findings: [list from review agent]"
+```
+
+The agent has Write/Edit access AND domain knowledge from the prompt.
+
+### Pattern 3: Dedicated Implementer Agent (Use Sparingly)
+
+For frequently needed combinations, create a dedicated agent (e.g., `security-implementer`) with `tools: [Read, Write, Edit, Bash, Grep, Glob]` and the same skills as the review agent. Only do this when Pattern 1 creates friction in repeated workflows.
+
+Pattern 1 is preferred because it maintains the review/implementation separation and avoids agent proliferation.
+
 ## Quality Assurance
 
 ### Testing Your Agents

@@ -136,13 +136,14 @@ SKILL_GLYPHS <- list(
   "fail-early-pattern"             = "glyph_fail_early",
   "argumentation"                  = "glyph_argument_scale",
 
-  # ── git (6) ────────────────────────────────────────────────────────────
+  # ── git (7) ────────────────────────────────────────────────────────────
   "configure-git-repository"       = "glyph_git_config",
   "commit-changes"                 = "glyph_commit_diamond",
   "manage-git-branches"            = "glyph_branch_fork",
   "create-pull-request"            = "glyph_merge_arrows",
   "resolve-git-conflicts"          = "glyph_conflict_cross",
   "create-github-release"          = "glyph_tag_release",
+  "create-github-issues"           = "glyph_issue_create",
 
   # ── intellectual-property (2) ──────────────────────────────────────────
   "assess-ip-landscape"            = "glyph_patent_landscape",
@@ -222,7 +223,7 @@ SKILL_GLYPHS <- list(
   "build-parameterized-report"     = "glyph_template_params",
   "generate-statistical-tables"    = "glyph_table_stats",
 
-  # ── review (9) ─────────────────────────────────────────────────────────
+  # ── review (10) ────────────────────────────────────────────────────────
   "review-research"                = "glyph_magnifier_paper",
   "review-data-analysis"           = "glyph_magnifier_chart",
   "review-software-architecture"   = "glyph_magnifier_arch",
@@ -232,6 +233,7 @@ SKILL_GLYPHS <- list(
   "review-skill-format"            = "glyph_magnifier_skill",
   "update-skill-content"           = "glyph_skill_update",
   "refactor-skill-structure"       = "glyph_skill_refactor",
+  "review-codebase"                = "glyph_magnifier_checklist",
 
   # ── web-dev (4) ────────────────────────────────────────────────────────
   "scaffold-nextjs-app"            = "glyph_nextjs_scaffold",

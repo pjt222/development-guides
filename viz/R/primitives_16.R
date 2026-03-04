@@ -532,3 +532,66 @@ glyph_method_validation <- function(cx, cy, s, col, bright) {
       color = bright, linewidth = .lw(s, 1.5))
   )
 }
+
+# ── glyph_magnifier_checklist: magnifier with checklist inside ────────
+glyph_magnifier_checklist <- function(cx, cy, s, col, bright) {
+  base <- .magnifier_base(cx, cy, s, col, bright)
+  # checklist lines with checkmarks inside the lens
+  for (i in 1:4) {
+    ly <- cy + (3 - i) * 7 * s + 4 * s
+    # checkbox
+    cb <- data.frame(xmin = cx - 14 * s, xmax = cx - 10 * s,
+                     ymin = ly - 2 * s, ymax = ly + 2 * s)
+    base[[length(base) + 1]] <- ggplot2::geom_rect(data = cb,
+      .aes(xmin = xmin, xmax = xmax, ymin = ymin, ymax = ymax),
+      fill = hex_with_alpha(col, 0.15), color = col, linewidth = .lw(s, 0.8))
+    # check mark for top 2 items
+    if (i <= 2) {
+      chk <- data.frame(
+        x = c(cx - 13.5 * s, cx - 12 * s, cx - 10.5 * s),
+        y = c(ly, ly - 1.5 * s, ly + 1.5 * s)
+      )
+      base[[length(base) + 1]] <- ggplot2::geom_path(data = chk, .aes(x, y),
+        color = bright, linewidth = .lw(s, 1.2))
+    }
+    # line after checkbox
+    l <- data.frame(x = c(cx - 8 * s, cx + 8 * s), y = c(ly, ly))
+    base[[length(base) + 1]] <- ggplot2::geom_path(data = l, .aes(x, y),
+      color = col, linewidth = .lw(s, 1.2))
+  }
+  base
+}
+
+# ── glyph_issue_create: issue circle with plus sign ──────────────────
+glyph_issue_create <- function(cx, cy, s, col, bright) {
+  # circle (issue dot)
+  r <- 22 * s
+  t <- seq(0, 2 * pi, length.out = 50)
+  circ <- data.frame(x = cx + r * cos(t), y = cy + r * sin(t))
+  # exclamation mark inside (issue indicator)
+  exc_line <- data.frame(x = c(cx, cx), y = c(cy + 12 * s, cy - 4 * s))
+  exc_dot <- data.frame(x = cx, y = cy - 10 * s)
+  # plus sign at bottom-right (create action)
+  plus_cx <- cx + 16 * s
+  plus_cy <- cy - 16 * s
+  plus_h <- data.frame(x = c(plus_cx - 6 * s, plus_cx + 6 * s),
+                       y = c(plus_cy, plus_cy))
+  plus_v <- data.frame(x = c(plus_cx, plus_cx),
+                       y = c(plus_cy - 6 * s, plus_cy + 6 * s))
+  # plus background circle
+  plus_bg <- data.frame(x0 = plus_cx, y0 = plus_cy, r = 9 * s)
+  list(
+    ggplot2::geom_polygon(data = circ, .aes(x, y),
+      fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = exc_line, .aes(x, y),
+      color = bright, linewidth = .lw(s, 3)),
+    ggplot2::geom_point(data = exc_dot, .aes(x, y),
+      color = bright, size = 4 * s),
+    ggforce::geom_circle(data = plus_bg, .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.2), color = bright, linewidth = .lw(s, 1.5)),
+    ggplot2::geom_path(data = plus_h, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5)),
+    ggplot2::geom_path(data = plus_v, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  )
+}

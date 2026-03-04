@@ -41,6 +41,8 @@ Describe how the team members interact. Common patterns:
 - **Parallel**: Members work independently, lead merges results
 - **Timeboxed**: Work organized into fixed-length iterations (sprints)
 - **Adaptive**: Team self-organizes dynamically based on the task
+- **Wave-parallel**: Dependency-wave parallelism — agents work in parallel within each wave; waves execute sequentially based on task dependencies
+- **Reciprocal**: Two agents alternate focus — one acts, the other holds space
 
 ```
 Lead (agent-name)

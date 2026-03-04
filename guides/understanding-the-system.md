@@ -99,7 +99,7 @@ A team is a multi-agent composition. It defines a group of agents with assigned 
 - **Configuration** -- a machine-readable YAML block between `<!-- CONFIG:START -->` and `<!-- CONFIG:END -->` markers.
 - **Usage Scenarios** and **Limitations**.
 
-There are currently 10 teams using 5 coordination patterns:
+There are currently 12 teams using 7 coordination patterns:
 
 | Pattern | Description | Used by |
 |---------|-------------|---------|
@@ -108,6 +108,8 @@ There are currently 10 teams using 5 coordination patterns:
 | parallel | All agents work simultaneously on independent subtasks | devops-platform-engineering |
 | timeboxed | Work is organized into fixed-length iterations (sprints) | scrum-team |
 | adaptive | Team self-organizes dynamically based on the task | opaque-team |
+| wave-parallel | Tasks grouped into dependency waves; agents work in parallel within each wave, waves execute sequentially | *(ad hoc teams)* |
+| reciprocal | Two agents alternate focus — one acts, the other holds space | dyad |
 
 ### 4. Guides -- the *context*
 

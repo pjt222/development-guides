@@ -634,7 +634,7 @@
     {
       "agentId": "spectroscopist",
       "path": "public/icons/cyberpunk/agents/spectroscopist.webp",
-      "status": "pending"
+      "status": "done"
     },
     {
       "agentId": "chromatographer",

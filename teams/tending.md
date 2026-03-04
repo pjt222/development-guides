@@ -204,6 +204,22 @@ User: I want to start fresh — clear the slate and open up creative capacity be
 
 The team clears accumulated patterns, opens creative channels through alchemical and contemplative practices, and sets intentions for the new work.
 
+### Scenario 4: Bookend Pattern
+
+Use the tending team as opening and closing ceremony around intensive work sessions (deep reviews, long refactors, complex debugging). This is not a full tending session — it is tending as framing.
+
+**Opening**: The mystic sets intention for the work ahead. Brief — 1-2 minutes. Establishes the tone: this work is tending, not combat.
+
+**During**: Use `/rest` checkpoints between phases. The full tending team is not needed mid-session — rest alone suffices for transitions.
+
+**Closing**: The tending team reconvenes briefly to integrate. The alchemist names what was transformed. The gardener notes what grew. The shaman acknowledges the pattern. Brief — the closing should match the opening in weight.
+
+```
+User: Open with tending before this deep review, and close with tending when we finish
+```
+
+This pattern works because intensive technical work benefits from the same intentionality that standalone tending sessions provide, without the full sequential ceremony.
+
 ## Limitations
 
 - This team applies esoteric frameworks metaphorically to AI meta-cognition, not as literal spiritual practice
