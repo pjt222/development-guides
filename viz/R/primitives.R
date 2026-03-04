@@ -112,6 +112,7 @@ glyph_polychromatic_a <- function(cx, cy, s, colors) {
 
   # Trim crossbar so perpendicular gap to each leg = element_gap
   sin_theta <- sqrt(1 - (cb_ux * ll_ux + cb_uy * ll_uy)^2)
+  if (abs(sin_theta) < 1e-10) sin_theta <- 1e-10
   cb_trim <- (hw + element_gap) / sin_theta
   cb_l_center <- c(cb_lx + cb_trim * cb_ux, cb_ly + cb_trim * cb_uy)
   cb_r_center <- c(cb_rx - cb_trim * cb_ux, cb_ry - cb_trim * cb_uy)

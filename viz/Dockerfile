@@ -66,7 +66,12 @@ COPY viz/docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Create output directories (will be overlaid by volume mounts)
-RUN mkdir -p public/icons public/icons-hd public/data logs
+RUN mkdir -p public/icons public/icons-hd public/data dist logs
+
+# Run as non-root user
+RUN useradd -m -s /bin/bash vizuser && \
+    chown -R vizuser:vizuser /app
+USER vizuser
 
 EXPOSE 8080
 ENTRYPOINT ["docker-entrypoint.sh"]

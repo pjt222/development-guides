@@ -190,13 +190,12 @@ recolor_template <- function(template_png, color, out_path,
 #'
 #' @param domain Domain name (determines color palette unless color is provided)
 #' @param skill_id Skill identifier (determines glyph shape)
-#' @param seed Integer seed (unused in new pipeline, kept for API compat)
 #' @param out_path Output file path (WebP)
 #' @param glow_sigma Glow blur radius (default 4)
 #' @param size_px Output dimension in pixels (default 512)
 #' @param color Optional explicit hex color (overrides domain lookup)
 #' @return Invisible TRUE on success
-render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
+render_icon <- function(domain, skill_id = NULL, out_path,
                         glow_sigma = 4, size_px = 512, color = NULL,
                         glyph_fn = NULL) {
   if (is.null(color)) {
@@ -212,6 +211,7 @@ render_icon <- function(domain, skill_id = NULL, seed = NULL, out_path,
 
   glyph_fn_name <- SKILL_GLYPHS[[skill_id]]
   if (is.null(glyph_fn_name)) {
+    warning("No glyph mapping for '", skill_id, "' -- using default", call. = FALSE)
     glyph_fn_name <- "unknown"
   }
 

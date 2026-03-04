@@ -12,22 +12,9 @@ import { readFileSync, writeFileSync, existsSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
+import { smartTitleCase } from './js/title-case.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-
-// ── Word overrides for proper casing ────────────────────────────
-const WORD_OVERRIDES = {
-  gxp: 'GxP', ai: 'AI', mcp: 'MCP', ip: 'IP',
-  ux: 'UX', ui: 'UI', a2a: 'A2A', acp: 'ACP',
-  tcg: 'TCG', r: 'R', ml: 'ML',
-  devops: 'DevOps', mlops: 'MLOps',
-};
-
-function smartTitleCase(slug) {
-  return slug.split(/[-_]/)
-    .map(w => WORD_OVERRIDES[w.toLowerCase()] || w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-}
 
 const SKILLS_DIR = resolve(__dirname, '..', 'skills');
 const AGENTS_DIR = resolve(__dirname, '..', 'agents');
@@ -87,7 +74,7 @@ for (const [id, meta] of skillMap) {
       if (fm?.metadata?.tags) {
         tags = fm.metadata.tags.split(',').map(t => t.trim()).filter(Boolean);
       }
-    } catch { /* skip bad yaml */ }
+    } catch { console.warn(`Skipping skill with malformed frontmatter: ${skillPath}`); }
   }
 
   // ── Extract Related Skills section ──

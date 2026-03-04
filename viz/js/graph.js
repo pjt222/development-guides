@@ -6,7 +6,10 @@ import { getColor, COMPLEXITY_CONFIG, FEATURED_NODES, hexToRgba, getAgentColor, 
 import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded, iconCacheKey } from './icons.js';
 import { logEvent } from './eventlog.js';
 
-export { setIconMode, getIconMode } from './icons.js';
+/** Resolve a link endpoint that may be a string ID or an object reference (force-graph mutates these). */
+function resolveNodeId(ref) {
+  return typeof ref === 'object' ? ref.id : ref;
+}
 
 let graph = null;
 let graphData = { nodes: [], links: [] };
@@ -26,6 +29,34 @@ let nodeById = new Map();       // id -> node for O(1) lookup
 let cachedFontScale = 0;
 let cachedFontBold = '';
 let cachedFontNormal = '';
+
+// ── Pre-computed adjacency map ───────────────────────────────────
+let adjacencyMap = new Map(); // nodeId -> { skills: Set, agents: Set, teams: Set }
+
+function buildAdjacencyMap(links) {
+  adjacencyMap.clear();
+  const ensure = (id) => {
+    if (!adjacencyMap.has(id)) adjacencyMap.set(id, { skills: new Set(), agents: new Set(), teams: new Set() });
+    return adjacencyMap.get(id);
+  };
+  for (const link of links) {
+    const srcId = resolveNodeId(link.source);
+    const tgtId = resolveNodeId(link.target);
+    const srcAdj = ensure(srcId);
+    const tgtAdj = ensure(tgtId);
+    const type = link.type;
+    if (type === 'team') {
+      srcAdj.teams.add(tgtId);
+      tgtAdj.teams.add(srcId);
+    } else if (type === 'agent') {
+      srcAdj.agents.add(tgtId);
+      tgtAdj.agents.add(srcId);
+    } else {
+      srcAdj.skills.add(tgtId);
+      tgtAdj.skills.add(srcId);
+    }
+  }
+}
 
 // ── Gradient texture cache ────────────────────────────────────────
 const GLOW_TEX_SIZE = 64;
@@ -111,39 +142,28 @@ function rebuildHighlightSet() {
 
   const activeNode = nodeById.get(activeId);
   const set = new Set([activeId]);
-
-  // Build typed adjacency
-  const byType = { team: [], agent: [], skill: [] };
-  for (const l of graphData.links) {
-    const src = typeof l.source === 'object' ? l.source.id : l.source;
-    const tgt = typeof l.target === 'object' ? l.target.id : l.target;
-    if (l.type && byType[l.type]) byType[l.type].push({ src, tgt });
-  }
-
-  const neighbors = (id, linkType) => {
-    const result = [];
-    for (const { src, tgt } of byType[linkType]) {
-      if (src === id) result.push(tgt);
-      if (tgt === id) result.push(src);
-    }
-    return result;
-  };
+  const adj = adjacencyMap.get(activeId);
+  if (!adj) { highlightedNodeIds = set; return; }
 
   if (activeNode && activeNode.type === 'team') {
     // Team: self + direct agents + those agents' skills
-    const agents = neighbors(activeId, 'team');
-    agents.forEach(a => set.add(a));
-    agents.forEach(a => neighbors(a, 'agent').forEach(s => set.add(s)));
+    for (const a of adj.teams) {
+      set.add(a);
+      const aAdj = adjacencyMap.get(a);
+      if (aAdj) for (const s of aAdj.agents) set.add(s);
+    }
   } else if (activeNode && activeNode.type === 'agent') {
     // Agent: self + direct skills + direct teams
-    neighbors(activeId, 'team').forEach(t => set.add(t));
-    neighbors(activeId, 'agent').forEach(s => set.add(s));
+    for (const t of adj.teams) set.add(t);
+    for (const s of adj.agents) set.add(s);
   } else {
     // Skill: self + one-hop skills + direct agents + those agents' teams
-    const agents = neighbors(activeId, 'agent');
-    agents.forEach(a => set.add(a));
-    agents.forEach(a => neighbors(a, 'team').forEach(t => set.add(t)));
-    neighbors(activeId, 'skill').forEach(s => set.add(s));
+    for (const a of adj.agents) {
+      set.add(a);
+      const aAdj = adjacencyMap.get(a);
+      if (aAdj) for (const t of aAdj.teams) set.add(t);
+    }
+    for (const s of adj.skills) set.add(s);
   }
 
   highlightedNodeIds = set;
@@ -158,7 +178,7 @@ function precomputeLinkColors() {
   for (const link of graphData.links) {
     if (link.type === 'team') {
       // Team links get team color from the source (team node)
-      const src = typeof link.source === 'object' ? link.source : nodeById.get(typeof link.source === 'string' ? link.source : link.source?.id);
+      const src = typeof link.source === 'object' ? link.source : nodeById.get(resolveNodeId(link.source));
       if (src && src.type === 'team') {
         link._teamHex = getTeamColor(src.id.replace('team:', ''));
       } else {
@@ -169,12 +189,12 @@ function precomputeLinkColors() {
     }
     if (link.type !== 'agent') { link._agentHex = null; link._teamHex = null; continue; }
     link._teamHex = null;
-    const src = typeof link.source === 'object' ? link.source : nodeById.get(typeof link.source === 'string' ? link.source : link.source?.id);
+    const src = typeof link.source === 'object' ? link.source : nodeById.get(resolveNodeId(link.source));
     if (src && src.type === 'agent') {
       link._agentHex = getAgentColor(src.id.replace('agent:', ''));
       continue;
     }
-    const tgt = typeof link.target === 'object' ? link.target : nodeById.get(typeof link.target === 'string' ? link.target : link.target?.id);
+    const tgt = typeof link.target === 'object' ? link.target : nodeById.get(resolveNodeId(link.target));
     if (tgt && tgt.type === 'agent') {
       link._agentHex = getAgentColor(tgt.id.replace('agent:', ''));
     } else {
@@ -202,6 +222,7 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
   onNodeClick = onClick;
   onNodeHover = onHover;
   rebuildNodeIndex();
+  buildAdjacencyMap(graphData.links);
   precomputeLinkColors();
 
   graph = ForceGraph()(container)
@@ -229,8 +250,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
           ? getAgentLinkColor(0.04)
           : 'rgba(255,255,255,0.06)';
       }
-      const src = typeof link.source === 'object' ? link.source.id : link.source;
-      const tgt = typeof link.target === 'object' ? link.target.id : link.target;
+      const src = resolveNodeId(link.source);
+      const tgt = resolveNodeId(link.target);
       const both = highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt);
       if (both) {
         if (isTeamLink) return getTeamLinkColor(0.4);
@@ -245,8 +266,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     })
     .linkWidth(link => {
       if (!highlightedNodeIds) return 0.5;
-      const src = typeof link.source === 'object' ? link.source.id : link.source;
-      const tgt = typeof link.target === 'object' ? link.target.id : link.target;
+      const src = resolveNodeId(link.source);
+      const tgt = resolveNodeId(link.target);
       return (highlightedNodeIds.has(src) && highlightedNodeIds.has(tgt)) ? 1.5 : 0.3;
     })
     .nodeCanvasObject(drawNode)
@@ -262,8 +283,8 @@ export function initGraph(container, data, { onClick, onHover } = {}) {
     .distance(link => {
       if (link.type === 'team') return TEAM_LINK_DISTANCE;
       if (link.type === 'agent') return AGENT_LINK_DISTANCE;
-      const src = typeof link.source === 'object' ? link.source : nodeById.get(link.source);
-      const tgt = typeof link.target === 'object' ? link.target : nodeById.get(link.target);
+      const src = typeof link.source === 'object' ? link.source : nodeById.get(resolveNodeId(link.source));
+      const tgt = typeof link.target === 'object' ? link.target : nodeById.get(resolveNodeId(link.target));
       return (src && tgt && src.domain === tgt.domain) ? SAME_DOMAIN_DISTANCE : CROSS_DOMAIN_DISTANCE;
     });
 
@@ -290,6 +311,7 @@ export function destroyGraph() {
   hoveredNodeId = null;
   highlightedNodeIds = null;
   nodeById = new Map();
+  adjacencyMap.clear();
   glowCache.clear();
 }
 
@@ -321,7 +343,7 @@ export function preloadIcons(nodes, palette) {
       markIconLoaded(pal, node.id);
       _scheduleIconRefresh();
     };
-    img.onerror = () => {}; // silently skip missing icons
+    img.onerror = () => { if (import.meta.env?.DEV) console.warn('Icon not found:', path); };
     img.src = path;
   }
   activeIconMap = palMap;
@@ -335,8 +357,6 @@ export function switchIconPalette(palette, nodes) {
     preloadIcons(nodes, palette);
   }
 }
-
-// setIconMode and getIconMode are re-exported from icons.js (see top of file)
 
 // ── Shape helpers ───────────────────────────────────────────────────
 function drawHexPath(ctx, x, y, r) {
@@ -375,95 +395,17 @@ function drawPentPath(ctx, x, y, r) {
   ctx.closePath();
 }
 
-// ── Agent node rendering ────────────────────────────────────────────
-function drawAgentNode(node, ctx, globalScale) {
+// ── Shared node rendering core ──────────────────────────────────────
+// opts: { color, r, cfg, shapeFn, glowMult, centerDotR, labelFont, iconLabelY, glowLabelY, drawExtras? }
+// drawExtras(ctx, node, x, y, r, iconSize, useIcon, alpha, color, globalScale) -- type-specific additions
+function drawNodeBase(node, ctx, globalScale, opts) {
+  const { color, r, cfg, shapeFn, centerDotR, labelFont, iconLabelY, glowLabelY } = opts;
+  const glowMult = opts.glowMult || 1;
   const x = node.x;
   const y = node.y;
-  const agentId = node.id.replace('agent:', '');
-  const color = getAgentColor(agentId);
-  const cfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
-  const r = cfg.radius;
 
-  const isHighlightedNode = isNodeHighlighted(node);
-  const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
-  const alpha = dimmed ? 0.12 : 1;
-
-  const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
-
-  if (useIcon) {
-    // ── Icon mode: draw agent icon with glow ──
-    const img = activeIconMap.get(node.id);
-    const iconSize = r * 5.0;
-
-    // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
-    drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
-
-    // Draw icon image
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
-    ctx.globalAlpha = 1;
-
-    // Octagon frame around agent icon
-    drawOctPath(ctx, x, y, iconSize + 1);
-    ctx.strokeStyle = hexToRgba(color, 0.5 * alpha);
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    // Critical priority gets brighter outer octagon ring
-    if (node.priority === 'critical') {
-      drawOctPath(ctx, x, y, iconSize + 4);
-      ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-    }
-  } else {
-    // ── Glow mode: octagon rendering ──
-    // Radial glow
-    drawGlow(ctx, x, y, cfg.glowRadius, 'glow', color, cfg.glowOpacity * alpha);
-
-    // Solid octagon core
-    drawOctPath(ctx, x, y, r);
-    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
-    ctx.fill();
-
-    // White center dot
-    ctx.beginPath();
-    ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    ctx.fill();
-
-    // Critical priority gets outer octagon ring
-    if (node.priority === 'critical') {
-      drawOctPath(ctx, x, y, r + 2.5);
-      ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
-      ctx.lineWidth = 1.5;
-      ctx.stroke();
-    }
-  }
-
-  // Label — placed below the octagon frame
-  const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
-  const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
-  if (showLabel) {
-    ctx.font = cachedFontBold;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    const labelY = useIcon ? y + r * 3.5 + 4 : y + r + 4;
-    ctx.fillText(node.title || node.id, x, labelY);
-  }
-}
-
-// ── Team node rendering ──────────────────────────────────────────────
-function drawTeamNode(node, ctx, globalScale) {
-  const x = node.x;
-  const y = node.y;
-  const teamId = node.id.replace('team:', '');
-  const color = getTeamColor(teamId);
-  const r = TEAM_CONFIG.radius;
-
-  const isHighlightedNode = isNodeHighlighted(node);
-  const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlightedNode;
+  const highlighted = isNodeHighlighted(node);
+  const dimmed = (selectedNodeId || hoveredNodeId) && !highlighted;
   const alpha = dimmed ? 0.12 : 1;
 
   const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
@@ -472,61 +414,102 @@ function drawTeamNode(node, ctx, globalScale) {
     const img = activeIconMap.get(node.id);
     const iconSize = r * 5.0;
 
-    drawGlow(ctx, x, y, iconSize, 'icon', color, 0.12 * alpha);
+    drawGlow(ctx, x, y, iconSize * glowMult, 'icon', color, 0.12 * alpha);
 
     ctx.globalAlpha = alpha;
     ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
     ctx.globalAlpha = 1;
 
-    // Pentagon frame around team icon
-    drawPentPath(ctx, x, y, iconSize + 1);
-    ctx.strokeStyle = hexToRgba(color, 0.5 * alpha);
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
+    // Shape frame around icon
+    if (shapeFn) {
+      shapeFn(ctx, x, y, iconSize + 1);
+      ctx.strokeStyle = hexToRgba(color, 0.5 * alpha);
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    if (opts.drawExtras) opts.drawExtras(ctx, node, x, y, r, iconSize, true, alpha, color, globalScale);
   } else {
-    // ── Glow mode: pentagon rendering ──
-    drawGlow(ctx, x, y, TEAM_CONFIG.glowRadius, 'glow', color, TEAM_CONFIG.glowOpacity * alpha);
+    const glowRadius = (cfg.glowRadius || r * 3) * glowMult;
+    drawGlow(ctx, x, y, glowRadius, 'glow', color, (cfg.glowOpacity || 0.4) * alpha);
 
-    // Solid pentagon core
-    drawPentPath(ctx, x, y, r);
-    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
-    ctx.fill();
-
-    // White center dot
-    ctx.beginPath();
-    ctx.arc(x, y, r * 0.3, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    ctx.fill();
-
-    // Member count badge
-    const memberCount = node.members ? node.members.length : 0;
-    if (memberCount > 0 && globalScale > 1.5) {
-      const badgeR = r * 0.45;
-      const badgeX = x + r * 0.7;
-      const badgeY = y - r * 0.7;
+    // Solid shape core
+    if (shapeFn) {
+      shapeFn(ctx, x, y, r);
+    } else {
       ctx.beginPath();
-      ctx.arc(badgeX, badgeY, badgeR, 0, 2 * Math.PI);
-      ctx.fillStyle = hexToRgba(color, 0.9 * alpha);
-      ctx.fill();
-      ctx.font = `bold ${badgeR * 1.4}px 'Share Tech Mono', monospace`;
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillStyle = `rgba(0,0,0,${0.9 * alpha})`;
-      ctx.fillText(String(memberCount), badgeX, badgeY);
+      ctx.arc(x, y, r, 0, 2 * Math.PI);
     }
+    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
+    ctx.fill();
+
+    // White center dot
+    ctx.beginPath();
+    ctx.arc(x, y, centerDotR, 0, 2 * Math.PI);
+    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
+    ctx.fill();
+
+    if (opts.drawExtras) opts.drawExtras(ctx, node, x, y, r, 0, false, alpha, color, globalScale);
   }
 
   // Label
   const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
-  const showLabel = (hasActiveSelection && isHighlightedNode && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
+  const showLabel = (hasActiveSelection && highlighted && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
   if (showLabel) {
-    ctx.font = cachedFontBold;
+    ctx.font = labelFont;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'top';
     ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    const labelY = useIcon ? y + r * 3.5 + 4 : y + r + 4;
+    const labelY = useIcon ? iconLabelY(y, r) : glowLabelY(y, r);
     ctx.fillText(node.title || node.id, x, labelY);
   }
+}
+
+// ── Agent extras: critical priority ring ─────────────────────────────
+function drawAgentExtras(ctx, node, x, y, r, iconSize, useIcon, alpha) {
+  if (node.priority !== 'critical') return;
+  if (useIcon) {
+    drawOctPath(ctx, x, y, iconSize + 4);
+  } else {
+    drawOctPath(ctx, x, y, r + 2.5);
+  }
+  ctx.strokeStyle = `rgba(255,255,255,${0.6 * alpha})`;
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+// ── Team extras: member count badge ──────────────────────────────────
+function drawTeamExtras(ctx, node, x, y, r, iconSize, useIcon, alpha, color, globalScale) {
+  if (useIcon) return; // no badge in icon mode
+  const memberCount = node.members ? node.members.length : 0;
+  if (memberCount > 0 && globalScale > 1.5) {
+    const badgeR = r * 0.45;
+    const badgeX = x + r * 0.7;
+    const badgeY = y - r * 0.7;
+    ctx.beginPath();
+    ctx.arc(badgeX, badgeY, badgeR, 0, 2 * Math.PI);
+    ctx.fillStyle = hexToRgba(color, 0.9 * alpha);
+    ctx.fill();
+    ctx.font = `bold ${badgeR * 1.4}px 'Share Tech Mono', monospace`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = `rgba(0,0,0,${0.9 * alpha})`;
+    ctx.fillText(String(memberCount), badgeX, badgeY);
+  }
+}
+
+// ── Skill extras: featured ring ──────────────────────────────────────
+function drawSkillExtras(ctx, node, x, y, r, iconSize, useIcon, alpha) {
+  const featured = FEATURED_NODES[node.id];
+  if (!featured) return;
+  const ringRadius = useIcon ? iconSize + 2 : r + 2;
+  const strokeWidth = featured.tier === 'primary' ? 1.5 : 1;
+  const ringAlpha = featured.tier === 'primary' ? 0.6 : 0.4;
+  ctx.beginPath();
+  ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
+  ctx.strokeStyle = `rgba(255,255,255,${ringAlpha * alpha})`;
+  ctx.lineWidth = strokeWidth;
+  ctx.stroke();
 }
 
 // ── Node rendering ──────────────────────────────────────────────────
@@ -544,93 +527,57 @@ function drawNode(node, ctx, globalScale) {
   if (!isFinite(x) || !isFinite(y)) return;
 
   if (node.type === 'agent') {
-    drawAgentNode(node, ctx, globalScale);
+    const agentId = node.id.replace('agent:', '');
+    const cfg = AGENT_PRIORITY_CONFIG[node.priority] || AGENT_PRIORITY_CONFIG.normal;
+    drawNodeBase(node, ctx, globalScale, {
+      color: getAgentColor(agentId),
+      r: cfg.radius,
+      cfg,
+      shapeFn: drawOctPath,
+      centerDotR: cfg.radius * 0.3,
+      labelFont: cachedFontBold,
+      iconLabelY: (y, r) => y + r * 3.5 + 4,
+      glowLabelY: (y, r) => y + r + 4,
+      drawExtras: drawAgentExtras,
+    });
     return;
   }
 
   if (node.type === 'team') {
-    drawTeamNode(node, ctx, globalScale);
+    const teamId = node.id.replace('team:', '');
+    drawNodeBase(node, ctx, globalScale, {
+      color: getTeamColor(teamId),
+      r: TEAM_CONFIG.radius,
+      cfg: TEAM_CONFIG,
+      shapeFn: drawPentPath,
+      centerDotR: TEAM_CONFIG.radius * 0.3,
+      labelFont: cachedFontBold,
+      iconLabelY: (y, r) => y + r * 3.5 + 4,
+      glowLabelY: (y, r) => y + r + 4,
+      drawExtras: drawTeamExtras,
+    });
     return;
   }
 
+  // Skill node
   const color = getColor(node.domain);
   const cfg = COMPLEXITY_CONFIG[node.complexity] || COMPLEXITY_CONFIG.intermediate;
   const featured = FEATURED_NODES[node.id];
   const r = featured ? featured.radius : cfg.radius;
+  const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
 
-  const isHighlighted = isNodeHighlighted(node);
-  const dimmed = (selectedNodeId || hoveredNodeId) && !isHighlighted;
-  const alpha = dimmed ? 0.12 : 1;
-
-  const useIcon = getIconMode() && activeIconMap.has(node.id) && globalScale > ICON_ZOOM_THRESHOLD;
-
-  if (useIcon) {
-    // ── Icon mode: draw image with domain-colored glow ──
-    const img = activeIconMap.get(node.id);
-    const iconSize = r * 5.0;
-    const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
-
-    // Subtle glow behind icon (reduced — glyphs have baked-in neon glow)
-    drawGlow(ctx, x, y, iconSize * glowMult, 'icon', color, 0.12 * alpha);
-
-    // Draw icon image
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(img, x - iconSize, y - iconSize, iconSize * 2, iconSize * 2);
-    ctx.globalAlpha = 1;
-
-    // Featured ring (icon mode)
-    if (featured) {
-      const ringRadius = iconSize + 2;
-      const strokeWidth = featured.tier === 'primary' ? 1.5 : 1;
-      const ringAlpha = featured.tier === 'primary' ? 0.6 : 0.4;
-      ctx.beginPath();
-      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
-      ctx.strokeStyle = `rgba(255,255,255,${ringAlpha * alpha})`;
-      ctx.lineWidth = strokeWidth;
-      ctx.stroke();
-    }
-  } else {
-    // ── Glow mode (original rendering) ──
-    const glowMult = featured ? (featured.tier === 'primary' ? 1.5 : 1.3) : 1;
-    const glowRadius = cfg.glowRadius * glowMult;
-    drawGlow(ctx, x, y, glowRadius, 'glow', color, cfg.glowOpacity * alpha);
-
-    // Solid core
-    ctx.beginPath();
-    ctx.arc(x, y, r, 0, 2 * Math.PI);
-    ctx.fillStyle = hexToRgba(color, 0.85 * alpha);
-    ctx.fill();
-
-    // White center dot
-    ctx.beginPath();
-    ctx.arc(x, y, r * 0.35, 0, 2 * Math.PI);
-    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    ctx.fill();
-
-    // Featured ring (glow mode)
-    if (featured) {
-      const ringRadius = r + 2;
-      const strokeWidth = featured.tier === 'primary' ? 1.5 : 1;
-      const ringAlpha = featured.tier === 'primary' ? 0.6 : 0.4;
-      ctx.beginPath();
-      ctx.arc(x, y, ringRadius, 0, 2 * Math.PI);
-      ctx.strokeStyle = `rgba(255,255,255,${ringAlpha * alpha})`;
-      ctx.lineWidth = strokeWidth;
-      ctx.stroke();
-    }
-  }
-
-  // Labels
-  const hasActiveSelection = !!(selectedNodeId || hoveredNodeId);
-  const showLabel = (hasActiveSelection && isHighlighted && !dimmed) || globalScale > LABEL_ZOOM_THRESHOLD;
-  if (showLabel) {
-    ctx.font = cachedFontNormal;
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'top';
-    ctx.fillStyle = `rgba(255,255,255,${0.9 * alpha})`;
-    const labelY = useIcon ? y + r * 2.8 + 2 : y + r + 4;
-    ctx.fillText(node.title || node.id, x, labelY);
-  }
+  drawNodeBase(node, ctx, globalScale, {
+    color,
+    r,
+    cfg,
+    shapeFn: null, // circle — drawNodeBase uses arc fallback
+    glowMult,
+    centerDotR: r * 0.35,
+    labelFont: cachedFontNormal,
+    iconLabelY: (y, r) => y + r * 2.8 + 2,
+    glowLabelY: (y, r) => y + r + 4,
+    drawExtras: drawSkillExtras,
+  });
 }
 
 function drawHitArea(node, color, ctx) {
@@ -758,33 +705,25 @@ export function setSkillVisibility(visibleSkillIds) {
   const nodeIds = new Set(filteredNodes.map(n => n.id));
   const filteredLinks = fullData.links
     .filter(l => {
-      const src = typeof l.source === 'object' ? l.source.id : l.source;
-      const tgt = typeof l.target === 'object' ? l.target.id : l.target;
+      const src = resolveNodeId(l.source);
+      const tgt = resolveNodeId(l.target);
       return nodeIds.has(src) && nodeIds.has(tgt);
     })
     .map(l => ({
-      source: typeof l.source === 'object' ? l.source.id : l.source,
-      target: typeof l.target === 'object' ? l.target.id : l.target,
+      source: resolveNodeId(l.source),
+      target: resolveNodeId(l.target),
       type: l.type,
     }));
 
   graphData = { nodes: filteredNodes, links: filteredLinks };
   rebuildNodeIndex();
+  buildAdjacencyMap(graphData.links);
   precomputeLinkColors();
 
   if (graph) {
     graph.graphData(graphData);
     setTimeout(() => graph.zoomToFit(400, 40), 500);
   }
-}
-
-/** @deprecated Use setSkillVisibility instead */
-export function setDomainVisibility(visibleDomains) {
-  const visSet = new Set(visibleDomains);
-  const skillIds = fullData.nodes
-    .filter(n => n.type === 'skill' && visSet.has(n.domain))
-    .map(n => n.id);
-  setSkillVisibility(skillIds);
 }
 
 export function refreshGraph() {

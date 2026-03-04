@@ -57,11 +57,13 @@
       <button id="btn-zoom-in" title="Zoom In">+</button>
       <button id="btn-zoom-out" title="Zoom Out">&minus;</button>
       <button id="btn-reset" title="Reset View">Reset</button>
-      <button id="btn-2d" class="active" title="2D Force Layout">2D</button>
-      <button id="btn-3d" title="3D Force Layout">3D</button>
-      <button id="btn-hive" title="Hive Plot">Hive</button>
-      <button id="btn-chord" title="Chord Diagram">Chord</button>
-      <button id="btn-flow" title="Workflow Diagram">Flow</button>
+      <div class="mode-buttons" role="tablist" aria-label="Visualization mode">
+        <button id="btn-2d" class="active" role="tab" aria-selected="true" title="2D Force Layout">2D</button>
+        <button id="btn-3d" role="tab" aria-selected="false" title="3D Force Layout">3D</button>
+        <button id="btn-hive" role="tab" aria-selected="false" title="Hive Plot">Hive</button>
+        <button id="btn-chord" role="tab" aria-selected="false" title="Chord Diagram">Chord</button>
+        <button id="btn-flow" role="tab" aria-selected="false" title="Workflow Diagram">Flow</button>
+      </div>
       <select id="hive-domain-focus" title="Focus on Domain" style="display:none">
         <option value="">All Domains</option>
       </select>
@@ -154,7 +156,7 @@
   </aside>
 
   <!-- ── Graph Canvas ──────────────────────────────────────────── -->
-  <div id="graph-container"></div>
+  <div id="graph-container" role="application" aria-label="Interactive skill network visualization" tabindex="0"></div>
 
   <!-- ── Detail Panel (Right) ──────────────────────────────────── -->
   <aside id="detail-panel" class="detail-panel">

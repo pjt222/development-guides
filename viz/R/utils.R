@@ -183,7 +183,11 @@ read_icon_cache <- function(cache_path) {
   if (!file.exists(cache_path)) return(list())
   tryCatch(
     jsonlite::fromJSON(cache_path, simplifyVector = FALSE),
-    error = function(e) list()
+    error = function(e) {
+      warning("Corrupted icon cache at '", cache_path, "', rebuilding: ",
+              conditionMessage(e), call. = FALSE)
+      list()
+    }
   )
 }
 

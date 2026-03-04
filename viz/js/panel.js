@@ -5,9 +5,9 @@
 import { getColor, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
 import { getHdMode } from './icons.js';
 
-const GITHUB_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/skills/';
-const GITHUB_AGENTS_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
-const GITHUB_TEAMS_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
+// TODO(#76): Make configurable for forks — could read from skills.json metadata or data attribute
+const GITHUB_REPO_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
+const GITHUB_SKILLS_BASE = `${GITHUB_REPO_BASE}skills/`;
 
 const PRIORITY_BADGE_COLORS = {
   critical: '#ff4444',
@@ -102,7 +102,7 @@ function openSkillPanel(node) {
   const iconSrc = `${iconDir}/${getCurrentThemeName()}/${encodeURI(node.domain)}/${encodeURI(node.id)}.webp`;
   let html = `
     <div class="panel-icon-wrapper">
-      <img class="panel-icon" src="${iconSrc}" alt="" onerror="this.parentElement.style.display='none'">
+      <img class="panel-icon" src="${iconSrc}" alt="">
     </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
@@ -129,13 +129,17 @@ function openSkillPanel(node) {
 
   html += `
     <div class="panel-actions">
-      <a href="${GITHUB_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
+      <a href="${GITHUB_SKILLS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
         View Source SKILL.md
       </a>
     </div>
   `;
 
   setPanelContent(html);
+  attachIconErrorHandler(() => {
+    const wrapper = panelEl.querySelector('.panel-icon')?.parentElement;
+    if (wrapper) wrapper.style.display = 'none';
+  });
 }
 
 function openTeamPanel(node) {
@@ -147,8 +151,7 @@ function openTeamPanel(node) {
 
   let html = `
     <div class="panel-icon-wrapper">
-      <img class="panel-icon" src="${iconSrc}" alt=""
-        onerror="this.parentElement.innerHTML='<div class=\\'panel-agent-hex\\' style=\\'color:${color};text-shadow:0 0 16px ${color}\\'>&#x2B1F;</div>'">
+      <img class="panel-icon" src="${iconSrc}" alt="">
     </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
@@ -181,13 +184,24 @@ function openTeamPanel(node) {
 
   html += `
     <div class="panel-actions">
-      <a href="${GITHUB_TEAMS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
+      <a href="${GITHUB_REPO_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
         View Team Definition
       </a>
     </div>
   `;
 
   setPanelContent(html);
+  attachIconErrorHandler(() => {
+    const wrapper = panelEl.querySelector('.panel-icon')?.parentElement;
+    if (wrapper) {
+      wrapper.textContent = '';
+      const fallback = document.createElement('div');
+      fallback.className = 'panel-agent-hex';
+      Object.assign(fallback.style, { color, textShadow: `0 0 16px ${color}` });
+      fallback.textContent = '\u2B1F';
+      wrapper.appendChild(fallback);
+    }
+  });
 }
 
 function openAgentPanel(node) {
@@ -200,8 +214,7 @@ function openAgentPanel(node) {
 
   let html = `
     <div class="panel-icon-wrapper">
-      <img class="panel-icon" src="${iconSrc}" alt=""
-        onerror="this.parentElement.innerHTML='<div class=\\'panel-agent-hex\\' style=\\'color:${color};text-shadow:0 0 16px ${color}\\'>&#x2B22;</div>'">
+      <img class="panel-icon" src="${iconSrc}" alt="">
     </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
@@ -242,13 +255,24 @@ function openAgentPanel(node) {
 
   html += `
     <div class="panel-actions">
-      <a href="${GITHUB_AGENTS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
+      <a href="${GITHUB_REPO_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
         View Agent Definition
       </a>
     </div>
   `;
 
   setPanelContent(html);
+  attachIconErrorHandler(() => {
+    const wrapper = panelEl.querySelector('.panel-icon')?.parentElement;
+    if (wrapper) {
+      wrapper.textContent = '';
+      const fallback = document.createElement('div');
+      fallback.className = 'panel-agent-hex';
+      Object.assign(fallback.style, { color, textShadow: `0 0 16px ${color}` });
+      fallback.textContent = '\u2B22';
+      wrapper.appendChild(fallback);
+    }
+  });
 }
 
 function setPanelContent(html) {
@@ -265,6 +289,13 @@ function setPanelContent(html) {
   });
 
   panelEl.classList.add('open');
+
+  // Move focus into panel for accessibility
+  const title = panelEl.querySelector('.panel-title');
+  if (title) {
+    title.setAttribute('tabindex', '-1');
+    title.focus();
+  }
 }
 
 export function closePanel() {
@@ -272,6 +303,11 @@ export function closePanel() {
     panelEl.classList.remove('open');
     panelEl.style.transform = '';
   }
+}
+
+function attachIconErrorHandler(onError) {
+  const img = panelEl.querySelector('.panel-icon');
+  if (img) img.addEventListener('error', onError, { once: true });
 }
 
 function escHtml(s) {

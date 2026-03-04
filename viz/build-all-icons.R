@@ -42,6 +42,7 @@ if ("--help" %in% args || "-h" %in% args) {
   cat("  --type <types>      Comma-separated types to build: all, skill, agent, team\n")
   cat("                      (default: all)\n")
   cat("  --hd                Build both standard (512px) and high-res (1024px) icons\n")
+  cat("  --strict            Exit immediately if any sub-script fails (non-zero exit)\n")
   cat("  All other flags are passed through to individual build scripts.\n")
   cat("  Run Rscript build-icons.R --help for full option list.\n")
   quit(status = 0)
@@ -64,6 +65,12 @@ if (length(type_idx) > 0 && type_idx[1] < length(args)) {
   }
   # Remove --type and its value from args before passing through
   args <- args[-c(type_idx[1], type_idx[1] + 1)]
+}
+
+# Extract --strict flag (exit on first sub-script failure)
+strict_mode <- "--strict" %in% args
+if (strict_mode) {
+  args <- args[args != "--strict"]
 }
 
 # Extract --hd flag (dual-pass: standard + high-res)
@@ -116,6 +123,9 @@ for (pass in passes) {
     if (exit_code != 0) {
       message(sprintf("[ERROR] %s icon build (%s) exited with code %d",
                       type, pass$label, exit_code))
+      if (strict_mode) {
+        quit(status = exit_code, save = "no")
+      }
     }
   }
 }
