@@ -40,6 +40,14 @@ step=$((step + 1))
 echo "[$step/$total] Generating palette colors (JSON + JS)..."
 Rscript generate-palette-colors.R
 
+step=$((step + 1))
+echo "[$step/$total] Building skills data..."
+node build-data.js
+
+step=$((step + 1))
+echo "[$step/$total] Building icon manifests..."
+node build-icon-manifest.js
+
 if [[ "${SKIP_ICONS:-0}" != "1" ]]; then
   step=$((step + 1))
   echo "[$step/$total] Building all icons — standard + HD (flags: ${build_flags[*]:-none})..."
@@ -48,14 +56,6 @@ else
   step=$((step + 1))
   echo "[$step/$total] Skipping icon generation (SKIP_ICONS=1)"
 fi
-
-step=$((step + 1))
-echo "[$step/$total] Building skills data..."
-node build-data.js
-
-step=$((step + 1))
-echo "[$step/$total] Building icon manifests..."
-node build-icon-manifest.js
 
 step=$((step + 1))
 echo "[$step/$total] Starting web server on port 8080..."

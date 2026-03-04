@@ -31,6 +31,7 @@ get_script_dir <- function() {
 }
 
 script_dir <- get_script_dir()
+setwd(script_dir)     # Ensure CWD is viz/ for child process stability
 
 # ── Parse --type and --help from args ────────────────────────────────────
 args <- commandArgs(trailingOnly = TRUE)
@@ -93,6 +94,37 @@ passes <- list(
 if (hd_mode) {
   passes[[2]] <- list(label = "high-res", size = "1024", sigma = "8",
                       extra_args = c("--hd"))
+}
+
+# ── Manifest freshness check ──────────────────────────────────────────
+manifest_path <- file.path(script_dir, "public", "data", "icon-manifest.json")
+registry_path <- file.path(script_dir, "..", "skills", "_registry.yml")
+
+if (file.exists(manifest_path) && file.exists(registry_path)) {
+  manifest_data <- jsonlite::fromJSON(manifest_path)
+  icons_data <- manifest_data$icons
+  manifest_count <- if (is.data.frame(icons_data)) nrow(icons_data) else length(icons_data)
+
+  registry_lines <- readLines(registry_path)
+  registry_count <- as.integer(
+    sub(".*:\\s*", "", grep("^total_skills:", registry_lines, value = TRUE)[1])
+  )
+
+  if (!is.na(registry_count) && manifest_count != registry_count) {
+    message(sprintf(
+      "\n[WARN] Manifest has %d icons but registry has %d skills.",
+      manifest_count, registry_count))
+    message("  The manifest may be stale. Run the data pipeline first:")
+    message("    node build-data.js && node build-icon-manifest.js")
+    message("  Or use: bash build.sh (runs the full pipeline)\n")
+    if (strict_mode) {
+      stop("Stale manifest detected in --strict mode. Aborting.", call. = FALSE)
+    }
+  }
+} else if (!file.exists(manifest_path)) {
+  stop("Manifest not found: ", manifest_path,
+       "\n  Run: node build-data.js && node build-icon-manifest.js",
+       call. = FALSE)
 }
 
 overall_start <- proc.time()

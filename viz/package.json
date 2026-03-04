@@ -5,13 +5,12 @@
   "description": "Cyberpunk Skillnet Visualization for agent-almanac",
   "type": "module",
   "scripts": {
+    "pipeline": "bash build.sh",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "build-data": "node build-data.js",
     "build-manifest": "node build-icon-manifest.js",
-    "build-icons": "node build-icons.js",
-    "build-icons-bg": "nohup node build-icons.js --skip-existing > logs/build-icons.out 2>&1 &",
     "build-favicon": "Rscript build-favicon.R",
     "build-workflow": "Rscript build-workflow.R",
     "test": "vitest run"
@@ -24,7 +23,6 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
-    "@gradio/client": "^1.0.0",
     "js-yaml": "^4.1.0",
     "sharp": "^0.33.0",
     "vite": "^6",
