@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "js-yaml": "^4.1.0",
-    "sharp": "^0.33.0",
+    "sharp": "^0.34.5",
     "vite": "^7",
     "vitest": "^4.0.18"
   }
