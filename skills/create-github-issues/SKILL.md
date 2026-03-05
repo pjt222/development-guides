@@ -7,7 +7,7 @@ description: >
   criteria. Designed to consume output from review-codebase or similar review
   skills.
 license: MIT
-allowed-tools: [Read, Bash, Grep, Glob]
+allowed-tools: Read Bash Grep Glob
 metadata:
   author: Philipp Thoss
   version: "1.0"

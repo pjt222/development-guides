@@ -6,7 +6,7 @@ description: >
   coordinated pass. Produces a prioritized findings table suitable for direct
   conversion to GitHub issues via the create-github-issues skill.
 license: MIT
-allowed-tools: [Read, Grep, Glob, Bash, WebFetch]
+allowed-tools: Read Grep Glob Bash WebFetch
 metadata:
   author: Philipp Thoss
   version: "1.0"
