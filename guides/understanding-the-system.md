@@ -221,13 +221,14 @@ The `opaque-team` is a special case: it consists of N shapeshifter agents that s
 
 ## Registries and Discovery
 
-Three YAML registry files serve as the machine-readable catalogs for the system:
+Four YAML registry files serve as the machine-readable catalogs for the system:
 
 | Registry | Location | Purpose |
 |----------|----------|---------|
-| Skills | `skills/_registry.yml` | Lists all 278 skills with id, path, complexity, language, and description |
-| Agents | `agents/_registry.yml` | Lists all 59 agents with id, path, tags, tools, and skill assignments |
-| Teams | `teams/_registry.yml` | Lists all 10 teams with id, path, lead, members, and coordination pattern |
+| Skills | `skills/_registry.yml` | Lists all skills with id, path, complexity, language, and description |
+| Agents | `agents/_registry.yml` | Lists all agents with id, path, tags, tools, and skill assignments |
+| Teams | `teams/_registry.yml` | Lists all teams with id, path, lead, members, and coordination pattern |
+| Tests | `tests/_registry.yml` | Lists test scenarios with target, coordination pattern, and acceptance criteria |
 
 Registries must stay in sync with files on disk. When you add or remove a skill, agent, or team, update its registry and the `total_*` count.
 

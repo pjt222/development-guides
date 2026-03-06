@@ -36,6 +36,10 @@ const guidesRegistryPath = resolve(ROOT, 'guides/_registry.yml');
 const guidesRegistry = existsSync(guidesRegistryPath)
   ? yaml.load(readFileSync(guidesRegistryPath, 'utf8'))
   : { total_guides: 0, categories: {}, guides: [] };
+const testsRegistryPath = resolve(ROOT, 'tests/_registry.yml');
+const testsRegistry = existsSync(testsRegistryPath)
+  ? yaml.load(readFileSync(testsRegistryPath, 'utf8'))
+  : { total_tests: 0, tests: [] };
 
 const domains = skillsRegistry.domains;
 const agents = agentsRegistry.agents;
@@ -43,10 +47,12 @@ const defaultSkills = agentsRegistry.default_skills || [];
 const teams = teamsRegistry.teams || [];
 const guides = guidesRegistry.guides || [];
 const guideCategories = guidesRegistry.categories || {};
+const tests = testsRegistry.tests || [];
 const totalSkills = skillsRegistry.total_skills;
 const totalAgents = agentsRegistry.total_agents;
 const totalTeams = teamsRegistry.total_teams || 0;
 const totalGuides = guidesRegistry.total_guides || 0;
+const totalTests = testsRegistry.total_tests || 0;
 const totalDomains = Object.keys(domains).length;
 
 // ── Helpers ──────────────────────────────────────────────────────
@@ -408,6 +414,39 @@ with open("teams/_registry.yml") as f:
 `;
 }
 
+function generateTestsReadme() {
+  const lines = [
+    '# Tests',
+    '',
+    `${totalTests} test scenario(s) for validating team coordination, agent behavior, and skill execution.`,
+    '',
+    '## Test Scenarios',
+    '',
+    '| Scenario | Level | Target | Pattern | Description |',
+    '|----------|-------|--------|---------|-------------|',
+  ];
+  for (const test of tests) {
+    lines.push(
+      `| [${test.id}](${test.path.replace('tests/', '')}) | ${test.test_level} | ${test.target} | ${test.coordination_pattern || '-'} | ${test.description} |`
+    );
+  }
+  lines.push('');
+  lines.push('## Running Tests');
+  lines.push('');
+  lines.push('Use the `test-team-coordination` skill to execute a scenario:');
+  lines.push('');
+  lines.push('```');
+  lines.push('/test-team-coordination');
+  lines.push('```');
+  lines.push('');
+  lines.push('Results are stored in `tests/results/YYYY-MM-DD-<target>-NNN/RESULT.md`.');
+  lines.push('');
+  lines.push('## Registry');
+  lines.push('');
+  lines.push('The `_registry.yml` file catalogs all test scenarios and defines coordination pattern key behaviors used during evaluation.');
+  return lines.join('\n');
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 
 let staleCount = 0;
@@ -475,9 +514,15 @@ run(
   writeGeneratedFile(resolve(ROOT, 'teams/README.md'), generateTeamsReadme())
 );
 
+// tests/README.md (fully generated)
+run(
+  'tests/README.md',
+  writeGeneratedFile(resolve(ROOT, 'tests/README.md'), generateTestsReadme())
+);
+
 // Summary
 console.log(
-  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents, ${totalTeams} teams, ${totalGuides} guides`
+  `\nStats: ${totalSkills} skills, ${totalDomains} domains, ${totalAgents} agents, ${totalTeams} teams, ${totalGuides} guides, ${totalTests} tests`
 );
 
 if (CHECK_MODE && staleCount > 0) {

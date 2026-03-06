@@ -1,0 +1,89 @@
+# Tests Registry
+# Machine-readable catalog of all test scenarios in this library.
+# Keep in sync with the actual test files on disk.
+
+total_tests: 1
+version: "1.0"
+last_updated: "2026-03-06"
+
+# Coordination pattern definitions — key behaviors to observe when testing
+# each pattern. Used by the test-team-coordination skill.
+coordination_patterns:
+  hub-and-spoke:
+    description: Lead distributes tasks, collects results, synthesizes
+    key_behaviors:
+      - Lead performs initial task decomposition
+      - Subtasks are assigned to individual members
+      - Members report results back to lead
+      - Lead synthesizes a unified output
+    min_members: 3
+
+  sequential:
+    description: Agents work in a defined order, each building on previous output
+    key_behaviors:
+      - Clear handoff order between members
+      - Each member receives output from the previous
+      - No parallel execution within the sequence
+      - Final member produces the deliverable
+    min_members: 2
+
+  parallel:
+    description: All agents work simultaneously on independent subtasks
+    key_behaviors:
+      - Members work on independent subtasks concurrently
+      - No inter-member dependencies during execution
+      - Lead merges results after all complete
+      - Work is partitioned, not duplicated
+    min_members: 3
+
+  timeboxed:
+    description: Work organized into fixed-length iterations
+    key_behaviors:
+      - Sprint planning precedes execution
+      - Work is selected from a prioritized backlog
+      - Daily coordination occurs within the timebox
+      - Retrospective follows each iteration
+    min_members: 3
+
+  adaptive:
+    description: Team self-organizes dynamically based on the task
+    key_behaviors:
+      - Roles emerge from task analysis, not pre-assignment
+      - Role assignments are documented as they form
+      - Roles can shift mid-task if work demands it
+      - External interface remains unified (opacity)
+    min_members: 2
+
+  reciprocal:
+    description: Two agents alternate focus — one acts, the other holds space
+    key_behaviors:
+      - Clear practitioner/witness role distinction
+      - Roles alternate between rounds
+      - Witness provides reflective feedback
+      - Practice depth over breadth
+    min_members: 2
+
+  wave-parallel:
+    description: Tasks grouped into dependency waves; parallel within each wave
+    key_behaviors:
+      - Tasks grouped by dependency level
+      - Parallel execution within each wave
+      - Waves execute sequentially
+      - Dependencies respected across waves
+    min_members: 3
+
+# Test levels
+test_levels:
+  team: Tests that validate team coordination patterns
+  agent: Tests that validate individual agent behavior
+  skill: Tests that validate skill procedure execution
+
+# Test scenarios
+tests:
+  - id: test-opaque-team-cartographers-audit
+    path: tests/scenarios/teams/test-opaque-team-cartographers-audit.md
+    test_level: team
+    target: opaque-team
+    coordination_pattern: adaptive
+    description: Opaque team audits the knowledge graph integrity of the agent-almanac repository
+    tags: [opaque-team, adaptive, knowledge-graph, cross-references, audit]

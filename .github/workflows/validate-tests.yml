@@ -1,0 +1,83 @@
+name: Validate Tests
+on:
+  push:
+    branches: [main]
+    paths: ['tests/**']
+  pull_request:
+    paths: ['tests/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Validate test scenario frontmatter
+        run: |
+          failed=0
+          required_fields="name test-level target"
+          for f in tests/scenarios/**/*.md; do
+            [ ! -f "$f" ] && continue
+            for field in $required_fields; do
+              if ! grep -q "^${field}:" "$f"; then
+                echo "FAIL: $f missing required field: $field"
+                failed=1
+              fi
+            done
+          done
+          exit $failed
+
+      - name: Validate required sections
+        run: |
+          failed=0
+          required_sections="Objective Pre-conditions Task Expected.Behaviors Acceptance.Criteria Observation.Protocol"
+          for f in tests/scenarios/**/*.md; do
+            [ ! -f "$f" ] && continue
+            for section in $required_sections; do
+              pattern=$(echo "$section" | tr '.' ' ')
+              if ! grep -q "^## ${pattern}" "$f"; then
+                echo "FAIL: $f missing required section: ## $pattern"
+                failed=1
+              fi
+            done
+          done
+          exit $failed
+
+      - name: Verify registry count
+        run: |
+          disk_count=$(find tests/scenarios -name '*.md' | wc -l)
+          reg_count=$(grep 'total_tests:' tests/_registry.yml | tr -d '\r' | awk '{print $2}')
+          if [ "$disk_count" != "$reg_count" ]; then
+            echo "FAIL: disk=$disk_count registry=$reg_count"
+            exit 1
+          fi
+          echo "OK: $disk_count test scenarios on disk match registry"
+
+      - name: Verify test targets exist
+        run: |
+          failed=0
+          for f in tests/scenarios/teams/*.md; do
+            [ ! -f "$f" ] && continue
+            target=$(grep '^target:' "$f" | head -1 | awk '{print $2}')
+            if [ -n "$target" ]; then
+              if [ ! -f "teams/${target}.md" ]; then
+                echo "FAIL: $f targets team '${target}' but teams/${target}.md not found"
+                failed=1
+              fi
+            fi
+          done
+          for f in tests/scenarios/agents/*.md 2>/dev/null; do
+            [ ! -f "$f" ] && continue
+            target=$(grep '^target:' "$f" | head -1 | awk '{print $2}')
+            if [ -n "$target" ]; then
+              if [ ! -f "agents/${target}.md" ]; then
+                echo "FAIL: $f targets agent '${target}' but agents/${target}.md not found"
+                failed=1
+              fi
+            fi
+          done
+          exit $failed

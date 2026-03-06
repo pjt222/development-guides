@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 297
+total_skills: 298
 
 domains:
   r-packages:
@@ -496,6 +496,11 @@ domains:
         complexity: advanced
         language: multi
         description: Multi-phase deep codebase review with severity ratings and structured findings output
+      - id: test-team-coordination
+        path: test-team-coordination/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Execute a test scenario against a team, observing coordination behaviors and generating RESULT.md
 
   bushcraft:
     description: Wilderness survival and primitive skills

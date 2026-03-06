@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 297 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 298 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -32,7 +32,7 @@ Browse by domain:
 | [General](general/) | 12 | Cross-cutting development environment and workflow skills |
 | [Citations](citations/) | 3 | Academic and software citation management with R and BibTeX |
 | [Data Serialization](data-serialization/) | 2 | Data serialization formats, schemas, and evolution strategies |
-| [Review](review/) | 10 | Senior-level review skills for research, data, architecture, and design |
+| [Review](review/) | 11 | Senior-level review skills for research, data, architecture, and design |
 | [Bushcraft](bushcraft/) | 4 | Wilderness survival and primitive skills |
 | [Esoteric](esoteric/) | 29 | Esoteric practices — AI self-directed variants and human-guidance variants |
 | [Design](design/) | 5 | Ornamental design and AI-assisted image generation skills |
