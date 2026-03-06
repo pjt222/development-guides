@@ -1,0 +1,454 @@
+---
+title: "Knowledge Graph Integrity Audit"
+subtitle: "The Cartographer's Audit — Agent Almanac Repository"
+author: "Opaque Team (4 Shapeshifters)"
+date: "2026-03-06"
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    self-contained: true
+    fig-width: 8
+    fig-height: 5
+params:
+  findings_file: "findings.yml"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(yaml)
+library(knitr)
+library(kableExtra)
+
+findings <- yaml::read_yaml(params$findings_file)
+```
+
+## Executive Summary
+
+This report documents the results of a knowledge graph integrity audit
+of the [agent-almanac](https://github.com/pjt222/agent-almanac) repository,
+conducted by an opaque team of 4 shapeshifter agents using the adaptive
+coordination pattern.
+
+The repository contains **`r findings$registry$skills` skills**,
+**`r findings$registry$agents` agents**,
+**`r findings$registry$teams` teams**, and
+**`r findings$registry$guides` guides** connected by a web of
+cross-references. This audit assessed the integrity of those connections.
+
+```{r summary-table}
+summary_df <- data.frame(
+  Category = c(
+    "Broken References",
+    "Orphan Nodes",
+    "Non-Reciprocal Cross-References",
+    "Registry Integrity"
+  ),
+  Findings = c(
+    findings$summary$broken_refs,
+    findings$summary$orphan_nodes,
+    findings$summary$non_reciprocal,
+    findings$summary$registry_issues
+  ),
+  Severity = c("High", "Medium", "Low", "Info"),
+  stringsAsFactors = FALSE
+)
+
+kable(summary_df, align = c("l", "r", "c")) |>
+  kable_styling(
+    bootstrap_options = c("striped", "hover"),
+    full_width = FALSE
+  ) |>
+  row_spec(
+    which(summary_df$Severity == "High"),
+    background = "#fce4ec"
+  ) |>
+  row_spec(
+    which(summary_df$Severity == "Medium"),
+    background = "#fff8e1"
+  )
+```
+
+### Verdict
+
+The knowledge graph is **well-connected**. The repository's cross-reference
+network is healthier than initial estimates suggested, with only
+`r findings$summary$broken_refs` broken references and
+`r findings$summary$orphan_nodes` orphan nodes across
+`r findings$registry$skills + findings$registry$agents + findings$registry$teams + findings$registry$guides`
+registered items.
+
+## Methodology
+
+### Team Composition
+
+The audit was conducted by an **opaque team** — a variable-size team of
+shapeshifter agents that self-organized into the following roles:
+
+```{r team-table}
+team_df <- data.frame(
+  Member = c(
+    "Shapeshifter #1",
+    "Shapeshifter #2",
+    "Shapeshifter #3",
+    "Shapeshifter #4"
+  ),
+  `Emerged Role` = c(
+    "Coordinator / Integrator",
+    "Reference Scanner",
+    "Orphan Node Detective",
+    "Integrity & Reciprocity Auditor"
+  ),
+  Scope = c(
+    "Task decomposition, role assignment, report synthesis",
+    "Broken cross-references across all .md files",
+    "Registered items never referenced elsewhere",
+    "Registry counts, non-reciprocal links"
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+kable(team_df) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Coordination Pattern
+
+**Adaptive** — roles emerged from task analysis, not pre-assignment.
+The team followed four phases:
+
+1. **Form Assessment**: Lead analyzed the audit task and decomposed it
+2. **Role Assignment**: Lead assigned roles based on subtask requirements
+3. **Execution**: Members worked in parallel on their assigned domains
+4. **Integration**: Lead synthesized findings into this unified report
+
+A **scope change** was injected mid-execution (Section 6: Self-Referential
+Consistency), which the lead absorbed without disrupting ongoing work.
+
+### Audit Scope
+
+```{r scope-table}
+scope_df <- data.frame(
+  Section = 1:6,
+  Domain = c(
+    "Broken References",
+    "Orphan Nodes",
+    "Non-Reciprocal Cross-References",
+    "Registry Integrity",
+    "Remediation Plan",
+    "Self-Referential Consistency"
+  ),
+  Description = c(
+    "Internal links pointing to non-existent files",
+    "Registered items never referenced by other files",
+    "A references B but B does not reference A",
+    "Registry counts vs files on disk",
+    "Prioritized fixes by severity",
+    "Opaque team auditing its own definition (added mid-execution)"
+  ),
+  stringsAsFactors = FALSE
+)
+
+kable(scope_df) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+## Section 1: Broken References {#sec-broken}
+
+Broken references are internal cross-references (relative markdown links,
+skill mentions in agent frontmatter, team member references) that point
+to files or entries that do not exist on disk.
+
+```{r broken-refs-table}
+if (length(findings$broken_refs) > 0) {
+  broken_df <- do.call(rbind, lapply(findings$broken_refs, function(item) {
+    data.frame(
+      Source = item$source,
+      Target = item$target,
+      Type = item$type,
+      Issue = item$issue,
+      stringsAsFactors = FALSE
+    )
+  }))
+
+  kable(broken_df) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed"),
+      full_width = TRUE,
+      font_size = 13
+    )
+} else {
+  cat("No broken references found.")
+}
+```
+
+## Section 2: Orphan Nodes {#sec-orphans}
+
+Orphan nodes are items registered in their `_registry.yml` but never
+referenced by any other content file — no guide mentions them, no agent
+lists them, no team includes them, and no skill cross-references them.
+
+```{r orphan-summary}
+orphan_summary <- data.frame(
+  Category = c("Skills", "Agents", "Teams"),
+  Registered = c(
+    findings$registry$skills,
+    findings$registry$agents,
+    findings$registry$teams
+  ),
+  Orphaned = c(
+    length(findings$orphans$skills),
+    length(findings$orphans$agents),
+    length(findings$orphans$teams)
+  ),
+  stringsAsFactors = FALSE
+)
+orphan_summary$`Connected (%)` <- round(
+  (1 - orphan_summary$Orphaned / orphan_summary$Registered) * 100, 1
+)
+
+kable(orphan_summary, align = c("l", "r", "r", "r")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Orphan Skills
+
+```{r orphan-skills}
+if (length(findings$orphans$skills) > 0) {
+  skill_orphans <- data.frame(
+    `Skill ID` = unlist(findings$orphans$skills),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  kable(skill_orphans) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover"),
+      full_width = FALSE
+    )
+} else {
+  cat("No orphan skills found.")
+}
+```
+
+### Orphan Agents
+
+```{r orphan-agents}
+if (length(findings$orphans$agents) > 0) {
+  agent_orphans <- data.frame(
+    `Agent ID` = unlist(findings$orphans$agents),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+  kable(agent_orphans) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover"),
+      full_width = FALSE
+    )
+} else {
+  cat("No orphan agents found.")
+}
+```
+
+## Section 3: Non-Reciprocal Cross-References {#sec-reciprocal}
+
+Non-reciprocal references occur when file A references file B in a context
+where reciprocity is expected (Related Skills, See Also), but file B does
+not reference A back.
+
+```{r reciprocal-summary}
+recip_summary <- data.frame(
+  Context = c(
+    "Skill Related Skills",
+    "Agent See Also",
+    "Team See Also"
+  ),
+  `Non-Reciprocal Pairs` = c(
+    findings$non_reciprocal$skill_related,
+    findings$non_reciprocal$agent_see_also,
+    findings$non_reciprocal$team_see_also
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+kable(recip_summary, align = c("l", "r")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+### Representative Examples
+
+```{r reciprocal-examples}
+if (length(findings$non_reciprocal$examples) > 0) {
+  examples_df <- do.call(rbind, lapply(
+    findings$non_reciprocal$examples,
+    function(item) {
+      data.frame(
+        From = item$from,
+        References = item$references,
+        `Back-reference` = item$back_ref,
+        check.names = FALSE,
+        stringsAsFactors = FALSE
+      )
+    }
+  ))
+
+  kable(examples_df) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover", "condensed"),
+      full_width = TRUE,
+      font_size = 13
+    )
+} else {
+  cat("No examples available.")
+}
+```
+
+## Section 4: Registry Integrity {#sec-registry}
+
+Registry integrity verifies that every file on disk has a matching registry
+entry and every registry entry has a matching file on disk.
+
+```{r registry-table}
+reg_df <- data.frame(
+  Registry = c(
+    "skills/_registry.yml",
+    "agents/_registry.yml",
+    "teams/_registry.yml",
+    "guides/_registry.yml"
+  ),
+  `Declared Count` = c(
+    findings$registry$skills,
+    findings$registry$agents,
+    findings$registry$teams,
+    findings$registry$guides
+  ),
+  `Files on Disk` = c(
+    findings$registry$skills_disk,
+    findings$registry$agents_disk,
+    findings$registry$teams_disk,
+    findings$registry$guides_disk
+  ),
+  Status = c(
+    findings$registry$skills_status,
+    findings$registry$agents_status,
+    findings$registry$teams_status,
+    findings$registry$guides_status
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+kable(reg_df, align = c("l", "r", "r", "c")) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) |>
+  column_spec(4, color = ifelse(reg_df$Status == "PASS", "#2e7d32", "#c62828"))
+```
+
+## Section 5: Remediation Plan {#sec-remediation}
+
+Findings are prioritized by severity. Broken references should be fixed
+first (they cause navigation failures), followed by orphan nodes
+(discoverability), then non-reciprocal references (completeness).
+
+```{r remediation-table}
+if (length(findings$remediation) > 0) {
+  remed_df <- do.call(rbind, lapply(findings$remediation, function(item) {
+    data.frame(
+      Priority = item$priority,
+      Category = item$category,
+      Action = item$action,
+      Effort = item$effort,
+      stringsAsFactors = FALSE
+    )
+  }))
+
+  kable(remed_df) |>
+    kable_styling(
+      bootstrap_options = c("striped", "hover"),
+      full_width = TRUE
+    ) |>
+    row_spec(
+      which(remed_df$Priority == "P1"),
+      background = "#fce4ec"
+    ) |>
+    row_spec(
+      which(remed_df$Priority == "P2"),
+      background = "#fff8e1"
+    )
+} else {
+  cat("No remediation items.")
+}
+```
+
+## Section 6: Self-Referential Consistency {#sec-self-ref}
+
+This section was added mid-execution as a scope change. The opaque team
+audited its own definition files for internal consistency.
+
+```{r self-ref-table}
+self_ref <- findings$self_referential
+
+self_df <- data.frame(
+  Check = c(
+    "Shapeshifter skills exist on disk",
+    "Opaque team members match registry",
+    "Shapeshifter See Also targets valid",
+    "Opaque team See Also targets valid"
+  ),
+  Result = c(
+    self_ref$shapeshifter_skills,
+    self_ref$opaque_members,
+    self_ref$shapeshifter_see_also,
+    self_ref$opaque_see_also
+  ),
+  stringsAsFactors = FALSE
+)
+
+kable(self_df) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) |>
+  column_spec(
+    2,
+    color = ifelse(self_df$Result == "PASS", "#2e7d32", "#c62828")
+  )
+```
+
+## Appendix A: Test Execution Metadata
+
+```{r metadata-table}
+meta_df <- data.frame(
+  Field = c(
+    "Test Scenario",
+    "Target Team",
+    "Coordination Pattern",
+    "Team Size",
+    "Acceptance Criteria Met",
+    "Rubric Score",
+    "Duration",
+    "Scope Change"
+  ),
+  Value = c(
+    "test-opaque-team-cartographers-audit",
+    "opaque-team (4 shapeshifters)",
+    "Adaptive",
+    "4",
+    paste0(findings$test_meta$criteria_passed, "/",
+           findings$test_meta$criteria_total),
+    paste0(findings$test_meta$rubric_score, "/",
+           findings$test_meta$rubric_total),
+    findings$test_meta$duration,
+    "Section 6 added mid-execution"
+  ),
+  stringsAsFactors = FALSE
+)
+
+kable(meta_df) |>
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+---
+
+*Generated from test run `2026-03-06-opaque-001`. Source:
+[tests/results/2026-03-06-opaque-001/](https://github.com/pjt222/agent-almanac/tree/main/tests/results/2026-03-06-opaque-001/)*

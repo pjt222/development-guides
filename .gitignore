@@ -28,3 +28,7 @@ node_modules/
 viz/dist/
 viz/logs/
 viz/.icon-cache.json
+
+# Quarto render artifacts
+tests/results/**/*.html
+*.knit.md

@@ -1,0 +1,203 @@
+# Cartographer's Audit — Knowledge Graph Integrity Findings
+# Generated from verification scan on 2026-03-06
+# Data source for report.qmd (Quarto parameterized report)
+
+# --- Summary ---
+summary:
+  broken_refs: 16
+  orphan_nodes: 5
+  non_reciprocal: 526
+  registry_issues: 0
+
+# --- Registry Counts ---
+registry:
+  skills: 298
+  agents: 62
+  teams: 12
+  guides: 14
+  skills_disk: 298
+  agents_disk: 62
+  teams_disk: 12
+  guides_disk: 14
+  skills_status: "PASS"
+  agents_status: "PASS"
+  teams_status: "PASS"
+  guides_status: "PASS"
+
+# --- Broken References ---
+broken_refs:
+  - source: "agents/contemplative.md"
+    target: "../teams/ai-tending.md"
+    type: "markdown-link"
+    issue: "Team renamed from ai-tending to tending; link not updated"
+
+  - source: "skills/clean-codebase/SKILL.md"
+    target: "../../devops/dependency-audit/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill dependency-audit does not exist"
+
+  - source: "skills/clean-codebase/SKILL.md"
+    target: "../../r-packages/run-r-cmd-check/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill run-r-cmd-check does not exist"
+
+  - source: "skills/create-2d-composition/SKILL.md"
+    target: "../../blender/create-3d-scene/SKILL.md"
+    type: "related-skill"
+    issue: "Wrong path format; skill exists at ../create-3d-scene/SKILL.md"
+
+  - source: "skills/create-2d-composition/SKILL.md"
+    target: "../../reporting/generate-quarto-report/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill generate-quarto-report does not exist"
+
+  - source: "skills/create-3d-scene/SKILL.md"
+    target: "../../visualization/create-2d-composition/SKILL.md"
+    type: "related-skill"
+    issue: "Wrong path format; skill exists at ../create-2d-composition/SKILL.md"
+
+  - source: "skills/escalate-issues/SKILL.md"
+    target: "../../compliance/security-scan/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill security-scan does not exist"
+
+  - source: "skills/escalate-issues/SKILL.md"
+    target: "../../general/issue-triage/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill issue-triage does not exist"
+
+  - source: "skills/render-blender-output/SKILL.md"
+    target: "../../visualization/render-publication-graphic/SKILL.md"
+    type: "related-skill"
+    issue: "Wrong path format; skill exists at ../render-publication-graphic/SKILL.md"
+
+  - source: "skills/render-publication-graphic/SKILL.md"
+    target: "../../blender/render-blender-output/SKILL.md"
+    type: "related-skill"
+    issue: "Wrong path format; skill exists at ../render-blender-output/SKILL.md"
+
+  - source: "skills/render-publication-graphic/SKILL.md"
+    target: "../../reporting/generate-quarto-report/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill generate-quarto-report does not exist"
+
+  - source: "skills/repair-broken-references/SKILL.md"
+    target: "../../compliance/documentation-audit/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill documentation-audit does not exist"
+
+  - source: "skills/repair-broken-references/SKILL.md"
+    target: "../../web-dev/link-checker/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill link-checker does not exist"
+
+  - source: "skills/script-blender-automation/SKILL.md"
+    target: "../../r-packages/create-r-package/SKILL.md"
+    type: "related-skill"
+    issue: "Wrong path format; skill exists at ../create-r-package/SKILL.md"
+
+  - source: "skills/tidy-project-structure/SKILL.md"
+    target: "../../compliance/documentation-audit/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill documentation-audit does not exist"
+
+  - source: "skills/tidy-project-structure/SKILL.md"
+    target: "../../devops/config-management/SKILL.md"
+    type: "related-skill"
+    issue: "Uses domain-prefixed path; skill config-management does not exist"
+
+# --- Orphan Nodes ---
+orphans:
+  skills:
+    - fail-early-pattern
+    - paper-making
+    - test-team-coordination
+    - use-graphql-api
+  agents:
+    - advocatus-diaboli
+  teams: []
+
+# --- Non-Reciprocal Cross-References ---
+non_reciprocal:
+  skill_related: 512
+  agent_see_also: 9
+  team_see_also: 5
+  examples:
+    - from: "adapt-architecture"
+      references: "implement-gitops-workflow"
+      back_ref: "Missing"
+    - from: "add-puzzle-type"
+      references: "write-roxygen-docs"
+      back_ref: "Missing"
+    - from: "blender-artist (agent)"
+      references: "designer"
+      back_ref: "Missing"
+    - from: "fabricator (agent)"
+      references: "blender-artist"
+      back_ref: "Missing"
+    - from: "putior-integrator (agent)"
+      references: "devops-engineer"
+      back_ref: "Missing"
+    - from: "analytical-chemistry (team)"
+      references: "gxp-compliance-validation"
+      back_ref: "Missing"
+    - from: "opaque-team (team)"
+      references: "scrum-team"
+      back_ref: "Missing"
+
+# --- Self-Referential Consistency ---
+self_referential:
+  shapeshifter_skills: "PASS"
+  opaque_members: "PASS"
+  shapeshifter_see_also: "PASS"
+  opaque_see_also: "PASS"
+
+# --- Remediation Plan ---
+remediation:
+  - priority: "P1"
+    category: "Broken References"
+    action: "Fix contemplative.md link: change ai-tending.md to tending.md"
+    effort: "5 min"
+
+  - priority: "P1"
+    category: "Broken References"
+    action: "Fix 5 wrong-path Related Skills links (domain-prefixed paths to existing skills)"
+    effort: "15 min"
+
+  - priority: "P1"
+    category: "Broken References"
+    action: "Remove or create 10 Related Skills targets that do not exist on disk"
+    effort: "30 min"
+
+  - priority: "P2"
+    category: "Orphan Nodes"
+    action: "Add cross-references for 4 orphan skills (fail-early-pattern, paper-making, test-team-coordination, use-graphql-api)"
+    effort: "20 min"
+
+  - priority: "P2"
+    category: "Orphan Nodes"
+    action: "Add advocatus-diaboli to a team or guide cross-reference"
+    effort: "10 min"
+
+  - priority: "P3"
+    category: "Non-Reciprocal"
+    action: "Review 512 non-reciprocal skill Related Skills pairs; add back-references where semantically appropriate"
+    effort: "4-6 hours (batch scripting recommended)"
+
+  - priority: "P3"
+    category: "Non-Reciprocal"
+    action: "Add missing back-references in 9 agent See Also sections (blender-artist, fabricator, putior-integrator)"
+    effort: "15 min"
+
+  - priority: "P3"
+    category: "Non-Reciprocal"
+    action: "Add missing back-references in 5 team See Also sections"
+    effort: "10 min"
+
+# --- Test Execution Metadata ---
+test_meta:
+  criteria_passed: 10
+  criteria_total: 12
+  rubric_score: 22
+  rubric_total: 30
+  duration: "~85 minutes"
