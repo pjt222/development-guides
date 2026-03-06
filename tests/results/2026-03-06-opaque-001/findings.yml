@@ -6,7 +6,7 @@
 summary:
   broken_refs: 16
   orphan_nodes: 5
-  non_reciprocal: 526
+  non_reciprocal: 673
   registry_issues: 0
 
 # --- Registry Counts ---
@@ -119,9 +119,9 @@ orphans:
 
 # --- Non-Reciprocal Cross-References ---
 non_reciprocal:
-  skill_related: 512
-  agent_see_also: 9
-  team_see_also: 5
+  skill_related: 523
+  agent_see_also: 143
+  team_see_also: 7
   examples:
     - from: "adapt-architecture"
       references: "implement-gitops-workflow"
@@ -186,13 +186,13 @@ remediation:
 
   - priority: "P3"
     category: "Non-Reciprocal"
-    action: "Add missing back-references in 9 agent See Also sections (blender-artist, fabricator, putior-integrator)"
-    effort: "15 min"
+    action: "Review 143 non-reciprocal agent See Also pairs; most are intentional specialist-to-generalist patterns"
+    effort: "1-2 hours"
 
   - priority: "P3"
     category: "Non-Reciprocal"
-    action: "Add missing back-references in 5 team See Also sections"
-    effort: "10 min"
+    action: "Add missing back-references in 7 team See Also sections"
+    effort: "15 min"
 
 # --- Test Execution Metadata ---
 test_meta:
