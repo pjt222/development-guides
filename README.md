@@ -14,11 +14,11 @@ A library of executable skills, specialist agents, and pre-built teams for [Clau
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **298 skills** across 52 domains — structured, executable procedures
+- **299 skills** across 52 domains — structured, executable procedures
 - **62 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **12 teams** — predefined multi-agent compositions for complex workflows
-- **14 guides** — human-readable workflow, infrastructure, and reference documentation
-- **Interactive visualization** — force-graph explorer with 298 R-generated skill icons and 9 color themes
+- **15 guides** — human-readable workflow, infrastructure, and reference documentation
+- **Interactive visualization** — force-graph explorer with 299 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
 ## How It Works
@@ -95,6 +95,7 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 
 **Design**
 
+- [Extracting Project Essence](guides/extracting-project-essence.md) — Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill
 - [Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md) — Runtime activation profiles controlling which agents, skills, and teams are expressed
 <!-- AUTO:END:guides -->
 

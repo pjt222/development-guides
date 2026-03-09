@@ -1,6 +1,6 @@
 # Guides
 
-14 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
+15 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
 
 ## Workflow
 
@@ -56,6 +56,9 @@ YAML frontmatter field definitions, validation rules, and JSON Schema for agent 
 ## Design
 
 *System design documents and architecture specs*
+
+### [Extracting Project Essence](extracting-project-essence.md)
+Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill.
 
 ### [Epigenetics-Inspired Activation Control](epigenetics-activation-control.md)
 Runtime activation profiles controlling which agents, skills, and teams are expressed.

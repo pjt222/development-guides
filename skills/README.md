@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 298 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 299 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -44,7 +44,7 @@ Browse by domain:
 | [Workflow Visualization](workflow-visualization/) | 6 | Workflow annotation and Mermaid diagram generation with putior |
 | [Swarm](swarm/) | 8 | Collective intelligence, emergent coordination, and distributed decision-making strategies |
 | [Morphic](morphic/) | 6 | Adaptive transformation, structural metamorphosis, and reconfiguration strategies |
-| [Alchemy](alchemy/) | 3 | Code and data transmutation through systematic decomposition, purification, and synthesis |
+| [Alchemy](alchemy/) | 4 | Code and data transmutation through systematic decomposition, purification, and synthesis |
 | [Tcg](tcg/) | 3 | Trading card game grading, deck building, and collection management |
 | [Intellectual Property](intellectual-property/) | 2 | Patent landscape analysis, prior art search, and IP strategy |
 | [Gardening](gardening/) | 5 | Plant cultivation, soil preparation, garden observation, and hand tool care |
