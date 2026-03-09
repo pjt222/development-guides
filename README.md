@@ -17,7 +17,7 @@ A library of executable skills, specialist agents, and pre-built teams for [Clau
 - **299 skills** across 52 domains — structured, executable procedures
 - **62 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **12 teams** — predefined multi-agent compositions for complex workflows
-- **15 guides** — human-readable workflow, infrastructure, and reference documentation
+- **16 guides** — human-readable workflow, infrastructure, and reference documentation
 - **Interactive visualization** — force-graph explorer with 299 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
@@ -85,6 +85,7 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 **Infrastructure**
 
 - [Setting Up Your Environment](guides/setting-up-your-environment.md) — WSL2 setup, shell config, MCP server integration, and Claude Code configuration
+- [Symlink Architecture](guides/symlink-architecture.md) — How symlinks enable multi-project discovery of skills, agents, and teams through Claude Code
 - [R Package Development](guides/r-package-development.md) — Package structure, testing, CRAN submission, pkgdown deployment, and renv management
 
 **Reference**

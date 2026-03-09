@@ -1,6 +1,6 @@
 # Guides
 
-15 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
+16 guides serving as the human entry point to the agentic system — practical workflows for agents, teams, and skills, plus infrastructure setup and reference material.
 
 ## Workflow
 
@@ -36,6 +36,9 @@ Standards compliance audits using the agentskills-alignment team for format vali
 
 ### [Setting Up Your Environment](setting-up-your-environment.md)
 WSL2 setup, shell config, MCP server integration, and Claude Code configuration.
+
+### [Symlink Architecture](symlink-architecture.md)
+How symlinks enable multi-project discovery of skills, agents, and teams through Claude Code.
 
 ### [R Package Development](r-package-development.md)
 Package structure, testing, CRAN submission, pkgdown deployment, and renv management.

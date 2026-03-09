@@ -2,7 +2,7 @@
 # Machine-readable catalog of all guide documents in this library.
 # Keep in sync with the actual guide files on disk.
 
-total_guides: 15
+total_guides: 16
 version: "1.0"
 last_updated: "2026-02-19"
 
@@ -99,6 +99,15 @@ guides:
     agents: [r-developer, mcp-developer]
     teams: []
     skills: [setup-wsl-dev-environment, configure-mcp-server, troubleshoot-mcp-connection]
+
+  - id: symlink-architecture
+    path: guides/symlink-architecture.md
+    title: "Symlink Architecture"
+    description: "How symlinks enable multi-project discovery of skills, agents, and teams through Claude Code"
+    category: infrastructure
+    agents: []
+    teams: []
+    skills: []
 
   - id: r-package-development
     path: guides/r-package-development.md
