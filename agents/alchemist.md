@@ -14,6 +14,7 @@ skills:
   - athanor
   - transmute
   - chrysopoeia
+  - metal
   - meditate
   - heal
 ---
@@ -44,6 +45,7 @@ This agent can execute the following structured procedures from the [skills libr
 - `athanor` — Four-stage alchemical transmutation with meditate/heal checkpoints
 - `transmute` — Targeted conversion of functions or modules between forms
 - `chrysopoeia` — Value extraction through systematic classification and optimization
+- `metal` — Extract conceptual essence of a repository as skills, agents, and teams
 
 ### Esoteric (Stage-Gate Checkpoints)
 - `meditate` — Meta-cognitive clearing between transformation stages (calcination checkpoint) *(listed explicitly — core to alchemical process)*

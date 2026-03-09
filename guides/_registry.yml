@@ -2,7 +2,7 @@
 # Machine-readable catalog of all guide documents in this library.
 # Keep in sync with the actual guide files on disk.
 
-total_guides: 14
+total_guides: 15
 version: "1.0"
 last_updated: "2026-02-19"
 
@@ -138,6 +138,15 @@ guides:
     skills: [create-agent, evolve-agent]
 
   # ── Design guides ────────────────────────────────────────────────
+  - id: extracting-project-essence
+    path: guides/extracting-project-essence.md
+    title: "Extracting Project Essence"
+    description: "Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill"
+    category: design
+    agents: [alchemist, polymath]
+    teams: []
+    skills: [metal, athanor, chrysopoeia, transmute, observe, create-skill, create-agent, create-team]
+
   - id: epigenetics-activation-control
     path: guides/epigenetics-activation-control.md
     title: "Epigenetics-Inspired Activation Control"

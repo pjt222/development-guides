@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 298
+total_skills: 299
 
 domains:
   r-packages:
@@ -1104,6 +1104,11 @@ domains:
         complexity: intermediate
         language: multi
         description: Value extraction through systematic classification and optimization of existing code
+      - id: metal
+        path: metal/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Extract conceptual essence of a repository as skills, agents, and teams
 
   tcg:
     description: Trading card game grading, deck building, and collection management
