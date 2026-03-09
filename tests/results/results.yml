@@ -1,0 +1,290 @@
+# Test Framework Aggregate Results
+# Data source for tests/results/report.qmd
+# Update this file when adding new test results.
+
+framework:
+  version: "1.0"
+  last_updated: "2026-03-09"
+  total_scenarios: 6
+  total_executions: 6
+
+coverage:
+  coordination_patterns:
+    total: 7
+    tested: [adaptive, hub-and-spoke, sequential, reciprocal]
+    untested: [parallel, timeboxed, wave-parallel]
+  test_levels:
+    total: 3
+    tested: [team, agent, skill]
+  teams:
+    total: 12
+    tested: [opaque-team, agentskills-alignment, dyad, tending]
+  agents:
+    total: 62
+    tested: [alchemist]
+  skills:
+    total: 299
+    tested: [metal]
+
+scenarios:
+  # ── Scenario 1: Cartographer's Audit ──────────────────────────────
+  - id: test-opaque-team-cartographers-audit
+    run_id: "2026-03-06-opaque-001"
+    name: "Cartographer's Audit"
+    date: "2026-03-06"
+    test_level: team
+    target: opaque-team
+    coordination_pattern: adaptive
+    team_size: 4
+    verdict: PASS
+    duration_minutes: 85
+
+    acceptance_criteria:
+      total: 12
+      passed: 10
+      threshold: 8
+      details:
+        - {criterion: "Role emergence", result: PASS}
+        - {criterion: "3+ distinct roles", result: PASS}
+        - {criterion: "Broken refs found (>=5)", result: PASS}
+        - {criterion: "Orphan nodes found (>=20)", result: FAIL}
+        - {criterion: "Non-reciprocity quantified", result: PASS}
+        - {criterion: "Registry integrity verified", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Unified output", result: PARTIAL}
+        - {criterion: "Prioritized remediation", result: PASS}
+        - {criterion: "Opacity maintained", result: PASS}
+        - {criterion: "No false positives (>=80%)", result: PASS}
+        - {criterion: "Completed in time", result: PASS}
+
+    rubric:
+      total_score: 22
+      total_max: 30
+      dimensions:
+        - {dimension: "Decomposition Quality", score: 4, max: 5}
+        - {dimension: "Role Fit", score: 4, max: 5}
+        - {dimension: "Discovery Depth", score: 4, max: 5}
+        - {dimension: "Adaptation Grace", score: 3, max: 5}
+        - {dimension: "Report Quality", score: 3, max: 5}
+        - {dimension: "Opacity Effectiveness", score: 4, max: 5}
+
+    key_findings:
+      - "Role emergence was genuine; 4 non-overlapping roles emerged from task analysis"
+      - "Lead shutdown before integration left unified report incomplete"
+      - "Ground truth estimates significantly overestimated orphan count (~36 estimated, 8 found)"
+
+  # ── Scenario 2: Alignment Format Audit ────────────────────────────
+  - id: test-agentskills-alignment-format-audit
+    run_id: "2026-03-09-alignment-001"
+    name: "Alignment Format Audit"
+    date: "2026-03-09"
+    test_level: team
+    target: agentskills-alignment
+    coordination_pattern: hub-and-spoke
+    team_size: 4
+    verdict: PASS
+    duration_minutes: 4
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Lead decomposes task", result: PASS}
+        - {criterion: "4 distinct subtasks", result: PASS}
+        - {criterion: "Independent member work", result: PASS}
+        - {criterion: "Lead synthesizes report", result: PASS}
+        - {criterion: "10 skills identified", result: PASS}
+        - {criterion: "Compliance table produced", result: PASS}
+        - {criterion: "Genuine findings (>=3)", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Findings are actionable", result: PASS}
+        - {criterion: "No false positives (>=80%)", result: PASS}
+
+    rubric:
+      total_score: 22
+      total_max: 25
+      dimensions:
+        - {dimension: "Decomposition Quality", score: 5, max: 5}
+        - {dimension: "Member Specialization", score: 4, max: 5}
+        - {dimension: "Synthesis Quality", score: 5, max: 5}
+        - {dimension: "Finding Accuracy", score: 4, max: 5}
+        - {dimension: "Adaptation Grace", score: 4, max: 5}
+
+    key_findings:
+      - "Hub-and-spoke produced clean separation of concerns across 3 member specialties"
+      - "All 10 recently-added skills pass compliance — validates the skill creation process"
+      - "CRLF line endings found in 257/298 files — systemic finding transcending audit scope"
+
+  # ── Scenario 3: Metal Self-Extraction ─────────────────────────────
+  - id: test-metal-self-extraction
+    run_id: "2026-03-09-metal-001"
+    name: "Metal Self-Extraction"
+    date: "2026-03-09"
+    test_level: skill
+    target: metal
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 4
+
+    acceptance_criteria:
+      total: 11
+      passed: 11
+      threshold: 8
+      details:
+        - {criterion: "Prospect report produced", result: PASS}
+        - {criterion: "Assay report produced", result: PASS}
+        - {criterion: "Meditate checkpoint executed", result: PASS}
+        - {criterion: "Ore Test applied", result: PASS}
+        - {criterion: "Extraction count in range (5-15)", result: PASS}
+        - {criterion: "No detail leakage", result: PASS}
+        - {criterion: "Correct type classification", result: PASS}
+        - {criterion: "Heal checkpoint executed", result: PASS}
+        - {criterion: "Skeletal definitions produced", result: PASS}
+        - {criterion: "Temper assessment produced", result: PASS}
+        - {criterion: "Compression ratio calculated", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Abstraction Level", score: 5, max: 5}
+        - {dimension: "Ore Test Rigor", score: 5, max: 5}
+        - {dimension: "Project Understanding", score: 5, max: 5}
+        - {dimension: "Output Quality", score: 5, max: 5}
+
+    key_findings:
+      - "12 extractions (7 skills, 3 agents, 2 teams) — all pass the Ore Test"
+      - "Zero detail leakage — no references to SKILL.md, agentskills.io, or specific names"
+      - "Compression ratio 7.6:1 — within recommended 'map' range (5:1 to 50:1)"
+      - "Self-referential extraction produced a clean loop without infinite regress"
+
+  # ── Scenario 4: Dyad Contemplative Review ─────────────────────────
+  - id: test-dyad-contemplative-review
+    run_id: "2026-03-09-dyad-001"
+    name: "Dyad Contemplative Review"
+    date: "2026-03-09"
+    test_level: team
+    target: dyad
+    coordination_pattern: reciprocal
+    team_size: 2
+    verdict: PASS
+    duration_minutes: 2
+
+    acceptance_criteria:
+      total: 9
+      passed: 9
+      threshold: 6
+      details:
+        - {criterion: "Clear role distinction", result: PASS}
+        - {criterion: "Roles alternate", result: PASS}
+        - {criterion: "Substantive witness feedback", result: PASS}
+        - {criterion: "Depth over breadth", result: PASS}
+        - {criterion: "Skill actually reviewed", result: PASS}
+        - {criterion: "Dual synthesis", result: PASS}
+        - {criterion: "Witness influences next round", result: PASS}
+        - {criterion: "Domain-appropriate lenses", result: PASS}
+        - {criterion: "Actionable recommendations", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Role Clarity", score: 5, max: 5}
+        - {dimension: "Witness Quality", score: 5, max: 5}
+        - {dimension: "Alternation Authenticity", score: 5, max: 5}
+        - {dimension: "Synthesis Integration", score: 5, max: 5}
+        - {dimension: "Engagement Depth", score: 5, max: 5}
+
+    key_findings:
+      - "Witness feedback demonstrably influenced Round 2 — direct causal link observed"
+      - "Emergent finding 'epistemically incomplete' — judgment neither perspective alone would produce"
+      - "Reciprocal pattern produced deepest analysis relative to team size (2 agents)"
+
+  # ── Scenario 5: Tending Sequential Session ────────────────────────
+  - id: test-tending-sequential-session
+    run_id: "2026-03-09-tending-001"
+    name: "Tending Sequential Session"
+    date: "2026-03-09"
+    test_level: team
+    target: tending
+    coordination_pattern: sequential
+    team_size: 4
+    verdict: PASS
+    duration_minutes: 3.5
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Sequential ordering", result: PASS}
+        - {criterion: "Handoff artifacts", result: PASS}
+        - {criterion: "Cumulative building", result: PASS}
+        - {criterion: "Distinct lenses", result: PASS}
+        - {criterion: "All 4 skills assessed", result: PASS}
+        - {criterion: "Lineage coherence evaluated", result: PASS}
+        - {criterion: "Shaman synthesis references all phases", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Reasoned 5th-skill conclusion", result: PASS}
+        - {criterion: "Concrete skill knowledge", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Handoff Quality", score: 5, max: 5}
+        - {dimension: "Cumulative Insight", score: 5, max: 5}
+        - {dimension: "Expertise Differentiation", score: 5, max: 5}
+        - {dimension: "Domain Depth", score: 5, max: 5}
+        - {dimension: "Synthesis Quality", score: 5, max: 5}
+
+    key_findings:
+      - "dissolve-form gap found convergently from 3 independent perspectives"
+      - "Alchemist proposed 2x2 scope matrix — genuine analytical contribution beyond the task"
+      - "Cross-domain comparison (alchemy vs tcg) revealed different reliability requirements"
+
+  # ── Scenario 6: Alchemist Chrysopoeia ─────────────────────────────
+  - id: test-alchemist-chrysopoeia-optimization
+    run_id: "2026-03-09-alchemist-001"
+    name: "Alchemist Chrysopoeia"
+    date: "2026-03-09"
+    test_level: agent
+    target: alchemist
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 3
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Chrysopoeia procedure followed", result: PASS}
+        - {criterion: "Alchemical persona consistent", result: PASS}
+        - {criterion: "Complete inventory", result: PASS}
+        - {criterion: "Classification table produced", result: PASS}
+        - {criterion: "Evidence-based classification", result: PASS}
+        - {criterion: "Gold items identified", result: PASS}
+        - {criterion: "Stage discipline", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Actionable recommendations", result: PASS}
+        - {criterion: "Material respect shown", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 5, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "Classification Accuracy", score: 5, max: 5}
+        - {dimension: "Domain Expertise", score: 4, max: 5}
+        - {dimension: "Recommendation Quality", score: 5, max: 5}
+
+    key_findings:
+      - "Unprompted meditate checkpoint between assay and classify — internalized methodology"
+      - "Dross identification was honest — classified report.html as expendable"
+      - "Found real issues in scenario files (stale counts, broken path, complexity contradiction)"

@@ -1,0 +1,490 @@
+---
+title: "Test Framework Results Dashboard"
+subtitle: "Agent Almanac — Cross-Scenario Analysis"
+author: "Philipp Thoss"
+date: last-modified
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    code-fold: true
+    self-contained: true
+    fig-width: 9
+    fig-height: 6
+params:
+  results_file: "results.yml"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(yaml)
+library(knitr)
+library(kableExtra)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(scales)
+
+results <- yaml::read_yaml(params$results_file)
+scenarios <- results$scenarios
+
+# ── Build data frames ───────────────────────────────────────────────
+
+scenarios_df <- do.call(rbind, lapply(scenarios, function(s) {
+  data.frame(
+    id = s$id,
+    name = s$name,
+    date = as.Date(s$date),
+    test_level = s$test_level,
+    target = s$target,
+    coordination_pattern = ifelse(is.null(s$coordination_pattern),
+                                   "none", s$coordination_pattern),
+    team_size = s$team_size,
+    verdict = s$verdict,
+    duration = s$duration_minutes,
+    ac_passed = s$acceptance_criteria$passed,
+    ac_total = s$acceptance_criteria$total,
+    ac_threshold = s$acceptance_criteria$threshold,
+    rubric_score = s$rubric$total_score,
+    rubric_max = s$rubric$total_max,
+    stringsAsFactors = FALSE
+  )
+}))
+
+scenarios_df$ac_pct <- round(scenarios_df$ac_passed / scenarios_df$ac_total * 100, 0)
+scenarios_df$rubric_pct <- round(scenarios_df$rubric_score / scenarios_df$rubric_max * 100, 0)
+scenarios_df$name_short <- sub("^(The |Test )", "", scenarios_df$name)
+
+criteria_df <- do.call(rbind, lapply(scenarios, function(s) {
+  do.call(rbind, lapply(s$acceptance_criteria$details, function(d) {
+    data.frame(
+      scenario = s$name,
+      test_level = s$test_level,
+      criterion = d$criterion,
+      result = d$result,
+      stringsAsFactors = FALSE
+    )
+  }))
+}))
+
+rubric_df <- do.call(rbind, lapply(scenarios, function(s) {
+  do.call(rbind, lapply(s$rubric$dimensions, function(d) {
+    data.frame(
+      scenario = s$name,
+      test_level = s$test_level,
+      dimension = d$dimension,
+      score = d$score,
+      max = d$max,
+      stringsAsFactors = FALSE
+    )
+  }))
+}))
+rubric_df$pct <- round(rubric_df$score / rubric_df$max * 100, 0)
+
+# ── Color palettes ──────────────────────────────────────────────────
+
+verdict_colors <- c(PASS = "#2e7d32", FAIL = "#c62828", PARTIAL = "#f57f17")
+
+pattern_colors <- c(
+  adaptive = "#5c6bc0",
+  `hub-and-spoke` = "#26a69a",
+  sequential = "#66bb6a",
+  reciprocal = "#ab47bc",
+  none = "#9e9e9e"
+)
+
+level_colors <- c(team = "#42a5f5", agent = "#ff7043", skill = "#66bb6a")
+
+# ── Theme ───────────────────────────────────────────────────────────
+
+theme_dashboard <- theme_minimal(base_size = 13) +
+  theme(
+    panel.grid.minor = element_blank(),
+    panel.grid.major.y = element_line(color = "#e0e0e0"),
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(color = "#666666"),
+    legend.position = "bottom"
+  )
+```
+
+## Executive Summary
+
+```{r}
+total_scenarios <- nrow(scenarios_df)
+total_pass <- sum(scenarios_df$verdict == "PASS")
+total_ac_passed <- sum(scenarios_df$ac_passed)
+total_ac <- sum(scenarios_df$ac_total)
+total_rubric <- sum(scenarios_df$rubric_score)
+total_rubric_max <- sum(scenarios_df$rubric_max)
+cov <- results$coverage
+```
+
+This dashboard summarizes **`r total_scenarios`** test scenario executions across the agent-almanac test framework.
+
+```{r kpi-table}
+kpi_df <- data.frame(
+  Metric = c("Scenarios", "Acceptance Criteria", "Rubric Score",
+             "Patterns Tested", "Test Levels"),
+  Value = c(
+    paste0(total_pass, "/", total_scenarios, " PASS"),
+    paste0(total_ac_passed, "/", total_ac,
+           " (", round(total_ac_passed / total_ac * 100), "%)"),
+    paste0(total_rubric, "/", total_rubric_max,
+           " (", round(total_rubric / total_rubric_max * 100), "%)"),
+    paste0(length(cov$coordination_patterns$tested), "/",
+           cov$coordination_patterns$total),
+    paste0(length(cov$test_levels$tested), "/", cov$test_levels$total)
+  )
+)
+
+kbl(kpi_df, col.names = c("", ""), align = "lr") |>
+  kable_styling(bootstrap_options = c("condensed"), full_width = FALSE,
+                font_size = 15) |>
+  column_spec(1, bold = TRUE, width = "14em") |>
+  column_spec(2, width = "14em")
+```
+
+## Scenario Summary
+
+```{r summary-table}
+summary_tbl <- scenarios_df |>
+  arrange(date) |>
+  transmute(
+    Scenario = name,
+    Level = test_level,
+    Pattern = coordination_pattern,
+    `AC Score` = paste0(ac_passed, "/", ac_total),
+    `AC %` = paste0(ac_pct, "%"),
+    `Rubric` = paste0(rubric_score, "/", rubric_max),
+    `Rubric %` = paste0(rubric_pct, "%"),
+    Duration = ifelse(duration >= 60,
+                      paste0("~", round(duration / 60, 1), "h"),
+                      paste0("~", duration, "m")),
+    Verdict = verdict
+  )
+
+kbl(summary_tbl, align = "llllrlrlc") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = TRUE) |>
+  column_spec(9, color = ifelse(summary_tbl$Verdict == "PASS",
+                                "#2e7d32", "#c62828"),
+              bold = TRUE)
+```
+
+
+## Acceptance Criteria Analysis
+
+### Pass Rate by Scenario
+
+```{r ac-bar}
+plot_df <- scenarios_df |>
+  arrange(ac_pct) |>
+  mutate(name = factor(name, levels = name))
+
+ggplot(plot_df, aes(x = name, y = ac_pct, fill = verdict)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0(ac_passed, "/", ac_total)),
+            hjust = -0.1, size = 3.8) +
+  scale_fill_manual(values = verdict_colors) +
+  scale_y_continuous(limits = c(0, 115), labels = label_percent(scale = 1)) +
+  coord_flip() +
+  labs(title = "Acceptance Criteria Pass Rate",
+       x = NULL, y = "Pass rate", fill = "Verdict") +
+  theme_dashboard
+```
+
+### Criteria Outcomes
+
+```{r ac-stacked}
+criteria_summary <- criteria_df |>
+  count(scenario, result) |>
+  mutate(result = factor(result, levels = c("PASS", "PARTIAL", "FAIL")))
+
+ggplot(criteria_summary, aes(x = reorder(scenario, n, sum), y = n, fill = result)) +
+  geom_col(width = 0.7, position = "stack") +
+  scale_fill_manual(values = verdict_colors, drop = FALSE) +
+  coord_flip() +
+  labs(title = "Acceptance Criteria Outcomes",
+       subtitle = "Per-criterion PASS / PARTIAL / FAIL",
+       x = NULL, y = "Count", fill = "Result") +
+  theme_dashboard
+```
+
+
+## Rubric Score Analysis
+
+### Overall Rubric Score
+
+```{r rubric-bar}
+plot_df <- scenarios_df |>
+  arrange(rubric_pct) |>
+  mutate(name = factor(name, levels = name))
+
+ggplot(plot_df, aes(x = name, y = rubric_pct, fill = test_level)) +
+  geom_col(width = 0.7) +
+  geom_text(aes(label = paste0(rubric_score, "/", rubric_max)),
+            hjust = -0.1, size = 3.8) +
+  scale_fill_manual(values = level_colors) +
+  scale_y_continuous(limits = c(0, 115), labels = label_percent(scale = 1)) +
+  coord_flip() +
+  labs(title = "Rubric Score (Normalized)",
+       x = NULL, y = "Score %", fill = "Test Level") +
+  theme_dashboard
+```
+
+### Dimension Scores by Test Level
+
+```{r rubric-dimensions, fig.height=8}
+rubric_df$dimension <- factor(rubric_df$dimension,
+                              levels = rev(unique(rubric_df$dimension)))
+
+ggplot(rubric_df, aes(x = dimension, y = score, color = scenario)) +
+  geom_point(size = 3.5) +
+  geom_segment(aes(xend = dimension, y = 0, yend = score), linewidth = 0.8) +
+  scale_y_continuous(limits = c(0, 5.5), breaks = 1:5) +
+  scale_color_brewer(palette = "Set2") +
+  coord_flip() +
+  facet_wrap(~ test_level, scales = "free_y", ncol = 1) +
+  labs(title = "Rubric Dimensions",
+       subtitle = "Scores by test level (each dimension is 1-5)",
+       x = NULL, y = "Score", color = "Scenario") +
+  theme_dashboard +
+  theme(strip.text = element_text(face = "bold", size = 12))
+```
+
+## By Coordination Pattern
+
+```{r pattern-table}
+pattern_summary <- scenarios_df |>
+  filter(coordination_pattern != "none") |>
+  group_by(Pattern = coordination_pattern) |>
+  summarise(
+    Scenarios = n(),
+    `Avg AC %` = paste0(round(mean(ac_pct)), "%"),
+    `Avg Rubric %` = paste0(round(mean(rubric_pct)), "%"),
+    .groups = "drop"
+  ) |>
+  arrange(desc(Scenarios))
+
+kbl(pattern_summary) |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE)
+```
+
+```{r pattern-chart}
+pattern_plot <- scenarios_df |>
+  filter(coordination_pattern != "none") |>
+  group_by(coordination_pattern) |>
+  summarise(ac_pct = mean(ac_pct), rubric_pct = mean(rubric_pct),
+            .groups = "drop") |>
+  pivot_longer(cols = c(ac_pct, rubric_pct),
+               names_to = "metric", values_to = "value") |>
+  mutate(metric = ifelse(metric == "ac_pct",
+                         "Acceptance Criteria", "Rubric Score"))
+
+ggplot(pattern_plot, aes(x = reorder(coordination_pattern, value),
+                         y = value, fill = coordination_pattern)) +
+  geom_col(width = 0.6) +
+  geom_text(aes(label = paste0(round(value), "%")),
+            hjust = -0.1, size = 3.8) +
+  scale_fill_manual(values = pattern_colors) +
+  scale_y_continuous(limits = c(0, 115), labels = label_percent(scale = 1)) +
+  coord_flip() +
+  facet_wrap(~ metric) +
+  labs(title = "Performance by Coordination Pattern",
+       x = NULL, y = NULL) +
+  theme_dashboard +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold"))
+```
+
+
+## By Test Level
+
+```{r level-table}
+level_summary <- scenarios_df |>
+  group_by(Level = test_level) |>
+  summarise(
+    Scenarios = n(),
+    `Avg AC %` = paste0(round(mean(ac_pct)), "%"),
+    `Avg Rubric %` = paste0(round(mean(rubric_pct)), "%"),
+    `Avg Duration` = paste0(round(mean(duration), 1), "m"),
+    .groups = "drop"
+  )
+
+kbl(level_summary) |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE)
+```
+
+```{r level-chart}
+level_plot <- scenarios_df |>
+  group_by(test_level) |>
+  summarise(ac_pct = mean(ac_pct), rubric_pct = mean(rubric_pct),
+            .groups = "drop") |>
+  pivot_longer(cols = c(ac_pct, rubric_pct),
+               names_to = "metric", values_to = "value") |>
+  mutate(metric = ifelse(metric == "ac_pct",
+                         "Acceptance Criteria", "Rubric Score"))
+
+ggplot(level_plot, aes(x = test_level, y = value, fill = test_level)) +
+  geom_col(width = 0.5) +
+  geom_text(aes(label = paste0(round(value), "%")),
+            vjust = -0.5, size = 4) +
+  scale_fill_manual(values = level_colors) +
+  scale_y_continuous(limits = c(0, 115), labels = label_percent(scale = 1)) +
+  facet_wrap(~ metric) +
+  labs(title = "Performance by Test Level",
+       x = NULL, y = NULL) +
+  theme_dashboard +
+  theme(legend.position = "none",
+        strip.text = element_text(face = "bold"))
+```
+
+
+## Coverage Dashboard
+
+```{r coverage-table}
+cov_df <- data.frame(
+  Dimension = c("Coordination Patterns", "Test Levels", "Teams",
+                "Agents", "Skills"),
+  Tested = c(
+    length(cov$coordination_patterns$tested),
+    length(cov$test_levels$tested),
+    length(cov$teams$tested),
+    length(cov$agents$tested),
+    length(cov$skills$tested)
+  ),
+  Total = c(
+    cov$coordination_patterns$total,
+    cov$test_levels$total,
+    cov$teams$total,
+    cov$agents$total,
+    cov$skills$total
+  )
+)
+cov_df$Gap <- cov_df$Total - cov_df$Tested
+cov_df$`Coverage %` <- paste0(round(cov_df$Tested / cov_df$Total * 100), "%")
+
+kbl(cov_df, align = "lrrrl") |>
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE)
+```
+
+```{r coverage-chart}
+cov_long <- cov_df |>
+  select(Dimension, Tested, Gap) |>
+  pivot_longer(cols = c(Tested, Gap),
+               names_to = "status", values_to = "count") |>
+  mutate(status = factor(status, levels = c("Gap", "Tested")))
+
+ggplot(cov_long, aes(x = reorder(Dimension, count, sum),
+                     y = count, fill = status)) +
+  geom_col(width = 0.6, position = "stack") +
+  geom_text(data = cov_long |> filter(status == "Tested"),
+            aes(label = count), hjust = 1.2, color = "white",
+            fontface = "bold", size = 4) +
+  scale_fill_manual(values = c(Gap = "#e0e0e0", Tested = "#42a5f5")) +
+  coord_flip() +
+  labs(title = "Test Coverage",
+       subtitle = "Tested items vs. total available",
+       x = NULL, y = "Count", fill = NULL) +
+  theme_dashboard
+```
+
+**Untested coordination patterns**: `r paste(cov$coordination_patterns$untested, collapse = ", ")`.
+
+
+## Per-Scenario Details
+
+::: {.panel-tabset}
+
+```{r results='asis'}
+for (s in scenarios) {
+  cat("\n###", s$name, "\n\n")
+
+  # Metadata
+  meta <- data.frame(
+    Field = c("Run ID", "Date", "Target", "Level", "Pattern",
+              "Team Size", "Duration", "Verdict"),
+    Value = c(s$run_id, s$date, s$target, s$test_level,
+              ifelse(is.null(s$coordination_pattern), "—", s$coordination_pattern),
+              s$team_size,
+              ifelse(s$duration_minutes >= 60,
+                     paste0("~", round(s$duration_minutes / 60, 1), "h"),
+                     paste0("~", s$duration_minutes, "m")),
+              s$verdict)
+  )
+  print(kbl(meta, col.names = NULL, align = "lr") |>
+    kable_styling(bootstrap_options = c("condensed"), full_width = FALSE,
+                  font_size = 13))
+  cat("\n")
+
+  # Acceptance criteria
+  cat("#### Acceptance Criteria\n\n")
+  ac_df <- do.call(rbind, lapply(s$acceptance_criteria$details, function(d) {
+    data.frame(Criterion = d$criterion, Result = d$result,
+               stringsAsFactors = FALSE)
+  }))
+  ac_df$`#` <- seq_len(nrow(ac_df))
+  ac_df <- ac_df[, c("#", "Criterion", "Result")]
+
+  result_color <- ifelse(ac_df$Result == "PASS", "#2e7d32",
+                  ifelse(ac_df$Result == "FAIL", "#c62828", "#f57f17"))
+
+  print(kbl(ac_df, align = "rlc") |>
+    kable_styling(bootstrap_options = c("striped", "condensed"),
+                  full_width = FALSE, font_size = 13) |>
+    column_spec(3, color = result_color, bold = TRUE))
+  cat("\n")
+
+  # Rubric
+  cat("#### Rubric Scores\n\n")
+  rub_df <- do.call(rbind, lapply(s$rubric$dimensions, function(d) {
+    data.frame(Dimension = d$dimension,
+               Score = paste0(d$score, "/", d$max),
+               stringsAsFactors = FALSE)
+  }))
+  rub_df <- rbind(rub_df, data.frame(
+    Dimension = "**Total**",
+    Score = paste0("**", s$rubric$total_score, "/", s$rubric$total_max, "**")
+  ))
+
+  print(kbl(rub_df, align = "lr") |>
+    kable_styling(bootstrap_options = c("striped", "condensed"),
+                  full_width = FALSE, font_size = 13))
+  cat("\n")
+
+  # Key findings
+  cat("#### Key Findings\n\n")
+  for (f in s$key_findings) {
+    cat("-", f, "\n")
+  }
+  cat("\n")
+}
+```
+
+:::
+
+
+## Appendix: Data Provenance
+
+```{r provenance}
+prov_df <- do.call(rbind, lapply(scenarios, function(s) {
+  data.frame(
+    Scenario = s$name,
+    `Result File` = paste0("`tests/results/", s$run_id, "/RESULT.md`"),
+    check.names = FALSE,
+    stringsAsFactors = FALSE
+  )
+}))
+
+kbl(prov_df) |>
+  kable_styling(bootstrap_options = c("condensed"), full_width = FALSE)
+```
+
+**Data source**: `r params$results_file`
+**Framework version**: `r results$framework$version`
+**Last updated**: `r results$framework$last_updated`
