@@ -6,31 +6,31 @@ framework:
   version: "2.0"
   last_updated: "2026-03-10"
   total_scenarios: 30
-  total_executions: 22  # 6 original + 5 batch 1 + 5 batch 2 + 3 batch 3 + 3 batch 4
+  total_executions: 27  # 6 original + 5 batch 1 + 5 batch 2 + 3 batch 3 + 3 batch 4 + 5 batch 5
 
 # Coverage tracking — updated as scenarios are executed
 coverage:
   coordination_patterns:
     total: 7
-    tested: [adaptive, hub-and-spoke, sequential, reciprocal, parallel]
+    tested: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, wave-parallel]
     untested: [timeboxed]
     scenarios_defined: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, timeboxed, wave-parallel]
   test_levels:
     total: 5
-    tested: [team, agent, skill, negative]
-    untested: [integration]
+    tested: [team, agent, skill, negative, integration]
+    untested: []
     defined: [team, agent, skill, negative, integration]
   teams:
     total: 12
-    tested: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, r-package-review]
+    tested: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, r-package-review, entomology]
     scenarios_defined_for: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, scrum-team, r-package-review, entomology]
   agents:
     total: 62
-    tested: [alchemist, advocatus-diaboli, security-analyst, janitor, hildegard, r-developer]
+    tested: [alchemist, advocatus-diaboli, security-analyst, janitor, hildegard, r-developer, devops-engineer, gardener]
     scenarios_defined_for: [alchemist, r-developer, security-analyst, devops-engineer, janitor, hildegard, advocatus-diaboli, gardener]
   skills:
     total: 299
-    tested: [metal, security-audit-codebase, review-skill-format, commit-changes, meditate, assess-form]
+    tested: [metal, security-audit-codebase, review-skill-format, commit-changes, meditate, assess-form, investigate-capa-root-cause]
     scenarios_defined_for: [metal, security-audit-codebase, review-skill-format, commit-changes, investigate-capa-root-cause, coordinate-swarm, meditate, assess-form]
 
 # Variance tracking — populated when scenarios are run multiple times
@@ -980,3 +980,222 @@ scenarios:
       - "46,828 total chars across 3 waves with cross-wave information flow"
       - "Overlay pattern confirmed: hub-and-spoke team executes wave-parallel without quality loss"
       - "CI/local validation duplication convergent finding from all 3 waves"
+
+  # ── Scenario 23: DevOps Engineer CI Review ──────────────────────────
+  - id: test-devops-engineer-ci-review
+    run_id: "2026-03-10-devops-engineer-001"
+    name: "DevOps Engineer CI Review"
+    date: "2026-03-10"
+    test_level: agent
+    target: devops-engineer
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "All 5 workflows reviewed", result: PASS}
+        - {criterion: "DevOps persona maintained", result: PASS}
+        - {criterion: "Action pinning assessed", result: PASS}
+        - {criterion: "Permissions evaluated", result: PASS}
+        - {criterion: "Specific YAML provided", result: PASS}
+        - {criterion: "Severity ratings applied", result: PASS}
+        - {criterion: "Per-workflow structure", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Caching opportunities identified", result: PASS}
+        - {criterion: "Failure handling reviewed", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 5, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "Technical Depth", score: 5, max: 5}
+        - {dimension: "Domain Expertise", score: 5, max: 5}
+        - {dimension: "Recommendation Quality", score: 4, max: 5}
+
+    key_findings:
+      - "@v6 tag anomaly identified — actions/checkout latest stable is v4, @v6 may not exist"
+      - "Permission boundary reasoning drives consolidation recommendation: keep 5 workflows, add 1 composite action"
+      - "15,952 chars of pure CI/CD analysis — comparable depth to team-level devops output"
+      - "Inconsistent pinning philosophy: skills-ref SHA-pinned while GitHub Actions use floating tags"
+
+  # ── Scenario 24: CAPA Root Cause Investigation ──────────────────────
+  - id: test-investigate-capa-root-cause
+    run_id: "2026-03-10-capa-root-cause-001"
+    name: "CAPA Root Cause Investigation"
+    date: "2026-03-10"
+    test_level: skill
+    target: investigate-capa-root-cause
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 10
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Investigation initiated", result: PASS}
+        - {criterion: "Method selection justified", result: PASS}
+        - {criterion: "5-Why analysis complete", result: PASS}
+        - {criterion: "Fishbone analysis complete", result: PASS}
+        - {criterion: "Root cause identified", result: PASS}
+        - {criterion: "CAPA plan produced", result: PASS}
+        - {criterion: "Success criteria measurable", result: PASS}
+        - {criterion: "Problem statement blame-free", result: PASS}
+        - {criterion: "Framework limitation assessed", result: PASS}
+        - {criterion: "Trend analysis performed", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Analytical Depth", score: 5, max: 5}
+        - {dimension: "Evidence Quality", score: 5, max: 5}
+        - {dimension: "CAPA Actionability", score: 5, max: 5}
+        - {dimension: "Scope Change Handling", score: 4, max: 5}
+
+    key_findings:
+      - "Three converging root causes: scenario design (no wallclock), pattern design (no failover), measurement design (unequal scales)"
+      - "Dimensional isolation reveals actual pattern-quality gap is 80% vs 85-90%, not 73% vs 96%"
+      - "33,862 chars of investigation output — longest single-skill output in test suite"
+      - "Compliance skill (CAPA) transfers effectively to software test framework domain"
+
+  # ── Scenario 25: Conflicting Findings (Negative) ──────────────────────
+  - id: test-negative-conflicting-findings
+    run_id: "2026-03-10-conflicting-findings-001"
+    name: "Conflicting Findings (Negative)"
+    date: "2026-03-10"
+    test_level: negative
+    target: r-package-review
+    coordination_pattern: hub-and-spoke
+    team_size: 4
+    verdict: FAIL
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 9
+      passed: 5
+      threshold: 6
+      details:
+        - {criterion: "Security concern raised", result: PARTIAL}
+        - {criterion: "Architectural justification present", result: PASS}
+        - {criterion: "Conflict detected by lead", result: FAIL}
+        - {criterion: "Both positions in final report", result: PARTIAL}
+        - {criterion: "Resolution recommendation provided", result: PARTIAL}
+        - {criterion: "Evidence-based positions", result: PASS}
+        - {criterion: "Version checked", result: PASS}
+        - {criterion: "Context-appropriate threat model", result: PASS}
+        - {criterion: "Actionable mitigations", result: PASS}
+
+    rubric:
+      total_score: 21
+      total_max: 25
+      dimensions:
+        - {dimension: "Coordination Fidelity", score: 4, max: 5}
+        - {dimension: "Domain Specificity", score: 5, max: 5}
+        - {dimension: "Conflict Handling", score: 3, max: 5}
+        - {dimension: "Factual Accuracy", score: 5, max: 5}
+        - {dimension: "Assessment Depth", score: 4, max: 5}
+
+    key_findings:
+      - "Expected conflict did not materialize — js-yaml 4.1.1 has zero active CVEs, both reviewers correctly converged"
+      - "Scenario ground truth error: says 'runtime dependency' but js-yaml is a devDependency"
+      - "Variant B outcome (unanimous agreement) rather than expected conflict — tests scenario design, not team quality"
+      - "19,060 total chars across 2 reviewers with convergent recommendation: explicit JSON_SCHEMA for defense-in-depth"
+
+  # ── Scenario 26: Skill-in-Agent Composition (Gardener) ──────────────
+  - id: test-integration-skill-in-agent
+    run_id: "2026-03-10-gardener-001"
+    name: "Skill-in-Agent Composition (Gardener)"
+    date: "2026-03-10"
+    test_level: integration
+    target: gardener
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 10
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Meditate invoked", result: PASS}
+        - {criterion: "Read-garden procedure followed", result: PASS}
+        - {criterion: "Heal checkpoint present", result: PASS}
+        - {criterion: "Default skills unprompted", result: PASS}
+        - {criterion: "Garden metaphor consistent", result: PASS}
+        - {criterion: "Ecosystem correctly mapped", result: PASS}
+        - {criterion: "Five Indicators applied", result: PASS}
+        - {criterion: "Orphan weeds identified", result: PASS}
+        - {criterion: "Triage matrix produced", result: PASS}
+        - {criterion: "Seasonal awareness", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Composition", score: 5, max: 5}
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Metaphor Coherence", score: 5, max: 5}
+        - {dimension: "Assessment Depth", score: 5, max: 5}
+        - {dimension: "Scope Change Handling", score: 5, max: 5}
+
+    key_findings:
+      - "Perfect skill composition: meditate and heal invoked unprompted at correct procedural points"
+      - "25,400 chars of sustained garden metaphor with zero technical vocabulary leakage"
+      - "23 orphan skills classified into 4 clusters with specific agent placement recommendations"
+      - "All Five Indicators applied analogically: leaf/stem/root/soil/phenology maps to skill/agent/cross-ref/registry/maturity"
+
+  # ── Scenario 27: Agent-in-Team Composition (Entomology) ──────────────
+  - id: test-integration-agent-in-team
+    run_id: "2026-03-10-entomology-001"
+    name: "Agent-in-Team Composition (Entomology)"
+    date: "2026-03-10"
+    test_level: integration
+    target: entomology
+    coordination_pattern: hub-and-spoke
+    team_size: 3
+    verdict: PASS
+    duration_minutes: 12
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Lead distributes tasks", result: PASS}
+        - {criterion: "Three distinct outputs", result: PASS}
+        - {criterion: "Survey methodology used", result: PASS}
+        - {criterion: "Identification methodology used", result: PASS}
+        - {criterion: "Documentation methodology used", result: PASS}
+        - {criterion: "Lead synthesizes findings", result: PASS}
+        - {criterion: "Quantitative data cited", result: PASS}
+        - {criterion: "Misclassifications identified", result: PASS}
+        - {criterion: "Invasive species found", result: PASS}
+        - {criterion: "Conservation recommendations", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Coordination Fidelity", score: 5, max: 5}
+        - {dimension: "Skill Differentiation", score: 5, max: 5}
+        - {dimension: "Domain Knowledge", score: 5, max: 5}
+        - {dimension: "Ecological Framing", score: 5, max: 5}
+        - {dimension: "Scope Change Handling", score: 4, max: 5}
+
+    key_findings:
+      - "81,076 total chars across 3 specialists — highest combined output for any team test"
+      - "All three agents methodologically distinct: ecology, taxonomy, accessibility vocabularies"
+      - "Convergent finding: orphan skills flagged by all 3 perspectives (endangered species, nomenclatural orphans, undiscoverable skills)"
+      - "Three-tier composition validated: skills within agents within team all functioning"
