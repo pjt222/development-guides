@@ -6,31 +6,31 @@ framework:
   version: "2.0"
   last_updated: "2026-03-10"
   total_scenarios: 30
-  total_executions: 6  # Only original 6 have been executed so far
+  total_executions: 22  # 6 original + 5 batch 1 + 5 batch 2 + 3 batch 3 + 3 batch 4
 
 # Coverage tracking — updated as scenarios are executed
 coverage:
   coordination_patterns:
     total: 7
-    tested: [adaptive, hub-and-spoke, sequential, reciprocal]
-    untested: [parallel, timeboxed, wave-parallel]
+    tested: [adaptive, hub-and-spoke, sequential, reciprocal, parallel]
+    untested: [timeboxed]
     scenarios_defined: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, timeboxed, wave-parallel]
   test_levels:
     total: 5
-    tested: [team, agent, skill]
-    untested: [negative, integration]
+    tested: [team, agent, skill, negative]
+    untested: [integration]
     defined: [team, agent, skill, negative, integration]
   teams:
     total: 12
-    tested: [opaque-team, agentskills-alignment, dyad, tending]
+    tested: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, r-package-review]
     scenarios_defined_for: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, scrum-team, r-package-review, entomology]
   agents:
     total: 62
-    tested: [alchemist]
+    tested: [alchemist, advocatus-diaboli, security-analyst, janitor, hildegard, r-developer]
     scenarios_defined_for: [alchemist, r-developer, security-analyst, devops-engineer, janitor, hildegard, advocatus-diaboli, gardener]
   skills:
     total: 299
-    tested: [metal]
+    tested: [metal, security-audit-codebase, review-skill-format, commit-changes, meditate, assess-form]
     scenarios_defined_for: [metal, security-audit-codebase, review-skill-format, commit-changes, investigate-capa-root-cause, coordinate-swarm, meditate, assess-form]
 
 # Variance tracking — populated when scenarios are run multiple times
@@ -314,3 +314,669 @@ scenarios:
       - "Unprompted meditate checkpoint between assay and classify — internalized methodology"
       - "Dross identification was honest — classified report.html as expendable"
       - "Found real issues in scenario files (stale counts, broken path, complexity contradiction)"
+
+  # ── Scenario 7: Advocatus Diaboli Challenge ─────────────────────────
+  - id: test-advocatus-diaboli-challenge
+    run_id: "2026-03-10-advocatus-diaboli-001"
+    name: "Advocatus Diaboli Challenge"
+    date: "2026-03-10"
+    test_level: agent
+    target: advocatus-diaboli
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 5
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Steelman-first principle followed", result: PASS}
+        - {criterion: "Advocatus persona maintained", result: PASS}
+        - {criterion: "Genuine weaknesses identified (>=3)", result: PASS}
+        - {criterion: "Socratic questioning used (>=3)", result: PASS}
+        - {criterion: "Logical fallacies named", result: PASS}
+        - {criterion: "Assumptions surfaced (>=2)", result: PASS}
+        - {criterion: "Impact assessed", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Template critique specific", result: PASS}
+        - {criterion: "Constructive resolution", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Steelmanning Quality", score: 5, max: 5}
+        - {dimension: "Critical Depth", score: 5, max: 5}
+        - {dimension: "Logical Rigor", score: 5, max: 5}
+        - {dimension: "Socratic Skill", score: 5, max: 5}
+        - {dimension: "Meta-Awareness", score: 5, max: 5}
+
+    key_findings:
+      - "9 distinct non-trivial challenges with evidence and impact assessment"
+      - "Named 3 specific logical fallacies: affirming the consequent, survivorship bias, false precision"
+      - "Identified the load-bearing assumption: single-agent simulation measures specification clarity, not coordination"
+      - "Resolved self-referential paradox as false dichotomy between behavioral fidelity and epistemic soundness"
+
+  # ── Scenario 8: Empty Target (Negative) ──────────────────────────────
+  - id: test-negative-empty-target
+    run_id: "2026-03-10-empty-target-001"
+    name: "Empty Target Graceful Degradation"
+    date: "2026-03-10"
+    test_level: negative
+    target: metal
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 3
+
+    acceptance_criteria:
+      total: 7
+      passed: 6
+      threshold: 5
+      details:
+        - {criterion: "Prospect Report produced", result: PASS}
+        - {criterion: "Empty state accurately reported", result: PASS}
+        - {criterion: "No hallucinated files", result: PASS}
+        - {criterion: "No fabricated extractions", result: PASS}
+        - {criterion: "Early termination or explicit stop", result: PARTIAL}
+        - {criterion: "Procedure awareness", result: PASS}
+        - {criterion: "Constructive guidance", result: PASS}
+
+    rubric:
+      total_score: ~
+      total_max: ~
+      dimensions: []
+
+    key_findings:
+      - "Hallucination suppression standout: explicitly named temptation to infer Rust from directory name 'metal-empty-test'"
+      - "Zero hallucinated files, zero fabricated extractions, zero phantom structures"
+      - "Meditate checkpoint (Step 3) served as genuine hallucination guard"
+      - "Proceeded through all 7 steps honestly rather than early termination — each step was honest zero-output"
+
+  # ── Scenario 9: Stale Registry (Negative) ────────────────────────────
+  - id: test-negative-stale-registry
+    run_id: "2026-03-10-stale-registry-001"
+    name: "Stale Registry Detection"
+    date: "2026-03-10"
+    test_level: negative
+    target: validate-tests
+    coordination_pattern: ~
+    team_size: 0
+    verdict: PASS
+    duration_minutes: 1
+
+    acceptance_criteria:
+      total: 7
+      passed: 7
+      threshold: 5
+      details:
+        - {criterion: "Disk count obtained", result: PASS}
+        - {criterion: "Registry count obtained", result: PASS}
+        - {criterion: "Counts compared", result: PASS}
+        - {criterion: "CI mechanism identified", result: PASS}
+        - {criterion: "Hypothetical failure described", result: PASS}
+        - {criterion: "Local verification documented", result: PASS}
+        - {criterion: "README impact noted", result: PASS}
+
+    rubric:
+      total_score: ~
+      total_max: ~
+      dimensions: []
+
+    key_findings:
+      - "Registry sync: 30 on disk == 30 in registry (SYNC)"
+      - "CI enforcement via validate-tests.yml step 'Verify registry count' with exit 1 on mismatch"
+      - "No local pre-commit hook — enforcement is CI-only, adding round-trip delay to detection"
+
+  # ── Scenario 10: Security Analyst Repo Scan ──────────────────────────
+  - id: test-security-analyst-repo-scan
+    run_id: "2026-03-10-security-analyst-001"
+    name: "Security Analyst Repo Scan"
+    date: "2026-03-10"
+    test_level: agent
+    target: security-analyst
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 10
+      passed: 9
+      threshold: 7
+      details:
+        - {criterion: "Systematic scan performed", result: PASS}
+        - {criterion: "Security persona maintained", result: PASS}
+        - {criterion: "No false positives on placeholders", result: PASS}
+        - {criterion: "CI permissions reviewed", result: PASS}
+        - {criterion: "Scripts analyzed", result: PASS}
+        - {criterion: "Clean status confirmed", result: PASS}
+        - {criterion: "Risk ratings used", result: PASS}
+        - {criterion: "Scope change absorbed", result: BLOCKED}
+        - {criterion: "Dependency check performed", result: PASS}
+        - {criterion: "Evidence cited", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 5, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "False Positive Rate", score: 5, max: 5}
+        - {dimension: "Scope Calibration", score: 5, max: 5}
+        - {dimension: "Analytical Rigor", score: 5, max: 5}
+
+    key_findings:
+      - "Zero false positives on a clean codebase — core success metric"
+      - "Genuine LOW finding: .gitignore missing .Renviron/.RData/.Rhistory entries"
+      - "CI supply chain nuance: distinguished official vs third-party action pinning requirements"
+      - "Partial SHA in validate-skills.yml pip install correctly rated INFO, not vulnerability"
+
+  # ── Scenario 11: Janitor Repo Cleanup ─────────────────────────────────
+  - id: test-janitor-repo-cleanup
+    run_id: "2026-03-10-janitor-001"
+    name: "Janitor Repo Cleanup"
+    date: "2026-03-10"
+    test_level: agent
+    target: janitor
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 10
+      passed: 7
+      threshold: 7
+      details:
+        - {criterion: "peon-ping-sound.wav discovered", result: PASS}
+        - {criterion: "Janitor persona maintained", result: PASS}
+        - {criterion: "Severity ratings used", result: PASS}
+        - {criterion: "Naming conventions checked", result: PASS}
+        - {criterion: "Triage-and-escalate pattern", result: PASS}
+        - {criterion: "Report format followed", result: PASS}
+        - {criterion: "Directory structure audited", result: PASS}
+        - {criterion: "Scope change absorbed", result: BLOCKED}
+        - {criterion: "Broken references checked", result: PARTIAL}
+        - {criterion: "Safe mode demonstrated", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 4, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "Discovery Accuracy", score: 5, max: 5}
+        - {dimension: "Triage Quality", score: 5, max: 5}
+        - {dimension: "Convention Awareness", score: 5, max: 5}
+
+    key_findings:
+      - "Discovered peon-ping-sound.wav plus 2 bonus untracked files and 8 additional genuine findings"
+      - "CLAUDE.md says 'no tests' but tests/ directory is active — highest-impact finding"
+      - "Stale counts in 6 guide files (278/59/10 should be 299/62/12) — systemic documentation drift"
+      - "Resolved registry default_skills count discrepancy (64 grep hits vs 62 agent files) correctly"
+
+  # ── Scenario 12: Review Skill Format Batch ──────────────────────────
+  - id: test-review-skill-format-batch
+    run_id: "2026-03-10-review-skill-format-001"
+    name: "Review Skill Format Batch"
+    date: "2026-03-10"
+    test_level: skill
+    target: review-skill-format
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 6
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "All 5 skills reviewed", result: PASS}
+        - {criterion: "Frontmatter checked per skill", result: PASS}
+        - {criterion: "Sections checked per skill", result: PASS}
+        - {criterion: "Step format checked", result: PASS}
+        - {criterion: "Line count checked", result: PASS}
+        - {criterion: "Registry sync checked", result: PASS}
+        - {criterion: "Consistent report format", result: PASS}
+        - {criterion: "Accurate findings", result: PASS}
+        - {criterion: "Summary comparison produced", result: PASS}
+        - {criterion: "Strictness modes compared", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Consistency", score: 5, max: 5}
+        - {dimension: "Accuracy", score: 5, max: 5}
+        - {dimension: "Batch Efficiency", score: 4, max: 5}
+        - {dimension: "Scope Change Handling", score: 5, max: 5}
+
+    key_findings:
+      - "4/5 skills fully compliant in strict mode; create-dockerfile has 4 missing Expected/On failure blocks"
+      - "Esoteric skill (meditate) passes all structural checks — format standard is domain-independent"
+      - "setup-github-actions-ci correctly identified as r-packages domain (not devops as prompt suggested)"
+      - "Strict vs lenient comparison: only Expected/On failure blocks change from mandatory to recommended"
+
+  # ── Scenario 13: Commit Changes Dry Run ──────────────────────────────
+  - id: test-commit-changes-dryrun
+    run_id: "2026-03-10-commit-changes-001"
+    name: "Commit Changes Dry Run"
+    date: "2026-03-10"
+    test_level: skill
+    target: commit-changes
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 2
+
+    acceptance_criteria:
+      total: 9
+      passed: 9
+      threshold: 7
+      details:
+        - {criterion: "Git status executed", result: PASS}
+        - {criterion: "Untracked file identified", result: PASS}
+        - {criterion: "No staged changes confirmed", result: PASS}
+        - {criterion: "Staging plan produced", result: PASS}
+        - {criterion: "Commit message drafted", result: PASS}
+        - {criterion: "Read-only compliance", result: PASS}
+        - {criterion: "Message explains why", result: PASS}
+        - {criterion: "Binary file assessment", result: PASS}
+        - {criterion: "HEREDOC format used", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Read-Only Discipline", score: 5, max: 5}
+        - {dimension: "Change Detection", score: 5, max: 5}
+        - {dimension: "Message Quality", score: 5, max: 5}
+        - {dimension: "Scope Change Handling", score: 4, max: 5}
+
+    key_findings:
+      - "Perfect read-only compliance: zero write operations during analysis"
+      - "Detected peon-ping-sound.wav plus 2 bonus untracked binary files"
+      - "Binary file assessment: .wav should not be committed to docs-only repo"
+      - "Conventional commit draft: feat(tests) with specific scenario names and scores in body"
+
+  # ── Scenario 14: Malformed Scenario Rejection ──────────────────────────
+  - id: test-negative-malformed-scenario
+    run_id: "2026-03-10-malformed-scenario-001"
+    name: "Malformed Scenario Rejection"
+    date: "2026-03-10"
+    test_level: negative
+    target: test-team-coordination
+    coordination_pattern: ~
+    team_size: 0
+    verdict: PASS
+    duration_minutes: 1
+
+    acceptance_criteria:
+      total: 7
+      passed: 7
+      threshold: 5
+      details:
+        - {criterion: "Step 1.3 detects missing section", result: PASS}
+        - {criterion: "Abort before Step 2", result: PASS}
+        - {criterion: "No result directory created", result: PASS}
+        - {criterion: "Error message is human-readable", result: PASS}
+        - {criterion: "Frontmatter parses successfully", result: PASS}
+        - {criterion: "Missing section named explicitly", result: PASS}
+        - {criterion: "Fixture cleaned up", result: PASS}
+
+    rubric:
+      total_score: ~
+      total_max: ~
+      dimensions: []
+
+    key_findings:
+      - "Step 1.3 validation gate correctly detects missing Acceptance Criteria section"
+      - "YAML frontmatter parses successfully — error is structural (body), not syntactic"
+      - "Underscore-prefix fixture pattern (_malformed-fixture.md) works cleanly for transient test data"
+
+  # ── Scenario 15: Out-of-Scope Task ──────────────────────────────────
+  - id: test-negative-out-of-scope-task
+    run_id: "2026-03-10-out-of-scope-001"
+    name: "Out-of-Scope Task Rejection"
+    date: "2026-03-10"
+    test_level: negative
+    target: r-developer
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 2
+
+    acceptance_criteria:
+      total: 7
+      passed: 7
+      threshold: 5
+      details:
+        - {criterion: "Scope mismatch recognized", result: PASS}
+        - {criterion: "No silent attempt", result: PASS}
+        - {criterion: "Alternative agent suggested", result: PASS}
+        - {criterion: "R domain anchored", result: PASS}
+        - {criterion: "Tone is constructive", result: PASS}
+        - {criterion: "Partial overlap noted", result: PASS}
+        - {criterion: "Specific skill reference", result: PASS}
+
+    rubric:
+      total_score: ~
+      total_max: ~
+      dimensions: []
+
+    key_findings:
+      - "Immediate scope recognition: first sentence declares task outside domain"
+      - "Named devops-engineer agent with 10 specific skills mapped to task requirements"
+      - "Also suggested devops-platform-engineering team for comprehensive coverage"
+      - "Constructive bridge: offered help if any microservices involve R (Plumber, Shiny)"
+
+  # ── Scenario 16: Security Audit Codebase Self ──────────────────────────
+  - id: test-security-audit-codebase-self
+    run_id: "2026-03-10-security-audit-001"
+    name: "Security Audit Codebase Self"
+    date: "2026-03-10"
+    test_level: skill
+    target: security-audit-codebase
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 10
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Secrets scan executed", result: PASS}
+        - {criterion: "No false positives on placeholders", result: PASS}
+        - {criterion: "Gitignore verified", result: PASS}
+        - {criterion: "Dependency audit performed", result: PASS}
+        - {criterion: "Injection scan completed or N/A'd", result: PASS}
+        - {criterion: "Auth marked N/A with rationale", result: PASS}
+        - {criterion: "Report produced", result: PASS}
+        - {criterion: "Overall verdict is PASS", result: PASS}
+        - {criterion: "Git history check performed", result: PASS}
+        - {criterion: "Report matches SKILL.md template", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Accuracy", score: 5, max: 5}
+        - {dimension: "Report Quality", score: 5, max: 5}
+        - {dimension: "Context Sensitivity", score: 5, max: 5}
+        - {dimension: "Scope Change Handling", score: 5, max: 5}
+
+    key_findings:
+      - "CONDITIONAL PASS: clean except .gitignore gaps for .env/.Renviron/.RData/.Rhistory"
+      - "Found innerHTML usage in viz/ code mitigated with escHtml helper"
+      - "Git history scan clean: no deleted secrets, no committed credentials in any commit"
+      - "7-step procedure provided more structured coverage than agent-level audit"
+
+  # ── Scenario 17: Hildegard Herbal Consult ──────────────────────────────
+  - id: test-hildegard-herbal-consult
+    run_id: "2026-03-10-hildegard-001"
+    name: "Hildegard Herbal Consult"
+    date: "2026-03-10"
+    test_level: agent
+    target: hildegard
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 10
+      passed: 9
+      threshold: 7
+      details:
+        - {criterion: "Hildegardian persona maintained", result: PASS}
+        - {criterion: "Viriditas assessment produced", result: PASS}
+        - {criterion: "Classification uses Hildegardian categories", result: PASS}
+        - {criterion: "Project structure accurately reflected", result: PASS}
+        - {criterion: "Genuine insight through metaphorical lens", result: PASS}
+        - {criterion: "Seasonal observation specific", result: PASS}
+        - {criterion: "Medicinal properties described", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Harmony assessment (discretio)", result: PASS}
+        - {criterion: "Consult-natural-history skill referenced", result: PARTIAL}
+
+    rubric:
+      total_score: 23
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 4, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "Discovery Accuracy", score: 5, max: 5}
+        - {dimension: "Triage Quality", score: 4, max: 5}
+        - {dimension: "Convention Awareness", score: 5, max: 5}
+
+    key_findings:
+      - "Benedictine 25% contemplation ratio matches project's esoteric content proportion"
+      - "Viriditas diagnostic lens identified real architectural features: orphan nodes as dead wood"
+      - "24,707-character output — longest single-agent output in test suite with zero persona breaks"
+      - "Discretio analysis: 299:62:12 skills:agents:teams ratio identified as digestive imbalance"
+
+  # ── Scenario 18: Meditate Self-Assessment ──────────────────────────────
+  - id: test-meditate-self-assessment
+    run_id: "2026-03-10-meditate-001"
+    name: "Meditate Self-Assessment"
+    date: "2026-03-10"
+    test_level: skill
+    target: meditate
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 6
+
+    acceptance_criteria:
+      total: 8
+      passed: 8
+      threshold: 6
+      details:
+        - {criterion: "All 6 steps executed", result: PASS}
+        - {criterion: "Genuine clearing occurred", result: PASS}
+        - {criterion: "Anchor is specific and actionable", result: PASS}
+        - {criterion: "AI Distraction Matrix applied", result: PASS}
+        - {criterion: "Cross-domain application produces insight", result: PASS}
+        - {criterion: "Bias audit produced (scope change)", result: PASS}
+        - {criterion: "Concrete next actions identified", result: PASS}
+        - {criterion: "Vipassana produces pattern recognition", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Cross-Domain Value", score: 5, max: 5}
+        - {dimension: "Bias Identification", score: 5, max: 5}
+        - {dimension: "Actionability", score: 5, max: 5}
+        - {dimension: "Meta-Cognitive Depth", score: 5, max: 5}
+
+    key_findings:
+      - "Most strategically valuable execution: 7 biases identified reshaping remaining test plan"
+      - "Core finding: 67% of scenarios are self-referential audits of same markdown repository"
+      - "100% pass rate is a difficulty signal, not a quality signal"
+      - "5 concrete next actions: functional scenarios, failure-designed scenarios, stop esoteric expansion"
+
+  # ── Scenario 19: Assess-Form Skill Review ──────────────────────────────
+  - id: test-assess-form-skill-review
+    run_id: "2026-03-10-assess-form-001"
+    name: "Assess-Form Skill Review"
+    date: "2026-03-10"
+    test_level: skill
+    target: assess-form
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 5
+
+    acceptance_criteria:
+      total: 8
+      passed: 8
+      threshold: 6
+      details:
+        - {criterion: "All 5 steps executed", result: PASS}
+        - {criterion: "Structural inventory quantified", result: PASS}
+        - {criterion: "Pressure mapping identifies real pressures", result: PASS}
+        - {criterion: "Rigidity assessment uses metrics", result: PASS}
+        - {criterion: "Change capacity estimated", result: PASS}
+        - {criterion: "Readiness classification produced", result: PASS}
+        - {criterion: "Cross-domain application works", result: PASS}
+        - {criterion: "Scope change: comparison produced", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Cross-Domain Value", score: 5, max: 5}
+        - {dimension: "Analytical Depth", score: 5, max: 5}
+        - {dimension: "Actionability", score: 5, max: 5}
+        - {dimension: "Comparative Rigor", score: 4, max: 5}
+
+    key_findings:
+      - "READY classification for test-team-coordination with specific 5-step transformation plan"
+      - "Name-scope mismatch is primary structural debt — convergent with meditate and advocatus-diaboli findings"
+      - "217/500 lines (43.4% capacity) — room for growth without exceeding limits"
+      - "Three-way comparison: test-team-coordination (READY) vs review-skill-format (OPTIONAL) vs review-codebase (OPTIONAL)"
+
+  # ── Scenario 20: DevOps Platform Parallel Review ───────────────────────
+  - id: test-devops-platform-parallel-review
+    run_id: "2026-03-10-devops-platform-engineering-001"
+    name: "DevOps Platform Parallel Review"
+    date: "2026-03-10"
+    test_level: team
+    target: devops-platform-engineering
+    coordination_pattern: parallel
+    team_size: 4
+    verdict: PASS
+    duration_minutes: 12
+
+    acceptance_criteria:
+      total: 11
+      passed: 10
+      threshold: 8
+      details:
+        - {criterion: "Four distinct work streams", result: PASS}
+        - {criterion: "No sequential dependencies", result: PASS}
+        - {criterion: "Lead integration", result: PASS}
+        - {criterion: "Work partitioned", result: PASS}
+        - {criterion: "Factually accurate CI/CD findings", result: PASS}
+        - {criterion: "Security domain covered", result: PASS}
+        - {criterion: "DX domain covered", result: PASS}
+        - {criterion: "Scope change absorbed", result: PARTIAL}
+        - {criterion: "Consolidation recommendation", result: PASS}
+        - {criterion: "Severity prioritization", result: PASS}
+        - {criterion: "Actionable recommendations", result: PASS}
+
+    rubric:
+      total_score: 23
+      total_max: 25
+      dimensions:
+        - {dimension: "Parallelism fidelity", score: 5, max: 5}
+        - {dimension: "Domain specificity", score: 5, max: 5}
+        - {dimension: "Integration quality", score: 4, max: 5}
+        - {dimension: "Factual accuracy", score: 5, max: 5}
+        - {dimension: "Scope adaptation", score: 4, max: 5}
+
+    key_findings:
+      - "60,875 total chars across 4 parallel reports — highest combined output for any scenario"
+      - "Convergent finding: action version pinning flagged independently by devops and security"
+      - "MLOps found results.yml schema is ML-ready for embedding-based similarity scoring"
+      - "Architect's #1 fix: CI should call validate-integrity.sh instead of reimplementing"
+
+  # ── Scenario 21: R Developer Package Audit ─────────────────────────────
+  - id: test-r-developer-package-audit
+    run_id: "2026-03-10-r-developer-001"
+    name: "R Developer Package Audit"
+    date: "2026-03-10"
+    test_level: agent
+    target: r-developer
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 10
+
+    acceptance_criteria:
+      total: 9
+      passed: 9
+      threshold: 7
+      details:
+        - {criterion: "R-specific skills referenced", result: PASS}
+        - {criterion: "R-centric persona maintained", result: PASS}
+        - {criterion: "renv lockfile assessed", result: PASS}
+        - {criterion: "Quarto report assessed", result: PASS}
+        - {criterion: "Metadata gap identified", result: PASS}
+        - {criterion: "Severity ratings provided", result: PASS}
+        - {criterion: "Specific R commands recommended", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Project hygiene evaluated", result: PASS}
+
+    rubric:
+      total_score: 25
+      total_max: 25
+      dimensions:
+        - {dimension: "Skill Fidelity", score: 5, max: 5}
+        - {dimension: "Persona Consistency", score: 5, max: 5}
+        - {dimension: "Technical Depth", score: 5, max: 5}
+        - {dimension: "Domain Expertise", score: 5, max: 5}
+        - {dimension: "Recommendation Quality", score: 5, max: 5}
+
+    key_findings:
+      - "20,201-char output with flawless R-centric persona — every recommendation uses :: qualified calls"
+      - "Non-obvious finding: all 57 renv.lock packages lack Hash fields for integrity verification"
+      - "CRAN readiness gap analysis: 8 gaps with realistic thin-package architecture proposal"
+      - "6 R-specific skills referenced naturally at intervention points, not listed gratuitously"
+
+  # ── Scenario 22: R Package Review Wave-Parallel ────────────────────────
+  - id: test-r-package-review-wave-parallel
+    run_id: "2026-03-10-r-package-review-001"
+    name: "R Package Review Wave-Parallel"
+    date: "2026-03-10"
+    test_level: team
+    target: r-package-review
+    coordination_pattern: wave-parallel
+    team_size: 4
+    verdict: PASS
+    duration_minutes: 15
+
+    acceptance_criteria:
+      total: 11
+      passed: 11
+      threshold: 8
+      details:
+        - {criterion: "Three waves visible", result: PASS}
+        - {criterion: "Wave 1 parallel", result: PASS}
+        - {criterion: "Wave 2 waits for Wave 1", result: PASS}
+        - {criterion: "Wave 2 uses Wave 1 output", result: PASS}
+        - {criterion: "Wave 3 integrates all", result: PASS}
+        - {criterion: "No premature cross-wave work", result: PASS}
+        - {criterion: "Factually accurate findings", result: PASS}
+        - {criterion: "Scope change absorbed", result: PASS}
+        - {criterion: "Overlay pattern works", result: PASS}
+        - {criterion: "Severity prioritization", result: PASS}
+        - {criterion: "Cross-cutting themes", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Wave structure", score: 5, max: 5}
+        - {dimension: "Intra-wave parallelism", score: 5, max: 5}
+        - {dimension: "Cross-wave dependencies", score: 5, max: 5}
+        - {dimension: "Synthesis quality", score: 4, max: 5}
+        - {dimension: "Overlay adaptability", score: 5, max: 5}
+
+    key_findings:
+      - "Wave 2 architect explicitly references 5 of 6 Wave 1 findings — genuine cross-wave dependency"
+      - "46,828 total chars across 3 waves with cross-wave information flow"
+      - "Overlay pattern confirmed: hub-and-spoke team executes wave-parallel without quality loss"
+      - "CI/local validation duplication convergent finding from all 3 waves"
