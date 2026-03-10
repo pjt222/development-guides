@@ -6,14 +6,14 @@ framework:
   version: "2.0"
   last_updated: "2026-03-10"
   total_scenarios: 30
-  total_executions: 27  # 6 original + 5 batch 1 + 5 batch 2 + 3 batch 3 + 3 batch 4 + 5 batch 5
+  total_executions: 30  # 6 original + 5 batch 1 + 5 batch 2 + 3 batch 3 + 3 batch 4 + 5 batch 5 + 3 batch 6
 
 # Coverage tracking — updated as scenarios are executed
 coverage:
   coordination_patterns:
     total: 7
-    tested: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, wave-parallel]
-    untested: [timeboxed]
+    tested: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, wave-parallel, timeboxed]
+    untested: []
     scenarios_defined: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, timeboxed, wave-parallel]
   test_levels:
     total: 5
@@ -22,7 +22,7 @@ coverage:
     defined: [team, agent, skill, negative, integration]
   teams:
     total: 12
-    tested: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, r-package-review, entomology]
+    tested: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, r-package-review, entomology, scrum-team]
     scenarios_defined_for: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, scrum-team, r-package-review, entomology]
   agents:
     total: 62
@@ -30,7 +30,7 @@ coverage:
     scenarios_defined_for: [alchemist, r-developer, security-analyst, devops-engineer, janitor, hildegard, advocatus-diaboli, gardener]
   skills:
     total: 299
-    tested: [metal, security-audit-codebase, review-skill-format, commit-changes, meditate, assess-form, investigate-capa-root-cause]
+    tested: [metal, security-audit-codebase, review-skill-format, commit-changes, meditate, assess-form, investigate-capa-root-cause, coordinate-swarm]
     scenarios_defined_for: [metal, security-audit-codebase, review-skill-format, commit-changes, investigate-capa-root-cause, coordinate-swarm, meditate, assess-form]
 
 # Variance tracking — populated when scenarios are run multiple times
@@ -1199,3 +1199,136 @@ scenarios:
       - "All three agents methodologically distinct: ecology, taxonomy, accessibility vocabularies"
       - "Convergent finding: orphan skills flagged by all 3 perspectives (endangered species, nomenclatural orphans, undiscoverable skills)"
       - "Three-tier composition validated: skills within agents within team all functioning"
+
+  # ── Scenario 28: Scrum Team Sprint Planning ──────────────────────────
+  - id: test-scrum-team-sprint-planning
+    run_id: "2026-03-10-scrum-team-001"
+    name: "Scrum Team Sprint Planning"
+    date: "2026-03-10"
+    test_level: team
+    target: scrum-team
+    coordination_pattern: timeboxed
+    team_size: 3
+    verdict: PASS
+    duration_minutes: 12
+
+    acceptance_criteria:
+      total: 12
+      passed: 12
+      threshold: 8
+      details:
+        - {criterion: "Sprint Planning event occurs", result: PASS}
+        - {criterion: "Sprint Backlog created", result: PASS}
+        - {criterion: "Daily Scrum simulated", result: PASS}
+        - {criterion: "Sprint Review occurs", result: PASS}
+        - {criterion: "Sprint Retrospective occurs", result: PASS}
+        - {criterion: "Role separation maintained", result: PASS}
+        - {criterion: "Items pulled by priority", result: PASS}
+        - {criterion: "Scope change handled correctly", result: PASS}
+        - {criterion: "Sprint Goal coherent", result: PASS}
+        - {criterion: "Definition of Done stated", result: PASS}
+        - {criterion: "Effort estimates provided", result: PASS}
+        - {criterion: "Actionable retrospective", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Ceremony fidelity", score: 5, max: 5}
+        - {dimension: "Role separation", score: 5, max: 5}
+        - {dimension: "Backlog management", score: 5, max: 5}
+        - {dimension: "Scope adaptation", score: 5, max: 5}
+        - {dimension: "Increment quality", score: 4, max: 5}
+
+    key_findings:
+      - "Timeboxed pattern completes 7/7 coordination pattern coverage — all patterns now tested"
+      - "25,971 chars of complete Scrum simulation with all 5 events maintaining ceremonial discipline"
+      - "Scope change handling is textbook: SM asks 'does this align with Sprint Goal?', team defers new item to backlog"
+      - "Retrospective action A-002 ('add executed as DoD criterion') is a genuinely novel framework insight"
+
+  # ── Scenario 29: Coordinate-Swarm Test Planning ──────────────────────
+  - id: test-coordinate-swarm-planning
+    run_id: "2026-03-10-coordinate-swarm-001"
+    name: "Coordinate-Swarm Test Planning"
+    date: "2026-03-10"
+    test_level: skill
+    target: coordinate-swarm
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 8
+
+    acceptance_criteria:
+      total: 9
+      passed: 9
+      threshold: 6
+      details:
+        - {criterion: "Problem classified", result: PASS}
+        - {criterion: "Signal table produced", result: PASS}
+        - {criterion: "Local rules defined", result: PASS}
+        - {criterion: "Quorum thresholds set", result: PASS}
+        - {criterion: "Tuning proposed", result: PASS}
+        - {criterion: "Coverage data used", result: PASS}
+        - {criterion: "Domain diversity signal added", result: PASS}
+        - {criterion: "Actionable output", result: PASS}
+        - {criterion: "Risk-based prioritization", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Procedure Fidelity", score: 5, max: 5}
+        - {dimension: "Signal Quality", score: 5, max: 5}
+        - {dimension: "Rule Clarity", score: 5, max: 5}
+        - {dimension: "Problem Fit", score: 4, max: 5}
+        - {dimension: "Actionability", score: 5, max: 5}
+
+    key_findings:
+      - "5 signals designed with decay rates, deposit conditions, and agent responses"
+      - "7 local rules in priority order — R1 (virgin domain preference) guarantees floor coverage"
+      - "Domain-saturation signal with proportional cap (ceil(domain_size/5)) prevents clustering"
+      - "10-skill priority list produced with domain, complexity, and selection rationale for each"
+
+  # ── Scenario 30: Multi-Skill Chain (Alchemist) ──────────────────────
+  - id: test-integration-multi-skill-chain
+    run_id: "2026-03-10-alchemist-chain-001"
+    name: "Multi-Skill Chain (Alchemist)"
+    date: "2026-03-10"
+    test_level: integration
+    target: alchemist
+    coordination_pattern: ~
+    team_size: 1
+    verdict: PASS
+    duration_minutes: 10
+
+    acceptance_criteria:
+      total: 10
+      passed: 10
+      threshold: 7
+      details:
+        - {criterion: "Metal extractions produced", result: PASS}
+        - {criterion: "Chrysopoeia classifications produced", result: PASS}
+        - {criterion: "Transmute proposals produced", result: PASS}
+        - {criterion: "Output feeds forward", result: PASS}
+        - {criterion: "No context loss", result: PASS}
+        - {criterion: "Artifacts accumulated", result: PASS}
+        - {criterion: "Meditate checkpoint executed", result: PASS}
+        - {criterion: "Traceability", result: PASS}
+        - {criterion: "Alchemical vocabulary", result: PASS}
+        - {criterion: "Re-classification after meditate", result: PASS}
+
+    rubric:
+      total_score: 24
+      total_max: 25
+      dimensions:
+        - {dimension: "Chain Coherence", score: 5, max: 5}
+        - {dimension: "Metal Quality", score: 5, max: 5}
+        - {dimension: "Classification Rigor", score: 5, max: 5}
+        - {dimension: "Transmute Specificity", score: 5, max: 5}
+        - {dimension: "Checkpoint Effectiveness", score: 4, max: 5}
+
+    key_findings:
+      - "24,109 chars of complete pipeline: 10 metal extractions → 4 Gold/3 Silver/3 Lead → meditate reclassification → 4 transmute proposals"
+      - "Meditate checkpoint caught verify-stage-discipline reclassification (Silver→Lead) — substantive, not cosmetic"
+      - "Self-referential: 'I am the alchemist running the test that tests the alchemist' — acknowledged without breaking immersion"
+      - "Transmute proposals are implementable: Handoff Quality Rubric, Chain Delta criterion, Stage Discipline Log, create-test-scenario skill"
