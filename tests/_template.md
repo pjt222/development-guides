@@ -2,10 +2,13 @@
 name: test-<target>-<scenario-name>
 description: >
   One-paragraph description of what is being tested and why.
-test-level: team | agent | skill
+test-level: team | agent | skill | negative | integration
 target: <team-id | agent-id | skill-id>
 coordination-pattern: <pattern from _registry.yml> (team tests only)
 team-size: <N> (team tests only)
+category: C | D | E | F | G  # (optional) test category
+duration-tier: quick | medium | long  # (optional) expected duration
+priority: P0 | P1 | P2  # (optional) implementation priority
 version: "1.0"
 author: Philipp Thoss
 created: YYYY-MM-DD

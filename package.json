@@ -6,7 +6,9 @@
   "type": "module",
   "scripts": {
     "update-readmes": "node scripts/generate-readmes.js",
-    "check-readmes": "node scripts/generate-readmes.js --check"
+    "check-readmes": "node scripts/generate-readmes.js --check",
+    "validate:integrity": "bash scripts/validate-integrity.sh",
+    "test": "npm run validate:integrity && npm run check-readmes"
   },
   "devDependencies": {
     "js-yaml": "^4.1.0"

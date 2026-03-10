@@ -80,4 +80,26 @@ jobs:
               fi
             fi
           done
+          for f in tests/scenarios/skills/*.md 2>/dev/null; do
+            [ ! -f "$f" ] && continue
+            target=$(grep '^target:' "$f" | head -1 | awk '{print $2}')
+            if [ -n "$target" ]; then
+              if [ ! -d "skills/${target}" ]; then
+                echo "FAIL: $f targets skill '${target}' but skills/${target}/ not found"
+                failed=1
+              fi
+            fi
+          done
+          for f in tests/scenarios/negative/*.md tests/scenarios/integration/*.md 2>/dev/null; do
+            [ ! -f "$f" ] && continue
+            target=$(grep '^target:' "$f" | head -1 | awk '{print $2}')
+            level=$(grep '^test-level:' "$f" | head -1 | awk '{print $2}')
+            if [ -n "$target" ]; then
+              case "$level" in
+                team) [ ! -f "teams/${target}.md" ] && echo "FAIL: $f targets team '${target}' not found" && failed=1 ;;
+                agent) [ ! -f "agents/${target}.md" ] && echo "FAIL: $f targets agent '${target}' not found" && failed=1 ;;
+                skill) [ ! -d "skills/${target}" ] && echo "FAIL: $f targets skill '${target}' not found" && failed=1 ;;
+              esac
+            fi
+          done
           exit $failed

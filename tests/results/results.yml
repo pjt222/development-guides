@@ -3,28 +3,54 @@
 # Update this file when adding new test results.
 
 framework:
-  version: "1.0"
-  last_updated: "2026-03-09"
-  total_scenarios: 6
-  total_executions: 6
+  version: "2.0"
+  last_updated: "2026-03-10"
+  total_scenarios: 30
+  total_executions: 6  # Only original 6 have been executed so far
 
+# Coverage tracking — updated as scenarios are executed
 coverage:
   coordination_patterns:
     total: 7
     tested: [adaptive, hub-and-spoke, sequential, reciprocal]
     untested: [parallel, timeboxed, wave-parallel]
+    scenarios_defined: [adaptive, hub-and-spoke, sequential, reciprocal, parallel, timeboxed, wave-parallel]
   test_levels:
-    total: 3
+    total: 5
     tested: [team, agent, skill]
+    untested: [negative, integration]
+    defined: [team, agent, skill, negative, integration]
   teams:
     total: 12
     tested: [opaque-team, agentskills-alignment, dyad, tending]
+    scenarios_defined_for: [opaque-team, agentskills-alignment, dyad, tending, devops-platform-engineering, scrum-team, r-package-review, entomology]
   agents:
     total: 62
     tested: [alchemist]
+    scenarios_defined_for: [alchemist, r-developer, security-analyst, devops-engineer, janitor, hildegard, advocatus-diaboli, gardener]
   skills:
     total: 299
     tested: [metal]
+    scenarios_defined_for: [metal, security-audit-codebase, review-skill-format, commit-changes, investigate-capa-root-cause, coordinate-swarm, meditate, assess-form]
+
+# Variance tracking — populated when scenarios are run multiple times
+# Schema:
+#   variance:
+#     runs:
+#       - run_id: "YYYY-MM-DD-target-NNN"
+#         verdict: PASS|FAIL
+#         ac_passed: <int>
+#         ac_total: <int>
+#         rubric_score: <int>
+#         rubric_max: <int>
+#         duration_minutes: <float>
+#     statistics:
+#       ac_mean: <float>
+#       ac_stdev: <float>
+#       rubric_mean: <float>
+#       rubric_stdev: <float>
+#       duration_mean: <float>
+#       duration_stdev: <float>
 
 scenarios:
   # ── Scenario 1: Cartographer's Audit ──────────────────────────────

@@ -2,9 +2,9 @@
 # Machine-readable catalog of all test scenarios in this library.
 # Keep in sync with the actual test files on disk.
 
-total_tests: 6
-version: "1.0"
-last_updated: "2026-03-09"
+total_tests: 30
+version: "2.0"
+last_updated: "2026-03-10"
 
 # Coordination pattern definitions — key behaviors to observe when testing
 # each pattern. Used by the test-team-coordination skill.
@@ -77,6 +77,57 @@ test_levels:
   team: Tests that validate team coordination patterns
   agent: Tests that validate individual agent behavior
   skill: Tests that validate skill procedure execution
+  negative: Tests that validate failure modes and error handling
+  integration: Tests that validate cross-level composition
+
+# Duration tiers for suite planning
+duration_tiers:
+  quick: Under 5 minutes agent wallclock
+  medium: 5-15 minutes agent wallclock
+  long: Over 15 minutes agent wallclock
+
+# CI automated checks (not scenario files — tracked separately)
+ci_checks:
+  - id: static-frontmatter-agents
+    workflow: validate-integrity.yml
+    category: A
+    priority: P0
+  - id: static-frontmatter-teams
+    workflow: validate-integrity.yml
+    category: A
+    priority: P0
+  - id: static-frontmatter-guides
+    workflow: validate-integrity.yml
+    category: A
+    priority: P0
+  - id: static-registry-sync-agents
+    workflow: validate-integrity.yml
+    category: A
+    priority: P0
+  - id: static-registry-sync-teams
+    workflow: validate-integrity.yml
+    category: A
+    priority: P0
+  - id: struct-symlink-skills
+    workflow: validate-integrity.yml
+    category: B
+    priority: P0
+  - id: struct-symlink-agents
+    workflow: validate-integrity.yml
+    category: B
+    priority: P0
+  - id: struct-crossref-team-members
+    workflow: validate-integrity.yml
+    category: B
+    priority: P0
+  - id: struct-crossref-agent-skills
+    workflow: validate-integrity.yml
+    category: B
+    priority: P1
+  - id: struct-orphan-detection
+    workflow: validate-integrity.yml
+    category: B
+    priority: P1
 
 # Test scenarios
 tests:
@@ -125,3 +176,252 @@ tests:
     target: alchemist
     description: Alchemist agent performs chrysopoeia value extraction on the test infrastructure
     tags: [alchemist, agent-test, chrysopoeia, optimization, value-extraction]
+
+  # Phase 1: Coordination pattern coverage (parallel, timeboxed, wave-parallel)
+  - id: test-devops-platform-parallel-review
+    path: tests/scenarios/teams/test-devops-platform-parallel-review.md
+    test_level: team
+    target: devops-platform-engineering
+    coordination_pattern: parallel
+    category: C
+    duration_tier: medium
+    priority: P0
+    description: DevOps platform team reviews CI/CD infrastructure via parallel coordination
+    tags: [devops-platform-engineering, parallel, ci-cd, infrastructure, review]
+
+  - id: test-scrum-team-sprint-planning
+    path: tests/scenarios/teams/test-scrum-team-sprint-planning.md
+    test_level: team
+    target: scrum-team
+    coordination_pattern: timeboxed
+    category: C
+    duration_tier: long
+    priority: P0
+    description: Scrum team runs a compressed sprint simulation for test framework improvements
+    tags: [scrum-team, timeboxed, sprint, agile, test-framework]
+
+  - id: test-r-package-review-wave-parallel
+    path: tests/scenarios/teams/test-r-package-review-wave-parallel.md
+    test_level: team
+    target: r-package-review
+    coordination_pattern: wave-parallel
+    category: C
+    duration_tier: medium
+    priority: P0
+    description: R package review team uses wave-parallel overlay to review infrastructure in dependency waves
+    tags: [r-package-review, wave-parallel, dependency-waves, overlay-pattern, review]
+
+  # Phase 2: Agent behavior scenarios
+  - id: test-r-developer-package-audit
+    path: tests/scenarios/agents/test-r-developer-package-audit.md
+    test_level: agent
+    target: r-developer
+    category: D
+    duration_tier: medium
+    priority: P0
+    description: R developer agent audits the tests/results/ Quarto+renv setup for R package best practices
+    tags: [r-developer, agent-test, r-packages, best-practices, audit]
+
+  - id: test-security-analyst-repo-scan
+    path: tests/scenarios/agents/test-security-analyst-repo-scan.md
+    test_level: agent
+    target: security-analyst
+    category: D
+    duration_tier: quick
+    priority: P0
+    description: Security analyst audits agent-almanac for secrets, vulnerabilities, and CI permission issues
+    tags: [security-analyst, agent-test, security, audit, false-positives]
+
+  - id: test-devops-engineer-ci-review
+    path: tests/scenarios/agents/test-devops-engineer-ci-review.md
+    test_level: agent
+    target: devops-engineer
+    category: D
+    duration_tier: medium
+    priority: P1
+    description: DevOps engineer reviews 5 CI workflows for best practices and improvement opportunities
+    tags: [devops-engineer, agent-test, ci-cd, best-practices, review]
+
+  - id: test-janitor-repo-cleanup
+    path: tests/scenarios/agents/test-janitor-repo-cleanup.md
+    test_level: agent
+    target: janitor
+    category: D
+    duration_tier: quick
+    priority: P1
+    description: Janitor agent performs tidy-project-structure audit with verifiable discovery of untracked files
+    tags: [janitor, agent-test, cleanup, triage, maintenance]
+
+  - id: test-hildegard-herbal-consult
+    path: tests/scenarios/agents/test-hildegard-herbal-consult.md
+    test_level: agent
+    target: hildegard
+    category: D
+    duration_tier: quick
+    priority: P1
+    description: Hildegard agent describes project as natural history using viriditas lens for persona fidelity testing
+    tags: [hildegard, agent-test, viriditas, persona-fidelity, natural-history]
+
+  - id: test-advocatus-diaboli-challenge
+    path: tests/scenarios/agents/test-advocatus-diaboli-challenge.md
+    test_level: agent
+    target: advocatus-diaboli
+    category: D
+    duration_tier: quick
+    priority: P1
+    description: Devil's advocate critically reviews the test framework itself for weaknesses and logical fallacies
+    tags: [advocatus-diaboli, agent-test, critical-thinking, counterarguments, meta-review]
+
+  # Phase 2: Skill execution scenarios
+  - id: test-security-audit-codebase-self
+    path: tests/scenarios/skills/test-security-audit-codebase-self.md
+    test_level: skill
+    target: security-audit-codebase
+    category: E
+    duration_tier: quick
+    priority: P1
+    description: Security audit skill executed on agent-almanac for procedure verification against known-clean baseline
+    tags: [security-audit-codebase, skill-test, security, self-referential]
+
+  - id: test-review-skill-format-batch
+    path: tests/scenarios/skills/test-review-skill-format-batch.md
+    test_level: skill
+    target: review-skill-format
+    category: E
+    duration_tier: quick
+    priority: P1
+    description: Skill format review executed on 5 skills across different domains for consistency validation
+    tags: [review-skill-format, skill-test, format, compliance, batch]
+
+  - id: test-commit-changes-dryrun
+    path: tests/scenarios/skills/test-commit-changes-dryrun.md
+    test_level: skill
+    target: commit-changes
+    category: E
+    duration_tier: quick
+    priority: P1
+    description: Commit changes skill in dry-run mode identifies untracked files and drafts message without committing
+    tags: [commit-changes, skill-test, git, dry-run, read-only]
+
+  - id: test-investigate-capa-root-cause
+    path: tests/scenarios/skills/test-investigate-capa-root-cause.md
+    test_level: skill
+    target: investigate-capa-root-cause
+    category: E
+    duration_tier: medium
+    priority: P1
+    description: CAPA root cause investigation on adaptive pattern underperformance finding from cross-scenario analysis
+    tags: [investigate-capa-root-cause, skill-test, compliance, root-cause, capa]
+
+  # Phase 2: Negative / edge case tests
+  - id: test-negative-malformed-scenario
+    path: tests/scenarios/negative/test-negative-malformed-scenario.md
+    test_level: negative
+    target: test-team-coordination
+    category: F
+    duration_tier: quick
+    priority: P1
+    description: Malformed scenario file missing required sections tests the test framework's own error handling
+    tags: [negative, malformed-input, error-handling, test-team-coordination]
+
+  - id: test-negative-out-of-scope-task
+    path: tests/scenarios/negative/test-negative-out-of-scope-task.md
+    test_level: negative
+    target: r-developer
+    category: F
+    duration_tier: quick
+    priority: P1
+    description: R developer given a Kubernetes task tests graceful boundary-setting and scope refusal
+    tags: [negative, out-of-scope, boundary-setting, r-developer]
+
+  - id: test-negative-conflicting-findings
+    path: tests/scenarios/negative/test-negative-conflicting-findings.md
+    test_level: negative
+    target: r-package-review
+    category: F
+    duration_tier: medium
+    priority: P1
+    description: Team members produce contradictory findings to test lead conflict resolution
+    tags: [negative, conflicting-findings, conflict-resolution, r-package-review]
+
+  - id: test-negative-empty-target
+    path: tests/scenarios/negative/test-negative-empty-target.md
+    test_level: negative
+    target: metal
+    category: F
+    duration_tier: quick
+    priority: P1
+    description: Metal skill on empty directory tests graceful degradation without hallucinated content
+    tags: [negative, empty-target, graceful-degradation, metal]
+
+  - id: test-negative-stale-registry
+    path: tests/scenarios/negative/test-negative-stale-registry.md
+    test_level: negative
+    target: validate-tests
+    category: F
+    duration_tier: quick
+    priority: P1
+    description: Documents and verifies CI catches registry count mismatches with actual files on disk
+    tags: [negative, stale-registry, ci-validation, registry-sync]
+
+  # Phase 3: Skill execution scenarios (P2)
+  - id: test-coordinate-swarm-planning
+    path: tests/scenarios/skills/test-coordinate-swarm-planning.md
+    test_level: skill
+    target: coordinate-swarm
+    category: E
+    duration_tier: medium
+    priority: P2
+    description: Swarm skill plans a foraging strategy for testing coverage across 299 skills
+    tags: [coordinate-swarm, skill-test, swarm, coverage-planning]
+
+  - id: test-meditate-self-assessment
+    path: tests/scenarios/skills/test-meditate-self-assessment.md
+    test_level: skill
+    target: meditate
+    category: E
+    duration_tier: quick
+    priority: P2
+    description: Meta-cognitive meditation skill applied to technical test infrastructure as cross-domain stress test
+    tags: [meditate, skill-test, esoteric, meta-cognitive, cross-domain]
+
+  - id: test-assess-form-skill-review
+    path: tests/scenarios/skills/test-assess-form-skill-review.md
+    test_level: skill
+    target: assess-form
+    category: E
+    duration_tier: quick
+    priority: P2
+    description: Morphic form assessment on the test-team-coordination skill for structural health analysis
+    tags: [assess-form, skill-test, morphic, self-referential, skill-health]
+
+  # Phase 3: Integration / composition tests
+  - id: test-integration-skill-in-agent
+    path: tests/scenarios/integration/test-integration-skill-in-agent.md
+    test_level: integration
+    target: gardener
+    category: G
+    duration_tier: medium
+    priority: P1
+    description: Gardener agent naturally invokes default skills (meditate, heal) during ecosystem assessment
+    tags: [integration, skill-in-agent, gardener, default-skills, composition]
+
+  - id: test-integration-agent-in-team
+    path: tests/scenarios/integration/test-integration-agent-in-team.md
+    test_level: integration
+    target: entomology
+    category: G
+    duration_tier: medium
+    priority: P1
+    description: Entomology team members use their specific skills during coordinated ecosystem survey
+    tags: [integration, agent-in-team, entomology, skill-usage, ecosystem]
+
+  - id: test-integration-multi-skill-chain
+    path: tests/scenarios/integration/test-integration-multi-skill-chain.md
+    test_level: integration
+    target: alchemist
+    category: G
+    duration_tier: long
+    priority: P2
+    description: Alchemist chains metal, chrysopoeia, and transmute skills sequentially with output feeding forward
+    tags: [integration, multi-skill-chain, alchemist, metal, chrysopoeia, transmute]
