@@ -97,7 +97,7 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 **Design**
 
 - [Extracting Project Essence](guides/extracting-project-essence.md) — Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill
-- [Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md) — Runtime activation profiles controlling which agents, skills, and teams are expressed
+- [Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md) — Runtime activation profiles controlling which agents, skills, and teams are expressed, grounded in molecular epigenetics
 <!-- AUTO:END:guides -->
 
 ## Contributing

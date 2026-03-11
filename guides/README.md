@@ -64,4 +64,4 @@ YAML frontmatter field definitions, validation rules, and JSON Schema for agent 
 Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill.
 
 ### [Epigenetics-Inspired Activation Control](epigenetics-activation-control.md)
-Runtime activation profiles controlling which agents, skills, and teams are expressed.
+Runtime activation profiles controlling which agents, skills, and teams are expressed, grounded in molecular epigenetics.
