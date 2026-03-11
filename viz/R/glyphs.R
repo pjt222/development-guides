@@ -1,5 +1,5 @@
 # glyphs.R - Skill-to-glyph mapping
-# Maps each of 295 skillIds to a specific glyph drawing function.
+# Maps each of 306 skillIds to a specific glyph drawing function.
 #
 # put id:"glyph_mapping", label:"SKILL_GLYPHS lookup table (skill ID to glyph function)", node_type:"input", output:"glyph_fn"
 #
@@ -407,5 +407,22 @@ SKILL_GLYPHS <- list(
   "develop-hplc-method"             = "glyph_hplc_system",
   "interpret-chromatogram"          = "glyph_chromatogram",
   "troubleshoot-separation"         = "glyph_separation_fix",
-  "validate-analytical-method"      = "glyph_method_validation"
+  "validate-analytical-method"      = "glyph_method_validation",
+
+  # ── digital-logic (4) ────────────────────────────────────────────────
+  "evaluate-boolean-expression"     = "glyph_boolean_table",
+  "design-logic-circuit"            = "glyph_logic_gates",
+  "build-sequential-circuit"        = "glyph_flip_flop",
+  "simulate-cpu-architecture"       = "glyph_cpu_chip",
+
+  # ── electromagnetism (4) ─────────────────────────────────────────────
+  "analyze-magnetic-field"          = "glyph_magnetic_field",
+  "solve-electromagnetic-induction" = "glyph_faraday_coil",
+  "formulate-maxwell-equations"     = "glyph_maxwell_wave",
+  "design-electromagnetic-device"   = "glyph_motor_coil",
+
+  # ── levitation (3) ───────────────────────────────────────────────────
+  "analyze-magnetic-levitation"     = "glyph_maglev_float",
+  "design-acoustic-levitation"      = "glyph_acoustic_node",
+  "evaluate-levitation-mechanism"   = "glyph_levitation_compare"
 )

@@ -1,14 +1,14 @@
 {
   "meta": {
-    "generated": "2026-03-04T21:45:35.928Z",
-    "totalSkills": 297,
-    "totalAgents": 62,
-    "totalTeams": 12,
-    "totalNodes": 371,
-    "totalLinks": 1602,
-    "totalAgentLinks": 377,
-    "totalTeamLinks": 39,
-    "totalDomains": 52
+    "generated": "2026-03-11T09:52:53.322Z",
+    "totalSkills": 310,
+    "totalAgents": 64,
+    "totalTeams": 13,
+    "totalNodes": 387,
+    "totalLinks": 1672,
+    "totalAgentLinks": 388,
+    "totalTeamLinks": 42,
+    "totalDomains": 55
   },
   "domains": {
     "r-packages": {
@@ -57,7 +57,7 @@
     },
     "review": {
       "description": "Senior-level review skills for research, data, architecture, and design",
-      "count": 10
+      "count": 11
     },
     "bushcraft": {
       "description": "Wilderness survival and primitive skills",
@@ -105,7 +105,7 @@
     },
     "alchemy": {
       "description": "Code and data transmutation through systematic decomposition, purification, and synthesis",
-      "count": 3
+      "count": 4
     },
     "tcg": {
       "description": "Trading card game grading, deck building, and collection management",
@@ -218,6 +218,18 @@
     "chromatography": {
       "description": "Chromatographic method development, interpretation, troubleshooting, and ICH Q2 validation",
       "count": 5
+    },
+    "digital-logic": {
+      "description": "Boolean algebra, logic gates, combinational and sequential circuits, and CPU architecture simulation",
+      "count": 4
+    },
+    "electromagnetism": {
+      "description": "Electric and magnetic fields, Maxwell's equations, electromagnetic induction, and practical electromagnetic devices",
+      "count": 4
+    },
+    "levitation": {
+      "description": "Physical levitation mechanisms including magnetic, acoustic, aerodynamic, and electrostatic",
+      "count": 3
     }
   },
   "nodes": [
@@ -2309,6 +2321,31 @@
         "create-github-issues"
       ],
       "path": "review-codebase/SKILL.md"
+    },
+    {
+      "id": "test-team-coordination",
+      "type": "skill",
+      "title": "Test Team Coordination",
+      "domain": "review",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Execute a test scenario against a team, observing coordination behaviors and generating RESULT.md",
+      "tags": [
+        "review",
+        "testing",
+        "teams",
+        "coordination",
+        "validation"
+      ],
+      "related": [
+        "review-codebase",
+        "review-skill-format",
+        "create-team",
+        "evolve-team",
+        "test-a2a-interop",
+        "assess-form"
+      ],
+      "path": "test-team-coordination/SKILL.md"
     },
     {
       "id": "make-fire",
@@ -5029,6 +5066,38 @@
       "path": "chrysopoeia/SKILL.md"
     },
     {
+      "id": "metal",
+      "type": "skill",
+      "title": "Metal",
+      "domain": "alchemy",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Extract conceptual essence of a repository as skills, agents, and teams",
+      "tags": [
+        "alchemy",
+        "extraction",
+        "essence",
+        "meta",
+        "skills",
+        "agents",
+        "teams",
+        "conceptual",
+        "metallurgy"
+      ],
+      "related": [
+        "athanor",
+        "chrysopoeia",
+        "transmute",
+        "create-skill",
+        "create-agent",
+        "create-team",
+        "observe",
+        "analyze-codebase-for-mcp",
+        "review-codebase"
+      ],
+      "path": "metal/SKILL.md"
+    },
+    {
       "id": "grade-tcg-card",
       "type": "skill",
       "title": "Grade TCG Card",
@@ -7282,6 +7351,261 @@
       "path": "validate-analytical-method/SKILL.md"
     },
     {
+      "id": "evaluate-boolean-expression",
+      "type": "skill",
+      "title": "Evaluate Boolean Expression",
+      "domain": "digital-logic",
+      "complexity": "basic",
+      "language": "multi",
+      "description": "Evaluate and simplify Boolean expressions using truth tables, algebraic laws, and Karnaugh maps",
+      "tags": [
+        "digital-logic",
+        "boolean-algebra",
+        "truth-tables",
+        "karnaugh-maps",
+        "simplification"
+      ],
+      "related": [
+        "design-logic-circuit",
+        "argumentation"
+      ],
+      "path": "evaluate-boolean-expression/SKILL.md"
+    },
+    {
+      "id": "design-logic-circuit",
+      "type": "skill",
+      "title": "Design Logic Circuit",
+      "domain": "digital-logic",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Design combinational logic circuits from specification through gate-level implementation with NAND/NOR universality",
+      "tags": [
+        "digital-logic",
+        "combinational-circuits",
+        "logic-gates",
+        "nand-universality",
+        "adders"
+      ],
+      "related": [
+        "evaluate-boolean-expression",
+        "build-sequential-circuit",
+        "simulate-cpu-architecture"
+      ],
+      "path": "design-logic-circuit/SKILL.md"
+    },
+    {
+      "id": "build-sequential-circuit",
+      "type": "skill",
+      "title": "Build Sequential Circuit",
+      "domain": "digital-logic",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Build sequential logic circuits including flip-flops, registers, counters, and finite state machines",
+      "tags": [
+        "digital-logic",
+        "sequential-circuits",
+        "flip-flops",
+        "state-machines",
+        "registers"
+      ],
+      "related": [
+        "design-logic-circuit",
+        "simulate-cpu-architecture",
+        "model-markov-chain"
+      ],
+      "path": "build-sequential-circuit/SKILL.md"
+    },
+    {
+      "id": "simulate-cpu-architecture",
+      "type": "skill",
+      "title": "Simulate CPU Architecture",
+      "domain": "digital-logic",
+      "complexity": "advanced",
+      "language": "multi",
+      "description": "Design and simulate a minimal CPU architecture from logic gates",
+      "tags": [
+        "digital-logic",
+        "cpu-architecture",
+        "instruction-set",
+        "datapath",
+        "fetch-decode-execute"
+      ],
+      "related": [
+        "design-logic-circuit",
+        "build-sequential-circuit",
+        "evaluate-boolean-expression",
+        "derive-theoretical-result"
+      ],
+      "path": "simulate-cpu-architecture/SKILL.md"
+    },
+    {
+      "id": "analyze-magnetic-field",
+      "type": "skill",
+      "title": "Analyze Magnetic Field",
+      "domain": "electromagnetism",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Analyze magnetic field configurations using Biot-Savart, Ampere's law, and magnetic dipole models",
+      "tags": [
+        "electromagnetism",
+        "magnetic-fields",
+        "biot-savart",
+        "ampere",
+        "magnetic-materials"
+      ],
+      "related": [
+        "solve-electromagnetic-induction",
+        "formulate-maxwell-equations",
+        "design-electromagnetic-device",
+        "formulate-quantum-problem"
+      ],
+      "path": "analyze-magnetic-field/SKILL.md"
+    },
+    {
+      "id": "solve-electromagnetic-induction",
+      "type": "skill",
+      "title": "Solve Electromagnetic Induction",
+      "domain": "electromagnetism",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Solve electromagnetic induction problems using Faraday's law, Lenz's law, and mutual/self-inductance",
+      "tags": [
+        "electromagnetism",
+        "induction",
+        "faraday",
+        "lenz",
+        "inductance",
+        "rl-circuits"
+      ],
+      "related": [
+        "analyze-magnetic-field",
+        "formulate-maxwell-equations",
+        "design-electromagnetic-device",
+        "derive-theoretical-result"
+      ],
+      "path": "solve-electromagnetic-induction/SKILL.md"
+    },
+    {
+      "id": "formulate-maxwell-equations",
+      "type": "skill",
+      "title": "Formulate Maxwell Equations",
+      "domain": "electromagnetism",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Formulate and analyze problems using Maxwell's equations in differential and integral form",
+      "tags": [
+        "electromagnetism",
+        "maxwell-equations",
+        "electromagnetic-waves",
+        "poynting-vector",
+        "boundary-conditions"
+      ],
+      "related": [
+        "analyze-magnetic-field",
+        "solve-electromagnetic-induction",
+        "formulate-quantum-problem",
+        "derive-theoretical-result",
+        "analyze-diffusion-dynamics"
+      ],
+      "path": "formulate-maxwell-equations/SKILL.md"
+    },
+    {
+      "id": "design-electromagnetic-device",
+      "type": "skill",
+      "title": "Design Electromagnetic Device",
+      "domain": "electromagnetism",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Design practical electromagnetic devices including electromagnets, motors, generators, and transformers",
+      "tags": [
+        "electromagnetism",
+        "device-design",
+        "motors",
+        "generators",
+        "transformers",
+        "electromagnets"
+      ],
+      "related": [
+        "analyze-magnetic-field",
+        "solve-electromagnetic-induction",
+        "formulate-maxwell-equations",
+        "simulate-cpu-architecture"
+      ],
+      "path": "design-electromagnetic-device/SKILL.md"
+    },
+    {
+      "id": "analyze-magnetic-levitation",
+      "type": "skill",
+      "title": "Analyze Magnetic Levitation",
+      "domain": "levitation",
+      "complexity": "advanced",
+      "language": "natural",
+      "description": "Analyze magnetic levitation systems including Earnshaw's theorem and circumvention mechanisms",
+      "tags": [
+        "levitation",
+        "magnetic-levitation",
+        "earnshaw-theorem",
+        "superconducting",
+        "diamagnetic",
+        "maglev"
+      ],
+      "related": [
+        "evaluate-levitation-mechanism",
+        "analyze-magnetic-field",
+        "formulate-maxwell-equations",
+        "design-acoustic-levitation",
+        "formulate-quantum-problem"
+      ],
+      "path": "analyze-magnetic-levitation/SKILL.md"
+    },
+    {
+      "id": "design-acoustic-levitation",
+      "type": "skill",
+      "title": "Design Acoustic Levitation",
+      "domain": "levitation",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Design acoustic levitation setups using standing wave node trapping and ultrasonic transducer arrays",
+      "tags": [
+        "levitation",
+        "acoustic-levitation",
+        "standing-waves",
+        "ultrasonic",
+        "radiation-pressure"
+      ],
+      "related": [
+        "evaluate-levitation-mechanism",
+        "analyze-magnetic-levitation",
+        "derive-theoretical-result"
+      ],
+      "path": "design-acoustic-levitation/SKILL.md"
+    },
+    {
+      "id": "evaluate-levitation-mechanism",
+      "type": "skill",
+      "title": "Evaluate Levitation Mechanism",
+      "domain": "levitation",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Compare and select among levitation mechanisms for a given application",
+      "tags": [
+        "levitation",
+        "mechanism-selection",
+        "trade-study",
+        "magnetic",
+        "acoustic",
+        "aerodynamic",
+        "electrostatic"
+      ],
+      "related": [
+        "analyze-magnetic-levitation",
+        "design-acoustic-levitation",
+        "analyze-magnetic-field",
+        "argumentation"
+      ],
+      "path": "evaluate-levitation-mechanism/SKILL.md"
+    },
+    {
       "id": "agent:r-developer",
       "type": "agent",
       "title": "R Developer",
@@ -9347,6 +9671,72 @@
       "path": "agents/chromatographer.md"
     },
     {
+      "id": "agent:logician",
+      "type": "agent",
+      "title": "Logician",
+      "priority": "normal",
+      "description": "Digital logic specialist for Boolean algebra, gate-level circuit design, sequential logic, and CPU architecture simulation",
+      "tags": [
+        "digital-logic",
+        "boolean-algebra",
+        "circuits",
+        "cpu",
+        "gates",
+        "simulation",
+        "computer-architecture"
+      ],
+      "tools": [
+        "Read",
+        "Write",
+        "Edit",
+        "Bash",
+        "Grep",
+        "Glob"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "evaluate-boolean-expression",
+        "design-logic-circuit",
+        "build-sequential-circuit",
+        "simulate-cpu-architecture"
+      ],
+      "path": "agents/logician.md"
+    },
+    {
+      "id": "agent:physicist",
+      "type": "agent",
+      "title": "Physicist",
+      "priority": "normal",
+      "description": "Classical and applied physics specialist covering electromagnetism, levitation mechanisms, and physical device design",
+      "tags": [
+        "electromagnetism",
+        "levitation",
+        "maxwell",
+        "magnetic-fields",
+        "induction",
+        "physics",
+        "devices"
+      ],
+      "tools": [
+        "Read",
+        "Grep",
+        "Glob",
+        "WebFetch",
+        "WebSearch"
+      ],
+      "mcp_servers": [],
+      "skills": [
+        "analyze-magnetic-field",
+        "solve-electromagnetic-induction",
+        "formulate-maxwell-equations",
+        "design-electromagnetic-device",
+        "analyze-magnetic-levitation",
+        "design-acoustic-levitation",
+        "evaluate-levitation-mechanism"
+      ],
+      "path": "agents/physicist.md"
+    },
+    {
       "id": "team:r-package-review",
       "type": "team",
       "title": "R Package Review",
@@ -9609,6 +9999,28 @@
         "structure-elucidation"
       ],
       "path": "teams/analytical-chemistry.md"
+    },
+    {
+      "id": "team:physical-computing",
+      "type": "team",
+      "title": "Physical Computing",
+      "lead": "logician",
+      "members": [
+        "logician",
+        "physicist",
+        "theoretical-researcher"
+      ],
+      "coordination": "sequential",
+      "description": "Cross-disciplinary team for digital logic design and physical implementation — from Boolean gates to complete computing systems",
+      "tags": [
+        "digital-logic",
+        "electromagnetism",
+        "cpu",
+        "computer-architecture",
+        "cross-disciplinary",
+        "physics"
+      ],
+      "path": "teams/physical-computing.md"
     }
   ],
   "links": [
@@ -11370,6 +11782,36 @@
     {
       "source": "review-codebase",
       "target": "create-github-issues",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "review-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "review-skill-format",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "evolve-team",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "test-a2a-interop",
+      "type": "skill"
+    },
+    {
+      "source": "test-team-coordination",
+      "target": "assess-form",
       "type": "skill"
     },
     {
@@ -13933,6 +14375,51 @@
       "type": "skill"
     },
     {
+      "source": "metal",
+      "target": "athanor",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "chrysopoeia",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "transmute",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "create-skill",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "create-agent",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "observe",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "analyze-codebase-for-mcp",
+      "type": "skill"
+    },
+    {
+      "source": "metal",
+      "target": "review-codebase",
+      "type": "skill"
+    },
+    {
       "source": "grade-tcg-card",
       "target": "build-tcg-deck",
       "type": "skill"
@@ -15540,6 +16027,211 @@
     {
       "source": "validate-analytical-method",
       "target": "write-standard-operating-procedure",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-boolean-expression",
+      "target": "design-logic-circuit",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-boolean-expression",
+      "target": "argumentation",
+      "type": "skill"
+    },
+    {
+      "source": "design-logic-circuit",
+      "target": "evaluate-boolean-expression",
+      "type": "skill"
+    },
+    {
+      "source": "design-logic-circuit",
+      "target": "build-sequential-circuit",
+      "type": "skill"
+    },
+    {
+      "source": "design-logic-circuit",
+      "target": "simulate-cpu-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "build-sequential-circuit",
+      "target": "design-logic-circuit",
+      "type": "skill"
+    },
+    {
+      "source": "build-sequential-circuit",
+      "target": "simulate-cpu-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "build-sequential-circuit",
+      "target": "model-markov-chain",
+      "type": "skill"
+    },
+    {
+      "source": "simulate-cpu-architecture",
+      "target": "design-logic-circuit",
+      "type": "skill"
+    },
+    {
+      "source": "simulate-cpu-architecture",
+      "target": "build-sequential-circuit",
+      "type": "skill"
+    },
+    {
+      "source": "simulate-cpu-architecture",
+      "target": "evaluate-boolean-expression",
+      "type": "skill"
+    },
+    {
+      "source": "simulate-cpu-architecture",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-field",
+      "target": "solve-electromagnetic-induction",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-field",
+      "target": "formulate-maxwell-equations",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-field",
+      "target": "design-electromagnetic-device",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-field",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "solve-electromagnetic-induction",
+      "target": "analyze-magnetic-field",
+      "type": "skill"
+    },
+    {
+      "source": "solve-electromagnetic-induction",
+      "target": "formulate-maxwell-equations",
+      "type": "skill"
+    },
+    {
+      "source": "solve-electromagnetic-induction",
+      "target": "design-electromagnetic-device",
+      "type": "skill"
+    },
+    {
+      "source": "solve-electromagnetic-induction",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-maxwell-equations",
+      "target": "analyze-magnetic-field",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-maxwell-equations",
+      "target": "solve-electromagnetic-induction",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-maxwell-equations",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-maxwell-equations",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "formulate-maxwell-equations",
+      "target": "analyze-diffusion-dynamics",
+      "type": "skill"
+    },
+    {
+      "source": "design-electromagnetic-device",
+      "target": "analyze-magnetic-field",
+      "type": "skill"
+    },
+    {
+      "source": "design-electromagnetic-device",
+      "target": "solve-electromagnetic-induction",
+      "type": "skill"
+    },
+    {
+      "source": "design-electromagnetic-device",
+      "target": "formulate-maxwell-equations",
+      "type": "skill"
+    },
+    {
+      "source": "design-electromagnetic-device",
+      "target": "simulate-cpu-architecture",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-levitation",
+      "target": "evaluate-levitation-mechanism",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-levitation",
+      "target": "analyze-magnetic-field",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-levitation",
+      "target": "formulate-maxwell-equations",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-levitation",
+      "target": "design-acoustic-levitation",
+      "type": "skill"
+    },
+    {
+      "source": "analyze-magnetic-levitation",
+      "target": "formulate-quantum-problem",
+      "type": "skill"
+    },
+    {
+      "source": "design-acoustic-levitation",
+      "target": "evaluate-levitation-mechanism",
+      "type": "skill"
+    },
+    {
+      "source": "design-acoustic-levitation",
+      "target": "analyze-magnetic-levitation",
+      "type": "skill"
+    },
+    {
+      "source": "design-acoustic-levitation",
+      "target": "derive-theoretical-result",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-levitation-mechanism",
+      "target": "analyze-magnetic-levitation",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-levitation-mechanism",
+      "target": "design-acoustic-levitation",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-levitation-mechanism",
+      "target": "analyze-magnetic-field",
+      "type": "skill"
+    },
+    {
+      "source": "evaluate-levitation-mechanism",
+      "target": "argumentation",
       "type": "skill"
     },
     {
@@ -17428,6 +18120,61 @@
       "type": "agent"
     },
     {
+      "source": "agent:logician",
+      "target": "evaluate-boolean-expression",
+      "type": "agent"
+    },
+    {
+      "source": "agent:logician",
+      "target": "design-logic-circuit",
+      "type": "agent"
+    },
+    {
+      "source": "agent:logician",
+      "target": "build-sequential-circuit",
+      "type": "agent"
+    },
+    {
+      "source": "agent:logician",
+      "target": "simulate-cpu-architecture",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "analyze-magnetic-field",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "solve-electromagnetic-induction",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "formulate-maxwell-equations",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "design-electromagnetic-device",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "analyze-magnetic-levitation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "design-acoustic-levitation",
+      "type": "agent"
+    },
+    {
+      "source": "agent:physicist",
+      "target": "evaluate-levitation-mechanism",
+      "type": "agent"
+    },
+    {
       "source": "team:r-package-review",
       "target": "agent:r-developer",
       "type": "team"
@@ -17620,6 +18367,21 @@
     {
       "source": "team:analytical-chemistry",
       "target": "agent:senior-researcher",
+      "type": "team"
+    },
+    {
+      "source": "team:physical-computing",
+      "target": "agent:logician",
+      "type": "team"
+    },
+    {
+      "source": "team:physical-computing",
+      "target": "agent:physicist",
+      "type": "team"
+    },
+    {
+      "source": "team:physical-computing",
+      "target": "agent:theoretical-researcher",
       "type": "team"
     }
   ]

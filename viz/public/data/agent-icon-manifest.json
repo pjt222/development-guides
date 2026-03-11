@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_agents": 62,
+    "total_agents": 64,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -639,6 +639,16 @@
     {
       "agentId": "chromatographer",
       "path": "public/icons/cyberpunk/agents/chromatographer.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "logician",
+      "path": "public/icons/cyberpunk/agents/logician.webp",
+      "status": "done"
+    },
+    {
+      "agentId": "physicist",
+      "path": "public/icons/cyberpunk/agents/physicist.webp",
       "status": "done"
     }
   ]

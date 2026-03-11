@@ -549,3 +549,95 @@ glyph_team_analytical_chemistry <- function(cx, cy, s, col, bright) {
       color = bright, linewidth = .lw(s, 2))
   )
 }
+
+# ── glyph_team_physical_computing: sequential 3-node flow (gate → magnet → equation) ──
+glyph_team_physical_computing <- function(cx, cy, s, col, bright) {
+  layers <- list()
+
+  # Three nodes in a left-to-right sequential flow
+  node_xs <- c(cx - 20 * s, cx, cx + 20 * s)
+  node_y <- cy
+  node_r <- 8 * s
+
+  # Connection arrows between nodes
+  for (i in 1:2) {
+    arrow_line <- data.frame(
+      x = c(node_xs[i] + node_r, node_xs[i + 1] - node_r),
+      y = c(node_y, node_y)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = arrow_line, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.8))
+    # Arrow head
+    ah <- data.frame(
+      x = node_xs[i + 1] + c(-node_r - 4, -node_r, -node_r - 4) * s / s,
+      y = node_y + c(3, 0, -3) * s
+    )
+    # Recalculate with proper offset
+    ah_tip_x <- node_xs[i + 1] - node_r
+    ah <- data.frame(
+      x = c(ah_tip_x - 4 * s, ah_tip_x, ah_tip_x - 4 * s),
+      y = node_y + c(3, 0, -3) * s
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = ah, .aes(x, y),
+      fill = hex_with_alpha(bright, 0.6), color = "transparent", linewidth = 0)
+  }
+
+  # Node 1: Logic gate (simplified AND-gate D-shape)
+  n1x <- node_xs[1]
+  t_arc1 <- seq(-pi / 2, pi / 2, length.out = 20)
+  gate <- data.frame(
+    x = c(n1x - 5 * s, n1x - 5 * s, n1x + 6 * s * cos(t_arc1), n1x - 5 * s),
+    y = c(node_y - 6 * s, node_y + 6 * s, node_y + 6 * s * sin(t_arc1), node_y - 6 * s)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = gate, .aes(x, y),
+    fill = hex_with_alpha(col, 0.15), color = bright, linewidth = .lw(s, 1.8))
+
+  # Node 2: Magnet (horseshoe shape)
+  n2x <- node_xs[2]
+  t_mag <- seq(0, pi, length.out = 30)
+  mag_r <- 6 * s
+  horseshoe <- data.frame(
+    x = n2x + mag_r * cos(t_mag),
+    y = node_y + mag_r * sin(t_mag) - 2 * s
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = horseshoe, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2.5))
+  # Magnet legs
+  for (side in c(-1, 1)) {
+    leg <- data.frame(
+      x = c(n2x + side * mag_r, n2x + side * mag_r),
+      y = c(node_y - 2 * s, node_y - 7 * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = leg, .aes(x, y),
+      color = bright, linewidth = .lw(s, 2.5))
+  }
+
+  # Node 3: Equation symbol (sigma / integral-like curve)
+  n3x <- node_xs[3]
+  t_sig <- seq(-pi / 2, pi / 2, length.out = 30)
+  sigma <- data.frame(
+    x = n3x + 5 * s * cos(t_sig + pi),
+    y = node_y + 7 * s * sin(t_sig)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = sigma, .aes(x, y),
+    color = bright, linewidth = .lw(s, 2.5))
+
+  # Outer node circles (faint)
+  for (nx in node_xs) {
+    circ <- data.frame(x0 = nx, y0 = node_y, r = node_r)
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = circ,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(col, 0.08), color = hex_with_alpha(bright, 0.4),
+      linewidth = .lw(s, 1.2))
+  }
+
+  # Label: "sequential" flow indicator (thin bar below nodes)
+  bar <- data.frame(
+    x = c(node_xs[1] - node_r, node_xs[3] + node_r),
+    y = c(node_y - 14 * s, node_y - 14 * s)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = bar, .aes(x, y),
+    color = hex_with_alpha(col, 0.25), linewidth = .lw(s, 1))
+
+  layers
+}

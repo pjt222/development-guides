@@ -58,6 +58,9 @@ const DOMAIN_STYLES = {
   'visualization':       { basePrompt: 'Data chart, plot grid, color palette, graph axis',            glow: 'chart-green' },
   '3d-printing':         { basePrompt: 'Layer-by-layer print, FDM nozzle, 3D model',                 glow: 'filament-blue' },
   'entomology':          { basePrompt: 'Insect specimen, magnifying lens, field notebook, entomological pin', glow: 'leaf-green' },
+  'digital-logic':       { basePrompt: 'Logic gate symbol, binary truth table, circuit diagram',            glow: 'electric-cyan' },
+  'electromagnetism':    { basePrompt: 'Magnetic field lines, solenoid coil, electromagnetic wave',         glow: 'copper-orange' },
+  'levitation':          { basePrompt: 'Floating object, standing wave, magnetic suspension',               glow: 'hover-blue' },
 };
 
 // ── Per-skill keyword extraction ────────────────────────────────────
@@ -250,6 +253,20 @@ function skillKeywords(id, title) {
     'prepare-print-model':           'sliced model layers, support generation',
     'select-print-material':         'filament spool, material properties',
     'troubleshoot-print-issues':     'printer nozzle, wrench, adhesion fix',
+    // digital-logic (4)
+    'evaluate-boolean-expression':   'truth table, Boolean algebra, logic gates',
+    'design-logic-circuit':          'NAND gate, combinational logic, schematic',
+    'build-sequential-circuit':      'flip-flop, state machine, clock edge',
+    'simulate-cpu-architecture':     'CPU chip, ALU, instruction pipeline',
+    // electromagnetism (4)
+    'analyze-magnetic-field':        'bar magnet, field lines, N-S poles',
+    'solve-electromagnetic-induction':'Faraday coil, induced current, solenoid',
+    'formulate-maxwell-equations':   'Maxwell wave, E and B fields, sinusoid',
+    'design-electromagnetic-device': 'motor coil, stator rotor, electromagnetic',
+    // levitation (3)
+    'analyze-magnetic-levitation':   'maglev float, superconductor, magnetic gap',
+    'design-acoustic-levitation':    'standing wave, acoustic node, trapped particle',
+    'evaluate-levitation-mechanism': 'comparison table, levitation methods, tradeoff',
   };
 
   if (overrides[id]) return overrides[id];

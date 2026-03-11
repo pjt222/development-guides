@@ -4,7 +4,7 @@
     "pipeline": "R/ggplot2 + ggfx neon glow",
     "resolution": "1024x1024",
     "format": "webp",
-    "total_teams": 12,
+    "total_teams": 13,
     "palettes": [
       "cyberpunk",
       "viridis",
@@ -139,6 +139,11 @@
     {
       "teamId": "analytical-chemistry",
       "path": "public/icons/cyberpunk/teams/analytical-chemistry.webp",
+      "status": "done"
+    },
+    {
+      "teamId": "physical-computing",
+      "path": "public/icons/cyberpunk/teams/physical-computing.webp",
       "status": "done"
     }
   ]

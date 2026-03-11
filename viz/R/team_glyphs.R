@@ -17,5 +17,6 @@ TEAM_GLYPHS <- list(
   "scrum-team"                  = "glyph_team_scrum",
   "opaque-team"                 = "glyph_team_opaque",
   "entomology"                  = "glyph_team_entomology",
-  "analytical-chemistry"        = "glyph_team_analytical_chemistry"
+  "analytical-chemistry"        = "glyph_team_analytical_chemistry",
+  "physical-computing"          = "glyph_team_physical_computing"
 )

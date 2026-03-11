@@ -2703,3 +2703,102 @@ glyph_agent_chromatographer <- function(cx, cy, s, col, bright) {
   }
   layers
 }
+
+# ── glyph_agent_logician: NAND gate with binary digits ────────────────────────
+glyph_agent_logician <- function(cx, cy, s, col, bright) {
+  layers <- list()
+
+  # Gate body (D-shape)
+  t_arc <- seq(-pi / 2, pi / 2, length.out = 30)
+  arc_r <- 14 * s
+  body <- data.frame(
+    x = c(cx - 10 * s, cx - 10 * s,
+          cx + arc_r * cos(t_arc),
+          cx - 10 * s),
+    y = c(cy - 12 * s, cy + 12 * s,
+          cy + arc_r * sin(t_arc),
+          cy - 12 * s)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_polygon(data = body, .aes(x, y),
+    fill = hex_with_alpha(col, 0.12), color = bright, linewidth = .lw(s, 2.2))
+
+  # Inversion bubble
+  bubble <- data.frame(x0 = cx + 16 * s, y0 = cy, r = 3 * s)
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = bubble,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(col, 0.05), color = bright, linewidth = .lw(s, 1.5))
+
+  # Input lines
+  for (yoff in c(6, -6)) {
+    inp <- data.frame(
+      x = c(cx - 22 * s, cx - 10 * s),
+      y = c(cy + yoff * s, cy + yoff * s)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = inp, .aes(x, y),
+      color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.5))
+  }
+
+  # Output line
+  outp <- data.frame(
+    x = c(cx + 19 * s, cx + 26 * s),
+    y = c(cy, cy)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = outp, .aes(x, y),
+    color = hex_with_alpha(bright, 0.6), linewidth = .lw(s, 1.5))
+
+  # Binary digit indicators (0 and 1)
+  zero <- data.frame(x0 = cx - 22 * s, y0 = cy + 16 * s, r = 3 * s)
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = zero,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = "transparent", color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.5))
+
+  # "1" as a vertical bar
+  one <- data.frame(
+    x = c(cx + 24 * s, cx + 24 * s),
+    y = c(cy + 13 * s, cy + 19 * s)
+  )
+  layers[[length(layers) + 1]] <- ggplot2::geom_path(data = one, .aes(x, y),
+    color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 2))
+
+  layers
+}
+
+# ── glyph_agent_physicist: atom orbital rings around central dot ───────────────
+glyph_agent_physicist <- function(cx, cy, s, col, bright) {
+  layers <- list()
+
+  # Three elliptical orbital rings at different tilts
+  orbit_r <- 22 * s
+  orbit_minor <- 8 * s
+
+  tilts <- c(0, 2 * pi / 3, 4 * pi / 3)
+  for (tilt in tilts) {
+    t_ell <- seq(0, 2 * pi, length.out = 60)
+    ell <- data.frame(
+      x = cx + orbit_r * cos(t_ell) * cos(tilt) - orbit_minor * sin(t_ell) * sin(tilt),
+      y = cy + orbit_r * cos(t_ell) * sin(tilt) + orbit_minor * sin(t_ell) * cos(tilt)
+    )
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(data = ell, .aes(x, y),
+      color = hex_with_alpha(bright, 0.5), linewidth = .lw(s, 1.8))
+  }
+
+  # Central nucleus
+  nucleus <- data.frame(x0 = cx, y0 = cy, r = 5 * s)
+  layers[[length(layers) + 1]] <- ggforce::geom_circle(data = nucleus,
+    .aes(x0 = x0, y0 = y0, r = r),
+    fill = hex_with_alpha(bright, 0.4), color = bright, linewidth = .lw(s, 2))
+
+  # Electron dots on orbits
+  for (i in seq_along(tilts)) {
+    tilt <- tilts[i]
+    t_e <- i * 2 * pi / 3 + pi / 6
+    ex <- cx + orbit_r * cos(t_e) * cos(tilt) - orbit_minor * sin(t_e) * sin(tilt)
+    ey <- cy + orbit_r * cos(t_e) * sin(tilt) + orbit_minor * sin(t_e) * cos(tilt)
+    electron <- data.frame(x0 = ex, y0 = ey, r = 2.5 * s)
+    layers[[length(layers) + 1]] <- ggforce::geom_circle(data = electron,
+      .aes(x0 = x0, y0 = y0, r = r),
+      fill = hex_with_alpha(bright, 0.7), color = bright, linewidth = .lw(s, 1.2))
+  }
+
+  layers
+}
