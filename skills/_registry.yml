@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 299
+total_skills: 310
 
 domains:
   r-packages:
@@ -1706,3 +1706,70 @@ domains:
         complexity: advanced
         language: natural
         description: Validate analytical methods per ICH Q2 covering specificity, linearity, accuracy, precision, and robustness
+
+  digital-logic:
+    description: Boolean algebra, logic gates, combinational and sequential circuits, and CPU architecture simulation
+    skills:
+      - id: evaluate-boolean-expression
+        path: evaluate-boolean-expression/SKILL.md
+        complexity: basic
+        language: multi
+        description: Evaluate and simplify Boolean expressions using truth tables, algebraic laws, and Karnaugh maps
+      - id: design-logic-circuit
+        path: design-logic-circuit/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Design combinational logic circuits from specification through gate-level implementation with NAND/NOR universality
+      - id: build-sequential-circuit
+        path: build-sequential-circuit/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Build sequential logic circuits including flip-flops, registers, counters, and finite state machines
+      - id: simulate-cpu-architecture
+        path: simulate-cpu-architecture/SKILL.md
+        complexity: advanced
+        language: multi
+        description: Design and simulate a minimal CPU architecture from logic gates
+
+  electromagnetism:
+    description: Electric and magnetic fields, Maxwell's equations, electromagnetic induction, and practical electromagnetic devices
+    skills:
+      - id: analyze-magnetic-field
+        path: analyze-magnetic-field/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Analyze magnetic field configurations using Biot-Savart, Ampere's law, and magnetic dipole models
+      - id: solve-electromagnetic-induction
+        path: solve-electromagnetic-induction/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Solve electromagnetic induction problems using Faraday's law, Lenz's law, and mutual/self-inductance
+      - id: formulate-maxwell-equations
+        path: formulate-maxwell-equations/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Formulate and analyze problems using Maxwell's equations in differential and integral form
+      - id: design-electromagnetic-device
+        path: design-electromagnetic-device/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Design practical electromagnetic devices including electromagnets, motors, generators, and transformers
+
+  levitation:
+    description: Physical levitation mechanisms including magnetic, acoustic, aerodynamic, and electrostatic
+    skills:
+      - id: analyze-magnetic-levitation
+        path: analyze-magnetic-levitation/SKILL.md
+        complexity: advanced
+        language: natural
+        description: Analyze magnetic levitation systems including Earnshaw's theorem and circumvention mechanisms
+      - id: design-acoustic-levitation
+        path: design-acoustic-levitation/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Design acoustic levitation setups using standing wave node trapping and ultrasonic transducer arrays
+      - id: evaluate-levitation-mechanism
+        path: evaluate-levitation-mechanism/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Compare and select among levitation mechanisms for a given application

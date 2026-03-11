@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 62 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 64 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -59,6 +59,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [kabalist](kabalist.md) | normal | Kabbalistic studies guide for Tree of Life navigation, gematria computation, and Hebrew letter mysticism with scholarly and contemplative approaches |
 | [lapidary](lapidary.md) | normal | Gemstone specialist for identification, cutting techniques, polishing methods, and value appraisal with safety-first approach |
 | [librarian](librarian.md) | normal | Knowledge organization and library management specialist for cataloging, classification, collection curation, material preservation, and information retrieval |
+| [logician](logician.md) | normal | Digital logic specialist for Boolean algebra, gate-level circuit design, sequential logic, and CPU architecture simulation |
 | [markovian](markovian.md) | normal | Stochastic process specialist covering Markov chains, hidden Markov models, MDPs, MCMC, and convergence diagnostics |
 | [martial-artist](martial-artist.md) | normal | Defensive martial arts instructor for tai chi, aikido, and situational awareness with de-escalation and grounding techniques |
 | [mcp-developer](mcp-developer.md) | normal | MCP server development specialist that analyzes codebases to identify tool-exposure opportunities and scaffolds Model Context Protocol servers |
@@ -66,6 +67,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [mystic](mystic.md) | normal | Esoteric practices guide for energy healing, meditation facilitation, and coordinate remote viewing with structured protocols |
 | [nlp-specialist](nlp-specialist.md) | normal | Computational natural language processing specialist for text preprocessing, transformer fine-tuning, named entity recognition, sentiment analysis, and NLP evaluation metrics |
 | [number-theorist](number-theorist.md) | normal | Number theory specialist for prime analysis, modular arithmetic, and Diophantine equations with computational and proof-based approaches |
+| [physicist](physicist.md) | normal | Classical and applied physics specialist covering electromagnetism, levitation mechanisms, and physical device design |
 | [project-manager](project-manager.md) | normal | Project management agent for agile and classic methodologies covering charters, WBS, sprints, backlogs, status reports, and retrospectives |
 | [prospector](prospector.md) | normal | Mineral and precious metal finder for geological reading, field identification, alluvial gold recovery, and responsible site assessment |
 | [putior-integrator](putior-integrator.md) | normal | Workflow visualization specialist that integrates putior into arbitrary codebases for Mermaid diagram generation |
