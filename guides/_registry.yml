@@ -159,8 +159,8 @@ guides:
   - id: epigenetics-activation-control
     path: guides/epigenetics-activation-control.md
     title: "Epigenetics-Inspired Activation Control"
-    description: "Runtime activation profiles controlling which agents, skills, and teams are expressed"
+    description: "Runtime activation profiles controlling which agents, skills, and teams are expressed, grounded in molecular epigenetics"
     category: design
-    agents: []
+    agents: [senior-researcher, advocatus-diaboli]
     teams: []
-    skills: []
+    skills: [review-research, format-citations]

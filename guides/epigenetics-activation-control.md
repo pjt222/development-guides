@@ -1,10 +1,10 @@
 ---
 title: "Epigenetics-Inspired Activation Control"
-description: "Runtime activation profiles controlling which agents, skills, and teams are expressed"
+description: "Runtime activation profiles controlling which agents, skills, and teams are expressed, grounded in molecular epigenetics"
 category: design
-agents: []
+agents: [senior-researcher, advocatus-diaboli]
 teams: []
-skills: []
+skills: [review-research, format-citations]
 ---
 
 # Epigenetics-Inspired Activation Control
@@ -14,23 +14,25 @@ A runtime activation profile system that controls which agents, skills, and team
 ## Table of Contents
 1. [Summary](#summary)
 2. [Motivation](#motivation)
-3. [Biological Metaphor](#biological-metaphor)
-4. [Schema Specification](#schema-specification)
-5. [Inheritance and Merge Rules](#inheritance-and-merge-rules)
-6. [Default Activation Behavior](#default-activation-behavior)
-7. [Discovery Integration](#discovery-integration)
-8. [Example Profiles](#example-profiles)
-9. [Performance Considerations](#performance-considerations)
-10. [Implementation Plan](#implementation-plan)
-11. [Future Extensions](#future-extensions)
+3. [Scientific Basis](#scientific-basis)
+4. [Biological Metaphor](#biological-metaphor)
+5. [Schema Specification](#schema-specification)
+6. [Inheritance and Merge Rules](#inheritance-and-merge-rules)
+7. [Default Activation Behavior](#default-activation-behavior)
+8. [Discovery Integration](#discovery-integration)
+9. [Example Profiles](#example-profiles)
+10. [Performance Considerations](#performance-considerations)
+11. [Implementation Plan](#implementation-plan)
+12. [Future Extensions](#future-extensions)
+13. [References](#references)
 
 ## Summary
 
-The activation control system introduces a declarative YAML configuration layer (`activation.yml`) that filters which agents, skills, and teams are available at runtime without altering the underlying registry files or definition documents. Like biological epigenetics, where chemical marks on DNA control which genes are expressed in a given cell type without changing the DNA sequence itself, activation profiles control which components are "expressed" in a given project context without changing the component definitions. Profiles cascade from global to project to team to session, with well-defined merge semantics and conflict resolution rules.
+The activation control system introduces a declarative YAML configuration layer (`activation.yml`) that filters which agents, skills, and teams are available at runtime without altering the underlying registry files or definition documents. In molecular biology, epigenetic mechanisms — DNA methylation, histone modification, chromatin remodeling, and non-coding RNA regulation — control which genes are expressed in a given cell type without altering the DNA sequence (Goldberg et al., 2007). This system applies analogous principles: activation profiles control which components are "expressed" in a given project context without changing the component definitions. Profiles cascade from global to project to team to session, with well-defined merge semantics and conflict resolution rules.
 
 ## Motivation
 
-The agent-almanac repository currently contains 59 agents, 278 skills across 50 domains, and 10 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
+The agent-almanac repository currently contains 64 agents, 310 skills across 55 domains, and 13 teams. This breadth is a strength for a general-purpose library, but in any specific project context, most of these components are irrelevant noise:
 
 - An R package developer has no use for the survivalist, shapeshifter, or tcg-specialist agents.
 - A GxP compliance project does not need bushcraft, alchemy, or swarm skills.
@@ -45,30 +47,60 @@ Today, the only option is "everything active, all the time." This creates severa
 
 The activation control system solves these problems by adding a thin filtering layer that sits between the registries and the runtime. Component definitions remain unchanged, centrally maintained, and version-controlled. Only the filter is project-specific.
 
+## Scientific Basis
+
+### What Is Epigenetics?
+
+The term "epigenetics" was coined by Conrad Hal Waddington (1942) to describe how genotypes give rise to phenotypes during development. Waddington's "epigenetic landscape" (1957) — a visual metaphor of a ball rolling down branching valleys — captured how cells progressively commit to fates without changing their DNA. The modern molecular definition has narrowed: epigenetics refers to heritable changes in gene expression that do not involve changes to the underlying DNA sequence (Bird, 2007; Goldberg et al., 2007). These changes are mediated by chemical modifications to DNA and its associated proteins, and by regulatory RNA molecules.
+
+### Core Mechanisms
+
+Four well-characterized molecular mechanisms control epigenetic gene regulation. Each maps to a specific activation control concept in this system.
+
+1. **DNA methylation** — Addition of methyl groups (-CH3) to cytosine bases, primarily at CpG dinucleotides. Methylation of CpG islands in gene promoter regions is strongly associated with transcriptional silencing: methylated promoters recruit methyl-CpG-binding domain (MBD) proteins that in turn recruit histone deacetylase complexes, compacting the local chromatin and blocking transcription factor access (Bird, 2002; Cedar & Bergman, 2009). Critically, methylation does not alter the DNA sequence — it adds a reversible chemical mark that suppresses expression. **System analog**: the `exclude` rule suppresses a component without modifying its definition file.
+
+2. **Histone modifications** — Post-translational modifications to the N-terminal tails of histone proteins (acetylation, methylation, phosphorylation, ubiquitination) alter chromatin accessibility. The "histone code hypothesis" (Strahl & Allis, 2000) proposes that specific combinations of modifications are read by effector proteins to produce distinct transcriptional outcomes. Acetylation of lysine residues (e.g., H3K27ac) neutralizes positive charges on histones, weakening their grip on negatively charged DNA and opening chromatin for transcription (Kouzarides, 2007). Deacetylation reverses this, condensing chromatin. **System analog**: the `include` rule explicitly activates a component, opening it for use.
+
+3. **Chromatin remodeling** — ATP-dependent remodeling complexes (SWI/SNF, ISWI, CHD, INO80 families) physically reposition, eject, or restructure nucleosomes, switching entire genomic regions between accessible euchromatin and condensed heterochromatin states (Clapier & Cairns, 2009). Unlike the targeted nature of methylation or acetylation, chromatin remodeling restructures the landscape wholesale. **System analog**: the `mode` switch between `allowlist` and `blocklist` restructures the entire activation landscape for a component type.
+
+4. **Non-coding RNA (ncRNA)** — Long non-coding RNAs (lncRNAs) and microRNAs (miRNAs) regulate gene expression post-transcriptionally or guide chromatin-modifying complexes to specific genomic loci. The canonical example is Xist, a 17 kb lncRNA that coats one X chromosome in female mammals, recruiting the Polycomb Repressive Complex 2 (PRC2) to silence the entire chromosome — yet individual genes can escape this silencing through local regulatory mechanisms (Heard & Martienssen, 2014; Mattick & Makunin, 2006). **System analog**: individual skill rules that override domain-level rules — fine-grained regulation within a broadly controlled region.
+
+### Key Properties
+
+These mechanisms share four properties that make them particularly apt as a conceptual model for our activation system:
+
+- **Reversibility**: Unlike mutations, epigenetic marks can be added and removed by specific enzymes. DNA methyltransferases (DNMTs) add methyl groups; ten-eleven translocation (TET) enzymes oxidize them for removal. Histone acetyltransferases (HATs) add acetyl groups; histone deacetylases (HDACs) remove them (Jaenisch & Bird, 2003). Activation rules are similarly reversible — they can be added or removed without touching definition files.
+
+- **Heritability**: Epigenetic marks are propagated through cell division via maintenance mechanisms. DNMT1 recognizes hemi-methylated DNA after replication and copies the methylation pattern to the daughter strand (Reik, 2007). In our system, activation profiles cascade from global to project to team to session, each level inheriting from its parent.
+
+- **Context-specificity**: The same human genome (~20,000 protein-coding genes) produces over 200 distinct cell types, each with a unique epigenetic signature determining which genes are expressed (Allis & Jenuwein, 2016). Analogously, the same registry of 64 agents, 310 skills, and 13 teams can produce radically different working environments depending on the activation profile.
+
+- **Combinatorial logic**: Multiple epigenetic marks interact. "Bivalent domains" — regions carrying both activating H3K4me3 and repressive H3K27me3 marks — poise developmental genes for rapid activation or silencing depending on context (Bernstein et al., 2006). The activation system similarly supports combinatorial rules: an agent can be simultaneously included (overriding a higher-level exclusion) and amplified (boosting its priority).
+
 ## Biological Metaphor
 
-The design borrows its conceptual model from epigenetics, the study of how gene expression is regulated without altering the underlying DNA sequence. The mapping is intentionally precise:
+The design draws on the well-characterized molecular mechanisms described above. Each system concept maps to a specific biological mechanism with cited evidence:
 
-| Biology | System Concept | Details |
+| Biology | System Concept | Scientific Basis |
 |---|---|---|
-| Genome | Full registry set | All agents, skills, and teams defined in `_registry.yml` files |
-| Gene | Individual component | A single agent, skill, or team definition file |
-| Epigenetic mark | Activation rule | An `include`, `exclude`, or `amplify` directive in `activation.yml` |
-| Tissue type | Project context | The combination of project path, environment, and user role |
-| Gene expression | Runtime availability | Whether a component appears in Claude Code's active set |
-| DNA methylation (silencing) | `exclude` rule | Suppresses a normally-active component without deleting it |
-| Histone acetylation (activating) | `include` rule | Explicitly activates a component, even if the mode would otherwise exclude it |
-| Enhancer element | `amplify` rule | Boosts a component's selection priority without changing its definition |
-| Genomic imprinting | Default activation state | The inherited baseline from parent context (global defaults) |
-| Chromatin remodeling | Mode switch | Changing between `allowlist` and `blocklist` restructures the entire activation landscape |
-| Cell differentiation | Profile specialization | A project profile specializes the general library for a specific purpose |
+| Genome | Full registry set | The complete set of protein-coding and regulatory sequences; ~20,000 genes in humans (International Human Genome Sequencing Consortium, 2004) |
+| Gene | Individual component | A discrete functional unit — a single agent, skill, or team definition file |
+| DNA methylation (CpG silencing) | `exclude` rule | Methylation of CpG islands in promoter regions suppresses transcription without altering the sequence (Bird, 2002) |
+| Histone acetylation | `include` rule | Acetylation neutralizes positive histone charges, opening chromatin for transcription (Kouzarides, 2007) |
+| Enhancer element | `amplify` rule | Distal regulatory elements that increase transcription of target genes, sometimes across hundreds of kilobases (Pennacchio et al., 2013) |
+| Constitutive expression | Default activation state | Housekeeping genes expressed in all cell types regardless of epigenetic context (Eisenberg & Levanon, 2013) |
+| Chromatin remodeling | Mode switch (`allowlist`/`blocklist`) | ATP-dependent complexes restructure the entire chromatin landscape between euchromatin and heterochromatin (Clapier & Cairns, 2009) |
+| Cell differentiation | Profile specialization | Progressive restriction of gene expression during development (Waddington, 1957) |
+| Tissue type | Project context | A differentiated cell type with a stable, context-specific expression pattern |
+| Gene expression | Runtime availability | Whether a component is active (transcribed) in the current context |
+| ncRNA regulation | Skill-level override within domain | lncRNAs and miRNAs fine-tune expression of individual genes within broadly regulated regions (Mattick & Makunin, 2006) |
 
-The metaphor's value is not decorative. It provides a mental model for reasoning about the system:
+The metaphor's value is not decorative — it provides a mental model grounded in molecular biology for reasoning about the system's behavior. The key properties that make epigenetics an apt model are detailed in the Scientific Basis section above. In summary:
 
-- **Reversibility**: Epigenetic marks are reversible; activation rules can be added and removed without touching definitions.
-- **Context-specificity**: The same genome produces liver cells and neurons; the same registry produces R-development and compliance contexts.
-- **Inheritance**: Daughter cells inherit epigenetic state from parent cells; project profiles inherit from global profiles.
-- **Independence**: Epigenetic marks do not alter the DNA sequence; activation rules do not alter definition files.
+- **Reversibility**: DNMTs add methyl groups; TET enzymes remove them. HATs add acetyl groups; HDACs remove them (Jaenisch & Bird, 2003). Activation rules are similarly reversible — added or removed without modifying definition files.
+- **Context-specificity**: The same ~20,000 genes produce liver hepatocytes and cortical neurons through differential epigenetic regulation (Allis & Jenuwein, 2016). The same registry produces R-development and compliance contexts through different activation profiles.
+- **Inheritance**: DNMT1 copies methylation patterns to daughter DNA strands during replication (Reik, 2007). Project profiles inherit from global profiles through a defined cascade.
+- **Independence**: Epigenetic marks modify gene expression without altering the DNA sequence — the central principle of epigenetics (Goldberg et al., 2007). Activation rules modify component availability without altering definition files.
 
 ## Schema Specification
 
@@ -200,7 +232,7 @@ Controls skill availability. Supports both domain-level and individual skill-lev
 - `skills.exclude.domains`: List of domain IDs. All skills in listed domains are suppressed.
 - `skills.exclude.skills`: List of individual skill IDs. These skills are suppressed regardless of domain rules.
 
-**Precedence within skills**: Individual skill rules override domain rules. If domain `esoteric` is excluded but skill `meditate` is individually included, `meditate` is active. This mirrors epigenetic enhancers overriding regional silencing.
+**Precedence within skills**: Individual skill rules override domain rules. If domain `esoteric` is excluded but skill `meditate` is individually included, `meditate` is active. This mirrors how non-coding RNAs and enhancer elements can activate individual genes within a broadly silenced chromatin domain (Heard & Martienssen, 2014; Pennacchio et al., 2013).
 
 #### `teams` (optional)
 Controls team availability. Identical semantics to `agents` but without `amplify` (teams are selected explicitly, not by priority matching).
@@ -310,9 +342,9 @@ function resolve_activation(levels: [global, project, team, session]):
 
 When no `activation.yml` exists at any level, the system behaves exactly as it does today:
 
-- All 59 agents are available for selection.
-- All 278 skills across 50 domains are invocable.
-- All 10 teams can be spawned.
+- All 64 agents are available for selection.
+- All 310 skills across 55 domains are invocable.
+- All 13 teams can be spawned.
 - Default skills (`meditate`, `heal`) are inherited by all agents.
 
 This ensures full backward compatibility. Existing projects require zero changes.
@@ -684,7 +716,7 @@ The activation resolver runs once at session startup and caches the resolved sta
 
 1. **File I/O**: Read up to 4 small YAML files (global, project, team, session). These are typically under 100 lines each.
 2. **YAML parsing**: Parse 4 files. Using a standard YAML parser, this completes in under 10ms.
-3. **Set operations**: Apply include/exclude/amplify rules. With 59 agents and 278 skills, these are microsecond-level set operations.
+3. **Set operations**: Apply include/exclude/amplify rules. With 64 agents and 310 skills, these are microsecond-level set operations.
 4. **Total overhead**: Under 50ms at session start. No per-tool-call cost.
 
 ### Caching strategy
@@ -837,9 +869,30 @@ activation:
 
 When the r-package-review team is spawned, its embedded activation rules would merge into the session's active profile, automatically scoping the skill set to what the team needs.
 
+## References
+
+- Allis, C. D., & Jenuwein, T. (2016). The molecular hallmarks of epigenetic control. *Nature Reviews Genetics*, 17(8), 487-500.
+- Bernstein, B. E., Mikkelsen, T. S., Xie, X., Kamal, M., Huebert, D. J., Cuff, J., ... & Lander, E. S. (2006). A bivalent chromatin structure marks key developmental genes in embryonic stem cells. *Cell*, 125(2), 315-326.
+- Bird, A. (2002). DNA methylation patterns and epigenetic memory. *Genes & Development*, 16(1), 6-21.
+- Bird, A. (2007). Perceptions of epigenetics. *Nature*, 447(7143), 396-398.
+- Cedar, H., & Bergman, Y. (2009). Linking DNA methylation and histone modification: patterns and paradigms. *Nature Reviews Genetics*, 10(5), 295-304.
+- Clapier, C. R., & Cairns, B. R. (2009). The biology of chromatin remodeling complexes. *Annual Review of Biochemistry*, 78, 273-304.
+- Eisenberg, E., & Levanon, E. Y. (2013). Human housekeeping genes, revisited. *Trends in Genetics*, 29(10), 569-574.
+- Goldberg, A. D., Allis, C. D., & Bernstein, E. (2007). Epigenetics: A landscape takes shape. *Cell*, 128(4), 635-638.
+- Heard, E., & Martienssen, R. A. (2014). Transgenerational epigenetic inheritance: myths and mechanisms. *Cell*, 157(1), 95-109.
+- International Human Genome Sequencing Consortium. (2004). Finishing the euchromatic sequence of the human genome. *Nature*, 431(7011), 931-945.
+- Jaenisch, R., & Bird, A. (2003). Epigenetic regulation of gene expression: how the genome integrates intrinsic and environmental signals. *Nature Genetics*, 33(Suppl), 245-254.
+- Kouzarides, T. (2007). Chromatin modifications and their function. *Cell*, 128(4), 693-705.
+- Mattick, J. S., & Makunin, I. V. (2006). Non-coding RNA. *Human Molecular Genetics*, 15(suppl_1), R17-R29.
+- Pennacchio, L. A., Bickmore, W., Dean, A., Nobrega, M. A., & Bejerano, G. (2013). Enhancers: five essential questions. *Nature Reviews Genetics*, 14(4), 288-295.
+- Reik, W. (2007). Stability and flexibility of epigenetic gene regulation in mammalian development. *Nature*, 447(7143), 425-432.
+- Strahl, B. D., & Allis, C. D. (2000). The language of covalent histone modifications. *Nature*, 403(6765), 41-45.
+- Waddington, C. H. (1942). The epigenotype. *Endeavour*, 1, 18-20.
+- Waddington, C. H. (1957). *The Strategy of the Genes: A Discussion of Some Aspects of Theoretical Biology*. Allen & Unwin.
+
 ---
 
 **Author**: Philipp Thoss
-**Version**: 1.0.0
-**Last Updated**: 2026-02-17
+**Version**: 1.1.0
+**Last Updated**: 2026-03-11
 **Status**: Design Document (GitHub Issue #24)
