@@ -103,7 +103,8 @@ library(putior)
 
 # Scan source files for annotations (exclude build scripts to avoid circular refs)
 workflow <- put_merge("./R/", merge_strategy = "supplement",
-  exclude = c("generate-workflow-diagram\\.R$"))
+  exclude = c("generate-workflow-diagram\\.R$"),
+  log_level = NULL)  # Set to "DEBUG" to troubleshoot CI diagram generation
 
 # Generate Mermaid code
 mermaid_code <- put_diagram(workflow, output = "raw", theme = "github")

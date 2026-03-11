@@ -115,10 +115,10 @@ Fields:
 - `.internal` extension: Marks in-memory variables (not persisted between scripts)
 - `node_type`: Controls Mermaid node shape and class styling. Values:
   - `"input"` — stadium shape `([...])` for data sources and configuration
-  - `"output"` — asymmetric shape `>...]` for generated artifacts
+  - `"output"` — subroutine shape `[[...]]` for generated artifacts
   - `"process"` — rectangle `[...]` for processing steps (default)
   - `"decision"` — diamond `{...}` for conditional logic
-  - `"start"` / `"end"` — circle `((...))` for entry/terminal nodes
+  - `"start"` / `"end"` — stadium shape `([...])` for entry/terminal nodes
 
 Example with `node_type`:
 ```r

@@ -4,7 +4,7 @@ description: >
   Analyze an arbitrary codebase to auto-detect workflows, data pipelines,
   and file dependencies using putior's put_auto() engine. Produces an
   annotation plan that maps detected I/O patterns to source files across
-  30+ supported languages with 862 auto-detection patterns. Use when
+  30+ supported languages with 902 auto-detection patterns. Use when
   onboarding onto an unfamiliar codebase to understand data flow, starting
   putior integration in a project without existing annotations, auditing a
   project's data pipeline before documentation, or preparing an annotation
@@ -71,13 +71,13 @@ find /path/to/repo -type f | sed 's/.*\.//' | sort | uniq -c | sort -rn | head -
 For each detected language, verify auto-detection pattern availability.
 
 ```r
-# Check which languages have auto-detection patterns (15 languages, 862 patterns)
+# Check which languages have auto-detection patterns (18 languages, 902 patterns)
 detection_langs <- list_supported_languages(detection_only = TRUE)
 cat("Languages with auto-detection:\n")
 print(detection_langs)
 
 # Get pattern counts for specific languages found in the repo
-for (lang in c("r", "python", "javascript", "sql")) {
+for (lang in c("r", "python", "javascript", "sql", "dockerfile", "makefile")) {
   patterns <- get_detection_patterns(lang)
   cat(sprintf("%s: %d input, %d output, %d dependency patterns\n",
     lang,

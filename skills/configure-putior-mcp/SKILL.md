@@ -70,7 +70,7 @@ claude mcp add putior -- Rscript -e "putior::putior_mcp_server()"
 
 For WSL with Windows R:
 ```bash
-claude mcp add putior -- "/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "putior::putior_mcp_server()"
+claude mcp add putior -- "/mnt/c/Program Files/R/R-4.5.2/bin/Rscript.exe" -e "putior::putior_mcp_server()"
 ```
 
 Verify the configuration:
@@ -105,7 +105,7 @@ Or with the full path:
 {
   "mcpServers": {
     "putior": {
-      "command": "C:\\Program Files\\R\\R-4.5.0\\bin\\x64\\Rscript.exe",
+      "command": "C:\\Program Files\\R\\R-4.5.2\\bin\\x64\\Rscript.exe",
       "args": ["-e", "putior::putior_mcp_server()"]
     }
   }
@@ -128,7 +128,7 @@ tools <- putior::putior_mcp_tools()
 cat(sprintf("Total tools: %d\n", length(tools)))
 
 # List tool names
-sapply(tools, function(t) t$name)
+vapply(tools, function(t) t$name, character(1))
 ```
 
 The 16 tools organized by category:
@@ -137,7 +137,7 @@ The 16 tools organized by category:
 - `put` — Scan files for PUT annotations (supports `exclude` parameter for regex-based file filtering)
 - `put_diagram` — Generate Mermaid diagrams
 - `put_auto` — Auto-detect workflow from code (supports `exclude` parameter)
-- `put_generate` — Generate annotation suggestions
+- `put_generate` — Generate annotation suggestions (supports `exclude` parameter)
 - `put_merge` — Merge manual + auto annotations (supports `exclude` parameter)
 
 **Reference/Discovery (7):**

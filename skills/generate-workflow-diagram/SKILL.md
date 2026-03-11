@@ -64,10 +64,10 @@ The workflow data frame may include a `node_type` column from annotations. Node 
 | `node_type` | Mermaid Shape | Use Case |
 |-------------|---------------|----------|
 | `"input"` | Stadium `([...])` | Data sources, configuration files |
-| `"output"` | Asymmetric `>...]` | Generated artifacts, reports |
+| `"output"` | Subroutine `[[...]]` | Generated artifacts, reports |
 | `"process"` | Rectangle `[...]` | Processing steps (default) |
 | `"decision"` | Diamond `{...}` | Conditional logic, branching |
-| `"start"` / `"end"` | Circle `((...))` | Entry/terminal nodes |
+| `"start"` / `"end"` | Stadium `([...])` | Entry/terminal nodes |
 
 Each `node_type` also receives a corresponding CSS class (e.g., `class nodeId input;`) for theme-based styling.
 

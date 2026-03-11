@@ -49,7 +49,7 @@ R.Version()$version.string
 
 ```bash
 # From WSL with Windows R
-"/mnt/c/Program Files/R/R-4.5.0/bin/Rscript.exe" -e "cat(R.version.string)"
+"/mnt/c/Program Files/R/R-4.5.2/bin/Rscript.exe" -e "cat(R.version.string)"
 ```
 
 **Expected:** R version string printed, >= 4.1.0.
@@ -116,19 +116,21 @@ stopifnot(
   is.function(put_theme)
 )
 
-# Test with inline annotation
-cat(put_diagram(put(text = "# put id:'test', label:'Hello putior'")))
+# Test basic pipeline with a temp file
+tmp <- tempfile(fileext = ".R")
+writeLines("# put id:'test', label:'Hello putior'", tmp)
+cat(put_diagram(put(tmp)))
 ```
 
-**Expected:** Mermaid flowchart code printed to console containing `test["Hello putior"]`.
+**Expected:** Mermaid flowchart code printed to console containing `test` and `Hello putior`.
 
-**On failure:** If `put` is not found, the package did not install correctly. Reinstall with `install.packages("putior", dependencies = TRUE)`. If the diagram is empty, verify the annotation syntax uses single quotes inside double quotes.
+**On failure:** If `put` is not found, the package did not install correctly. Reinstall with `install.packages("putior", dependencies = TRUE)`. If the diagram is empty, verify the temp file was created and the annotation syntax uses single quotes inside double quotes.
 
 ## Validation
 
 - [ ] `library(putior)` loads without errors
 - [ ] `packageVersion("putior")` returns a valid version
-- [ ] `put(text = "# put id:'a', label:'Test'")` returns a data frame with one row
+- [ ] `put()` with a file containing a valid PUT annotation returns a data frame with one row
 - [ ] `put_diagram()` produces Mermaid code starting with `flowchart`
 - [ ] All requested optional dependencies load without errors
 
