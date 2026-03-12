@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Almanac — Logo Collection</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0A0A0F;
+      color: #E5E7EB;
+      padding: 40px 40px 80px;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #00F0FF, #DD44FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle { color: #6B7280; margin-bottom: 48px; font-size: 0.95rem; }
+    .section { margin-bottom: 56px; }
+    .section-title {
+      font-size: 1.3rem;
+      color: #9CA3AF;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+    .section-desc {
+      color: #6B7280;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    .grid-wide { grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); }
+    .grid-square { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: scale(1.02); }
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .card-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      font-size: 0.75rem;
+      color: #9CA3AF;
+    }
+    .card-label .variant {
+      color: #00F0FF;
+      font-weight: 600;
+    }
+    .dark-card { background: #0A0A0F; border: 1px solid #1F2937; }
+    .light-card { background: #FFFFFF; border: 1px solid #E5E7EB; }
+    .wordmark-row {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .wordmark-item {
+      padding: 24px;
+      border-radius: 12px;
+      flex: 1;
+      min-width: 280px;
+    }
+    .wordmark-item img { max-width: 100%; height: auto; }
+    .wordmark-item .label { font-size: 0.75rem; color: #6B7280; margin-bottom: 8px; }
+    hr { border: none; border-top: 1px solid #1F2937; margin: 48px 0; }
+    .stats {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #00F0FF, #DD44FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.8rem; color: #6B7280; text-transform: uppercase; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body>
+
+  <h1>Agent Almanac</h1>
+  <p class="subtitle">Logo Collection — one-glance overview of all generated assets</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Styles</div></div>
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">AI Generations</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">SVG Wordmarks</div></div>
+  </div>
+
+  <hr>
+
+  <!-- Black Metal -->
+  <div class="section">
+    <h2 class="section-title">Black Metal</h2>
+    <p class="section-desc">Norwegian black metal aesthetic — thorny letterforms, branches, high contrast monochrome</p>
+    <div class="grid grid-wide">
+      <div class="card dark-card">
+        <img src="blackmetal/agent-almanac-blackmetal-001.webp" alt="Black Metal 001" loading="lazy">
+        <div class="card-label"><span class="variant">Classic</span> — thorny branches, white on black</div>
+      </div>
+      <div class="card dark-card">
+        <img src="blackmetal/agent-almanac-blackmetal-002.webp" alt="Black Metal 002" loading="lazy">
+        <div class="card-label"><span class="variant">Extreme</span> — denser, chaotic, almost illegible</div>
+      </div>
+      <div class="card dark-card">
+        <img src="blackmetal/agent-almanac-blackmetal-003.webp" alt="Black Metal 003" loading="lazy">
+        <div class="card-label"><span class="variant">Cyberpunk</span> — neon cyan/magenta glow, circuit traces</div>
+      </div>
+      <div class="card dark-card">
+        <img src="blackmetal/agent-almanac-blackmetal-005.webp" alt="Black Metal 005" loading="lazy">
+        <div class="card-label"><span class="variant">Inverted</span> — black on white parchment, woodcut style</div>
+      </div>
+    </div>
+    <div class="grid grid-square" style="margin-top: 16px;">
+      <div class="card dark-card">
+        <img src="blackmetal/agent-almanac-blackmetal-004.webp" alt="Black Metal 004" loading="lazy">
+        <div class="card-label"><span class="variant">Circular</span> — arch formation with pentagram center (1:1)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tech Death -->
+  <div class="section">
+    <h2 class="section-title">Technical Death Metal</h2>
+    <p class="section-desc">Angular geometric precision — circuit diagrams merged with skeletal anatomy, Meshuggah-inspired</p>
+    <div class="grid grid-wide">
+      <div class="card dark-card">
+        <img src="tech-death/agent-almanac-techdeath-001.webp" alt="Tech Death 001" loading="lazy">
+        <div class="card-label"><span class="variant">Monochrome</span> — angular geometry, circuit traces, white on black</div>
+      </div>
+      <div class="card dark-card">
+        <img src="tech-death/agent-almanac-techdeath-002.webp" alt="Tech Death 002" loading="lazy">
+        <div class="card-label"><span class="variant">Cyberpunk</span> — neon palette, circuit-integrated letterforms</div>
+      </div>
+      <div class="card dark-card">
+        <img src="tech-death/agent-almanac-techdeath-003.webp" alt="Tech Death 003" loading="lazy">
+        <div class="card-label"><span class="variant">003</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Power Metal -->
+  <div class="section">
+    <h2 class="section-title">Power Metal</h2>
+    <p class="section-desc">Epic heroic golden chrome — winged swords, celestial rays, Blind Guardian energy</p>
+    <div class="grid grid-wide">
+      <div class="card dark-card">
+        <img src="power-metal/agent-almanac-powermetal-001.webp" alt="Power Metal 001" loading="lazy">
+        <div class="card-label"><span class="variant">Classic</span> — golden chrome, winged sword, celestial rays</div>
+      </div>
+      <div class="card dark-card">
+        <img src="power-metal/agent-almanac-powermetal-002.webp" alt="Power Metal 002" loading="lazy">
+        <div class="card-label"><span class="variant">002</span></div>
+      </div>
+      <div class="card dark-card">
+        <img src="power-metal/agent-almanac-powermetal-003.webp" alt="Power Metal 003" loading="lazy">
+        <div class="card-label"><span class="variant">003</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Art Nouveau -->
+  <div class="section">
+    <h2 class="section-title">Art Nouveau</h2>
+    <p class="section-desc">Mucha-inspired stained glass — leaded glass panes, whiplash curves, cyberpunk palette glowing through</p>
+    <div class="grid grid-wide">
+      <div class="card dark-card">
+        <img src="art-nouveau/agent-almanac-artnouveau-001.webp" alt="Art Nouveau 001" loading="lazy">
+        <div class="card-label"><span class="variant">Stained Glass</span> — cyan/magenta/emerald glass, ornamental border</div>
+      </div>
+      <div class="card dark-card">
+        <img src="art-nouveau/agent-almanac-artnouveau-002.webp" alt="Art Nouveau 002" loading="lazy">
+        <div class="card-label"><span class="variant">002</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Crystals -->
+  <div class="section">
+    <h2 class="section-title">Crystals</h2>
+    <p class="section-desc">Mineralogy specimen aesthetic — amethyst, quartz, and citrine faceted gemstone letterforms</p>
+    <div class="grid grid-wide">
+      <div class="card dark-card">
+        <img src="crystals/agent-almanac-crystals-001.webp" alt="Crystals 001" loading="lazy">
+        <div class="card-label"><span class="variant">Classic</span> — amethyst-to-citrine gradient, geode cave setting</div>
+      </div>
+      <div class="card dark-card">
+        <img src="crystals/agent-almanac-crystals-002.webp" alt="Crystals 002" loading="lazy">
+        <div class="card-label"><span class="variant">002</span></div>
+      </div>
+      <div class="card dark-card">
+        <img src="crystals/agent-almanac-crystals-003.webp" alt="Crystals 003" loading="lazy">
+        <div class="card-label"><span class="variant">003</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Wordmarks -->
+  <div class="section">
+    <h2 class="section-title">SVG Wordmarks</h2>
+    <p class="section-desc">Vector wordmarks in dark (for dark backgrounds) and light (for light backgrounds) variants, multiple sizes</p>
+
+    <h3 style="color: #6B7280; font-size: 0.9rem; margin: 24px 0 12px; font-weight: 500;">Dark variant</h3>
+    <div class="wordmark-row">
+      <div class="wordmark-item dark-card">
+        <div class="label">200px (base)</div>
+        <img src="wordmark/agent-almanac-dark.svg" width="200">
+      </div>
+      <div class="wordmark-item dark-card">
+        <div class="label">600px</div>
+        <img src="wordmark/agent-almanac-dark-600.svg" width="600">
+      </div>
+    </div>
+
+    <h3 style="color: #6B7280; font-size: 0.9rem; margin: 24px 0 12px; font-weight: 500;">Light variant</h3>
+    <div class="wordmark-row">
+      <div class="wordmark-item light-card">
+        <div class="label" style="color: #9CA3AF;">200px (base)</div>
+        <img src="wordmark/agent-almanac-light.svg" width="200">
+      </div>
+      <div class="wordmark-item light-card">
+        <div class="label" style="color: #9CA3AF;">600px</div>
+        <img src="wordmark/agent-almanac-light-600.svg" width="600">
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <p style="color: #374151; font-size: 0.8rem; text-align: center; margin-top: 24px;">
+    Generated with Z-Image-Turbo via Hugging Face MCP Server &middot; 2026-03-11
+  </p>
+
+</body>
+</html>

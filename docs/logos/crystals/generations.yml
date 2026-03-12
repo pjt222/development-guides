@@ -1,0 +1,26 @@
+# Crystal Logo Generations
+# Track prompts, parameters, and outputs for Agent Almanac crystal logos
+
+generations:
+  - id: "001"
+    file: agent-almanac-crystals-001.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    prompt: >-
+      Crystal formation typography reading "AGENT ALMANAC", letterforms made
+      of translucent crystalline structures, amethyst purple and quartz clear
+      and citrine gold faceted gemstone letters, light refracting through
+      crystal facets creating rainbow prismatic effects, geometric crystal
+      clusters growing from each letter, dark cave background with dramatic
+      side lighting, mineralogy specimen aesthetic, photorealistic crystal
+      rendering, sharp faceted edges catching light, deep shadows between
+      crystal formations
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 755029
+      random_seed: true
+    notes: >-
+      Amethyst-to-citrine gradient across letters, faceted crystal fill,
+      geode cave setting. Photorealistic mineralogy aesthetic.

@@ -1,0 +1,25 @@
+# Power Metal Logo Generations
+# Track prompts, parameters, and outputs for Agent Almanac power metal logos
+
+generations:
+  - id: "001"
+    file: agent-almanac-powermetal-001.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    prompt: >-
+      Power metal band logo typography reading "AGENT ALMANAC", epic heroic
+      golden metallic letterforms with dramatic lighting, polished chrome and
+      gold gradient, bold strong serif letters with ornamental wings and sword
+      motifs, blazing light rays emanating from behind the text, dramatic
+      clouds and celestial atmosphere, Helloween and Blind Guardian inspired
+      aesthetic, triumphant and majestic, highly detailed metallic rendering,
+      dark navy blue to gold gradient background
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 302392
+      random_seed: true
+    notes: >-
+      Winged sword central motif, golden chrome letterforms, celestial rays
+      and clouds. Pure Blind Guardian energy. Fully legible.

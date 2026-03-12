@@ -1,0 +1,27 @@
+# Art Nouveau Logo Generations
+# Track prompts, parameters, and outputs for Agent Almanac art nouveau logos
+
+generations:
+  - id: "001"
+    file: agent-almanac-artnouveau-001.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    prompt: >-
+      Art Nouveau stained glass window typography reading "AGENT ALMANAC",
+      Alphonse Mucha inspired ornamental design, letterforms constructed as
+      leaded stained glass panes with thick dark leading between colored glass
+      segments, glowing cyan #00F0FF and magenta #DD44FF and emerald green
+      #00FF88 glass pieces illuminated from behind, organic flowing decorative
+      borders with whiplash curves, floral and geometric motifs framing the
+      text, dark background with light streaming through the glass, elegant
+      Art Nouveau poster composition
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 96171
+      random_seed: true
+    notes: >-
+      Leaded stained glass with Mucha whiplash curves. Cyberpunk palette
+      (cyan, magenta, emerald) glowing through glass panes. Ornamental
+      border with floral scrollwork. Bridges medieval and modern.

@@ -1,0 +1,49 @@
+# Technical Death Metal Logo Generations
+# Track prompts, parameters, and outputs for Agent Almanac tech-death logos
+
+generations:
+  - id: "001"
+    file: agent-almanac-techdeath-001.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: monochrome
+    prompt: >-
+      Technical death metal band logo typography reading "AGENT ALMANAC",
+      extremely intricate angular geometric letterforms, precise mathematical
+      symmetry, complex interlocking patterns like circuit diagrams merged with
+      skeletal anatomy, sharp angular lines and precise geometric shapes, white
+      and silver metallic ink on pure black background, Meshuggah and Gojira
+      inspired aesthetic, technical precision meets organic complexity, highly
+      detailed vector-sharp linework, monochrome
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 218932
+      random_seed: true
+    notes: >-
+      Angular geometric letterforms with circuit traces woven through.
+      Strong Meshuggah/tech-metal vibe. Fully legible.
+
+  - id: "002"
+    file: agent-almanac-techdeath-002.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: cyberpunk
+    prompt: >-
+      Technical death metal band logo typography reading "AGENT ALMANAC",
+      angular geometric letterforms with mathematical precision, cyberpunk neon
+      color scheme with glowing cyan #00F0FF and magenta #DD44FF and green
+      #00FF88 on pure black background, circuit board trace patterns integrated
+      into letter structures, sharp angular serifs and geometric nodes at
+      intersections, precision engineering meets extreme metal aesthetic, neon
+      glow illumination, high detail
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 769139
+      random_seed: true
+    notes: >-
+      Cyberpunk variant matching viz palette. Cyan-dominant with magenta and
+      green accents at edges, circuit traces throughout letterforms.

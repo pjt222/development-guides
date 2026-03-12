@@ -1,0 +1,110 @@
+# Black Metal Logo Generations
+# Track prompts, parameters, and outputs for Agent Almanac black metal logos
+
+generations:
+  - id: "001"
+    file: agent-almanac-blackmetal-001.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    prompt: >-
+      Black metal band logo typography reading "AGENT ALMANAC", highly ornate
+      and symmetrical, spiky thorny letterforms, intricate intertwined branches
+      and roots weaving through the letters, white ink on pure black background,
+      symmetrical mirrored design, dense detailed linework, Norwegian black metal
+      aesthetic, hand-drawn illustration style, high contrast monochrome
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 396181
+      random_seed: true
+    notes: >-
+      First generation. Text fully legible, thorny branches weaving through,
+      classic black metal aesthetic. Both words read clearly.
+
+  - id: "002"
+    file: agent-almanac-blackmetal-002.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: extreme
+    prompt: >-
+      Black metal band logo typography reading "AGENT ALMANAC", extremely dense
+      and almost illegible, chaotic spiky thorny letterforms merging together,
+      intertwined dead tree branches and roots completely filling the negative
+      space, white ink on pure black background, maximally ornate symmetrical
+      design, Norwegian black metal aesthetic like Emperor or Deathspell Omega,
+      hand-drawn pen and ink illustration, high contrast monochrome
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 367203
+      random_seed: true
+    notes: >-
+      Extreme variant. Denser, more chaotic, letters merging with branches.
+      Still legible but pushing toward classic illegibility.
+
+  - id: "003"
+    file: agent-almanac-blackmetal-003.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: cyberpunk
+    prompt: >-
+      Black metal band logo typography reading "AGENT ALMANAC", cyberpunk neon
+      color scheme, glowing cyan #00F0FF and magenta #DD44FF and green #00FF88
+      neon light on pure black background, spiky thorny ornate letterforms with
+      digital circuit traces and thorny branches intertwined, symmetrical design,
+      neon glow effect, dark futuristic aesthetic blending black metal with
+      synthwave cyberpunk, high detail
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 161074
+      random_seed: true
+    notes: >-
+      Cyberpunk variant matching viz palette. Cyan-to-magenta gradient with neon
+      glow, circuit traces in background. Strong fusion of black metal + synthwave.
+
+  - id: "004"
+    file: agent-almanac-blackmetal-004.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: circular
+    prompt: >-
+      Black metal band logo typography reading "AGENT ALMANAC", arranged in
+      circular arch formation, ornate symmetrical spiky letterforms, inverted
+      pentagram or occult geometric symbol integrated into the center, thorny
+      branches and roots framing the text, white ink on pure black background,
+      dense intricate linework, Norwegian black metal aesthetic, hand-drawn
+      illustration style, monochrome
+    parameters:
+      resolution: "1280x1280 ( 1:1 )"
+      steps: 8
+      shift: 3
+      seed: 51621
+      random_seed: true
+    notes: >-
+      Circular/square variant with pentagram center. Text arches around
+      central sigil. Good for album cover or patch format.
+
+  - id: "005"
+    file: agent-almanac-blackmetal-005.webp
+    date: 2026-03-11
+    model: Z-Image-Turbo
+    variant: inverted
+    prompt: >-
+      Black metal band logo typography reading "AGENT ALMANAC", black letterforms
+      on white parchment background, inverted color scheme, ornate spiky thorny
+      calligraphy, intertwined branches and roots weaving through the letters,
+      symmetrical mirrored design, dense detailed linework, Norwegian black metal
+      aesthetic, hand-drawn woodcut print style, high contrast monochrome
+    parameters:
+      resolution: "1536x864 ( 16:9 )"
+      steps: 8
+      shift: 3
+      seed: 648779
+      random_seed: true
+    notes: >-
+      Inverted (black on white) variant. Woodcut/parchment feel. More legible,
+      thorn branches as framing elements. Good for light backgrounds.
