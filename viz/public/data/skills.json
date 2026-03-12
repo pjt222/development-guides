@@ -1,11 +1,11 @@
 {
   "meta": {
-    "generated": "2026-03-11T09:52:53.322Z",
-    "totalSkills": 310,
+    "generated": "2026-03-12T09:13:10.919Z",
+    "totalSkills": 315,
     "totalAgents": 64,
     "totalTeams": 13,
-    "totalNodes": 387,
-    "totalLinks": 1672,
+    "totalNodes": 392,
+    "totalLinks": 1695,
     "totalAgentLinks": 388,
     "totalTeamLinks": 42,
     "totalDomains": 55
@@ -45,7 +45,7 @@
     },
     "general": {
       "description": "Cross-cutting development environment and workflow skills",
-      "count": 12
+      "count": 16
     },
     "citations": {
       "description": "Academic and software citation management with R and BibTeX",
@@ -101,7 +101,7 @@
     },
     "morphic": {
       "description": "Adaptive transformation, structural metamorphosis, and reconfiguration strategies",
-      "count": 6
+      "count": 7
     },
     "alchemy": {
       "description": "Code and data transmutation through systematic decomposition, purification, and synthesis",
@@ -1964,6 +1964,103 @@
         "commit-changes"
       ],
       "path": "evolve-team/SKILL.md"
+    },
+    {
+      "id": "manage-token-budget",
+      "type": "skill",
+      "title": "Manage Token Budget",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Monitor, cap, and recover from context window and API cost accumulation",
+      "tags": [
+        "token-management",
+        "cost-optimization",
+        "context-window",
+        "budget",
+        "progressive-disclosure"
+      ],
+      "related": [
+        "assess-context",
+        "metal",
+        "chrysopoeia",
+        "manage-memory"
+      ],
+      "path": "manage-token-budget/SKILL.md"
+    },
+    {
+      "id": "prune-agent-memory",
+      "type": "skill",
+      "title": "Prune Agent Memory",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Audit, classify, and selectively forget stored memories with retention policies",
+      "tags": [
+        "memory",
+        "pruning",
+        "forgetting",
+        "retention-policy",
+        "maintenance",
+        "auto-memory"
+      ],
+      "related": [
+        "manage-memory",
+        "meditate",
+        "rest",
+        "assess-context"
+      ],
+      "path": "prune-agent-memory/SKILL.md"
+    },
+    {
+      "id": "circuit-breaker-pattern",
+      "type": "skill",
+      "title": "Circuit Breaker Pattern",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Graceful degradation when tools fail using circuit breaker states and scope reduction",
+      "tags": [
+        "resilience",
+        "circuit-breaker",
+        "error-handling",
+        "graceful-degradation",
+        "tool-reliability",
+        "fault-tolerance"
+      ],
+      "related": [
+        "fail-early-pattern",
+        "escalate-issues",
+        "write-incident-runbook",
+        "assess-context"
+      ],
+      "path": "circuit-breaker-pattern/SKILL.md"
+    },
+    {
+      "id": "verify-agent-output",
+      "type": "skill",
+      "title": "Verify Agent Output",
+      "domain": "general",
+      "complexity": "intermediate",
+      "language": "multi",
+      "description": "Evidence trails and deliverable validation for inter-agent handoffs",
+      "tags": [
+        "verification",
+        "trust",
+        "evidence-trail",
+        "deliverable-validation",
+        "inter-agent",
+        "quality-assurance"
+      ],
+      "related": [
+        "fail-early-pattern",
+        "security-audit-codebase",
+        "honesty-humility",
+        "review-skill-format",
+        "create-team",
+        "test-team-coordination"
+      ],
+      "path": "verify-agent-output/SKILL.md"
     },
     {
       "id": "manage-bibliography",
@@ -4986,6 +5083,32 @@
         "coordinate-reasoning"
       ],
       "path": "assess-context/SKILL.md"
+    },
+    {
+      "id": "bootstrap-agent-identity",
+      "type": "skill",
+      "title": "Bootstrap Agent Identity",
+      "domain": "morphic",
+      "complexity": "intermediate",
+      "language": "natural",
+      "description": "Reconstruct consistent agent identity and working context after restart or cold start",
+      "tags": [
+        "morphic",
+        "identity",
+        "cold-start",
+        "bootstrap",
+        "continuity",
+        "restart",
+        "meta-cognition"
+      ],
+      "related": [
+        "center",
+        "attune",
+        "heal",
+        "assess-context",
+        "assess-form"
+      ],
+      "path": "bootstrap-agent-identity/SKILL.md"
     },
     {
       "id": "athanor",
@@ -11520,6 +11643,96 @@
       "type": "skill"
     },
     {
+      "source": "manage-token-budget",
+      "target": "assess-context",
+      "type": "skill"
+    },
+    {
+      "source": "manage-token-budget",
+      "target": "metal",
+      "type": "skill"
+    },
+    {
+      "source": "manage-token-budget",
+      "target": "chrysopoeia",
+      "type": "skill"
+    },
+    {
+      "source": "manage-token-budget",
+      "target": "manage-memory",
+      "type": "skill"
+    },
+    {
+      "source": "prune-agent-memory",
+      "target": "manage-memory",
+      "type": "skill"
+    },
+    {
+      "source": "prune-agent-memory",
+      "target": "meditate",
+      "type": "skill"
+    },
+    {
+      "source": "prune-agent-memory",
+      "target": "rest",
+      "type": "skill"
+    },
+    {
+      "source": "prune-agent-memory",
+      "target": "assess-context",
+      "type": "skill"
+    },
+    {
+      "source": "circuit-breaker-pattern",
+      "target": "fail-early-pattern",
+      "type": "skill"
+    },
+    {
+      "source": "circuit-breaker-pattern",
+      "target": "escalate-issues",
+      "type": "skill"
+    },
+    {
+      "source": "circuit-breaker-pattern",
+      "target": "write-incident-runbook",
+      "type": "skill"
+    },
+    {
+      "source": "circuit-breaker-pattern",
+      "target": "assess-context",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "fail-early-pattern",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "security-audit-codebase",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "honesty-humility",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "review-skill-format",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "create-team",
+      "type": "skill"
+    },
+    {
+      "source": "verify-agent-output",
+      "target": "test-team-coordination",
+      "type": "skill"
+    },
+    {
       "source": "manage-bibliography",
       "target": "format-citations",
       "type": "skill"
@@ -14297,6 +14510,31 @@
     {
       "source": "assess-context",
       "target": "coordinate-reasoning",
+      "type": "skill"
+    },
+    {
+      "source": "bootstrap-agent-identity",
+      "target": "center",
+      "type": "skill"
+    },
+    {
+      "source": "bootstrap-agent-identity",
+      "target": "attune",
+      "type": "skill"
+    },
+    {
+      "source": "bootstrap-agent-identity",
+      "target": "heal",
+      "type": "skill"
+    },
+    {
+      "source": "bootstrap-agent-identity",
+      "target": "assess-context",
+      "type": "skill"
+    },
+    {
+      "source": "bootstrap-agent-identity",
+      "target": "assess-form",
       "type": "skill"
     },
     {

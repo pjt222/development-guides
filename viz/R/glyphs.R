@@ -122,7 +122,7 @@ SKILL_GLYPHS <- list(
   "prepare-soil"                       = "glyph_soil_layers",
   "read-garden"                        = "glyph_garden_eye",
 
-  # ── general (12) ───────────────────────────────────────────────────────
+  # ── general (16) ───────────────────────────────────────────────────────
   "setup-wsl-dev-environment"      = "glyph_terminal",
   "write-claude-md"                = "glyph_robot_doc",
   "security-audit-codebase"        = "glyph_shield_scan",
@@ -135,6 +135,10 @@ SKILL_GLYPHS <- list(
   "evolve-team"                    = "glyph_team_evolve",
   "fail-early-pattern"             = "glyph_fail_early",
   "argumentation"                  = "glyph_argument_scale",
+  "manage-token-budget"            = "glyph_token_gauge",
+  "prune-agent-memory"             = "glyph_memory_prune",
+  "circuit-breaker-pattern"        = "glyph_circuit_breaker",
+  "verify-agent-output"            = "glyph_verify_checkmark",
 
   # ── git (7) ────────────────────────────────────────────────────────────
   "configure-git-repository"       = "glyph_git_config",
@@ -251,13 +255,14 @@ SKILL_GLYPHS <- list(
   "build-coherence"                = "glyph_coherence_converge",
   "coordinate-reasoning"           = "glyph_coordinate_web",
 
-  # ── morphic (6) ────────────────────────────────────────────────────────
+  # ── morphic (7) ────────────────────────────────────────────────────────
   "assess-form"                    = "glyph_scan_outline",
   "adapt-architecture"             = "glyph_morph_arrow",
   "dissolve-form"                  = "glyph_dissolve",
   "repair-damage"                  = "glyph_regenerate",
   "shift-camouflage"               = "glyph_camo_grid",
   "assess-context"                 = "glyph_assess_context_lens",
+  "bootstrap-agent-identity"       = "glyph_identity_boot",
 
   # ── tcg (3) ────────────────────────────────────────────────────────────
   "grade-tcg-card"                 = "glyph_card_grade",

@@ -267,6 +267,12 @@ function skillKeywords(id, title) {
     'analyze-magnetic-levitation':   'maglev float, superconductor, magnetic gap',
     'design-acoustic-levitation':    'standing wave, acoustic node, trapped particle',
     'evaluate-levitation-mechanism': 'comparison table, levitation methods, tradeoff',
+    // community-discovered operational (5)
+    'manage-token-budget':           'token gauge, budget meter, cost cap',
+    'prune-agent-memory':            'memory cards, pruning shears, forget policy',
+    'circuit-breaker-pattern':       'circuit switch, break gap, fault tolerance',
+    'verify-agent-output':           'verification stamp, evidence chain, checkmark',
+    'bootstrap-agent-identity':      'identity rings, cold start, loading anchor',
   };
 
   if (overrides[id]) return overrides[id];
