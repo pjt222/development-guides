@@ -29,6 +29,11 @@ viz/dist/
 viz/logs/
 viz/.icon-cache.json
 
+# Peon-ping assets
+.peon-ping-icon.png
+.peon-toast.xml
+peon-ping-sound.wav
+
 # Quarto render artifacts
 tests/results/**/*.html
 *.knit.md
