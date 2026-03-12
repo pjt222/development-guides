@@ -2,7 +2,7 @@
 # Machine-readable catalog of all guide documents in this library.
 # Keep in sync with the actual guide files on disk.
 
-total_guides: 16
+total_guides: 17
 version: "1.0"
 last_updated: "2026-02-19"
 
@@ -80,6 +80,15 @@ guides:
     agents: [mystic, alchemist, gardener, shaman, contemplative]
     teams: [tending]
     skills: [meditate, heal, center, shine, intrinsic, athanor, transmute, chrysopoeia, read-garden, remote-viewing-guidance, meditate-guidance, heal-guidance]
+
+  - id: production-coordination-patterns
+    path: guides/production-coordination-patterns.md
+    title: "Production Coordination Patterns"
+    description: "Real-world multi-agent orchestration patterns: barrier synchronization, silence budgets, health checks, degraded-wave policies, and cost-aware scheduling"
+    category: workflow
+    agents: [swarm-strategist, project-manager, devops-engineer]
+    teams: [devops-platform-engineering, opaque-team]
+    skills: [coordinate-swarm, build-consensus, create-team, test-team-coordination, manage-token-budget, circuit-breaker-pattern, verify-agent-output]
 
   - id: agentskills-alignment
     path: guides/agentskills-alignment.md

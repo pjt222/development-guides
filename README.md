@@ -14,11 +14,11 @@ A library of executable skills, specialist agents, and pre-built teams for [Clau
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **310 skills** across 55 domains — structured, executable procedures
+- **315 skills** across 55 domains — structured, executable procedures
 - **64 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **13 teams** — predefined multi-agent compositions for complex workflows
-- **16 guides** — human-readable workflow, infrastructure, and reference documentation
-- **Interactive visualization** — force-graph explorer with 310 R-generated skill icons and 9 color themes
+- **17 guides** — human-readable workflow, infrastructure, and reference documentation
+- **Interactive visualization** — force-graph explorer with 315 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
 ## How It Works
@@ -80,6 +80,7 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 - [Managing a Scrum Sprint](guides/managing-a-scrum-sprint.md) — Running Scrum sprints with the scrum-team: planning, dailies, review, and retro
 - [Visualizing Workflows with putior](guides/visualizing-workflows-with-putior.md) — End-to-end putior workflow visualization from annotation to themed Mermaid diagrams
 - [Running Tending](guides/running-tending.md) — AI meta-cognitive tending sessions with the tending team
+- [Production Coordination Patterns](guides/production-coordination-patterns.md) — Real-world multi-agent orchestration patterns: barrier synchronization, silence budgets, health checks, degraded-wave policies, and cost-aware scheduling
 - [AgentSkills Alignment](guides/agentskills-alignment.md) — Standards compliance audits using the agentskills-alignment team for format validation, spec drift detection, and registry integrity
 
 **Infrastructure**

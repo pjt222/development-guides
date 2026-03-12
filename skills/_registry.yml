@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 310
+total_skills: 315
 
 domains:
   r-packages:
@@ -409,6 +409,26 @@ domains:
         complexity: intermediate
         language: multi
         description: Evolve an existing team by adjusting members, changing coordination patterns, and synchronizing the CONFIG block and registry
+      - id: manage-token-budget
+        path: manage-token-budget/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Monitor, cap, and recover from context window and API cost accumulation
+      - id: prune-agent-memory
+        path: prune-agent-memory/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Audit, classify, and selectively forget stored memories with retention policies
+      - id: circuit-breaker-pattern
+        path: circuit-breaker-pattern/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Graceful degradation when tools fail using circuit breaker states and scope reduction
+      - id: verify-agent-output
+        path: verify-agent-output/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Evidence trails and deliverable validation for inter-agent handoffs
 
   citations:
     description: Academic and software citation management with R and BibTeX
@@ -1085,6 +1105,11 @@ domains:
         complexity: intermediate
         language: natural
         description: AI context malleability assessment, reasoning rigidity mapping, and transformation readiness
+      - id: bootstrap-agent-identity
+        path: bootstrap-agent-identity/SKILL.md
+        complexity: intermediate
+        language: natural
+        description: Reconstruct consistent agent identity and working context after restart or cold start
 
   alchemy:
     description: Code and data transmutation through systematic decomposition, purification, and synthesis
