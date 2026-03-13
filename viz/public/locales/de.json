@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "locale": "de",
+    "name": "Deutsch"
+  },
+  "header": {
+    "skills": "Skills",
+    "edges": "Kanten",
+    "domains": "Domänen",
+    "agents": "Agenten",
+    "teams": "Teams"
+  },
+  "filter": {
+    "skills": "Skills",
+    "agents": "Agenten",
+    "teams": "Teams",
+    "tags": "Tags",
+    "all": "Alle",
+    "none": "Keine",
+    "clear": "Löschen",
+    "searchPlaceholder": "Skills suchen\u2026",
+    "searchAriaLabel": "Skills suchen",
+    "selected": "{count} ausgewählt",
+    "members": "{count} Mitglieder",
+    "bulkSkills": "Massenaktionen für Skills",
+    "bulkAgents": "Massenaktionen für Agenten",
+    "bulkTeams": "Massenaktionen für Teams",
+    "bulkTags": "Massenaktionen für Tags",
+    "selectAllSkills": "Alle Skills auswählen",
+    "deselectAllSkills": "Alle Skills abwählen",
+    "selectAllAgents": "Alle Agenten auswählen",
+    "deselectAllAgents": "Alle Agenten abwählen",
+    "selectAllTeams": "Alle Teams auswählen",
+    "deselectAllTeams": "Alle Teams abwählen",
+    "clearAllTags": "Alle Tags löschen",
+    "togglePanel": "Filterpanel ein-/ausblenden"
+  },
+  "controls": {
+    "colorTheme": "Farbschema",
+    "toggleIcons": "Icons ein-/ausblenden",
+    "toggleHd": "Hochauflösende Icons ein-/ausblenden",
+    "zoomIn": "Vergrößern",
+    "zoomOut": "Verkleinern",
+    "resetView": "Ansicht zurücksetzen",
+    "reset": "Zurücksetzen",
+    "icons": "Icons",
+    "hd": "HD",
+    "log": "Log",
+    "mode2d": "2D-Kraftlayout",
+    "mode3d": "3D-Kraftlayout",
+    "modeHive": "Hive-Diagramm",
+    "modeChord": "Chord-Diagramm",
+    "modeFlow": "Workflow-Diagramm",
+    "hiveSortToggle": "Hive-Sortiermodus umschalten",
+    "hiveDomainFocus": "Auf Domäne fokussieren",
+    "hiveAllDomains": "Alle Domänen",
+    "hiveTrackSpread": "Spurbreite",
+    "hiveSortRanked": "Rangfolge",
+    "hiveSortSpread": "Verteilt",
+    "spriteSize3d": "3D-Symbolgröße",
+    "downloadEventLog": "Ereignisprotokoll herunterladen",
+    "vizMode": "Visualisierungsmodus",
+    "language": "Sprache"
+  },
+  "a11y": {
+    "menu": "Menü",
+    "graphContainer": "Interaktive Skill-Netzwerk-Visualisierung"
+  },
+  "panel": {
+    "relatedSkills": "Verwandte Skills",
+    "lead": "Leitung",
+    "members": "Mitglieder ({count})",
+    "tags": "Tags",
+    "tools": "Werkzeuge",
+    "mcpServers": "MCP-Server",
+    "skills": "Skills ({count})",
+    "viewSourceSkill": "SKILL.md-Quelle anzeigen",
+    "viewTeamDefinition": "Teamdefinition anzeigen",
+    "viewAgentDefinition": "Agentendefinition anzeigen",
+    "badgeTeam": "Team",
+    "badgeAgent": "Agent",
+    "badgeLead": "Leitung"
+  },
+  "tooltip": {
+    "skill": "{title} [{domain}]",
+    "agent": "{title} [Agent / {priority}]",
+    "team": "{title} [Team / {count} Mitglieder]"
+  },
+  "hive": {
+    "axisSkills": "Skills",
+    "axisAgents": "Agenten",
+    "axisTeams": "Teams"
+  },
+  "chord": {
+    "domainTooltip": "{domain}: {count} Skills, {connections} domänenübergreifende Verbindungen",
+    "chordTooltip": "{source} \u2194 {target}: {weight} Verbindungsgewicht"
+  },
+  "error": {
+    "noWebGL": "WebGL wird von Ihrem Browser nicht unterstützt. Der 3D-Modus erfordert WebGL.",
+    "dataNotFound": "Daten nicht gefunden",
+    "dataNotFoundDetail": "Führen Sie <code>cd viz && npm install && node build-data.js</code> aus, um skills.json zu generieren",
+    "runtimeError": "Laufzeitfehler",
+    "workflowUnavailable": "Workflow-Diagramm nicht verfügbar",
+    "workflowUnavailableDetail": "Führen Sie <code>cd viz && node build-workflow.js</code> aus, um die Diagrammdaten zu generieren."
+  }
+}

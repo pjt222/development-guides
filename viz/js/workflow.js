@@ -6,6 +6,7 @@
 
 import { getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';
+import { t } from './i18n.js';
 
 let containerEl = null;
 let mermaidReady = false;
@@ -288,8 +289,8 @@ async function render() {
     console.error('Workflow render failed:', err);
     containerEl.innerHTML = `
       <div class="load-error">
-        <h2>Workflow diagram unavailable</h2>
-        <p>Run <code>cd viz && node build-workflow.js</code> to generate the diagram data.</p>
+        <h2>${t('error.workflowUnavailable')}</h2>
+        <p>${t('error.workflowUnavailableDetail')}</p>
         <p class="error-detail">${err.message}</p>
       </div>
     `;

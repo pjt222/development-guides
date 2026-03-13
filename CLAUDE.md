@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 <!-- AUTO:START:overview -->
-A documentation-only repository containing 17 guides, a skills library of 315 agentic skills, 64 agent definitions, and 13 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
+A documentation-only repository containing 17 guides, a skills library of 316 agentic skills, 65 agent definitions, and 13 team compositions following the [Agent Skills open standard](https://agentskills.io). There is no build system, no tests, and no compiled code — all content is markdown and YAML.
 
 The guides serve as the human entry point to the agentic system: practical workflows explaining when, why, and how to interact with agents, teams, and skills through Claude Code.
 <!-- AUTO:END:overview -->
@@ -27,8 +27,8 @@ These four types complement each other: skills define *how* (procedure, validati
 ### Registries
 
 <!-- AUTO:START:registries -->
-- `skills/_registry.yml` is the machine-readable catalog of all 315 skills across 55 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (5), web-dev (4), git (7), general (16), citations (3), data-serialization (2), review (11), bushcraft (4), esoteric (29), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (7), alchemy (4), tcg (3), intellectual-property (2), gardening (5), shiny (7), animal-training (2), mycology (2), prospecting (2), crafting (1), library-science (3), linguistics (1), travel (6), relocation (3), a2a-protocol (3), geometry (3), number-theory (3), stochastic-processes (3), theoretical-science (3), diffusion (4), hildegard (5), maintenance (4), blender (3), visualization (2), 3d-printing (3), lapidary (4), entomology (5), versioning (4), spectroscopy (6), chromatography (5), digital-logic (4), electromagnetism (4), levitation (3).
-- `agents/_registry.yml` is the machine-readable catalog of all 64 agents.
+- `skills/_registry.yml` is the machine-readable catalog of all 316 skills across 56 domains: r-packages (10), jigsawr (5), containerization (10), reporting (4), compliance (17), mcp-integration (5), web-dev (4), git (7), general (16), citations (3), data-serialization (2), review (11), bushcraft (4), esoteric (29), design (5), defensive (6), project-management (6), devops (13), observability (13), mlops (12), workflow-visualization (6), swarm (8), morphic (7), alchemy (4), tcg (3), intellectual-property (2), gardening (5), shiny (7), animal-training (2), mycology (2), prospecting (2), crafting (1), library-science (3), linguistics (1), travel (6), relocation (3), a2a-protocol (3), geometry (3), number-theory (3), stochastic-processes (3), theoretical-science (3), diffusion (4), hildegard (5), maintenance (4), blender (3), visualization (2), 3d-printing (3), lapidary (4), entomology (5), versioning (4), spectroscopy (6), chromatography (5), digital-logic (4), electromagnetism (4), levitation (3), i18n (1).
+- `agents/_registry.yml` is the machine-readable catalog of all 65 agents.
 - `teams/_registry.yml` is the machine-readable catalog of all 13 teams.
 - `guides/_registry.yml` is the machine-readable catalog of all 17 guides across 4 categories.
 
@@ -114,3 +114,48 @@ npm run check-readmes
 ```
 
 CI auto-commits README updates when registry files change on `main` (`.github/workflows/update-readmes.yml`). Manual table updates in step 5 above are no longer needed — the script handles it.
+
+## Internationalization (i18n)
+
+Translations live in the `i18n/` directory using a parallel tree structure. English sources remain canonical in `skills/`, `agents/`, `teams/`, `guides/`.
+
+### Directory Structure
+
+```
+i18n/
+  _config.yml                    # Locale configuration (de, zh-CN, ja, es)
+  README.md                      # Contributor guide for translators
+  <locale>/
+    skills/<skill-name>/SKILL.md # Translated skill
+    agents/<agent-name>.md       # Translated agent
+    teams/<team-name>.md         # Translated team
+    guides/<guide-name>.md       # Translated guide
+    translation_status.yml       # Auto-generated coverage report
+```
+
+### Translation Rules
+
+- Translate prose sections (descriptions, headings, pitfalls, validation text)
+- Keep in English: `name` (=ID), code blocks, tool names, tags, domain, file paths, config values
+- Every translated file has frontmatter fields: `locale`, `source_locale`, `source_commit`, `translator`, `translation_date`
+- Translated SKILL.md files must stay under 500 lines
+
+### Translation Workflow
+
+```bash
+# Scaffold a translation (copies source, adds frontmatter)
+npm run translate:scaffold -- <content-type> <id> <locale>
+
+# Check translation freshness
+npm run validate:translations
+
+# Regenerate per-locale status files
+npm run translation:status
+```
+
+### Adding a Translation
+
+1. Scaffold: `npm run translate:scaffold -- skills create-r-package de`
+2. Translate prose sections in the scaffolded file
+3. Verify: `npm run validate:translations` (no stale warnings)
+4. Update status: `npm run translation:status`

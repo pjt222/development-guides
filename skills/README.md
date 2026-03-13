@@ -1,7 +1,7 @@
 # Skills Library for Agentic Systems
 
 <!-- AUTO:START:skills-intro -->
-A collection of 315 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
+A collection of 316 task-level skills following the [Agent Skills open standard](https://agentskills.io) (`SKILL.md` format). These skills provide structured, executable procedures that agentic systems (Claude Code, Codex, Cursor, Gemini CLI, etc.) can consume to perform specific development tasks.
 <!-- AUTO:END:skills-intro -->
 
 ## How Skills Differ from Guides and Agents
@@ -76,6 +76,7 @@ Browse by domain:
 | [Digital Logic](digital-logic/) | 4 | Boolean algebra, logic gates, combinational and sequential circuits, and CPU architecture simulation |
 | [Electromagnetism](electromagnetism/) | 4 | Electric and magnetic fields, Maxwell's equations, electromagnetic induction, and practical electromagnetic devices |
 | [Levitation](levitation/) | 3 | Physical levitation mechanisms including magnetic, acoustic, aerodynamic, and electrostatic |
+| [I18n](i18n/) | 1 | Internationalization and translation workflow skills |
 <!-- AUTO:END:skills-table -->
 
 ## SKILL.md Format

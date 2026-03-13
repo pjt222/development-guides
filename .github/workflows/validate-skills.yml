@@ -2,9 +2,9 @@ name: Validate Skills
 on:
   push:
     branches: [main]
-    paths: ['skills/**']
+    paths: ['skills/**', 'i18n/**/skills/**']
   pull_request:
-    paths: ['skills/**']
+    paths: ['skills/**', 'i18n/**/skills/**']
   workflow_dispatch:
 
 permissions:
@@ -60,3 +60,31 @@ jobs:
             exit 1
           fi
           echo "OK: $disk_count skills on disk match registry"
+
+      - name: Validate translated skills
+        run: |
+          failed=0
+          for locale_dir in i18n/*/skills/; do
+            [ ! -d "$locale_dir" ] && continue
+            locale=$(basename "$(dirname "$locale_dir")")
+            for dir in "$locale_dir"/*/; do
+              [ ! -f "$dir/SKILL.md" ] && continue
+              if ! grep -q "locale: $locale" "$dir/SKILL.md"; then
+                echo "FAIL: $dir/SKILL.md missing locale: $locale"
+                failed=1
+              fi
+              lines=$(wc -l < "$dir/SKILL.md")
+              [ "$lines" -gt 500 ] && echo "FAIL: $dir/SKILL.md ($lines > 500)" && failed=1
+            done
+          done
+          exit $failed
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check translation freshness (warn only)
+        run: node scripts/check-translation-freshness.js --warn

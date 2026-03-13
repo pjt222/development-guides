@@ -1,0 +1,26 @@
+version: "1.0"
+source_locale: en
+supported_locales:
+  - code: de
+    name: Deutsch
+    name_en: German
+    status: active
+  - code: zh-CN
+    name: 简体中文
+    name_en: Simplified Chinese
+    status: active
+  - code: ja
+    name: 日本語
+    name_en: Japanese
+    status: active
+  - code: es
+    name: Español
+    name_en: Spanish
+    status: active
+content_types: [skills, agents, teams, guides]
+source_counts:
+  skills: 316
+  agents: 65
+  teams: 13
+  guides: 17
+  total: 411

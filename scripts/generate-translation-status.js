@@ -1,0 +1,175 @@
+#!/usr/bin/env node
+/**
+ * generate-translation-status.js
+ *
+ * Auto-generates per-locale translation_status.yml files by counting
+ * translated files and checking freshness against English sources.
+ *
+ * Usage:
+ *   node scripts/generate-translation-status.js
+ */
+
+import { readFileSync, writeFileSync, readdirSync, existsSync, statSync } from 'fs';
+import { resolve, dirname, join, basename } from 'path';
+import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
+import yaml from 'js-yaml';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const ROOT = resolve(__dirname, '..');
+const I18N_DIR = resolve(ROOT, 'i18n');
+
+// Load config
+const configPath = resolve(I18N_DIR, '_config.yml');
+if (!existsSync(configPath)) {
+  console.error('ERROR: i18n/_config.yml not found');
+  process.exit(1);
+}
+const config = yaml.load(readFileSync(configPath, 'utf8'));
+
+// Source counts from config
+const sourceCounts = config.source_counts;
+
+/**
+ * Extract source_commit from translation frontmatter.
+ */
+function extractSourceCommit(filePath) {
+  const content = readFileSync(filePath, 'utf8');
+  const match = content.match(/source_commit:\s*["']?([a-f0-9]+)["']?/m);
+  return match ? match[1] : null;
+}
+
+/**
+ * Get latest commit for a source file.
+ */
+function getLatestCommit(filePath) {
+  try {
+    return execSync(
+      `git log -1 --format=%h -- "${filePath}"`,
+      { cwd: ROOT, encoding: 'utf8' }
+    ).trim() || null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Check if translation is stale.
+ */
+function isStale(sourceCommit, latestCommit) {
+  if (!sourceCommit || !latestCommit) return false;
+  if (sourceCommit === latestCommit) return false;
+  try {
+    execSync(
+      `git merge-base --is-ancestor ${sourceCommit} ${latestCommit}`,
+      { cwd: ROOT, encoding: 'utf8' }
+    );
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Resolve English source path.
+ */
+function resolveSourcePath(contentType, itemPath) {
+  if (contentType === 'skills') {
+    const skillName = basename(dirname(itemPath));
+    return resolve(ROOT, 'skills', skillName, 'SKILL.md');
+  } else {
+    const fileName = basename(itemPath);
+    return resolve(ROOT, contentType, fileName);
+  }
+}
+
+/**
+ * Count translations and stale files for a locale + content type.
+ */
+function countTranslations(locale, contentType) {
+  const typeDir = resolve(I18N_DIR, locale, contentType);
+  let translated = 0;
+  let stale = 0;
+
+  if (!existsSync(typeDir)) {
+    return { translated, stale };
+  }
+
+  const entries = readdirSync(typeDir);
+  for (const entry of entries) {
+    const entryPath = resolve(typeDir, entry);
+
+    let translatedFile;
+    if (contentType === 'skills') {
+      if (!statSync(entryPath).isDirectory()) continue;
+      translatedFile = resolve(entryPath, 'SKILL.md');
+      if (!existsSync(translatedFile)) continue;
+    } else {
+      if (!entry.endsWith('.md')) continue;
+      translatedFile = entryPath;
+    }
+
+    translated++;
+
+    const sourceCommit = extractSourceCommit(translatedFile);
+    const sourcePath = resolveSourcePath(contentType, translatedFile);
+
+    if (existsSync(sourcePath) && sourceCommit) {
+      const latestCommit = getLatestCommit(sourcePath);
+      if (isStale(sourceCommit, latestCommit)) {
+        stale++;
+      }
+    }
+  }
+
+  return { translated, stale };
+}
+
+// ── Main ─────────────────────────────────────────────────────────
+
+const contentTypes = ['skills', 'agents', 'teams', 'guides'];
+const locales = config.supported_locales.map(l => l.code);
+const today = new Date().toISOString().split('T')[0];
+
+for (const locale of locales) {
+  const localeDir = resolve(I18N_DIR, locale);
+  if (!existsSync(localeDir)) {
+    console.log(`SKIP: ${locale} (directory not found)`);
+    continue;
+  }
+
+  const coverage = {};
+  let totalTranslated = 0;
+  let totalStale = 0;
+  const totalSource = sourceCounts.total;
+
+  for (const contentType of contentTypes) {
+    const { translated, stale } = countTranslations(locale, contentType);
+    const total = sourceCounts[contentType];
+    const pct = total > 0 ? Math.round((translated / total) * 1000) / 10 : 0;
+    coverage[contentType] = { translated, total, pct, stale };
+    totalTranslated += translated;
+    totalStale += stale;
+  }
+
+  const totalPct = totalSource > 0
+    ? Math.round((totalTranslated / totalSource) * 1000) / 10
+    : 0;
+  coverage.total = {
+    translated: totalTranslated,
+    total: totalSource,
+    pct: totalPct,
+    stale: totalStale,
+  };
+
+  const status = {
+    locale,
+    last_updated: today,
+    coverage,
+  };
+
+  const statusPath = resolve(localeDir, 'translation_status.yml');
+  writeFileSync(statusPath, yaml.dump(status, { flowLevel: 3 }));
+  console.log(`GENERATED: ${statusPath.replace(ROOT + '/', '')}`);
+  console.log(`  Coverage: ${totalTranslated}/${totalSource} (${totalPct}%), ${totalStale} stale`);
+}

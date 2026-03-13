@@ -4,6 +4,7 @@
 
 import { getColor, COMPLEXITY_BADGE_COLORS, getAgentColor, getTeamColor, getCurrentThemeName } from './colors.js';
 import { getHdMode } from './icons.js';
+import { t } from './i18n.js';
 
 // TODO(#76): Make configurable for forks — could read from skills.json metadata or data attribute
 const GITHUB_REPO_BASE = 'https://github.com/pjt222/agent-almanac/blob/main/';
@@ -120,7 +121,7 @@ function openSkillPanel(node) {
   }
 
   if (node.related && node.related.length) {
-    html += `<h3 class="panel-section-title">Related Skills</h3><ul class="panel-related">`;
+    html += `<h3 class="panel-section-title">${t('panel.relatedSkills')}</h3><ul class="panel-related">`;
     for (const rid of node.related) {
       html += `<li><a href="#" class="related-link" data-id="${escAttr(rid)}">${escHtml(rid)}</a></li>`;
     }
@@ -130,7 +131,7 @@ function openSkillPanel(node) {
   html += `
     <div class="panel-actions">
       <a href="${GITHUB_SKILLS_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
-        View Source SKILL.md
+        ${t('panel.viewSourceSkill')}
       </a>
     </div>
   `;
@@ -155,28 +156,28 @@ function openTeamPanel(node) {
     </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
-      <span class="badge" style="border-color: ${color}; color: ${color}">team</span>
+      <span class="badge" style="border-color: ${color}; color: ${color}">${t('panel.badgeTeam')}</span>
       <span class="badge" style="border-color: #888; color: #888">${escHtml(node.coordination || 'hub-and-spoke')}</span>
     </div>
     <p class="panel-desc">${escHtml(node.description)}</p>
   `;
 
   if (node.lead) {
-    html += `<h3 class="panel-section-title">Lead</h3>`;
+    html += `<h3 class="panel-section-title">${t('panel.lead')}</h3>`;
     html += `<ul class="panel-related"><li><a href="#" class="related-link" data-id="agent:${escAttr(node.lead)}">${escHtml(node.lead)}</a></li></ul>`;
   }
 
   if (node.members && node.members.length) {
-    html += `<h3 class="panel-section-title">Members (${node.members.length})</h3><ul class="panel-related">`;
+    html += `<h3 class="panel-section-title">${t('panel.members', { count: node.members.length })}</h3><ul class="panel-related">`;
     for (const memberId of node.members) {
       const isLead = memberId === node.lead;
-      html += `<li><a href="#" class="related-link" data-id="agent:${escAttr(memberId)}">${escHtml(memberId)}</a>${isLead ? ' <span class="badge" style="border-color: ${color}; color: ${color}; font-size: 0.7em">lead</span>' : ''}</li>`;
+      html += `<li><a href="#" class="related-link" data-id="agent:${escAttr(memberId)}">${escHtml(memberId)}</a>${isLead ? ` <span class="badge" style="border-color: ${color}; color: ${color}; font-size: 0.7em">${t('panel.badgeLead')}</span>` : ''}</li>`;
     }
     html += `</ul>`;
   }
 
   if (node.tags && node.tags.length) {
-    html += `<h3 class="panel-section-title">Tags</h3>`;
+    html += `<h3 class="panel-section-title">${t('panel.tags')}</h3>`;
     html += `<div class="panel-tags">${node.tags.map(t =>
       `<span class="tag">${escHtml(t)}</span>`
     ).join('')}</div>`;
@@ -185,7 +186,7 @@ function openTeamPanel(node) {
   html += `
     <div class="panel-actions">
       <a href="${GITHUB_REPO_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
-        View Team Definition
+        ${t('panel.viewTeamDefinition')}
       </a>
     </div>
   `;
@@ -218,35 +219,35 @@ function openAgentPanel(node) {
     </div>
     <h2 class="panel-title" style="color: ${color}; text-shadow: 0 0 12px ${color}">${escHtml(node.title || node.id)}</h2>
     <div class="panel-badges">
-      <span class="badge" style="border-color: ${color}; color: ${color}">agent</span>
+      <span class="badge" style="border-color: ${color}; color: ${color}">${t('panel.badgeAgent')}</span>
       <span class="badge" style="border-color: ${priorityColor}; color: ${priorityColor}">${escHtml(node.priority)}</span>
     </div>
     <p class="panel-desc">${escHtml(node.description)}</p>
   `;
 
   if (node.tools && node.tools.length) {
-    html += `<h3 class="panel-section-title">Tools</h3>`;
+    html += `<h3 class="panel-section-title">${t('panel.tools')}</h3>`;
     html += `<div class="panel-tags">${node.tools.map(t =>
       `<span class="tag">${escHtml(t)}</span>`
     ).join('')}</div>`;
   }
 
   if (node.mcp_servers && node.mcp_servers.length) {
-    html += `<h3 class="panel-section-title">MCP Servers</h3>`;
+    html += `<h3 class="panel-section-title">${t('panel.mcpServers')}</h3>`;
     html += `<div class="panel-tags">${node.mcp_servers.map(t =>
       `<span class="tag">${escHtml(t)}</span>`
     ).join('')}</div>`;
   }
 
   if (node.tags && node.tags.length) {
-    html += `<h3 class="panel-section-title">Tags</h3>`;
+    html += `<h3 class="panel-section-title">${t('panel.tags')}</h3>`;
     html += `<div class="panel-tags">${node.tags.map(t =>
       `<span class="tag">${escHtml(t)}</span>`
     ).join('')}</div>`;
   }
 
   if (node.skills && node.skills.length) {
-    html += `<h3 class="panel-section-title">Skills (${node.skills.length})</h3><ul class="panel-related">`;
+    html += `<h3 class="panel-section-title">${t('panel.skills', { count: node.skills.length })}</h3><ul class="panel-related">`;
     for (const sid of node.skills) {
       html += `<li><a href="#" class="related-link" data-id="${escAttr(sid)}">${escHtml(sid)}</a></li>`;
     }
@@ -256,7 +257,7 @@ function openAgentPanel(node) {
   html += `
     <div class="panel-actions">
       <a href="${GITHUB_REPO_BASE}${encodeURI(node.path)}" target="_blank" rel="noopener" class="source-link">
-        View Agent Definition
+        ${t('panel.viewAgentDefinition')}
       </a>
     </div>
   `;

@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "locale": "es",
+    "name": "Español"
+  },
+  "header": {
+    "skills": "habilidades",
+    "edges": "aristas",
+    "domains": "dominios",
+    "agents": "agentes",
+    "teams": "equipos"
+  },
+  "filter": {
+    "skills": "Habilidades",
+    "agents": "Agentes",
+    "teams": "Equipos",
+    "tags": "Etiquetas",
+    "all": "Todos",
+    "none": "Ninguno",
+    "clear": "Limpiar",
+    "searchPlaceholder": "Buscar habilidades\u2026",
+    "searchAriaLabel": "Buscar habilidades",
+    "selected": "{count} seleccionados",
+    "members": "{count} miembros",
+    "bulkSkills": "Acciones masivas para Habilidades",
+    "bulkAgents": "Acciones masivas para Agentes",
+    "bulkTeams": "Acciones masivas para Equipos",
+    "bulkTags": "Acciones masivas para Etiquetas",
+    "selectAllSkills": "Seleccionar todas las habilidades",
+    "deselectAllSkills": "Deseleccionar todas las habilidades",
+    "selectAllAgents": "Seleccionar todos los agentes",
+    "deselectAllAgents": "Deseleccionar todos los agentes",
+    "selectAllTeams": "Seleccionar todos los equipos",
+    "deselectAllTeams": "Deseleccionar todos los equipos",
+    "clearAllTags": "Limpiar todas las etiquetas",
+    "togglePanel": "Mostrar/ocultar panel de filtros"
+  },
+  "controls": {
+    "colorTheme": "Tema de color",
+    "toggleIcons": "Mostrar/ocultar iconos",
+    "toggleHd": "Mostrar/ocultar iconos de alta resolución",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "resetView": "Restablecer vista",
+    "reset": "Restablecer",
+    "icons": "Iconos",
+    "hd": "HD",
+    "log": "Registro",
+    "mode2d": "Diseño de fuerza 2D",
+    "mode3d": "Diseño de fuerza 3D",
+    "modeHive": "Diagrama de colmena",
+    "modeChord": "Diagrama de cuerdas",
+    "modeFlow": "Diagrama de flujo",
+    "hiveSortToggle": "Cambiar modo de ordenación",
+    "hiveDomainFocus": "Enfocar dominio",
+    "hiveAllDomains": "Todos los dominios",
+    "hiveTrackSpread": "Separación de pistas",
+    "hiveSortRanked": "Clasificado",
+    "hiveSortSpread": "Disperso",
+    "spriteSize3d": "Tamaño de icono 3D",
+    "downloadEventLog": "Descargar registro de eventos",
+    "vizMode": "Modo de visualización",
+    "language": "Idioma"
+  },
+  "a11y": {
+    "menu": "Menú",
+    "graphContainer": "Visualización interactiva de red de habilidades"
+  },
+  "panel": {
+    "relatedSkills": "Habilidades relacionadas",
+    "lead": "Líder",
+    "members": "Miembros ({count})",
+    "tags": "Etiquetas",
+    "tools": "Herramientas",
+    "mcpServers": "Servidores MCP",
+    "skills": "Habilidades ({count})",
+    "viewSourceSkill": "Ver SKILL.md fuente",
+    "viewTeamDefinition": "Ver definición del equipo",
+    "viewAgentDefinition": "Ver definición del agente",
+    "badgeTeam": "equipo",
+    "badgeAgent": "agente",
+    "badgeLead": "líder"
+  },
+  "tooltip": {
+    "skill": "{title} [{domain}]",
+    "agent": "{title} [agente / {priority}]",
+    "team": "{title} [equipo / {count} miembros]"
+  },
+  "hive": {
+    "axisSkills": "Habilidades",
+    "axisAgents": "Agentes",
+    "axisTeams": "Equipos"
+  },
+  "chord": {
+    "domainTooltip": "{domain}: {count} habilidades, {connections} conexiones entre dominios",
+    "chordTooltip": "{source} \u2194 {target}: {weight} peso de conexión"
+  },
+  "error": {
+    "noWebGL": "Su navegador no soporta WebGL. El modo 3D requiere WebGL.",
+    "dataNotFound": "Datos no encontrados",
+    "dataNotFoundDetail": "Ejecute <code>cd viz && npm install && node build-data.js</code> para generar skills.json",
+    "runtimeError": "Error de ejecución",
+    "workflowUnavailable": "Diagrama de flujo no disponible",
+    "workflowUnavailableDetail": "Ejecute <code>cd viz && node build-workflow.js</code> para generar los datos del diagrama."
+  }
+}

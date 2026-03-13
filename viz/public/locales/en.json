@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "locale": "en",
+    "name": "English"
+  },
+  "header": {
+    "skills": "skills",
+    "edges": "edges",
+    "domains": "domains",
+    "agents": "agents",
+    "teams": "teams"
+  },
+  "filter": {
+    "skills": "Skills",
+    "agents": "Agents",
+    "teams": "Teams",
+    "tags": "Tags",
+    "all": "All",
+    "none": "None",
+    "clear": "Clear",
+    "searchPlaceholder": "Search skills\u2026",
+    "searchAriaLabel": "Search skills",
+    "selected": "{count} selected",
+    "members": "{count} members",
+    "bulkSkills": "Bulk actions for Skills",
+    "bulkAgents": "Bulk actions for Agents",
+    "bulkTeams": "Bulk actions for Teams",
+    "bulkTags": "Bulk actions for Tags",
+    "selectAllSkills": "Select all skills",
+    "deselectAllSkills": "Deselect all skills",
+    "selectAllAgents": "Select all agents",
+    "deselectAllAgents": "Deselect all agents",
+    "selectAllTeams": "Select all teams",
+    "deselectAllTeams": "Deselect all teams",
+    "clearAllTags": "Clear all tags",
+    "togglePanel": "Toggle filter panel"
+  },
+  "controls": {
+    "colorTheme": "Color Theme",
+    "toggleIcons": "Toggle Icons",
+    "toggleHd": "Toggle High-Resolution Icons",
+    "zoomIn": "Zoom In",
+    "zoomOut": "Zoom Out",
+    "resetView": "Reset View",
+    "reset": "Reset",
+    "icons": "Icons",
+    "hd": "HD",
+    "log": "Log",
+    "mode2d": "2D Force Layout",
+    "mode3d": "3D Force Layout",
+    "modeHive": "Hive Plot",
+    "modeChord": "Chord Diagram",
+    "modeFlow": "Workflow Diagram",
+    "hiveSortToggle": "Toggle Hive Sort Mode",
+    "hiveDomainFocus": "Focus on Domain",
+    "hiveAllDomains": "All Domains",
+    "hiveTrackSpread": "Track Spread",
+    "hiveSortRanked": "Ranked",
+    "hiveSortSpread": "Spread",
+    "spriteSize3d": "3D Icon Size",
+    "downloadEventLog": "Download Event Log",
+    "vizMode": "Visualization mode",
+    "language": "Language"
+  },
+  "a11y": {
+    "menu": "Menu",
+    "graphContainer": "Interactive skill network visualization"
+  },
+  "panel": {
+    "relatedSkills": "Related Skills",
+    "lead": "Lead",
+    "members": "Members ({count})",
+    "tags": "Tags",
+    "tools": "Tools",
+    "mcpServers": "MCP Servers",
+    "skills": "Skills ({count})",
+    "viewSourceSkill": "View Source SKILL.md",
+    "viewTeamDefinition": "View Team Definition",
+    "viewAgentDefinition": "View Agent Definition",
+    "badgeTeam": "team",
+    "badgeAgent": "agent",
+    "badgeLead": "lead"
+  },
+  "tooltip": {
+    "skill": "{title} [{domain}]",
+    "agent": "{title} [agent / {priority}]",
+    "team": "{title} [team / {count} members]"
+  },
+  "hive": {
+    "axisSkills": "Skills",
+    "axisAgents": "Agents",
+    "axisTeams": "Teams"
+  },
+  "chord": {
+    "domainTooltip": "{domain}: {count} skills, {connections} cross-domain connections",
+    "chordTooltip": "{source} \u2194 {target}: {weight} connection weight"
+  },
+  "error": {
+    "noWebGL": "WebGL is not supported in your browser. 3D mode requires WebGL.",
+    "dataNotFound": "Data not found",
+    "dataNotFoundDetail": "Run <code>cd viz && npm install && node build-data.js</code> to generate skills.json",
+    "runtimeError": "Runtime Error",
+    "workflowUnavailable": "Workflow diagram unavailable",
+    "workflowUnavailableDetail": "Run <code>cd viz && node build-workflow.js</code> to generate the diagram data."
+  }
+}

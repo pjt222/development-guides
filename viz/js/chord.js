@@ -8,6 +8,7 @@
 import * as d3 from 'd3';
 import { getColor, hexToRgba, getCurrentThemeName } from './colors.js';
 import { logEvent } from './eventlog.js';
+import { t } from './i18n.js';
 
 let svg = null;
 let rootG = null;
@@ -391,7 +392,7 @@ function showGroupTooltip(event, d) {
       type: 'domain',
       title: domain,
       domain: domain,
-      _chordTooltip: `${domain}: ${count} skills, ${connectionCount} cross-domain connections`,
+      _chordTooltip: t('chord.domainTooltip', { domain, count, connections: connectionCount }),
     });
   }
 }
@@ -407,7 +408,7 @@ function showChordTooltip(event, d) {
       type: 'chord',
       title: `${srcDomain} ↔ ${tgtDomain}`,
       domain: srcDomain,
-      _chordTooltip: `${srcDomain} ↔ ${tgtDomain}: ${weight.toFixed(1)} connection weight`,
+      _chordTooltip: t('chord.chordTooltip', { source: srcDomain, target: tgtDomain, weight: weight.toFixed(1) }),
     });
   }
 }

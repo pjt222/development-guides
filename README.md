@@ -14,11 +14,11 @@ A library of executable skills, specialist agents, and pre-built teams for [Clau
 ## At a Glance
 
 <!-- AUTO:START:stats -->
-- **315 skills** across 55 domains — structured, executable procedures
-- **64 agents** — specialized Claude Code personas covering development, review, compliance, and more
+- **316 skills** across 56 domains — structured, executable procedures
+- **65 agents** — specialized Claude Code personas covering development, review, compliance, and more
 - **13 teams** — predefined multi-agent compositions for complex workflows
 - **17 guides** — human-readable workflow, infrastructure, and reference documentation
-- **Interactive visualization** — force-graph explorer with 315 R-generated skill icons and 9 color themes
+- **Interactive visualization** — force-graph explorer with 316 R-generated skill icons and 9 color themes
 <!-- AUTO:END:stats -->
 
 ## How It Works
@@ -100,6 +100,19 @@ New here? Start with [Understanding the System](guides/understanding-the-system.
 - [Extracting Project Essence](guides/extracting-project-essence.md) — Multi-perspective framework for extracting skills, agents, and teams from any codebase using the metal skill
 - [Epigenetics-Inspired Activation Control](guides/epigenetics-activation-control.md) — Runtime activation profiles controlling which agents, skills, and teams are expressed, grounded in molecular epigenetics
 <!-- AUTO:END:guides -->
+
+## Translations
+
+<!-- AUTO:START:translations -->
+| Locale | Language | Skills | Agents | Teams | Guides | Total |
+|--------|----------|--------|--------|-------|--------|-------|
+| de | Deutsch | 5/316 | 3/65 | 1/13 | 1/17 | 10/411 (2.4%) |
+| zh-CN | 简体中文 | 5/316 | 3/65 | 1/13 | 1/17 | 10/411 (2.4%) |
+| ja | 日本語 | 5/316 | 3/65 | 1/13 | 1/17 | 10/411 (2.4%) |
+| es | Español | 5/316 | 3/65 | 1/13 | 1/17 | 10/411 (2.4%) |
+<!-- AUTO:END:translations -->
+
+See [i18n/README.md](i18n/README.md) for the translation contributor guide.
 
 ## Contributing
 

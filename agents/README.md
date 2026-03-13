@@ -1,7 +1,7 @@
 # Agents Library for Claude Code
 
 <!-- AUTO:START:agents-intro -->
-A collection of 64 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
+A collection of 65 specialized agent definitions for [Claude Code](https://docs.anthropic.com/en/docs/claude-code). Each agent defines a persona with specific capabilities, tools, and domain expertise that Claude Code uses when spawned as a subagent.
 
 All agents inherit **default skills**: meditate, heal.
 <!-- AUTO:END:agents-intro -->
@@ -83,6 +83,7 @@ Agents define *who* (persona, tools, style); skills define *how* (procedure, val
 | [tcg-specialist](tcg-specialist.md) | normal | Trading card game grading (PSA/BGS/CGC), deck building, collection management for Pokemon/MTG/FaB/Kayou |
 | [theoretical-researcher](theoretical-researcher.md) | normal | Theoretical science researcher spanning quantum physics, quantum chemistry, and theoretical mathematics focused on derivation, proof, and literature synthesis |
 | [tour-planner](tour-planner.md) | normal | Spatial and temporal tour planning specialist using open-source maps, R geospatial packages, and interactive visualization for route optimization and cartographic output |
+| [translator](translator.md) | normal | LLM-assisted translation specialist for localizing skills, agents, teams, and guides while preserving code blocks, IDs, and technical accuracy |
 | [version-manager](version-manager.md) | normal | Software versioning specialist for semantic versioning, changelog management, release planning, and dependency version auditing |
 | [web-developer](web-developer.md) | normal | Full-stack web development agent for Next.js, TypeScript, and Tailwind CSS projects with deployment and environment setup |
 <!-- AUTO:END:agents-table -->

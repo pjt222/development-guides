@@ -8,6 +8,9 @@
     "update-readmes": "node scripts/generate-readmes.js",
     "check-readmes": "node scripts/generate-readmes.js --check",
     "validate:integrity": "bash scripts/validate-integrity.sh",
+    "validate:translations": "node scripts/check-translation-freshness.js",
+    "translation:status": "node scripts/generate-translation-status.js",
+    "translate:scaffold": "bash scripts/translate-content.sh",
     "test": "npm run validate:integrity && npm run check-readmes"
   },
   "devDependencies": {

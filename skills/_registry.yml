@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-02-17"
 standard: "agentskills.io/specification"
-total_skills: 315
+total_skills: 316
 
 domains:
   r-packages:
@@ -1798,3 +1798,12 @@ domains:
         complexity: intermediate
         language: natural
         description: Compare and select among levitation mechanisms for a given application
+
+  i18n:
+    description: Internationalization and translation workflow skills
+    skills:
+      - id: translate-content
+        path: translate-content/SKILL.md
+        complexity: intermediate
+        language: multi
+        description: Translate agent-almanac content into target locales while preserving code and IDs

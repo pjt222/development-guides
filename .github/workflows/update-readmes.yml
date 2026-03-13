@@ -8,6 +8,8 @@ on:
       - 'teams/_registry.yml'
       - 'guides/_registry.yml'
       - 'tests/_registry.yml'
+      - 'i18n/_config.yml'
+      - 'i18n/**/*.md'
   workflow_dispatch:
 
 jobs:

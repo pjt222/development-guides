@@ -11,6 +11,7 @@ import {
 } from './colors.js';
 import { getIconMode, getIconPath, isIconLoaded, markIconLoaded } from './icons.js';
 import { logEvent } from './eventlog.js';
+import { t } from './i18n.js';
 
 let svg = null;
 let rootG = null;
@@ -37,7 +38,9 @@ const AXIS_ANGLES = {
   team:   Math.PI / 2,
 };
 
-const AXIS_LABELS = { skill: 'Skills', agent: 'Agents', team: 'Teams' };
+function getAxisLabels() {
+  return { skill: t('hive.axisSkills'), agent: t('hive.axisAgents'), team: t('hive.axisTeams') };
+}
 
 // Per-axis track count and perpendicular spread (px between parallel lines)
 const AXIS_CONFIG = {
@@ -382,7 +385,7 @@ function render(preserveZoom = false) {
       .attr('x', labelPos.x).attr('y', labelPos.y)
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'central')
-      .text(AXIS_LABELS[type]);
+      .text(getAxisLabels()[type]);
   }
 
   // ── Links ──

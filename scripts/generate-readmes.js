@@ -12,7 +12,7 @@
  *   node scripts/generate-readmes.js --check  # dry-run, exit 1 if stale
  */
 
-import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from 'fs';
 import { resolve, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import yaml from 'js-yaml';
@@ -447,6 +447,63 @@ function generateTestsReadme() {
   return lines.join('\n');
 }
 
+// ── Translation coverage ─────────────────────────────────────────
+
+function generateTranslationsSection() {
+  const i18nDir = resolve(ROOT, 'i18n');
+  const configPath = resolve(i18nDir, '_config.yml');
+  if (!existsSync(configPath)) {
+    return '*No translations configured yet.*';
+  }
+
+  const i18nConfig = yaml.load(readFileSync(configPath, 'utf8'));
+  const locales = i18nConfig.supported_locales || [];
+  const contentTypes = ['skills', 'agents', 'teams', 'guides'];
+  const sourceCounts = i18nConfig.source_counts || {};
+
+  if (locales.length === 0) {
+    return '*No translations configured yet.*';
+  }
+
+  const rows = [];
+  rows.push('| Locale | Language | Skills | Agents | Teams | Guides | Total |');
+  rows.push('|--------|----------|--------|--------|-------|--------|-------|');
+
+  for (const locale of locales) {
+    const localeDir = resolve(i18nDir, locale.code);
+    const counts = {};
+    let total = 0;
+
+    for (const ct of contentTypes) {
+      const typeDir = resolve(localeDir, ct);
+      let count = 0;
+      if (existsSync(typeDir)) {
+        const entries = readdirSync(typeDir);
+        for (const entry of entries) {
+          const entryPath = resolve(typeDir, entry);
+          if (ct === 'skills') {
+            if (statSync(entryPath).isDirectory() && existsSync(resolve(entryPath, 'SKILL.md'))) {
+              count++;
+            }
+          } else {
+            if (entry.endsWith('.md')) count++;
+          }
+        }
+      }
+      counts[ct] = count;
+      total += count;
+    }
+
+    const totalSource = sourceCounts.total || 409;
+    const pct = totalSource > 0 ? Math.round((total / totalSource) * 1000) / 10 : 0;
+    rows.push(
+      `| ${locale.code} | ${locale.name} | ${counts.skills}/${sourceCounts.skills || 0} | ${counts.agents}/${sourceCounts.agents || 0} | ${counts.teams}/${sourceCounts.teams || 0} | ${counts.guides}/${sourceCounts.guides || 0} | ${total}/${totalSource} (${pct}%) |`
+    );
+  }
+
+  return rows.join('\n');
+}
+
 // ── Main ─────────────────────────────────────────────────────────
 
 let staleCount = 0;
@@ -466,6 +523,7 @@ run(
   processFile(resolve(ROOT, 'README.md'), {
     stats: generateStats,
     guides: generateGuidesSection,
+    translations: generateTranslationsSection,
   })
 );
 

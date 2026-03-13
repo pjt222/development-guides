@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "locale": "ja",
+    "name": "日本語"
+  },
+  "header": {
+    "skills": "スキル",
+    "edges": "エッジ",
+    "domains": "ドメイン",
+    "agents": "エージェント",
+    "teams": "チーム"
+  },
+  "filter": {
+    "skills": "スキル",
+    "agents": "エージェント",
+    "teams": "チーム",
+    "tags": "タグ",
+    "all": "全選択",
+    "none": "選択解除",
+    "clear": "クリア",
+    "searchPlaceholder": "スキルを検索\u2026",
+    "searchAriaLabel": "スキルを検索",
+    "selected": "{count} 件選択中",
+    "members": "{count} 人のメンバー",
+    "bulkSkills": "スキルの一括操作",
+    "bulkAgents": "エージェントの一括操作",
+    "bulkTeams": "チームの一括操作",
+    "bulkTags": "タグの一括操作",
+    "selectAllSkills": "すべてのスキルを選択",
+    "deselectAllSkills": "すべてのスキルの選択を解除",
+    "selectAllAgents": "すべてのエージェントを選択",
+    "deselectAllAgents": "すべてのエージェントの選択を解除",
+    "selectAllTeams": "すべてのチームを選択",
+    "deselectAllTeams": "すべてのチームの選択を解除",
+    "clearAllTags": "すべてのタグをクリア",
+    "togglePanel": "フィルターパネルの切り替え"
+  },
+  "controls": {
+    "colorTheme": "カラーテーマ",
+    "toggleIcons": "アイコンの表示切り替え",
+    "toggleHd": "高解像度アイコンの表示切り替え",
+    "zoomIn": "拡大",
+    "zoomOut": "縮小",
+    "resetView": "表示をリセット",
+    "reset": "リセット",
+    "icons": "アイコン",
+    "hd": "HD",
+    "log": "ログ",
+    "mode2d": "2D フォースレイアウト",
+    "mode3d": "3D フォースレイアウト",
+    "modeHive": "ハイブプロット",
+    "modeChord": "コード図",
+    "modeFlow": "ワークフロー図",
+    "hiveSortToggle": "ハイブソートモードの切り替え",
+    "hiveDomainFocus": "ドメインにフォーカス",
+    "hiveAllDomains": "すべてのドメイン",
+    "hiveTrackSpread": "トラック間隔",
+    "hiveSortRanked": "ランク順",
+    "hiveSortSpread": "分散",
+    "spriteSize3d": "3D アイコンサイズ",
+    "downloadEventLog": "イベントログをダウンロード",
+    "vizMode": "可視化モード",
+    "language": "言語"
+  },
+  "a11y": {
+    "menu": "メニュー",
+    "graphContainer": "インタラクティブなスキルネットワーク可視化"
+  },
+  "panel": {
+    "relatedSkills": "関連スキル",
+    "lead": "リーダー",
+    "members": "メンバー ({count})",
+    "tags": "タグ",
+    "tools": "ツール",
+    "mcpServers": "MCP サーバー",
+    "skills": "スキル ({count})",
+    "viewSourceSkill": "SKILL.md ソースを表示",
+    "viewTeamDefinition": "チーム定義を表示",
+    "viewAgentDefinition": "エージェント定義を表示",
+    "badgeTeam": "チーム",
+    "badgeAgent": "エージェント",
+    "badgeLead": "リーダー"
+  },
+  "tooltip": {
+    "skill": "{title} [{domain}]",
+    "agent": "{title} [エージェント / {priority}]",
+    "team": "{title} [チーム / {count} 人のメンバー]"
+  },
+  "hive": {
+    "axisSkills": "スキル",
+    "axisAgents": "エージェント",
+    "axisTeams": "チーム"
+  },
+  "chord": {
+    "domainTooltip": "{domain}：{count} スキル、{connections} 件のクロスドメイン接続",
+    "chordTooltip": "{source} \u2194 {target}：{weight} 接続ウェイト"
+  },
+  "error": {
+    "noWebGL": "お使いのブラウザは WebGL をサポートしていません。3D モードには WebGL が必要です。",
+    "dataNotFound": "データが見つかりません",
+    "dataNotFoundDetail": "<code>cd viz && npm install && node build-data.js</code> を実行して skills.json を生成してください",
+    "runtimeError": "ランタイムエラー",
+    "workflowUnavailable": "ワークフロー図は利用できません",
+    "workflowUnavailableDetail": "<code>cd viz && node build-workflow.js</code> を実行して図表データを生成してください。"
+  }
+}

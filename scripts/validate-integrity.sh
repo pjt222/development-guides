@@ -190,6 +190,43 @@ else
   echo "OK: No orphan skills detected"
 fi
 
+# B6: Translation integrity
+echo "--- B6: Translation integrity ---"
+b6_fail=0
+b6_checked=0
+for content_type in skills agents teams guides; do
+  for locale_dir in i18n/*/"$content_type"/; do
+    [ ! -d "$locale_dir" ] && continue
+    locale=$(basename "$(dirname "$locale_dir")")
+    if [ "$content_type" = "skills" ]; then
+      for skill_dir in "$locale_dir"*/; do
+        [ ! -d "$skill_dir" ] && continue
+        skill_name=$(basename "$skill_dir")
+        b6_checked=$((b6_checked + 1))
+        if [ ! -f "skills/${skill_name}/SKILL.md" ]; then
+          echo "WARN: orphan translation i18n/$locale/skills/$skill_name ($locale)"
+          warn_count=$((warn_count + 1))
+        fi
+      done
+    else
+      for item in "$locale_dir"*.md; do
+        [ ! -f "$item" ] && continue
+        item_name=$(basename "$item")
+        b6_checked=$((b6_checked + 1))
+        if [ ! -f "$content_type/$item_name" ]; then
+          echo "WARN: orphan translation i18n/$locale/$content_type/$item_name ($locale)"
+          warn_count=$((warn_count + 1))
+        fi
+      done
+    fi
+  done
+done
+if [ "$b6_checked" -gt 0 ]; then
+  echo "OK: Checked $b6_checked translation(s) for source existence"
+else
+  echo "OK: No translations to check"
+fi
+
 echo ""
 echo "=== Summary ==="
 if [ "$failed" -ne 0 ]; then

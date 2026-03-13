@@ -8,6 +8,7 @@
 
 import { getColor, getAgentColor, getTeamColor } from './colors.js';
 import { logEvent } from './eventlog.js';
+import { t } from './i18n.js';
 
 let filterEl = null;
 let skillStates = {};       // skillId -> boolean
@@ -99,8 +100,8 @@ function renderSearchBox() {
   const input = document.createElement('input');
   input.type = 'text';
   input.className = 'filter-search';
-  input.placeholder = 'Search skills\u2026';
-  input.setAttribute('aria-label', 'Search skills');
+  input.placeholder = t('filter.searchPlaceholder');
+  input.setAttribute('aria-label', t('filter.searchAriaLabel'));
 
   list.parentNode.insertBefore(input, list);
 
@@ -317,7 +318,7 @@ function renderTeams(teams) {
       <input type="checkbox" data-team="${team.id}" ${teamStates[team.id] ? 'checked' : ''}>
       <span class="filter-swatch team-pent" data-team-id="${teamId}" style="background: ${color}"></span>
       <span class="filter-name">${team.title || team.id}</span>
-      <span class="filter-count">${team.members ? team.members.length : 0} members</span>
+      <span class="filter-count">${t('filter.members', { count: team.members ? team.members.length : 0 })}</span>
     `;
     list.appendChild(item);
 
@@ -418,7 +419,7 @@ function refreshTagSelection() {
 function updateTagsCount() {
   const el = filterEl.querySelector('#tags-section-count');
   if (!el) return;
-  el.textContent = selectedTags.size > 0 ? `${selectedTags.size} selected` : '0 selected';
+  el.textContent = t('filter.selected', { count: selectedTags.size });
 }
 
 function nodePassesTagFilter(nodeId) {

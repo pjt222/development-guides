@@ -12,6 +12,7 @@ import {
 } from './colors.js';
 import { getIconMode, getIconPath, ICON_ZOOM_THRESHOLD, markIconLoaded, iconCacheKey } from './icons.js';
 import { logEvent } from './eventlog.js';
+import { t } from './i18n.js';
 
 let graph3d = null;
 let graphData = { nodes: [], links: [] };
@@ -314,12 +315,12 @@ export function init3DGraph(container, data, { onClick, onHover } = {}) {
     .nodeThreeObjectExtend(false)
     .nodeLabel(node => {
       if (node.type === 'team') {
-        return `${node.title || node.id} [team / ${node.members ? node.members.length : 0} members]`;
+        return t('tooltip.team', { title: node.title || node.id, count: node.members ? node.members.length : 0 });
       }
       if (node.type === 'agent') {
-        return `${node.title || node.id} [agent / ${node.priority}]`;
+        return t('tooltip.agent', { title: node.title || node.id, priority: node.priority });
       }
-      return `${node.title || node.id} [${node.domain}]`;
+      return t('tooltip.skill', { title: node.title || node.id, domain: node.domain });
     })
     .linkColor(getLinkColor)
     .linkWidth(getLinkWidth)

@@ -11,6 +11,7 @@ import { initPanel, openPanel, closePanel, refreshPanelTheme } from './panel.js'
 import { initFilters, getVisibleSkillIds, getVisibleAgentIds as getFilteredAgentIds, getVisibleTeamIds as getFilteredTeamIds, refreshSwatches } from './filters.js';
 import { setTheme, getThemeNames, getCurrentThemeName } from './colors.js';
 import { logEvent, isEnabled as isEventLogEnabled, downloadLog } from './eventlog.js';
+import { t, initI18n, loadLocale, detectLocale, getSupportedLocales, getLocale, applyLocaleToDOM } from './i18n.js';
 
 const DATA_URL = 'data/skills.json';
 const LAYOUT_SETTLE_MS = 3500;
@@ -182,7 +183,7 @@ async function loadMode(name) {
 
 async function switchMode(newModeName) {
   if (newModeName === '3d' && !isWebGLAvailable()) {
-    alert('WebGL is not supported in your browser. 3D mode requires WebGL.');
+    alert(t('error.noWebGL'));
     return;
   }
 
@@ -250,7 +251,7 @@ async function switchMode(newModeName) {
         domainSelect.style.display = '';
         const domains = hiveMod.getDomainList();
         if (domainSelect.options.length !== domains.length + 1) {
-          domainSelect.innerHTML = '<option value="">All Domains</option>';
+          domainSelect.innerHTML = `<option value="">${t('controls.hiveAllDomains')}</option>`;
           for (const d of domains) {
             const opt = document.createElement('option');
             opt.value = d;
@@ -269,7 +270,7 @@ async function switchMode(newModeName) {
         const savedSort = localStorage.getItem('skillnet-hive-sort') || 'ranked';
         hiveMod.setHiveSortMode(savedSort);
         sortBtn.classList.toggle('active', savedSort === 'interleaved');
-        sortBtn.textContent = savedSort === 'interleaved' ? 'Ranked' : 'Spread';
+        sortBtn.textContent = savedSort === 'interleaved' ? t('controls.hiveSortRanked') : t('controls.hiveSortSpread');
       }
       // Show and restore hive spread slider
       const spreadLabel = document.getElementById('hive-spread-label');
@@ -298,6 +299,25 @@ async function switchMode(newModeName) {
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
+  // ── Init i18n ──
+  await initI18n();
+  const detectedLocale = detectLocale();
+  if (detectedLocale !== 'en') {
+    await loadLocale(detectedLocale);
+  }
+
+  // ── Populate locale picker ──
+  const localeSelect = document.getElementById('locale-select');
+  if (localeSelect) {
+    for (const loc of getSupportedLocales()) {
+      const opt = document.createElement('option');
+      opt.value = loc.code;
+      opt.textContent = loc.name;
+      localeSelect.appendChild(opt);
+    }
+    localeSelect.value = getLocale();
+  }
+
   // ── Load data ──
   let data;
   try {
@@ -307,8 +327,8 @@ async function main() {
   } catch (err) {
     document.getElementById('graph-container').innerHTML = `
       <div class="load-error">
-        <h2>Data not found</h2>
-        <p>Run <code>cd viz && npm install && node build-data.js</code> to generate skills.json</p>
+        <h2>${t('error.dataNotFound')}</h2>
+        <p>${t('error.dataNotFoundDetail')}</p>
         <p class="error-detail">${err.message}</p>
       </div>
     `;
@@ -388,11 +408,21 @@ async function main() {
     closePanel();
   });
 
+  // ── Locale picker ──
+  if (localeSelect) {
+    localeSelect.addEventListener('change', async () => {
+      const code = localeSelect.value;
+      logEvent('app', { event: 'localeChange', locale: code });
+      localStorage.setItem('skillnet-locale', code);
+      await loadLocale(code);
+    });
+  }
+
   // ── Event log download ──
   const logBtn = document.getElementById('btn-event-log');
   if (isEventLogEnabled()) {
     logBtn.style.display = '';
-    logBtn.title = 'Download Event Log';
+    logBtn.title = t('controls.downloadEventLog');
     logBtn.addEventListener('click', () => downloadLog());
   }
 
@@ -413,7 +443,7 @@ async function main() {
     hiveMod.setHiveSortMode(next);
     const btn = document.getElementById('btn-hive-sort');
     btn.classList.toggle('active', next === 'interleaved');
-    btn.textContent = next === 'interleaved' ? 'Ranked' : 'Spread';
+    btn.textContent = next === 'interleaved' ? t('controls.hiveSortRanked') : t('controls.hiveSortSpread');
     localStorage.setItem('skillnet-hive-sort', next);
     logEvent('app', { event: 'hiveSortToggle', mode: next });
   });
@@ -541,11 +571,11 @@ function showTooltip(node) {
   }
   let label;
   if (node.type === 'team') {
-    label = `${node.title || node.id} [team / ${node.members ? node.members.length : 0} members]`;
+    label = t('tooltip.team', { title: node.title || node.id, count: node.members ? node.members.length : 0 });
   } else if (node.type === 'agent') {
-    label = `${node.title || node.id} [agent / ${node.priority}]`;
+    label = t('tooltip.agent', { title: node.title || node.id, priority: node.priority });
   } else {
-    label = `${node.title || node.id} [${node.domain}]`;
+    label = t('tooltip.skill', { title: node.title || node.id, domain: node.domain });
   }
   tooltip.textContent = label;
   tooltip.style.display = 'block';
@@ -696,7 +726,7 @@ main().catch(err => {
   const wrapper = document.createElement('div');
   wrapper.className = 'load-error';
   const h2 = document.createElement('h2');
-  h2.textContent = 'Runtime Error';
+  h2.textContent = t('error.runtimeError');
   const p1 = document.createElement('p');
   p1.textContent = err.message;
   const p2 = document.createElement('p');
