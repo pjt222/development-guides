@@ -3,6 +3,32 @@ use agent_almanac_rs::content::{markdown, registry};
 use agent_almanac_rs::search::FuzzyIndex;
 
 #[test]
+fn cover_screen_emits_truecolor() {
+    use agent_almanac_rs::app::{App, Screen};
+    use agent_almanac_rs::screens::cover;
+    use ratatui::backend::TestBackend;
+    use ratatui::style::Color;
+    use ratatui::Terminal;
+
+    let mut app = App::new(None, false).expect("app");
+    app.screen = Screen::Cover;
+    let mut terminal = Terminal::new(TestBackend::new(100, 30)).expect("terminal");
+    terminal.draw(|f| cover::draw(f, &app)).expect("draw");
+
+    let rgb_cells = terminal
+        .backend()
+        .buffer()
+        .content
+        .iter()
+        .filter(|cell| matches!(cell.style().fg, Some(Color::Rgb(..))))
+        .count();
+    assert!(
+        rgb_cells > 0,
+        "the firelit cover should paint truecolour cells, found {rgb_cells}"
+    );
+}
+
+#[test]
 fn embedded_registries_parse() {
     let r = registry::load(None).expect("embedded registries should parse");
     assert!(
