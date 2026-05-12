@@ -39,7 +39,8 @@ pub struct App {
 impl App {
     pub fn new(root: Option<&Path>, animate: bool) -> Result<Self> {
         let registries = crate::content::registry::load(root)?;
-        let spellbook = spellbook::State::new(&registries, root);
+        let mut spellbook = spellbook::State::new(&registries, root);
+        spellbook.load_bookmarks(crate::state::load().bookmarks);
         Ok(Self {
             screen: Screen::Cover,
             registries,
@@ -56,6 +57,18 @@ impl App {
         self.fire.bump();
         self.needs_redraw = true;
     }
+
+    /// Persist bookmarks if they changed this session (best-effort).
+    fn persist(&self) {
+        if !self.spellbook.bookmarks_dirty {
+            return;
+        }
+        let _ = crate::state::save(&crate::state::PersistentState {
+            bookmarks: self.spellbook.export_bookmarks(),
+            schema_version: crate::state::SCHEMA_VERSION,
+            ..Default::default()
+        });
+    }
 }
 
 pub fn run_tui(root: Option<&Path>, animate: bool) -> Result<()> {
@@ -63,6 +76,7 @@ pub fn run_tui(root: Option<&Path>, animate: bool) -> Result<()> {
     let mut terminal = setup_terminal()?;
     let result = event_loop(&mut terminal, &mut app);
     teardown_terminal(&mut terminal)?;
+    app.persist();
     result
 }
 

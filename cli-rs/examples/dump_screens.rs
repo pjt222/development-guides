@@ -48,6 +48,23 @@ fn main() {
         app.spellbook.volume = vol;
         render(&mut app, width, height, &format!("SPELLBOOK · {}", vol.label()));
     }
+
+    // A search + a couple of ribbons, on the Spells volume.
+    use crossterm::event::{KeyCode, KeyModifiers};
+    let key = |app: &mut App, code| {
+        spellbook::handle_key(app, code, KeyModifiers::NONE);
+    };
+    app.spellbook.volume = spellbook::Volume::Spells;
+    key(&mut app, KeyCode::Char('/'));
+    for ch in "review".chars() {
+        key(&mut app, KeyCode::Char(ch));
+    }
+    key(&mut app, KeyCode::Enter); // commit the filter, leave search mode
+    key(&mut app, KeyCode::Char('m')); // ribbon the first match
+    key(&mut app, KeyCode::Char('j'));
+    key(&mut app, KeyCode::Char('j'));
+    key(&mut app, KeyCode::Char('m')); // ribbon the third match
+    render(&mut app, width, height, "SPELLBOOK · search 'review' + ribbons");
 }
 
 fn render(app: &mut App, width: u16, height: u16, label: &str) {

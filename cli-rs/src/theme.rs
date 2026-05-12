@@ -37,3 +37,15 @@ pub fn highlight() -> Style {
 pub fn accent(color: Color) -> Style {
     Style::default().fg(color).add_modifier(Modifier::BOLD)
 }
+
+/// Style for the characters a search query matched, in the index.
+pub fn match_hl() -> Style {
+    Style::default()
+        .fg(FLAME_CORE)
+        .add_modifier(Modifier::BOLD | Modifier::UNDERLINED)
+}
+
+/// Style for a bookmark ribbon marker in the index.
+pub fn ribbon() -> Style {
+    Style::default().fg(FLAME_MID).add_modifier(Modifier::BOLD)
+}

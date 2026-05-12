@@ -2,6 +2,7 @@
 //! with fore-edge thumb tabs down the right margin for the four volumes:
 //! Spells (skills), Companions (agents), Fellowships (teams), Tomes (guides).
 
+use std::collections::BTreeSet;
 use std::path::Path;
 
 use crossterm::event::{KeyCode, KeyModifiers};
@@ -82,6 +83,16 @@ impl Volume {
         }
     }
 
+    /// Stable lowercase key used to namespace persisted bookmarks.
+    pub fn key(self) -> &'static str {
+        match self {
+            Volume::Spells => "spells",
+            Volume::Companions => "companions",
+            Volume::Fellowships => "fellowships",
+            Volume::Tomes => "tomes",
+        }
+    }
+
     pub fn color(self) -> ratatui::style::Color {
         match self {
             Volume::Spells => theme::VOLUME_SPELLS,
@@ -113,17 +124,18 @@ impl Entry {
         }
     }
 
-    /// The string the fuzzy search matches against.
-    fn search_key(&self) -> &str {
-        self.id()
-    }
-
-    /// What an index row shows — the prettier title for guides, the id otherwise.
+    /// What an index row shows — the prettier title for guides, the id
+    /// otherwise. This is also what the fuzzy search matches against, so that
+    /// match-highlight positions line up with the displayed text.
     fn list_label(&self) -> &str {
         match self {
             Entry::Guide(g) => &g.title,
             other => other.id(),
         }
+    }
+
+    fn search_key(&self) -> &str {
+        self.list_label()
     }
 
     /// Full title shown on the open page header.
@@ -162,6 +174,9 @@ pub struct VolumeIndex {
     pub items: Vec<Entry>,
     /// Indices into `items` currently shown (all of them when no search query).
     pub filtered: Vec<usize>,
+    /// Parallel to `filtered`: matched char offsets in each shown entry's label
+    /// (empty when no search query).
+    pub matches: Vec<Vec<u32>>,
     pub list_state: ListState,
     pub search_query: String,
     pub scroll: u16,
@@ -169,14 +184,15 @@ pub struct VolumeIndex {
 
 impl VolumeIndex {
     fn new(items: Vec<Entry>) -> Self {
-        let filtered: Vec<usize> = (0..items.len()).collect();
+        let n = items.len();
         let mut list_state = ListState::default();
-        if !items.is_empty() {
+        if n > 0 {
             list_state.select(Some(0));
         }
         Self {
             items,
-            filtered,
+            filtered: (0..n).collect(),
+            matches: vec![Vec::new(); n],
             list_state,
             search_query: String::new(),
             scroll: 0,
@@ -217,12 +233,38 @@ impl VolumeIndex {
         }
     }
 
-    fn apply_filter(&mut self, filtered: Vec<usize>) {
+    fn apply_filter(&mut self, filtered: Vec<usize>, matches: Vec<Vec<u32>>) {
         self.filtered = filtered;
+        self.matches = matches;
         self.list_state
             .select(if self.filtered.is_empty() { None } else { Some(0) });
         self.scroll = 0;
     }
+
+    /// Cycle the cursor to the next entry (after the current one, wrapping)
+    /// whose `bookmark_key` is in `bookmarks`. No-op if none qualify.
+    fn jump_to_next_bookmark(&mut self, volume: Volume, bookmarks: &BTreeSet<String>) {
+        if self.filtered.is_empty() {
+            return;
+        }
+        let start = self.list_state.selected().unwrap_or(0);
+        let n = self.filtered.len();
+        for step in 1..=n {
+            let row = (start + step) % n;
+            let entry = &self.items[self.filtered[row]];
+            if bookmarks.contains(&bookmark_key(volume, entry.id())) {
+                self.list_state.select(Some(row));
+                self.scroll = 0;
+                return;
+            }
+        }
+    }
+}
+
+/// The persisted key for a bookmark — `"<volume>/<entry-id>"`, since entry ids
+/// are not unique across volumes (e.g. a skill and a guide can share an id).
+fn bookmark_key(volume: Volume, entry_id: &str) -> String {
+    format!("{}/{entry_id}", volume.key())
 }
 
 // ── screen state ─────────────────────────────────────────────────────────────
@@ -235,6 +277,10 @@ pub struct State {
     pub search_mode: bool,
     /// Skills every agent inherits implicitly — shown on every character sheet.
     pub inherited_spells: Vec<String>,
+    /// Bookmarked entries, as `"<volume>/<id>"` keys (see [`bookmark_key`]).
+    pub bookmarks: BTreeSet<String>,
+    /// Set when `bookmarks` has changed since load, so `run_tui` knows to save.
+    pub bookmarks_dirty: bool,
 }
 
 impl State {
@@ -280,7 +326,39 @@ impl State {
             fuzzy: FuzzyIndex::default(),
             search_mode: false,
             inherited_spells: registries.agents.default_skill_names(),
+            bookmarks: BTreeSet::new(),
+            bookmarks_dirty: false,
         }
+    }
+
+    /// Seed bookmarks from a loaded [`crate::state::PersistentState`].
+    pub fn load_bookmarks(&mut self, keys: impl IntoIterator<Item = String>) {
+        self.bookmarks = keys.into_iter().collect();
+        self.bookmarks_dirty = false;
+    }
+
+    /// The current bookmark set, sorted, for persisting.
+    pub fn export_bookmarks(&self) -> Vec<String> {
+        self.bookmarks.iter().cloned().collect()
+    }
+
+    /// Toggle a bookmark ribbon on the currently selected entry.
+    fn toggle_bookmark(&mut self) {
+        let Some(entry) = self.cur().selected() else {
+            return;
+        };
+        let key = bookmark_key(self.volume, entry.id());
+        if !self.bookmarks.remove(&key) {
+            self.bookmarks.insert(key);
+        }
+        self.bookmarks_dirty = true;
+    }
+
+    fn jump_to_next_bookmark(&mut self) {
+        let volume = self.volume;
+        let i = volume.index();
+        let bookmarks = &self.bookmarks;
+        self.volumes[i].jump_to_next_bookmark(volume, bookmarks);
     }
 
     fn cur(&self) -> &VolumeIndex {
@@ -353,10 +431,10 @@ impl State {
     fn recompute_filter(&mut self) {
         let i = self.volume.index();
         let query = self.volumes[i].search_query.clone();
-        let filtered = self
-            .fuzzy
-            .filter(&self.volumes[i].items, &query, |e| e.search_key());
-        self.volumes[i].apply_filter(filtered);
+        let (filtered, matches) =
+            self.fuzzy
+                .filter_indexed(&self.volumes[i].items, &query, |e| e.search_key());
+        self.volumes[i].apply_filter(filtered, matches);
     }
 
     // -- the open page --
@@ -417,6 +495,7 @@ pub fn draw(frame: &mut Frame<'_>, app: &mut App) {
 fn draw_index(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
     let sb = &mut app.spellbook;
     let volume = sb.volume;
+    let bookmarks = &sb.bookmarks;
     let idx = &mut sb.volumes[volume.index()];
 
     let title = if idx.search_query.is_empty() {
@@ -438,8 +517,19 @@ fn draw_index(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
     let items: Vec<ListItem> = idx
         .filtered
         .iter()
-        .filter_map(|&i| idx.items.get(i))
-        .map(|e| ListItem::new(e.list_label().to_string()))
+        .zip(idx.matches.iter())
+        .filter_map(|(&i, positions)| idx.items.get(i).map(|e| (e, positions)))
+        .map(|(e, positions)| {
+            let bookmarked = bookmarks.contains(&bookmark_key(volume, e.id()));
+            let mut spans: Vec<Span<'static>> = Vec::with_capacity(positions.len() + 2);
+            spans.push(if bookmarked {
+                Span::styled("┃ ", theme::ribbon())
+            } else {
+                Span::raw("  ")
+            });
+            spans.extend(highlight_spans(e.list_label(), positions));
+            ListItem::new(Line::from(spans))
+        })
         .collect();
     let list = List::new(items)
         .block(block)
@@ -447,6 +537,38 @@ fn draw_index(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
         .highlight_style(theme::highlight())
         .highlight_symbol("▶ ");
     frame.render_stateful_widget(list, area, &mut idx.list_state);
+}
+
+/// Split `label` into styled spans, with the chars at `positions` (sorted char
+/// offsets) drawn in the match-highlight style. Returns one [`Span::raw`] when
+/// there are no matches.
+fn highlight_spans(label: &str, positions: &[u32]) -> Vec<Span<'static>> {
+    if positions.is_empty() {
+        return vec![Span::raw(label.to_string())];
+    }
+    let mut spans = Vec::new();
+    let mut run = String::new();
+    let mut run_hl = false;
+    for (i, ch) in label.chars().enumerate() {
+        let hl = positions.binary_search(&(i as u32)).is_ok();
+        if hl != run_hl && !run.is_empty() {
+            spans.push(finish_run(std::mem::take(&mut run), run_hl));
+        }
+        run.push(ch);
+        run_hl = hl;
+    }
+    if !run.is_empty() {
+        spans.push(finish_run(run, run_hl));
+    }
+    spans
+}
+
+fn finish_run(text: String, highlighted: bool) -> Span<'static> {
+    if highlighted {
+        Span::styled(text, theme::match_hl())
+    } else {
+        Span::raw(text)
+    }
 }
 
 fn draw_page(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
@@ -566,7 +688,7 @@ fn make_footer(app: &App) -> Paragraph<'static> {
         _ => format!(" {} {}/{}", sb.volume.singular(), cur, total),
     };
     Paragraph::new(format!(
-        "{lead}    [j/k] turn · [/] search · [Tab] volume · [J/K] scroll · [Esc] back · [q] close"
+        "{lead}    [j/k] turn · [/] search · [m] ribbon · [Tab] vol · [Esc] back · [q] close"
     ))
     .style(theme::dim_text())
 }
@@ -622,6 +744,10 @@ pub fn handle_key(app: &mut App, code: KeyCode, mods: KeyModifiers) {
 
         // search
         KeyCode::Char('/') => app.spellbook.enter_search(),
+
+        // bookmarks (ribbons)
+        KeyCode::Char('m') => app.spellbook.toggle_bookmark(),
+        KeyCode::Char('\'') => app.spellbook.jump_to_next_bookmark(),
 
         // navigation within a volume
         KeyCode::Char('j') | KeyCode::Down => app.spellbook.move_cursor(1),
@@ -705,5 +831,65 @@ mod tests {
             state.cur().list_state.selected(),
             Some(state.cur().items.len() - 1)
         );
+    }
+
+    #[test]
+    fn search_match_positions_track_filtered() {
+        let r = registry::load(None).expect("registries");
+        let mut state = State::new(&r, None);
+        state.enter_search();
+        for ch in "git".chars() {
+            state.append_query(ch);
+        }
+        let idx = state.cur();
+        assert_eq!(idx.filtered.len(), idx.matches.len());
+        assert!(!idx.filtered.is_empty());
+        for (&item, positions) in idx.filtered.iter().zip(idx.matches.iter()) {
+            assert!(!positions.is_empty(), "a matched entry should have positions");
+            let len = idx.items[item].list_label().chars().count() as u32;
+            assert!(positions.iter().all(|&p| p < len), "position past label end");
+            assert!(
+                positions.windows(2).all(|w| w[0] < w[1]),
+                "positions should be sorted and deduped"
+            );
+        }
+    }
+
+    #[test]
+    fn bookmarks_toggle_jump_and_export() {
+        let r = registry::load(None).expect("registries");
+        let mut state = State::new(&r, None);
+        assert!(state.bookmarks.is_empty() && !state.bookmarks_dirty);
+
+        // bookmark the first three skills
+        let ids: Vec<String> = state.cur().items[..3].iter().map(|e| e.id().to_string()).collect();
+        for k in 0..3 {
+            state.volumes[0].list_state.select(Some(k));
+            state.toggle_bookmark();
+        }
+        assert!(state.bookmarks_dirty);
+        assert_eq!(state.bookmarks.len(), 3);
+        assert!(state.bookmarks.contains(&format!("spells/{}", ids[0])));
+
+        // jump cycles through them: from row 0 → 1 → 2 → 0
+        state.volumes[0].list_state.select(Some(0));
+        state.jump_to_next_bookmark();
+        assert_eq!(state.cur().list_state.selected(), Some(1));
+        state.jump_to_next_bookmark();
+        assert_eq!(state.cur().list_state.selected(), Some(2));
+        state.jump_to_next_bookmark();
+        assert_eq!(state.cur().list_state.selected(), Some(0));
+
+        // toggling off removes
+        state.volumes[0].list_state.select(Some(1));
+        state.toggle_bookmark();
+        assert_eq!(state.bookmarks.len(), 2);
+
+        // export round-trips through load_bookmarks
+        let exported = state.export_bookmarks();
+        let mut other = State::new(&r, None);
+        other.load_bookmarks(exported.clone());
+        assert_eq!(other.bookmarks.iter().cloned().collect::<Vec<_>>(), exported);
+        assert!(!other.bookmarks_dirty);
     }
 }
