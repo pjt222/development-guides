@@ -18,6 +18,7 @@ use crate::content::body::{BodyCache, CachedBody};
 use crate::content::registry::{
     AgentSummary, GuideSummary, Registries, SkillSummary, TeamSummary,
 };
+use crate::screens::pages;
 use crate::search::FuzzyIndex;
 use crate::theme;
 
@@ -232,6 +233,8 @@ pub struct State {
     pub body_cache: BodyCache,
     pub fuzzy: FuzzyIndex,
     pub search_mode: bool,
+    /// Skills every agent inherits implicitly — shown on every character sheet.
+    pub inherited_spells: Vec<String>,
 }
 
 impl State {
@@ -276,6 +279,7 @@ impl State {
             body_cache: BodyCache::new(root),
             fuzzy: FuzzyIndex::default(),
             search_mode: false,
+            inherited_spells: registries.agents.default_skill_names(),
         }
     }
 
@@ -462,7 +466,7 @@ fn draw_page(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
     frame.render_widget(block, area);
 
     let scroll = app.spellbook.cur().scroll;
-    let lines = build_page_lines(app);
+    let lines = build_page_lines(app, inner.width);
     let para = Paragraph::new(Text::from(lines))
         .style(theme::body())
         .scroll((scroll, 0))
@@ -470,43 +474,21 @@ fn draw_page(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
     frame.render_widget(para, inner);
 }
 
-/// Minimal page body shared by all kinds (Step 3): a small header, then either
-/// the rendered markdown body (with `--root`) or the description plus a hint.
-/// Per-kind page layouts arrive in Step 4.
-fn build_page_lines(app: &mut App) -> Vec<Line<'static>> {
+fn build_page_lines(app: &mut App, width: u16) -> Vec<Line<'static>> {
     let Some(entry) = app.spellbook.selected_entry() else {
         return vec![Line::from("This volume holds no such page.")];
     };
-    let mut lines = Vec::new();
-    lines.push(Line::from(Span::styled(
-        format!("{} · {}", entry_kind_label(&entry), entry.subtitle()),
-        theme::accent(theme::FLAME_HOT),
-    )));
-    lines.push(Line::default());
-
-    if let Some(body) = app.spellbook.selected_body() {
-        lines.extend(body.rendered.iter().cloned());
-    } else {
-        lines.push(Line::from(Span::styled(
-            entry.description().to_string(),
-            theme::body(),
-        )));
-        lines.push(Line::default());
-        lines.push(Line::from(Span::styled(
-            "— the full page is sealed; pass --root <agent-almanac> to break the wax —",
-            theme::dim_text(),
-        )));
-    }
-    lines
-}
-
-fn entry_kind_label(entry: &Entry) -> &'static str {
-    match entry {
-        Entry::Skill(_) => "Spell",
-        Entry::Agent(_) => "Companion",
-        Entry::Team(_) => "Fellowship",
-        Entry::Guide(_) => "Tome",
-    }
+    let accent = app.spellbook.volume.color();
+    // Borrow order: read `inherited_spells` (Vec) before the &mut body_cache call.
+    // `selected_body` borrows `app.spellbook` mutably and returns the cached body.
+    let inherited = app.spellbook.inherited_spells.clone();
+    let body = app.spellbook.selected_body();
+    let ctx = pages::Ctx {
+        accent,
+        width,
+        inherited_spells: &inherited,
+    };
+    pages::render(&entry, body, &ctx)
 }
 
 /// Fore-edge thumb tabs: one coloured band per volume down the right margin,

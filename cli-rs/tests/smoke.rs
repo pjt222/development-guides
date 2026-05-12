@@ -113,6 +113,49 @@ fn body_cache_loads_from_root() {
 }
 
 #[test]
+fn pages_render_all_kinds() {
+    use agent_almanac_rs::screens::pages::{render, Ctx};
+    use agent_almanac_rs::screens::spellbook::Entry;
+
+    let r = registry::load(None).expect("registries");
+    let inherited = ["meditate".to_string(), "heal".to_string()];
+    let ctx = Ctx {
+        accent: ratatui::style::Color::Reset,
+        width: 60,
+        inherited_spells: &inherited,
+    };
+
+    let skill = Entry::Skill(r.skills.flat().into_iter().next().expect("a skill"));
+    let agent = Entry::Agent(r.agents.flat().into_iter().next().expect("an agent"));
+    let guide = Entry::Guide(r.guides.flat().into_iter().next().expect("a guide"));
+    for e in [&skill, &agent, &guide] {
+        assert!(!render(e, None, &ctx).is_empty());
+    }
+
+    // The character sheet lists the inherited spells.
+    let agent_text: String = render(&agent, None, &ctx)
+        .iter()
+        .flat_map(|l| l.spans.iter().map(|s| s.content.as_ref().to_string()))
+        .collect::<Vec<_>>()
+        .join(" ");
+    assert!(
+        agent_text.contains("meditate") && agent_text.contains("heal"),
+        "character sheet should list inherited spells, got: {agent_text}"
+    );
+
+    // Every team renders (exercises every coordination pattern + member count
+    // through the formation-diagram code) without panicking.
+    for t in r.teams.flat() {
+        let coordination = t.coordination.clone();
+        let lines = render(&Entry::Team(t), None, &ctx);
+        assert!(
+            lines.len() > 4,
+            "team with coordination {coordination:?} produced too few lines"
+        );
+    }
+}
+
+#[test]
 fn fuzzy_filter_narrows_skills() {
     let r = registry::load(None).expect("registries");
     let flat = r.skills.flat();

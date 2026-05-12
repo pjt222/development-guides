@@ -92,6 +92,9 @@ pub struct SkillSummary {
 pub struct AgentsRegistry {
     #[serde(default)]
     pub total_agents: usize,
+    /// Skills every agent inherits implicitly (the registry's `default_skills`).
+    #[serde(default)]
+    pub default_skills: Vec<Mapping>,
     #[serde(default)]
     pub agents: Vec<Mapping>,
 }
@@ -99,6 +102,15 @@ pub struct AgentsRegistry {
 impl AgentsRegistry {
     pub fn total(&self) -> usize {
         self.total_agents
+    }
+
+    /// Names of the skills every agent inherits (e.g. `meditate`, `heal`).
+    pub fn default_skill_names(&self) -> Vec<String> {
+        self.default_skills
+            .iter()
+            .map(|m| str_field(m, "skill"))
+            .filter(|s| !s.is_empty())
+            .collect()
     }
 
     /// All agents, sorted by id. `path` is relative to the almanac root
