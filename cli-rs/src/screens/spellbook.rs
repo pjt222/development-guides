@@ -376,9 +376,10 @@ impl State {
 
 // ── drawing ──────────────────────────────────────────────────────────────────
 
-const INDEX_WIDTH: u16 = 34;
-const GUTTER_WIDTH: u16 = 1;
+const INDEX_WIDTH: u16 = 38;
 const TABS_WIDTH: u16 = 4;
+/// Page area never shrinks below this — past it, the index pane gives way.
+const MIN_PAGE_WIDTH: u16 = 24;
 
 pub fn draw(frame: &mut Frame<'_>, app: &mut App) {
     let area = frame.area();
@@ -387,20 +388,20 @@ pub fn draw(frame: &mut Frame<'_>, app: &mut App) {
         .constraints([Constraint::Min(0), Constraint::Length(1)])
         .split(area);
 
+    // Index · page · fore-edge tabs. The index pane's right border meets the
+    // page's left border to form the book's centre spine — no separate gutter.
     let cols = Layout::default()
         .direction(Direction::Horizontal)
         .constraints([
-            Constraint::Length(INDEX_WIDTH),
-            Constraint::Length(GUTTER_WIDTH),
-            Constraint::Min(20),
+            Constraint::Max(INDEX_WIDTH),
+            Constraint::Min(MIN_PAGE_WIDTH),
             Constraint::Length(TABS_WIDTH),
         ])
         .split(rows[0]);
 
     draw_index(frame, cols[0], app);
-    draw_gutter(frame, cols[1]);
-    draw_page(frame, cols[2], app);
-    draw_tabs(frame, cols[3], app.spellbook.volume);
+    draw_page(frame, cols[1], app);
+    draw_tabs(frame, cols[2], app.spellbook.volume);
 
     frame.render_widget(make_footer(app), rows[1]);
 
@@ -442,14 +443,6 @@ fn draw_index(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
         .highlight_style(theme::highlight())
         .highlight_symbol("▶ ");
     frame.render_stateful_widget(list, area, &mut idx.list_state);
-}
-
-/// The book's centre seam — a faint vertical rule between the two pages.
-fn draw_gutter(frame: &mut Frame<'_>, area: Rect) {
-    let seam: Vec<Line> = (0..area.height)
-        .map(|_| Line::from(Span::styled("│", theme::dim_text())))
-        .collect();
-    frame.render_widget(Paragraph::new(seam), area);
 }
 
 fn draw_page(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
@@ -586,12 +579,12 @@ fn make_footer(app: &App) -> Paragraph<'static> {
     let cur = idx.list_state.selected().map(|i| i + 1).unwrap_or(0);
     let lead = match sb.selected_entry().map(|e| e.subtitle()) {
         Some(sub) if !sub.is_empty() => {
-            format!(" {} {} of {} · {}", sb.volume.singular(), cur, total, sub)
+            format!(" {} {}/{} · {}", sb.volume.singular(), cur, total, sub)
         }
-        _ => format!(" {} {} of {}", sb.volume.singular(), cur, total),
+        _ => format!(" {} {}/{}", sb.volume.singular(), cur, total),
     };
     Paragraph::new(format!(
-        "{lead}     [j/k] turn  [/] speak a name  [1-4]/[/] volumes  [J/K] scroll page  [Esc] back  [q] close"
+        "{lead}    [j/k] turn · [/] search · [Tab] volume · [J/K] scroll · [Esc] back · [q] close"
     ))
     .style(theme::dim_text())
 }

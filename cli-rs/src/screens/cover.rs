@@ -15,19 +15,45 @@ use crate::app::{App, Screen};
 use crate::pixels::flame;
 use crate::theme;
 
-/// The embossed cover plate, drawn in box characters. Centred under the flame.
-const COVER_PLATE: &[&str] = &[
-    "╔══════════════════════════╗",
-    "║ ┌──────────────────────┐ ║",
-    "║ │                      │ ║",
-    "║ │   A G E N T          │ ║",
-    "║ │   A L M A N A C       │ ║",
-    "║ │                      │ ║",
-    "║ │   ✦   a grimoire  ✦  │ ║",
-    "║ │                      │ ║",
-    "║ └──────────────────────┘ ║",
-    "╚══════════════════════════╝",
-];
+/// Inner content width of the embossed cover plate (the part between the
+/// `│ … │` rules). Every plate row is therefore `INNER + 6` columns wide, so
+/// they stack cleanly under [`Alignment::Center`].
+const PLATE_INNER: usize = 22;
+
+/// Build the embossed cover plate as a stack of equal-width box-drawn rows.
+/// Constructed at runtime rather than hand-laid so the widths can't drift, and
+/// kept to ASCII + box-drawing glyphs so it survives narrow/ambiguous-width
+/// terminals.
+fn cover_plate() -> Vec<String> {
+    let w = PLATE_INNER;
+    let content: [String; 6] = [
+        String::new(),
+        format!("   {:<rest$}", "A G E N T", rest = w - 3),
+        format!("   {:<rest$}", "A L M A N A C", rest = w - 3),
+        String::new(),
+        center("* a grimoire *", w),
+        String::new(),
+    ];
+    let mut rows = Vec::with_capacity(content.len() + 4);
+    rows.push(format!("╔{}╗", "═".repeat(w + 4)));
+    rows.push(format!("║ ┌{}┐ ║", "─".repeat(w)));
+    for line in &content {
+        rows.push(format!("║ │{line:<w$}│ ║"));
+    }
+    rows.push(format!("║ └{}┘ ║", "─".repeat(w)));
+    rows.push(format!("╚{}╝", "═".repeat(w + 4)));
+    rows
+}
+
+/// Centre `s` in a field of `w` columns (truncating if it is longer).
+fn center(s: &str, w: usize) -> String {
+    let len = s.chars().count();
+    if len >= w {
+        return s.chars().take(w).collect();
+    }
+    let left = (w - len) / 2;
+    format!("{}{s}{}", " ".repeat(left), " ".repeat(w - len - left))
+}
 
 pub fn draw(frame: &mut Frame<'_>, app: &App) {
     let area = frame.area();
@@ -49,7 +75,8 @@ pub fn draw(frame: &mut Frame<'_>, app: &App) {
 fn draw_stack(frame: &mut Frame<'_>, area: Rect, app: &App) {
     let flame_lines = flame::frame_lines(&app.fire);
     let flame_h = flame_lines.len() as u16;
-    let plate_h = COVER_PLATE.len() as u16;
+    let plate_rows = cover_plate();
+    let plate_h = plate_rows.len() as u16;
     // flame · gap · plate · gap · inscription(2)
     let stack_h = flame_h + 1 + plate_h + 1 + 2;
     let top_pad = area.height.saturating_sub(stack_h) / 2;
@@ -72,9 +99,9 @@ fn draw_stack(frame: &mut Frame<'_>, area: Rect, app: &App) {
         rows[1],
     );
 
-    let plate: Vec<Line> = COVER_PLATE
-        .iter()
-        .map(|l| Line::from(Span::styled((*l).to_string(), theme::header())))
+    let plate: Vec<Line> = plate_rows
+        .into_iter()
+        .map(|l| Line::from(Span::styled(l, theme::header())))
         .collect();
     frame.render_widget(
         Paragraph::new(plate).alignment(Alignment::Center),
