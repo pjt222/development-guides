@@ -10,7 +10,8 @@ use ratatui::layout::{Alignment, Constraint, Direction, Layout, Rect};
 use ratatui::style::{Modifier, Style};
 use ratatui::text::{Line, Span, Text};
 use ratatui::widgets::{
-    Block, BorderType, Borders, Clear, List, ListItem, ListState, Paragraph, Wrap,
+    Block, BorderType, Borders, Clear, List, ListItem, ListState, Paragraph, Scrollbar,
+    ScrollbarOrientation, ScrollbarState, Wrap,
 };
 use ratatui::Frame;
 
@@ -281,6 +282,9 @@ pub struct State {
     pub bookmarks: BTreeSet<String>,
     /// Set when `bookmarks` has changed since load, so `run_tui` knows to save.
     pub bookmarks_dirty: bool,
+    /// Inner height of the page pane at the last render — used to size
+    /// half-page / full-page scroll steps. 0 until the first draw.
+    pub page_viewport: u16,
 }
 
 impl State {
@@ -328,7 +332,18 @@ impl State {
             inherited_spells: registries.agents.default_skill_names(),
             bookmarks: BTreeSet::new(),
             bookmarks_dirty: false,
+            page_viewport: 0,
         }
+    }
+
+    /// One half-page (or one line, whichever is larger), for `Ctrl-d`/`Ctrl-u`.
+    fn half_page(&self) -> i16 {
+        (self.page_viewport / 2).max(1) as i16
+    }
+
+    /// One near-full page, for `Space` / `Ctrl-b`.
+    fn full_page(&self) -> i16 {
+        self.page_viewport.saturating_sub(2).max(1) as i16
     }
 
     /// Seed bookmarks from a loaded [`crate::state::PersistentState`].
@@ -587,13 +602,50 @@ fn draw_page(frame: &mut Frame<'_>, area: Rect, app: &mut App) {
     let inner = block.inner(area);
     frame.render_widget(block, area);
 
-    let scroll = app.spellbook.cur().scroll;
     let lines = build_page_lines(app, inner.width);
+    // Estimate the rendered (word-wrapped) height so scrolling can be clamped
+    // to it; exact wrap points aren't exposed by ratatui, so this is a bound.
+    let rendered = wrapped_height(&lines, inner.width);
+    let max_scroll = rendered.saturating_sub(inner.height);
+    app.spellbook.page_viewport = inner.height;
+    let scroll = app.spellbook.cur().scroll.min(max_scroll);
+    app.spellbook.cur_mut().scroll = scroll;
+
     let para = Paragraph::new(Text::from(lines))
         .style(theme::body())
         .scroll((scroll, 0))
         .wrap(Wrap { trim: false });
     frame.render_widget(para, inner);
+
+    // A position marker riding the page's right border, only when the body
+    // overflows. No track glyph — the double border stays, the heavy `┃` thumb
+    // shows where you are.
+    if rendered > inner.height && area.height >= 3 {
+        let mut sb_state = ScrollbarState::new(rendered as usize)
+            .viewport_content_length(inner.height as usize)
+            .position(scroll as usize);
+        let scrollbar = Scrollbar::new(ScrollbarOrientation::VerticalRight)
+            .begin_symbol(None)
+            .end_symbol(None)
+            .track_symbol(None)
+            .thumb_symbol("┃")
+            .thumb_style(theme::accent(volume.color()));
+        let track = Rect::new(area.right().saturating_sub(1), area.y + 1, 1, area.height - 2);
+        frame.render_stateful_widget(scrollbar, track, &mut sb_state);
+    }
+}
+
+/// Approximate the height the lines occupy once word-wrapped to `width`.
+fn wrapped_height(lines: &[Line<'_>], width: u16) -> u16 {
+    let w = width.max(1) as usize;
+    let total: usize = lines
+        .iter()
+        .map(|line| {
+            let chars: usize = line.spans.iter().map(|s| s.content.chars().count()).sum();
+            chars.max(1).div_ceil(w)
+        })
+        .sum();
+    total.min(u16::MAX as usize) as u16
 }
 
 fn build_page_lines(app: &mut App, width: u16) -> Vec<Line<'static>> {
@@ -688,7 +740,7 @@ fn make_footer(app: &App) -> Paragraph<'static> {
         _ => format!(" {} {}/{}", sb.volume.singular(), cur, total),
     };
     Paragraph::new(format!(
-        "{lead}    [j/k] turn · [/] search · [m] ribbon · [Tab] vol · [Esc] back · [q] close"
+        "{lead}    [j/k] entry · [^d/^u/Space] scroll page · [/] search · [m] ribbon · [Tab] vol · [q] close"
     ))
     .style(theme::dim_text())
 }
@@ -727,6 +779,30 @@ pub fn handle_key(app: &mut App, code: KeyCode, mods: KeyModifiers) {
         return;
     }
 
+    // Ctrl-modified keys: page scrolling.
+    if mods.contains(KeyModifiers::CONTROL) {
+        match code {
+            KeyCode::Char('d') => {
+                let h = app.spellbook.half_page();
+                app.spellbook.scroll_page(h);
+            }
+            KeyCode::Char('u') => {
+                let h = app.spellbook.half_page();
+                app.spellbook.scroll_page(-h);
+            }
+            KeyCode::Char('f') => {
+                let h = app.spellbook.full_page();
+                app.spellbook.scroll_page(h);
+            }
+            KeyCode::Char('b') => {
+                let h = app.spellbook.full_page();
+                app.spellbook.scroll_page(-h);
+            }
+            _ => {}
+        }
+        return;
+    }
+
     match code {
         // volume switching
         KeyCode::Char('1') => app.spellbook.set_volume(Volume::Spells),
@@ -756,8 +832,14 @@ pub fn handle_key(app: &mut App, code: KeyCode, mods: KeyModifiers) {
         KeyCode::PageUp => app.spellbook.move_cursor(-10),
         KeyCode::Char('g') | KeyCode::Home => app.spellbook.jump(true),
         KeyCode::Char('G') | KeyCode::End => app.spellbook.jump(false),
+
+        // page (right pane) scrolling: fine, half-page, full-page
         KeyCode::Char('J') => app.spellbook.scroll_page(2),
         KeyCode::Char('K') => app.spellbook.scroll_page(-2),
+        KeyCode::Char(' ') => {
+            let h = app.spellbook.full_page();
+            app.spellbook.scroll_page(h);
+        }
 
         // escape ladder: clear a search filter first; if there was none, close
         // the book (the guard's `clear_query` does the clearing as a side effect).

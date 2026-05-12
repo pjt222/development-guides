@@ -233,6 +233,43 @@ fn pages_render_all_kinds() {
 }
 
 #[test]
+fn page_scroll_clamps_to_content() {
+    use agent_almanac_rs::app::{App, Screen};
+    use agent_almanac_rs::screens::spellbook::{self, Volume};
+    use crossterm::event::{KeyCode, KeyModifiers};
+    use ratatui::backend::TestBackend;
+    use ratatui::Terminal;
+
+    let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+        .parent()
+        .expect("repo root");
+    let mut app = App::new(Some(root), false).expect("app");
+    app.screen = Screen::Spellbook;
+    app.spellbook.volume = Volume::Spells;
+    let mut term = Terminal::new(TestBackend::new(100, 24)).expect("term");
+
+    // First draw loads the body and records the page viewport.
+    term.draw(|f| spellbook::draw(f, &mut app)).expect("draw");
+    // Scroll far past the end.
+    for _ in 0..500 {
+        spellbook::handle_key(&mut app, KeyCode::Char('J'), KeyModifiers::NONE);
+    }
+    let before = app.spellbook.volumes[0].scroll;
+    // The next draw clamps the over-scroll to the rendered content height.
+    term.draw(|f| spellbook::draw(f, &mut app)).expect("draw");
+    let clamped = app.spellbook.volumes[0].scroll;
+    assert!(clamped < before, "draw should clamp over-scroll: {before} -> {clamped}");
+    assert!(clamped > 0, "a long SKILL.md should still allow scrolling: {clamped}");
+    // Scrolling back up works from the clamped position.
+    spellbook::handle_key(&mut app, KeyCode::Char('K'), KeyModifiers::NONE);
+    assert!(app.spellbook.volumes[0].scroll < clamped);
+    // Half-page scroll uses the recorded viewport.
+    let here = app.spellbook.volumes[0].scroll;
+    spellbook::handle_key(&mut app, KeyCode::Char('u'), KeyModifiers::CONTROL);
+    assert!(app.spellbook.volumes[0].scroll < here, "Ctrl-u should scroll up by a half page");
+}
+
+#[test]
 fn fuzzy_filter_narrows_skills() {
     let r = registry::load(None).expect("registries");
     let flat = r.skills.flat();
