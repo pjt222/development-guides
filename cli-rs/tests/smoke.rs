@@ -118,6 +118,57 @@ fn markdown_render_basic() {
 }
 
 #[test]
+fn markdown_renders_code_blocks_line_by_line_and_tables_aligned() {
+    let src = "\
+```rust
+let a = 1;
+let b = 2;
+let c = 3;
+```
+
+| Level | What |
+|-------|------|
+| lite  | a    |
+| full  | bb   |
+";
+    let lines = markdown::render(src);
+    let text_of = |l: &ratatui::text::Line| -> String {
+        l.spans.iter().map(|s| s.content.as_ref()).collect()
+    };
+
+    // Each code line is its own rendered line (not one mangled blob with \n).
+    let code_lines: Vec<_> = lines
+        .iter()
+        .map(text_of)
+        .filter(|t| t.contains("let "))
+        .collect();
+    assert_eq!(code_lines.len(), 3, "expected 3 distinct code lines: {code_lines:?}");
+    assert!(
+        lines.iter().all(|l| l.spans.iter().all(|s| !s.content.contains('\n'))),
+        "no rendered span should still contain a raw newline"
+    );
+
+    // The table is laid out with a column separator and a header rule.
+    let table_lines: Vec<_> = lines.iter().map(text_of).filter(|t| t.contains('│') || t.contains('┼')).collect();
+    assert!(
+        table_lines.iter().any(|t| t.contains("Level") && t.contains("What") && t.contains('│')),
+        "header row should use │ separators: {table_lines:?}"
+    );
+    assert!(
+        table_lines.iter().any(|t| t.contains('┼')),
+        "expected a ─┼─ rule under the table header: {table_lines:?}"
+    );
+    // Cells are padded so the separator lines up across rows.
+    let body: Vec<_> = table_lines
+        .iter()
+        .filter(|t| t.contains("lite") || t.contains("full"))
+        .collect();
+    assert_eq!(body.len(), 2);
+    let bar_at = |s: &str| s.char_indices().find(|&(_, c)| c == '│').map(|(i, _)| i);
+    assert_eq!(bar_at(body[0]), bar_at(body[1]), "column separators should align");
+}
+
+#[test]
 fn body_cache_loads_from_root() {
     use agent_almanac_rs::content::body::BodyCache;
     let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))

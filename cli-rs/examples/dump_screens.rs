@@ -6,8 +6,9 @@
 //! cargo run --example dump_screens -- 110 32 --root ..
 //! ```
 //!
-//! Optional trailing `--root <path>` loads real bodies (and uses the on-disk
-//! registries). Width/height default to 100×30.
+//! Optional `--root <path>` loads real bodies (and uses the on-disk
+//! registries); `--skill <id>` also dumps that specific skill's page.
+//! Width/height default to 100×30.
 
 use ratatui::backend::TestBackend;
 use ratatui::Terminal;
@@ -20,12 +21,13 @@ fn main() {
     let mut width = 100u16;
     let mut height = 30u16;
     let mut root: Option<std::path::PathBuf> = None;
+    let mut skill: Option<String> = None;
     let mut positional = Vec::new();
     while let Some(a) = args.next() {
-        if a == "--root" {
-            root = args.next().map(Into::into);
-        } else {
-            positional.push(a);
+        match a.as_str() {
+            "--root" => root = args.next().map(Into::into),
+            "--skill" => skill = args.next(),
+            _ => positional.push(a),
         }
     }
     if let Some(w) = positional.first().and_then(|s| s.parse().ok()) {
@@ -65,6 +67,18 @@ fn main() {
     key(&mut app, KeyCode::Char('j'));
     key(&mut app, KeyCode::Char('m')); // ribbon the third match
     render(&mut app, width, height, "SPELLBOOK · search 'review' + ribbons");
+
+    // A named skill's page (handy for eyeballing markdown: code blocks, tables).
+    if let Some(id) = skill {
+        let mut app2 = App::new(root.as_deref(), false).expect("app");
+        app2.screen = Screen::Spellbook;
+        app2.spellbook.volume = spellbook::Volume::Spells;
+        let vi = &mut app2.spellbook.volumes[0];
+        if let Some(row) = vi.filtered.iter().position(|&i| vi.items[i].id() == id) {
+            vi.list_state.select(Some(row));
+        }
+        render(&mut app2, width, height, &format!("SKILL PAGE · {id}"));
+    }
 }
 
 fn render(app: &mut App, width: u16, height: u16, label: &str) {
