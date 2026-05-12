@@ -109,8 +109,13 @@ fn footer_text(app: &App) -> String {
     format!("press any key to open the book   ·   [q] leave the fire{breath}")
 }
 
-pub fn handle_key(app: &mut App, _code: KeyCode, _mods: KeyModifiers) {
-    // Any key not caught by the global handler (q / Ctrl-C / Tab) opens the book.
-    // (The flare + redraw is handled by `App::touched`.)
+pub fn handle_key(app: &mut App, code: KeyCode, _mods: KeyModifiers) {
+    // Any key not caught by the global handler (q / Ctrl-C) opens the book.
+    // 1-4 open straight to that volume. (The flare + redraw is handled by
+    // `App::touched`.)
+    if let KeyCode::Char(c @ '1'..='4') = code {
+        let i = c as usize - '1' as usize;
+        app.spellbook.volume = crate::screens::spellbook::Volume::from_index(i);
+    }
     app.screen = Screen::Spellbook;
 }

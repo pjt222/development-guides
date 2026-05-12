@@ -7,10 +7,15 @@ pub const EMBER: Color = Color::Rgb(0x8B, 0x45, 0x13);
 pub const WARM_TEXT: Color = Color::Rgb(0xD4, 0xA5, 0x74);
 pub const NIGHT_BG: Color = Color::Rgb(0x18, 0x10, 0x0C);
 
+/// Fore-edge thumb-tab colours, one warm hue per volume. Kept within the
+/// firelit palette but distinct enough to read at a glance.
+pub const VOLUME_SPELLS: Color = Color::Rgb(0xFF, 0xB3, 0x47); // amber
+pub const VOLUME_COMPANIONS: Color = Color::Rgb(0xE2, 0x8C, 0x5A); // copper
+pub const VOLUME_FELLOWSHIPS: Color = Color::Rgb(0xC2, 0x6A, 0x46); // terracotta
+pub const VOLUME_TOMES: Color = Color::Rgb(0xB9, 0x90, 0x6E); // parchment-brown
+
 pub fn header() -> Style {
-    Style::default()
-        .fg(FLAME_HOT)
-        .add_modifier(Modifier::BOLD)
+    Style::default().fg(FLAME_HOT).add_modifier(Modifier::BOLD)
 }
 
 pub fn dim_text() -> Style {
@@ -26,4 +31,9 @@ pub fn highlight() -> Style {
         .fg(FLAME_CORE)
         .bg(EMBER)
         .add_modifier(Modifier::BOLD)
+}
+
+/// A label drawn in a volume's accent colour, bold.
+pub fn accent(color: Color) -> Style {
+    Style::default().fg(color).add_modifier(Modifier::BOLD)
 }

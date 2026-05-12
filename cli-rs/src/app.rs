@@ -124,14 +124,9 @@ fn handle_key(app: &mut App, code: KeyCode, mods: KeyModifiers) {
     match (code, mods) {
         (KeyCode::Char('q'), _) => app.should_quit = true,
         (KeyCode::Char('c'), KeyModifiers::CONTROL) => app.should_quit = true,
-        (KeyCode::Tab, _) => {
-            app.screen = match app.screen {
-                Screen::Cover => Screen::Spellbook,
-                Screen::Spellbook => Screen::Cover,
-            };
-            app.touched();
-        }
         _ => {
+            // Per-screen: the cover opens the book on any key; the spellbook
+            // handles volume switching (Tab/[/]/1-4), navigation, and search.
             match app.screen {
                 Screen::Cover => cover::handle_key(app, code, mods),
                 Screen::Spellbook => spellbook::handle_key(app, code, mods),
