@@ -1,6 +1,7 @@
 use std::path::Path;
 
 use serde::Deserialize;
+use serde_yaml::{Mapping, Value};
 
 use crate::error::{Error, Result};
 
@@ -9,12 +10,36 @@ const AGENTS_YAML: &str = include_str!("../../../agents/_registry.yml");
 const TEAMS_YAML: &str = include_str!("../../../teams/_registry.yml");
 const GUIDES_YAML: &str = include_str!("../../../guides/_registry.yml");
 
+// ── small YAML accessors ─────────────────────────────────────────────────────
+
+/// Read a scalar string field from a mapping, or `""` if missing/non-string.
+fn str_field(map: &Mapping, key: &str) -> String {
+    map.get(key)
+        .and_then(Value::as_str)
+        .unwrap_or_default()
+        .to_string()
+}
+
+/// Read a sequence-of-strings field from a mapping (e.g. `tags`, `members`).
+fn str_seq_field(map: &Mapping, key: &str) -> Vec<String> {
+    map.get(key)
+        .and_then(Value::as_sequence)
+        .map(|seq| {
+            seq.iter()
+                .filter_map(|v| v.as_str().map(str::to_string))
+                .collect()
+        })
+        .unwrap_or_default()
+}
+
+// ── skills ───────────────────────────────────────────────────────────────────
+
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct SkillsRegistry {
     #[serde(default)]
     pub total_skills: usize,
     #[serde(default)]
-    pub domains: serde_yaml::Mapping,
+    pub domains: Mapping,
 }
 
 impl SkillsRegistry {
@@ -22,38 +47,27 @@ impl SkillsRegistry {
         self.total_skills
     }
 
+    /// All skills across all domains, sorted by id. `path` is relative to the
+    /// `skills/` directory (e.g. `create-r-package/SKILL.md`).
     pub fn flat(&self) -> Vec<SkillSummary> {
         let mut out = Vec::new();
         for (domain_key, domain_val) in &self.domains {
             let Some(domain) = domain_key.as_str() else {
                 continue;
             };
-            let Some(skills) = domain_val.get("skills").and_then(|s| s.as_sequence()) else {
+            let Some(skills) = domain_val.get("skills").and_then(Value::as_sequence) else {
                 continue;
             };
             for entry in skills {
-                let id = entry
-                    .get("id")
-                    .and_then(|v| v.as_str())
-                    .unwrap_or_default()
-                    .to_string();
-                let description = entry
-                    .get("description")
-                    .and_then(|v| v.as_str())
-                    .unwrap_or_default()
-                    .to_string();
-                let path = entry
-                    .get("path")
-                    .and_then(|v| v.as_str())
-                    .unwrap_or_default()
-                    .to_string();
+                let Some(map) = entry.as_mapping() else { continue };
+                let id = str_field(map, "id");
                 if id.is_empty() {
                     continue;
                 }
                 out.push(SkillSummary {
                     id,
-                    description,
-                    path,
+                    description: str_field(map, "description"),
+                    path: str_field(map, "path"),
                     domain: domain.to_string(),
                 });
             }
@@ -67,53 +81,178 @@ impl SkillsRegistry {
 pub struct SkillSummary {
     pub id: String,
     pub description: String,
+    /// Relative to the `skills/` directory.
     pub path: String,
     pub domain: String,
 }
+
+// ── agents ───────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct AgentsRegistry {
     #[serde(default)]
     pub total_agents: usize,
     #[serde(default)]
-    pub agents: Vec<serde_yaml::Mapping>,
+    pub agents: Vec<Mapping>,
 }
 
 impl AgentsRegistry {
     pub fn total(&self) -> usize {
         self.total_agents
     }
+
+    /// All agents, sorted by id. `path` is relative to the almanac root
+    /// (e.g. `agents/r-developer.md`).
+    pub fn flat(&self) -> Vec<AgentSummary> {
+        let mut out: Vec<AgentSummary> = self
+            .agents
+            .iter()
+            .filter_map(|map| {
+                let id = str_field(map, "id");
+                if id.is_empty() {
+                    return None;
+                }
+                Some(AgentSummary {
+                    id,
+                    description: str_field(map, "description"),
+                    priority: str_field(map, "priority"),
+                    tags: str_seq_field(map, "tags"),
+                    core_skills: str_seq_field(map, "skills"),
+                    path: str_field(map, "path"),
+                })
+            })
+            .collect();
+        out.sort_by(|a, b| a.id.cmp(&b.id));
+        out
+    }
 }
+
+#[derive(Debug, Clone)]
+pub struct AgentSummary {
+    pub id: String,
+    pub description: String,
+    pub priority: String,
+    pub tags: Vec<String>,
+    /// The agent's frontmatter `skills:` list — its ≤5 "prepared spells".
+    pub core_skills: Vec<String>,
+    /// Relative to the almanac root.
+    pub path: String,
+}
+
+// ── teams ────────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct TeamsRegistry {
     #[serde(default)]
     pub total_teams: usize,
     #[serde(default)]
-    pub teams: Vec<serde_yaml::Mapping>,
+    pub teams: Vec<Mapping>,
 }
 
 impl TeamsRegistry {
     pub fn total(&self) -> usize {
         self.total_teams
     }
+
+    /// All teams, sorted by id. `path` is relative to the almanac root.
+    pub fn flat(&self) -> Vec<TeamSummary> {
+        let mut out: Vec<TeamSummary> = self
+            .teams
+            .iter()
+            .filter_map(|map| {
+                let id = str_field(map, "id");
+                if id.is_empty() {
+                    return None;
+                }
+                Some(TeamSummary {
+                    id,
+                    description: str_field(map, "description"),
+                    lead: str_field(map, "lead"),
+                    members: str_seq_field(map, "members"),
+                    coordination: str_field(map, "coordination"),
+                    tags: str_seq_field(map, "tags"),
+                    path: str_field(map, "path"),
+                })
+            })
+            .collect();
+        out.sort_by(|a, b| a.id.cmp(&b.id));
+        out
+    }
 }
+
+#[derive(Debug, Clone)]
+pub struct TeamSummary {
+    pub id: String,
+    pub description: String,
+    pub lead: String,
+    pub members: Vec<String>,
+    /// The coordination pattern (`hub-and-spoke`, `wave-parallel`, …).
+    pub coordination: String,
+    pub tags: Vec<String>,
+    /// Relative to the almanac root.
+    pub path: String,
+}
+
+// ── guides ───────────────────────────────────────────────────────────────────
 
 #[derive(Debug, Default, Clone, Deserialize)]
 pub struct GuidesRegistry {
     #[serde(default)]
     pub total_guides: usize,
     #[serde(default)]
-    pub categories: serde_yaml::Mapping,
+    pub categories: Mapping,
     #[serde(default)]
-    pub guides: Vec<serde_yaml::Mapping>,
+    pub guides: Vec<Mapping>,
 }
 
 impl GuidesRegistry {
     pub fn total(&self) -> usize {
         self.total_guides
     }
+
+    /// All guides in registry order (which groups them by category).
+    /// `path` is relative to the almanac root.
+    pub fn flat(&self) -> Vec<GuideSummary> {
+        self.guides
+            .iter()
+            .filter_map(|map| {
+                let id = str_field(map, "id");
+                if id.is_empty() {
+                    return None;
+                }
+                let title = {
+                    let t = str_field(map, "title");
+                    if t.is_empty() { id.clone() } else { t }
+                };
+                Some(GuideSummary {
+                    id,
+                    title,
+                    description: str_field(map, "description"),
+                    category: str_field(map, "category"),
+                    agents: str_seq_field(map, "agents"),
+                    teams: str_seq_field(map, "teams"),
+                    skills: str_seq_field(map, "skills"),
+                    path: str_field(map, "path"),
+                })
+            })
+            .collect()
+    }
 }
+
+#[derive(Debug, Clone)]
+pub struct GuideSummary {
+    pub id: String,
+    pub title: String,
+    pub description: String,
+    pub category: String,
+    pub agents: Vec<String>,
+    pub teams: Vec<String>,
+    pub skills: Vec<String>,
+    /// Relative to the almanac root.
+    pub path: String,
+}
+
+// ── bundle + loading ─────────────────────────────────────────────────────────
 
 #[derive(Debug, Default, Clone)]
 pub struct Registries {
