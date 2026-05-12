@@ -14,7 +14,7 @@ pub struct Args {
     #[arg(long, global = true, env = "AGENT_ALMANAC_ROOT")]
     pub root: Option<PathBuf>,
 
-    /// Enable idle animation on the campfire screen (default: input-driven only).
+    /// Let the reading fire breathe while idle (default: it only flares on input).
     #[arg(long, global = true, env = "AGENT_ALMANAC_ANIMATE")]
     pub animate: bool,
 

@@ -1,2 +1,2 @@
-pub mod campfire;
+pub mod cover;
 pub mod spellbook;

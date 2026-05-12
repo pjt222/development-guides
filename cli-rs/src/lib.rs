@@ -4,6 +4,7 @@ pub mod cli;
 pub mod content;
 pub mod error;
 pub mod event;
+pub mod fire;
 pub mod pixels;
 pub mod screens;
 pub mod search;
@@ -15,14 +16,13 @@ use error::Result;
 
 pub fn run(args: Args) -> Result<()> {
     match args.command {
-        None => app::run_tui(args.root.as_deref()),
+        None | Some(Command::Tui) => app::run_tui(args.root.as_deref(), args.animate),
         Some(Command::List { kind }) => command_list(kind, args.root.as_deref()),
         Some(Command::Detect) => command_detect(args.root.as_deref()),
         Some(Command::Version) => {
             println!("{}", env!("CARGO_PKG_VERSION"));
             Ok(())
         }
-        Some(Command::Tui) => app::run_tui(args.root.as_deref()),
     }
 }
 
