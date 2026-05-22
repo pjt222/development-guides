@@ -90,7 +90,7 @@ agent-almanac detect              # show frameworks in cwd
 agent-almanac install commit-changes
 ```
 
-Reaches 12+ frameworks: Claude Code, Cursor, Codex, Gemini, Aider, OpenCode, Windsurf, Vibe, Hermes, OpenClaw. See [cli/README.md](cli/README.md).
+Reaches 12+ frameworks: Claude Code, Cursor, Codex, Gemini, Aider, OpenCode, Windsurf, Vibe, Hermes, OpenClaw, Pi. See [cli/README.md](cli/README.md).
 
 ### Verify
 
