@@ -15,83 +15,16 @@
 //! because Node never exercises that path.
 
 use std::fs;
-use std::io;
 use std::path::{Path, PathBuf};
 
 use super::base::{
     Action, AuditEntry, ContentType, FrameworkAdapter, InstallCtx, InstallResult, Item, Scope,
     Strategy,
 };
+use super::symlink::{is_symlink, link_target, remove_link, symlink_dir};
 use crate::error::{Error, Result};
 
 pub struct Gemini;
-
-// ── platform-portable symlink helpers ────────────────────────────────────────
-
-/// Create a directory symlink `dst -> src`.
-#[cfg(unix)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::unix::fs::symlink(src, dst)
-}
-#[cfg(windows)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::windows::fs::symlink_dir(src, dst)
-}
-
-/// Remove a symlink. On Unix every symlink unlinks as a file; on Windows a
-/// directory symlink needs `remove_dir`, so fall back to it.
-#[cfg(unix)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path)
-}
-#[cfg(windows)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path).or_else(|_| fs::remove_dir(path))
-}
-
-/// Whether `path` is itself a symlink — true even when the link is broken.
-fn is_symlink(path: &Path) -> bool {
-    fs::symlink_metadata(path)
-        .map(|m| m.file_type().is_symlink())
-        .unwrap_or(false)
-}
-
-/// Express absolute `target` relative to the absolute directory `base`, so
-/// that `base/<result>` resolves back to `target`. Both paths must be
-/// canonicalized by the caller.
-fn relative_to(base: &Path, target: &Path) -> PathBuf {
-    let base: Vec<_> = base.components().collect();
-    let target: Vec<_> = target.components().collect();
-    let shared = base
-        .iter()
-        .zip(target.iter())
-        .take_while(|(a, b)| a == b)
-        .count();
-    let mut rel = PathBuf::new();
-    for _ in shared..base.len() {
-        rel.push("..");
-    }
-    for comp in &target[shared..] {
-        rel.push(comp.as_os_str());
-    }
-    if rel.as_os_str().is_empty() {
-        rel.push(".");
-    }
-    rel
-}
-
-/// The symlink target to write for `source` under the given scope: absolute
-/// for global installs, relative (from `link_dir`) for project/workspace.
-fn link_target(source: &Path, link_dir: &Path, scope: Scope) -> Result<PathBuf> {
-    match scope {
-        Scope::Global => Ok(source.to_path_buf()),
-        Scope::Project | Scope::Workspace => {
-            let canon_dir = link_dir.canonicalize()?;
-            let canon_src = source.canonicalize()?;
-            Ok(relative_to(&canon_dir, &canon_src))
-        }
-    }
-}
 
 impl Gemini {
     fn skills_base(&self, project_dir: &Path, scope: Scope) -> Result<PathBuf> {
@@ -277,13 +210,5 @@ mod tests {
         assert!(!Gemini.supports(ContentType::Guide));
     }
 
-    #[test]
-    fn relative_to_climbs_then_descends() {
-        let base = Path::new("/tmp/proj/.gemini/skills");
-        let target = Path::new("/tmp/almanac/skills/demo");
-        assert_eq!(
-            relative_to(base, target),
-            Path::new("../../../almanac/skills/demo")
-        );
-    }
+    // `relative_to` / `link_target` unit tests live in `super::symlink`.
 }

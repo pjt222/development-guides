@@ -17,59 +17,19 @@
 //! scope, matching Node.
 
 use std::fs;
-use std::io;
 use std::path::{Path, PathBuf};
 
 use super::base::{
     Action, AuditEntry, ContentType, FrameworkAdapter, InstallCtx, InstallResult, Item, Scope,
     Strategy,
 };
+use super::symlink::{is_symlink, remove_link, symlink_dir, symlink_file};
 use crate::error::{Error, Result};
 
 pub struct Hermes;
 
 /// Skills with no resolved domain fall here, matching Node's `domain || 'general'`.
 const DEFAULT_DOMAIN: &str = "general";
-
-// ── platform-portable symlink helpers ────────────────────────────────────────
-
-/// Create a directory symlink `dst -> src`.
-#[cfg(unix)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::unix::fs::symlink(src, dst)
-}
-#[cfg(windows)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::windows::fs::symlink_dir(src, dst)
-}
-
-/// Create a file symlink `dst -> src` (used for the per-agent `<id>.md` links).
-#[cfg(unix)]
-fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::unix::fs::symlink(src, dst)
-}
-#[cfg(windows)]
-fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::windows::fs::symlink_file(src, dst)
-}
-
-/// Remove a symlink. On Unix every symlink unlinks as a file; on Windows a
-/// directory symlink needs `remove_dir`, so fall back to it.
-#[cfg(unix)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path)
-}
-#[cfg(windows)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path).or_else(|_| fs::remove_dir(path))
-}
-
-/// Whether `path` is itself a symlink — true even when the link is broken.
-fn is_symlink(path: &Path) -> bool {
-    fs::symlink_metadata(path)
-        .map(|m| m.file_type().is_symlink())
-        .unwrap_or(false)
-}
 
 impl Hermes {
     fn skills_base(&self, project_dir: &Path, scope: Scope) -> Result<PathBuf> {

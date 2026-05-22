@@ -16,64 +16,20 @@
 //!   the opt-in, agent/team installs are skipped with an explanatory message.
 //! - **Guides**: not supported.
 //!
-//! Symlink targets are absolute. The symlink helpers are copied from the other
-//! symlink adapters — dedup is tracked as a follow-up on #255.
+//! Symlink targets are absolute (pi does not use the relative-link style — see
+//! `adapters::symlink`, where the shared helpers now live).
 
 use std::fs;
-use std::io;
 use std::path::{Path, PathBuf};
 
 use super::base::{
     Action, AuditEntry, ContentType, FrameworkAdapter, InstallCtx, InstallResult, Item, Scope,
     Strategy,
 };
+use super::symlink::{dir_is_empty, is_symlink, remove_link, symlink_dir, symlink_file};
 use crate::error::{Error, Result};
 
 pub struct Pi;
-
-// ── platform-portable symlink helpers ────────────────────────────────────────
-
-#[cfg(unix)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::unix::fs::symlink(src, dst)
-}
-#[cfg(windows)]
-fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::windows::fs::symlink_dir(src, dst)
-}
-
-/// Create a file symlink `dst -> src` (the per-extension `<id>.md` link).
-#[cfg(unix)]
-fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::unix::fs::symlink(src, dst)
-}
-#[cfg(windows)]
-fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
-    std::os::windows::fs::symlink_file(src, dst)
-}
-
-#[cfg(unix)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path)
-}
-#[cfg(windows)]
-fn remove_link(path: &Path) -> io::Result<()> {
-    fs::remove_file(path).or_else(|_| fs::remove_dir(path))
-}
-
-/// Whether `path` is itself a symlink — true even when the link is broken.
-fn is_symlink(path: &Path) -> bool {
-    fs::symlink_metadata(path)
-        .map(|m| m.file_type().is_symlink())
-        .unwrap_or(false)
-}
-
-/// Whether a directory has no entries.
-fn dir_is_empty(path: &Path) -> bool {
-    fs::read_dir(path)
-        .map(|mut d| d.next().is_none())
-        .unwrap_or(false)
-}
 
 impl Pi {
     fn skills_base(&self, project_dir: &Path, scope: Scope) -> Result<PathBuf> {

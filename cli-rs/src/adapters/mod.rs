@@ -4,6 +4,7 @@ pub mod codex;
 pub mod gemini;
 pub mod hermes;
 pub mod pi;
+pub mod symlink;
 pub mod transformer;
 
 use std::path::Path;
