@@ -63,6 +63,10 @@ pub struct AuditEntry {
 pub struct InstallOptions {
     pub dry_run: bool,
     pub force: bool,
+    /// Opt in to installing agents/teams as Pi extension scaffolds. Pi has no
+    /// native agent support, so this is off by default; only the `pi` adapter
+    /// reads it. See the `pi` adapter for the scaffold layout.
+    pub pi_extensions: bool,
 }
 
 #[derive(Debug, Clone)]

@@ -91,7 +91,7 @@ fn install_is_idempotent_and_force_overwrites() {
             &ctx(
                 project.path(),
                 almanac.path(),
-                InstallOptions { dry_run: false, force: true },
+                InstallOptions { dry_run: false, force: true, pi_extensions: false },
             ),
         )
         .unwrap();
@@ -110,7 +110,7 @@ fn dry_run_touches_nothing() {
             &ctx(
                 project.path(),
                 almanac.path(),
-                InstallOptions { dry_run: true, force: false },
+                InstallOptions { dry_run: true, force: false, pi_extensions: false },
             ),
         )
         .unwrap();

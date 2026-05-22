@@ -28,7 +28,16 @@ pub fn run(args: Args) -> Result<()> {
             global,
             force,
             dry_run,
-        }) => command_install(kind, &id, global, force, dry_run, args.root.as_deref()),
+            pi_extensions,
+        }) => command_install(
+            kind,
+            &id,
+            global,
+            force,
+            dry_run,
+            pi_extensions,
+            args.root.as_deref(),
+        ),
         Some(Command::Uninstall {
             kind,
             id,
@@ -92,7 +101,13 @@ fn resolve_item(almanac_root: &Path, kind: Kind, id: &str) -> Result<Item> {
             // claude-code installs the whole agents/ directory as one symlink.
             almanac_root.join("agents")
         }
-        ContentType::Team | ContentType::Guide => almanac_root.join("teams"),
+        ContentType::Team => {
+            if !registries.teams.flat().iter().any(|t| t.id == id) {
+                return Err(Error::UnknownItem(format!("team: {id}")));
+            }
+            almanac_root.join("teams")
+        }
+        ContentType::Guide => almanac_root.join("teams"),
     };
     Ok(Item {
         kind: ctype,
@@ -116,12 +131,14 @@ fn report(adapter_id: &str, action: adapters::base::Action, path: &Path, details
     println!("{adapter_id}: {action:?} {}{suffix}", path.display());
 }
 
+#[allow(clippy::too_many_arguments)]
 fn command_install(
     kind: Kind,
     id: &str,
     global: bool,
     force: bool,
     dry_run: bool,
+    pi_extensions: bool,
     root: Option<&Path>,
 ) -> Result<()> {
     let root = root.ok_or(Error::RootNotFound)?;
@@ -148,7 +165,11 @@ fn command_install(
         project_dir: &project_dir,
         almanac_root: &almanac_root,
         scope: scope_of(global),
-        options: InstallOptions { dry_run, force },
+        options: InstallOptions {
+            dry_run,
+            force,
+            pi_extensions,
+        },
     };
 
     let mut handled = false;
@@ -189,6 +210,7 @@ fn command_uninstall(kind: Kind, id: &str, global: bool, dry_run: bool) -> Resul
         options: InstallOptions {
             dry_run,
             force: false,
+            pi_extensions: false,
         },
     };
     for adapter in adapters::all() {

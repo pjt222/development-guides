@@ -33,14 +33,14 @@ pub enum Command {
     },
     /// Detect installed frameworks in the current directory.
     Detect,
-    /// Install a skill or agent into the detected framework(s).
+    /// Install a skill, agent, or team into the detected framework(s).
     Install {
-        /// Content kind (`skills` or `agents`; teams/guides are not installed).
+        /// Content kind (`skills`, `agents`, or `teams`; guides are not installed).
         #[arg(value_enum)]
         kind: Kind,
-        /// Content id — a skill name, or an agent name.
+        /// Content id — a skill, agent, or team name.
         id: String,
-        /// Install into the global `~/.claude` instead of `./.claude`.
+        /// Install into the global scope instead of the project directory.
         #[arg(long)]
         global: bool,
         /// Overwrite an existing install instead of skipping it.
@@ -49,6 +49,10 @@ pub enum Command {
         /// Report what would change without touching the filesystem.
         #[arg(long)]
         dry_run: bool,
+        /// Opt in to installing agents/teams as Pi extension scaffolds
+        /// (the `pi` adapter; Pi has no native agent support).
+        #[arg(long)]
+        pi_extensions: bool,
     },
     /// Remove a previously installed skill or agent.
     Uninstall {

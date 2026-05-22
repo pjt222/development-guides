@@ -1,19 +1,23 @@
 //! Pi Coding Agent adapter (pi.dev, earendil-works/pi) — installs skills into
-//! Pi's dedicated skill directory via symlinks.
+//! Pi's dedicated skill directory via symlinks, and (opt-in) agents/teams as
+//! Pi extension scaffolds.
 //!
 //! Mirrors the Node CLI's `cli/adapters/pi.js`:
 //!
 //! - **Skills**: `<scope>/skills/<id>` → `skills/<id>` — one symlink per skill.
-//!   Project scope targets `.pi/skills/`, global targets `~/.pi/agent/skills/`.
-//!   Pi discovers skills as folders containing a `SKILL.md`, which is exactly
-//!   the almanac skill layout, so a plain symlink needs no transformation.
-//! - **Agents / Teams / Guides**: not supported — Pi has no agent-definition
-//!   directory; project instructions live in `AGENTS.md` (the codex adapter's
-//!   territory), not per-agent files.
+//!   Project scope targets `.pi/skills/`, global `~/.pi/agent/skills/`. Pi
+//!   discovers skills as folders containing a `SKILL.md`, which is the almanac
+//!   skill layout exactly, so a plain symlink needs no transformation.
+//! - **Agents / Teams**: Pi has *no native agent support* — "build your own
+//!   with extensions". So agent/team installs are **opt-in** via
+//!   `InstallOptions::pi_extensions`. When enabled, the definition `.md` is
+//!   symlinked into an extension scaffold at `<scope>/extensions/<id>/<id>.md`;
+//!   the user must still write an `index.ts` wrapper to activate it. Without
+//!   the opt-in, agent/team installs are skipped with an explanatory message.
+//! - **Guides**: not supported.
 //!
-//! Symlink targets are absolute in every scope. The symlink helpers are copied
-//! from `claude_code.rs` / `hermes.rs` — three copies now; dedup into a shared
-//! `adapters` module is tracked as a follow-up on #255.
+//! Symlink targets are absolute. The symlink helpers are copied from the other
+//! symlink adapters — dedup is tracked as a follow-up on #255.
 
 use std::fs;
 use std::io;
@@ -38,6 +42,16 @@ fn symlink_dir(src: &Path, dst: &Path) -> io::Result<()> {
     std::os::windows::fs::symlink_dir(src, dst)
 }
 
+/// Create a file symlink `dst -> src` (the per-extension `<id>.md` link).
+#[cfg(unix)]
+fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
+    std::os::unix::fs::symlink(src, dst)
+}
+#[cfg(windows)]
+fn symlink_file(src: &Path, dst: &Path) -> io::Result<()> {
+    std::os::windows::fs::symlink_file(src, dst)
+}
+
 #[cfg(unix)]
 fn remove_link(path: &Path) -> io::Result<()> {
     fs::remove_file(path)
@@ -54,9 +68,20 @@ fn is_symlink(path: &Path) -> bool {
         .unwrap_or(false)
 }
 
+/// Whether a directory has no entries.
+fn dir_is_empty(path: &Path) -> bool {
+    fs::read_dir(path)
+        .map(|mut d| d.next().is_none())
+        .unwrap_or(false)
+}
+
 impl Pi {
     fn skills_base(&self, project_dir: &Path, scope: Scope) -> Result<PathBuf> {
         Ok(self.target_path(project_dir, scope)?.join("skills"))
+    }
+
+    fn extensions_base(&self, project_dir: &Path, scope: Scope) -> Result<PathBuf> {
+        Ok(self.target_path(project_dir, scope)?.join("extensions"))
     }
 
     fn install_skill(&self, item: &Item, ctx: &InstallCtx<'_>) -> Result<InstallResult> {
@@ -89,12 +114,92 @@ impl Pi {
         })
     }
 
-    fn unsupported(&self, ctx: &InstallCtx<'_>, kind: ContentType) -> Result<InstallResult> {
+    /// Install an agent or team as a Pi extension scaffold: the definition
+    /// `.md` symlinked into `extensions/<id>/<id>.md`. Gated on the
+    /// `pi_extensions` opt-in — Pi has no native agent support.
+    fn install_extension(&self, item: &Item, ctx: &InstallCtx<'_>) -> Result<InstallResult> {
+        if !ctx.options.pi_extensions {
+            return Ok(InstallResult {
+                action: Action::Skipped,
+                path: self.extensions_base(ctx.project_dir, ctx.scope)?,
+                details: Some(format!(
+                    "{:?} support needs --pi-extensions (Pi requires a dedicated extension)",
+                    item.kind
+                )),
+            });
+        }
+
+        let ext_dir = self.extensions_base(ctx.project_dir, ctx.scope)?.join(&item.id);
+        let target = ext_dir.join(format!("{}.md", item.id));
+        // Agents resolve `source_dir` to the almanac `agents/` directory, teams
+        // to `teams/`; the definition file is `<id>.md` inside it.
+        let source = item.source_dir.join(format!("{}.md", item.id));
+
+        if ctx.options.dry_run {
+            return Ok(InstallResult {
+                action: Action::Created,
+                path: target,
+                details: Some("dry-run: extension scaffold".to_string()),
+            });
+        }
+        if target.exists() && !ctx.options.force {
+            return Ok(InstallResult {
+                action: Action::Skipped,
+                path: target,
+                details: Some("already exists".to_string()),
+            });
+        }
+        fs::create_dir_all(&ext_dir)?;
+        if is_symlink(&target) || target.exists() {
+            remove_link(&target)?;
+        }
+        symlink_file(&source, &target)?;
         Ok(InstallResult {
-            action: Action::Skipped,
-            path: self.target_path(ctx.project_dir, ctx.scope)?,
-            details: Some(format!("pi supports skills only, not {kind:?}s")),
+            action: Action::Created,
+            path: target,
+            details: Some("extension scaffold — add an index.ts wrapper to activate".to_string()),
         })
+    }
+
+    fn uninstall_extension(&self, item: &Item, ctx: &InstallCtx<'_>) -> Result<InstallResult> {
+        let ext_dir = self.extensions_base(ctx.project_dir, ctx.scope)?.join(&item.id);
+        let target = ext_dir.join(format!("{}.md", item.id));
+
+        if ctx.options.dry_run {
+            return Ok(InstallResult {
+                action: Action::Removed,
+                path: target,
+                details: Some("dry-run".to_string()),
+            });
+        }
+        if !target.exists() && !is_symlink(&target) {
+            return Ok(InstallResult {
+                action: Action::Skipped,
+                path: target,
+                details: Some("not installed".to_string()),
+            });
+        }
+        // Remove only the symlinked `.md` — never the directory wholesale: the
+        // user may have hand-written an `index.ts` next to it. Drop the dir
+        // only when nothing else remains.
+        remove_link(&target)?;
+        if ext_dir.is_dir() && dir_is_empty(&ext_dir) {
+            fs::remove_dir(&ext_dir)?;
+            Ok(InstallResult {
+                action: Action::Removed,
+                path: target,
+                details: None,
+            })
+        } else {
+            Ok(InstallResult {
+                action: Action::Removed,
+                path: target,
+                details: Some(format!(
+                    "kept extensions/{}/ — other files present",
+                    item.id
+                )),
+            })
+        }
     }
 }
 
@@ -112,7 +217,9 @@ impl FrameworkAdapter for Pi {
     }
 
     fn content_types(&self) -> &'static [ContentType] {
-        &[ContentType::Skill]
+        // Agents/teams are supported only via the `pi_extensions` opt-in, but
+        // they are declared here so the install path reaches the adapter.
+        &[ContentType::Skill, ContentType::Agent, ContentType::Team]
     }
 
     fn detect(&self, project_dir: &Path) -> Result<bool> {
@@ -131,41 +238,54 @@ impl FrameworkAdapter for Pi {
     fn install(&self, item: &Item, ctx: &InstallCtx<'_>) -> Result<InstallResult> {
         match item.kind {
             ContentType::Skill => self.install_skill(item, ctx),
-            other => self.unsupported(ctx, other),
+            ContentType::Agent | ContentType::Team => self.install_extension(item, ctx),
+            ContentType::Guide => Ok(InstallResult {
+                action: Action::Skipped,
+                path: self.target_path(ctx.project_dir, ctx.scope)?,
+                details: Some("pi does not install guides".to_string()),
+            }),
         }
     }
 
     fn uninstall(&self, item: &Item, ctx: &InstallCtx<'_>) -> Result<InstallResult> {
-        if item.kind != ContentType::Skill {
-            return self.unsupported(ctx, item.kind);
-        }
-        let target = self
-            .skills_base(ctx.project_dir, ctx.scope)?
-            .join(&item.id);
-        if ctx.options.dry_run {
-            return Ok(InstallResult {
-                action: Action::Removed,
-                path: target,
-                details: Some("dry-run".to_string()),
-            });
-        }
-        if !target.exists() && !is_symlink(&target) {
-            return Ok(InstallResult {
+        match item.kind {
+            ContentType::Skill => {
+                let target = self
+                    .skills_base(ctx.project_dir, ctx.scope)?
+                    .join(&item.id);
+                if ctx.options.dry_run {
+                    return Ok(InstallResult {
+                        action: Action::Removed,
+                        path: target,
+                        details: Some("dry-run".to_string()),
+                    });
+                }
+                if !target.exists() && !is_symlink(&target) {
+                    return Ok(InstallResult {
+                        action: Action::Skipped,
+                        path: target,
+                        details: Some("not installed".to_string()),
+                    });
+                }
+                remove_link(&target)?;
+                Ok(InstallResult {
+                    action: Action::Removed,
+                    path: target,
+                    details: None,
+                })
+            }
+            ContentType::Agent | ContentType::Team => self.uninstall_extension(item, ctx),
+            ContentType::Guide => Ok(InstallResult {
                 action: Action::Skipped,
-                path: target,
-                details: Some("not installed".to_string()),
-            });
+                path: self.target_path(ctx.project_dir, ctx.scope)?,
+                details: Some("pi does not install guides".to_string()),
+            }),
         }
-        remove_link(&target)?;
-        Ok(InstallResult {
-            action: Action::Removed,
-            path: target,
-            details: None,
-        })
     }
 
     fn list_installed(&self, project_dir: &Path, scope: Scope) -> Result<Vec<Item>> {
         let mut items = Vec::new();
+
         let skills_dir = self.skills_base(project_dir, scope)?;
         if skills_dir.is_dir() {
             for entry in fs::read_dir(&skills_dir)? {
@@ -181,6 +301,25 @@ impl FrameworkAdapter for Pi {
                 }
             }
         }
+
+        // Extension scaffolds: one folder per agent/team. The folder alone does
+        // not record whether it was an agent or a team, so it is reported as
+        // `Agent` (the dominant case).
+        let ext_dir = self.extensions_base(project_dir, scope)?;
+        if ext_dir.is_dir() {
+            for entry in fs::read_dir(&ext_dir)? {
+                let entry = entry?;
+                if entry.path().is_dir() {
+                    items.push(Item {
+                        kind: ContentType::Agent,
+                        id: entry.file_name().to_string_lossy().into_owned(),
+                        source_dir: PathBuf::new(),
+                        domain: None,
+                    });
+                }
+            }
+        }
+
         items.sort_by(|a, b| a.id.cmp(&b.id));
         Ok(items)
     }
@@ -194,7 +333,7 @@ impl FrameworkAdapter for Pi {
         };
 
         let (mut valid, mut broken) = (0usize, 0usize);
-        for item in &installed {
+        for item in installed.iter().filter(|i| i.kind == ContentType::Skill) {
             // A broken symlink fails `exists()` (which follows the link).
             if skills_dir.join(&item.id).exists() {
                 valid += 1;
@@ -202,8 +341,16 @@ impl FrameworkAdapter for Pi {
                 broken += 1;
             }
         }
+        let extensions = installed
+            .iter()
+            .filter(|i| i.kind == ContentType::Agent)
+            .count();
+
         if valid > 0 {
             entry.ok.push(format!("{valid} skills installed"));
+        }
+        if extensions > 0 {
+            entry.ok.push(format!("{extensions} extension scaffolds"));
         }
         if broken > 0 {
             entry.errors.push(format!("{broken} broken skill symlinks"));
@@ -228,9 +375,10 @@ mod tests {
     }
 
     #[test]
-    fn content_types_are_skill_only() {
+    fn content_types_include_skill_agent_team() {
         assert!(Pi.supports(ContentType::Skill));
-        assert!(!Pi.supports(ContentType::Agent));
-        assert!(!Pi.supports(ContentType::Team));
+        assert!(Pi.supports(ContentType::Agent));
+        assert!(Pi.supports(ContentType::Team));
+        assert!(!Pi.supports(ContentType::Guide));
     }
 }
