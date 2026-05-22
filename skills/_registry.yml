@@ -1,7 +1,7 @@
 version: "1.6"
 generated: "2026-04-07"
 standard: "agentskills.io/specification"
-total_skills: 352
+total_skills: 353
 
 domains:
   r-packages:
@@ -472,6 +472,12 @@ domains:
         complexity: intermediate
         language: multi
         description: Pick a delaySeconds value for ScheduleWakeup using the three-tier cache-aware decision, the [60,3600] clamp, and minute-boundary rounding
+
+      - id: memex
+        path: memex/SKILL.md
+        complexity: basic
+        language: multi
+        description: Cross-session shared agent memory over MCP — load the bias-log, search prior context, and log reasoning-pattern observations
 
   citations:
     description: Academic and software citation management with R and BibTeX
