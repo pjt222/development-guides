@@ -3,6 +3,7 @@ pub mod claude_code;
 pub mod codex;
 pub mod gemini;
 pub mod hermes;
+pub mod opencode;
 pub mod pi;
 pub mod symlink;
 pub mod transformer;
@@ -20,6 +21,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(codex::Codex),
         Box::new(pi::Pi),
         Box::new(gemini::Gemini),
+        Box::new(opencode::OpenCode),
     ]
 }
 
