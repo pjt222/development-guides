@@ -2,6 +2,7 @@ pub mod base;
 pub mod claude_code;
 pub mod codex;
 pub mod hermes;
+pub mod pi;
 pub mod transformer;
 
 use std::path::Path;
@@ -15,6 +16,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(claude_code::ClaudeCode),
         Box::new(hermes::Hermes),
         Box::new(codex::Codex),
+        Box::new(pi::Pi),
     ]
 }
 
