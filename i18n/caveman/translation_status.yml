@@ -1,10 +1,10 @@
 locale: caveman
-last_updated: '2026-05-03'
+last_updated: '2026-05-22'
 coverage:
   skills:
-    translated: 350
-    total: 350
-    pct: 100
+    translated: 352
+    total: 353
+    pct: 99.7
     stale: 0
     stubs: 0
   agents:
@@ -21,13 +21,13 @@ coverage:
     stubs: 0
   guides:
     translated: 0
-    total: 25
+    total: 27
     pct: 0
     stale: 0
     stubs: 0
   total:
-    translated: 350
-    total: 464
-    pct: 75.4
+    translated: 352
+    total: 469
+    pct: 75.1
     stale: 0
     stubs: 0
