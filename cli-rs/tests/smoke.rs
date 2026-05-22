@@ -98,6 +98,7 @@ fn adapters_registered() {
     let adapters = adapters::all();
     assert!(adapters.iter().any(|a| a.id() == "claude-code"));
     assert!(adapters.iter().any(|a| a.id() == "hermes"));
+    assert!(adapters.iter().any(|a| a.id() == "codex"));
 }
 
 #[test]
