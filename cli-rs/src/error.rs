@@ -19,6 +19,9 @@ pub enum Error {
     #[error("content root not found; pass --root or set AGENT_ALMANAC_ROOT")]
     RootNotFound,
 
+    #[error("unknown {0}")]
+    UnknownItem(String),
+
     #[error("not implemented yet: {0}")]
     Todo(&'static str),
 }

@@ -33,6 +33,43 @@ pub enum Command {
     },
     /// Detect installed frameworks in the current directory.
     Detect,
+    /// Install a skill or agent into the detected framework(s).
+    Install {
+        /// Content kind (`skills` or `agents`; teams/guides are not installed).
+        #[arg(value_enum)]
+        kind: Kind,
+        /// Content id — a skill name, or an agent name.
+        id: String,
+        /// Install into the global `~/.claude` instead of `./.claude`.
+        #[arg(long)]
+        global: bool,
+        /// Overwrite an existing install instead of skipping it.
+        #[arg(long)]
+        force: bool,
+        /// Report what would change without touching the filesystem.
+        #[arg(long)]
+        dry_run: bool,
+    },
+    /// Remove a previously installed skill or agent.
+    Uninstall {
+        /// Content kind (`skills` or `agents`).
+        #[arg(value_enum)]
+        kind: Kind,
+        /// Content id to remove.
+        id: String,
+        /// Operate on the global `~/.claude` instead of `./.claude`.
+        #[arg(long)]
+        global: bool,
+        /// Report what would change without touching the filesystem.
+        #[arg(long)]
+        dry_run: bool,
+    },
+    /// Audit installed content for broken or stale symlinks.
+    Audit {
+        /// Audit the global `~/.claude` instead of `./.claude`.
+        #[arg(long)]
+        global: bool,
+    },
     /// Print version and exit.
     Version,
 }
@@ -43,4 +80,17 @@ pub enum Kind {
     Agents,
     Teams,
     Guides,
+}
+
+impl Kind {
+    /// The adapter-level content type this CLI kind maps to.
+    pub fn content_type(self) -> crate::adapters::base::ContentType {
+        use crate::adapters::base::ContentType;
+        match self {
+            Kind::Skills => ContentType::Skill,
+            Kind::Agents => ContentType::Agent,
+            Kind::Teams => ContentType::Team,
+            Kind::Guides => ContentType::Guide,
+        }
+    }
 }

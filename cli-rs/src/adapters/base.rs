@@ -37,6 +37,7 @@ pub enum Action {
     Created,
     Updated,
     Skipped,
+    Removed,
 }
 
 #[derive(Debug, Clone)]
