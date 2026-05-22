@@ -100,6 +100,7 @@ fn adapters_registered() {
     assert!(adapters.iter().any(|a| a.id() == "hermes"));
     assert!(adapters.iter().any(|a| a.id() == "codex"));
     assert!(adapters.iter().any(|a| a.id() == "pi"));
+    assert!(adapters.iter().any(|a| a.id() == "gemini"));
 }
 
 #[test]
