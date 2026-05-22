@@ -1,5 +1,6 @@
 pub mod base;
 pub mod claude_code;
+pub mod hermes;
 
 use std::path::Path;
 
@@ -8,7 +9,7 @@ use base::FrameworkAdapter;
 use crate::error::Result;
 
 pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
-    vec![Box::new(claude_code::ClaudeCode)]
+    vec![Box::new(claude_code::ClaudeCode), Box::new(hermes::Hermes)]
 }
 
 pub fn detect_all(project_dir: &Path) -> Result<Vec<&'static str>> {

@@ -73,11 +73,16 @@ fn command_detect(_root: Option<&Path>) -> Result<()> {
 fn resolve_item(almanac_root: &Path, kind: Kind, id: &str) -> Result<Item> {
     let ctype = kind.content_type();
     let registries = content::registry::load(Some(almanac_root))?;
+    let mut domain = None;
     let source_dir = match ctype {
         ContentType::Skill => {
-            if !registries.skills.flat().iter().any(|s| s.id == id) {
-                return Err(Error::UnknownItem(format!("skill: {id}")));
-            }
+            let skill = registries
+                .skills
+                .flat()
+                .into_iter()
+                .find(|s| s.id == id)
+                .ok_or_else(|| Error::UnknownItem(format!("skill: {id}")))?;
+            domain = Some(skill.domain);
             almanac_root.join("skills").join(id)
         }
         ContentType::Agent => {
@@ -93,6 +98,7 @@ fn resolve_item(almanac_root: &Path, kind: Kind, id: &str) -> Result<Item> {
         kind: ctype,
         id: id.to_string(),
         source_dir,
+        domain,
     })
 }
 
@@ -125,6 +131,19 @@ fn command_install(
     let ctype = kind.content_type();
     let item = resolve_item(&almanac_root, kind, id)?;
     let project_dir = std::env::current_dir()?;
+
+    // Install only into frameworks actually present — mirrors the Node CLI's
+    // `getAdaptersForDetections`. Without this gate every adapter would write
+    // its tree unconditionally (e.g. a stray `.hermes/` in any directory).
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}; nothing installed",
+            project_dir.display()
+        );
+        return Ok(());
+    }
+
     let ctx = InstallCtx {
         project_dir: &project_dir,
         almanac_root: &almanac_root,
@@ -134,6 +153,9 @@ fn command_install(
 
     let mut handled = false;
     for adapter in adapters::all() {
+        if !detected.iter().any(|d| *d == adapter.id()) {
+            continue;
+        }
         if !adapter.supports(ctype) {
             println!("{}: does not support {kind:?}", adapter.id());
             continue;
@@ -143,7 +165,7 @@ fn command_install(
         handled = true;
     }
     if !handled {
-        println!("no framework adapter handles {kind:?}");
+        println!("no detected framework handles {kind:?}");
     }
     Ok(())
 }
@@ -151,11 +173,14 @@ fn command_install(
 fn command_uninstall(kind: Kind, id: &str, global: bool, dry_run: bool) -> Result<()> {
     let ctype = kind.content_type();
     let project_dir = std::env::current_dir()?;
-    // Uninstall only needs the id; `source_dir` is unused on this path.
+    // Uninstall only needs the id; `source_dir` is unused on this path and
+    // `domain` is unknown (no registry without `--root`). Adapters that need
+    // the domain — Hermes — scan their install tree to recover it.
     let item = Item {
         kind: ctype,
         id: id.to_string(),
         source_dir: PathBuf::new(),
+        domain: None,
     };
     let ctx = InstallCtx {
         project_dir: &project_dir,

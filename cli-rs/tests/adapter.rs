@@ -25,6 +25,7 @@ fn skill_item(almanac: &Path) -> Item {
         kind: ContentType::Skill,
         id: "demo-skill".to_string(),
         source_dir: almanac.join("skills/demo-skill"),
+        domain: None,
     }
 }
 
@@ -155,6 +156,7 @@ fn install_agents_links_the_whole_directory() {
         kind: ContentType::Agent,
         id: "demo-agent".to_string(),
         source_dir: almanac.path().join("agents"),
+        domain: None,
     };
     let r = ClaudeCode
         .install(&item, &ctx(project.path(), almanac.path(), InstallOptions::default()))
@@ -185,6 +187,7 @@ fn list_installed_reports_skills_and_agents() {
                 kind: ContentType::Agent,
                 id: "demo-agent".to_string(),
                 source_dir: almanac.path().join("agents"),
+                domain: None,
             },
             &ctx(project.path(), almanac.path(), opts),
         )

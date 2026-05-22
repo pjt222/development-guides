@@ -30,6 +30,10 @@ pub struct Item {
     pub kind: ContentType,
     pub id: String,
     pub source_dir: PathBuf,
+    /// Skill domain (e.g. `git`, `devops`). Some adapters — Hermes — lay skills
+    /// out under `<domain>/<id>`; claude-code ignores it. `None` when unknown
+    /// (e.g. on the uninstall path, which has no registry to resolve against).
+    pub domain: Option<String>,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]

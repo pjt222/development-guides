@@ -260,6 +260,7 @@ impl FrameworkAdapter for ClaudeCode {
                         kind: ContentType::Skill,
                         id: entry.file_name().to_string_lossy().into_owned(),
                         source_dir: fs::read_link(&path).unwrap_or_default(),
+                        domain: None,
                     });
                 }
             }
@@ -272,6 +273,7 @@ impl FrameworkAdapter for ClaudeCode {
                 kind: ContentType::Agent,
                 id: "agents".to_string(),
                 source_dir: fs::read_link(&agents).unwrap_or_default(),
+                domain: None,
             });
         }
         Ok(items)

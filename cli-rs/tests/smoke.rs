@@ -94,9 +94,10 @@ fn body_cache_loads_agent_team_guide() {
 }
 
 #[test]
-fn claude_code_adapter_registered() {
+fn adapters_registered() {
     let adapters = adapters::all();
     assert!(adapters.iter().any(|a| a.id() == "claude-code"));
+    assert!(adapters.iter().any(|a| a.id() == "hermes"));
 }
 
 #[test]
