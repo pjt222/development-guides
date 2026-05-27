@@ -1,3 +1,4 @@
+pub mod aider;
 pub mod base;
 pub mod claude_code;
 pub mod codex;
@@ -24,6 +25,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(gemini::Gemini),
         Box::new(opencode::OpenCode),
         Box::new(copilot::Copilot),
+        Box::new(aider::Aider),
     ]
 }
 

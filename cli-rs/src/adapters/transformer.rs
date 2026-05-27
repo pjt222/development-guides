@@ -5,9 +5,8 @@
 //! *condensed* section into a shared file (`AGENTS.md`), wrapped in HTML-comment
 //! markers so it can be found, replaced, and removed idempotently.
 //!
-//! Ported from the Node CLI's `cli/lib/transformer.js`. Only the agent path is
-//! ported so far — `condense_skill` / `wrap_as_mdc` land with the adapters that
-//! need them.
+//! Ported from the Node CLI's `cli/lib/transformer.js`. `wrap_as_mdc` lands
+//! with the Cursor adapter (it is the only consumer).
 
 use std::path::Path;
 
@@ -46,6 +45,92 @@ pub fn condense_agent(path: &Path) -> Result<String> {
         if include_section {
             result.push(line);
         }
+    }
+
+    while result.last().is_some_and(|l| l.trim().is_empty()) {
+        result.pop();
+    }
+    Ok(result.join("\n"))
+}
+
+/// Condense a SKILL.md for append-to-file frameworks: keep frontmatter, `When
+/// to Use`, the procedure step headings + `Expected:` blocks, and `Validation`.
+/// Drop `On failure:` blocks, `Common Pitfalls`, `Related Skills`, and code
+/// blocks longer than 10 lines. Mirrors `condenseSkill` in transformer.js.
+pub fn condense_skill(path: &Path) -> Result<String> {
+    let raw = std::fs::read_to_string(path)?;
+
+    let mut result: Vec<&str> = Vec::new();
+    let mut in_frontmatter = false;
+    let mut frontmatter_count = 0u32;
+    let mut skip_block = false;
+    let mut code_block_depth = 0u32;
+    let mut code_block_lines = 0u32;
+
+    for line in raw.lines() {
+        if line.trim() == "---" {
+            frontmatter_count += 1;
+            if frontmatter_count <= 2 {
+                result.push(line);
+                in_frontmatter = frontmatter_count == 1;
+                continue;
+            }
+        }
+        if in_frontmatter {
+            result.push(line);
+            continue;
+        }
+
+        if let Some(rest) = line.strip_prefix("## ") {
+            let section = rest.trim();
+            skip_block = section == "Common Pitfalls" || section == "Related Skills";
+            if !skip_block {
+                result.push(line);
+            }
+            continue;
+        }
+
+        if skip_block {
+            continue;
+        }
+
+        if line.trim_start().starts_with("```") {
+            if code_block_depth == 0 {
+                code_block_depth = 1;
+                code_block_lines = 0;
+            } else {
+                if code_block_lines <= 10 {
+                    result.push(line);
+                }
+                code_block_depth = 0;
+                code_block_lines = 0;
+                continue;
+            }
+        }
+        if code_block_depth > 0 {
+            code_block_lines += 1;
+            if code_block_lines <= 10 {
+                result.push(line);
+            }
+            continue;
+        }
+
+        if line.starts_with("**On failure:**") {
+            skip_block = true;
+            continue;
+        }
+        if skip_block
+            && (line.starts_with("### ")
+                || line.starts_with("**Expected:**")
+                || line.starts_with("## "))
+        {
+            skip_block = false;
+        }
+        if skip_block {
+            continue;
+        }
+
+        result.push(line);
     }
 
     while result.last().is_some_and(|l| l.trim().is_empty()) {
