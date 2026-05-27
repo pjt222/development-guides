@@ -1,9 +1,11 @@
+pub mod ai_edge;
 pub mod aider;
 pub mod base;
 pub mod claude_code;
 pub mod codex;
 pub mod copilot;
 pub mod cursor;
+pub mod edge_transformer;
 pub mod gemini;
 pub mod hermes;
 pub mod opencode;
@@ -35,6 +37,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(windsurf::Windsurf),
         Box::new(openclaw::OpenClaw),
         Box::new(vibe::Vibe),
+        Box::new(ai_edge::AiEdge),
         Box::new(universal::Universal),
     ]
 }

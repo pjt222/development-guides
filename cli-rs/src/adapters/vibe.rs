@@ -463,6 +463,7 @@ mod tests {
     }
 
     #[test]
+    #[serial]
     fn audit_warns_when_empty() {
         let dir = tempfile::tempdir().unwrap();
         // Point HOME at an empty dir too so the agent scan finds nothing.
