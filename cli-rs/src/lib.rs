@@ -213,7 +213,18 @@ fn command_uninstall(kind: Kind, id: &str, global: bool, dry_run: bool) -> Resul
             pi_extensions: false,
         },
     };
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}; nothing to uninstall",
+            project_dir.display()
+        );
+        return Ok(());
+    }
     for adapter in adapters::all() {
+        if !detected.iter().any(|d| *d == adapter.id()) {
+            continue;
+        }
         if !adapter.supports(ctype) {
             continue;
         }
@@ -226,7 +237,18 @@ fn command_uninstall(kind: Kind, id: &str, global: bool, dry_run: bool) -> Resul
 fn command_audit(global: bool) -> Result<()> {
     let project_dir = std::env::current_dir()?;
     let scope = scope_of(global);
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}",
+            project_dir.display()
+        );
+        return Ok(());
+    }
     for adapter in adapters::all() {
+        if !detected.iter().any(|d| *d == adapter.id()) {
+            continue;
+        }
         let entry = adapter.audit(&project_dir, scope)?;
         println!("{}", entry.framework);
         for s in &entry.ok {
