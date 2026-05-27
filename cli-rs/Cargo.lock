@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "agent-almanac-rs"
-version = "2.0.0-alpha.20"
+version = "2.0.0-alpha.21"
 dependencies = [
  "anyhow",
  "clap",

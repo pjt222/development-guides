@@ -88,6 +88,11 @@ pub enum Command {
         #[arg(short = 'n', long)]
         dry_run: bool,
     },
+    /// Search skills, agents, and teams by id/description/domain/tag.
+    Search {
+        /// Substring (case-insensitive).
+        query: String,
+    },
     /// Scatter a gathered team — uninstall members + skills not shared elsewhere.
     Scatter {
         /// Team id of the burning fire to scatter.

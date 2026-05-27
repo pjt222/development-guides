@@ -48,6 +48,7 @@ pub fn run(args: Args) -> Result<()> {
         Some(Command::Audit { global }) => command_audit(global),
         Some(Command::Gather { name, dry_run }) => command_gather(&name, dry_run, args.root.as_deref()),
         Some(Command::Tend { dry_run }) => command_tend(dry_run),
+        Some(Command::Search { query }) => command_search(&query, args.root.as_deref()),
         Some(Command::Scatter { name, dry_run }) => {
             command_scatter(&name, dry_run, args.root.as_deref())
         }
@@ -428,6 +429,47 @@ fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<(
         campfire::state::save(&project_dir, &state)?;
     }
 
+    Ok(())
+}
+
+fn command_search(query: &str, root: Option<&Path>) -> Result<()> {
+    let q = query.to_lowercase();
+    let registries = content::registry::load(root)?;
+
+    let contains = |hay: &str| hay.to_lowercase().contains(&q);
+    let any_contains = |fields: &[&str]| fields.iter().any(|f| contains(f));
+
+    let mut hits: Vec<(&'static str, String, String)> = Vec::new();
+
+    for skill in registries.skills.flat() {
+        if any_contains(&[&skill.id, &skill.description, &skill.domain]) {
+            hits.push(("skill", skill.id, skill.description));
+        }
+    }
+    for agent in registries.agents.flat() {
+        let tags = agent.tags.join(",");
+        if any_contains(&[&agent.id, &agent.description, &tags]) {
+            hits.push(("agent", agent.id, agent.description));
+        }
+    }
+    for team in registries.teams.flat() {
+        let tags = team.tags.join(",");
+        if any_contains(&[&team.id, &team.description, &tags]) {
+            hits.push(("team", team.id, team.description));
+        }
+    }
+
+    if hits.is_empty() {
+        println!("0 result(s) for \"{query}\"");
+        return Ok(());
+    }
+
+    println!("{} result(s) for \"{query}\":", hits.len());
+    for (kind, id, desc) in &hits {
+        let snippet: String = desc.chars().take(80).collect();
+        let ellipsis = if desc.chars().count() > 80 { "…" } else { "" };
+        println!("  {kind:<5} {id} — {snippet}{ellipsis}");
+    }
     Ok(())
 }
 
