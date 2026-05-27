@@ -90,6 +90,12 @@ pub enum Command {
     },
     /// Generate an `agent-almanac.yml` manifest in the current directory.
     Init,
+    /// Reconcile installed state with `agent-almanac.yml`.
+    Sync {
+        /// Report what would change without touching the filesystem.
+        #[arg(short = 'n', long)]
+        dry_run: bool,
+    },
     /// Search skills, agents, and teams by id/description/domain/tag.
     Search {
         /// Substring (case-insensitive).

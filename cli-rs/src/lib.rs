@@ -51,6 +51,7 @@ pub fn run(args: Args) -> Result<()> {
         Some(Command::Tend { dry_run }) => command_tend(dry_run),
         Some(Command::Search { query }) => command_search(&query, args.root.as_deref()),
         Some(Command::Init) => command_init(args.root.as_deref()),
+        Some(Command::Sync { dry_run }) => command_sync(dry_run, args.root.as_deref()),
         Some(Command::Scatter { name, dry_run }) => {
             command_scatter(&name, dry_run, args.root.as_deref())
         }
@@ -429,6 +430,122 @@ fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<(
             failed_skills,
         );
         campfire::state::save(&project_dir, &state)?;
+    }
+
+    Ok(())
+}
+
+fn command_sync(dry_run: bool, root: Option<&Path>) -> Result<()> {
+    use crate::adapters::base::FrameworkAdapter;
+    use std::collections::HashSet;
+
+    let root = root.ok_or(Error::RootNotFound)?;
+    let almanac_root = root
+        .canonicalize()
+        .map_err(|_| Error::RegistryNotFound(root.display().to_string()))?;
+
+    let project_dir = std::env::current_dir()?;
+    let manifest = manifest::load(&project_dir)?.ok_or(Error::ManifestMissing)?;
+    let registries = content::registry::load(Some(&almanac_root))?;
+    let desired = manifest::resolve(&manifest, &registries);
+    let desired_skill_ids: HashSet<String> = desired.skills.iter().cloned().collect();
+
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}; nothing to sync",
+            project_dir.display()
+        );
+        return Ok(());
+    }
+
+    if dry_run {
+        println!("(dry-run — no filesystem changes)");
+    }
+    let scope = Scope::Project;
+    let ctx = InstallCtx {
+        project_dir: &project_dir,
+        almanac_root: &almanac_root,
+        scope,
+        options: InstallOptions {
+            dry_run,
+            force: false,
+            pi_extensions: false,
+        },
+    };
+
+    println!(
+        "Sync: install missing — {} skill(s), {} agent(s), {} team(s) desired",
+        desired.skills.len(),
+        desired.agents.len(),
+        desired.teams.len()
+    );
+
+    for sid in &desired.skills {
+        let item = match resolve_item(&almanac_root, Kind::Skills, sid) {
+            Ok(i) => i,
+            Err(_) => continue,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Skill) {
+                continue;
+            }
+            let r = adapter.install(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+    for aid in &desired.agents {
+        let item = match resolve_item(&almanac_root, Kind::Agents, aid) {
+            Ok(i) => i,
+            Err(_) => continue,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Agent) {
+                continue;
+            }
+            let r = adapter.install(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+    for tid in &desired.teams {
+        let item = match resolve_item(&almanac_root, Kind::Teams, tid) {
+            Ok(i) => i,
+            Err(_) => continue,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Team) {
+                continue;
+            }
+            let r = adapter.install(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+
+    // Removal pass — universal adapter only (the cross-client interop path).
+    // Skills installed under `.agents/skills/` that aren't in the desired set
+    // get unlinked. Other adapters are left alone: each one tracks its own
+    // surface and cross-adapter teardown belongs in a future `--prune-all`.
+    let universal = adapters::universal::Universal;
+    let installed = universal.list_installed(&project_dir, scope)?;
+    let extras: Vec<&Item> = installed
+        .iter()
+        .filter(|i| !desired_skill_ids.contains(&i.id))
+        .collect();
+    if !extras.is_empty() {
+        println!("Sync: remove extras — {} skill(s)", extras.len());
+        for item in extras {
+            let r = universal.uninstall(item, &ctx)?;
+            report(universal.id(), r.action, &r.path, r.details);
+        }
     }
 
     Ok(())

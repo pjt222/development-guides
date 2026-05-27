@@ -28,6 +28,9 @@ pub enum Error {
     #[error("the `{0}` fire is not burning; nothing to scatter")]
     FireNotBurning(String),
 
+    #[error("no `agent-almanac.yml` found; run `init` first")]
+    ManifestMissing,
+
     #[error("not implemented yet: {0}")]
     Todo(&'static str),
 }
