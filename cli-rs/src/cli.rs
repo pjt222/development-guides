@@ -88,6 +88,14 @@ pub enum Command {
         #[arg(short = 'n', long)]
         dry_run: bool,
     },
+    /// Scatter a gathered team — uninstall members + skills not shared elsewhere.
+    Scatter {
+        /// Team id of the burning fire to scatter.
+        name: String,
+        /// Report what would change without touching the filesystem.
+        #[arg(short = 'n', long)]
+        dry_run: bool,
+    },
     /// Generate a bundled system prompt from installed edge content.
     Bundle {
         /// Target adapter (only `ai-edge` is supported today).

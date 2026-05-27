@@ -25,6 +25,9 @@ pub enum Error {
     #[error("framework `{0}` does not support bundling")]
     BundleUnsupported(String),
 
+    #[error("the `{0}` fire is not burning; nothing to scatter")]
+    FireNotBurning(String),
+
     #[error("not implemented yet: {0}")]
     Todo(&'static str),
 }

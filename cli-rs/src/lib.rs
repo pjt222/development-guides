@@ -48,6 +48,9 @@ pub fn run(args: Args) -> Result<()> {
         Some(Command::Audit { global }) => command_audit(global),
         Some(Command::Gather { name, dry_run }) => command_gather(&name, dry_run, args.root.as_deref()),
         Some(Command::Tend { dry_run }) => command_tend(dry_run),
+        Some(Command::Scatter { name, dry_run }) => {
+            command_scatter(&name, dry_run, args.root.as_deref())
+        }
         Some(Command::Bundle {
             framework,
             max_tokens,
@@ -422,6 +425,178 @@ fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<(
             installed_skill_count,
             failed_skills,
         );
+        campfire::state::save(&project_dir, &state)?;
+    }
+
+    Ok(())
+}
+
+fn command_scatter(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<()> {
+    use std::collections::{BTreeSet, HashSet};
+
+    let root = root.ok_or(Error::RootNotFound)?;
+    let almanac_root = root
+        .canonicalize()
+        .map_err(|_| Error::RegistryNotFound(root.display().to_string()))?;
+
+    let registries = content::registry::load(Some(&almanac_root))?;
+    let team = registries
+        .teams
+        .flat()
+        .into_iter()
+        .find(|t| t.id == team_id)
+        .ok_or_else(|| Error::UnknownItem(format!("team: {team_id}")))?;
+
+    let project_dir = std::env::current_dir()?;
+    let mut state = campfire::state::load(&project_dir);
+    if !state.fires.contains_key(team_id) {
+        return Err(Error::FireNotBurning(team_id.to_string()));
+    }
+
+    let default_skills: Vec<String> = registries.agents.default_skill_names();
+    let agents_by_id: std::collections::HashMap<String, content::registry::AgentSummary> =
+        registries
+            .agents
+            .flat()
+            .into_iter()
+            .map(|a| (a.id.clone(), a))
+            .collect();
+
+    // Collect this team's full skill + agent set.
+    let mut team_agent_ids: Vec<String> = Vec::new();
+    let mut team_skill_ids: BTreeSet<String> = BTreeSet::new();
+    for member_id in &team.members {
+        let Some(agent) = agents_by_id.get(member_id) else {
+            continue;
+        };
+        team_agent_ids.push(member_id.clone());
+        for sid in &agent.core_skills {
+            team_skill_ids.insert(sid.clone());
+        }
+        for sid in &default_skills {
+            team_skill_ids.insert(sid.clone());
+        }
+    }
+
+    // Anything still needed by OTHER burning fires must stay installed.
+    let mut kept_skills: HashSet<String> = HashSet::new();
+    let mut kept_agents: HashSet<String> = HashSet::new();
+    for (other_id, other_fire) in state.fires.iter() {
+        if other_id == team_id {
+            continue;
+        }
+        for other_agent_id in &other_fire.agents {
+            kept_agents.insert(other_agent_id.clone());
+            if let Some(other_agent) = agents_by_id.get(other_agent_id) {
+                for sid in &other_agent.core_skills {
+                    kept_skills.insert(sid.clone());
+                }
+                for sid in &default_skills {
+                    kept_skills.insert(sid.clone());
+                }
+            }
+        }
+    }
+
+    let to_remove_skills: Vec<String> = team_skill_ids
+        .iter()
+        .filter(|s| !kept_skills.contains(s.as_str()))
+        .cloned()
+        .collect();
+    let to_remove_agents: Vec<String> = team_agent_ids
+        .iter()
+        .filter(|a| !kept_agents.contains(a.as_str()))
+        .cloned()
+        .collect();
+
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}; nothing scattered",
+            project_dir.display()
+        );
+        return Ok(());
+    }
+
+    let ctx = InstallCtx {
+        project_dir: &project_dir,
+        almanac_root: &almanac_root,
+        scope: Scope::Project,
+        options: InstallOptions {
+            dry_run,
+            force: false,
+            pi_extensions: false,
+        },
+    };
+
+    if dry_run {
+        println!("(dry-run — no filesystem changes)");
+    }
+    println!(
+        "Scattering `{team_id}` — removing {} skill(s), {} agent(s) (kept {} shared skill(s))",
+        to_remove_skills.len(),
+        to_remove_agents.len(),
+        kept_skills.len(),
+    );
+
+    for sid in &to_remove_skills {
+        let item = Item {
+            kind: ContentType::Skill,
+            id: sid.clone(),
+            source_dir: PathBuf::new(),
+            domain: None,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Skill) {
+                continue;
+            }
+            let r = adapter.uninstall(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+
+    for aid in &to_remove_agents {
+        let item = Item {
+            kind: ContentType::Agent,
+            id: aid.clone(),
+            source_dir: PathBuf::new(),
+            domain: None,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Agent) {
+                continue;
+            }
+            let r = adapter.uninstall(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+
+    // Team itself — always remove (Node behaviour).
+    let team_item = Item {
+        kind: ContentType::Team,
+        id: team_id.to_string(),
+        source_dir: PathBuf::new(),
+        domain: None,
+    };
+    for adapter in adapters::all() {
+        if !detected.iter().any(|d| *d == adapter.id()) {
+            continue;
+        }
+        if !adapter.supports(ContentType::Team) {
+            continue;
+        }
+        let r = adapter.uninstall(&team_item, &ctx)?;
+        report(adapter.id(), r.action, &r.path, r.details);
+    }
+
+    if !dry_run {
+        campfire::state::record_scatter(&mut state, team_id);
         campfire::state::save(&project_dir, &state)?;
     }
 
