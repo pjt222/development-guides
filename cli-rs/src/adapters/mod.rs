@@ -9,6 +9,7 @@ pub mod opencode;
 pub mod pi;
 pub mod symlink;
 pub mod transformer;
+pub mod universal;
 
 use std::path::Path;
 
@@ -26,6 +27,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(opencode::OpenCode),
         Box::new(copilot::Copilot),
         Box::new(aider::Aider),
+        Box::new(universal::Universal),
     ]
 }
 

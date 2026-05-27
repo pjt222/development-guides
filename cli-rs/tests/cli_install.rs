@@ -25,18 +25,27 @@ fn run_install(cwd: &Path) -> (String, bool) {
 }
 
 #[test]
-fn install_in_an_empty_dir_detects_nothing() {
+fn install_in_an_empty_dir_only_runs_universal() {
+    // The universal adapter always detects (it owns `.agents/skills/`, the
+    // cross-client interop path). In an otherwise empty directory it is the
+    // only framework that installs — no `.claude/`, no `.hermes/`, etc.
     let project = tempfile::tempdir().unwrap();
     let (stdout, ok) = run_install(project.path());
 
     assert!(ok, "command should exit cleanly");
     assert!(
-        stdout.contains("no frameworks detected"),
-        "expected a no-detection message, got: {stdout}"
+        stdout.contains("universal:"),
+        "universal should have installed, got: {stdout}"
     );
-    // Neither adapter's tree should have been written.
+    assert!(
+        project.path().join(".agents/skills/commit-changes").exists(),
+        "the skill symlink should resolve under .agents/skills/"
+    );
+    // No framework-specific adapter detected → no framework-specific tree.
     assert!(!project.path().join(".claude").exists());
     assert!(!project.path().join(".hermes").exists());
+    assert!(!stdout.contains("claude-code:"));
+    assert!(!stdout.contains("hermes:"));
 }
 
 #[test]
