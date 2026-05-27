@@ -74,6 +74,14 @@ pub enum Command {
         #[arg(long)]
         global: bool,
     },
+    /// Gather a team around the campfire — install members + their skills.
+    Gather {
+        /// Team id (a "campfire" name).
+        name: String,
+        /// Report what would change without touching the filesystem.
+        #[arg(short = 'n', long)]
+        dry_run: bool,
+    },
     /// Generate a bundled system prompt from installed edge content.
     Bundle {
         /// Target adapter (only `ai-edge` is supported today).

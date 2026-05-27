@@ -1,6 +1,6 @@
 [package]
 name = "agent-almanac-rs"
-version = "2.0.0-alpha.17"
+version = "2.0.0-alpha.18"
 edition = "2021"
 rust-version = "1.78"
 authors = ["Philipp Thoss <ph.thoss@gmx.de>"]
@@ -31,6 +31,7 @@ thiserror = "2"
 dirs = "6"
 pulldown-cmark = { version = "0.12", default-features = false }
 nucleo-matcher = "0.3"
+time = { version = "0.3", features = ["formatting", "parsing", "serde"] }
 
 [dev-dependencies]
 pretty_assertions = "1"

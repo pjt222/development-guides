@@ -1,5 +1,6 @@
 pub mod adapters;
 pub mod app;
+pub mod campfire;
 pub mod cli;
 pub mod content;
 pub mod error;
@@ -45,6 +46,7 @@ pub fn run(args: Args) -> Result<()> {
             dry_run,
         }) => command_uninstall(kind, &id, global, dry_run),
         Some(Command::Audit { global }) => command_audit(global),
+        Some(Command::Gather { name, dry_run }) => command_gather(&name, dry_run, args.root.as_deref()),
         Some(Command::Bundle {
             framework,
             max_tokens,
@@ -268,6 +270,160 @@ fn command_audit(global: bool) -> Result<()> {
             println!("  (nothing installed)");
         }
     }
+    Ok(())
+}
+
+fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<()> {
+    use adapters::base::Action;
+    use std::collections::BTreeSet;
+
+    let root = root.ok_or(Error::RootNotFound)?;
+    let almanac_root = root
+        .canonicalize()
+        .map_err(|_| Error::RegistryNotFound(root.display().to_string()))?;
+
+    let registries = content::registry::load(Some(&almanac_root))?;
+    let team = registries
+        .teams
+        .flat()
+        .into_iter()
+        .find(|t| t.id == team_id)
+        .ok_or_else(|| Error::UnknownItem(format!("team: {team_id}")))?;
+
+    // Inherited skills every agent gets (e.g. meditate, heal).
+    let default_skills: Vec<String> = registries.agents.default_skill_names();
+    let agents_by_id: std::collections::HashMap<String, content::registry::AgentSummary> =
+        registries
+            .agents
+            .flat()
+            .into_iter()
+            .map(|a| (a.id.clone(), a))
+            .collect();
+
+    let mut agent_ids: Vec<String> = Vec::new();
+    let mut skill_ids: BTreeSet<String> = BTreeSet::new();
+    for member_id in &team.members {
+        let Some(agent) = agents_by_id.get(member_id) else {
+            println!("warning: team `{team_id}` lists unknown agent `{member_id}` — skipping");
+            continue;
+        };
+        agent_ids.push(member_id.clone());
+        for sid in &agent.core_skills {
+            skill_ids.insert(sid.clone());
+        }
+        for sid in &default_skills {
+            skill_ids.insert(sid.clone());
+        }
+    }
+
+    let project_dir = std::env::current_dir()?;
+    let detected = adapters::detect_all(&project_dir)?;
+    if detected.is_empty() {
+        println!(
+            "no frameworks detected in {}; nothing gathered",
+            project_dir.display()
+        );
+        return Ok(());
+    }
+
+    let ctx = InstallCtx {
+        project_dir: &project_dir,
+        almanac_root: &almanac_root,
+        scope: Scope::Project,
+        options: InstallOptions {
+            dry_run,
+            force: false,
+            pi_extensions: false,
+        },
+    };
+
+    if dry_run {
+        println!("(dry-run — no filesystem changes)");
+    }
+    println!(
+        "Gathering `{team_id}` — {} agent(s), {} unique skill(s)",
+        agent_ids.len(),
+        skill_ids.len()
+    );
+
+    let mut installed_skill_count = 0usize;
+    let mut failed_skills: Vec<String> = Vec::new();
+
+    for sid in &skill_ids {
+        let item = match resolve_item(&almanac_root, Kind::Skills, sid) {
+            Ok(i) => i,
+            Err(_) => {
+                println!("warning: unknown skill `{sid}` — skipping");
+                failed_skills.push(sid.clone());
+                continue;
+            }
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Skill) {
+                continue;
+            }
+            match adapter.install(&item, &ctx) {
+                Ok(r) => {
+                    if r.action == Action::Created {
+                        installed_skill_count += 1;
+                    }
+                    report(adapter.id(), r.action, &r.path, r.details);
+                }
+                Err(e) => {
+                    println!("error installing skill `{sid}` via {}: {e}", adapter.id());
+                    if !failed_skills.contains(sid) {
+                        failed_skills.push(sid.clone());
+                    }
+                }
+            }
+        }
+    }
+
+    for aid in &agent_ids {
+        let item = match resolve_item(&almanac_root, Kind::Agents, aid) {
+            Ok(i) => i,
+            Err(_) => continue,
+        };
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Agent) {
+                continue;
+            }
+            let r = adapter.install(&item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+
+    if let Ok(team_item) = resolve_item(&almanac_root, Kind::Teams, team_id) {
+        for adapter in adapters::all() {
+            if !detected.iter().any(|d| *d == adapter.id()) {
+                continue;
+            }
+            if !adapter.supports(ContentType::Team) {
+                continue;
+            }
+            let r = adapter.install(&team_item, &ctx)?;
+            report(adapter.id(), r.action, &r.path, r.details);
+        }
+    }
+
+    if !dry_run {
+        let mut state = campfire::state::load(&project_dir);
+        campfire::state::record_gather(
+            &mut state,
+            team_id,
+            agent_ids,
+            installed_skill_count,
+            failed_skills,
+        );
+        campfire::state::save(&project_dir, &state)?;
+    }
+
     Ok(())
 }
 
