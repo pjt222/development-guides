@@ -82,6 +82,12 @@ pub enum Command {
         #[arg(short = 'n', long)]
         dry_run: bool,
     },
+    /// Tend your campfires — health check across gathered teams.
+    Tend {
+        /// Check fire health without warming (no state mutation).
+        #[arg(short = 'n', long)]
+        dry_run: bool,
+    },
     /// Generate a bundled system prompt from installed edge content.
     Bundle {
         /// Target adapter (only `ai-edge` is supported today).

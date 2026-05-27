@@ -47,6 +47,7 @@ pub fn run(args: Args) -> Result<()> {
         }) => command_uninstall(kind, &id, global, dry_run),
         Some(Command::Audit { global }) => command_audit(global),
         Some(Command::Gather { name, dry_run }) => command_gather(&name, dry_run, args.root.as_deref()),
+        Some(Command::Tend { dry_run }) => command_tend(dry_run),
         Some(Command::Bundle {
             framework,
             max_tokens,
@@ -421,6 +422,46 @@ fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<(
             installed_skill_count,
             failed_skills,
         );
+        campfire::state::save(&project_dir, &state)?;
+    }
+
+    Ok(())
+}
+
+fn command_tend(dry_run: bool) -> Result<()> {
+    let project_dir = std::env::current_dir()?;
+    let mut state = campfire::state::load(&project_dir);
+
+    let fires = campfire::state::fire_status(&state);
+    if fires.is_empty() {
+        println!("No fires to tend. Gather a campfire first.");
+        return Ok(());
+    }
+
+    println!("Tending {} campfire(s):", fires.len());
+    for (id, fire, heat) in &fires {
+        let agents = if fire.agents.is_empty() {
+            "(no agents)".to_string()
+        } else {
+            fire.agents.join(", ")
+        };
+        println!(
+            "  {}  {id} — {} skill(s), agents: {agents}",
+            heat.as_str(),
+            fire.skill_count,
+        );
+        println!("    last warmed: {}", fire.last_warmed);
+        if !fire.failed_skills.is_empty() {
+            println!("    failed skills: {}", fire.failed_skills.join(", "));
+        }
+    }
+
+    if !dry_run {
+        // Warm each fire we tended.
+        let ids: Vec<String> = fires.iter().map(|(id, _, _)| id.clone()).collect();
+        for id in ids {
+            campfire::state::record_warm(&mut state, &id);
+        }
         campfire::state::save(&project_dir, &state)?;
     }
 
