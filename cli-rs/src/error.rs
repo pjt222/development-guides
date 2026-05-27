@@ -22,6 +22,9 @@ pub enum Error {
     #[error("unknown {0}")]
     UnknownItem(String),
 
+    #[error("framework `{0}` does not support bundling")]
+    BundleUnsupported(String),
+
     #[error("not implemented yet: {0}")]
     Todo(&'static str),
 }

@@ -74,6 +74,15 @@ pub enum Command {
         #[arg(long)]
         global: bool,
     },
+    /// Generate a bundled system prompt from installed edge content.
+    Bundle {
+        /// Target adapter (only `ai-edge` is supported today).
+        #[arg(short, long, default_value = "ai-edge")]
+        framework: String,
+        /// Token budget for the bundle.
+        #[arg(long, default_value_t = 4000)]
+        max_tokens: usize,
+    },
     /// Print version and exit.
     Version,
 }

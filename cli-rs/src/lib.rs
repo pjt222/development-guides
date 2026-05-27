@@ -45,6 +45,10 @@ pub fn run(args: Args) -> Result<()> {
             dry_run,
         }) => command_uninstall(kind, &id, global, dry_run),
         Some(Command::Audit { global }) => command_audit(global),
+        Some(Command::Bundle {
+            framework,
+            max_tokens,
+        }) => command_bundle(&framework, max_tokens),
         Some(Command::Version) => {
             println!("{}", env!("CARGO_PKG_VERSION"));
             Ok(())
@@ -265,4 +269,17 @@ fn command_audit(global: bool) -> Result<()> {
         }
     }
     Ok(())
+}
+
+fn command_bundle(framework: &str, max_tokens: usize) -> Result<()> {
+    let project_dir = std::env::current_dir()?;
+    match framework {
+        "ai-edge" => {
+            let (path, count) = adapters::ai_edge::AiEdge.bundle(&project_dir, max_tokens)?;
+            println!("Bundle written to {}", path.display());
+            println!("  {count} skill(s) included (budget: {max_tokens} tokens)");
+            Ok(())
+        }
+        other => Err(Error::BundleUnsupported(other.to_string())),
+    }
 }
