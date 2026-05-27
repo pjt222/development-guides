@@ -12,6 +12,7 @@ pub mod pi;
 pub mod symlink;
 pub mod transformer;
 pub mod universal;
+pub mod vibe;
 pub mod windsurf;
 
 use std::path::Path;
@@ -33,6 +34,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(cursor::Cursor),
         Box::new(windsurf::Windsurf),
         Box::new(openclaw::OpenClaw),
+        Box::new(vibe::Vibe),
         Box::new(universal::Universal),
     ]
 }
