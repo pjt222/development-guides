@@ -6,6 +6,7 @@ pub mod content;
 pub mod error;
 pub mod event;
 pub mod fire;
+pub mod manifest;
 pub mod pixels;
 pub mod screens;
 pub mod search;
@@ -49,6 +50,7 @@ pub fn run(args: Args) -> Result<()> {
         Some(Command::Gather { name, dry_run }) => command_gather(&name, dry_run, args.root.as_deref()),
         Some(Command::Tend { dry_run }) => command_tend(dry_run),
         Some(Command::Search { query }) => command_search(&query, args.root.as_deref()),
+        Some(Command::Init) => command_init(args.root.as_deref()),
         Some(Command::Scatter { name, dry_run }) => {
             command_scatter(&name, dry_run, args.root.as_deref())
         }
@@ -429,6 +431,37 @@ fn command_gather(team_id: &str, dry_run: bool, root: Option<&Path>) -> Result<(
         campfire::state::save(&project_dir, &state)?;
     }
 
+    Ok(())
+}
+
+fn command_init(root: Option<&Path>) -> Result<()> {
+    let root = root.ok_or(Error::RootNotFound)?;
+    let almanac_root = root
+        .canonicalize()
+        .map_err(|_| Error::RegistryNotFound(root.display().to_string()))?;
+
+    let registries = content::registry::load(Some(&almanac_root))?;
+    let project_dir = std::env::current_dir()?;
+
+    // Frameworks: detected, excluding `universal` (Node convention — universal
+    // is implicit, not a framework the user "chose").
+    let detected: Vec<String> = adapters::detect_all(&project_dir)?
+        .into_iter()
+        .filter(|d| *d != "universal")
+        .map(|d| d.to_string())
+        .collect();
+
+    let manifest = manifest::generate(&almanac_root, detected);
+    let path = manifest::save(&project_dir, &manifest)?;
+
+    println!("Created {}", path.display());
+    println!(
+        "Available: {} skills, {} agents, {} teams",
+        registries.skills.total(),
+        registries.agents.total(),
+        registries.teams.total()
+    );
+    println!("Edit the file, then run `agent-almanac-rs sync` to apply.");
     Ok(())
 }
 

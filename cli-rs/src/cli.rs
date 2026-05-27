@@ -88,6 +88,8 @@ pub enum Command {
         #[arg(short = 'n', long)]
         dry_run: bool,
     },
+    /// Generate an `agent-almanac.yml` manifest in the current directory.
+    Init,
     /// Search skills, agents, and teams by id/description/domain/tag.
     Search {
         /// Substring (case-insensitive).
