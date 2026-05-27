@@ -7,6 +7,7 @@ pub mod cursor;
 pub mod gemini;
 pub mod hermes;
 pub mod opencode;
+pub mod openclaw;
 pub mod pi;
 pub mod symlink;
 pub mod transformer;
@@ -31,6 +32,7 @@ pub fn all() -> Vec<Box<dyn FrameworkAdapter>> {
         Box::new(aider::Aider),
         Box::new(cursor::Cursor),
         Box::new(windsurf::Windsurf),
+        Box::new(openclaw::OpenClaw),
         Box::new(universal::Universal),
     ]
 }
